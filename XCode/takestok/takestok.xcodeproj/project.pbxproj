@@ -1,0 +1,400 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AC68C45D1CB51C1F004B78DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C45C1CB51C1F004B78DF /* main.m */; };
+		AC68C4601CB51C1F004B78DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C45F1CB51C1F004B78DF /* AppDelegate.m */; };
+		AC68C4631CB51C1F004B78DF /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4621CB51C1F004B78DF /* HomeViewController.m */; };
+		AC68C4661CB51C1F004B78DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC68C4641CB51C1F004B78DF /* Main.storyboard */; };
+		AC68C4681CB51C1F004B78DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC68C4671CB51C1F004B78DF /* Assets.xcassets */; };
+		AC68C46B1CB51C20004B78DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC68C4691CB51C20004B78DF /* LaunchScreen.storyboard */; };
+		AC68C4771CB53F3D004B78DF /* CALayer+BorderUIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4761CB53F3D004B78DF /* CALayer+BorderUIColor.m */; };
+		AC68C47D1CB63F1B004B78DF /* brandon_bld.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC68C47B1CB63F1B004B78DF /* brandon_bld.otf */; };
+		AC68C47E1CB63F1B004B78DF /* brandon_reg.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC68C47C1CB63F1B004B78DF /* brandon_reg.otf */; };
+		AC68C4811CB64241004B78DF /* TextFieldBorderBottom.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4801CB64241004B78DF /* TextFieldBorderBottom.m */; };
+		AC68C4841CB64966004B78DF /* SellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4831CB64966004B78DF /* SellViewController.m */; };
+		AC68C4891CB6534A004B78DF /* UIImage+ExtendedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4881CB6534A004B78DF /* UIImage+ExtendedImage.m */; };
+		AC68C48C1CB67090004B78DF /* ImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */; };
+		AC68C4921CB68865004B78DF /* PaddingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4911CB68865004B78DF /* PaddingTextField.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AC68C4581CB51C1F004B78DF /* takestok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = takestok.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC68C45C1CB51C1F004B78DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		AC68C45E1CB51C1F004B78DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		AC68C45F1CB51C1F004B78DF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		AC68C4611CB51C1F004B78DF /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = ../HomeViewController.h; sourceTree = "<group>"; };
+		AC68C4621CB51C1F004B78DF /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = ../HomeViewController.m; sourceTree = "<group>"; };
+		AC68C4651CB51C1F004B78DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AC68C4671CB51C1F004B78DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AC68C46A1CB51C20004B78DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AC68C46C1CB51C20004B78DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC68C4751CB53F3D004B78DF /* CALayer+BorderUIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+BorderUIColor.h"; sourceTree = "<group>"; };
+		AC68C4761CB53F3D004B78DF /* CALayer+BorderUIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+BorderUIColor.m"; sourceTree = "<group>"; };
+		AC68C47B1CB63F1B004B78DF /* brandon_bld.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = brandon_bld.otf; sourceTree = "<group>"; };
+		AC68C47C1CB63F1B004B78DF /* brandon_reg.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = brandon_reg.otf; sourceTree = "<group>"; };
+		AC68C47F1CB64241004B78DF /* TextFieldBorderBottom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldBorderBottom.h; sourceTree = "<group>"; };
+		AC68C4801CB64241004B78DF /* TextFieldBorderBottom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldBorderBottom.m; sourceTree = "<group>"; };
+		AC68C4821CB64966004B78DF /* SellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SellViewController.h; sourceTree = "<group>"; };
+		AC68C4831CB64966004B78DF /* SellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SellViewController.m; sourceTree = "<group>"; };
+		AC68C4851CB65117004B78DF /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		AC68C4861CB65227004B78DF /* takestok.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = takestok.pch; sourceTree = "<group>"; };
+		AC68C4871CB6534A004B78DF /* UIImage+ExtendedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ExtendedImage.h"; sourceTree = "<group>"; };
+		AC68C4881CB6534A004B78DF /* UIImage+ExtendedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ExtendedImage.m"; sourceTree = "<group>"; };
+		AC68C48A1CB67090004B78DF /* ImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCollectionViewCell.h; sourceTree = "<group>"; };
+		AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCollectionViewCell.m; sourceTree = "<group>"; };
+		AC68C4901CB68865004B78DF /* PaddingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaddingTextField.h; sourceTree = "<group>"; };
+		AC68C4911CB68865004B78DF /* PaddingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddingTextField.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AC68C4551CB51C1F004B78DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AC68C44F1CB51C1F004B78DF = {
+			isa = PBXGroup;
+			children = (
+				AC68C45A1CB51C1F004B78DF /* takestok */,
+				AC68C4591CB51C1F004B78DF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AC68C4591CB51C1F004B78DF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AC68C4581CB51C1F004B78DF /* takestok.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AC68C45A1CB51C1F004B78DF /* takestok */ = {
+			isa = PBXGroup;
+			children = (
+				AC68C4741CB51CB2004B78DF /* Additional */,
+				AC68C4731CB51CA3004B78DF /* Views */,
+				AC68C4721CB51C90004B78DF /* ViewControllers */,
+				AC68C4781CB63D50004B78DF /* Resources */,
+				AC68C45E1CB51C1F004B78DF /* AppDelegate.h */,
+				AC68C45F1CB51C1F004B78DF /* AppDelegate.m */,
+				AC68C4851CB65117004B78DF /* Constants.h */,
+				AC68C4641CB51C1F004B78DF /* Main.storyboard */,
+				AC68C4691CB51C20004B78DF /* LaunchScreen.storyboard */,
+				AC68C46C1CB51C20004B78DF /* Info.plist */,
+				AC68C4861CB65227004B78DF /* takestok.pch */,
+				AC68C45B1CB51C1F004B78DF /* Supporting Files */,
+			);
+			path = takestok;
+			sourceTree = "<group>";
+		};
+		AC68C45B1CB51C1F004B78DF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AC68C45C1CB51C1F004B78DF /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AC68C4721CB51C90004B78DF /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				AC68C4611CB51C1F004B78DF /* HomeViewController.h */,
+				AC68C4621CB51C1F004B78DF /* HomeViewController.m */,
+				AC68C4821CB64966004B78DF /* SellViewController.h */,
+				AC68C4831CB64966004B78DF /* SellViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		AC68C4731CB51CA3004B78DF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AC68C47F1CB64241004B78DF /* TextFieldBorderBottom.h */,
+				AC68C4801CB64241004B78DF /* TextFieldBorderBottom.m */,
+				AC68C48A1CB67090004B78DF /* ImageCollectionViewCell.h */,
+				AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */,
+				AC68C4901CB68865004B78DF /* PaddingTextField.h */,
+				AC68C4911CB68865004B78DF /* PaddingTextField.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AC68C4741CB51CB2004B78DF /* Additional */ = {
+			isa = PBXGroup;
+			children = (
+				AC68C4751CB53F3D004B78DF /* CALayer+BorderUIColor.h */,
+				AC68C4761CB53F3D004B78DF /* CALayer+BorderUIColor.m */,
+				AC68C4871CB6534A004B78DF /* UIImage+ExtendedImage.h */,
+				AC68C4881CB6534A004B78DF /* UIImage+ExtendedImage.m */,
+			);
+			path = Additional;
+			sourceTree = "<group>";
+		};
+		AC68C4781CB63D50004B78DF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AC68C47A1CB63DD1004B78DF /* Fonts */,
+				AC68C4671CB51C1F004B78DF /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AC68C47A1CB63DD1004B78DF /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				AC68C47B1CB63F1B004B78DF /* brandon_bld.otf */,
+				AC68C47C1CB63F1B004B78DF /* brandon_reg.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AC68C4571CB51C1F004B78DF /* takestok */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC68C46F1CB51C20004B78DF /* Build configuration list for PBXNativeTarget "takestok" */;
+			buildPhases = (
+				AC68C4541CB51C1F004B78DF /* Sources */,
+				AC68C4551CB51C1F004B78DF /* Frameworks */,
+				AC68C4561CB51C1F004B78DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = takestok;
+			productName = takestok;
+			productReference = AC68C4581CB51C1F004B78DF /* takestok.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AC68C4501CB51C1F004B78DF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = Artem;
+				TargetAttributes = {
+					AC68C4571CB51C1F004B78DF = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = AC68C4531CB51C1F004B78DF /* Build configuration list for PBXProject "takestok" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AC68C44F1CB51C1F004B78DF;
+			productRefGroup = AC68C4591CB51C1F004B78DF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AC68C4571CB51C1F004B78DF /* takestok */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AC68C4561CB51C1F004B78DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC68C46B1CB51C20004B78DF /* LaunchScreen.storyboard in Resources */,
+				AC68C4681CB51C1F004B78DF /* Assets.xcassets in Resources */,
+				AC68C4661CB51C1F004B78DF /* Main.storyboard in Resources */,
+				AC68C47D1CB63F1B004B78DF /* brandon_bld.otf in Resources */,
+				AC68C47E1CB63F1B004B78DF /* brandon_reg.otf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AC68C4541CB51C1F004B78DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC68C4921CB68865004B78DF /* PaddingTextField.m in Sources */,
+				AC68C4841CB64966004B78DF /* SellViewController.m in Sources */,
+				AC68C4631CB51C1F004B78DF /* HomeViewController.m in Sources */,
+				AC68C4811CB64241004B78DF /* TextFieldBorderBottom.m in Sources */,
+				AC68C4771CB53F3D004B78DF /* CALayer+BorderUIColor.m in Sources */,
+				AC68C4891CB6534A004B78DF /* UIImage+ExtendedImage.m in Sources */,
+				AC68C4601CB51C1F004B78DF /* AppDelegate.m in Sources */,
+				AC68C48C1CB67090004B78DF /* ImageCollectionViewCell.m in Sources */,
+				AC68C45D1CB51C1F004B78DF /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		AC68C4641CB51C1F004B78DF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AC68C4651CB51C1F004B78DF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AC68C4691CB51C20004B78DF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AC68C46A1CB51C20004B78DF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AC68C46D1CB51C20004B78DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		AC68C46E1CB51C20004B78DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AC68C4701CB51C20004B78DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = takestok/takestok.pch;
+				INFOPLIST_FILE = takestok/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.devabit.takestok;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		AC68C4711CB51C20004B78DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = takestok/takestok.pch;
+				INFOPLIST_FILE = takestok/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.devabit.takestok;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AC68C4531CB51C1F004B78DF /* Build configuration list for PBXProject "takestok" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC68C46D1CB51C20004B78DF /* Debug */,
+				AC68C46E1CB51C20004B78DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AC68C46F1CB51C20004B78DF /* Build configuration list for PBXNativeTarget "takestok" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC68C4701CB51C20004B78DF /* Debug */,
+				AC68C4711CB51C20004B78DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AC68C4501CB51C1F004B78DF /* Project object */;
+}
