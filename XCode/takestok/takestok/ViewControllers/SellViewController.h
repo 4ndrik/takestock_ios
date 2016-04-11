@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
 @class TextFieldBorderBottom;
 @class PaddingTextField;
 
-@interface SellViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
+@interface SellViewController : BaseViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
     
     NSMutableArray* _images;
     
@@ -21,6 +22,7 @@
     float _keyboardFrame;
     NSArray* _pickerData;
     UIPickerView* _textPiker;
+    id _currentInputControl;
     
     __weak IBOutlet UIScrollView *_scrollView;
     __weak IBOutlet UIImageView *_mainImageView;
@@ -28,7 +30,10 @@
     
     __weak IBOutlet UICollectionView *_imagesCollectionView;
     __weak IBOutlet NSLayoutConstraint *_collectionViewHeight;
+    __weak IBOutlet NSLayoutConstraint *_additionalViewHeight;
   
+    __weak IBOutlet UIButton *_saveButton;
+    
     NSArray* _textControlsArray;
     __weak IBOutlet TextFieldBorderBottom *_productTitleTextField;
     __weak IBOutlet PaddingTextField *_categoryTextField;

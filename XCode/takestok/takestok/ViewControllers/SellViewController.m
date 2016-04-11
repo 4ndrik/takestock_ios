@@ -51,9 +51,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationController.navigationBar.backItem.title = @"Home";
-    
 }
 
 
@@ -99,6 +97,7 @@
     _collectionViewHeight.constant = ((_imagesCollectionView.frame.size.width - 20) / 3 + 20) * ceilf((_images.count + 1) / 3.);
     [_imagesCollectionView reloadData];
     [self collectionView:_imagesCollectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedImage inSection:0]];
+    _additionalViewHeight.constant = _productTitleTextField.text.length > 0 && _images.count > 0 ? _saveButton.frame.size.height + _saveButton.frame.origin.y + 20 : 0;
 }
 
 
@@ -199,6 +198,14 @@
     [self scrollToView:textView];
 }
 
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if (textField == _productTitleTextField){
+        NSString* str = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        _additionalViewHeight.constant = str.length > 0 && _images.count > 0 ? _saveButton.frame.size.height + _saveButton.frame.origin.y + 20 : 0;
+    }
+    return YES;
+}
+
 -(BOOL)textFieldShouldBeginEditing: (UITextField *)textField
 
 {
@@ -251,6 +258,7 @@
         datePicker.datePickerMode = UIDatePickerModeDate;
         textField.inputView = datePicker;
     }
+    _currentInputControl = textField;
     
     return YES;
 }
@@ -268,25 +276,25 @@
                                 [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(resignKeyboard)],
                                 nil]];
     textView.inputAccessoryView = keyboardToolBar;
+    _currentInputControl = textView;
     return YES;
     
 }
 
-- (id)findFirstResponder:(UIView*)view
-{
-    if (view.isFirstResponder) {
-        return view;
-    }
-    for (UIView *subView in view.subviews) {
-        id responder = [self findFirstResponder:subView];
-        if (responder) return responder;
-    }
-    return nil;
-}
+//- (id)findFirstResponder:(UIView*)view
+//{
+//    if (view.isFirstResponder) {
+//        return view;
+//    }
+//    for (UIView *subView in view.subviews) {
+//        id responder = [self findFirstResponder:subView];
+//        if (responder) return responder;
+//    }
+//    return nil;
+//}
 
 - (void)nextTextField {
-    id currentInputControl = [self findFirstResponder:self.view];
-    int index = [_textControlsArray indexOfObject:currentInputControl];
+    int index = [_textControlsArray indexOfObject:_currentInputControl];
     index++;
     UIView* textControl = [_textControlsArray objectAtIndex:index];
     [textControl becomeFirstResponder];
@@ -294,18 +302,15 @@
 
 -(void)previousTextField
 {
-    id currentInputControl = [self findFirstResponder:self.view];
-    int index = [_textControlsArray indexOfObject:currentInputControl];
+    int index = [_textControlsArray indexOfObject:_currentInputControl];
     index--;
     UIView* textControl = [_textControlsArray objectAtIndex:index];
     [textControl becomeFirstResponder];
 }
 
 -(void)resignKeyboard {
-    
-    id currentInputControl = [self findFirstResponder:self.view];
-    if (currentInputControl){
-        [currentInputControl resignFirstResponder];
+    if (_currentInputControl){
+        [_currentInputControl resignFirstResponder];
     }
     
 }
@@ -323,6 +328,13 @@
 
 -(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     return [_pickerData objectAtIndex:row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    if ([_currentInputControl respondsToSelector:@selector(setText:)]){
+        NSString* text = [_pickerData objectAtIndex:row];
+        [_currentInputControl setText:text];
+    }
 }
 
 @end

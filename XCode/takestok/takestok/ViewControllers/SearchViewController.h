@@ -1,0 +1,22 @@
+//
+//  SearchViewController.h
+//  takestok
+//
+//  Created by Artem on 4/8/16.
+//  Copyright © 2016 Artem. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
+#import "SearchFilterSortView.h"
+
+@interface SearchViewController : BaseViewController<UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, SerachFilterSortDelegate>{
+    
+    __weak IBOutlet UICollectionView *_searchCollectionView;
+    NSArray* _filterData;
+    NSMutableSet* _selectedFilterData;
+    NSArray* _sortData;
+    SearchFilterSortView* _searchFilterSortView;
+}
+
+@end

@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC049D051CB7C449006A8F21 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D041CB7C449006A8F21 /* SearchViewController.m */; };
+		AC049D081CB7C47F006A8F21 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D071CB7C47F006A8F21 /* HomeViewController.m */; };
+		AC049D0B1CB7C490006A8F21 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D0A1CB7C490006A8F21 /* BaseViewController.m */; };
+		AC049D0E1CB7C7E5006A8F21 /* SearchCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D0D1CB7C7E5006A8F21 /* SearchCollectionViewCell.m */; };
+		AC049D111CB7C86A006A8F21 /* SearchFilterSortView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D101CB7C86A006A8F21 /* SearchFilterSortView.m */; };
+		AC049D161CB7C95D006A8F21 /* UIView+NibLoadView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D151CB7C95D006A8F21 /* UIView+NibLoadView.m */; };
+		AC049D1E1CBBBA0A006A8F21 /* SearchTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D1D1CBBBA0A006A8F21 /* SearchTitleView.m */; };
 		AC68C45D1CB51C1F004B78DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C45C1CB51C1F004B78DF /* main.m */; };
 		AC68C4601CB51C1F004B78DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C45F1CB51C1F004B78DF /* AppDelegate.m */; };
-		AC68C4631CB51C1F004B78DF /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4621CB51C1F004B78DF /* HomeViewController.m */; };
 		AC68C4661CB51C1F004B78DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC68C4641CB51C1F004B78DF /* Main.storyboard */; };
 		AC68C4681CB51C1F004B78DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC68C4671CB51C1F004B78DF /* Assets.xcassets */; };
 		AC68C46B1CB51C20004B78DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC68C4691CB51C20004B78DF /* LaunchScreen.storyboard */; };
@@ -24,12 +30,24 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AC049D031CB7C449006A8F21 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		AC049D041CB7C449006A8F21 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		AC049D061CB7C47F006A8F21 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		AC049D071CB7C47F006A8F21 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		AC049D091CB7C490006A8F21 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		AC049D0A1CB7C490006A8F21 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		AC049D0C1CB7C7E5006A8F21 /* SearchCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCollectionViewCell.h; sourceTree = "<group>"; };
+		AC049D0D1CB7C7E5006A8F21 /* SearchCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCollectionViewCell.m; sourceTree = "<group>"; };
+		AC049D0F1CB7C86A006A8F21 /* SearchFilterSortView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFilterSortView.h; sourceTree = "<group>"; };
+		AC049D101CB7C86A006A8F21 /* SearchFilterSortView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFilterSortView.m; sourceTree = "<group>"; };
+		AC049D141CB7C95D006A8F21 /* UIView+NibLoadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NibLoadView.h"; sourceTree = "<group>"; };
+		AC049D151CB7C95D006A8F21 /* UIView+NibLoadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NibLoadView.m"; sourceTree = "<group>"; };
+		AC049D1C1CBBBA0A006A8F21 /* SearchTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTitleView.h; sourceTree = "<group>"; };
+		AC049D1D1CBBBA0A006A8F21 /* SearchTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTitleView.m; sourceTree = "<group>"; };
 		AC68C4581CB51C1F004B78DF /* takestok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = takestok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC68C45C1CB51C1F004B78DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AC68C45E1CB51C1F004B78DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AC68C45F1CB51C1F004B78DF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		AC68C4611CB51C1F004B78DF /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = ../HomeViewController.h; sourceTree = "<group>"; };
-		AC68C4621CB51C1F004B78DF /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = ../HomeViewController.m; sourceTree = "<group>"; };
 		AC68C4651CB51C1F004B78DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AC68C4671CB51C1F004B78DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC68C46A1CB51C20004B78DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -63,6 +81,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC049D171CB7C987006A8F21 /* TextControls */ = {
+			isa = PBXGroup;
+			children = (
+				AC68C47F1CB64241004B78DF /* TextFieldBorderBottom.h */,
+				AC68C4801CB64241004B78DF /* TextFieldBorderBottom.m */,
+				AC68C4901CB68865004B78DF /* PaddingTextField.h */,
+				AC68C4911CB68865004B78DF /* PaddingTextField.m */,
+			);
+			name = TextControls;
+			sourceTree = "<group>";
+		};
+		AC049D181CB7C99B006A8F21 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				AC68C48A1CB67090004B78DF /* ImageCollectionViewCell.h */,
+				AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */,
+				AC049D0C1CB7C7E5006A8F21 /* SearchCollectionViewCell.h */,
+				AC049D0D1CB7C7E5006A8F21 /* SearchCollectionViewCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		AC68C44F1CB51C1F004B78DF = {
 			isa = PBXGroup;
 			children = (
@@ -109,10 +149,14 @@
 		AC68C4721CB51C90004B78DF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				AC68C4611CB51C1F004B78DF /* HomeViewController.h */,
-				AC68C4621CB51C1F004B78DF /* HomeViewController.m */,
+				AC049D091CB7C490006A8F21 /* BaseViewController.h */,
+				AC049D0A1CB7C490006A8F21 /* BaseViewController.m */,
+				AC049D061CB7C47F006A8F21 /* HomeViewController.h */,
+				AC049D071CB7C47F006A8F21 /* HomeViewController.m */,
 				AC68C4821CB64966004B78DF /* SellViewController.h */,
 				AC68C4831CB64966004B78DF /* SellViewController.m */,
+				AC049D031CB7C449006A8F21 /* SearchViewController.h */,
+				AC049D041CB7C449006A8F21 /* SearchViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -120,12 +164,14 @@
 		AC68C4731CB51CA3004B78DF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AC68C47F1CB64241004B78DF /* TextFieldBorderBottom.h */,
-				AC68C4801CB64241004B78DF /* TextFieldBorderBottom.m */,
-				AC68C48A1CB67090004B78DF /* ImageCollectionViewCell.h */,
-				AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */,
-				AC68C4901CB68865004B78DF /* PaddingTextField.h */,
-				AC68C4911CB68865004B78DF /* PaddingTextField.m */,
+				AC049D141CB7C95D006A8F21 /* UIView+NibLoadView.h */,
+				AC049D151CB7C95D006A8F21 /* UIView+NibLoadView.m */,
+				AC049D171CB7C987006A8F21 /* TextControls */,
+				AC049D181CB7C99B006A8F21 /* Cells */,
+				AC049D0F1CB7C86A006A8F21 /* SearchFilterSortView.h */,
+				AC049D101CB7C86A006A8F21 /* SearchFilterSortView.m */,
+				AC049D1C1CBBBA0A006A8F21 /* SearchTitleView.h */,
+				AC049D1D1CBBBA0A006A8F21 /* SearchTitleView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -233,13 +279,19 @@
 			files = (
 				AC68C4921CB68865004B78DF /* PaddingTextField.m in Sources */,
 				AC68C4841CB64966004B78DF /* SellViewController.m in Sources */,
-				AC68C4631CB51C1F004B78DF /* HomeViewController.m in Sources */,
+				AC049D0B1CB7C490006A8F21 /* BaseViewController.m in Sources */,
+				AC049D051CB7C449006A8F21 /* SearchViewController.m in Sources */,
+				AC049D081CB7C47F006A8F21 /* HomeViewController.m in Sources */,
 				AC68C4811CB64241004B78DF /* TextFieldBorderBottom.m in Sources */,
+				AC049D1E1CBBBA0A006A8F21 /* SearchTitleView.m in Sources */,
+				AC049D111CB7C86A006A8F21 /* SearchFilterSortView.m in Sources */,
+				AC049D0E1CB7C7E5006A8F21 /* SearchCollectionViewCell.m in Sources */,
 				AC68C4771CB53F3D004B78DF /* CALayer+BorderUIColor.m in Sources */,
 				AC68C4891CB6534A004B78DF /* UIImage+ExtendedImage.m in Sources */,
 				AC68C4601CB51C1F004B78DF /* AppDelegate.m in Sources */,
 				AC68C48C1CB67090004B78DF /* ImageCollectionViewCell.m in Sources */,
 				AC68C45D1CB51C1F004B78DF /* main.m in Sources */,
+				AC049D161CB7C95D006A8F21 /* UIView+NibLoadView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
