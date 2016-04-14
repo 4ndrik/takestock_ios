@@ -38,4 +38,5 @@
 - (IBAction)signIn:(id)sender;
 - (IBAction)signUp:(id)sender;
 
+- (IBAction)close:(id)sender;
 @end

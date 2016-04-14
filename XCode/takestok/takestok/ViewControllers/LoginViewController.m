@@ -75,4 +75,8 @@
 
 - (IBAction)signUp:(id)sender {
 }
+
+- (IBAction)close:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

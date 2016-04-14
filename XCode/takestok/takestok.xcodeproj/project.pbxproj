@@ -29,6 +29,8 @@
 		AC68C48C1CB67090004B78DF /* ImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */; };
 		AC68C4921CB68865004B78DF /* PaddingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4911CB68865004B78DF /* PaddingTextField.m */; };
 		ACDC246A1CBCF610003E9715 /* RadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDC24691CBCF610003E9715 /* RadioButton.m */; };
+		ACDC246D1CBE8308003E9715 /* TitleTextContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDC246C1CBE8308003E9715 /* TitleTextContainerView.m */; };
+		ACDC24721CBEAC5F003E9715 /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDC24711CBEAC5F003E9715 /* ProductDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +76,10 @@
 		AC68C4911CB68865004B78DF /* PaddingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddingTextField.m; sourceTree = "<group>"; };
 		ACDC24681CBCF610003E9715 /* RadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioButton.h; sourceTree = "<group>"; };
 		ACDC24691CBCF610003E9715 /* RadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioButton.m; sourceTree = "<group>"; };
+		ACDC246B1CBE8308003E9715 /* TitleTextContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleTextContainerView.h; sourceTree = "<group>"; };
+		ACDC246C1CBE8308003E9715 /* TitleTextContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleTextContainerView.m; sourceTree = "<group>"; };
+		ACDC24701CBEAC5F003E9715 /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
+		ACDC24711CBEAC5F003E9715 /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +169,8 @@
 				AC68C4831CB64966004B78DF /* SellViewController.m */,
 				AC049D031CB7C449006A8F21 /* SearchViewController.h */,
 				AC049D041CB7C449006A8F21 /* SearchViewController.m */,
+				ACDC24701CBEAC5F003E9715 /* ProductDetailViewController.h */,
+				ACDC24711CBEAC5F003E9715 /* ProductDetailViewController.m */,
 				AC049D1F1CBBD2D7006A8F21 /* LoginViewController.h */,
 				AC049D201CBBD2D7006A8F21 /* LoginViewController.m */,
 			);
@@ -174,6 +182,8 @@
 			children = (
 				AC049D141CB7C95D006A8F21 /* UIView+NibLoadView.h */,
 				AC049D151CB7C95D006A8F21 /* UIView+NibLoadView.m */,
+				ACDC246B1CBE8308003E9715 /* TitleTextContainerView.h */,
+				ACDC246C1CBE8308003E9715 /* TitleTextContainerView.m */,
 				AC049D171CB7C987006A8F21 /* TextControls */,
 				AC049D181CB7C99B006A8F21 /* Cells */,
 				AC049D0F1CB7C86A006A8F21 /* SearchFilterSortView.h */,
@@ -289,10 +299,12 @@
 			files = (
 				AC68C4921CB68865004B78DF /* PaddingTextField.m in Sources */,
 				AC68C4841CB64966004B78DF /* SellViewController.m in Sources */,
+				ACDC246D1CBE8308003E9715 /* TitleTextContainerView.m in Sources */,
 				AC049D0B1CB7C490006A8F21 /* BaseViewController.m in Sources */,
 				AC049D051CB7C449006A8F21 /* SearchViewController.m in Sources */,
 				AC049D081CB7C47F006A8F21 /* HomeViewController.m in Sources */,
 				AC68C4811CB64241004B78DF /* TextFieldBorderBottom.m in Sources */,
+				ACDC24721CBEAC5F003E9715 /* ProductDetailViewController.m in Sources */,
 				AC049D1E1CBBBA0A006A8F21 /* SearchTitleView.m in Sources */,
 				AC049D111CB7C86A006A8F21 /* SearchFilterSortView.m in Sources */,
 				AC049D211CBBD2D7006A8F21 /* LoginViewController.m in Sources */,
