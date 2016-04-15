@@ -8,7 +8,13 @@
 
 #import "SearchTitleView.h"
 
+#define DefaultHeight 150
+
 @implementation SearchTitleView
+
++(float)defaultHeight{
+    return DefaultHeight;
+}
 
 - (IBAction)browseCategoriesAction:(id)sender {
 }

@@ -96,7 +96,6 @@
             break;
         }
     }
-    _contentViewHeightConstraint.constant = height;
     [delegate panelTypeChanged];
 }
 

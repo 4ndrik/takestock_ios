@@ -27,6 +27,9 @@
 		AC411E2C1CBFB832008B1E38 /* ImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E2B1CBFB832008B1E38 /* ImageLoader.m */; };
 		AC411E301CBFBB30008B1E38 /* BackgroundImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E2F1CBFBB30008B1E38 /* BackgroundImageView.m */; };
 		AC411E331CBFBE94008B1E38 /* GUIDCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E321CBFBE94008B1E38 /* GUIDCreator.m */; };
+		AC411E361CC0EFB8008B1E38 /* SerachCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E351CC0EFB8008B1E38 /* SerachCollectionViewLayout.m */; };
+		AC411E381CC0F170008B1E38 /* SearchFilterSortView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC411E371CC0F170008B1E38 /* SearchFilterSortView.xib */; };
+		AC411E3A1CC0F309008B1E38 /* SearchTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC411E391CC0F309008B1E38 /* SearchTitleView.xib */; };
 		AC68C45D1CB51C1F004B78DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C45C1CB51C1F004B78DF /* main.m */; };
 		AC68C4601CB51C1F004B78DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C45F1CB51C1F004B78DF /* AppDelegate.m */; };
 		AC68C4661CB51C1F004B78DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC68C4641CB51C1F004B78DF /* Main.storyboard */; };
@@ -86,6 +89,10 @@
 		AC411E2F1CBFBB30008B1E38 /* BackgroundImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundImageView.m; sourceTree = "<group>"; };
 		AC411E311CBFBE94008B1E38 /* GUIDCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIDCreator.h; sourceTree = "<group>"; };
 		AC411E321CBFBE94008B1E38 /* GUIDCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GUIDCreator.m; sourceTree = "<group>"; };
+		AC411E341CC0EFB8008B1E38 /* SerachCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerachCollectionViewLayout.h; sourceTree = "<group>"; };
+		AC411E351CC0EFB8008B1E38 /* SerachCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerachCollectionViewLayout.m; sourceTree = "<group>"; };
+		AC411E371CC0F170008B1E38 /* SearchFilterSortView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchFilterSortView.xib; sourceTree = "<group>"; };
+		AC411E391CC0F309008B1E38 /* SearchTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTitleView.xib; sourceTree = "<group>"; };
 		AC68C4581CB51C1F004B78DF /* takestok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = takestok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC68C45C1CB51C1F004B78DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AC68C45E1CB51C1F004B78DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -183,6 +190,15 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		AC411E3B1CC10346008B1E38 /* CollectionViewLayout */ = {
+			isa = PBXGroup;
+			children = (
+				AC411E341CC0EFB8008B1E38 /* SerachCollectionViewLayout.h */,
+				AC411E351CC0EFB8008B1E38 /* SerachCollectionViewLayout.m */,
+			);
+			name = CollectionViewLayout;
+			sourceTree = "<group>";
+		};
 		AC68C44F1CB51C1F004B78DF = {
 			isa = PBXGroup;
 			children = (
@@ -260,10 +276,13 @@
 				AC049D181CB7C99B006A8F21 /* Cells */,
 				AC049D0F1CB7C86A006A8F21 /* SearchFilterSortView.h */,
 				AC049D101CB7C86A006A8F21 /* SearchFilterSortView.m */,
+				AC411E371CC0F170008B1E38 /* SearchFilterSortView.xib */,
 				AC049D1C1CBBBA0A006A8F21 /* SearchTitleView.h */,
 				AC049D1D1CBBBA0A006A8F21 /* SearchTitleView.m */,
+				AC411E391CC0F309008B1E38 /* SearchTitleView.xib */,
 				ACDC24681CBCF610003E9715 /* RadioButton.h */,
 				ACDC24691CBCF610003E9715 /* RadioButton.m */,
+				AC411E3B1CC10346008B1E38 /* CollectionViewLayout */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -362,7 +381,9 @@
 				AC68C4681CB51C1F004B78DF /* Assets.xcassets in Resources */,
 				AC68C4661CB51C1F004B78DF /* Main.storyboard in Resources */,
 				AC68C47D1CB63F1B004B78DF /* brandon_bld.otf in Resources */,
+				AC411E3A1CC0F309008B1E38 /* SearchTitleView.xib in Resources */,
 				AC68C47E1CB63F1B004B78DF /* brandon_reg.otf in Resources */,
+				AC411E381CC0F170008B1E38 /* SearchFilterSortView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +412,7 @@
 				ACDC24721CBEAC5F003E9715 /* ProductDetailViewController.m in Sources */,
 				AC049D1E1CBBBA0A006A8F21 /* SearchTitleView.m in Sources */,
 				AC049D111CB7C86A006A8F21 /* SearchFilterSortView.m in Sources */,
+				AC411E361CC0EFB8008B1E38 /* SerachCollectionViewLayout.m in Sources */,
 				AC411E121CBF970A008B1E38 /* Advert+CoreDataProperties.m in Sources */,
 				AC049D211CBBD2D7006A8F21 /* LoginViewController.m in Sources */,
 				AC049D0E1CB7C7E5006A8F21 /* SearchCollectionViewCell.m in Sources */,

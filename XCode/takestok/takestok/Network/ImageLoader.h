@@ -17,6 +17,6 @@
 }
 
 +(instancetype) sharedInstance;
--(void)loadImage:(id<ImageProtocol>)image beforeLoad:(void(^)())beforeLoad success:(void(^)(NSData* imageData, NSString* filename))success;
+-(void)loadImage:(id<ImageProtocol>)image success:(void(^)(UIImage* image, NSString* filename))success;
 
 @end

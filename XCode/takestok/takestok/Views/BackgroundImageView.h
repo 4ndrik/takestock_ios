@@ -12,9 +12,9 @@
 @interface BackgroundImageView : UIImageView
 {
     UIImage* _placeHolder;
+    UIActivityIndicatorView* _activityIndicator;
     
-    __block void (^_successBlock) (NSData *imageData, NSString* fileIdent);
-    __block void (^_beforeLoadBlock) ();
+    __block void (^_successBlock) (UIImage *image, NSString* fileIdent);
 }
 
 @property (nonatomic, retain)UIImage* placeHolder;

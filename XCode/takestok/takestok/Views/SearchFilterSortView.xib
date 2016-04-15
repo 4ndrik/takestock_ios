@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SearchFilterSortView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9E-do-Qs6">
+                    <rect key="frame" x="10" y="0.0" width="285" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="zTU-Xl-Pv6"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                    <state key="normal" title="Filter ▼">
+                        <color key="titleColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="showFilterPanelAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="mqR-lG-DnF"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ViD-98-3gf">
+                    <rect key="frame" x="305" y="0.0" width="285" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="zSg-pa-gfL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                    <state key="normal" title="Sort ▼">
+                        <color key="titleColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="showSortPanelAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="QfX-Cu-LWY"/>
+                    </connections>
+                </button>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZL7-lC-5ss">
+                    <rect key="frame" x="0.0" y="44" width="600" height="0.0"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="ZL7-lC-5ss" firstAttribute="top" secondItem="L9E-do-Qs6" secondAttribute="bottom" id="50a-Dj-ttU"/>
+                <constraint firstItem="ViD-98-3gf" firstAttribute="leading" secondItem="L9E-do-Qs6" secondAttribute="trailing" constant="10" id="5qr-NE-Izh"/>
+                <constraint firstAttribute="bottom" secondItem="ZL7-lC-5ss" secondAttribute="bottom" id="AIJ-yC-5Mx"/>
+                <constraint firstItem="L9E-do-Qs6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Gkd-WY-et6"/>
+                <constraint firstItem="ZL7-lC-5ss" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="NUZ-D0-gUe"/>
+                <constraint firstAttribute="trailing" secondItem="ViD-98-3gf" secondAttribute="trailing" constant="10" id="PXx-6M-JSZ"/>
+                <constraint firstItem="L9E-do-Qs6" firstAttribute="top" secondItem="ViD-98-3gf" secondAttribute="bottom" constant="-44" id="Uq9-sd-kVi"/>
+                <constraint firstItem="L9E-do-Qs6" firstAttribute="width" secondItem="ViD-98-3gf" secondAttribute="width" id="Xns-T7-QiC"/>
+                <constraint firstItem="ZL7-lC-5ss" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="Yp0-yE-0Py"/>
+                <constraint firstItem="L9E-do-Qs6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="gwS-f9-YRo"/>
+                <constraint firstItem="ViD-98-3gf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kzr-75-aF8"/>
+                <constraint firstItem="ZL7-lC-5ss" firstAttribute="top" secondItem="L9E-do-Qs6" secondAttribute="top" id="mPi-Ja-5YB"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Uq9-sd-kVi"/>
+                    <exclude reference="mPi-Ja-5YB"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="_contentView" destination="ZL7-lC-5ss" id="7cq-wb-KCa"/>
+                <outlet property="_filterButton" destination="L9E-do-Qs6" id="vZx-Vj-uSu"/>
+                <outlet property="_sortButton" destination="ViD-98-3gf" id="AyO-Vm-zno"/>
+            </connections>
+            <point key="canvasLocation" x="554" y="284.5"/>
+        </view>
+    </objects>
+</document>

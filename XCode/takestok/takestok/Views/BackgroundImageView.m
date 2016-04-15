@@ -24,15 +24,21 @@
 {
     self.clipsToBounds = YES;
     [self setExclusiveTouch:YES];
+    _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    _activityIndicator.color = [UIColor grayColor];
+    [_activityIndicator setCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2)];
+    _activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+    _activityIndicator.hidesWhenStopped = YES;
+    [self addSubview:_activityIndicator];
 }
 
 - (id)initWithFrame:(CGRect)frame
 {
-    if ((self = [super initWithFrame:frame])) 
-	{        
+    if ((self = [super initWithFrame:frame]))
+    {
         [self initializations];
     }
-	
+    
     return self;
 }
 
@@ -51,37 +57,22 @@
 {
     if (!image)
         return;
-
     super.image = image;
-    
     [self.activityIndicator stopAnimating];
-    [self.activityIndicator removeFromSuperview];
-    self.activityIndicator = nil;
 }
 
 - (void)loadImage:(id<ImageProtocol>)image
 {
     __weak BackgroundImageView* weak_ = self;
-   _successBlock = ^(NSData *imageData, NSString* fileIdent) {
+    _successBlock = ^(UIImage *image, NSString* fileIdent) {
         if ([weak_.currentImageIdent isEqualToString:fileIdent])
         {
-            UIImage* image = [UIImage imageWithData:imageData];
             weak_.image = image;
         }
     };
     
-    _beforeLoadBlock = ^() {
-        if (!weak_.activityIndicator)
-        {
-            weak_.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-            weak_.activityIndicator.color = [UIColor whiteColor];
-            [weak_.activityIndicator setCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2)];
-            weak_.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
-            [weak_ addSubview:weak_.activityIndicator];
-        }
-        [weak_.activityIndicator startAnimating];
-    };
-
+    [_activityIndicator startAnimating];
+    
     if (_placeHolder)
         self.image = _placeHolder;
     else
@@ -91,11 +82,11 @@
     {
         _currentImageIdent = image.resId;
         
-        [[ImageLoader sharedInstance] loadImage:image beforeLoad:_beforeLoadBlock success:_successBlock];
+        [[ImageLoader sharedInstance] loadImage:image success:_successBlock];
     }else
     {
         _currentImageIdent = @"";
-//        self.image = [UIImage imageNamed:@"placeHolder"];
+        //        self.image = [UIImage imageNamed:@"placeHolder"];
     }
 }
 
@@ -104,7 +95,6 @@
     [super willMoveToSuperview:newSuperview];
     if (!newSuperview){
         _successBlock = nil;
-        _beforeLoadBlock = nil;
     }
 }
 

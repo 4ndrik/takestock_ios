@@ -15,4 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *searchWordLabel;
 - (IBAction)browseCategoriesAction:(id)sender;
 
++(float)defaultHeight;
+
 @end

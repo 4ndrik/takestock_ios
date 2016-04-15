@@ -14,6 +14,7 @@
 #import "BackgroundImageView.h"
 #import "NSDate+Extended.h"
 #import "ProductDetailViewController.h"
+#import "SearchTitleView.h"
 
 #define CellTitleFont [UIFont fontWithName:@"HelveticaNeue-Bold" size:16]
 #define CellOtherFont [UIFont fontWithName:@"HelveticaNeue" size:16]
@@ -35,9 +36,18 @@
     [super viewDidLoad];
     
     _adverts = [Advert getAll];
-    UICollectionViewFlowLayout* layout = (UICollectionViewFlowLayout*)_searchCollectionView.collectionViewLayout;
-    if ([layout respondsToSelector:@selector(setSectionHeadersPinToVisibleBounds:)])
-        layout.sectionHeadersPinToVisibleBounds = YES;
+    
+    [_searchCollectionView registerNib:[UINib nibWithNibName:@"SearchTitleView" bundle:nil] forSupplementaryViewOfKind:TitleSuplementaryViewKind withReuseIdentifier:TitleSuplementaryViewKind];
+    [_searchCollectionView registerNib:[UINib nibWithNibName:@"SearchFilterSortView" bundle:nil] forSupplementaryViewOfKind:SearchFilterSuplementaryViewKind withReuseIdentifier:SearchFilterSuplementaryViewKind];
+    
+    SerachCollectionViewLayout* layout = (SerachCollectionViewLayout*)_searchCollectionView.collectionViewLayout;
+    layout.numberOfColumns = 2;
+    layout.cellPadding = 10;
+    layout.delegate = self;
+    
+//    UICollectionViewFlowLayout* layout = (UICollectionViewFlowLayout*)_searchCollectionView.collectionViewLayout;
+//    if ([layout respondsToSelector:@selector(setSectionHeadersPinToVisibleBounds:)])
+//        layout.sectionHeadersPinToVisibleBounds = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -60,14 +70,11 @@
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 2;
+    return 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    if (section == 0){
-        return 0;
-    }else
-        return _adverts.count;
+    return _adverts.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -82,8 +89,6 @@
     Advert* adv = [_adverts objectAtIndex:indexPath.row];
     Image* image = [adv.images firstObject];
     
-    cell.imageHeightConstraint.constant = image.height * (collectionView.frame.size.width - 30) / 2 / image.width;
-    
     [cell.imageView loadImage:image];
     
     cell.titleLabel.text = adv.name;
@@ -94,85 +99,41 @@
     cell.priceLabel.text = [NSString stringWithFormat:@"%.02f", adv.guidePrice];
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    if (section == 0){
-        return UIEdgeInsetsZero;
-    }else{
-        return UIEdgeInsetsMake(10, 10, 10, 10);
-    }
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    float width = (collectionView.frame.size.width - 30) / 2;
-    float height = 0;
+-(int)heightForRowAtIndexPath:(NSIndexPath*)indexPath{
     Advert* adv = [_adverts objectAtIndex:indexPath.row];
     Image* image = [adv.images firstObject];
-    
-    height += image.height * (collectionView.frame.size.width - 30) / 2 / image.width;
-    
-    CGSize labelSize = CGSizeMake(width - 8, CGFLOAT_MAX);
-    
-    //title height
-    height += LongMargin;
-    height += [adv.name boundingRectWithSize:labelSize options:NSStringDrawingUsesLineFragmentOrigin| NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:CellTitleFont} context:nil].size.height;
-    
-    //Location height
-    height += SmallMargin;
-    height += [adv.location boundingRectWithSize:labelSize options:NSStringDrawingUsesLineFragmentOrigin| NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:CellOtherFont} context:nil].size.height;
-    
-    //Date height
-    height += SmallMargin;
-    height += [[NSDate stringFromTimeInterval:adv.expires] boundingRectWithSize:labelSize options:NSStringDrawingUsesLineFragmentOrigin| NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:CellOtherFont} context:nil].size.height;
-    
-    //Price
-    height += LongMargin;
-    height += [@"Guide price" boundingRectWithSize:labelSize options:NSStringDrawingUsesLineFragmentOrigin| NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:CellOtherFont} context:nil].size.height;
-    
-    height += SmallMargin;
-    height += [@"per Kg" boundingRectWithSize:labelSize options:NSStringDrawingUsesLineFragmentOrigin| NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:CellOtherFont} context:nil].size.height;
-    
-    height += SmallMargin;
-    height += [[NSString stringWithFormat:@"%.02f", adv.guidePrice] boundingRectWithSize:labelSize options:NSStringDrawingUsesLineFragmentOrigin| NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:CellPriceFont} context:nil].size.height;
-    height += LongMargin;
-    return CGSizeMake((collectionView.frame.size.width - 30) / 2 , height);
+    float height = 164;
+    height += image.height * (_searchCollectionView.frame.size.width - 30) / 2 / image.width;
+    return height;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    if (section == 1){
+-(int)heightForsuplementaryViewOfKind:(NSString*)kind{
+    if ([kind isEqualToString:SearchFilterSuplementaryViewKind]) {
         float height = [SearchFilterSortView defaultHeight];
         if (_searchFilterSortView){
             height = [_searchFilterSortView height];
         }
-        return CGSizeMake(collectionView.frame.size.width, height);
-            
-    }else{
-        return CGSizeZero;
+        return height;
     }
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
-    if (section == 0){
-        return CGSizeMake(collectionView.frame.size.width, 150);
-    }else
-        return CGSizeZero;
-    
+    else if ([kind isEqualToString:TitleSuplementaryViewKind]) {
+        return [SearchTitleView defaultHeight];
+    }
+    return 0;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionReusableView *reusableview = nil;
     
-    if (kind == UICollectionElementKindSectionHeader) {
+    if ([kind isEqualToString:SearchFilterSuplementaryViewKind]) {
         if (!_searchFilterSortView){
-            _searchFilterSortView = (SearchFilterSortView*)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"SearchFilterSortView" forIndexPath:indexPath];
+            _searchFilterSortView = (SearchFilterSortView*)[collectionView dequeueReusableSupplementaryViewOfKind:SearchFilterSuplementaryViewKind withReuseIdentifier:SearchFilterSuplementaryViewKind forIndexPath:indexPath];
             _searchFilterSortView.delegate = self;
         }
         reusableview = _searchFilterSortView;
     }
-    
-    if (kind == UICollectionElementKindSectionFooter) {
-        UICollectionReusableView *footerview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"SearchTitleView" forIndexPath:indexPath];
-        
+    else if ([kind isEqualToString:TitleSuplementaryViewKind]) {
+        UICollectionReusableView *footerview = [collectionView dequeueReusableSupplementaryViewOfKind:TitleSuplementaryViewKind withReuseIdentifier:TitleSuplementaryViewKind forIndexPath:indexPath];
         reusableview = footerview;
     }
     

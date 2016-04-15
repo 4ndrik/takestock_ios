@@ -10,7 +10,9 @@
 #import "BaseViewController.h"
 #import "SearchFilterSortView.h"
 
-@interface SearchViewController : BaseViewController<UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, SerachFilterSortDelegate>{
+#import "SerachCollectionViewLayout.h"
+
+@interface SearchViewController : BaseViewController<SerachCollectionViewLayoutProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, SerachFilterSortDelegate>{
     
     __weak IBOutlet UICollectionView *_searchCollectionView;
     NSArray* _filterData;

@@ -35,7 +35,6 @@ typedef enum {
     __weak IBOutlet UIView *_contentView;
     PanelType _paneltype;
     float height;
-    __weak IBOutlet NSLayoutConstraint *_contentViewHeightConstraint;
 }
 
 @property (assign)id<SerachFilterSortDelegate>delegate;
