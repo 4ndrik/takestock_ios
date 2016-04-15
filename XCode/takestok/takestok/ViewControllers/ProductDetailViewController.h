@@ -7,9 +7,31 @@
 //
 
 #import "BaseViewController.h"
+@class TitleTextContainerView;
+@class Advert;
 
 @interface ProductDetailViewController : BaseViewController<UICollectionViewDelegate, UICollectionViewDataSource>{
+    Advert* _advert;
     
+    __weak IBOutlet TitleTextContainerView *_priceTextContainerView;
+    __weak IBOutlet TitleTextContainerView *_minimumOrderTextContainerView;
+    __weak IBOutlet TitleTextContainerView *_qtyAvailableTextContainerView;
+    __weak IBOutlet UILabel *_descriptionTextView;
+    __weak IBOutlet TitleTextContainerView *_locationTextContainerView;
+    __weak IBOutlet TitleTextContainerView *_shippingTextContainerView;
+    __weak IBOutlet TitleTextContainerView *_expiryTextContainerView;
+    __weak IBOutlet TitleTextContainerView *_certeficationTextContainerView;
+    __weak IBOutlet TitleTextContainerView *_conditionTextContainerView;
+    
+    __weak IBOutlet NSLayoutConstraint *_minimumOrderHeightConstraint;
+    __weak IBOutlet NSLayoutConstraint *_qtyAvailableHeightConstraint;
+    __weak IBOutlet NSLayoutConstraint *_locationHeightConstraint;
+    __weak IBOutlet NSLayoutConstraint *_shippingHeightConstraint;
+    __weak IBOutlet NSLayoutConstraint *_expiryHeightConstraint;
+    __weak IBOutlet NSLayoutConstraint *_certificationHeightConstraint;
+    __weak IBOutlet NSLayoutConstraint *_conditionHeightConstraint;
 }
+
+-(void)setAdvert:(Advert*)advert;
 
 @end

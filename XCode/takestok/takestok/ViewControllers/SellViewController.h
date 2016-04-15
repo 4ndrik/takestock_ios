@@ -55,5 +55,6 @@
 }
 
 - (IBAction)addImage:(id)sender;
+- (IBAction)createAdverb:(id)sender;
 
 @end

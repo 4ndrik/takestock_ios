@@ -1,0 +1,111 @@
+//
+//  BackgroundImageView.m
+//  UnsharedTV
+//
+//  Created by N-iX Artem Serbin on 12/10/10.
+//  Copyright (c) 2013 App Dev LLC. All rights reserved.
+//
+
+#import "BackgroundImageView.h"
+#import "UIImage+ExtendedImage.h"
+#import "ImageLoader.h"
+
+@interface BackgroundImageView()
+@property (retain)UIActivityIndicatorView* activityIndicator;
+@property (readonly)NSString* currentImageIdent;
+
+@end
+
+@implementation BackgroundImageView
+@synthesize placeHolder = _placeHolder;
+
+
+-(void)initializations
+{
+    self.clipsToBounds = YES;
+    [self setExclusiveTouch:YES];
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    if ((self = [super initWithFrame:frame])) 
+	{        
+        [self initializations];
+    }
+	
+    return self;
+}
+
+
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self)
+    {
+        [self initializations];
+    }
+    return self;
+}
+
+-(void)setImage:(UIImage *)image
+{
+    if (!image)
+        return;
+
+    super.image = image;
+    
+    [self.activityIndicator stopAnimating];
+    [self.activityIndicator removeFromSuperview];
+    self.activityIndicator = nil;
+}
+
+- (void)loadImage:(id<ImageProtocol>)image
+{
+    __weak BackgroundImageView* weak_ = self;
+   _successBlock = ^(NSData *imageData, NSString* fileIdent) {
+        if ([weak_.currentImageIdent isEqualToString:fileIdent])
+        {
+            UIImage* image = [UIImage imageWithData:imageData];
+            weak_.image = image;
+        }
+    };
+    
+    _beforeLoadBlock = ^() {
+        if (!weak_.activityIndicator)
+        {
+            weak_.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+            weak_.activityIndicator.color = [UIColor whiteColor];
+            [weak_.activityIndicator setCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2)];
+            weak_.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+            [weak_ addSubview:weak_.activityIndicator];
+        }
+        [weak_.activityIndicator startAnimating];
+    };
+
+    if (_placeHolder)
+        self.image = _placeHolder;
+    else
+        super.image = nil;
+    
+    if (image)
+    {
+        _currentImageIdent = image.resId;
+        
+        [[ImageLoader sharedInstance] loadImage:image beforeLoad:_beforeLoadBlock success:_successBlock];
+    }else
+    {
+        _currentImageIdent = @"";
+//        self.image = [UIImage imageNamed:@"placeHolder"];
+    }
+}
+
+- (void)willMoveToSuperview:(UIView *)newSuperview
+{
+    [super willMoveToSuperview:newSuperview];
+    if (!newSuperview){
+        _successBlock = nil;
+        _beforeLoadBlock = nil;
+    }
+}
+
+@end

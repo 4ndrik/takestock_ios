@@ -1,0 +1,26 @@
+//
+//  Image.h
+//  takestok
+//
+//  Created by Artem on 4/14/16.
+//  Copyright © 2016 Artem. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+#import "BaseManagadObject.h"
+#import "ImageProtocol.h"
+
+@class Advert;
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface Image : BaseManagadObject<ImageProtocol>
+
+
+
+@end
+
+NS_ASSUME_NONNULL_END
+
+#import "Image+CoreDataProperties.h"

@@ -9,6 +9,17 @@
 #import "SearchViewController.h"
 #import "SearchFilterSortView.h"
 #import "SearchCollectionViewCell.h"
+#import "Advert.h"
+#import "ImageCacheUrlResolver.h"
+#import "BackgroundImageView.h"
+#import "NSDate+Extended.h"
+#import "ProductDetailViewController.h"
+
+#define CellTitleFont [UIFont fontWithName:@"HelveticaNeue-Bold" size:16]
+#define CellOtherFont [UIFont fontWithName:@"HelveticaNeue" size:16]
+#define CellPriceFont [UIFont fontWithName:@"HelveticaNeue-Bold" size:24]
+#define SmallMargin 4
+#define LongMargin 10
 
 @implementation SearchViewController
 
@@ -22,8 +33,11 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    
+    _adverts = [Advert getAll];
     UICollectionViewFlowLayout* layout = (UICollectionViewFlowLayout*)_searchCollectionView.collectionViewLayout;
-    layout.sectionHeadersPinToVisibleBounds = YES;
+    if ([layout respondsToSelector:@selector(setSectionHeadersPinToVisibleBounds:)])
+        layout.sectionHeadersPinToVisibleBounds = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -36,6 +50,13 @@
     [_searchCollectionView.collectionViewLayout invalidateLayout];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"AdvertSelectedSegue"]) {
+        ProductDetailViewController* prodVC = (ProductDetailViewController*)segue.destinationViewController;
+        [prodVC setAdvert:sender];
+    }
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -46,13 +67,31 @@
     if (section == 0){
         return 0;
     }else
-        return 100;
+        return _adverts.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     SearchCollectionViewCell* cell = (SearchCollectionViewCell*)[collectionView
                                                                dequeueReusableCellWithReuseIdentifier:@"SearchCollectionViewCell" forIndexPath:indexPath];
+    cell.layer.shouldRasterize = YES;
+    cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
     return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(SearchCollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
+    Advert* adv = [_adverts objectAtIndex:indexPath.row];
+    Image* image = [adv.images firstObject];
+    
+    cell.imageHeightConstraint.constant = image.height * (collectionView.frame.size.width - 30) / 2 / image.width;
+    
+    [cell.imageView loadImage:image];
+    
+    cell.titleLabel.text = adv.name;
+    cell.locationLabel.text = adv.location;
+    
+    cell.dateLabel.text = [NSDate stringFromTimeInterval:adv.expires];
+    
+    cell.priceLabel.text = [NSString stringWithFormat:@"%.02f", adv.guidePrice];
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
@@ -64,7 +103,38 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake((collectionView.frame.size.width - 30) / 2 , 300);
+    float width = (collectionView.frame.size.width - 30) / 2;
+    float height = 0;
+    Advert* adv = [_adverts objectAtIndex:indexPath.row];
+    Image* image = [adv.images firstObject];
+    
+    height += image.height * (collectionView.frame.size.width - 30) / 2 / image.width;
+    
+    CGSize labelSize = CGSizeMake(width - 8, CGFLOAT_MAX);
+    
+    //title height
+    height += LongMargin;
+    height += [adv.name boundingRectWithSize:labelSize options:NSStringDrawingUsesLineFragmentOrigin| NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:CellTitleFont} context:nil].size.height;
+    
+    //Location height
+    height += SmallMargin;
+    height += [adv.location boundingRectWithSize:labelSize options:NSStringDrawingUsesLineFragmentOrigin| NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:CellOtherFont} context:nil].size.height;
+    
+    //Date height
+    height += SmallMargin;
+    height += [[NSDate stringFromTimeInterval:adv.expires] boundingRectWithSize:labelSize options:NSStringDrawingUsesLineFragmentOrigin| NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:CellOtherFont} context:nil].size.height;
+    
+    //Price
+    height += LongMargin;
+    height += [@"Guide price" boundingRectWithSize:labelSize options:NSStringDrawingUsesLineFragmentOrigin| NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:CellOtherFont} context:nil].size.height;
+    
+    height += SmallMargin;
+    height += [@"per Kg" boundingRectWithSize:labelSize options:NSStringDrawingUsesLineFragmentOrigin| NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:CellOtherFont} context:nil].size.height;
+    
+    height += SmallMargin;
+    height += [[NSString stringWithFormat:@"%.02f", adv.guidePrice] boundingRectWithSize:labelSize options:NSStringDrawingUsesLineFragmentOrigin| NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:CellPriceFont} context:nil].size.height;
+    height += LongMargin;
+    return CGSizeMake((collectionView.frame.size.width - 30) / 2 , height);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
@@ -109,7 +179,11 @@
     return reusableview;
 }
 
-#pragma mark = SerachFilterSortDelegate
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:@"AdvertSelectedSegue" sender:[_adverts objectAtIndex:indexPath.row]];
+}
+
+#pragma mark - SerachFilterSortDelegate
 
 -(float)panelWidth{
     return _searchCollectionView.frame.size.width;

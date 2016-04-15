@@ -44,4 +44,9 @@
     return newImage;
 }
 
+-(void)saveToPath:(NSString*)path{
+    NSData* imageData = UIImagePNGRepresentation(self);
+    [imageData writeToFile:path atomically:YES];
+}
+
 @end

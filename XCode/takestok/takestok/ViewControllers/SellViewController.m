@@ -11,6 +11,8 @@
 #import "ImageCollectionViewCell.h"
 #import "PaddingTextField.h"
 #import "TextFieldBorderBottom.h"
+#import "Advert.h"
+#import "ImageCacheUrlResolver.h"
 
 @implementation SellViewController
 
@@ -18,6 +20,10 @@
     [super viewDidLoad];
     _keyboardFrame = 303;
     _images = [NSMutableArray array];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterLongStyle];
+    _expairyTextField.placeholder = formatter.dateFormat;
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -257,10 +263,18 @@
         UIDatePicker* datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, _keyboardFrame - textField.inputAccessoryView.frame.size.height)];
         datePicker.datePickerMode = UIDatePickerModeDate;
         textField.inputView = datePicker;
+        
+        [datePicker addTarget:self action:@selector(setExpirationDate:) forControlEvents:UIControlEventValueChanged];
     }
     _currentInputControl = textField;
     
     return YES;
+}
+
+-(void)setExpirationDate:(UIDatePicker*)owner{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterLongStyle];
+    _expairyTextField.text = [formatter stringFromDate:owner.date];
 }
 
 -(BOOL)textViewShouldBeginEditing:(UITextView *)textView
@@ -335,6 +349,32 @@
         NSString* text = [_pickerData objectAtIndex:row];
         [_currentInputControl setText:text];
     }
+}
+
+#pragma mark - Outlets
+
+- (IBAction)createAdverb:(id)sender{
+    Advert* advert = [Advert entity];
+    NSMutableOrderedSet* imageSet = [[NSMutableOrderedSet alloc] init];
+    for (UIImage* image in _images){
+        Image* advImage = [Image entity];
+        advImage.height = (int)image.size.height;
+        advImage.width = (int)image.size.width;
+        
+        [image saveToPath:[ImageCacheUrlResolver getPathForImage:advImage]];
+        [imageSet addObject:advImage];
+    }
+    [advert setImages:imageSet];
+    
+    advert.name = _productTitleTextField.text;
+    advert.guidePrice = [_priceTextField.text floatValue];
+    advert.location = _locationTextField.text;
+    advert.adDescription = _descriptionTextView.text;
+    NSString* dateString = _expairyTextField.text;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterLongStyle];
+    advert.expires = [[formatter dateFromString:dateString] timeIntervalSince1970];
+    [[DB sharedInstance].managedObjectContext save:nil];
 }
 
 @end
