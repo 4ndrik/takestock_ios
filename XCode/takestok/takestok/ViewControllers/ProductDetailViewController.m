@@ -12,6 +12,7 @@
 #import "BackgroundImageView.h"
 #import "TitleTextContainerView.h"
 #import "NSDate+Extended.h"
+#import "ImagesCollectionViewController.h"
 
 @interface ProductDetailViewController ()
 
@@ -75,6 +76,13 @@
     [self.view layoutIfNeeded];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"ImageSelectedSegue"]) {
+        ImagesCollectionViewController* imageVC = (ImagesCollectionViewController*)segue.destinationViewController;
+        [imageVC setImages:[_advert.images array] withCurrentIndex:((NSIndexPath*)sender).row];
+    }
+}
+
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return _advert.images.count;
@@ -89,6 +97,10 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake(collectionView.frame.size.width - 40, collectionView.frame.size.height - 40);
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:@"ImageSelectedSegue" sender:indexPath];
 }
 
 

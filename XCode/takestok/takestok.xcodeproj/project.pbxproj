@@ -32,6 +32,8 @@
 		AC411E3A1CC0F309008B1E38 /* SearchTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC411E391CC0F309008B1E38 /* SearchTitleView.xib */; };
 		AC411E3F1CC4E373008B1E38 /* Advert+Parce.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E3E1CC4E373008B1E38 /* Advert+Parce.m */; };
 		AC411E421CC5002E008B1E38 /* NSDictionary+HandleNil.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E411CC5002E008B1E38 /* NSDictionary+HandleNil.m */; };
+		AC411E451CC50884008B1E38 /* ImageScrollCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E441CC50884008B1E38 /* ImageScrollCollectionViewCell.m */; };
+		AC411E481CC50A00008B1E38 /* ImagesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E471CC50A00008B1E38 /* ImagesCollectionViewController.m */; };
 		AC68C45D1CB51C1F004B78DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C45C1CB51C1F004B78DF /* main.m */; };
 		AC68C4601CB51C1F004B78DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C45F1CB51C1F004B78DF /* AppDelegate.m */; };
 		AC68C4661CB51C1F004B78DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC68C4641CB51C1F004B78DF /* Main.storyboard */; };
@@ -99,6 +101,10 @@
 		AC411E3E1CC4E373008B1E38 /* Advert+Parce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Advert+Parce.m"; sourceTree = "<group>"; };
 		AC411E401CC5002E008B1E38 /* NSDictionary+HandleNil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+HandleNil.h"; sourceTree = "<group>"; };
 		AC411E411CC5002E008B1E38 /* NSDictionary+HandleNil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+HandleNil.m"; sourceTree = "<group>"; };
+		AC411E431CC50884008B1E38 /* ImageScrollCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollCollectionViewCell.h; sourceTree = "<group>"; };
+		AC411E441CC50884008B1E38 /* ImageScrollCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScrollCollectionViewCell.m; sourceTree = "<group>"; };
+		AC411E461CC50A00008B1E38 /* ImagesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesCollectionViewController.h; sourceTree = "<group>"; };
+		AC411E471CC50A00008B1E38 /* ImagesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesCollectionViewController.m; sourceTree = "<group>"; };
 		AC68C4581CB51C1F004B78DF /* takestok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = takestok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC68C45C1CB51C1F004B78DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AC68C45E1CB51C1F004B78DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -160,6 +166,8 @@
 				AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */,
 				AC049D0C1CB7C7E5006A8F21 /* SearchCollectionViewCell.h */,
 				AC049D0D1CB7C7E5006A8F21 /* SearchCollectionViewCell.m */,
+				AC411E431CC50884008B1E38 /* ImageScrollCollectionViewCell.h */,
+				AC411E441CC50884008B1E38 /* ImageScrollCollectionViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -273,6 +281,8 @@
 				AC049D041CB7C449006A8F21 /* SearchViewController.m */,
 				ACDC24701CBEAC5F003E9715 /* ProductDetailViewController.h */,
 				ACDC24711CBEAC5F003E9715 /* ProductDetailViewController.m */,
+				AC411E461CC50A00008B1E38 /* ImagesCollectionViewController.h */,
+				AC411E471CC50A00008B1E38 /* ImagesCollectionViewController.m */,
 				AC049D1F1CBBD2D7006A8F21 /* LoginViewController.h */,
 				AC049D201CBBD2D7006A8F21 /* LoginViewController.m */,
 			);
@@ -432,11 +442,13 @@
 				AC049D1E1CBBBA0A006A8F21 /* SearchTitleView.m in Sources */,
 				AC411E421CC5002E008B1E38 /* NSDictionary+HandleNil.m in Sources */,
 				AC049D111CB7C86A006A8F21 /* SearchFilterSortView.m in Sources */,
+				AC411E481CC50A00008B1E38 /* ImagesCollectionViewController.m in Sources */,
 				AC411E361CC0EFB8008B1E38 /* SerachCollectionViewLayout.m in Sources */,
 				AC411E121CBF970A008B1E38 /* Advert+CoreDataProperties.m in Sources */,
 				AC049D211CBBD2D7006A8F21 /* LoginViewController.m in Sources */,
 				AC049D0E1CB7C7E5006A8F21 /* SearchCollectionViewCell.m in Sources */,
 				AC68C4771CB53F3D004B78DF /* CALayer+BorderUIColor.m in Sources */,
+				AC411E451CC50884008B1E38 /* ImageScrollCollectionViewCell.m in Sources */,
 				AC411E221CBF9CEF008B1E38 /* Image.m in Sources */,
 				ACDC246A1CBCF610003E9715 /* RadioButton.m in Sources */,
 				AC68C4891CB6534A004B78DF /* UIImage+ExtendedImage.m in Sources */,
