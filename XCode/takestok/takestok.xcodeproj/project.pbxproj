@@ -30,6 +30,8 @@
 		AC411E361CC0EFB8008B1E38 /* SerachCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E351CC0EFB8008B1E38 /* SerachCollectionViewLayout.m */; };
 		AC411E381CC0F170008B1E38 /* SearchFilterSortView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC411E371CC0F170008B1E38 /* SearchFilterSortView.xib */; };
 		AC411E3A1CC0F309008B1E38 /* SearchTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC411E391CC0F309008B1E38 /* SearchTitleView.xib */; };
+		AC411E3F1CC4E373008B1E38 /* Advert+Parce.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E3E1CC4E373008B1E38 /* Advert+Parce.m */; };
+		AC411E421CC5002E008B1E38 /* NSDictionary+HandleNil.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E411CC5002E008B1E38 /* NSDictionary+HandleNil.m */; };
 		AC68C45D1CB51C1F004B78DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C45C1CB51C1F004B78DF /* main.m */; };
 		AC68C4601CB51C1F004B78DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C45F1CB51C1F004B78DF /* AppDelegate.m */; };
 		AC68C4661CB51C1F004B78DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC68C4641CB51C1F004B78DF /* Main.storyboard */; };
@@ -93,6 +95,10 @@
 		AC411E351CC0EFB8008B1E38 /* SerachCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerachCollectionViewLayout.m; sourceTree = "<group>"; };
 		AC411E371CC0F170008B1E38 /* SearchFilterSortView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchFilterSortView.xib; sourceTree = "<group>"; };
 		AC411E391CC0F309008B1E38 /* SearchTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTitleView.xib; sourceTree = "<group>"; };
+		AC411E3D1CC4E373008B1E38 /* Advert+Parce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Advert+Parce.h"; sourceTree = "<group>"; };
+		AC411E3E1CC4E373008B1E38 /* Advert+Parce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Advert+Parce.m"; sourceTree = "<group>"; };
+		AC411E401CC5002E008B1E38 /* NSDictionary+HandleNil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+HandleNil.h"; sourceTree = "<group>"; };
+		AC411E411CC5002E008B1E38 /* NSDictionary+HandleNil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+HandleNil.m"; sourceTree = "<group>"; };
 		AC68C4581CB51C1F004B78DF /* takestok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = takestok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC68C45C1CB51C1F004B78DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AC68C45E1CB51C1F004B78DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -161,6 +167,7 @@
 		AC411E0A1CBF95D3008B1E38 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AC411E3C1CC4E353008B1E38 /* Parcers */,
 				AC411E1A1CBF995A008B1E38 /* DB.h */,
 				AC411E1B1CBF995A008B1E38 /* DB.m */,
 				AC411E171CBF9892008B1E38 /* BaseManagadObject.h */,
@@ -197,6 +204,15 @@
 				AC411E351CC0EFB8008B1E38 /* SerachCollectionViewLayout.m */,
 			);
 			name = CollectionViewLayout;
+			sourceTree = "<group>";
+		};
+		AC411E3C1CC4E353008B1E38 /* Parcers */ = {
+			isa = PBXGroup;
+			children = (
+				AC411E3D1CC4E373008B1E38 /* Advert+Parce.h */,
+				AC411E3E1CC4E373008B1E38 /* Advert+Parce.m */,
+			);
+			path = Parcers;
 			sourceTree = "<group>";
 		};
 		AC68C44F1CB51C1F004B78DF = {
@@ -290,6 +306,8 @@
 		AC68C4741CB51CB2004B78DF /* Additional */ = {
 			isa = PBXGroup;
 			children = (
+				AC411E401CC5002E008B1E38 /* NSDictionary+HandleNil.h */,
+				AC411E411CC5002E008B1E38 /* NSDictionary+HandleNil.m */,
 				AC411E311CBFBE94008B1E38 /* GUIDCreator.h */,
 				AC411E321CBFBE94008B1E38 /* GUIDCreator.m */,
 				AC68C4751CB53F3D004B78DF /* CALayer+BorderUIColor.h */,
@@ -404,6 +422,7 @@
 				AC049D0B1CB7C490006A8F21 /* BaseViewController.m in Sources */,
 				AC049D051CB7C449006A8F21 /* SearchViewController.m in Sources */,
 				AC049D081CB7C47F006A8F21 /* HomeViewController.m in Sources */,
+				AC411E3F1CC4E373008B1E38 /* Advert+Parce.m in Sources */,
 				AC68C4811CB64241004B78DF /* TextFieldBorderBottom.m in Sources */,
 				AC411E291CBFA6D0008B1E38 /* NSDate+Extended.m in Sources */,
 				AC411E301CBFBB30008B1E38 /* BackgroundImageView.m in Sources */,
@@ -411,6 +430,7 @@
 				AC411E261CBFA220008B1E38 /* ImageCacheUrlResolver.m in Sources */,
 				ACDC24721CBEAC5F003E9715 /* ProductDetailViewController.m in Sources */,
 				AC049D1E1CBBBA0A006A8F21 /* SearchTitleView.m in Sources */,
+				AC411E421CC5002E008B1E38 /* NSDictionary+HandleNil.m in Sources */,
 				AC049D111CB7C86A006A8F21 /* SearchFilterSortView.m in Sources */,
 				AC411E361CC0EFB8008B1E38 /* SerachCollectionViewLayout.m in Sources */,
 				AC411E121CBF970A008B1E38 /* Advert+CoreDataProperties.m in Sources */,
