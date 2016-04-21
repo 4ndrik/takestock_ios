@@ -18,7 +18,6 @@
 		AC411E0D1CBF9693008B1E38 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AC411E0B1CBF9693008B1E38 /* Model.xcdatamodeld */; };
 		AC411E121CBF970A008B1E38 /* Advert+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E0F1CBF970A008B1E38 /* Advert+CoreDataProperties.m */; };
 		AC411E131CBF970A008B1E38 /* Advert.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E111CBF970A008B1E38 /* Advert.m */; };
-		AC411E191CBF9892008B1E38 /* BaseManagadObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E181CBF9892008B1E38 /* BaseManagadObject.m */; };
 		AC411E1C1CBF995A008B1E38 /* DB.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E1B1CBF995A008B1E38 /* DB.m */; };
 		AC411E211CBF9CEF008B1E38 /* Image+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E1E1CBF9CEF008B1E38 /* Image+CoreDataProperties.m */; };
 		AC411E221CBF9CEF008B1E38 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E201CBF9CEF008B1E38 /* Image.m */; };
@@ -30,7 +29,6 @@
 		AC411E361CC0EFB8008B1E38 /* SerachCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E351CC0EFB8008B1E38 /* SerachCollectionViewLayout.m */; };
 		AC411E381CC0F170008B1E38 /* SearchFilterSortView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC411E371CC0F170008B1E38 /* SearchFilterSortView.xib */; };
 		AC411E3A1CC0F309008B1E38 /* SearchTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC411E391CC0F309008B1E38 /* SearchTitleView.xib */; };
-		AC411E3F1CC4E373008B1E38 /* Advert+Parce.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E3E1CC4E373008B1E38 /* Advert+Parce.m */; };
 		AC411E421CC5002E008B1E38 /* NSDictionary+HandleNil.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E411CC5002E008B1E38 /* NSDictionary+HandleNil.m */; };
 		AC411E451CC50884008B1E38 /* ImageScrollCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E441CC50884008B1E38 /* ImageScrollCollectionViewCell.m */; };
 		AC411E481CC50A00008B1E38 /* ImagesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E471CC50A00008B1E38 /* ImagesCollectionViewController.m */; };
@@ -41,6 +39,20 @@
 		AC411E5B1CC7D257008B1E38 /* BuyingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E5A1CC7D257008B1E38 /* BuyingViewController.m */; };
 		AC411E5E1CC7D2C9008B1E38 /* BuyingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E5D1CC7D2C9008B1E38 /* BuyingTableViewCell.m */; };
 		AC411E611CC7DC8E008B1E38 /* PaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E601CC7DC8E008B1E38 /* PaddingLabel.m */; };
+		AC411E721CC8D186008B1E38 /* Shipping+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E631CC8D186008B1E38 /* Shipping+CoreDataProperties.m */; };
+		AC411E731CC8D186008B1E38 /* Shipping.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E651CC8D186008B1E38 /* Shipping.m */; };
+		AC411E741CC8D186008B1E38 /* Dictionary+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E671CC8D186008B1E38 /* Dictionary+CoreDataProperties.m */; };
+		AC411E751CC8D186008B1E38 /* Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E691CC8D186008B1E38 /* Dictionary.m */; };
+		AC411E761CC8D186008B1E38 /* Condition+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E6B1CC8D186008B1E38 /* Condition+CoreDataProperties.m */; };
+		AC411E771CC8D186008B1E38 /* Condition.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E6D1CC8D186008B1E38 /* Condition.m */; };
+		AC411E781CC8D186008B1E38 /* Certification+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E6F1CC8D186008B1E38 /* Certification+CoreDataProperties.m */; };
+		AC411E791CC8D186008B1E38 /* Certification.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E711CC8D186008B1E38 /* Certification.m */; };
+		AC411E7E1CC8D61E008B1E38 /* BaseEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E7B1CC8D61E008B1E38 /* BaseEntity+CoreDataProperties.m */; };
+		AC411E7F1CC8D61E008B1E38 /* BaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E7D1CC8D61E008B1E38 /* BaseEntity.m */; };
+		AC411E8D1CC92230008B1E38 /* SizeType+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E881CC92230008B1E38 /* SizeType+CoreDataProperties.m */; };
+		AC411E8E1CC92230008B1E38 /* SizeType.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E8A1CC92230008B1E38 /* SizeType.m */; };
+		AC411E971CC92344008B1E38 /* Category+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E941CC92344008B1E38 /* Category+CoreDataProperties.m */; };
+		AC411E981CC92344008B1E38 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E961CC92344008B1E38 /* Category.m */; };
 		AC68C45D1CB51C1F004B78DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C45C1CB51C1F004B78DF /* main.m */; };
 		AC68C4601CB51C1F004B78DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C45F1CB51C1F004B78DF /* AppDelegate.m */; };
 		AC68C4661CB51C1F004B78DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC68C4641CB51C1F004B78DF /* Main.storyboard */; };
@@ -81,8 +93,6 @@
 		AC411E0F1CBF970A008B1E38 /* Advert+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Advert+CoreDataProperties.m"; sourceTree = "<group>"; };
 		AC411E101CBF970A008B1E38 /* Advert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Advert.h; sourceTree = "<group>"; };
 		AC411E111CBF970A008B1E38 /* Advert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Advert.m; sourceTree = "<group>"; };
-		AC411E171CBF9892008B1E38 /* BaseManagadObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseManagadObject.h; sourceTree = "<group>"; };
-		AC411E181CBF9892008B1E38 /* BaseManagadObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseManagadObject.m; sourceTree = "<group>"; };
 		AC411E1A1CBF995A008B1E38 /* DB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DB.h; sourceTree = "<group>"; };
 		AC411E1B1CBF995A008B1E38 /* DB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DB.m; sourceTree = "<group>"; };
 		AC411E1D1CBF9CEF008B1E38 /* Image+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Image+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -104,8 +114,6 @@
 		AC411E351CC0EFB8008B1E38 /* SerachCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerachCollectionViewLayout.m; sourceTree = "<group>"; };
 		AC411E371CC0F170008B1E38 /* SearchFilterSortView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchFilterSortView.xib; sourceTree = "<group>"; };
 		AC411E391CC0F309008B1E38 /* SearchTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTitleView.xib; sourceTree = "<group>"; };
-		AC411E3D1CC4E373008B1E38 /* Advert+Parce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Advert+Parce.h"; sourceTree = "<group>"; };
-		AC411E3E1CC4E373008B1E38 /* Advert+Parce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Advert+Parce.m"; sourceTree = "<group>"; };
 		AC411E401CC5002E008B1E38 /* NSDictionary+HandleNil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+HandleNil.h"; sourceTree = "<group>"; };
 		AC411E411CC5002E008B1E38 /* NSDictionary+HandleNil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+HandleNil.m"; sourceTree = "<group>"; };
 		AC411E431CC50884008B1E38 /* ImageScrollCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollCollectionViewCell.h; sourceTree = "<group>"; };
@@ -129,6 +137,34 @@
 		AC411E5D1CC7D2C9008B1E38 /* BuyingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyingTableViewCell.m; sourceTree = "<group>"; };
 		AC411E5F1CC7DC8E008B1E38 /* PaddingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaddingLabel.h; sourceTree = "<group>"; };
 		AC411E601CC7DC8E008B1E38 /* PaddingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddingLabel.m; sourceTree = "<group>"; };
+		AC411E621CC8D186008B1E38 /* Shipping+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Shipping+CoreDataProperties.h"; sourceTree = "<group>"; };
+		AC411E631CC8D186008B1E38 /* Shipping+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Shipping+CoreDataProperties.m"; sourceTree = "<group>"; };
+		AC411E641CC8D186008B1E38 /* Shipping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shipping.h; sourceTree = "<group>"; };
+		AC411E651CC8D186008B1E38 /* Shipping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shipping.m; sourceTree = "<group>"; };
+		AC411E661CC8D186008B1E38 /* Dictionary+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Dictionary+CoreDataProperties.h"; sourceTree = "<group>"; };
+		AC411E671CC8D186008B1E38 /* Dictionary+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Dictionary+CoreDataProperties.m"; sourceTree = "<group>"; };
+		AC411E681CC8D186008B1E38 /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dictionary.h; sourceTree = "<group>"; };
+		AC411E691CC8D186008B1E38 /* Dictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dictionary.m; sourceTree = "<group>"; };
+		AC411E6A1CC8D186008B1E38 /* Condition+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Condition+CoreDataProperties.h"; sourceTree = "<group>"; };
+		AC411E6B1CC8D186008B1E38 /* Condition+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Condition+CoreDataProperties.m"; sourceTree = "<group>"; };
+		AC411E6C1CC8D186008B1E38 /* Condition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Condition.h; sourceTree = "<group>"; };
+		AC411E6D1CC8D186008B1E38 /* Condition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Condition.m; sourceTree = "<group>"; };
+		AC411E6E1CC8D186008B1E38 /* Certification+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Certification+CoreDataProperties.h"; sourceTree = "<group>"; };
+		AC411E6F1CC8D186008B1E38 /* Certification+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Certification+CoreDataProperties.m"; sourceTree = "<group>"; };
+		AC411E701CC8D186008B1E38 /* Certification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Certification.h; sourceTree = "<group>"; };
+		AC411E711CC8D186008B1E38 /* Certification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Certification.m; sourceTree = "<group>"; };
+		AC411E7A1CC8D61E008B1E38 /* BaseEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BaseEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
+		AC411E7B1CC8D61E008B1E38 /* BaseEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BaseEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
+		AC411E7C1CC8D61E008B1E38 /* BaseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseEntity.h; sourceTree = "<group>"; };
+		AC411E7D1CC8D61E008B1E38 /* BaseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseEntity.m; sourceTree = "<group>"; };
+		AC411E871CC92230008B1E38 /* SizeType+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SizeType+CoreDataProperties.h"; sourceTree = "<group>"; };
+		AC411E881CC92230008B1E38 /* SizeType+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SizeType+CoreDataProperties.m"; sourceTree = "<group>"; };
+		AC411E891CC92230008B1E38 /* SizeType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SizeType.h; sourceTree = "<group>"; };
+		AC411E8A1CC92230008B1E38 /* SizeType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SizeType.m; sourceTree = "<group>"; };
+		AC411E931CC92344008B1E38 /* Category+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Category+CoreDataProperties.h"; sourceTree = "<group>"; };
+		AC411E941CC92344008B1E38 /* Category+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Category+CoreDataProperties.m"; sourceTree = "<group>"; };
+		AC411E951CC92344008B1E38 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
+		AC411E961CC92344008B1E38 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
 		AC68C4581CB51C1F004B78DF /* takestok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = takestok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC68C45C1CB51C1F004B78DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AC68C45E1CB51C1F004B78DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -203,11 +239,13 @@
 		AC411E0A1CBF95D3008B1E38 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AC411E3C1CC4E353008B1E38 /* Parcers */,
 				AC411E1A1CBF995A008B1E38 /* DB.h */,
 				AC411E1B1CBF995A008B1E38 /* DB.m */,
-				AC411E171CBF9892008B1E38 /* BaseManagadObject.h */,
-				AC411E181CBF9892008B1E38 /* BaseManagadObject.m */,
+				AC411E8F1CC92244008B1E38 /* Dictionary */,
+				AC411E7A1CC8D61E008B1E38 /* BaseEntity+CoreDataProperties.h */,
+				AC411E7B1CC8D61E008B1E38 /* BaseEntity+CoreDataProperties.m */,
+				AC411E7C1CC8D61E008B1E38 /* BaseEntity.h */,
+				AC411E7D1CC8D61E008B1E38 /* BaseEntity.m */,
 				AC411E0E1CBF970A008B1E38 /* Advert+CoreDataProperties.h */,
 				AC411E0F1CBF970A008B1E38 /* Advert+CoreDataProperties.m */,
 				AC411E101CBF970A008B1E38 /* Advert.h */,
@@ -246,15 +284,6 @@
 			name = CollectionViewLayout;
 			sourceTree = "<group>";
 		};
-		AC411E3C1CC4E353008B1E38 /* Parcers */ = {
-			isa = PBXGroup;
-			children = (
-				AC411E3D1CC4E373008B1E38 /* Advert+Parce.h */,
-				AC411E3E1CC4E373008B1E38 /* Advert+Parce.m */,
-			);
-			path = Parcers;
-			sourceTree = "<group>";
-		};
 		AC411E521CC78D61008B1E38 /* Adverts */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +295,37 @@
 				AC411E471CC50A00008B1E38 /* ImagesCollectionViewController.m */,
 			);
 			name = Adverts;
+			sourceTree = "<group>";
+		};
+		AC411E8F1CC92244008B1E38 /* Dictionary */ = {
+			isa = PBXGroup;
+			children = (
+				AC411E931CC92344008B1E38 /* Category+CoreDataProperties.h */,
+				AC411E941CC92344008B1E38 /* Category+CoreDataProperties.m */,
+				AC411E951CC92344008B1E38 /* Category.h */,
+				AC411E961CC92344008B1E38 /* Category.m */,
+				AC411E871CC92230008B1E38 /* SizeType+CoreDataProperties.h */,
+				AC411E881CC92230008B1E38 /* SizeType+CoreDataProperties.m */,
+				AC411E891CC92230008B1E38 /* SizeType.h */,
+				AC411E8A1CC92230008B1E38 /* SizeType.m */,
+				AC411E661CC8D186008B1E38 /* Dictionary+CoreDataProperties.h */,
+				AC411E671CC8D186008B1E38 /* Dictionary+CoreDataProperties.m */,
+				AC411E681CC8D186008B1E38 /* Dictionary.h */,
+				AC411E691CC8D186008B1E38 /* Dictionary.m */,
+				AC411E621CC8D186008B1E38 /* Shipping+CoreDataProperties.h */,
+				AC411E631CC8D186008B1E38 /* Shipping+CoreDataProperties.m */,
+				AC411E641CC8D186008B1E38 /* Shipping.h */,
+				AC411E651CC8D186008B1E38 /* Shipping.m */,
+				AC411E6A1CC8D186008B1E38 /* Condition+CoreDataProperties.h */,
+				AC411E6B1CC8D186008B1E38 /* Condition+CoreDataProperties.m */,
+				AC411E6C1CC8D186008B1E38 /* Condition.h */,
+				AC411E6D1CC8D186008B1E38 /* Condition.m */,
+				AC411E6E1CC8D186008B1E38 /* Certification+CoreDataProperties.h */,
+				AC411E6F1CC8D186008B1E38 /* Certification+CoreDataProperties.m */,
+				AC411E701CC8D186008B1E38 /* Certification.h */,
+				AC411E711CC8D186008B1E38 /* Certification.m */,
+			);
+			name = Dictionary;
 			sourceTree = "<group>";
 		};
 		AC68C44F1CB51C1F004B78DF = {
@@ -471,13 +531,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC411E191CBF9892008B1E38 /* BaseManagadObject.m in Sources */,
+				AC411E771CC8D186008B1E38 /* Condition.m in Sources */,
+				AC411E971CC92344008B1E38 /* Category+CoreDataProperties.m in Sources */,
+				AC411E8E1CC92230008B1E38 /* SizeType.m in Sources */,
 				AC68C4921CB68865004B78DF /* PaddingTextField.m in Sources */,
 				AC411E551CC7A72C008B1E38 /* SellingTableViewCell.m in Sources */,
 				AC411E131CBF970A008B1E38 /* Advert.m in Sources */,
 				AC68C4841CB64966004B78DF /* CreateAdvertViewController.m in Sources */,
+				AC411E781CC8D186008B1E38 /* Certification+CoreDataProperties.m in Sources */,
 				AC411E611CC7DC8E008B1E38 /* PaddingLabel.m in Sources */,
 				ACDC246D1CBE8308003E9715 /* TitleTextContainerView.m in Sources */,
+				AC411E791CC8D186008B1E38 /* Certification.m in Sources */,
 				AC411E211CBF9CEF008B1E38 /* Image+CoreDataProperties.m in Sources */,
 				AC411E5E1CC7D2C9008B1E38 /* BuyingTableViewCell.m in Sources */,
 				AC411E1C1CBF995A008B1E38 /* DB.m in Sources */,
@@ -486,30 +550,38 @@
 				AC049D051CB7C449006A8F21 /* SearchViewController.m in Sources */,
 				AC049D081CB7C47F006A8F21 /* HomeViewController.m in Sources */,
 				AC411E4E1CC63ECA008B1E38 /* Reachability.m in Sources */,
-				AC411E3F1CC4E373008B1E38 /* Advert+Parce.m in Sources */,
 				AC68C4811CB64241004B78DF /* TextFieldBorderBottom.m in Sources */,
+				AC411E721CC8D186008B1E38 /* Shipping+CoreDataProperties.m in Sources */,
 				AC411E291CBFA6D0008B1E38 /* NSDate+Extended.m in Sources */,
 				AC411E301CBFBB30008B1E38 /* BackgroundImageView.m in Sources */,
 				AC411E0D1CBF9693008B1E38 /* Model.xcdatamodeld in Sources */,
 				AC411E261CBFA220008B1E38 /* ImageCacheUrlResolver.m in Sources */,
 				ACDC24721CBEAC5F003E9715 /* AdvertDetailViewController.m in Sources */,
 				AC411E5B1CC7D257008B1E38 /* BuyingViewController.m in Sources */,
+				AC411E731CC8D186008B1E38 /* Shipping.m in Sources */,
 				AC049D1E1CBBBA0A006A8F21 /* SearchTitleView.m in Sources */,
+				AC411E7F1CC8D61E008B1E38 /* BaseEntity.m in Sources */,
+				AC411E8D1CC92230008B1E38 /* SizeType+CoreDataProperties.m in Sources */,
 				AC411E421CC5002E008B1E38 /* NSDictionary+HandleNil.m in Sources */,
+				AC411E741CC8D186008B1E38 /* Dictionary+CoreDataProperties.m in Sources */,
 				AC049D111CB7C86A006A8F21 /* SearchFilterSortView.m in Sources */,
+				AC411E751CC8D186008B1E38 /* Dictionary.m in Sources */,
 				AC411E481CC50A00008B1E38 /* ImagesCollectionViewController.m in Sources */,
 				AC411E361CC0EFB8008B1E38 /* SerachCollectionViewLayout.m in Sources */,
 				AC411E121CBF970A008B1E38 /* Advert+CoreDataProperties.m in Sources */,
 				AC049D211CBBD2D7006A8F21 /* LoginViewController.m in Sources */,
 				AC049D0E1CB7C7E5006A8F21 /* SearchCollectionViewCell.m in Sources */,
+				AC411E981CC92344008B1E38 /* Category.m in Sources */,
 				AC68C4771CB53F3D004B78DF /* CALayer+BorderUIColor.m in Sources */,
 				AC411E4B1CC63825008B1E38 /* ServerConnectionHelper.m in Sources */,
 				AC411E451CC50884008B1E38 /* ImageScrollCollectionViewCell.m in Sources */,
+				AC411E7E1CC8D61E008B1E38 /* BaseEntity+CoreDataProperties.m in Sources */,
 				AC411E221CBF9CEF008B1E38 /* Image.m in Sources */,
 				ACDC246A1CBCF610003E9715 /* RadioButton.m in Sources */,
 				AC68C4891CB6534A004B78DF /* UIImage+ExtendedImage.m in Sources */,
 				AC411E2C1CBFB832008B1E38 /* ImageLoader.m in Sources */,
 				AC68C4601CB51C1F004B78DF /* AppDelegate.m in Sources */,
+				AC411E761CC8D186008B1E38 /* Condition+CoreDataProperties.m in Sources */,
 				AC68C48C1CB67090004B78DF /* ImageCollectionViewCell.m in Sources */,
 				AC411E331CBFBE94008B1E38 /* GUIDCreator.m in Sources */,
 				AC68C45D1CB51C1F004B78DF /* main.m in Sources */,

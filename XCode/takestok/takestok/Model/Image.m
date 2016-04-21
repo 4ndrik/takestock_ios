@@ -13,7 +13,7 @@
 @implementation Image
 
 + (instancetype)disconnectedEntity {
-    Image* entity = [super disconnectedEntity];
+    Image* entity = [super tempEntity];
     if (entity.resId.length <= 0){
         entity.resId = [GUIDCreator getGuid];
     }

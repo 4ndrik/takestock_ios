@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "BaseManagadObject.h"
+#import "BaseEntity.h"
 #import "ImageProtocol.h"
 
 @class Advert;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Image : BaseManagadObject<ImageProtocol>
+@interface Image : BaseEntity<ImageProtocol>
 
 
 

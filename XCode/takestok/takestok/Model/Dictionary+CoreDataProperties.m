@@ -1,5 +1,5 @@
 //
-//  Image+CoreDataProperties.m
+//  Dictionary+CoreDataProperties.m
 //  takestok
 //
 //  Created by Artem on 4/21/16.
@@ -9,15 +9,10 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Image+CoreDataProperties.h"
+#import "Dictionary+CoreDataProperties.h"
 
-@implementation Image (CoreDataProperties)
+@implementation Dictionary (CoreDataProperties)
 
-@dynamic height;
-@dynamic resId;
-@dynamic width;
-@dynamic url;
-@dynamic advert;
-@dynamic certification;
+@dynamic title;
 
 @end

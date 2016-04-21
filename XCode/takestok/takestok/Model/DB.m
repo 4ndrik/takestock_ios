@@ -8,8 +8,18 @@
 
 #import "DB.h"
 
+@implementation TempManagedObjectContext
+
+- (BOOL)save:(NSError **)error{
+    NSAssert(YES, @"Save is forbidden");
+    return NO;
+}
+
+@end
+
 @implementation DB
-@synthesize managedObjectContext = _managedObjectContext;
+@synthesize storedManagedObjectContext = _storedManagedObjectContext;
+@synthesize tempManagedObjectContext = _tempManagedObjectContext;
 
 +(DB*)sharedInstance
 {
@@ -36,18 +46,30 @@
 
 // Returns the managed object context for the application.
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
-- (NSManagedObjectContext *)managedObjectContext
+- (NSManagedObjectContext *)storedManagedObjectContext
 {
-    if (_managedObjectContext != nil) {
-        return _managedObjectContext;
+    if (_storedManagedObjectContext != nil) {
+        return _storedManagedObjectContext;
     }
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
-        _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+        _storedManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+        [_storedManagedObjectContext setPersistentStoreCoordinator:coordinator];
     }
-    return _managedObjectContext;
+    return _storedManagedObjectContext;
+}
+
+-(TempManagedObjectContext*)tempManagedObjectContext{
+    if (_tempManagedObjectContext != nil) {
+        return _tempManagedObjectContext;
+    }
+    
+    _tempManagedObjectContext = [[TempManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+//    [_tempManagedObjectContext setPersistentStoreCoordinator:[self persistentStoreCoordinator]];
+    _tempManagedObjectContext.parentContext = self.storedManagedObjectContext;
+    
+    return _tempManagedObjectContext;
 }
 
 // Returns the managed object model for the application.

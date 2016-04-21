@@ -1,25 +1,62 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Xcode 7.0">
-    <entity name="Advert" representedClassName="Advert" syncable="YES">
+    <entity name="Advert" representedClassName="Advert" parentEntity="BaseEntity" syncable="YES">
         <attribute name="adDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="expires" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="guidePrice" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="ident" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updated" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="advert" inverseEntity="Category" syncable="YES"/>
+        <relationship name="certification" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Certification" inverseName="advert" inverseEntity="Certification" syncable="YES"/>
+        <relationship name="condition" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Condition" inverseName="advert" inverseEntity="Condition" syncable="YES"/>
         <relationship name="images" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Image" inverseName="advert" inverseEntity="Image" syncable="YES"/>
+        <relationship name="shipping" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shipping" inverseName="advert" inverseEntity="Shipping" syncable="YES"/>
+        <relationship name="sizeType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SizeType" inverseName="advert" inverseEntity="SizeType" syncable="YES"/>
+        <relationship name="subCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="advertSub" inverseEntity="Category" syncable="YES"/>
     </entity>
-    <entity name="Image" representedClassName="Image" syncable="YES">
+    <entity name="BaseEntity" representedClassName="BaseEntity" isAbstract="YES" syncable="YES">
+        <attribute name="ident" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+    </entity>
+    <entity name="Category" representedClassName="Categoriy" parentEntity="Dictionary" syncable="YES">
+        <relationship name="advert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Advert" inverseName="category" inverseEntity="Advert" syncable="YES"/>
+        <relationship name="advertSub" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Advert" inverseName="subCategory" inverseEntity="Advert" syncable="YES"/>
+    </entity>
+    <entity name="Certification" representedClassName="Certification" parentEntity="Dictionary" syncable="YES">
+        <attribute name="certDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="advert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Advert" inverseName="certification" inverseEntity="Advert" syncable="YES"/>
+        <relationship name="image" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Image" inverseName="certification" inverseEntity="Image" syncable="YES"/>
+    </entity>
+    <entity name="Condition" representedClassName="Condition" parentEntity="Dictionary" syncable="YES">
+        <relationship name="advert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Advert" inverseName="condition" inverseEntity="Advert" syncable="YES"/>
+    </entity>
+    <entity name="Dictionary" representedClassName="Dictionary" isAbstract="YES" parentEntity="BaseEntity" syncable="YES">
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Image" representedClassName="Image" parentEntity="BaseEntity" syncable="YES">
         <attribute name="height" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="ident" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="resId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="width" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="advert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Advert" inverseName="images" inverseEntity="Advert" syncable="YES"/>
+        <relationship name="certification" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Certification" inverseName="image" inverseEntity="Certification" syncable="YES"/>
+    </entity>
+    <entity name="Shipping" representedClassName="Shipping" parentEntity="Dictionary" syncable="YES">
+        <relationship name="advert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Advert" inverseName="shipping" inverseEntity="Advert" syncable="YES"/>
+    </entity>
+    <entity name="SizeType" representedClassName="SizeType" parentEntity="Dictionary" syncable="YES">
+        <relationship name="advert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Advert" inverseName="sizeType" inverseEntity="Advert" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Advert" positionX="-63" positionY="-18" width="128" height="180"/>
-        <element name="Image" positionX="-54" positionY="54" width="128" height="120"/>
+        <element name="Advert" positionX="-63" positionY="-18" width="128" height="255"/>
+        <element name="Image" positionX="-54" positionY="54" width="128" height="135"/>
+        <element name="Dictionary" positionX="-45" positionY="81" width="128" height="60"/>
+        <element name="Shipping" positionX="-36" positionY="90" width="128" height="60"/>
+        <element name="Condition" positionX="-18" positionY="99" width="128" height="60"/>
+        <element name="Certification" positionX="0" positionY="108" width="128" height="90"/>
+        <element name="BaseEntity" positionX="18" positionY="135" width="128" height="60"/>
+        <element name="SizeType" positionX="-27" positionY="72" width="128" height="60"/>
+        <element name="Category" positionX="-18" positionY="81" width="128" height="75"/>
     </elements>
 </model>

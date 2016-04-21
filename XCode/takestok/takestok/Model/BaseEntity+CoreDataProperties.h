@@ -1,5 +1,5 @@
 //
-//  Image+CoreDataProperties.m
+//  BaseEntity+CoreDataProperties.h
 //  takestok
 //
 //  Created by Artem on 4/21/16.
@@ -9,15 +9,14 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Image+CoreDataProperties.h"
+#import "BaseEntity.h"
 
-@implementation Image (CoreDataProperties)
+NS_ASSUME_NONNULL_BEGIN
 
-@dynamic height;
-@dynamic resId;
-@dynamic width;
-@dynamic url;
-@dynamic advert;
-@dynamic certification;
+@interface BaseEntity (CoreDataProperties)
+
+@property (nonatomic) int32_t ident;
 
 @end
+
+NS_ASSUME_NONNULL_END

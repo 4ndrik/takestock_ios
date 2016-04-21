@@ -18,5 +18,5 @@
 
 +(ServerConnectionHelper*)sharedInstance;
 -(void)loadAdverb:(void(^)(NSArray* adverbs, NSError* error))compleate;
-
+-(void)loadDictionaries;
 @end

@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "BaseManagadObject.h"
+#import "BaseEntity.h"
 #import "Image.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Advert : BaseManagadObject
+@interface Advert : BaseEntity
 
-+(NSArray*)getAll;
+-(void)updateWithJSon:(NSDictionary*)jsonDic;
 
 @end
 

@@ -1,5 +1,5 @@
 //
-//  Image+CoreDataProperties.m
+//  Certification+CoreDataProperties.m
 //  takestok
 //
 //  Created by Artem on 4/21/16.
@@ -9,15 +9,12 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Image+CoreDataProperties.h"
+#import "Certification+CoreDataProperties.h"
 
-@implementation Image (CoreDataProperties)
+@implementation Certification (CoreDataProperties)
 
-@dynamic height;
-@dynamic resId;
-@dynamic width;
-@dynamic url;
+@dynamic certDescription;
+@dynamic image;
 @dynamic advert;
-@dynamic certification;
 
 @end

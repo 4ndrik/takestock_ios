@@ -42,11 +42,8 @@
 -(UIImage*)decompressImage:(UIImage*)image{
     if (image) {
         UIGraphicsBeginImageContextWithOptions(image.size, NO, image.scale);
-        
         [image drawAtPoint:CGPointZero];
-        
         image = UIGraphicsGetImageFromCurrentImageContext();
-        
         UIGraphicsEndImageContext();
     }
     return image;
@@ -68,7 +65,6 @@
                     success(result, image.resId);
                 });
             }
-            //        NSLog(@"Load from phone");
         }
         else
         {

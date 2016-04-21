@@ -9,16 +9,20 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@interface TempManagedObjectContext : NSManagedObjectContext
+
+@end
+
 @interface DB : NSObject{
 //    NSManagedObjectContext *_managedObjectContext;
     NSManagedObjectModel *_managedObjectModel;
     NSPersistentStoreCoordinator *_persistentStoreCoordinator;
-    NSManagedObjectContext *_managedObjectContext;
+    NSManagedObjectContext *_storedManagedObjectContext;
 }
 
 +(DB*)sharedInstance;
--(id) init;
 
-@property (readonly) NSManagedObjectContext *managedObjectContext;
+@property (readonly) NSManagedObjectContext *storedManagedObjectContext;
+@property (readonly) TempManagedObjectContext *tempManagedObjectContext;
 
 @end

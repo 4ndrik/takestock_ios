@@ -8,7 +8,12 @@
 
 #import "ServerConnectionHelper.h"
 #import "Reachability.h"
-#import "Advert+Parce.h"
+#import "Advert.h"
+#import "Condition.h"
+#import "Shipping.h"
+#import "Certification.h"
+#import "SizeType.h"
+#import "Category.h"
 #import "NSDictionary+HandleNil.h"
 
 typedef enum
@@ -19,12 +24,19 @@ typedef enum
     HTTP_METHOD_DELETE
 } HTTP_METHOD;
 
-#define TAKESTOK_URL        @"http://takestock.shalakh.in/api/v1/"
+#define TAKESTOK_URL                @"http://takestock.shalakh.in/api/v1/"
 
-#define JSON_CONTENT_TYPE   @"application/json"
-#define ADVERTS_URL_PATH    @"adverts"
+#define JSON_CONTENT_TYPE           @"application/json"
+#define ADVERTS_URL_PATH            @"adverts"
 
-#define SIGNATURE @"JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0NjEwNzc2NzcsInVzZXJuYW1lIjoiVXNlckFydGVtIiwidXNlcl9pZCI6MTAsImVtYWlsIjoic2VyYmluYXJ0ZW1AZ21haWwuY29tIn0.Qtkp26wVxxsj16lfWIQW6BhbTjEpX2tqh9gAt2uW04c"
+#define CONDITIONS_URL_PATH         @"conditions"
+#define SHIPPING_URL_PATH           @"shipping"
+#define CATEGORIES_URL_PATH         @"categories"
+#define CERTIFICATION_URL_PATH      @"certifications"
+#define SIZE_TYPES_URL_PATH         @"size_types"
+
+
+#define SIGNATURE @"JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IlVzZXJBcnRlbSIsImV4cCI6MTQ2MzgyMTU4NSwiZW1haWwiOiJzZXJiaW5hcnRlbUBnbWFpbC5jb20iLCJ1c2VyX2lkIjoxMH0.4gTS9TYXasqhuAqzQ-Omg03finB10ehFtDrrJ1zT_Ew"
 
 @implementation ServerConnectionHelper
 
@@ -66,6 +78,48 @@ typedef enum
     return [_reachability currentReachabilityStatus] != NotReachable;
 }
 
+#pragma mark - Dictionaries
+
+-(void)loadDictionaries{
+    
+    NSURLSessionDataTask* loadConditionsTask = [_session dataTaskWithRequest:[self request:CONDITIONS_URL_PATH query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:data error:&error]){
+            NSArray* conditions = [[self jsonFromData:data error:&error] objectForKeyNotNull:@"conditions"];
+            if (conditions)
+                [Condition syncWithJsonArray:conditions];
+        }
+    }];
+    
+    NSURLSessionDataTask* loadShippingTask = [_session dataTaskWithRequest:[self request:SHIPPING_URL_PATH query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:data error:&error]){
+            NSArray* shippings = [[self jsonFromData:data error:&error] objectForKeyNotNull:@"shipping"];
+                if (shippings)
+                    [Shipping syncWithJsonArray:shippings];
+        }
+    }];
+    
+    NSURLSessionDataTask* loadSizeTask = [_session dataTaskWithRequest:[self request:SIZE_TYPES_URL_PATH query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:data error:&error]){
+            NSArray* sizeTypes = [[self jsonFromData:data error:&error]  objectForKeyNotNull:@"types"];
+            if (sizeTypes)
+                [SizeType syncWithJsonArray:sizeTypes];
+        }
+    }];
+    
+    NSURLSessionDataTask* loadCertificationTask = [_session dataTaskWithRequest:[self request:CERTIFICATION_URL_PATH query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:data error:&error]){
+                NSArray* certifications = [self jsonFromData:data error:&error];
+                if (certifications)
+                    [Certification syncWithJsonArray:certifications];
+            }
+    }];
+    
+    [loadConditionsTask resume];
+    [loadShippingTask resume];
+    [loadCertificationTask resume];
+    [loadSizeTask resume];
+}
+
 #pragma mark - Adverb
 -(void)loadAdverb:(void(^)(NSArray* adverbs, NSError* error))compleate{
     [_loadAdvertCancelTask cancel];
@@ -88,7 +142,7 @@ typedef enum
             if (!error){
                 
                 for (NSDictionary* advertDic in array) {
-                    Advert* advert = [Advert disconnectedEntity];
+                    Advert* advert = [Advert tempEntity];
                     [advert updateWithJSon:advertDic];
                     [adverts addObject:advert];
                 }

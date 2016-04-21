@@ -14,6 +14,12 @@
 #import "Advert.h"
 #import "ImageCacheUrlResolver.h"
 
+#import "Category.h"
+#import "Shipping.h"
+#import "Condition.h"
+#import "SizeType.h"
+#import "Certification.h"
+
 @implementation CreateAdvertViewController
 
 - (void)viewDidLoad {
@@ -242,23 +248,28 @@
     }
     
     if (textField == _categoryTextField) {
-        _pickerData = [NSArray arrayWithObjects:@"first", @"Second", @"Olala", @"Bebebe", nil];
+        _pickerData = [Category getAll];
         textField.inputView = _textPiker;
+        [_textPiker reloadAllComponents];
     }else if (textField == _subCategoryTextField) {
-        _pickerData = [NSArray arrayWithObjects:@"first", @"Second", @"Olala", @"Bebebe", nil];
+        _pickerData = [Category getAll];;
         textField.inputView = _textPiker;
     }else if (textField == _unitTextField) {
         _pickerData = [NSArray arrayWithObjects:@"first", @"Second", @"Olala", @"Bebebe", nil];
         textField.inputView = _textPiker;
+        [_textPiker reloadAllComponents];
     }else if (textField == _shippingTextField) {
-        _pickerData = [NSArray arrayWithObjects:@"first", @"Second", @"Olala", @"Bebebe", nil];
+        _pickerData = [Shipping getAll];
         textField.inputView = _textPiker;
+        [_textPiker reloadAllComponents];
     }else if (textField == _conditionTextField) {
-        _pickerData = [NSArray arrayWithObjects:@"first", @"Second", @"Olala", @"Bebebe", nil];
+        _pickerData = [Condition getAll];
         textField.inputView = _textPiker;
+        [_textPiker reloadAllComponents];
     }else if (textField == _sizeTypeTextField) {
-        _pickerData = [NSArray arrayWithObjects:@"first", @"Second", @"Olala", @"Bebebe", nil];
+        _pickerData = [SizeType getAll];
         textField.inputView = _textPiker;
+        [_textPiker reloadAllComponents];
     }else if (textField == _expairyTextField) {
         UIDatePicker* datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, _keyboardFrame - textField.inputAccessoryView.frame.size.height)];
         datePicker.datePickerMode = UIDatePickerModeDate;
@@ -341,23 +352,37 @@
 }
 
 -(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    return [_pickerData objectAtIndex:row];
+    
+    id item = [_pickerData objectAtIndex:row];
+    NSString* title = @"";
+    if ([item isKindOfClass:[Dictionary class]]){
+        title = ((Dictionary*)item).title;
+    }else if ([item isKindOfClass:[NSString class]]){
+        title = item;
+    }
+    return title;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     if ([_currentInputControl respondsToSelector:@selector(setText:)]){
-        NSString* text = [_pickerData objectAtIndex:row];
-        [_currentInputControl setText:text];
+        id item = [_pickerData objectAtIndex:row];
+        if ([item isKindOfClass:[Dictionary class]]){
+            [_currentInputControl setText:((Dictionary*)item).title];
+        }else if ([item isKindOfClass:[NSString class]]){
+             [_currentInputControl setText:item];
+        }else{
+            [_currentInputControl setText:@""];
+        }
     }
 }
 
 #pragma mark - Outlets
 
 - (IBAction)createAdverb:(id)sender{
-    Advert* advert = [Advert entity];
+    Advert* advert = [Advert storedEntity];
     NSMutableOrderedSet* imageSet = [[NSMutableOrderedSet alloc] init];
     for (UIImage* image in _images){
-        Image* advImage = [Image entity];
+        Image* advImage = [Image storedEntity];
         advImage.height = (int)image.size.height;
         advImage.width = (int)image.size.width;
         
@@ -374,7 +399,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterLongStyle];
     advert.expires = [[formatter dateFromString:dateString] timeIntervalSince1970];
-    [[DB sharedInstance].managedObjectContext save:nil];
+    [[DB sharedInstance].storedManagedObjectContext save:nil];
 }
 
 @end

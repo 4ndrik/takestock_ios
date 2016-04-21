@@ -1,5 +1,5 @@
 //
-//  Image+CoreDataProperties.m
+//  Dictionary+CoreDataProperties.h
 //  takestok
 //
 //  Created by Artem on 4/21/16.
@@ -9,15 +9,14 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Image+CoreDataProperties.h"
+#import "Dictionary.h"
 
-@implementation Image (CoreDataProperties)
+NS_ASSUME_NONNULL_BEGIN
 
-@dynamic height;
-@dynamic resId;
-@dynamic width;
-@dynamic url;
-@dynamic advert;
-@dynamic certification;
+@interface Dictionary (CoreDataProperties)
+
+@property (nullable, nonatomic, retain) NSString *title;
 
 @end
+
+NS_ASSUME_NONNULL_END
