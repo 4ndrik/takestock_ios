@@ -94,7 +94,7 @@
     }
     
     _alwaysVisibleLayoutAttribute.zIndex = 1024;
-    _alwaysVisibleLayoutAttribute.frame = CGRectMake(0, self.collectionView.contentOffset.y > _alwaysVisibledefaultY ? self.collectionView.contentOffset.y : _alwaysVisibledefaultY, 320, _alwaysVisibleLayoutAttribute.frame.size.height);
+    _alwaysVisibleLayoutAttribute.frame = CGRectMake(0, self.collectionView.contentOffset.y > _alwaysVisibledefaultY ? self.collectionView.contentOffset.y : _alwaysVisibledefaultY, self.collectionView.bounds.size.width, _alwaysVisibleLayoutAttribute.frame.size.height);
     
     return result;
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2016 Artem. All rights reserved.
 //
 
-#import "ProductDetailViewController.h"
+#import "AdvertDetailViewController.h"
 #import "ImageCollectionViewCell.h"
 #import "Advert.h"
 #import "BackgroundImageView.h"
@@ -14,11 +14,11 @@
 #import "NSDate+Extended.h"
 #import "ImagesCollectionViewController.h"
 
-@interface ProductDetailViewController ()
+@interface AdvertDetailViewController ()
 
 @end
 
-@implementation ProductDetailViewController
+@implementation AdvertDetailViewController
 
 -(void)setAdvert:(Advert*)advert{
     _advert = advert;

@@ -19,7 +19,7 @@
     NSMutableSet* _selectedFilterData;
     NSArray* _sortData;
     SearchFilterSortView* _searchFilterSortView;
-    NSArray* _adverts;
+    NSMutableArray* _adverts;
 }
 
 @end

@@ -13,7 +13,7 @@
 +(NSString*)stringFromTimeInterval:(int)timeInterval{
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterLongStyle];
-    return [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:timeInterval]];
+    return [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval]];
 }
 
 @end

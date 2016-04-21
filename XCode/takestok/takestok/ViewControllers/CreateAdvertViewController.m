@@ -6,7 +6,7 @@
 //  Copyright © 2016 Artem. All rights reserved.
 //
 
-#import "SellViewController.h"
+#import "CreateAdvertViewController.h"
 #import "UIImage+ExtendedImage.h"
 #import "ImageCollectionViewCell.h"
 #import "PaddingTextField.h"
@@ -14,7 +14,7 @@
 #import "Advert.h"
 #import "ImageCacheUrlResolver.h"
 
-@implementation SellViewController
+@implementation CreateAdvertViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -1,0 +1,16 @@
+//
+//  BuyingViewController.h
+//  takestok
+//
+//  Created by Artem on 4/20/16.
+//  Copyright © 2016 Artem. All rights reserved.
+//
+
+#import "BaseViewController.h"
+
+@interface BuyingViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource>{
+    NSArray* _adverts;
+    __weak IBOutlet UITableView *_buyingTableView;
+}
+
+@end

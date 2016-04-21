@@ -13,8 +13,9 @@
 #import "ImageCacheUrlResolver.h"
 #import "BackgroundImageView.h"
 #import "NSDate+Extended.h"
-#import "ProductDetailViewController.h"
+#import "AdvertDetailViewController.h"
 #import "SearchTitleView.h"
+#import "ServerConnectionHelper.h"
 
 #define CellTitleFont [UIFont fontWithName:@"HelveticaNeue-Bold" size:16]
 #define CellOtherFont [UIFont fontWithName:@"HelveticaNeue" size:16]
@@ -35,7 +36,9 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
-    _adverts = [Advert getAll];
+    _adverts = [NSMutableArray array];
+    
+//    _adverts = [Advert getAll];
     
     [_searchCollectionView registerNib:[UINib nibWithNibName:@"SearchTitleView" bundle:nil] forSupplementaryViewOfKind:TitleSuplementaryViewKind withReuseIdentifier:TitleSuplementaryViewKind];
     [_searchCollectionView registerNib:[UINib nibWithNibName:@"SearchFilterSortView" bundle:nil] forSupplementaryViewOfKind:SearchFilterSuplementaryViewKind withReuseIdentifier:SearchFilterSuplementaryViewKind];
@@ -45,6 +48,11 @@
     layout.cellPadding = 10;
     layout.delegate = self;
     
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.tintColor = [UIColor grayColor];
+    [refreshControl addTarget:self action:@selector(reloadData:) forControlEvents:UIControlEventValueChanged];
+    [_searchCollectionView addSubview:refreshControl];
+    
 //    UICollectionViewFlowLayout* layout = (UICollectionViewFlowLayout*)_searchCollectionView.collectionViewLayout;
 //    if ([layout respondsToSelector:@selector(setSectionHeadersPinToVisibleBounds:)])
 //        layout.sectionHeadersPinToVisibleBounds = YES;
@@ -53,18 +61,33 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.backItem.title = @"Home";
+    [[ServerConnectionHelper sharedInstance] loadAdverb:^(NSArray *adverbs, NSError *error) {
+        if (error){
+            
+        }
+        else
+        {
+            [_adverts addObjectsFromArray:adverbs];
+            [_searchCollectionView reloadData];
+        }
+    }];
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
+    
     [_searchCollectionView.collectionViewLayout invalidateLayout];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"AdvertSelectedSegue"]) {
-        ProductDetailViewController* prodVC = (ProductDetailViewController*)segue.destinationViewController;
+        AdvertDetailViewController* prodVC = (AdvertDetailViewController*)segue.destinationViewController;
         [prodVC setAdvert:sender];
     }
+}
+
+-(void)reloadData:(id)owner{
+    NSLog(@"dadas");
 }
 
 #pragma mark - UICollectionViewDataSource

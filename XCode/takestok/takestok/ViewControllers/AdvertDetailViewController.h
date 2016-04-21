@@ -10,7 +10,7 @@
 @class TitleTextContainerView;
 @class Advert;
 
-@interface ProductDetailViewController : BaseViewController<UICollectionViewDelegate, UICollectionViewDataSource>{
+@interface AdvertDetailViewController : BaseViewController<UICollectionViewDelegate, UICollectionViewDataSource>{
     Advert* _advert;
     
     __weak IBOutlet TitleTextContainerView *_priceTextContainerView;

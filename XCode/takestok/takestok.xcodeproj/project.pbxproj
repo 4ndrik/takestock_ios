@@ -34,6 +34,13 @@
 		AC411E421CC5002E008B1E38 /* NSDictionary+HandleNil.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E411CC5002E008B1E38 /* NSDictionary+HandleNil.m */; };
 		AC411E451CC50884008B1E38 /* ImageScrollCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E441CC50884008B1E38 /* ImageScrollCollectionViewCell.m */; };
 		AC411E481CC50A00008B1E38 /* ImagesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E471CC50A00008B1E38 /* ImagesCollectionViewController.m */; };
+		AC411E4B1CC63825008B1E38 /* ServerConnectionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E4A1CC63825008B1E38 /* ServerConnectionHelper.m */; };
+		AC411E4E1CC63ECA008B1E38 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E4D1CC63ECA008B1E38 /* Reachability.m */; };
+		AC411E511CC78D06008B1E38 /* SellingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E501CC78D06008B1E38 /* SellingViewController.m */; };
+		AC411E551CC7A72C008B1E38 /* SellingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E541CC7A72C008B1E38 /* SellingTableViewCell.m */; };
+		AC411E5B1CC7D257008B1E38 /* BuyingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E5A1CC7D257008B1E38 /* BuyingViewController.m */; };
+		AC411E5E1CC7D2C9008B1E38 /* BuyingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E5D1CC7D2C9008B1E38 /* BuyingTableViewCell.m */; };
+		AC411E611CC7DC8E008B1E38 /* PaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E601CC7DC8E008B1E38 /* PaddingLabel.m */; };
 		AC68C45D1CB51C1F004B78DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C45C1CB51C1F004B78DF /* main.m */; };
 		AC68C4601CB51C1F004B78DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C45F1CB51C1F004B78DF /* AppDelegate.m */; };
 		AC68C4661CB51C1F004B78DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC68C4641CB51C1F004B78DF /* Main.storyboard */; };
@@ -43,13 +50,13 @@
 		AC68C47D1CB63F1B004B78DF /* brandon_bld.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC68C47B1CB63F1B004B78DF /* brandon_bld.otf */; };
 		AC68C47E1CB63F1B004B78DF /* brandon_reg.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC68C47C1CB63F1B004B78DF /* brandon_reg.otf */; };
 		AC68C4811CB64241004B78DF /* TextFieldBorderBottom.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4801CB64241004B78DF /* TextFieldBorderBottom.m */; };
-		AC68C4841CB64966004B78DF /* SellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4831CB64966004B78DF /* SellViewController.m */; };
+		AC68C4841CB64966004B78DF /* CreateAdvertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4831CB64966004B78DF /* CreateAdvertViewController.m */; };
 		AC68C4891CB6534A004B78DF /* UIImage+ExtendedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4881CB6534A004B78DF /* UIImage+ExtendedImage.m */; };
 		AC68C48C1CB67090004B78DF /* ImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */; };
 		AC68C4921CB68865004B78DF /* PaddingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4911CB68865004B78DF /* PaddingTextField.m */; };
 		ACDC246A1CBCF610003E9715 /* RadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDC24691CBCF610003E9715 /* RadioButton.m */; };
 		ACDC246D1CBE8308003E9715 /* TitleTextContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDC246C1CBE8308003E9715 /* TitleTextContainerView.m */; };
-		ACDC24721CBEAC5F003E9715 /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDC24711CBEAC5F003E9715 /* ProductDetailViewController.m */; };
+		ACDC24721CBEAC5F003E9715 /* AdvertDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDC24711CBEAC5F003E9715 /* AdvertDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +112,23 @@
 		AC411E441CC50884008B1E38 /* ImageScrollCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScrollCollectionViewCell.m; sourceTree = "<group>"; };
 		AC411E461CC50A00008B1E38 /* ImagesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesCollectionViewController.h; sourceTree = "<group>"; };
 		AC411E471CC50A00008B1E38 /* ImagesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesCollectionViewController.m; sourceTree = "<group>"; };
+		AC411E491CC63825008B1E38 /* ServerConnectionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConnectionHelper.h; sourceTree = "<group>"; };
+		AC411E4A1CC63825008B1E38 /* ServerConnectionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConnectionHelper.m; sourceTree = "<group>"; };
+		AC411E4C1CC63ECA008B1E38 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		AC411E4D1CC63ECA008B1E38 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		AC411E4F1CC78D06008B1E38 /* SellingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SellingViewController.h; sourceTree = "<group>"; };
+		AC411E501CC78D06008B1E38 /* SellingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SellingViewController.m; sourceTree = "<group>"; };
+		AC411E531CC7A72C008B1E38 /* SellingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SellingTableViewCell.h; sourceTree = "<group>"; };
+		AC411E541CC7A72C008B1E38 /* SellingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SellingTableViewCell.m; sourceTree = "<group>"; };
+		AC411E561CC7CA86008B1E38 /* brandon_med.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = brandon_med.otf; sourceTree = "<group>"; };
+		AC411E571CC7CBD0008B1E38 /* AgendaLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AgendaLight.ttf; sourceTree = "<group>"; };
+		AC411E581CC7CBD0008B1E38 /* AgendaMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AgendaMedium.ttf; sourceTree = "<group>"; };
+		AC411E591CC7D257008B1E38 /* BuyingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyingViewController.h; sourceTree = "<group>"; };
+		AC411E5A1CC7D257008B1E38 /* BuyingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyingViewController.m; sourceTree = "<group>"; };
+		AC411E5C1CC7D2C9008B1E38 /* BuyingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyingTableViewCell.h; sourceTree = "<group>"; };
+		AC411E5D1CC7D2C9008B1E38 /* BuyingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyingTableViewCell.m; sourceTree = "<group>"; };
+		AC411E5F1CC7DC8E008B1E38 /* PaddingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaddingLabel.h; sourceTree = "<group>"; };
+		AC411E601CC7DC8E008B1E38 /* PaddingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddingLabel.m; sourceTree = "<group>"; };
 		AC68C4581CB51C1F004B78DF /* takestok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = takestok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC68C45C1CB51C1F004B78DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AC68C45E1CB51C1F004B78DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -119,8 +143,8 @@
 		AC68C47C1CB63F1B004B78DF /* brandon_reg.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = brandon_reg.otf; sourceTree = "<group>"; };
 		AC68C47F1CB64241004B78DF /* TextFieldBorderBottom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldBorderBottom.h; sourceTree = "<group>"; };
 		AC68C4801CB64241004B78DF /* TextFieldBorderBottom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldBorderBottom.m; sourceTree = "<group>"; };
-		AC68C4821CB64966004B78DF /* SellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SellViewController.h; sourceTree = "<group>"; };
-		AC68C4831CB64966004B78DF /* SellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SellViewController.m; sourceTree = "<group>"; };
+		AC68C4821CB64966004B78DF /* CreateAdvertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateAdvertViewController.h; sourceTree = "<group>"; };
+		AC68C4831CB64966004B78DF /* CreateAdvertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateAdvertViewController.m; sourceTree = "<group>"; };
 		AC68C4851CB65117004B78DF /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		AC68C4861CB65227004B78DF /* takestok.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = takestok.pch; sourceTree = "<group>"; };
 		AC68C4871CB6534A004B78DF /* UIImage+ExtendedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ExtendedImage.h"; sourceTree = "<group>"; };
@@ -133,8 +157,8 @@
 		ACDC24691CBCF610003E9715 /* RadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioButton.m; sourceTree = "<group>"; };
 		ACDC246B1CBE8308003E9715 /* TitleTextContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleTextContainerView.h; sourceTree = "<group>"; };
 		ACDC246C1CBE8308003E9715 /* TitleTextContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleTextContainerView.m; sourceTree = "<group>"; };
-		ACDC24701CBEAC5F003E9715 /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
-		ACDC24711CBEAC5F003E9715 /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
+		ACDC24701CBEAC5F003E9715 /* AdvertDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvertDetailViewController.h; sourceTree = "<group>"; };
+		ACDC24711CBEAC5F003E9715 /* AdvertDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvertDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +192,10 @@
 				AC049D0D1CB7C7E5006A8F21 /* SearchCollectionViewCell.m */,
 				AC411E431CC50884008B1E38 /* ImageScrollCollectionViewCell.h */,
 				AC411E441CC50884008B1E38 /* ImageScrollCollectionViewCell.m */,
+				AC411E531CC7A72C008B1E38 /* SellingTableViewCell.h */,
+				AC411E541CC7A72C008B1E38 /* SellingTableViewCell.m */,
+				AC411E5C1CC7D2C9008B1E38 /* BuyingTableViewCell.h */,
+				AC411E5D1CC7D2C9008B1E38 /* BuyingTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -196,6 +224,10 @@
 		AC411E231CBFA207008B1E38 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				AC411E4C1CC63ECA008B1E38 /* Reachability.h */,
+				AC411E4D1CC63ECA008B1E38 /* Reachability.m */,
+				AC411E491CC63825008B1E38 /* ServerConnectionHelper.h */,
+				AC411E4A1CC63825008B1E38 /* ServerConnectionHelper.m */,
 				AC411E2A1CBFB832008B1E38 /* ImageLoader.h */,
 				AC411E2B1CBFB832008B1E38 /* ImageLoader.m */,
 				AC411E241CBFA220008B1E38 /* ImageCacheUrlResolver.h */,
@@ -221,6 +253,19 @@
 				AC411E3E1CC4E373008B1E38 /* Advert+Parce.m */,
 			);
 			path = Parcers;
+			sourceTree = "<group>";
+		};
+		AC411E521CC78D61008B1E38 /* Adverts */ = {
+			isa = PBXGroup;
+			children = (
+				ACDC24701CBEAC5F003E9715 /* AdvertDetailViewController.h */,
+				ACDC24711CBEAC5F003E9715 /* AdvertDetailViewController.m */,
+				AC68C4821CB64966004B78DF /* CreateAdvertViewController.h */,
+				AC68C4831CB64966004B78DF /* CreateAdvertViewController.m */,
+				AC411E461CC50A00008B1E38 /* ImagesCollectionViewController.h */,
+				AC411E471CC50A00008B1E38 /* ImagesCollectionViewController.m */,
+			);
+			name = Adverts;
 			sourceTree = "<group>";
 		};
 		AC68C44F1CB51C1F004B78DF = {
@@ -275,16 +320,15 @@
 				AC049D0A1CB7C490006A8F21 /* BaseViewController.m */,
 				AC049D061CB7C47F006A8F21 /* HomeViewController.h */,
 				AC049D071CB7C47F006A8F21 /* HomeViewController.m */,
-				AC68C4821CB64966004B78DF /* SellViewController.h */,
-				AC68C4831CB64966004B78DF /* SellViewController.m */,
 				AC049D031CB7C449006A8F21 /* SearchViewController.h */,
 				AC049D041CB7C449006A8F21 /* SearchViewController.m */,
-				ACDC24701CBEAC5F003E9715 /* ProductDetailViewController.h */,
-				ACDC24711CBEAC5F003E9715 /* ProductDetailViewController.m */,
-				AC411E461CC50A00008B1E38 /* ImagesCollectionViewController.h */,
-				AC411E471CC50A00008B1E38 /* ImagesCollectionViewController.m */,
+				AC411E521CC78D61008B1E38 /* Adverts */,
 				AC049D1F1CBBD2D7006A8F21 /* LoginViewController.h */,
 				AC049D201CBBD2D7006A8F21 /* LoginViewController.m */,
+				AC411E4F1CC78D06008B1E38 /* SellingViewController.h */,
+				AC411E501CC78D06008B1E38 /* SellingViewController.m */,
+				AC411E591CC7D257008B1E38 /* BuyingViewController.h */,
+				AC411E5A1CC7D257008B1E38 /* BuyingViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -298,6 +342,8 @@
 				AC049D151CB7C95D006A8F21 /* UIView+NibLoadView.m */,
 				ACDC246B1CBE8308003E9715 /* TitleTextContainerView.h */,
 				ACDC246C1CBE8308003E9715 /* TitleTextContainerView.m */,
+				AC411E5F1CC7DC8E008B1E38 /* PaddingLabel.h */,
+				AC411E601CC7DC8E008B1E38 /* PaddingLabel.m */,
 				AC049D171CB7C987006A8F21 /* TextControls */,
 				AC049D181CB7C99B006A8F21 /* Cells */,
 				AC049D0F1CB7C86A006A8F21 /* SearchFilterSortView.h */,
@@ -342,8 +388,11 @@
 		AC68C47A1CB63DD1004B78DF /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				AC411E561CC7CA86008B1E38 /* brandon_med.otf */,
 				AC68C47B1CB63F1B004B78DF /* brandon_bld.otf */,
 				AC68C47C1CB63F1B004B78DF /* brandon_reg.otf */,
+				AC411E571CC7CBD0008B1E38 /* AgendaLight.ttf */,
+				AC411E581CC7CBD0008B1E38 /* AgendaMedium.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -424,21 +473,27 @@
 			files = (
 				AC411E191CBF9892008B1E38 /* BaseManagadObject.m in Sources */,
 				AC68C4921CB68865004B78DF /* PaddingTextField.m in Sources */,
+				AC411E551CC7A72C008B1E38 /* SellingTableViewCell.m in Sources */,
 				AC411E131CBF970A008B1E38 /* Advert.m in Sources */,
-				AC68C4841CB64966004B78DF /* SellViewController.m in Sources */,
+				AC68C4841CB64966004B78DF /* CreateAdvertViewController.m in Sources */,
+				AC411E611CC7DC8E008B1E38 /* PaddingLabel.m in Sources */,
 				ACDC246D1CBE8308003E9715 /* TitleTextContainerView.m in Sources */,
 				AC411E211CBF9CEF008B1E38 /* Image+CoreDataProperties.m in Sources */,
+				AC411E5E1CC7D2C9008B1E38 /* BuyingTableViewCell.m in Sources */,
 				AC411E1C1CBF995A008B1E38 /* DB.m in Sources */,
+				AC411E511CC78D06008B1E38 /* SellingViewController.m in Sources */,
 				AC049D0B1CB7C490006A8F21 /* BaseViewController.m in Sources */,
 				AC049D051CB7C449006A8F21 /* SearchViewController.m in Sources */,
 				AC049D081CB7C47F006A8F21 /* HomeViewController.m in Sources */,
+				AC411E4E1CC63ECA008B1E38 /* Reachability.m in Sources */,
 				AC411E3F1CC4E373008B1E38 /* Advert+Parce.m in Sources */,
 				AC68C4811CB64241004B78DF /* TextFieldBorderBottom.m in Sources */,
 				AC411E291CBFA6D0008B1E38 /* NSDate+Extended.m in Sources */,
 				AC411E301CBFBB30008B1E38 /* BackgroundImageView.m in Sources */,
 				AC411E0D1CBF9693008B1E38 /* Model.xcdatamodeld in Sources */,
 				AC411E261CBFA220008B1E38 /* ImageCacheUrlResolver.m in Sources */,
-				ACDC24721CBEAC5F003E9715 /* ProductDetailViewController.m in Sources */,
+				ACDC24721CBEAC5F003E9715 /* AdvertDetailViewController.m in Sources */,
+				AC411E5B1CC7D257008B1E38 /* BuyingViewController.m in Sources */,
 				AC049D1E1CBBBA0A006A8F21 /* SearchTitleView.m in Sources */,
 				AC411E421CC5002E008B1E38 /* NSDictionary+HandleNil.m in Sources */,
 				AC049D111CB7C86A006A8F21 /* SearchFilterSortView.m in Sources */,
@@ -448,6 +503,7 @@
 				AC049D211CBBD2D7006A8F21 /* LoginViewController.m in Sources */,
 				AC049D0E1CB7C7E5006A8F21 /* SearchCollectionViewCell.m in Sources */,
 				AC68C4771CB53F3D004B78DF /* CALayer+BorderUIColor.m in Sources */,
+				AC411E4B1CC63825008B1E38 /* ServerConnectionHelper.m in Sources */,
 				AC411E451CC50884008B1E38 /* ImageScrollCollectionViewCell.m in Sources */,
 				AC411E221CBF9CEF008B1E38 /* Image.m in Sources */,
 				ACDC246A1CBCF610003E9715 /* RadioButton.m in Sources */,
