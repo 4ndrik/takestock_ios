@@ -17,6 +17,7 @@
 }
 
 +(ServerConnectionHelper*)sharedInstance;
+-(BOOL)isInternetConnection;
 -(void)loadAdverb:(void(^)(NSArray* adverbs, NSError* error))compleate;
 -(void)loadDictionaries;
 @end

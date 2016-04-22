@@ -10,4 +10,6 @@
 
 @protocol ImageProtocol<NSObject>
 @property NSString *resId;
+@property NSString *url;
+
 @end

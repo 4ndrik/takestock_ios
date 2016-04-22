@@ -7,6 +7,7 @@
 //
 
 #import "Advert.h"
+#import "Shipping.h"
 #import "NSDictionary+HandleNil.h"
 
 @implementation Advert
@@ -28,22 +29,34 @@
     self.guidePrice = [[jsonDic objectForKeyNotNull:@"guide_price"] floatValue];
     self.adDescription = [jsonDic objectForKeyNotNull:@"description"];
     self.location = [jsonDic objectForKeyNotNull:@"location"];
+    Shipping* shipping = [Shipping getEntityWithId:[[jsonDic objectForKey:@"shipping"] intValue]];
+    if (shipping.managedObjectContext != self.managedObjectContext){
+        shipping = [self.managedObjectContext objectWithID:[shipping objectID]];
+    }
+    self.shipping = shipping;
     //    "author": 3,
     //    "intended_use": 1,
-    //    "shipping": 1,
     //    "is_vat_exempt": true
     
     //
     NSMutableOrderedSet* imageSet = [[NSMutableOrderedSet alloc] init];
-    Image* advImage = [Image tempEntity];
-    advImage.height = 1136;
-    advImage.width = 640;
     
-    advImage.resId = @"838f7d1b-8ca1-4425-9ec7-3bce6c4fd3d3";
-    [imageSet addObject:advImage];
+    for (NSDictionary* imageDic in [jsonDic objectForKeyNotNull:@"photos"]) {
+        Image* advImage = self.isForStore ? [Image storedEntity] :[Image tempEntity];
+        advImage.height = 1136;
+        advImage.width = 640;
+        
+        advImage.url = [imageDic objectForKeyNotNull:@"image"];
+        advImage.resId = [advImage.url lastPathComponent];
+        
+        if ([[imageDic objectForKey:@"is_main"] boolValue]){
+            [imageSet insertObject:advImage atIndex:0];
+        }else{
+             [imageSet addObject:advImage];
+        }
+    }
     
     [self setImages:imageSet];
-    
 }
 
 @end

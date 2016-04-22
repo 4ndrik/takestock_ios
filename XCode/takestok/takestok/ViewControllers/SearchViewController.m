@@ -124,9 +124,13 @@
 
 -(int)heightForRowAtIndexPath:(NSIndexPath*)indexPath{
     Advert* adv = [_adverts objectAtIndex:indexPath.row];
-    Image* image = [adv.images firstObject];
     float height = 164;
-    height += image.height * (_searchCollectionView.frame.size.width - 30) / 2 / image.width;
+    Image* image = [adv.images firstObject];
+    if (image){
+        height += image.height * (_searchCollectionView.frame.size.width - 30) / 2 / image.width;
+    }else{
+        height += 176;
+    }
     return height;
 }
 

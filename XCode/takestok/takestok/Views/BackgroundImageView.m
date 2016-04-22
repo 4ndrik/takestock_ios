@@ -86,7 +86,7 @@
     }else
     {
         _currentImageIdent = @"";
-        //        self.image = [UIImage imageNamed:@"placeHolder"];
+        self.image = [UIImage imageNamed:@"icon166x176"];
     }
 }
 

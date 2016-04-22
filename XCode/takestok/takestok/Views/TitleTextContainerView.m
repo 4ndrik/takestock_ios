@@ -8,6 +8,8 @@
 
 #import "TitleTextContainerView.h"
 
+#define CenterPadding 40
+
 @implementation TitleTextContainerView
 
 -(void)drawRect:(CGRect)rect{
@@ -22,13 +24,13 @@
     NSDictionary *attributes = @{ NSFontAttributeName: textFont, NSParagraphStyleAttributeName: paragraphStyle,  NSForegroundColorAttributeName: _titleColor};
     
     float height = [_title boundingRectWithSize:CGSizeMake(self.bounds.size.width/2 - 2.5, self.bounds.size.height) options:NSStringDrawingUsesLineFragmentOrigin| NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:textFont} context:nil].size.height;
-    [self.title drawInRect:CGRectMake(0, (self.bounds.size.height - height)/2, self.bounds.size.width/2 - 2.5, height) withAttributes:attributes];
+    [self.title drawInRect:CGRectMake(0, (self.bounds.size.height - height)/2, self.bounds.size.width/2 - 2.5 - CenterPadding, height) withAttributes:attributes];
     
     CGContextSetFillColorWithColor(context, _textColor.CGColor);
     textFont = [UIFont fontWithName:_textFont size:_textFontSize];
     height = [_text boundingRectWithSize:CGSizeMake(self.bounds.size.width/2 - 2.5, self.bounds.size.height) options:NSStringDrawingUsesLineFragmentOrigin| NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:textFont} context:nil].size.height;
     attributes = @{ NSFontAttributeName: textFont, NSParagraphStyleAttributeName: paragraphStyle,  NSForegroundColorAttributeName: _textColor};
-    [self.text drawInRect:CGRectMake(self.bounds.size.width/2 +2.5, (self.bounds.size.height - height)/2, self.bounds.size.width/2 - 5., height) withAttributes:attributes];
+    [self.text drawInRect:CGRectMake(self.bounds.size.width/2 +2.5  - CenterPadding, (self.bounds.size.height - height)/2, self.bounds.size.width/2 - 5. + CenterPadding, height) withAttributes:attributes];
     
 
 }
