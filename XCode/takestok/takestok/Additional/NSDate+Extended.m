@@ -16,4 +16,15 @@
     return [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval]];
 }
 
+- (int)daysFromDate:(NSDate *)pDate {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSInteger startDay=[calendar ordinalityOfUnit:NSCalendarUnitDay
+                                           inUnit:NSCalendarUnitEra
+                                          forDate:self];
+    NSInteger endDay=[calendar ordinalityOfUnit:NSCalendarUnitDay
+                                         inUnit:NSCalendarUnitEra
+                                        forDate:pDate];
+    return abs(endDay-startDay);
+}
+
 @end

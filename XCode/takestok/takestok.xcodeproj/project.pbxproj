@@ -15,6 +15,11 @@
 		AC049D161CB7C95D006A8F21 /* UIView+NibLoadView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D151CB7C95D006A8F21 /* UIView+NibLoadView.m */; };
 		AC049D1E1CBBBA0A006A8F21 /* SearchTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D1D1CBBBA0A006A8F21 /* SearchTitleView.m */; };
 		AC049D211CBBD2D7006A8F21 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D201CBBD2D7006A8F21 /* LoginViewController.m */; };
+		AC1F544D1CCE45350093848B /* OfferManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1F544C1CCE45350093848B /* OfferManagerViewController.m */; };
+		AC1F54501CCE455D0093848B /* OfferTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1F544F1CCE455D0093848B /* OfferTableViewCell.m */; };
+		AC1F54531CCE484F0093848B /* OfferTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1F54521CCE484F0093848B /* OfferTitleView.m */; };
+		AC1F54551CCE48630093848B /* OfferTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC1F54541CCE48630093848B /* OfferTitleView.xib */; };
+		AC1F54581CCE495E0093848B /* TopBottomStripesLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1F54571CCE495E0093848B /* TopBottomStripesLabel.m */; };
 		AC411E0D1CBF9693008B1E38 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AC411E0B1CBF9693008B1E38 /* Model.xcdatamodeld */; };
 		AC411E121CBF970A008B1E38 /* Advert+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E0F1CBF970A008B1E38 /* Advert+CoreDataProperties.m */; };
 		AC411E131CBF970A008B1E38 /* Advert.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E111CBF970A008B1E38 /* Advert.m */; };
@@ -88,6 +93,15 @@
 		AC049D1D1CBBBA0A006A8F21 /* SearchTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTitleView.m; sourceTree = "<group>"; };
 		AC049D1F1CBBD2D7006A8F21 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AC049D201CBBD2D7006A8F21 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		AC1F544B1CCE45350093848B /* OfferManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferManagerViewController.h; sourceTree = "<group>"; };
+		AC1F544C1CCE45350093848B /* OfferManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferManagerViewController.m; sourceTree = "<group>"; };
+		AC1F544E1CCE455D0093848B /* OfferTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferTableViewCell.h; sourceTree = "<group>"; };
+		AC1F544F1CCE455D0093848B /* OfferTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferTableViewCell.m; sourceTree = "<group>"; };
+		AC1F54511CCE484F0093848B /* OfferTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferTitleView.h; sourceTree = "<group>"; };
+		AC1F54521CCE484F0093848B /* OfferTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferTitleView.m; sourceTree = "<group>"; };
+		AC1F54541CCE48630093848B /* OfferTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfferTitleView.xib; sourceTree = "<group>"; };
+		AC1F54561CCE495E0093848B /* TopBottomStripesLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopBottomStripesLabel.h; sourceTree = "<group>"; };
+		AC1F54571CCE495E0093848B /* TopBottomStripesLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopBottomStripesLabel.m; sourceTree = "<group>"; };
 		AC411E0C1CBF9693008B1E38 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		AC411E0E1CBF970A008B1E38 /* Advert+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Advert+CoreDataProperties.h"; sourceTree = "<group>"; };
 		AC411E0F1CBF970A008B1E38 /* Advert+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Advert+CoreDataProperties.m"; sourceTree = "<group>"; };
@@ -232,6 +246,8 @@
 				AC411E541CC7A72C008B1E38 /* SellingTableViewCell.m */,
 				AC411E5C1CC7D2C9008B1E38 /* BuyingTableViewCell.h */,
 				AC411E5D1CC7D2C9008B1E38 /* BuyingTableViewCell.m */,
+				AC1F544E1CCE455D0093848B /* OfferTableViewCell.h */,
+				AC1F544F1CCE455D0093848B /* OfferTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -293,6 +309,8 @@
 				AC68C4831CB64966004B78DF /* CreateAdvertViewController.m */,
 				AC411E461CC50A00008B1E38 /* ImagesCollectionViewController.h */,
 				AC411E471CC50A00008B1E38 /* ImagesCollectionViewController.m */,
+				AC1F544B1CCE45350093848B /* OfferManagerViewController.h */,
+				AC1F544C1CCE45350093848B /* OfferManagerViewController.m */,
 			);
 			name = Adverts;
 			sourceTree = "<group>";
@@ -402,6 +420,8 @@
 				AC049D151CB7C95D006A8F21 /* UIView+NibLoadView.m */,
 				ACDC246B1CBE8308003E9715 /* TitleTextContainerView.h */,
 				ACDC246C1CBE8308003E9715 /* TitleTextContainerView.m */,
+				AC1F54561CCE495E0093848B /* TopBottomStripesLabel.h */,
+				AC1F54571CCE495E0093848B /* TopBottomStripesLabel.m */,
 				AC411E5F1CC7DC8E008B1E38 /* PaddingLabel.h */,
 				AC411E601CC7DC8E008B1E38 /* PaddingLabel.m */,
 				AC049D171CB7C987006A8F21 /* TextControls */,
@@ -412,6 +432,9 @@
 				AC049D1C1CBBBA0A006A8F21 /* SearchTitleView.h */,
 				AC049D1D1CBBBA0A006A8F21 /* SearchTitleView.m */,
 				AC411E391CC0F309008B1E38 /* SearchTitleView.xib */,
+				AC1F54511CCE484F0093848B /* OfferTitleView.h */,
+				AC1F54521CCE484F0093848B /* OfferTitleView.m */,
+				AC1F54541CCE48630093848B /* OfferTitleView.xib */,
 				ACDC24681CBCF610003E9715 /* RadioButton.h */,
 				ACDC24691CBCF610003E9715 /* RadioButton.m */,
 				AC411E3B1CC10346008B1E38 /* CollectionViewLayout */,
@@ -516,6 +539,7 @@
 			files = (
 				AC68C46B1CB51C20004B78DF /* LaunchScreen.storyboard in Resources */,
 				AC68C4681CB51C1F004B78DF /* Assets.xcassets in Resources */,
+				AC1F54551CCE48630093848B /* OfferTitleView.xib in Resources */,
 				AC68C4661CB51C1F004B78DF /* Main.storyboard in Resources */,
 				AC68C47D1CB63F1B004B78DF /* brandon_bld.otf in Resources */,
 				AC411E3A1CC0F309008B1E38 /* SearchTitleView.xib in Resources */,
@@ -542,12 +566,14 @@
 				AC411E611CC7DC8E008B1E38 /* PaddingLabel.m in Sources */,
 				ACDC246D1CBE8308003E9715 /* TitleTextContainerView.m in Sources */,
 				AC411E791CC8D186008B1E38 /* Certification.m in Sources */,
+				AC1F544D1CCE45350093848B /* OfferManagerViewController.m in Sources */,
 				AC411E211CBF9CEF008B1E38 /* Image+CoreDataProperties.m in Sources */,
 				AC411E5E1CC7D2C9008B1E38 /* BuyingTableViewCell.m in Sources */,
 				AC411E1C1CBF995A008B1E38 /* DB.m in Sources */,
 				AC411E511CC78D06008B1E38 /* SellingViewController.m in Sources */,
 				AC049D0B1CB7C490006A8F21 /* BaseViewController.m in Sources */,
 				AC049D051CB7C449006A8F21 /* SearchViewController.m in Sources */,
+				AC1F54501CCE455D0093848B /* OfferTableViewCell.m in Sources */,
 				AC049D081CB7C47F006A8F21 /* HomeViewController.m in Sources */,
 				AC411E4E1CC63ECA008B1E38 /* Reachability.m in Sources */,
 				AC68C4811CB64241004B78DF /* TextFieldBorderBottom.m in Sources */,
@@ -561,6 +587,7 @@
 				AC411E731CC8D186008B1E38 /* Shipping.m in Sources */,
 				AC049D1E1CBBBA0A006A8F21 /* SearchTitleView.m in Sources */,
 				AC411E7F1CC8D61E008B1E38 /* BaseEntity.m in Sources */,
+				AC1F54531CCE484F0093848B /* OfferTitleView.m in Sources */,
 				AC411E8D1CC92230008B1E38 /* SizeType+CoreDataProperties.m in Sources */,
 				AC411E421CC5002E008B1E38 /* NSDictionary+HandleNil.m in Sources */,
 				AC411E741CC8D186008B1E38 /* Dictionary+CoreDataProperties.m in Sources */,
@@ -583,6 +610,7 @@
 				AC68C4601CB51C1F004B78DF /* AppDelegate.m in Sources */,
 				AC411E761CC8D186008B1E38 /* Condition+CoreDataProperties.m in Sources */,
 				AC68C48C1CB67090004B78DF /* ImageCollectionViewCell.m in Sources */,
+				AC1F54581CCE495E0093848B /* TopBottomStripesLabel.m in Sources */,
 				AC411E331CBFBE94008B1E38 /* GUIDCreator.m in Sources */,
 				AC68C45D1CB51C1F004B78DF /* main.m in Sources */,
 				AC049D161CB7C95D006A8F21 /* UIView+NibLoadView.m in Sources */,

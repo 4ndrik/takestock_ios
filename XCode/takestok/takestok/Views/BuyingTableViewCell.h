@@ -10,12 +10,13 @@
 
 @class BackgroundImageView;
 
-@interface BuyingTableViewCell : UITableViewCell
+@interface BuyingTableViewCell : UITableViewCell{
+    
+    __weak IBOutlet UIView *_selectedView;
+}
 
 @property (weak, nonatomic) IBOutlet BackgroundImageView *adImageView;
-@property (weak, nonatomic) IBOutlet UIView *stripeTopView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UIView *stripeBottomView;
 @property (weak, nonatomic) IBOutlet UILabel *createdLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *quantityLabel;

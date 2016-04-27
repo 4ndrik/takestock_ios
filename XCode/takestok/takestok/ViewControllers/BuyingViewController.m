@@ -10,6 +10,7 @@
 #import "Advert.h"
 #import "BackgroundImageView.h"
 #import "BuyingTableViewCell.h"
+#import "OfferManagerViewController.h"
 
 @implementation BuyingViewController
 
@@ -31,6 +32,14 @@
     cell.titleLabel.text = advert.name;
     cell.createdLabel.text = @"Offer made";
     return cell;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"OfferManagerSegue"] && [sender isKindOfClass:[UITableViewCell class]]) {
+        NSIndexPath *indexPath = [_buyingTableView indexPathForCell:sender];
+        OfferManagerViewController* oVC = (OfferManagerViewController*)segue.destinationViewController;
+        [oVC setAdvert:([_adverts objectAtIndex:indexPath.row])];
+    }
 }
 
 

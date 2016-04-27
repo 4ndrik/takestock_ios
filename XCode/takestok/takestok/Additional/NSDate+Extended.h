@@ -11,5 +11,5 @@
 @interface NSDate (Extended)
 
 +(NSString*)stringFromTimeInterval:(int)timeInterval;
-
+- (int)daysFromDate:(NSDate *)pDate;
 @end

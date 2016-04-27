@@ -11,25 +11,12 @@
 @implementation SellingTableViewCell
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    UIColor *topColor = self.stripeTopView.backgroundColor;
-    UIColor *bottomColor = self.stripeBottomView.backgroundColor;
-    [super setSelected:selected animated:animated];
-    
-    if (selected){
-        self.stripeTopView.backgroundColor = topColor;
-        self.stripeBottomView.backgroundColor = bottomColor;
-    }
+        [super setSelected:selected animated:animated];
+    _selectedView.backgroundColor = selected ? [UIColor colorWithRed:237./255. green:236./255. blue:236./255. alpha:1.] : [UIColor whiteColor];
 }
 
 -(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
-    UIColor *topColor = self.stripeTopView.backgroundColor;
-    UIColor *bottomColor = self.stripeBottomView.backgroundColor;
-    [super setHighlighted:highlighted animated:animated];
-    
-    if (highlighted){
-        self.stripeTopView.backgroundColor = topColor;
-        self.stripeBottomView.backgroundColor = bottomColor;
-    }
+    _selectedView.backgroundColor = highlighted ? [UIColor colorWithRed:237./255. green:236./255. blue:236./255. alpha:1.] : [UIColor whiteColor];
 }
 
 @end

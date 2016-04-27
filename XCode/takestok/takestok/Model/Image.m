@@ -20,6 +20,14 @@
     return entity;
 }
 
++ (instancetype)storedEntity {
+    Image* entity = [super storedEntity];
+    if (entity.resId.length <= 0){
+        entity.resId = [GUIDCreator getGuid];
+    }
+    return entity;
+}
+
 + (NSString *)entityName {
     return @"Image";
 }

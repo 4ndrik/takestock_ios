@@ -10,11 +10,11 @@
 
 @implementation UIView (NibLoadView)
 
--(instancetype)loadFromXib{
++(instancetype)loadFromXib{
     return [self loadFromXibName:NSStringFromClass([self class])];
 }
 
--(instancetype)loadFromXibName:(NSString*)xibName{
++(instancetype)loadFromXibName:(NSString*)xibName{
     return [[NSBundle mainBundle] loadNibNamed:xibName owner:nil options:nil].lastObject;
 }
 

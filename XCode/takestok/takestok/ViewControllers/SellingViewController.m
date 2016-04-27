@@ -10,6 +10,7 @@
 #import "SellingTableViewCell.h"
 #import "Advert.h"
 #import "BackgroundImageView.h"
+#import "NSDate+Extended.h"
 
 @implementation SellingViewController
 
@@ -30,6 +31,7 @@
     [cell.adImageView loadImage:advert.images.firstObject];
     cell.titleLabel.text = advert.name;
     cell.createdLabel.text = @"Offer made";
+    cell.expiresDayCountLabel.text = [NSString stringWithFormat:@"%i", [[NSDate dateWithTimeIntervalSinceReferenceDate:advert.expires] daysFromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:advert.created]]];
     return cell;
 }
 
