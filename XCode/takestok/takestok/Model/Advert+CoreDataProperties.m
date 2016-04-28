@@ -2,7 +2,7 @@
 //  Advert+CoreDataProperties.m
 //  takestok
 //
-//  Created by Artem on 4/21/16.
+//  Created by Artem on 4/28/16.
 //  Copyright © 2016 Artem. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -20,12 +20,15 @@
 @dynamic location;
 @dynamic name;
 @dynamic updated;
+@dynamic minOrderQuantity;
+@dynamic count;
+@dynamic certificationOther;
+@dynamic category;
+@dynamic certification;
+@dynamic condition;
 @dynamic images;
 @dynamic shipping;
-@dynamic condition;
-@dynamic certification;
 @dynamic sizeType;
-@dynamic category;
 @dynamic subCategory;
 
 @end

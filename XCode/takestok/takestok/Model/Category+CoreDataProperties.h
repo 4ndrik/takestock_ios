@@ -1,8 +1,8 @@
 //
-//  Categoriy+CoreDataProperties.h
+//  Category+CoreDataProperties.h
 //  takestok
 //
-//  Created by Artem on 4/21/16.
+//  Created by Artem on 4/27/16.
 //  Copyright © 2016 Artem. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -17,6 +17,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, retain) Advert *advert;
 @property (nullable, nonatomic, retain) Advert *advertSub;
+@property (nullable, nonatomic, retain) NSSet<Category *> *subCategories;
+@property (nullable, nonatomic, retain) Category *parentCategory;
+
+@end
+
+@interface Category (CoreDataGeneratedAccessors)
+
+- (void)addSubCategoriesObject:(Category *)value;
+- (void)removeSubCategoriesObject:(Category *)value;
+- (void)addSubCategories:(NSSet<Category *> *)values;
+- (void)removeSubCategories:(NSSet<Category *> *)values;
 
 @end
 

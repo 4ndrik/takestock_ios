@@ -11,9 +11,9 @@
 
 @class TextFieldBorderBottom;
 @class PaddingTextField;
+@class Advert;
 
 @interface CreateAdvertViewController : BaseViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
-    
     NSMutableArray* _images;
     
     BOOL _isAddNewImage;
@@ -49,6 +49,7 @@
     __weak IBOutlet PaddingTextField *_expairyTextField;
     __weak IBOutlet TextFieldBorderBottom *_sizeTextField;
     __weak IBOutlet PaddingTextField *_sizeTypeTextField;
+    __weak IBOutlet UIView *_certificationsContainerView;
     __weak IBOutlet TextFieldBorderBottom *_otherTextField;
     __weak IBOutlet TextFieldBorderBottom *_keywordTextField;
     

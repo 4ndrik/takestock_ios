@@ -7,6 +7,7 @@
 //
 
 #define BrandonGrotesqueBold16 [UIFont fontWithName:@"BrandonGrotesque-Bold" size:16]
+#define HelveticaLight18 [UIFont fontWithName:@"Helvetica-Light" size:18]
 #define OliveMainColor [UIColor colorWithRed:190./255. green:188./255. blue:50./255. alpha:1.]
 #define LightGrayColor [UIColor colorWithRed:235./255. green:235./255. blue:235./255. alpha:1.]
 #define GrayColor [UIColor colorWithRed:147./255. green:149./255. blue:152./255. alpha:1.]

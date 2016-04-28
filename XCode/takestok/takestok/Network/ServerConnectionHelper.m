@@ -31,8 +31,8 @@ typedef enum
 
 #define CONDITIONS_URL_PATH         @"conditions"
 #define SHIPPING_URL_PATH           @"shipping"
-#define CATEGORIES_URL_PATH         @"categories"
-#define CERTIFICATION_URL_PATH      @"certifications"
+#define CATEGORIES_URL_PATH         @"category"
+#define CERTIFICATIONS_URL_PATH      @"certifications"
 #define SIZE_TYPES_URL_PATH         @"size_types"
 
 
@@ -106,7 +106,7 @@ typedef enum
         }
     }];
     
-    NSURLSessionDataTask* loadCertificationTask = [_session dataTaskWithRequest:[self request:CERTIFICATION_URL_PATH query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    NSURLSessionDataTask* loadCertificationTask = [_session dataTaskWithRequest:[self request:CERTIFICATIONS_URL_PATH query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:data error:&error]){
                 NSArray* certifications = [self jsonFromData:data error:&error];
                 if (certifications)
@@ -114,10 +114,19 @@ typedef enum
             }
     }];
     
+    NSURLSessionDataTask* loadCategoryTask = [_session dataTaskWithRequest:[self request:CATEGORIES_URL_PATH query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:data error:&error]){
+            NSArray* categories = [self jsonFromData:data error:&error];
+            if (categories)
+                [Category syncWithJsonArray:categories];
+        }
+    }];
+    
     [loadConditionsTask resume];
     [loadShippingTask resume];
     [loadCertificationTask resume];
     [loadSizeTask resume];
+    [loadCategoryTask resume];
 }
 
 #pragma mark - Adverb
@@ -204,7 +213,7 @@ typedef enum
     {
         id errorDescriptionJson = [self jsonFromData:data error:nil];
         NSString* errorDescription = [errorDescriptionJson description];
-        NSLog(@"error - %li data - %@", (long)response.statusCode, errorDescription);
+        NSLog(@"url - %@ error - %li data - %@", response.URL, (long)response.statusCode, errorDescription);
         
         if ([errorDescriptionJson isKindOfClass:[NSDictionary class]] && [errorDescriptionJson objectForKeyNotNull:@"detail"]){
             errorDescription = [errorDescriptionJson objectForKeyNotNull:@"detail"];

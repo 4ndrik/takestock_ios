@@ -1,8 +1,8 @@
 //
-//  Categoriy+CoreDataProperties.m
+//  Category+CoreDataProperties.m
 //  takestok
 //
-//  Created by Artem on 4/21/16.
+//  Created by Artem on 4/27/16.
 //  Copyright © 2016 Artem. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,5 +15,7 @@
 
 @dynamic advert;
 @dynamic advertSub;
+@dynamic subCategories;
+@dynamic parentCategory;
 
 @end

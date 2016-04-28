@@ -20,6 +20,8 @@
 #import "SizeType.h"
 #import "Certification.h"
 
+#import "RadioButton.h"
+
 @implementation CreateAdvertViewController
 
 - (void)viewDidLoad {
@@ -59,6 +61,55 @@
                             _sizeTypeTextField,
                             _otherTextField,
                             _keywordTextField, nil];
+    
+    //Add certifications
+    
+    float size = self.view.bounds.size.width - 40;
+    NSArray* certifications = [Certification getAll];
+    float y = -44;
+    NSMutableArray* group = [NSMutableArray array];
+    for (int i = 0; i < certifications.count; i++){
+        Certification* cert = [certifications objectAtIndex:i];
+        float x = 0;
+        
+        if (i % 2){
+            x = size / 2.;
+        }else
+        {
+            y += 20 + 24;
+        }
+        
+        RadioButton* radioButton = [[RadioButton alloc] initWithFrame:CGRectMake(x, y, 135, 24)];
+        radioButton.tag = cert.ident;
+        [group addObject:radioButton];
+        radioButton.autoresizingMask = UIViewAutoresizingNone;
+        [radioButton setTitle:cert.title forState:UIControlStateNormal];
+        [radioButton setImage:[UIImage imageNamed:@"unchecked"] forState:UIControlStateNormal];
+        [radioButton setImage:[UIImage imageNamed:@"checked"] forState:UIControlStateSelected];
+        radioButton.groupButtons = group;
+        radioButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        radioButton.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+        radioButton.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+        [radioButton.titleLabel setFont:HelveticaLight18];
+        [radioButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [radioButton addTarget:self action:@selector(setCertification:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_certificationsContainerView addSubview:radioButton];
+    }
+    
+    for (NSLayoutConstraint *constraint in _certificationsContainerView.constraints) {
+        if (constraint.firstAttribute == NSLayoutAttributeHeight) {
+            constraint.constant = y + 24;
+            break;
+        }
+    }
+    
+    //TODO: for debug
+//     _additionalViewHeight.constant = _saveButton.frame.size.height + _saveButton.frame.origin.y + 20;
+    
+    [self.view setNeedsUpdateConstraints];
+    [self.view updateConstraints];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -66,6 +117,10 @@
     self.navigationController.navigationBar.backItem.title = @"Home";
 }
 
+
+-(void)setCertification:(RadioButton*)owner{
+    _certificationsContainerView.tag = owner.tag;
+}
 
 #pragma mark - Handle keyboard
 
@@ -202,25 +257,7 @@
     [_scrollView scrollRectToVisible:rect animated:YES];
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    [self scrollToView:textField];
-}
-
--(void)textViewDidBeginEditing:(UITextView *)textView{
-    [self scrollToView:textView];
-}
-
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    if (textField == _productTitleTextField){
-        NSString* str = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        _additionalViewHeight.constant = str.length > 0 && _images.count > 0 ? _saveButton.frame.size.height + _saveButton.frame.origin.y + 20 : 0;
-    }
-    return YES;
-}
-
--(BOOL)textFieldShouldBeginEditing: (UITextField *)textField
-
-{
+-(UIToolbar*)toolBarForControl:(UIView*)control{
     UIToolbar * keyboardToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
     
     keyboardToolBar.barStyle = UIBarStyleDefault;
@@ -231,92 +268,16 @@
                                 [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
                                 [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(resignKeyboard)],
                                 nil]];
-    textField.inputAccessoryView = keyboardToolBar;
     
-    
-    if (textField == [_textControlsArray firstObject]){
+    if (control == [_textControlsArray firstObject]){
         [keyboardToolBar.items objectAtIndex:0].enabled = NO;
-    }else if (textField == [_textControlsArray lastObject]){
+    }
+    if (control == [_textControlsArray lastObject] || _productTitleTextField.text.length <= 0 || _images.count <= 0){
         [keyboardToolBar.items objectAtIndex:1].enabled = NO;
     }
     
-    if (!_textPiker){
-        _textPiker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, _keyboardFrame - textField.inputAccessoryView.frame.size.height)];
-        [_textPiker setDataSource: self];
-        [_textPiker setDelegate: self];
-        _textPiker.showsSelectionIndicator = YES;
-    }
-    
-    if (textField == _categoryTextField) {
-        _pickerData = [Category getAll];
-        textField.inputView = _textPiker;
-        [_textPiker reloadAllComponents];
-    }else if (textField == _subCategoryTextField) {
-        _pickerData = [Category getAll];;
-        textField.inputView = _textPiker;
-    }else if (textField == _unitTextField) {
-        _pickerData = [NSArray arrayWithObjects:@"first", @"Second", @"Olala", @"Bebebe", nil];
-        textField.inputView = _textPiker;
-        [_textPiker reloadAllComponents];
-    }else if (textField == _shippingTextField) {
-        _pickerData = [Shipping getAll];
-        textField.inputView = _textPiker;
-        [_textPiker reloadAllComponents];
-    }else if (textField == _conditionTextField) {
-        _pickerData = [Condition getAll];
-        textField.inputView = _textPiker;
-        [_textPiker reloadAllComponents];
-    }else if (textField == _sizeTypeTextField) {
-        _pickerData = [SizeType getAll];
-        textField.inputView = _textPiker;
-        [_textPiker reloadAllComponents];
-    }else if (textField == _expairyTextField) {
-        UIDatePicker* datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, _keyboardFrame - textField.inputAccessoryView.frame.size.height)];
-        datePicker.datePickerMode = UIDatePickerModeDate;
-        textField.inputView = datePicker;
-        
-        [datePicker addTarget:self action:@selector(setExpirationDate:) forControlEvents:UIControlEventValueChanged];
-    }
-    _currentInputControl = textField;
-    
-    return YES;
+    return keyboardToolBar;
 }
-
--(void)setExpirationDate:(UIDatePicker*)owner{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateStyle:NSDateFormatterLongStyle];
-    _expairyTextField.text = [formatter stringFromDate:owner.date];
-}
-
--(BOOL)textViewShouldBeginEditing:(UITextView *)textView
-
-{
-    UIToolbar * keyboardToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
-    
-    keyboardToolBar.barStyle = UIBarStyleDefault;
-    [keyboardToolBar setItems: [NSArray arrayWithObjects:
-                                [[UIBarButtonItem alloc]initWithTitle:@"Previous" style:UIBarButtonItemStylePlain target:self action:@selector(previousTextField)],
-                                [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(nextTextField)],
-                                [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                                [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(resignKeyboard)],
-                                nil]];
-    textView.inputAccessoryView = keyboardToolBar;
-    _currentInputControl = textView;
-    return YES;
-    
-}
-
-//- (id)findFirstResponder:(UIView*)view
-//{
-//    if (view.isFirstResponder) {
-//        return view;
-//    }
-//    for (UIView *subView in view.subviews) {
-//        id responder = [self findFirstResponder:subView];
-//        if (responder) return responder;
-//    }
-//    return nil;
-//}
 
 - (void)nextTextField {
     int index = [_textControlsArray indexOfObject:_currentInputControl];
@@ -339,6 +300,103 @@
     }
     
 }
+
+-(BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+    textView.inputAccessoryView = [self toolBarForControl:textView];
+    _currentInputControl = textView;
+    return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [self scrollToView:textField];
+}
+
+-(void)textViewDidBeginEditing:(UITextView *)textView{
+    [self scrollToView:textView];
+}
+
+-(void)configureDataPickerWithData:(NSArray<Dictionary*>*)data withTextField:(UITextField*)textField{
+    _pickerData = data;
+    [_textPiker reloadAllComponents];
+    
+    textField.inputView = _textPiker;
+    NSUInteger index = [_pickerData indexOfObjectPassingTest:^BOOL(Dictionary* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        return obj.ident == textField.tag;
+    }];
+    [_textPiker selectRow:index == NSNotFound ? 0 : index inComponent:0 animated:NO];
+    [self pickerView:_textPiker didSelectRow:NSNotFound ? 0 : index inComponent:0];
+}
+
+-(BOOL)textFieldShouldBeginEditing: (UITextField *)textField
+{
+    _currentInputControl = textField;
+    
+    textField.inputAccessoryView = [self toolBarForControl:textField];
+    
+    if (!_textPiker){
+        _textPiker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, _keyboardFrame - textField.inputAccessoryView.frame.size.height)];
+        [_textPiker setDataSource: self];
+        [_textPiker setDelegate: self];
+        _textPiker.showsSelectionIndicator = YES;
+    }
+    
+    if (textField == _categoryTextField) {
+        [self configureDataPickerWithData:[Category getAllCategories] withTextField:textField];
+    }else if (textField == _subCategoryTextField) {
+        [self configureDataPickerWithData:[Category getAllSubCategories] withTextField:textField];
+    }else if (textField == _unitTextField) {
+        _pickerData = [NSArray arrayWithObjects:@"first", @"Second", @"Olala", @"Bebebe", nil];
+        textField.inputView = _textPiker;
+        [_textPiker reloadAllComponents];
+    }else if (textField == _shippingTextField) {
+        [self configureDataPickerWithData:[Shipping getAll] withTextField:textField];
+    }else if (textField == _conditionTextField) {
+        [self configureDataPickerWithData:[Condition getAll] withTextField:textField];
+    }else if (textField == _sizeTypeTextField) {
+        [self configureDataPickerWithData:[SizeType getAll] withTextField:textField];
+    }else if (textField == _expairyTextField) {
+        UIDatePicker* datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, _keyboardFrame - textField.inputAccessoryView.frame.size.height)];
+        datePicker.datePickerMode = UIDatePickerModeDate;
+        textField.inputView = datePicker;
+        [datePicker addTarget:self action:@selector(setExpirationDate:) forControlEvents:UIControlEventValueChanged];
+        [self setExpirationDate:datePicker];
+    }
+    
+    return YES;
+}
+
+-(void)setExpirationDate:(UIDatePicker*)owner{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterLongStyle];
+    _expairyTextField.text = [formatter stringFromDate:owner.date];
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    //Show / hide additional view if image and title are set.
+    if (textField == _productTitleTextField){
+        NSString* str = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        if (str.length > 0 && _images.count > 0){
+            _additionalViewHeight.constant = _saveButton.frame.size.height + _saveButton.frame.origin.y + 20;
+            [((UIToolbar*)textField.inputAccessoryView).items objectAtIndex:1].enabled = YES;
+        }else{
+            _additionalViewHeight.constant = 0;
+            [((UIToolbar*)textField.inputAccessoryView).items objectAtIndex:1].enabled = NO;
+        }
+    }
+    return YES;
+}
+
+//- (id)findFirstResponder:(UIView*)view
+//{
+//    if (view.isFirstResponder) {
+//        return view;
+//    }
+//    for (UIView *subView in view.subviews) {
+//        id responder = [self findFirstResponder:subView];
+//        if (responder) return responder;
+//    }
+//    return nil;
+//}
 
 #pragma mark - UIPickerViewDelegate, UIPickerViewDataSource
 
@@ -368,6 +426,7 @@
         id item = [_pickerData objectAtIndex:row];
         if ([item isKindOfClass:[Dictionary class]]){
             [_currentInputControl setText:((Dictionary*)item).title];
+            [_currentInputControl setTag:((Dictionary*)item).ident];
         }else if ([item isKindOfClass:[NSString class]]){
              [_currentInputControl setText:item];
         }else{
@@ -379,6 +438,9 @@
 #pragma mark - Outlets
 
 - (IBAction)createAdverb:(id)sender{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterLongStyle];
+    
     Advert* advert = [Advert storedEntity];
     NSMutableOrderedSet* imageSet = [[NSMutableOrderedSet alloc] init];
     for (UIImage* image in _images){
@@ -395,11 +457,21 @@
     advert.guidePrice = [_priceTextField.text floatValue];
     advert.location = _locationTextField.text;
     advert.adDescription = _descriptionTextView.text;
-    NSString* dateString = _expairyTextField.text;
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateStyle:NSDateFormatterLongStyle];
-    advert.expires = [[formatter dateFromString:dateString] timeIntervalSince1970];
+    advert.expires = [[formatter dateFromString:_expairyTextField.text] timeIntervalSinceReferenceDate];
+    advert.created = [[NSDate date] timeIntervalSinceReferenceDate];
+    advert.updated = [[NSDate date] timeIntervalSinceReferenceDate];
+    advert.minOrderQuantity = [_minimumOrderTextField.text intValue];
+    advert.certificationOther = _otherTextField.text;
+    advert.count = [_countUnitTextField.text intValue];
+    advert.category = [Category getEntityWithId:_categoryTextField.tag];
+    advert.subCategory = [Category getEntityWithId:_subCategoryTextField.tag];
+    advert.certification = [Certification getEntityWithId:_certificationsContainerView.tag];
+    advert.condition = [Condition getEntityWithId:_conditionTextField.tag];
+    advert.shipping = [Shipping getEntityWithId:_shippingTextField.tag];
+    advert.sizeType = [SizeType getEntityWithId:_sizeTextField.tag];
+    
     [[DB sharedInstance].storedManagedObjectContext save:nil];
+    
 }
 
 @end

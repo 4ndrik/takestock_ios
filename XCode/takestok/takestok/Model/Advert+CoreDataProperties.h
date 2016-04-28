@@ -2,7 +2,7 @@
 //  Advert+CoreDataProperties.h
 //  takestok
 //
-//  Created by Artem on 4/21/16.
+//  Created by Artem on 4/28/16.
 //  Copyright © 2016 Artem. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,8 +13,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class Shipping;
+@class Category;
 @class Condition;
+@class Shipping;
+@class SizeType;
+@class Certification;
 
 @interface Advert (CoreDataProperties)
 
@@ -25,13 +28,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *location;
 @property (nullable, nonatomic, retain) NSString *name;
 @property (nonatomic) NSTimeInterval updated;
+@property (nonatomic) int32_t minOrderQuantity;
+@property (nonatomic) int32_t count;
+@property (nullable, nonatomic, retain) NSString *certificationOther;
+@property (nullable, nonatomic, retain) Category *category;
+@property (nullable, nonatomic, retain) Certification *certification;
+@property (nullable, nonatomic, retain) Condition *condition;
 @property (nullable, nonatomic, retain) NSOrderedSet<Image *> *images;
 @property (nullable, nonatomic, retain) Shipping *shipping;
-@property (nullable, nonatomic, retain) Condition *condition;
-@property (nullable, nonatomic, retain) Certification *certification;
-@property (nullable, nonatomic, retain) NSManagedObject *sizeType;
-@property (nullable, nonatomic, retain) NSManagedObject *category;
-@property (nullable, nonatomic, retain) NSManagedObject *subCategory;
+@property (nullable, nonatomic, retain) SizeType *sizeType;
+@property (nullable, nonatomic, retain) Category *subCategory;
 
 @end
 

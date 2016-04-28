@@ -318,6 +318,10 @@
 		AC411E8F1CC92244008B1E38 /* Dictionary */ = {
 			isa = PBXGroup;
 			children = (
+				AC411E661CC8D186008B1E38 /* Dictionary+CoreDataProperties.h */,
+				AC411E671CC8D186008B1E38 /* Dictionary+CoreDataProperties.m */,
+				AC411E681CC8D186008B1E38 /* Dictionary.h */,
+				AC411E691CC8D186008B1E38 /* Dictionary.m */,
 				AC411E931CC92344008B1E38 /* Category+CoreDataProperties.h */,
 				AC411E941CC92344008B1E38 /* Category+CoreDataProperties.m */,
 				AC411E951CC92344008B1E38 /* Category.h */,
@@ -326,10 +330,6 @@
 				AC411E881CC92230008B1E38 /* SizeType+CoreDataProperties.m */,
 				AC411E891CC92230008B1E38 /* SizeType.h */,
 				AC411E8A1CC92230008B1E38 /* SizeType.m */,
-				AC411E661CC8D186008B1E38 /* Dictionary+CoreDataProperties.h */,
-				AC411E671CC8D186008B1E38 /* Dictionary+CoreDataProperties.m */,
-				AC411E681CC8D186008B1E38 /* Dictionary.h */,
-				AC411E691CC8D186008B1E38 /* Dictionary.m */,
 				AC411E621CC8D186008B1E38 /* Shipping+CoreDataProperties.h */,
 				AC411E631CC8D186008B1E38 /* Shipping+CoreDataProperties.m */,
 				AC411E641CC8D186008B1E38 /* Shipping.h */,
