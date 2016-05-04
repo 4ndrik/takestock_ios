@@ -13,6 +13,7 @@
 #import "TitleTextContainerView.h"
 #import "NSDate+Extended.h"
 #import "ImagesCollectionViewController.h"
+#import "TopBottomStripesLabel.h"
 
 @interface AdvertDetailViewController ()
 
@@ -41,14 +42,16 @@
 }
 
 -(void)refreshAdData{
+    _titleLabel.text = _advert.name;
+    
     _priceTextContainerView.text = [NSString stringWithFormat:@"%.02f", _advert.guidePrice];
     [_priceTextContainerView setNeedsDisplay];
     
-    _minimumOrderTextContainerView.text = @"";
+    _minimumOrderTextContainerView.text = [NSString stringWithFormat:@"%i", _advert.minOrderQuantity];
     if (_minimumOrderTextContainerView.text.length == 0){
         _minimumOrderHeightConstraint.constant = 0;
     }
-    _qtyAvailableTextContainerView.text = @"";
+    _qtyAvailableTextContainerView.text = [NSString stringWithFormat:@"%i", _advert.count];
     if (_qtyAvailableTextContainerView.text.length == 0){
         _qtyAvailableHeightConstraint.constant = 0;
         [_qtyAvailableTextContainerView setNeedsUpdateConstraints];
@@ -58,16 +61,22 @@
     if (_locationTextContainerView.text.length == 0){
         _locationHeightConstraint.constant = 0;
     }
-    _shippingTextContainerView.text = @"";
+    _shippingTextContainerView.text = _advert.shipping.title;
     if (_shippingTextContainerView.text.length == 0){
         _shippingHeightConstraint.constant = 0;
     }
     _expiryTextContainerView.text = [NSDate stringFromTimeInterval:_advert.expires];
-    _certeficationTextContainerView.text = @"";
+    
+    NSMutableString* certString = [[NSMutableString alloc] initWithString:_advert.certification.title];
+    if (_advert.certificationOther.length > 0){
+        [certString appendFormat:@", %@", _advert.certificationOther];
+    }
+    
+    _certeficationTextContainerView.text = certString;
     if (_certeficationTextContainerView.text.length == 0){
         _certificationHeightConstraint.constant = 0;
     }
-    _conditionTextContainerView.text = @"";
+    _conditionTextContainerView.text = _advert.condition.title;
     if (_conditionTextContainerView.text.length == 0){
         _conditionHeightConstraint.constant = 0;
     }

@@ -13,12 +13,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class Category;
-@class Condition;
-@class Shipping;
-@class SizeType;
-@class Certification;
-
 @interface Advert (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSString *adDescription;

@@ -9,10 +9,12 @@
 #import "BaseViewController.h"
 @class TitleTextContainerView;
 @class Advert;
+@class TopBottomStripesLabel;
 
 @interface AdvertDetailViewController : BaseViewController<UICollectionViewDelegate, UICollectionViewDataSource>{
     Advert* _advert;
     
+    __weak IBOutlet TopBottomStripesLabel *_titleLabel;
     __weak IBOutlet TitleTextContainerView *_priceTextContainerView;
     __weak IBOutlet TitleTextContainerView *_minimumOrderTextContainerView;
     __weak IBOutlet TitleTextContainerView *_qtyAvailableTextContainerView;

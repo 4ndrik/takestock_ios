@@ -2,7 +2,7 @@
 //  Condition+CoreDataProperties.h
 //  takestok
 //
-//  Created by Artem on 4/21/16.
+//  Created by Artem on 4/28/16.
 //  Copyright © 2016 Artem. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -12,10 +12,19 @@
 #import "Condition.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@class Advert;
+
 @interface Condition (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) Advert *advert;
+@property (nullable, nonatomic, retain) NSSet<Advert *> *advert;
+
+@end
+
+@interface Condition (CoreDataGeneratedAccessors)
+
+- (void)addAdvertObject:(Advert *)value;
+- (void)removeAdvertObject:(Advert *)value;
+- (void)addAdvert:(NSSet<Advert *> *)values;
+- (void)removeAdvert:(NSSet<Advert *> *)values;
 
 @end
 

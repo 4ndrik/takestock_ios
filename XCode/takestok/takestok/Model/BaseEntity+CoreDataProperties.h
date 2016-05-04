@@ -2,7 +2,7 @@
 //  BaseEntity+CoreDataProperties.h
 //  takestok
 //
-//  Created by Artem on 4/21/16.
+//  Created by Artem on 4/28/16.
 //  Copyright © 2016 Artem. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu

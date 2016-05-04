@@ -12,7 +12,7 @@
 #import "ImageProtocol.h"
 
 @class Advert;
-
+@class Certification;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Image : BaseEntity<ImageProtocol>

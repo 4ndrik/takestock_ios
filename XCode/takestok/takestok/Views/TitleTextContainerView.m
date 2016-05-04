@@ -8,7 +8,7 @@
 
 #import "TitleTextContainerView.h"
 
-#define CenterPadding 40
+#define CenterPadding 20
 
 @implementation TitleTextContainerView
 

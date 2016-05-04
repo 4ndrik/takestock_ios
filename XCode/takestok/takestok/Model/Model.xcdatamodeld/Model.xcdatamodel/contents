@@ -23,18 +23,18 @@
         <attribute name="ident" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
     </entity>
     <entity name="Category" representedClassName="Category" parentEntity="Dictionary" syncable="YES">
-        <relationship name="advert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Advert" inverseName="category" inverseEntity="Advert" syncable="YES"/>
-        <relationship name="advertSub" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Advert" inverseName="subCategory" inverseEntity="Advert" syncable="YES"/>
+        <relationship name="advert" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="category" inverseEntity="Advert" syncable="YES"/>
+        <relationship name="advertSub" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="subCategory" inverseEntity="Advert" syncable="YES"/>
         <relationship name="parentCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="subCategories" inverseEntity="Category" syncable="YES"/>
         <relationship name="subCategories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="parentCategory" inverseEntity="Category" syncable="YES"/>
     </entity>
     <entity name="Certification" representedClassName="Certification" parentEntity="Dictionary" syncable="YES">
         <attribute name="certDescription" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="advert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Advert" inverseName="certification" inverseEntity="Advert" syncable="YES"/>
+        <relationship name="advert" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="certification" inverseEntity="Advert" syncable="YES"/>
         <relationship name="image" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Image" inverseName="certification" inverseEntity="Image" syncable="YES"/>
     </entity>
     <entity name="Condition" representedClassName="Condition" parentEntity="Dictionary" syncable="YES">
-        <relationship name="advert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Advert" inverseName="condition" inverseEntity="Advert" syncable="YES"/>
+        <relationship name="advert" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="condition" inverseEntity="Advert" syncable="YES"/>
     </entity>
     <entity name="Dictionary" representedClassName="Dictionary" isAbstract="YES" parentEntity="BaseEntity" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -48,10 +48,10 @@
         <relationship name="certification" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Certification" inverseName="image" inverseEntity="Certification" syncable="YES"/>
     </entity>
     <entity name="Shipping" representedClassName="Shipping" parentEntity="Dictionary" syncable="YES">
-        <relationship name="advert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Advert" inverseName="shipping" inverseEntity="Advert" syncable="YES"/>
+        <relationship name="advert" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="shipping" inverseEntity="Advert" syncable="YES"/>
     </entity>
     <entity name="SizeType" representedClassName="SizeType" parentEntity="Dictionary" syncable="YES">
-        <relationship name="advert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Advert" inverseName="sizeType" inverseEntity="Advert" syncable="YES"/>
+        <relationship name="advert" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="sizeType" inverseEntity="Advert" syncable="YES"/>
     </entity>
     <elements>
         <element name="Advert" positionX="-63" positionY="-18" width="128" height="300"/>

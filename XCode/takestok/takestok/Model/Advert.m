@@ -37,32 +37,32 @@
     self.certificationOther = [jsonDic objectForKeyNotNull:@"certification_extra"];
     
     Shipping* shipping = [Shipping getEntityWithId:[[jsonDic objectForKeyNotNull:@"shipping"] intValue]];
-    if (shipping.managedObjectContext != self.managedObjectContext){
+    if (shipping && shipping.managedObjectContext != self.managedObjectContext){
         shipping = [self.managedObjectContext objectWithID:[shipping objectID]];
     }
     self.shipping = shipping;
     
     Category* category = [Category getEntityWithId:[[jsonDic objectForKeyNotNull:@"category"] intValue]];
-    if (category.managedObjectContext != self.managedObjectContext){
+    if (category && category.managedObjectContext != self.managedObjectContext){
         category = [self.managedObjectContext objectWithID:[category objectID]];
     }
     self.category = category;
     
     Category* subCategory = [Category getEntityWithId:[[jsonDic objectForKeyNotNull:@"subcategory"] intValue]];
-    if (subCategory.managedObjectContext != self.managedObjectContext){
+    if (subCategory && subCategory.managedObjectContext != self.managedObjectContext){
         subCategory = [self.managedObjectContext objectWithID:[subCategory objectID]];
     }
     self.subCategory = subCategory;
     
     Certification* certification = [Certification getEntityWithId:[[jsonDic objectForKeyNotNull:@"certification"] intValue]];
-    if (certification.managedObjectContext != self.managedObjectContext){
-        certification = [self.managedObjectContext objectWithID:[subCategory objectID]];
+    if (certification && certification.managedObjectContext != self.managedObjectContext){
+        certification = [self.managedObjectContext objectWithID:[certification objectID]];
     }
     self.certification = certification;
     
     Condition* condition = [Condition getEntityWithId:[[jsonDic objectForKeyNotNull:@"condition"] intValue]];
-    if (condition.managedObjectContext != self.managedObjectContext){
-        condition = [self.managedObjectContext objectWithID:[subCategory objectID]];
+    if (condition && condition.managedObjectContext != self.managedObjectContext){
+        condition = [self.managedObjectContext objectWithID:[condition objectID]];
     }
     self.condition = condition;
     

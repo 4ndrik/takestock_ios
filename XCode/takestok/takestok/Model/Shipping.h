@@ -11,6 +11,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class Advert;
+
 @interface Shipping : Dictionary
 
 // Insert code here to declare functionality of your managed object subclass

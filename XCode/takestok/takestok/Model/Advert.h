@@ -10,6 +10,11 @@
 #import <CoreData/CoreData.h>
 #import "BaseEntity.h"
 #import "Image.h"
+#import "Category.h"
+#import "Condition.h"
+#import "Shipping.h"
+#import "SizeType.h"
+#import "Certification.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

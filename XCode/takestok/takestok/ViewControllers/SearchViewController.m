@@ -67,6 +67,7 @@
         }
         else
         {
+            [_adverts removeAllObjects];
             [_adverts addObjectsFromArray:adverbs];
             [_searchCollectionView reloadData];
         }
