@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="AgendaLight.ttf">
@@ -15,6 +16,8 @@
             <string>Agenda-Light</string>
         </mutableArray>
         <mutableArray key="brandon_bld.otf">
+            <string>BrandonGrotesque-Bold</string>
+            <string>BrandonGrotesque-Bold</string>
             <string>BrandonGrotesque-Bold</string>
             <string>BrandonGrotesque-Bold</string>
             <string>BrandonGrotesque-Bold</string>
@@ -991,7 +994,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mGY-S4-o2I" id="SNa-8t-k0Z">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon166x176" translatesAutoresizingMaskIntoConstraints="NO" id="mgb-IQ-X4H" customClass="BackgroundImageView">
@@ -2739,11 +2742,11 @@
                         <viewControllerLayoutGuide type="bottom" id="GFb-3Q-IZp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cWJ-Kc-Vjo">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="2500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BOe-fQ-yS5">
-                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="2392"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="v0v-0g-Ud0">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -3011,8 +3014,67 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VEi-aD-LT6">
+                                        <rect key="frame" x="20" y="980" width="560" height="100"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Edx-lb-OAj">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Member 45" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQb-JQ-vlv">
+                                                <rect key="frame" x="110" y="0.0" width="400" height="34"/>
+                                                <fontDescription key="fontDescription" name="BrandonGrotesque-Bold" family="Brandon Grotesque" pointSize="18"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UIF-Ku-hrE" customClass="RatingView">
+                                                <rect key="frame" x="110" y="30" width="400" height="34"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="rate">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6p1-kH-NVB">
+                                                <rect key="frame" x="110" y="64" width="400" height="33"/>
+                                                <fontDescription key="fontDescription" name="BrandonGrotesque-Bold" family="Brandon Grotesque" pointSize="14"/>
+                                                <state key="normal" title="VIEW PROFILE &gt;">
+                                                    <color key="titleColor" red="0.74901960779999999" green="0.73725490199999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="award" translatesAutoresizingMaskIntoConstraints="NO" id="cpg-hs-gqc">
+                                                <rect key="frame" x="520" y="30" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="cpg-hs-gqc" secondAttribute="height" multiplier="1:1" id="Me2-VT-9O2"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="6p1-kH-NVB" firstAttribute="leading" secondItem="Edx-lb-OAj" secondAttribute="trailing" constant="10" id="3Pb-NY-TrF"/>
+                                            <constraint firstItem="UIF-Ku-hrE" firstAttribute="top" secondItem="FQb-JQ-vlv" secondAttribute="bottom" constant="-4" id="4L8-ZH-UBY"/>
+                                            <constraint firstItem="cpg-hs-gqc" firstAttribute="leading" secondItem="FQb-JQ-vlv" secondAttribute="trailing" constant="10" id="8ec-tw-ZiW"/>
+                                            <constraint firstItem="cpg-hs-gqc" firstAttribute="leading" secondItem="6p1-kH-NVB" secondAttribute="trailing" constant="10" id="98b-cc-an1"/>
+                                            <constraint firstItem="UIF-Ku-hrE" firstAttribute="height" secondItem="FQb-JQ-vlv" secondAttribute="height" id="C6s-9j-Aof"/>
+                                            <constraint firstItem="cpg-hs-gqc" firstAttribute="height" secondItem="VEi-aD-LT6" secondAttribute="height" constant="-60" id="HBv-fP-URM"/>
+                                            <constraint firstItem="FQb-JQ-vlv" firstAttribute="top" secondItem="VEi-aD-LT6" secondAttribute="top" id="Hu1-ud-6t0"/>
+                                            <constraint firstItem="FQb-JQ-vlv" firstAttribute="height" secondItem="VEi-aD-LT6" secondAttribute="height" multiplier="1:3" id="JCY-vg-mAU"/>
+                                            <constraint firstItem="Edx-lb-OAj" firstAttribute="leading" secondItem="VEi-aD-LT6" secondAttribute="leading" id="LEp-Oc-lsG"/>
+                                            <constraint firstAttribute="trailing" secondItem="cpg-hs-gqc" secondAttribute="trailing" id="Pix-Rq-0MU"/>
+                                            <constraint firstItem="6p1-kH-NVB" firstAttribute="top" secondItem="UIF-Ku-hrE" secondAttribute="bottom" id="Qap-3f-XCT"/>
+                                            <constraint firstItem="FQb-JQ-vlv" firstAttribute="leading" secondItem="Edx-lb-OAj" secondAttribute="trailing" constant="10" id="XOf-9o-tMG"/>
+                                            <constraint firstItem="Edx-lb-OAj" firstAttribute="height" secondItem="VEi-aD-LT6" secondAttribute="height" id="ago-5e-VWj"/>
+                                            <constraint firstItem="cpg-hs-gqc" firstAttribute="centerY" secondItem="VEi-aD-LT6" secondAttribute="centerY" id="hG2-cq-WAE"/>
+                                            <constraint firstItem="Edx-lb-OAj" firstAttribute="centerY" secondItem="VEi-aD-LT6" secondAttribute="centerY" id="ilF-yg-Cem"/>
+                                            <constraint firstAttribute="height" constant="100" id="ksI-Jq-nhe"/>
+                                            <constraint firstItem="6p1-kH-NVB" firstAttribute="height" secondItem="VEi-aD-LT6" secondAttribute="height" multiplier="1:3" id="l5k-0S-GGo"/>
+                                            <constraint firstItem="cpg-hs-gqc" firstAttribute="leading" secondItem="UIF-Ku-hrE" secondAttribute="trailing" constant="10" id="nLC-n7-ugq"/>
+                                            <constraint firstItem="UIF-Ku-hrE" firstAttribute="leading" secondItem="Edx-lb-OAj" secondAttribute="trailing" constant="10" id="rwZ-g8-aqg"/>
+                                            <constraint firstItem="Edx-lb-OAj" firstAttribute="width" secondItem="VEi-aD-LT6" secondAttribute="height" multiplier="1:1" id="yf3-96-UJ1"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKY-nt-lXv">
-                                        <rect key="frame" x="20" y="986" width="560" height="33"/>
+                                        <rect key="frame" x="20" y="1100" width="560" height="33"/>
                                         <color key="backgroundColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="BrandonGrotesque-Bold" family="Brandon Grotesque" pointSize="14"/>
                                         <state key="normal" title="MAKE ORDER">
@@ -3043,6 +3105,7 @@
                                     <constraint firstItem="KGu-ll-mkn" firstAttribute="top" secondItem="v0v-0g-Ud0" secondAttribute="bottom" id="Bw6-3k-vLT"/>
                                     <constraint firstItem="PNC-by-mi7" firstAttribute="leading" secondItem="BOe-fQ-yS5" secondAttribute="leading" constant="20" id="D1i-Lz-onT"/>
                                     <constraint firstItem="v0v-0g-Ud0" firstAttribute="width" secondItem="BOe-fQ-yS5" secondAttribute="width" id="EtD-vk-Vb0"/>
+                                    <constraint firstItem="VEi-aD-LT6" firstAttribute="top" secondItem="Ahh-Yh-ie5" secondAttribute="bottom" constant="10" id="FcX-UL-B94"/>
                                     <constraint firstItem="KfW-pT-RT5" firstAttribute="leading" secondItem="BOe-fQ-yS5" secondAttribute="leading" constant="20" id="ITZ-Dj-xd1"/>
                                     <constraint firstItem="ZKY-nt-lXv" firstAttribute="top" secondItem="eBJ-lt-QSd" secondAttribute="bottom" constant="20" id="IZB-kA-Hz9"/>
                                     <constraint firstItem="eDV-c8-BmX" firstAttribute="leading" secondItem="57n-Fp-iIk" secondAttribute="leading" id="Ij8-4J-lxL"/>
@@ -3057,6 +3120,7 @@
                                     <constraint firstItem="Ahh-Yh-ie5" firstAttribute="top" secondItem="eBJ-lt-QSd" secondAttribute="bottom" constant="10" id="MqH-Qs-WpO"/>
                                     <constraint firstItem="57n-Fp-iIk" firstAttribute="top" secondItem="PNC-by-mi7" secondAttribute="bottom" id="NAB-8H-FPg"/>
                                     <constraint firstItem="Ahh-Yh-ie5" firstAttribute="leading" secondItem="BOe-fQ-yS5" secondAttribute="leading" constant="20" id="Pqt-A9-Rxt"/>
+                                    <constraint firstItem="VEi-aD-LT6" firstAttribute="leading" secondItem="BOe-fQ-yS5" secondAttribute="leading" constant="20" id="RUc-Mi-ObT"/>
                                     <constraint firstAttribute="trailing" secondItem="v0v-0g-Ud0" secondAttribute="trailing" id="RoU-1U-9Jp"/>
                                     <constraint firstAttribute="trailing" secondItem="ZKY-nt-lXv" secondAttribute="trailing" constant="20" id="SHP-B6-Gp9"/>
                                     <constraint firstItem="eDV-c8-BmX" firstAttribute="leading" secondItem="tR3-O7-Ov2" secondAttribute="leading" id="Vmb-9k-Mr2"/>
@@ -3077,9 +3141,11 @@
                                     <constraint firstItem="57n-Fp-iIk" firstAttribute="leading" secondItem="BOe-fQ-yS5" secondAttribute="leading" constant="20" id="p8n-90-YcW"/>
                                     <constraint firstItem="eDV-c8-BmX" firstAttribute="leading" secondItem="PNC-by-mi7" secondAttribute="leading" id="pJa-6h-X6n"/>
                                     <constraint firstItem="KGu-ll-mkn" firstAttribute="leading" secondItem="BOe-fQ-yS5" secondAttribute="leading" constant="20" id="s7s-0e-Hlx"/>
+                                    <constraint firstItem="ZKY-nt-lXv" firstAttribute="top" secondItem="VEi-aD-LT6" secondAttribute="bottom" constant="20" id="tKZ-3Z-MCG"/>
                                     <constraint firstAttribute="trailing" secondItem="Vf9-lf-pCJ" secondAttribute="trailing" constant="20" id="tR7-wB-jNs"/>
                                     <constraint firstAttribute="trailing" secondItem="tR3-O7-Ov2" secondAttribute="trailing" constant="20" id="v4s-V8-iIm"/>
                                     <constraint firstItem="v0v-0g-Ud0" firstAttribute="top" secondItem="BOe-fQ-yS5" secondAttribute="top" id="wHm-dF-7YR"/>
+                                    <constraint firstAttribute="trailing" secondItem="VEi-aD-LT6" secondAttribute="trailing" constant="20" id="wjq-F9-vU7"/>
                                     <constraint firstItem="PNC-by-mi7" firstAttribute="top" secondItem="eDV-c8-BmX" secondAttribute="bottom" constant="8" symbolic="YES" id="x5k-n2-HO9"/>
                                     <constraint firstItem="eDV-c8-BmX" firstAttribute="trailing" secondItem="tR3-O7-Ov2" secondAttribute="trailing" id="zLa-2k-CIi"/>
                                     <constraint firstItem="ZKY-nt-lXv" firstAttribute="top" secondItem="Ahh-Yh-ie5" secondAttribute="bottom" constant="16" id="zhq-jB-XNY"/>
@@ -3106,6 +3172,7 @@
                                         <exclude reference="WBs-Kf-Put"/>
                                         <exclude reference="IZB-kA-Hz9"/>
                                         <exclude reference="Mjj-M6-WCZ"/>
+                                        <exclude reference="zhq-jB-XNY"/>
                                     </mask>
                                 </variation>
                             </scrollView>
@@ -3127,6 +3194,8 @@
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="2500"/>
                     <connections>
                         <outlet property="_certeficationTextContainerView" destination="57n-Fp-iIk" id="h9i-pV-cLU"/>
                         <outlet property="_certificationHeightConstraint" destination="PX0-ty-cJf" id="5lp-Hs-DED"/>
@@ -3157,7 +3226,7 @@
             <objects>
                 <collectionViewController id="ncX-Ya-syW" customClass="ImagesCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" id="Rsh-w9-K42">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="2500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="hNM-fM-xi4">
                             <size key="itemSize" width="320" height="480"/>
@@ -3167,7 +3236,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageScrollCollectionViewCell" id="0hq-mC-Kfn" customClass="ImageScrollCollectionViewCell">
-                                <rect key="frame" x="0.0" y="70" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -3232,6 +3301,7 @@
     </scenes>
     <resources>
         <image name="addImageIconBig" width="76" height="58"/>
+        <image name="award" width="52" height="52"/>
         <image name="checked" width="18" height="18"/>
         <image name="icon166x176" width="166" height="176"/>
         <image name="searchItemHasn'tSeen" width="40" height="41"/>

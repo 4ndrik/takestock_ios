@@ -11,6 +11,7 @@
 #import "BaseEntity.h"
 #import "ImageProtocol.h"
 
+@class User;
 @class Advert;
 @class Certification;
 NS_ASSUME_NONNULL_BEGIN
