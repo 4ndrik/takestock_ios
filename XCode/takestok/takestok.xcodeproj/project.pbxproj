@@ -74,6 +74,10 @@
 		ACDC246A1CBCF610003E9715 /* RadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDC24691CBCF610003E9715 /* RadioButton.m */; };
 		ACDC246D1CBE8308003E9715 /* TitleTextContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDC246C1CBE8308003E9715 /* TitleTextContainerView.m */; };
 		ACDC24721CBEAC5F003E9715 /* AdvertDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDC24711CBEAC5F003E9715 /* AdvertDetailViewController.m */; };
+		ACFCB6B61CDA14A4005A4024 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B31CDA14A4005A4024 /* User+CoreDataProperties.m */; };
+		ACFCB6B71CDA14A4005A4024 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B51CDA14A4005A4024 /* User.m */; };
+		ACFCB6BA1CDA200A005A4024 /* UserDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B91CDA200A005A4024 /* UserDetailsViewController.m */; };
+		ACFCB6BD1CDA5047005A4024 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6BC1CDA5047005A4024 /* Settings.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -209,6 +213,14 @@
 		ACDC246C1CBE8308003E9715 /* TitleTextContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleTextContainerView.m; sourceTree = "<group>"; };
 		ACDC24701CBEAC5F003E9715 /* AdvertDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvertDetailViewController.h; sourceTree = "<group>"; };
 		ACDC24711CBEAC5F003E9715 /* AdvertDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvertDetailViewController.m; sourceTree = "<group>"; };
+		ACFCB6B21CDA14A4005A4024 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
+		ACFCB6B31CDA14A4005A4024 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
+		ACFCB6B41CDA14A4005A4024 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		ACFCB6B51CDA14A4005A4024 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		ACFCB6B81CDA200A005A4024 /* UserDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailsViewController.h; sourceTree = "<group>"; };
+		ACFCB6B91CDA200A005A4024 /* UserDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsViewController.m; sourceTree = "<group>"; };
+		ACFCB6BB1CDA5047005A4024 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		ACFCB6BC1CDA5047005A4024 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +282,10 @@
 				AC411E1E1CBF9CEF008B1E38 /* Image+CoreDataProperties.m */,
 				AC411E1F1CBF9CEF008B1E38 /* Image.h */,
 				AC411E201CBF9CEF008B1E38 /* Image.m */,
+				ACFCB6B21CDA14A4005A4024 /* User+CoreDataProperties.h */,
+				ACFCB6B31CDA14A4005A4024 /* User+CoreDataProperties.m */,
+				ACFCB6B41CDA14A4005A4024 /* User.h */,
+				ACFCB6B51CDA14A4005A4024 /* User.m */,
 				AC411E0B1CBF9693008B1E38 /* Model.xcdatamodeld */,
 			);
 			path = Model;
@@ -407,6 +423,8 @@
 				AC411E501CC78D06008B1E38 /* SellingViewController.m */,
 				AC411E591CC7D257008B1E38 /* BuyingViewController.h */,
 				AC411E5A1CC7D257008B1E38 /* BuyingViewController.m */,
+				ACFCB6B81CDA200A005A4024 /* UserDetailsViewController.h */,
+				ACFCB6B91CDA200A005A4024 /* UserDetailsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -455,6 +473,8 @@
 				AC68C4881CB6534A004B78DF /* UIImage+ExtendedImage.m */,
 				AC411E271CBFA6D0008B1E38 /* NSDate+Extended.h */,
 				AC411E281CBFA6D0008B1E38 /* NSDate+Extended.m */,
+				ACFCB6BB1CDA5047005A4024 /* Settings.h */,
+				ACFCB6BC1CDA5047005A4024 /* Settings.m */,
 			);
 			path = Additional;
 			sourceTree = "<group>";
@@ -567,6 +587,7 @@
 				ACDC246D1CBE8308003E9715 /* TitleTextContainerView.m in Sources */,
 				AC411E791CC8D186008B1E38 /* Certification.m in Sources */,
 				AC1F544D1CCE45350093848B /* OfferManagerViewController.m in Sources */,
+				ACFCB6BA1CDA200A005A4024 /* UserDetailsViewController.m in Sources */,
 				AC411E211CBF9CEF008B1E38 /* Image+CoreDataProperties.m in Sources */,
 				AC411E5E1CC7D2C9008B1E38 /* BuyingTableViewCell.m in Sources */,
 				AC411E1C1CBF995A008B1E38 /* DB.m in Sources */,
@@ -574,6 +595,7 @@
 				AC049D0B1CB7C490006A8F21 /* BaseViewController.m in Sources */,
 				AC049D051CB7C449006A8F21 /* SearchViewController.m in Sources */,
 				AC1F54501CCE455D0093848B /* OfferTableViewCell.m in Sources */,
+				ACFCB6BD1CDA5047005A4024 /* Settings.m in Sources */,
 				AC049D081CB7C47F006A8F21 /* HomeViewController.m in Sources */,
 				AC411E4E1CC63ECA008B1E38 /* Reachability.m in Sources */,
 				AC68C4811CB64241004B78DF /* TextFieldBorderBottom.m in Sources */,
@@ -585,6 +607,7 @@
 				ACDC24721CBEAC5F003E9715 /* AdvertDetailViewController.m in Sources */,
 				AC411E5B1CC7D257008B1E38 /* BuyingViewController.m in Sources */,
 				AC411E731CC8D186008B1E38 /* Shipping.m in Sources */,
+				ACFCB6B61CDA14A4005A4024 /* User+CoreDataProperties.m in Sources */,
 				AC049D1E1CBBBA0A006A8F21 /* SearchTitleView.m in Sources */,
 				AC411E7F1CC8D61E008B1E38 /* BaseEntity.m in Sources */,
 				AC1F54531CCE484F0093848B /* OfferTitleView.m in Sources */,
@@ -596,6 +619,7 @@
 				AC411E481CC50A00008B1E38 /* ImagesCollectionViewController.m in Sources */,
 				AC411E361CC0EFB8008B1E38 /* SerachCollectionViewLayout.m in Sources */,
 				AC411E121CBF970A008B1E38 /* Advert+CoreDataProperties.m in Sources */,
+				ACFCB6B71CDA14A4005A4024 /* User.m in Sources */,
 				AC049D211CBBD2D7006A8F21 /* LoginViewController.m in Sources */,
 				AC049D0E1CB7C7E5006A8F21 /* SearchCollectionViewCell.m in Sources */,
 				AC411E981CC92344008B1E38 /* Category.m in Sources */,

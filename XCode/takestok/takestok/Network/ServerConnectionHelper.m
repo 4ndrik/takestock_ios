@@ -27,12 +27,13 @@ typedef enum
 #define TAKESTOK_URL                @"http://takestock.shalakh.in/api/v1/"
 
 #define JSON_CONTENT_TYPE           @"application/json"
-#define ADVERTS_URL_PATH            @"adverts"
 
+#define USER_URL_PATH               @"users/%i"
+#define ADVERTS_URL_PATH            @"adverts"
 #define CONDITIONS_URL_PATH         @"conditions"
 #define SHIPPING_URL_PATH           @"shipping"
 #define CATEGORIES_URL_PATH         @"category"
-#define CERTIFICATIONS_URL_PATH      @"certifications"
+#define CERTIFICATIONS_URL_PATH     @"certifications"
 #define SIZE_TYPES_URL_PATH         @"size_types"
 
 
@@ -160,6 +161,22 @@ typedef enum
         }
     }];
     [_loadAdvertCancelTask resume];
+}
+
+-(void)loadUser:(int)ident compleate:(void(^)(User* user, NSError* error))compleate{
+    NSURLSessionDataTask* loadUserTask = [_session dataTaskWithRequest:[self request:[NSString stringWithFormat:USER_URL_PATH, ident] query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        User* user;
+        if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:data error:&error]){
+            NSDictionary* userDic = [self jsonFromData:data error:&error];
+            if (userDic){
+                user = [User tempEntity];
+                [user updateWithJSon:userDic];
+            }
+        }
+        compleate(user, error);
+    }];
+    
+    [loadUserTask resume];
 }
 
 #pragma mark - Helpers

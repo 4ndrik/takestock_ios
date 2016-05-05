@@ -15,12 +15,12 @@
 #import "Shipping.h"
 #import "SizeType.h"
 #import "Certification.h"
+#import "User.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Advert : BaseEntity
 
--(void)updateWithJSon:(NSDictionary*)jsonDic;
 
 @end
 

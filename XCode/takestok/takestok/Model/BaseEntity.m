@@ -54,4 +54,8 @@
     return self.managedObjectContext == [DB sharedInstance].storedManagedObjectContext;
 }
 
+-(void)updateWithJSon:(NSDictionary*)jsonDic{
+    [self doesNotRecognizeSelector:_cmd];
+}
+
 @end

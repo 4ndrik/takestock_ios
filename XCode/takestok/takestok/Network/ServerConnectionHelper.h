@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @class Reachability;
+@class User;
+
 @interface ServerConnectionHelper : NSObject{
     Reachability* _reachability;
     NSURLSession *_session;
@@ -20,4 +22,6 @@
 -(BOOL)isInternetConnection;
 -(void)loadAdverb:(void(^)(NSArray* adverbs, NSError* error))compleate;
 -(void)loadDictionaries;
+-(void)loadUser:(int)ident compleate:(void(^)(User* user, NSError* error))compleate;
+
 @end

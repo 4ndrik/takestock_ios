@@ -35,6 +35,8 @@
     self.minOrderQuantity = [[jsonDic objectForKeyNotNull:@"min_order_quantity"] intValue];
     self.count = [[jsonDic objectForKeyNotNull:@"items_count"] intValue];
     self.certificationOther = [jsonDic objectForKeyNotNull:@"certification_extra"];
+    self.size = [jsonDic objectForKeyNotNull:@"size"];
+    self.tags = [[jsonDic objectForKeyNotNull:@"tags"] componentsJoinedByString:@", "];
     
     Shipping* shipping = [Shipping getEntityWithId:[[jsonDic objectForKeyNotNull:@"shipping"] intValue]];
     if (shipping && shipping.managedObjectContext != self.managedObjectContext){
@@ -71,7 +73,6 @@
     //    "intended_use": 1,
     //    "is_vat_exempt": true
 //    packaging
-//    certification_extra
     
     //
     NSMutableOrderedSet* imageSet = [[NSMutableOrderedSet alloc] init];

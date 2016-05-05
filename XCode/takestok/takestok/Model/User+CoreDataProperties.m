@@ -1,5 +1,5 @@
 //
-//  Image+CoreDataProperties.m
+//  User+CoreDataProperties.m
 //  takestok
 //
 //  Created by Artem on 5/4/16.
@@ -9,16 +9,19 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Image+CoreDataProperties.h"
+#import "User+CoreDataProperties.h"
 
-@implementation Image (CoreDataProperties)
+@implementation User (CoreDataProperties)
 
-@dynamic height;
-@dynamic resId;
-@dynamic url;
-@dynamic width;
+@dynamic userName;
+@dynamic firstName;
+@dynamic lastName;
+@dynamic email;
+@dynamic isVerified;
+@dynamic rating;
+@dynamic lastLogin;
+@dynamic isSubscribed;
 @dynamic advert;
-@dynamic certification;
-@dynamic user;
+@dynamic image;
 
 @end
