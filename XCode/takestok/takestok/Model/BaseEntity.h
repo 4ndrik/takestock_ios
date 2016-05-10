@@ -21,7 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 +(NSArray*)getAll;
 +(NSFetchRequest*)getFetchRequestForPredicate:(NSPredicate* _Nullable)predicate withSortDescriptions:(NSArray* _Nullable)sortDescriptors;
 
--(void)updateWithJSon:(NSDictionary*)jsonDic;
+-(void)updateWithDic:(NSDictionary*)jsonDic;
+-(NSDictionary*)getDictionary;
 
 -(BOOL)isForStore;
 

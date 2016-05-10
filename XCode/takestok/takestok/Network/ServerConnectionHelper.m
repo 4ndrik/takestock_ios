@@ -130,8 +130,8 @@ typedef enum
     [loadCategoryTask resume];
 }
 
-#pragma mark - Adverb
--(void)loadAdverb:(void(^)(NSArray* adverbs, NSError* error))compleate{
+#pragma mark - Advert
+-(void)loadAdvert:(void(^)(NSArray* adverbs, NSError* error))compleate{
     [_loadAdvertCancelTask cancel];
     _loadAdvertCancelTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         _loadAdvertCancelTask = nil;
@@ -147,13 +147,13 @@ typedef enum
         }
         else
         {
-            NSArray* array = [self jsonFromData:data error:&error];
+            NSArray* array = [[self jsonFromData:data error:&error] objectForKeyNotNull:@"results"];
             NSMutableArray* adverts = [NSMutableArray arrayWithCapacity:array.count];
             if (!error){
                 
                 for (NSDictionary* advertDic in array) {
                     Advert* advert = [Advert tempEntity];
-                    [advert updateWithJSon:advertDic];
+                    [advert updateWithDic:advertDic];
                     [adverts addObject:advert];
                 }
             }
@@ -163,6 +163,40 @@ typedef enum
     [_loadAdvertCancelTask resume];
 }
 
+-(void)createAdvert:(Advert*)advert{
+    
+//    NSURL * url = [NSURL URLWithString:@"http://hayageek.com/examples/jquery/ajax-post/ajax-post.php"];
+//    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
+//    NSString * params =@"name=Ravi&loc=India&age=31&submit=true";
+//    [urlRequest setHTTPMethod:@"POST"];
+//    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSDictionary* advertData = [advert getDictionary];
+    NSError* error;
+    NSString* params = [self jsonStringFromDicOrArray:advertData error:&error];
+    
+    NSURLRequest* request = [self request:ADVERTS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE];
+    
+    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error)
+        {
+            NSLog(@"dasdsa");
+        }
+        else if ([self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:data error:&error])
+        {
+            NSLog(@"dadas");
+        }
+        else
+        {
+            NSString* str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"dadas");
+        }
+
+    }];
+    [dataTask resume];
+    
+}
+
 -(void)loadUser:(int)ident compleate:(void(^)(User* user, NSError* error))compleate{
     NSURLSessionDataTask* loadUserTask = [_session dataTaskWithRequest:[self request:[NSString stringWithFormat:USER_URL_PATH, ident] query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         User* user;
@@ -170,7 +204,7 @@ typedef enum
             NSDictionary* userDic = [self jsonFromData:data error:&error];
             if (userDic){
                 user = [User tempEntity];
-                [user updateWithJSon:userDic];
+                [user updateWithDic:userDic];
             }
         }
         compleate(user, error);
@@ -180,6 +214,37 @@ typedef enum
 }
 
 #pragma mark - Helpers
+
+- (NSString*)makeParamtersString:(NSDictionary*)parameters withEncoding:(NSStringEncoding)encoding
+{
+    if (nil == parameters || [parameters count] == 0)
+        return nil;
+    
+    NSMutableString* stringOfParamters = [[NSMutableString alloc] init];
+    NSEnumerator *keyEnumerator = [parameters keyEnumerator];
+    id key = nil;
+    while ((key = [keyEnumerator nextObject]))
+    {
+        NSString *value = [[parameters valueForKey:key] isKindOfClass:[NSString class]] ?
+        [parameters valueForKey:key] : [[parameters valueForKey:key] stringValue];
+        [stringOfParamters appendFormat:@"%@=%@&",
+         [self URLEscaped:key withEncoding:encoding],
+         [self URLEscaped:value withEncoding:encoding]];
+    }
+    
+    // Delete last character of '&'
+    NSRange lastCharRange = {[stringOfParamters length] - 1, 1};
+    [stringOfParamters deleteCharactersInRange:lastCharRange];
+    return stringOfParamters;
+}
+
+- (NSString *)URLEscaped:(NSString *)strIn withEncoding:(NSStringEncoding)encoding
+{
+    CFStringRef escaped = CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)strIn, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", CFStringConvertNSStringEncodingToEncoding(encoding));
+    NSString *strOut = [NSString stringWithString:(__bridge NSString *)escaped];
+    CFRelease(escaped);
+    return strOut;
+}
 
 -(NSURLRequest*)request:(NSString*)method query:(NSString * _Nullable)query methodType:(HTTP_METHOD)methodType contentType:(NSString* _Nullable)contentType{
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
@@ -248,6 +313,18 @@ typedef enum
         return [NSJSONSerialization JSONObjectWithData:[dataStr dataUsingEncoding:NSUTF8StringEncoding] options:7 error:error];
     }
     return nil;
+}
+
+-(nullable NSString*)jsonStringFromDicOrArray:(id)dictionaryOrArrayToOutput error:(NSError**)error{
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionaryOrArrayToOutput
+                                                       options:0 // Pass 0 if you don't care about the readability of the generated string
+                                                         error:error];
+    
+    if (! jsonData) {
+        return nil;
+    } else {
+        return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
 }
 
 @end

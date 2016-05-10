@@ -20,16 +20,14 @@
         <relationship name="images" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Image" inverseName="advert" inverseEntity="Image" syncable="YES"/>
         <relationship name="shipping" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shipping" inverseName="advert" inverseEntity="Shipping" syncable="YES"/>
         <relationship name="sizeType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SizeType" inverseName="advert" inverseEntity="SizeType" syncable="YES"/>
-        <relationship name="subCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="advertSub" inverseEntity="Category" syncable="YES"/>
+        <relationship name="subCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="subAdverb" inverseEntity="SubCategory" syncable="YES"/>
     </entity>
     <entity name="BaseEntity" representedClassName="BaseEntity" isAbstract="YES" syncable="YES">
         <attribute name="ident" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
     </entity>
     <entity name="Category" representedClassName="Category" parentEntity="Dictionary" syncable="YES">
         <relationship name="advert" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="category" inverseEntity="Advert" syncable="YES"/>
-        <relationship name="advertSub" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="subCategory" inverseEntity="Advert" syncable="YES"/>
-        <relationship name="parentCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="subCategories" inverseEntity="Category" syncable="YES"/>
-        <relationship name="subCategories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="parentCategory" inverseEntity="Category" syncable="YES"/>
+        <relationship name="subCategories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="category" inverseEntity="SubCategory" syncable="YES"/>
     </entity>
     <entity name="Certification" representedClassName="Certification" parentEntity="Dictionary" syncable="YES">
         <attribute name="certDescription" optional="YES" attributeType="String" syncable="YES"/>
@@ -57,6 +55,10 @@
     <entity name="SizeType" representedClassName="SizeType" parentEntity="Dictionary" syncable="YES">
         <relationship name="advert" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="sizeType" inverseEntity="Advert" syncable="YES"/>
     </entity>
+    <entity name="SubCategory" representedClassName="SubCategory" parentEntity="Dictionary" syncable="YES">
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="subCategories" inverseEntity="Category" syncable="YES"/>
+        <relationship name="subAdverb" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="subCategory" inverseEntity="Advert" syncable="YES"/>
+    </entity>
     <entity name="User" representedClassName="User" parentEntity="BaseEntity" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
@@ -72,7 +74,7 @@
     <elements>
         <element name="Advert" positionX="-63" positionY="-18" width="128" height="345"/>
         <element name="BaseEntity" positionX="18" positionY="135" width="128" height="60"/>
-        <element name="Category" positionX="-18" positionY="81" width="128" height="105"/>
+        <element name="Category" positionX="-18" positionY="81" width="128" height="75"/>
         <element name="Certification" positionX="0" positionY="108" width="128" height="90"/>
         <element name="Condition" positionX="-18" positionY="99" width="128" height="60"/>
         <element name="Dictionary" positionX="-45" positionY="81" width="128" height="60"/>
@@ -80,5 +82,6 @@
         <element name="Shipping" positionX="-36" positionY="90" width="128" height="60"/>
         <element name="SizeType" positionX="-27" positionY="72" width="128" height="60"/>
         <element name="User" positionX="-18" positionY="117" width="128" height="195"/>
+        <element name="SubCategory" positionX="-18" positionY="135" width="128" height="75"/>
     </elements>
 </model>

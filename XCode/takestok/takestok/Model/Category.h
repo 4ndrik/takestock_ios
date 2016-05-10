@@ -10,13 +10,11 @@
 #import "Dictionary.h"
 
 @class Advert;
+@class SubCategory;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Category : Dictionary
-
-+(NSArray*)getAllCategories;
-+(NSArray*)getAllSubCategories;
 
 @end
 

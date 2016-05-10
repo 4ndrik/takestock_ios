@@ -15,12 +15,15 @@
 #import "ImageCacheUrlResolver.h"
 
 #import "Category.h"
+#import "SubCategory.h"
 #import "Shipping.h"
 #import "Condition.h"
 #import "SizeType.h"
 #import "Certification.h"
 
 #import "RadioButton.h"
+
+#import "ServerConnectionHelper.h"
 
 @implementation CreateAdvertViewController
 
@@ -341,9 +344,9 @@
     }
     
     if (textField == _categoryTextField) {
-        [self configureDataPickerWithData:[Category getAllCategories] withTextField:textField];
+        [self configureDataPickerWithData:[Category getAll] withTextField:textField];
     }else if (textField == _subCategoryTextField) {
-        [self configureDataPickerWithData:[Category getAllSubCategories] withTextField:textField];
+        [self configureDataPickerWithData:[SubCategory getAll] withTextField:textField];
     }else if (textField == _unitTextField) {
         _pickerData = [NSArray arrayWithObjects:@"first", @"Second", @"Olala", @"Bebebe", nil];
         textField.inputView = _textPiker;
@@ -438,6 +441,7 @@
 #pragma mark - Outlets
 
 - (IBAction)createAdverb:(id)sender{
+    return;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterLongStyle];
     
@@ -469,6 +473,8 @@
     advert.condition = [Condition getEntityWithId:_conditionTextField.tag];
     advert.shipping = [Shipping getEntityWithId:_shippingTextField.tag];
     advert.sizeType = [SizeType getEntityWithId:_sizeTextField.tag];
+    
+    [[ServerConnectionHelper sharedInstance] createAdvert:advert];
     
     [[DB sharedInstance].storedManagedObjectContext save:nil];
     

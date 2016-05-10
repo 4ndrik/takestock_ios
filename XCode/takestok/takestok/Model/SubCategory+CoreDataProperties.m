@@ -1,5 +1,5 @@
 //
-//  Category+CoreDataProperties.m
+//  SubCategory+CoreDataProperties.m
 //  takestok
 //
 //  Created by Artem on 5/5/16.
@@ -9,11 +9,11 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Category+CoreDataProperties.h"
+#import "SubCategory+CoreDataProperties.h"
 
-@implementation Category (CoreDataProperties)
+@implementation SubCategory (CoreDataProperties)
 
-@dynamic advert;
-@dynamic subCategories;
+@dynamic subAdverb;
+@dynamic category;
 
 @end

@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSOrderedSet<Image *> *images;
 @property (nullable, nonatomic, retain) Shipping *shipping;
 @property (nullable, nonatomic, retain) SizeType *sizeType;
-@property (nullable, nonatomic, retain) Category *subCategory;
+@property (nullable, nonatomic, retain) SubCategory *subCategory;
 @property (nullable, nonatomic, retain) User *author;
 
 @end

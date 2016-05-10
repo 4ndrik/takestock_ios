@@ -15,6 +15,7 @@
 		AC049D161CB7C95D006A8F21 /* UIView+NibLoadView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D151CB7C95D006A8F21 /* UIView+NibLoadView.m */; };
 		AC049D1E1CBBBA0A006A8F21 /* SearchTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D1D1CBBBA0A006A8F21 /* SearchTitleView.m */; };
 		AC049D211CBBD2D7006A8F21 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D201CBBD2D7006A8F21 /* LoginViewController.m */; };
+		AC19114F1CE1E74000C5A4A5 /* NSData+base64.m in Sources */ = {isa = PBXBuildFile; fileRef = AC19114E1CE1E74000C5A4A5 /* NSData+base64.m */; };
 		AC1F544D1CCE45350093848B /* OfferManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1F544C1CCE45350093848B /* OfferManagerViewController.m */; };
 		AC1F54501CCE455D0093848B /* OfferTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1F544F1CCE455D0093848B /* OfferTableViewCell.m */; };
 		AC1F54531CCE484F0093848B /* OfferTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1F54521CCE484F0093848B /* OfferTitleView.m */; };
@@ -71,6 +72,12 @@
 		AC68C4891CB6534A004B78DF /* UIImage+ExtendedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4881CB6534A004B78DF /* UIImage+ExtendedImage.m */; };
 		AC68C48C1CB67090004B78DF /* ImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */; };
 		AC68C4921CB68865004B78DF /* PaddingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4911CB68865004B78DF /* PaddingTextField.m */; };
+		ACCE7FCA1CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCE7FC71CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.m */; };
+		ACCE7FCB1CDB8F6400A76CB6 /* SubCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCE7FC91CDB8F6400A76CB6 /* SubCategory.m */; };
+		ACCE7FCE1CDCC3A400A76CB6 /* QAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCE7FCD1CDCC3A400A76CB6 /* QAViewController.m */; };
+		ACCE7FD11CDCD37000A76CB6 /* AskQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCE7FD01CDCD37000A76CB6 /* AskQuestionView.m */; };
+		ACCE7FD31CDCD38200A76CB6 /* AskQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACCE7FD21CDCD38200A76CB6 /* AskQuestionView.xib */; };
+		ACCE7FD61CDCDB6B00A76CB6 /* QATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCE7FD51CDCDB6B00A76CB6 /* QATableViewCell.m */; };
 		ACDC246A1CBCF610003E9715 /* RadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDC24691CBCF610003E9715 /* RadioButton.m */; };
 		ACDC246D1CBE8308003E9715 /* TitleTextContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDC246C1CBE8308003E9715 /* TitleTextContainerView.m */; };
 		ACDC24721CBEAC5F003E9715 /* AdvertDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDC24711CBEAC5F003E9715 /* AdvertDetailViewController.m */; };
@@ -98,6 +105,8 @@
 		AC049D1D1CBBBA0A006A8F21 /* SearchTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTitleView.m; sourceTree = "<group>"; };
 		AC049D1F1CBBD2D7006A8F21 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AC049D201CBBD2D7006A8F21 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		AC19114D1CE1E74000C5A4A5 /* NSData+base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+base64.h"; sourceTree = "<group>"; };
+		AC19114E1CE1E74000C5A4A5 /* NSData+base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+base64.m"; sourceTree = "<group>"; };
 		AC1F544B1CCE45350093848B /* OfferManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferManagerViewController.h; sourceTree = "<group>"; };
 		AC1F544C1CCE45350093848B /* OfferManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferManagerViewController.m; sourceTree = "<group>"; };
 		AC1F544E1CCE455D0093848B /* OfferTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferTableViewCell.h; sourceTree = "<group>"; };
@@ -208,6 +217,17 @@
 		AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCollectionViewCell.m; sourceTree = "<group>"; };
 		AC68C4901CB68865004B78DF /* PaddingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaddingTextField.h; sourceTree = "<group>"; };
 		AC68C4911CB68865004B78DF /* PaddingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddingTextField.m; sourceTree = "<group>"; };
+		ACCE7FC61CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SubCategory+CoreDataProperties.h"; sourceTree = "<group>"; };
+		ACCE7FC71CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SubCategory+CoreDataProperties.m"; sourceTree = "<group>"; };
+		ACCE7FC81CDB8F6400A76CB6 /* SubCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubCategory.h; sourceTree = "<group>"; };
+		ACCE7FC91CDB8F6400A76CB6 /* SubCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubCategory.m; sourceTree = "<group>"; };
+		ACCE7FCC1CDCC3A400A76CB6 /* QAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAViewController.h; sourceTree = "<group>"; };
+		ACCE7FCD1CDCC3A400A76CB6 /* QAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAViewController.m; sourceTree = "<group>"; };
+		ACCE7FCF1CDCD37000A76CB6 /* AskQuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskQuestionView.h; sourceTree = "<group>"; };
+		ACCE7FD01CDCD37000A76CB6 /* AskQuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskQuestionView.m; sourceTree = "<group>"; };
+		ACCE7FD21CDCD38200A76CB6 /* AskQuestionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AskQuestionView.xib; sourceTree = "<group>"; };
+		ACCE7FD41CDCDB6B00A76CB6 /* QATableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QATableViewCell.h; sourceTree = "<group>"; };
+		ACCE7FD51CDCDB6B00A76CB6 /* QATableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QATableViewCell.m; sourceTree = "<group>"; };
 		ACDC24681CBCF610003E9715 /* RadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioButton.h; sourceTree = "<group>"; };
 		ACDC24691CBCF610003E9715 /* RadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioButton.m; sourceTree = "<group>"; };
 		ACDC246B1CBE8308003E9715 /* TitleTextContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleTextContainerView.h; sourceTree = "<group>"; };
@@ -263,6 +283,8 @@
 				AC411E5D1CC7D2C9008B1E38 /* BuyingTableViewCell.m */,
 				AC1F544E1CCE455D0093848B /* OfferTableViewCell.h */,
 				AC1F544F1CCE455D0093848B /* OfferTableViewCell.m */,
+				ACCE7FD41CDCDB6B00A76CB6 /* QATableViewCell.h */,
+				ACCE7FD51CDCDB6B00A76CB6 /* QATableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -330,6 +352,8 @@
 				AC411E471CC50A00008B1E38 /* ImagesCollectionViewController.m */,
 				AC1F544B1CCE45350093848B /* OfferManagerViewController.h */,
 				AC1F544C1CCE45350093848B /* OfferManagerViewController.m */,
+				ACCE7FCC1CDCC3A400A76CB6 /* QAViewController.h */,
+				ACCE7FCD1CDCC3A400A76CB6 /* QAViewController.m */,
 			);
 			name = Adverts;
 			sourceTree = "<group>";
@@ -337,6 +361,10 @@
 		AC411E8F1CC92244008B1E38 /* Dictionary */ = {
 			isa = PBXGroup;
 			children = (
+				ACCE7FC61CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.h */,
+				ACCE7FC71CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.m */,
+				ACCE7FC81CDB8F6400A76CB6 /* SubCategory.h */,
+				ACCE7FC91CDB8F6400A76CB6 /* SubCategory.m */,
 				AC411E661CC8D186008B1E38 /* Dictionary+CoreDataProperties.h */,
 				AC411E671CC8D186008B1E38 /* Dictionary+CoreDataProperties.m */,
 				AC411E681CC8D186008B1E38 /* Dictionary.h */,
@@ -460,6 +488,9 @@
 				AC1F54541CCE48630093848B /* OfferTitleView.xib */,
 				ACDC24681CBCF610003E9715 /* RadioButton.h */,
 				ACDC24691CBCF610003E9715 /* RadioButton.m */,
+				ACCE7FCF1CDCD37000A76CB6 /* AskQuestionView.h */,
+				ACCE7FD01CDCD37000A76CB6 /* AskQuestionView.m */,
+				ACCE7FD21CDCD38200A76CB6 /* AskQuestionView.xib */,
 				AC411E3B1CC10346008B1E38 /* CollectionViewLayout */,
 			);
 			path = Views;
@@ -468,6 +499,8 @@
 		AC68C4741CB51CB2004B78DF /* Additional */ = {
 			isa = PBXGroup;
 			children = (
+				AC19114D1CE1E74000C5A4A5 /* NSData+base64.h */,
+				AC19114E1CE1E74000C5A4A5 /* NSData+base64.m */,
 				AC411E401CC5002E008B1E38 /* NSDictionary+HandleNil.h */,
 				AC411E411CC5002E008B1E38 /* NSDictionary+HandleNil.m */,
 				AC411E311CBFBE94008B1E38 /* GUIDCreator.h */,
@@ -569,6 +602,7 @@
 				AC68C47D1CB63F1B004B78DF /* brandon_bld.otf in Resources */,
 				AC411E3A1CC0F309008B1E38 /* SearchTitleView.xib in Resources */,
 				AC68C47E1CB63F1B004B78DF /* brandon_reg.otf in Resources */,
+				ACCE7FD31CDCD38200A76CB6 /* AskQuestionView.xib in Resources */,
 				AC411E381CC0F170008B1E38 /* SearchFilterSortView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -586,12 +620,14 @@
 				AC68C4921CB68865004B78DF /* PaddingTextField.m in Sources */,
 				AC411E551CC7A72C008B1E38 /* SellingTableViewCell.m in Sources */,
 				AC411E131CBF970A008B1E38 /* Advert.m in Sources */,
+				ACCE7FD11CDCD37000A76CB6 /* AskQuestionView.m in Sources */,
 				AC68C4841CB64966004B78DF /* CreateAdvertViewController.m in Sources */,
 				AC411E781CC8D186008B1E38 /* Certification+CoreDataProperties.m in Sources */,
 				AC411E611CC7DC8E008B1E38 /* PaddingLabel.m in Sources */,
 				ACDC246D1CBE8308003E9715 /* TitleTextContainerView.m in Sources */,
 				AC411E791CC8D186008B1E38 /* Certification.m in Sources */,
 				AC1F544D1CCE45350093848B /* OfferManagerViewController.m in Sources */,
+				ACCE7FCE1CDCC3A400A76CB6 /* QAViewController.m in Sources */,
 				ACFCB6BA1CDA200A005A4024 /* UserDetailsViewController.m in Sources */,
 				AC411E211CBF9CEF008B1E38 /* Image+CoreDataProperties.m in Sources */,
 				AC411E5E1CC7D2C9008B1E38 /* BuyingTableViewCell.m in Sources */,
@@ -601,6 +637,7 @@
 				AC049D051CB7C449006A8F21 /* SearchViewController.m in Sources */,
 				AC1F54501CCE455D0093848B /* OfferTableViewCell.m in Sources */,
 				ACFCB6BD1CDA5047005A4024 /* Settings.m in Sources */,
+				ACCE7FCA1CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.m in Sources */,
 				AC049D081CB7C47F006A8F21 /* HomeViewController.m in Sources */,
 				AC411E4E1CC63ECA008B1E38 /* Reachability.m in Sources */,
 				AC68C4811CB64241004B78DF /* TextFieldBorderBottom.m in Sources */,
@@ -613,6 +650,7 @@
 				AC411E5B1CC7D257008B1E38 /* BuyingViewController.m in Sources */,
 				AC411E731CC8D186008B1E38 /* Shipping.m in Sources */,
 				ACFCB6B61CDA14A4005A4024 /* User+CoreDataProperties.m in Sources */,
+				ACCE7FD61CDCDB6B00A76CB6 /* QATableViewCell.m in Sources */,
 				AC049D1E1CBBBA0A006A8F21 /* SearchTitleView.m in Sources */,
 				AC411E7F1CC8D61E008B1E38 /* BaseEntity.m in Sources */,
 				AC1F54531CCE484F0093848B /* OfferTitleView.m in Sources */,
@@ -633,6 +671,7 @@
 				AC411E4B1CC63825008B1E38 /* ServerConnectionHelper.m in Sources */,
 				AC411E451CC50884008B1E38 /* ImageScrollCollectionViewCell.m in Sources */,
 				AC411E7E1CC8D61E008B1E38 /* BaseEntity+CoreDataProperties.m in Sources */,
+				AC19114F1CE1E74000C5A4A5 /* NSData+base64.m in Sources */,
 				AC411E221CBF9CEF008B1E38 /* Image.m in Sources */,
 				ACDC246A1CBCF610003E9715 /* RadioButton.m in Sources */,
 				AC68C4891CB6534A004B78DF /* UIImage+ExtendedImage.m in Sources */,
@@ -643,6 +682,7 @@
 				AC1F54581CCE495E0093848B /* TopBottomStripesLabel.m in Sources */,
 				AC411E331CBFBE94008B1E38 /* GUIDCreator.m in Sources */,
 				AC68C45D1CB51C1F004B78DF /* main.m in Sources */,
+				ACCE7FCB1CDB8F6400A76CB6 /* SubCategory.m in Sources */,
 				AC049D161CB7C95D006A8F21 /* UIView+NibLoadView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

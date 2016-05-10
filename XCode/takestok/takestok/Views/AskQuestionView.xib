@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="brandon_bld.otf">
+            <string>BrandonGrotesque-Bold</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AskQuestionView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="160"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="032-9H-Ke7">
+                    <rect key="frame" x="10" y="10" width="580" height="96"/>
+                    <subviews>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Uv3-fG-Xfd">
+                            <rect key="frame" x="5" y="5" width="570" height="86"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="0aX-p5-Dv0"/>
+                        <constraint firstItem="Uv3-fG-Xfd" firstAttribute="width" secondItem="032-9H-Ke7" secondAttribute="width" constant="-10" id="I3M-qJ-n65"/>
+                        <constraint firstItem="Uv3-fG-Xfd" firstAttribute="height" secondItem="032-9H-Ke7" secondAttribute="height" constant="-10" id="K3P-op-Blx"/>
+                        <constraint firstItem="Uv3-fG-Xfd" firstAttribute="centerX" secondItem="032-9H-Ke7" secondAttribute="centerX" id="c5Y-vB-4og"/>
+                        <constraint firstItem="Uv3-fG-Xfd" firstAttribute="centerY" secondItem="032-9H-Ke7" secondAttribute="centerY" id="slH-FR-wPv"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                            <color key="value" red="0.57647058823529407" green="0.58431372549019611" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="0aX-p5-Dv0"/>
+                        </mask>
+                    </variation>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YJu-EE-P9U">
+                    <rect key="frame" x="20" y="116" width="560" height="34"/>
+                    <color key="backgroundColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="qFw-Ip-eJq"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="BrandonGrotesque-Bold" family="Brandon Grotesque" pointSize="14"/>
+                    <state key="normal" title="ASK AWAY!">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="askQuestion:" destination="iN0-l3-epB" eventType="touchUpInside" id="jng-dG-cmZ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="032-9H-Ke7" secondAttribute="trailing" constant="10" id="ANS-Np-3V6"/>
+                <constraint firstAttribute="trailing" secondItem="YJu-EE-P9U" secondAttribute="trailing" constant="20" id="EA0-rc-LCr"/>
+                <constraint firstItem="YJu-EE-P9U" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="FdR-bs-Qyo"/>
+                <constraint firstItem="032-9H-Ke7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="YNC-rW-Axg"/>
+                <constraint firstAttribute="bottom" secondItem="YJu-EE-P9U" secondAttribute="bottom" constant="10" id="jTp-HY-8Yb"/>
+                <constraint firstItem="YJu-EE-P9U" firstAttribute="top" secondItem="032-9H-Ke7" secondAttribute="bottom" constant="10" id="tyY-mx-q4B"/>
+                <constraint firstItem="032-9H-Ke7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="uNz-69-xq2"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="questionTextView" destination="Uv3-fG-Xfd" id="TjW-YX-8Sf"/>
+            </connections>
+            <point key="canvasLocation" x="346" y="485"/>
+        </view>
+    </objects>
+</document>

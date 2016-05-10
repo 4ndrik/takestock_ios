@@ -10,6 +10,8 @@
 @class TitleTextContainerView;
 @class Advert;
 @class TopBottomStripesLabel;
+@class RatingView;
+@class BackgroundImageView;
 
 @interface AdvertDetailViewController : BaseViewController<UICollectionViewDelegate, UICollectionViewDataSource>{
     Advert* _advert;
@@ -32,8 +34,15 @@
     __weak IBOutlet NSLayoutConstraint *_expiryHeightConstraint;
     __weak IBOutlet NSLayoutConstraint *_certificationHeightConstraint;
     __weak IBOutlet NSLayoutConstraint *_conditionHeightConstraint;
+    
+    __weak IBOutlet BackgroundImageView *_userPicture;
+    __weak IBOutlet UILabel *_userName;
+    __weak IBOutlet RatingView *_ratingView;
+    
+    __weak IBOutlet UIImageView *_awardImageView;
 }
 
 -(void)setAdvert:(Advert*)advert;
+- (IBAction)makeOrder:(id)sender;
 
 @end

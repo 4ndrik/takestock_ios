@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class Reachability;
+@class Advert;
 @class User;
 
 @interface ServerConnectionHelper : NSObject{
@@ -20,7 +21,8 @@
 
 +(ServerConnectionHelper*)sharedInstance;
 -(BOOL)isInternetConnection;
--(void)loadAdverb:(void(^)(NSArray* adverbs, NSError* error))compleate;
+-(void)loadAdvert:(void(^)(NSArray* adverbs, NSError* error))compleate;
+-(void)createAdvert:(Advert*)advert;
 -(void)loadDictionaries;
 -(void)loadUser:(int)ident compleate:(void(^)(User* user, NSError* error))compleate;
 

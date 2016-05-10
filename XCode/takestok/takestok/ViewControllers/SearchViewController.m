@@ -61,7 +61,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.backItem.title = @"Home";
-    [[ServerConnectionHelper sharedInstance] loadAdverb:^(NSArray *adverbs, NSError *error) {
+    [[ServerConnectionHelper sharedInstance] loadAdvert:^(NSArray *adverbs, NSError *error) {
         if (error){
             
         }
@@ -125,7 +125,7 @@
 
 -(int)heightForRowAtIndexPath:(NSIndexPath*)indexPath{
     Advert* adv = [_adverts objectAtIndex:indexPath.row];
-    float height = 164;
+    float height = 172;
     Image* image = [adv.images firstObject];
     if (image){
         height += image.height * (_searchCollectionView.frame.size.width - 30) / 2 / image.width;
