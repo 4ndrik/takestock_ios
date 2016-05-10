@@ -9,9 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface HomeViewController : BaseViewController
+@class TextFieldBorderBottom;
 
-
+@interface HomeViewController : BaseViewController<UITextFieldDelegate>{
+    
+    __weak IBOutlet UIScrollView *_scrollView;
+    __weak IBOutlet TextFieldBorderBottom *_serachTextField;
+}
+- (IBAction)hideKeyboard:(id)sender;
 
 @end
 

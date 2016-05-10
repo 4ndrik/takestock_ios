@@ -48,30 +48,15 @@
     layout.cellPadding = 10;
     layout.delegate = self;
     
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    refreshControl.tintColor = [UIColor grayColor];
-    [refreshControl addTarget:self action:@selector(reloadData:) forControlEvents:UIControlEventValueChanged];
-    [_searchCollectionView addSubview:refreshControl];
-    
-//    UICollectionViewFlowLayout* layout = (UICollectionViewFlowLayout*)_searchCollectionView.collectionViewLayout;
-//    if ([layout respondsToSelector:@selector(setSectionHeadersPinToVisibleBounds:)])
-//        layout.sectionHeadersPinToVisibleBounds = YES;
+    _refreshControl = [[UIRefreshControl alloc] init];
+    _refreshControl.tintColor = OliveMainColor;
+    [_refreshControl addTarget:self action:@selector(reloadData:) forControlEvents:UIControlEventValueChanged];
+    [_searchCollectionView addSubview:_refreshControl];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.backItem.title = @"Home";
-    [[ServerConnectionHelper sharedInstance] loadAdvert:^(NSArray *adverbs, NSError *error) {
-        if (error){
-            
-        }
-        else
-        {
-            [_adverts removeAllObjects];
-            [_adverts addObjectsFromArray:adverbs];
-            [_searchCollectionView reloadData];
-        }
-    }];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -88,7 +73,25 @@
 }
 
 -(void)reloadData:(id)owner{
-    NSLog(@"dadas");
+    [_refreshControl beginRefreshing];
+    [_adverts removeAllObjects];
+    [_searchCollectionView reloadData];
+    [[ServerConnectionHelper sharedInstance] loadAdvert:^(NSArray *adverbs, NSError *error) {
+        if (error){
+            
+        }
+        else
+        {
+            [_refreshControl endRefreshing];
+            [_adverts addObjectsFromArray:adverbs];
+            [_searchCollectionView reloadData];
+        }
+    }];
+}
+
+-(void)setSearchText:(NSString*)searchText{
+    _searchText = searchText;
+    [self reloadData:nil];
 }
 
 #pragma mark - UICollectionViewDataSource

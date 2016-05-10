@@ -20,6 +20,10 @@
     NSArray* _sortData;
     SearchFilterSortView* _searchFilterSortView;
     NSMutableArray* _adverts;
+    NSString* _searchText;
+    UIRefreshControl *_refreshControl;
 }
+
+-(void)setSearchText:(NSString*)searchText;
 
 @end
