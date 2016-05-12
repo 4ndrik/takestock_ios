@@ -14,6 +14,7 @@
 @class Advert;
 
 @interface CreateAdvertViewController : BaseViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
+    
     NSMutableArray* _images;
     
     Advert* _advert;

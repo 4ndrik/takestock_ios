@@ -67,8 +67,10 @@
                                   style:UIAlertActionStyleDefault
                                   handler:^(UIAlertAction * action)
                                   {
-                                      [self performSegueWithIdentifier:@"SellingSegue" sender:self];
-                                      [menuController dismissViewControllerAnimated:YES completion:nil];
+                                      if ([self shouldPerformSegueWithIdentifier:@"SellingSegue" sender:self]){
+                                          [self performSegueWithIdentifier:@"SellingSegue" sender:self];
+                                          [menuController dismissViewControllerAnimated:YES completion:nil];
+                                      }
                                       
                                   }];
     
@@ -77,8 +79,10 @@
                                    style:UIAlertActionStyleDefault
                                    handler:^(UIAlertAction * action)
                                    {
-                                       [self performSegueWithIdentifier:@"BuyingSegue" sender:self];
-                                       [menuController dismissViewControllerAnimated:YES completion:nil];
+                                       if ([self shouldPerformSegueWithIdentifier:@"BuyingSegue" sender:self]){
+                                           [self performSegueWithIdentifier:@"BuyingSegue" sender:self];
+                                           [menuController dismissViewControllerAnimated:YES completion:nil];
+                                       }
                                        
                                    }];
     
@@ -87,13 +91,15 @@
                                    style:UIAlertActionStyleDefault
                                    handler:^(UIAlertAction * action)
                                    {
-                                       [self performSegueWithIdentifier:@"MyProfileSegue" sender:self];
-                                       [menuController dismissViewControllerAnimated:YES completion:nil];
+                                       if ([self shouldPerformSegueWithIdentifier:@"MyProfileSegue" sender:self]){
+                                           [self performSegueWithIdentifier:@"MyProfileSegue" sender:self];
+                                           [menuController dismissViewControllerAnimated:YES completion:nil];
+                                       }
                                        
                                    }];
     
     UIAlertAction* closeAction = [UIAlertAction
-                                  actionWithTitle:@"Close"
+                                  actionWithTitle:@"Cancel"
                                   style:UIAlertActionStyleCancel
                                   handler:^(UIAlertAction * action)
                                   {

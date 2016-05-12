@@ -288,6 +288,7 @@ typedef enum
                             user = [User storedEntity];
                         }
                         [user updateWithDic:userDic];
+                        [self loadUserAdvert];
                     });
                 }
             }

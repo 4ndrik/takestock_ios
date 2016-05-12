@@ -160,6 +160,9 @@
                                                 <exclude reference="WH4-YV-OAr"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="Mjc-0a-z6S" appends="YES" id="1C2-5L-FAT"/>
+                                        </connections>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USER NAME AND PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1SB-zK-ys0">
                                         <rect key="frame" x="20" y="600" width="560" height="18"/>
@@ -500,6 +503,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="_addImageTitle" destination="H5Z-TA-9nd" id="JpQ-re-PfH"/>
                         <outlet property="_amNotVatRegisteredButton" destination="c8L-Cf-3dm" id="1Hg-Bq-dH7"/>
                         <outlet property="_businessNameTextField" destination="6Kr-AO-3O4" id="plB-HA-Cso"/>
                         <outlet property="_emailTextField" destination="7sJ-QL-79A" id="T6y-4R-AzP"/>
@@ -512,6 +516,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VWJ-or-6Q2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Mjc-0a-z6S">
+                    <connections>
+                        <action selector="addEditImage:" destination="daJ-tC-g3G" id="vpi-UM-Y2l"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="419" y="-1719"/>
         </scene>

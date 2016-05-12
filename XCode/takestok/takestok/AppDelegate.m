@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "UIImage+ExtendedImage.h"
 #import "ServerConnectionHelper.h"
+#import "DB.h"
 
 @interface AppDelegate ()
 
@@ -28,7 +29,7 @@
     [[UINavigationBar appearance] setBarTintColor:OliveMainColor];
     [[UINavigationBar appearance] setTranslucent:NO];
     
-//     [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:OliveMainColor]];
+     [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:OliveMainColor]];
     
 //    [[UISegmentedControl appearance] setTitleTextAttributes:titleBarAttributes forState:UIControlStateNormal];
 //    
@@ -58,6 +59,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    [[DB sharedInstance].storedManagedObjectContext save:nil];
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }

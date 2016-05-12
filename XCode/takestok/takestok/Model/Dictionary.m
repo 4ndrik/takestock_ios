@@ -39,7 +39,6 @@
         dbDic.ident = ident;
         dbDic.title = [jsonDic allValues].firstObject;
     }
-    [[DB sharedInstance].storedManagedObjectContext save:nil];
     //TODO Remove old items
 }
 

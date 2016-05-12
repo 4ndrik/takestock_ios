@@ -14,9 +14,10 @@
 @class RadioButton;
 @class User;
 
-@interface UserDetailsViewController : BaseViewController{
+@interface UserDetailsViewController : BaseViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>{
     User* _user;
     
+    __weak IBOutlet UILabel *_addImageTitle;
     __weak IBOutlet BackgroundImageView *_userImageView;
     __weak IBOutlet PaddingTextField *_userNameTextField;
     __weak IBOutlet PaddingTextField *_emailTextField;
@@ -31,6 +32,7 @@
 }
 - (IBAction)changePasswordAction:(id)sender;
 - (IBAction)submit:(id)sender;
+- (IBAction)addEditImage:(id)sender;
 
 
 @end

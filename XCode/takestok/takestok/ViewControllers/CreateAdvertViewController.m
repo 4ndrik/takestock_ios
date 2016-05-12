@@ -37,8 +37,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _keyboardFrame = 303;
     _images = [NSMutableArray array];
+    _keyboardFrame = 303;
+
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterLongStyle];
@@ -73,6 +74,48 @@
                             _otherTextField,
                             _keywordTextField, nil];
     
+    if (_advert){
+        
+        _productTitleTextField.text = _advert.name;
+        
+        _categoryTextField.tag = _advert.category.ident;
+        _categoryTextField.text = _advert.category.title;
+        
+        _subCategoryTextField.tag = _advert.subCategory.ident;
+        _subCategoryTextField.text = _advert.subCategory.title;
+        
+        _unitTextField.tag = _advert.packaging.ident;
+        _unitTextField.text = _advert.packaging.title;
+        
+        _countUnitTextField.text = [NSString stringWithFormat:@"%i", _advert.count];
+        _minimumOrderTextField.text = [NSString stringWithFormat:@"%i", _advert.minOrderQuantity];
+        _priceTextField.text = [NSString stringWithFormat:@"%f", _advert.guidePrice];
+        
+        _descriptionTextView.text = _advert.adDescription;
+        _locationTextField.text = _advert.location;
+        
+        _shippingTextField.tag = _advert.shipping.ident;
+        _shippingTextField.text = _advert.shipping.title;
+        
+        _conditionTextField.tag = _advert.condition.ident;
+        _conditionTextField.text = _advert.condition.title;
+        
+        NSDate* date = [NSDate dateWithTimeIntervalSinceReferenceDate:_advert.expires];
+        _expairyTextField.text = [formatter stringFromDate:date];
+        _sizeTextField.text = _advert.size;
+        
+        _sizeTypeTextField.tag = _advert.sizeType.ident;
+        _sizeTypeTextField.text = _advert.sizeType.title;
+        
+        _otherTextField.text = _advert.certificationOther;
+        _keywordTextField.text = _advert.tags;
+        
+        self.title = @"EDIT ADVERT";
+    }else{
+        _advert = [Advert storedEntity];
+        self.title = @"SELL SOMETHING";
+    }
+    
     //Add certifications
     
     float size = self.view.bounds.size.width - 40;
@@ -104,6 +147,8 @@
         [radioButton.titleLabel setFont:HelveticaLight18];
         [radioButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [radioButton addTarget:self action:@selector(setCertification:) forControlEvents:UIControlEventTouchUpInside];
+        if (_advert)
+            [radioButton setSelected:cert.ident == _advert.certification.ident];
         
         [_certificationsContainerView addSubview:radioButton];
     }
@@ -121,6 +166,13 @@
     [self.view setNeedsUpdateConstraints];
     [self.view updateConstraints];
     
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    if (_advert.ident == 0){
+        [_advert.managedObjectContext deleteObject:_advert];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -244,11 +296,6 @@
                                   preferredStyle:UIAlertControllerStyleActionSheet];
     
     
-    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        [self dismissViewControllerAnimated:YES completion:^{
-        }];
-    }]];
-    
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"Take photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self dismissViewControllerAnimated:NO completion:nil];
         [self showImagePickerController:NO];
@@ -257,6 +304,11 @@
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"Choose from library" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self dismissViewControllerAnimated:NO completion:nil];
         [self showImagePickerController:YES];
+    }]];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
     }]];
     
     [self presentViewController:actionSheet animated:YES completion:nil];
@@ -334,7 +386,7 @@
         return obj.ident == textField.tag;
     }];
     [_textPiker selectRow:index == NSNotFound ? 0 : index inComponent:0 animated:NO];
-    [self pickerView:_textPiker didSelectRow:NSNotFound ? 0 : index inComponent:0];
+    [self pickerView:_textPiker didSelectRow:index == NSNotFound ? 0 : index inComponent:0];
 }
 
 -(BOOL)textFieldShouldBeginEditing: (UITextField *)textField

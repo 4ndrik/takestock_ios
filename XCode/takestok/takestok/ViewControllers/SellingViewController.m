@@ -76,10 +76,10 @@
     UIAlertAction *editAdvertAction = [UIAlertAction actionWithTitle:@"Edit advert"
                                                            style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                                                                 [tableView deselectRowAtIndexPath:indexPath animated:NO];
-//                                                               UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//                                                               CreateAdvertViewController *controller = (CreateAdvertViewController *)[storyboard instantiateViewControllerWithIdentifier:@"CreateAdvertViewController"];
-//                                                               [controller setAdvert:[_adverts objectAtIndex:indexPath.row]];
-//                                                               [self.navigationController pushViewController:controller animated:YES];
+                                                               UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                                                               CreateAdvertViewController *controller = (CreateAdvertViewController *)[storyboard instantiateViewControllerWithIdentifier:@"CreateAdvertViewController"];
+                                                               [controller setAdvert:[_adverts objectAtIndex:indexPath.row]];
+                                                               [self.navigationController pushViewController:controller animated:YES];
                                                            }];
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
