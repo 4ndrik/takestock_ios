@@ -153,6 +153,7 @@ typedef enum
     
     if ([Settings getUserId] > 0){
         [self loadUser:[Settings getUserId] compleate:nil];
+        [self loadUserAdvert];
     }
     
     [loadConditionsTask resume];
@@ -164,6 +165,37 @@ typedef enum
 }
 
 #pragma mark - Advert
+
+-(void)loadUserAdvert{
+    NSURLSessionDataTask *loadUserAdvertTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:[NSString stringWithFormat:@"author_id=%i", [Settings getUserId]] methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        _loadAdvertCancelTask = nil;
+        NSMutableDictionary* additionalDic;
+        NSMutableArray* adverts;
+        if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:data error:&error])
+        {
+            NSDictionary* result = [self jsonFromData:data error:&error];
+            additionalDic = [NSMutableDictionary dictionaryWithDictionary:result];
+            [additionalDic removeObjectForKey:@"results"];
+            NSArray* array = [result objectForKeyNotNull:@"results"];
+            adverts = [NSMutableArray arrayWithCapacity:array.count];
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                if (!error){
+                    for (NSDictionary* advertDic in array) {
+                        int advertId = [[advertDic objectForKeyNotNull:@"id"] intValue];
+                        Advert* advert = [Advert getEntityWithId:advertId];
+                        if (!advert){
+                            advert = [Advert storedEntity];
+                        }
+                        [advert updateWithDic:advertDic];
+                        [adverts addObject:advert];
+                    }
+                }
+            });
+        }
+    }];
+    [loadUserAdvertTask resume];
+}
+
 -(void)loadAdvertWithSortData:(SortData*)sortData page:(int)page compleate:(void(^)(NSArray* adverbs, NSDictionary* additionalData, NSError* error))compleate{
     [_loadAdvertCancelTask cancel];
     _loadAdvertCancelTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:[NSString stringWithFormat:@"o=%@&page=%i", sortData.value, page] methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -187,7 +219,11 @@ typedef enum
             dispatch_sync(dispatch_get_main_queue(), ^{
                 if (!error){
                     for (NSDictionary* advertDic in array) {
-                        Advert* advert = [Advert tempEntity];
+                        int advertId = [[advertDic objectForKeyNotNull:@"id"] intValue];
+                        Advert* advert = [Advert getEntityWithId:advertId];
+                        if (!advert){
+                            advert = [Advert tempEntity];
+                        }
                         [advert updateWithDic:advertDic];
                         [adverts addObject:advert];
                     }

@@ -37,7 +37,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"DETAILS";
     if (_advert)
         [self refreshAdData];
 }
@@ -59,11 +58,11 @@
     _priceTextContainerView.text = [NSString stringWithFormat:@"%.02f £", _advert.guidePrice];
     [_priceTextContainerView setNeedsDisplay];
     
-    _minimumOrderTextContainerView.text = [NSString stringWithFormat:@"%i %@", _advert.minOrderQuantity, _advert.packaging.title];
+    _minimumOrderTextContainerView.text = [NSString stringWithFormat:@"%i %@", _advert.minOrderQuantity, _advert.packaging ? _advert.packaging.title: @""];
     if (_minimumOrderTextContainerView.text.length == 0){
         _minimumOrderHeightConstraint.constant = 0;
     }
-    _qtyAvailableTextContainerView.text = [NSString stringWithFormat:@"%i %@", _advert.count, _advert.packaging.title];
+    _qtyAvailableTextContainerView.text = [NSString stringWithFormat:@"%i %@", _advert.count, _advert.packaging ? _advert.packaging.title: @""];
     if (_qtyAvailableTextContainerView.text.length == 0){
         _qtyAvailableHeightConstraint.constant = 0;
         [_qtyAvailableTextContainerView setNeedsUpdateConstraints];

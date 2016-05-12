@@ -48,11 +48,7 @@
 - (void)keyboardWillShow:(NSNotification *)n
 {
     NSDictionary* userInfo = [n userInfo];
-    
-    // get the size of the keyboard
     CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    //    _keyboardFrame = keyboardSize.height;
     _scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0);
     
 }
@@ -61,6 +57,57 @@
     [self performSegueWithIdentifier:@"SearchSegue" sender:self];
     [_serachTextField resignFirstResponder];
     return YES;
+}
+
+- (IBAction)showMenuAction:(id)sender {
+    UIAlertController* menuController = [UIAlertController alertControllerWithTitle:@"Menu" message:@"Choose action" preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction* sellingAction = [UIAlertAction
+                                  actionWithTitle:@"Selling"
+                                  style:UIAlertActionStyleDefault
+                                  handler:^(UIAlertAction * action)
+                                  {
+                                      [self performSegueWithIdentifier:@"SellingSegue" sender:self];
+                                      [menuController dismissViewControllerAnimated:YES completion:nil];
+                                      
+                                  }];
+    
+    UIAlertAction* buyingAction = [UIAlertAction
+                                   actionWithTitle:@"Buying"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action)
+                                   {
+                                       [self performSegueWithIdentifier:@"BuyingSegue" sender:self];
+                                       [menuController dismissViewControllerAnimated:YES completion:nil];
+                                       
+                                   }];
+    
+    UIAlertAction* profileAction = [UIAlertAction
+                                   actionWithTitle:@"Profile"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action)
+                                   {
+//                                       [self performSegueWithIdentifier:@"MyProfileSegue" sender:self];
+                                       [menuController dismissViewControllerAnimated:YES completion:nil];
+                                       
+                                   }];
+    
+    UIAlertAction* closeAction = [UIAlertAction
+                                  actionWithTitle:@"Close"
+                                  style:UIAlertActionStyleCancel
+                                  handler:^(UIAlertAction * action)
+                                  {
+                                      [menuController dismissViewControllerAnimated:YES completion:nil];
+                                      
+                                  }];
+    
+    [menuController addAction:sellingAction];
+    [menuController addAction:buyingAction];
+    [menuController addAction:profileAction];
+    [menuController addAction:closeAction];
+    
+    [self presentViewController:menuController animated:YES completion:nil];
+
 }
 
 @end

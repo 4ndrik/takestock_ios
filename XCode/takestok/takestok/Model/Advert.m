@@ -147,6 +147,9 @@
 
 -(NSDictionary*)getDictionary{
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
+    if (self.ident > 0){
+        [result setValue:[NSNumber numberWithInt:self.ident] forKey:ID_PARAM];
+    }
     [result setValue:self.name forKey:NAME_PARAM];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

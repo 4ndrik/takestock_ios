@@ -16,7 +16,7 @@
 @interface CreateAdvertViewController : BaseViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
     NSMutableArray* _images;
     
-    Advert* advert;
+    Advert* _advert;
     
     BOOL _isAddNewImage;
     int _selectedImage;
@@ -57,6 +57,8 @@
     
     IBOutletCollection(UILabel) NSArray *_packagingLabelCollection;
 }
+
+-(void)setAdvert:(Advert*)advert;
 
 - (IBAction)addImage:(id)sender;
 - (IBAction)saveAdvert:(id)sender;

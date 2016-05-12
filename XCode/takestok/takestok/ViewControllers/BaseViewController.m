@@ -29,7 +29,11 @@
 {
     if ([Settings getUserId] <= 0)
     {
-        if ([identifier isEqualToString:@"SellSegue"])
+        if ([identifier isEqualToString:@"SellSegue"] ||
+            [identifier isEqualToString:@"SellingSegue"] ||
+            [identifier isEqualToString:@"BuyingSegue"] ||
+            [identifier isEqualToString:@"MyProfileSegue"]
+            )
         {
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             LoginViewController *controller = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class BackgroundImageView;
+@class PaddingLabel;
 
 @interface SellingTableViewCell : UITableViewCell{
     __weak IBOutlet UIView *_selectedView;
@@ -20,5 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *offersCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *questionCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *expiresDayCountLabel;
+@property (weak, nonatomic) IBOutlet PaddingLabel *priceLabel;
+@property (weak, nonatomic) IBOutlet PaddingLabel *countLabel;
 
 @end

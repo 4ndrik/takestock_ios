@@ -31,6 +31,10 @@
 
 #define SIZE_REGEX @"^\\d+ ?x ?\\d+ ?x ?\\d+$"
 
+-(void)setAdvert:(Advert*)advert{
+    _advert = advert;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     _keyboardFrame = 303;
@@ -127,7 +131,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"AdvertDetailSegue"]) {
         AdvertDetailViewController* advertVC = (AdvertDetailViewController*)segue.destinationViewController;
-        [advertVC setAdvert:advert];
+        [advertVC setAdvert:_advert];
     }
 }
 
@@ -517,8 +521,8 @@
 }
 
 -(void)createAdvert{
-    if (!advert){
-        advert = [Advert storedEntity];
+    if (!_advert){
+        _advert = [Advert storedEntity];
     }
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterLongStyle];
@@ -532,27 +536,27 @@
         [image saveToPath:[ImageCacheUrlResolver getPathForImage:advImage]];
         [imageSet addObject:advImage];
     }
-    [advert setImages:imageSet];
+    [_advert setImages:imageSet];
     
-    advert.name = _productTitleTextField.text;
-    advert.guidePrice = [_priceTextField.text floatValue];
-    advert.location = _locationTextField.text;
-    advert.adDescription = _descriptionTextView.text;
-    advert.expires = [[formatter dateFromString:_expairyTextField.text] timeIntervalSinceReferenceDate];
-    advert.created = [[NSDate date] timeIntervalSinceReferenceDate];
-    advert.updated = [[NSDate date] timeIntervalSinceReferenceDate];
-    advert.minOrderQuantity = [_minimumOrderTextField.text intValue];
-    advert.certificationOther = _otherTextField.text;
-    advert.count = [_countUnitTextField.text intValue];
-    advert.category = [Category getEntityWithId:_categoryTextField.tag];
-    advert.subCategory = [SubCategory getEntityWithId:_subCategoryTextField.tag];
-    advert.certification = [Certification getEntityWithId:_certificationsContainerView.tag];
-    advert.condition = [Condition getEntityWithId:_conditionTextField.tag];
-    advert.shipping = [Shipping getEntityWithId:_shippingTextField.tag];
-    advert.sizeType = [SizeType getEntityWithId:_sizeTextField.tag];
-    advert.tags = _keywordTextField.text;
-    advert.packaging = [Packaging getEntityWithId:_unitTextField.tag];
-    advert.author = [User getEntityWithId:[Settings getUserId]];
+    _advert.name = _productTitleTextField.text;
+    _advert.guidePrice = [_priceTextField.text floatValue];
+    _advert.location = _locationTextField.text;
+    _advert.adDescription = _descriptionTextView.text;
+    _advert.expires = [[formatter dateFromString:_expairyTextField.text] timeIntervalSinceReferenceDate];
+    _advert.created = [[NSDate date] timeIntervalSinceReferenceDate];
+    _advert.updated = [[NSDate date] timeIntervalSinceReferenceDate];
+    _advert.minOrderQuantity = [_minimumOrderTextField.text intValue];
+    _advert.certificationOther = _otherTextField.text;
+    _advert.count = [_countUnitTextField.text intValue];
+    _advert.category = [Category getEntityWithId:_categoryTextField.tag];
+    _advert.subCategory = [SubCategory getEntityWithId:_subCategoryTextField.tag];
+    _advert.certification = [Certification getEntityWithId:_certificationsContainerView.tag];
+    _advert.condition = [Condition getEntityWithId:_conditionTextField.tag];
+    _advert.shipping = [Shipping getEntityWithId:_shippingTextField.tag];
+    _advert.sizeType = [SizeType getEntityWithId:_sizeTextField.tag];
+    _advert.tags = _keywordTextField.text;
+    _advert.packaging = [Packaging getEntityWithId:_unitTextField.tag];
+    _advert.author = [User getEntityWithId:[Settings getUserId]];
     
     [[DB sharedInstance].storedManagedObjectContext save:nil];
 
