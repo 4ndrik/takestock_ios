@@ -20,7 +20,6 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    self.title = @"SELLING";
     _adverts = [Advert getAll];
 }
    

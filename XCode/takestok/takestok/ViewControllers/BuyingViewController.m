@@ -30,7 +30,14 @@
     Advert* advert = [_adverts objectAtIndex:indexPath.row];
     [cell.adImageView loadImage:advert.images.firstObject];
     cell.titleLabel.text = advert.name;
-    cell.createdLabel.text = @"Offer made";
+    cell.priceLabel.text = [NSString stringWithFormat:@"%.02f £", advert.guidePrice];
+    cell.quantityLabel.text = [NSString stringWithFormat:@"%i %@", advert.count, advert.packaging ? advert.packaging.title: @""];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateStyle = kCFDateFormatterMediumStyle; //(@"yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'");
+    NSDate* updatedDate = [NSDate dateWithTimeIntervalSinceReferenceDate:advert.updated];
+    cell.createdLabel.text = [NSString stringWithFormat:@"Updated: %@", [dateFormatter stringFromDate:updatedDate]];
+    
     return cell;
 }
 

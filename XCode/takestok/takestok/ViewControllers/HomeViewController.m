@@ -87,7 +87,7 @@
                                    style:UIAlertActionStyleDefault
                                    handler:^(UIAlertAction * action)
                                    {
-//                                       [self performSegueWithIdentifier:@"MyProfileSegue" sender:self];
+                                       [self performSegueWithIdentifier:@"MyProfileSegue" sender:self];
                                        [menuController dismissViewControllerAnimated:YES completion:nil];
                                        
                                    }];

@@ -12,8 +12,11 @@
 @class BackgroundImageView;
 @class PaddingTextField;
 @class RadioButton;
+@class User;
 
 @interface UserDetailsViewController : BaseViewController{
+    User* _user;
+    
     __weak IBOutlet BackgroundImageView *_userImageView;
     __weak IBOutlet PaddingTextField *_userNameTextField;
     __weak IBOutlet PaddingTextField *_emailTextField;
