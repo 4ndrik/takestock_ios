@@ -7,10 +7,12 @@
 //
 
 #import "LoginViewController.h"
+#import "ServerConnectionHelper.h"
+#import "TextFieldBorderBottom.h"
 
 @implementation LoginViewController
 
-#define SignInHeight 270
+#define SignInHeight 250
 #define SignUpHeight 476
 
 
@@ -48,6 +50,18 @@
     
 }
 
+-(void)nextTextField{
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if(textField.returnKeyType == UIReturnKeyNext && _signUpView.hidden) {
+        [_signInPasswordTextField becomeFirstResponder];
+    } else if (textField.returnKeyType==UIReturnKeyDone) {
+        [self hideKeyboard:nil];
+    }
+    return YES;
+}
 
 - (IBAction)showSignUpView:(id)sender {
     [self.view endEditing:YES];
@@ -71,6 +85,31 @@
 }
 
 - (IBAction)signIn:(id)sender {
+    [self showLoading];
+    [[ServerConnectionHelper sharedInstance] signIn:_signInEmailTextField.text password:_signInPasswordTextField.text compleate:^(NSError *error) {
+        [self hideLoading];
+        if (error){
+            NSString* title = @"Error";
+            NSString* message = [error localizedDescription];
+            UIAlertController* errorController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* closeAction = [UIAlertAction
+                                          actionWithTitle:@"Ok"
+                                          style:UIAlertActionStyleCancel
+                                          handler:^(UIAlertAction * action)
+                                          {
+                                              [errorController dismissViewControllerAnimated:YES completion:nil];
+                                              
+                                          }];
+            
+            
+            [errorController addAction:closeAction];
+            
+            [self presentViewController:errorController animated:YES completion:nil];
+        }else{
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }];
 }
 
 - (IBAction)signUp:(id)sender {
@@ -79,4 +118,9 @@
 - (IBAction)close:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (IBAction)hideKeyboard:(id)sender {
+    [self.view endEditing:YES];
+}
+
 @end

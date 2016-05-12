@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
 @class TextFieldBorderBottom;
 
-@interface LoginViewController : UIViewController{
+@interface LoginViewController : BaseViewController{
     
     __weak IBOutlet UIScrollView *_scrollView;
     
@@ -39,4 +40,5 @@
 - (IBAction)signUp:(id)sender;
 
 - (IBAction)close:(id)sender;
+- (IBAction)hideKeyboard:(id)sender;
 @end

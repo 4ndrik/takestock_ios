@@ -16,6 +16,7 @@
 #import "SizeType.h"
 #import "Certification.h"
 #import "User.h"
+#import "Packaging.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

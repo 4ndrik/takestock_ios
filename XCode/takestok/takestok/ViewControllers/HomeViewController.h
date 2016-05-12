@@ -16,7 +16,7 @@
     __weak IBOutlet UIScrollView *_scrollView;
     __weak IBOutlet TextFieldBorderBottom *_serachTextField;
 }
-- (IBAction)hideKeyboard:(id)sender;
+
 
 @end
 

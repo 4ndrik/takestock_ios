@@ -13,4 +13,10 @@
 +(int)getUserId;
 +(void)setUserId:(int)ident;
 
++(NSString*)getToken;
++(void)setToken:(NSString*)token;
+
++(int)getSearchSort;
++(void)setSearchSort:(int)ident;
+
 @end

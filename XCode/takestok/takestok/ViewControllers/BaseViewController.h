@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BaseViewController : UIViewController
+@interface BaseViewController : UIViewController{
+    UIView* _loadingView;
+}
+
+- (IBAction)hideKeyboard:(id)sender;
+
+-(void)showLoading;
+-(void)hideLoading;
 
 @end

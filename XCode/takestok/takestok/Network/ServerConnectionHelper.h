@@ -11,6 +11,7 @@
 @class Reachability;
 @class Advert;
 @class User;
+@class SortData;
 
 @interface ServerConnectionHelper : NSObject{
     Reachability* _reachability;
@@ -21,9 +22,10 @@
 
 +(ServerConnectionHelper*)sharedInstance;
 -(BOOL)isInternetConnection;
--(void)loadAdvert:(void(^)(NSArray* adverbs, NSError* error))compleate;
--(void)createAdvert:(Advert*)advert;
--(void)loadDictionaries;
+-(void)loadAdvertWithSortData:(SortData*)sortData page:(int)page compleate:(void(^)(NSArray* adverbs, NSDictionary* additionalData, NSError* error))compleate;
+-(void)createAdvert:(Advert*)advert compleate:(void(^)(NSError* error))compleate;
+-(void)loadRequiredData;
 -(void)loadUser:(int)ident compleate:(void(^)(User* user, NSError* error))compleate;
+-(void)signIn:(NSString*)username password:(NSString*)password compleate:(void(^)(NSError* error))compleate;
 
 @end

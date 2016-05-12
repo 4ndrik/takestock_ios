@@ -7,6 +7,7 @@
 //
 
 #import "SearchFilterSortView.h"
+#import "SortData.h"
 
 #define DefaultHeight 44
 
@@ -17,7 +18,13 @@
 #define SortPanelHeight 200.
 
 @implementation SearchFilterSortView
-@synthesize delegate;
+@synthesize delegate = _delegate;
+
+-(void)setDelegate:(id<SerachFilterSortDelegate>)delegate{
+    _delegate = delegate;
+    [_sortButton setTitle:[NSString stringWithFormat:@"%@ ▼", [_delegate getSelectedSortItem].title] forState:UIControlStateNormal];
+    [_filterButton setTitle:@"Filter ▼" forState:UIControlStateNormal];
+}
 
 +(float)defaultHeight{
     return DefaultHeight;
@@ -42,14 +49,14 @@
     switch (_paneltype) {
         case kFilter:{
             [_filterButton setTitle:@"Filter ▲" forState:UIControlStateNormal];
-            [_sortButton setTitle:@"Sort ▼" forState:UIControlStateNormal];
+            [_sortButton setTitle:[NSString stringWithFormat:@"%@ ▼", [_delegate getSelectedSortItem].title] forState:UIControlStateNormal];
             [[_contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
             float x = FilterItemXMargin;
             float y = FilterItemYMargin;
             height = y + FilterItemHeight + FilterItemYMargin;
-            NSSet* selectedSet = [delegate selectedFilterData];
+            NSSet* selectedSet = [_delegate selectedFilterData];
             
-            for (NSString* filterItem in [delegate filterData]){
+            for (NSString* filterItem in [_delegate filterData]){
                 UILabel* label = [[UILabel alloc] init];
                 label.font = [UIFont fontWithName:@"Helvetice" size:14.];
                 label.textColor = [UIColor whiteColor];
@@ -78,7 +85,7 @@
             break;
         }
         case kSort:{
-            [_sortButton setTitle:@"Sort ▲" forState:UIControlStateNormal];
+            [_sortButton setTitle:[NSString stringWithFormat:@"%@ ▲", [_delegate getSelectedSortItem].title] forState:UIControlStateNormal];
             [_filterButton setTitle:@"Filter ▼" forState:UIControlStateNormal];
             [[_contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
             UIPickerView* picker = [[UIPickerView alloc] initWithFrame:CGRectMake(20, 0, _contentView.frame.size.width - 40, SortPanelHeight)];
@@ -87,16 +94,52 @@
             picker.showsSelectionIndicator = YES;
             [_contentView addSubview:picker];
             height = SortPanelHeight;
+            
+            UITapGestureRecognizer *tapToSelect = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tappedToSelectRow:)];
+            tapToSelect.delegate = self;
+            [picker addGestureRecognizer:tapToSelect];
+            
+//            [picker reloadAllComponents];
+//            
+//            NSUInteger index = [_pickerData indexOfObjectPassingTest:^BOOL(Dictionary* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                return obj.ident == textField.tag;
+//            }];
+//            [picker selectRow:index == NSNotFound ? 0 : index inComponent:0 animated:NO];
+            
             break;
         }
         default:{
-            [_sortButton setTitle:@"Sort ▼" forState:UIControlStateNormal];
+            [_sortButton setTitle:[NSString stringWithFormat:@"%@ ▼", [_delegate getSelectedSortItem].title] forState:UIControlStateNormal];
             [_filterButton setTitle:@"Filter ▼" forState:UIControlStateNormal];
             height = 0;
             break;
         }
     }
-    [delegate panelTypeChanged];
+    [_delegate panelTypeChanged];
+}
+
+#pragma mark - Actions
+
+- (void)tappedToSelectRow:(UITapGestureRecognizer *)tapRecognizer
+{
+    if (tapRecognizer.state == UIGestureRecognizerStateEnded) {
+        UIPickerView* picker = (UIPickerView*)tapRecognizer.view;
+        CGFloat rowHeight = [picker rowSizeForComponent:0].height;
+        CGRect selectedRowFrame = CGRectInset(picker.bounds, 0.0, (CGRectGetHeight(picker.frame) - rowHeight) / 2.0 );
+        BOOL userTappedOnSelectedRow = (CGRectContainsPoint(selectedRowFrame, [tapRecognizer locationInView:picker]));
+        if (userTappedOnSelectedRow) {
+            NSInteger selectedRow = [picker selectedRowInComponent:0];
+            [_delegate sortItemSelected:[[_delegate sortItems] objectAtIndex:selectedRow]];
+            [self paneltypeChanged:kNone];
+        }
+    }
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return true;
 }
 
 #pragma mark - UIPickerViewDelegate
@@ -106,12 +149,12 @@
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    return [delegate sortData].count;
+    return [_delegate sortItems].count;
 }
 
 - (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    NSString *title =[[delegate sortData] objectAtIndex:row];
+    NSString *title = ((SortData*)[[_delegate sortItems] objectAtIndex:row]).title;
     NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:GrayColor}];
     
     return attString;
@@ -128,10 +171,10 @@
     UILabel* label = (UILabel*)owner.view;
     NSString* filterItem = [label.text substringToIndex:[label.text length] - 2];
     
-    NSSet* selectedSet = [delegate selectedFilterData];
+    NSSet* selectedSet = [_delegate selectedFilterData];
     BOOL isSelected = [selectedSet containsObject:filterItem];
     
-    [delegate filterItem:filterItem selected:!isSelected];
+    [_delegate filterItem:filterItem selected:!isSelected];
     [self customizeLabel:label withText:filterItem isSelected:!isSelected];
 }
 

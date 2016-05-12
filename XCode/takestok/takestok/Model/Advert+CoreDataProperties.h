@@ -2,7 +2,7 @@
 //  Advert+CoreDataProperties.h
 //  takestok
 //
-//  Created by Artem on 5/4/16.
+//  Created by Artem on 5/11/16.
 //  Copyright © 2016 Artem. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *size;
 @property (nullable, nonatomic, retain) NSString *tags;
 @property (nonatomic) NSTimeInterval updated;
+@property (nullable, nonatomic, retain) User *author;
 @property (nullable, nonatomic, retain) Category *category;
 @property (nullable, nonatomic, retain) Certification *certification;
 @property (nullable, nonatomic, retain) Condition *condition;
@@ -34,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) Shipping *shipping;
 @property (nullable, nonatomic, retain) SizeType *sizeType;
 @property (nullable, nonatomic, retain) SubCategory *subCategory;
-@property (nullable, nonatomic, retain) User *author;
+@property (nullable, nonatomic, retain) Packaging *packaging;
 
 @end
 

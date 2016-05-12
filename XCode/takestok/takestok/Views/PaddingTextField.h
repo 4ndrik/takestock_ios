@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DoneTextField.h"
 
-@interface PaddingTextField : UITextField
+@interface PaddingTextField : DoneTextField
 
 @end

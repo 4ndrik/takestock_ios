@@ -11,6 +11,7 @@
 #import "QATableViewCell.h"
 #import "AskQuestionView.h"
 #import "UIView+NibLoadView.h"
+#import "Settings.h"
 
 @interface QAViewController ()
 
@@ -43,6 +44,8 @@
                                              selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification
                                                object:self.view.window];
+    
+    self.title = @"QUESTIONS & ANSWERS";
 }
 
 -(void)loadQA{
@@ -86,11 +89,7 @@
                   value:ArialItalic14
                   range:NSMakeRange(6, buyerText.length - 6)];
     
-    
-    
-    
     cell.questionLabel.attributedText = buyerText;
-    
     
     NSMutableAttributedString *sellerText = [[NSMutableAttributedString alloc] initWithString:@"Seller: Some question."];
     [sellerText addAttribute:NSFontAttributeName
@@ -106,10 +105,13 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return [AskQuestionView defaultHeight];
+    return _advert.author.ident == [Settings getUserId] ? 0 : [AskQuestionView defaultHeight];
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    if (_advert.author.ident == [Settings getUserId])
+        return nil;
+    
     if (!_askQuestionView){
         _askQuestionView = [AskQuestionView loadFromXib];
     }

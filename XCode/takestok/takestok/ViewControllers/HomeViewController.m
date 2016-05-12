@@ -29,18 +29,6 @@
                                              selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
-    
-//    SearchSegue
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewDidLayoutSubviews
-{
-    [_scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, self.view.frame.size.height - 20)];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -73,12 +61,6 @@
     [self performSegueWithIdentifier:@"SearchSegue" sender:self];
     [_serachTextField resignFirstResponder];
     return YES;
-}
-
-- (IBAction)hideKeyboard:(id)sender {
-    if ([_serachTextField isFirstResponder]){
-        [_serachTextField resignFirstResponder];
-    }
 }
 
 @end

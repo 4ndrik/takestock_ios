@@ -22,8 +22,9 @@
 @interface SerachCollectionViewLayout : UICollectionViewLayout{
     float contentHeight;
     NSMutableArray* _layoutAtributes;
+    NSMutableArray* _noPaddingAtributes;
     UICollectionViewLayoutAttributes* _alwaysVisibleLayoutAttribute;
-    float _alwaysVisibledefaultY;
+    float _alwaysVisibleDefaultY;
 }
 
 @property int numberOfColumns;

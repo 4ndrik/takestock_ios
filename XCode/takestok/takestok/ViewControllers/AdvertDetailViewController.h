@@ -16,6 +16,8 @@
 @interface AdvertDetailViewController : BaseViewController<UICollectionViewDelegate, UICollectionViewDataSource>{
     Advert* _advert;
     
+    BOOL _popToRootViewController;
+    
     __weak IBOutlet TopBottomStripesLabel *_titleLabel;
     __weak IBOutlet TitleTextContainerView *_priceTextContainerView;
     __weak IBOutlet TitleTextContainerView *_minimumOrderTextContainerView;
@@ -35,6 +37,9 @@
     __weak IBOutlet NSLayoutConstraint *_certificationHeightConstraint;
     __weak IBOutlet NSLayoutConstraint *_conditionHeightConstraint;
     
+    __weak IBOutlet UIButton *_makeButton;
+    __weak IBOutlet UIButton *_questionButton;
+    
     __weak IBOutlet BackgroundImageView *_userPicture;
     __weak IBOutlet UILabel *_userName;
     __weak IBOutlet RatingView *_ratingView;
@@ -43,6 +48,6 @@
 }
 
 -(void)setAdvert:(Advert*)advert;
-- (IBAction)makeOrder:(id)sender;
+- (IBAction)makeAction:(id)sender;
 
 @end

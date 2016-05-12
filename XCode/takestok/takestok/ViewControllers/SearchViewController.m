@@ -16,6 +16,9 @@
 #import "AdvertDetailViewController.h"
 #import "SearchTitleView.h"
 #import "ServerConnectionHelper.h"
+#import "SortData.h"
+#import "NSDictionary+HandleNil.h"
+#import "Settings.h"
 
 #define CellTitleFont [UIFont fontWithName:@"HelveticaNeue-Bold" size:16]
 #define CellOtherFont [UIFont fontWithName:@"HelveticaNeue" size:16]
@@ -29,7 +32,6 @@
     self = [super initWithCoder:aDecoder];
     _filterData = [NSArray arrayWithObjects:@"Beverages", @"Bakery", @"Sweets & Snacks", @"Finished goods", @"Ingradients", @"Condiments", @"Nuts & dried fruit", @"Herbs, spices & flavourings", @"Other", nil];
     _selectedFilterData = [[NSMutableSet alloc] init];
-    _sortData = [NSArray arrayWithObjects:@"Newest post", @"Oldest post", @"Guide price (hight to low)", @"Guide price (low to hight)", @"Soonest expiry date", @"Longest expiry date", nil];
     return self;
 }
 
@@ -37,8 +39,19 @@
     [super viewDidLoad];
     
     _adverts = [NSMutableArray array];
+    int defaultSort = [Settings getSearchSort];
+    if (defaultSort > 0){
+        NSArray* sortData = [SortData getAll];
+        int index = [sortData indexOfObjectPassingTest:^BOOL(SortData*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            return obj.ident == defaultSort;
+        }];
+        if (index != NSNotFound)
+            _sortData = [sortData objectAtIndex:index];
+    }
     
-//    _adverts = [Advert getAll];
+    if (!_sortData)
+        _sortData = [SortData getAll].firstObject;
+    
     
     [_searchCollectionView registerNib:[UINib nibWithNibName:@"SearchTitleView" bundle:nil] forSupplementaryViewOfKind:TitleSuplementaryViewKind withReuseIdentifier:TitleSuplementaryViewKind];
     [_searchCollectionView registerNib:[UINib nibWithNibName:@"SearchFilterSortView" bundle:nil] forSupplementaryViewOfKind:SearchFilterSuplementaryViewKind withReuseIdentifier:SearchFilterSuplementaryViewKind];
@@ -52,6 +65,14 @@
     _refreshControl.tintColor = OliveMainColor;
     [_refreshControl addTarget:self action:@selector(reloadData:) forControlEvents:UIControlEventValueChanged];
     [_searchCollectionView addSubview:_refreshControl];
+    
+    _loadingIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    _loadingIndicator.color = OliveMainColor;
+    _loadingIndicator.hidesWhenStopped = YES;
+    [_loadingIndicator stopAnimating];
+    [_searchCollectionView addSubview:_loadingIndicator];
+    
+    [self reloadData:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -61,8 +82,20 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    
     [_searchCollectionView.collectionViewLayout invalidateLayout];
+    [self reposRefreshControl];
+}
+
+-(void)reposRefreshControl{
+    float height = [SearchTitleView defaultHeight];
+    if (_searchFilterSortView){
+        height += [_searchFilterSortView height];
+    }else{
+        height += [SearchFilterSortView defaultHeight];
+    }
+    CGRect r = [_refreshControl.subviews objectAtIndex:0].frame;
+    r.origin.y = height / 2.;
+    [[_refreshControl.subviews objectAtIndex:0] setFrame:r];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -72,26 +105,57 @@
     }
 }
 
--(void)reloadData:(id)owner{
-    [_refreshControl beginRefreshing];
-    [_adverts removeAllObjects];
-    [_searchCollectionView reloadData];
-    [[ServerConnectionHelper sharedInstance] loadAdvert:^(NSArray *adverbs, NSError *error) {
+-(void)loadData{
+    [[ServerConnectionHelper sharedInstance] loadAdvertWithSortData:_sortData page:_page compleate:^(NSArray *adverbs, NSDictionary* additionalData, NSError *error) {
         if (error){
+            _page = 0;
+            UIAlertController* errorController = [UIAlertController alertControllerWithTitle:@"Error" message:[error localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
             
+            UIAlertAction* closeAction = [UIAlertAction
+                                          actionWithTitle:@"Ok"
+                                          style:UIAlertActionStyleCancel
+                                          handler:^(UIAlertAction * action)
+                                          {
+                                              [errorController dismissViewControllerAnimated:YES completion:nil];
+                                              
+                                          }];
+            
+            
+            [errorController addAction:closeAction];
+            
+            [self presentViewController:errorController animated:YES completion:nil];
         }
         else
         {
-            [_refreshControl endRefreshing];
+            _searchTitleView.countResultLabel.text = [NSString stringWithFormat:@"%@",[additionalData objectForKeyNotNull:@"count"]];
+            if ([additionalData objectForKeyNotNull:@"next"]){
+                _page ++;
+            }else{
+                _page = 0;
+            };
             [_adverts addObjectsFromArray:adverbs];
             [_searchCollectionView reloadData];
         }
+        [_loadingIndicator stopAnimating];
+        if (_refreshControl.isRefreshing)
+            [_refreshControl endRefreshing];
+        _searchCollectionView.contentInset = UIEdgeInsetsZero;
     }];
+}
+
+-(void)reloadData:(id)owner{
+    _page = 1;
+     _searchTitleView.countResultLabel.text = @"Loading...";
+    [_adverts removeAllObjects];
+    [_searchCollectionView reloadData];
+    [_refreshControl beginRefreshing];
+    [self loadData];
 }
 
 -(void)setSearchText:(NSString*)searchText{
     _searchText = searchText;
-    [self reloadData:nil];
+    if (self.isViewLoaded)
+        [self reloadData:nil];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -109,6 +173,12 @@
                                                                dequeueReusableCellWithReuseIdentifier:@"SearchCollectionViewCell" forIndexPath:indexPath];
     cell.layer.shouldRasterize = YES;
     cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    if (_page > 0 && indexPath.row > _adverts.count -2){
+        _loadingIndicator.center = CGPointMake(_searchCollectionView.center.x, _searchCollectionView.contentSize.height + 22);
+        _searchCollectionView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
+        [_loadingIndicator startAnimating];
+        [self loadData];
+    }
     return cell;
 }
 
@@ -164,8 +234,11 @@
         reusableview = _searchFilterSortView;
     }
     else if ([kind isEqualToString:TitleSuplementaryViewKind]) {
-        UICollectionReusableView *footerview = [collectionView dequeueReusableSupplementaryViewOfKind:TitleSuplementaryViewKind withReuseIdentifier:TitleSuplementaryViewKind forIndexPath:indexPath];
-        reusableview = footerview;
+        if (!_searchTitleView){
+            _searchTitleView = (SearchTitleView*)[collectionView dequeueReusableSupplementaryViewOfKind:TitleSuplementaryViewKind withReuseIdentifier:TitleSuplementaryViewKind forIndexPath:indexPath];
+        }
+        _searchTitleView.searchWordLabel.text = _searchText.length > 0 ? _searchText : @"SHOW ALL";
+        reusableview = _searchTitleView;
     }
     
     return reusableview;
@@ -204,12 +277,20 @@
     }
 }
 
--(NSArray*)sortData{
+-(NSArray*)sortItems{
+    return [SortData getAll];
+}
+
+-(SortData*)getSelectedSortItem{
     return _sortData;
 }
 
--(void)sortItemSelected:(NSString*)item{
-    
+-(void)sortItemSelected:(SortData*)item{
+    if (item.ident != _sortData.ident){
+        _sortData = item;
+        [Settings setSearchSort:_sortData.ident];
+        [self reloadData:nil];
+    }
 }
 
 @end

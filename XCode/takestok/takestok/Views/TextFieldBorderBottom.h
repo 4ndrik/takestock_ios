@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PaddingTextField.h"
+#import "DoneTextField.h"
 
 IB_DESIGNABLE
 
-@interface TextFieldBorderBottom : UITextField
+@interface TextFieldBorderBottom : DoneTextField
 
 @end

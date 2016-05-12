@@ -16,6 +16,7 @@
 		AC049D1E1CBBBA0A006A8F21 /* SearchTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D1D1CBBBA0A006A8F21 /* SearchTitleView.m */; };
 		AC049D211CBBD2D7006A8F21 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D201CBBD2D7006A8F21 /* LoginViewController.m */; };
 		AC19114F1CE1E74000C5A4A5 /* NSData+base64.m in Sources */ = {isa = PBXBuildFile; fileRef = AC19114E1CE1E74000C5A4A5 /* NSData+base64.m */; };
+		AC1911521CE22D6C00C5A4A5 /* SortData.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1911511CE22D6C00C5A4A5 /* SortData.m */; };
 		AC1F544D1CCE45350093848B /* OfferManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1F544C1CCE45350093848B /* OfferManagerViewController.m */; };
 		AC1F54501CCE455D0093848B /* OfferTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1F544F1CCE455D0093848B /* OfferTableViewCell.m */; };
 		AC1F54531CCE484F0093848B /* OfferTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1F54521CCE484F0093848B /* OfferTitleView.m */; };
@@ -59,6 +60,10 @@
 		AC411E8E1CC92230008B1E38 /* SizeType.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E8A1CC92230008B1E38 /* SizeType.m */; };
 		AC411E971CC92344008B1E38 /* Category+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E941CC92344008B1E38 /* Category+CoreDataProperties.m */; };
 		AC411E981CC92344008B1E38 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E961CC92344008B1E38 /* Category.m */; };
+		AC6200FE1CE31CC9006A80A2 /* Packaging+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6200FB1CE31CC9006A80A2 /* Packaging+CoreDataProperties.m */; };
+		AC6200FF1CE31CC9006A80A2 /* Packaging.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6200FD1CE31CC9006A80A2 /* Packaging.m */; };
+		AC6201021CE34F5F006A80A2 /* DoneTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6201011CE34F5F006A80A2 /* DoneTextField.m */; };
+		AC6201081CE390D2006A80A2 /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6201071CE390D1006A80A2 /* UIViewController+BackButtonHandler.m */; };
 		AC68C45D1CB51C1F004B78DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C45C1CB51C1F004B78DF /* main.m */; };
 		AC68C4601CB51C1F004B78DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C45F1CB51C1F004B78DF /* AppDelegate.m */; };
 		AC68C4661CB51C1F004B78DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC68C4641CB51C1F004B78DF /* Main.storyboard */; };
@@ -107,6 +112,8 @@
 		AC049D201CBBD2D7006A8F21 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		AC19114D1CE1E74000C5A4A5 /* NSData+base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+base64.h"; sourceTree = "<group>"; };
 		AC19114E1CE1E74000C5A4A5 /* NSData+base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+base64.m"; sourceTree = "<group>"; };
+		AC1911501CE22D6C00C5A4A5 /* SortData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortData.h; sourceTree = "<group>"; };
+		AC1911511CE22D6C00C5A4A5 /* SortData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortData.m; sourceTree = "<group>"; };
 		AC1F544B1CCE45350093848B /* OfferManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferManagerViewController.h; sourceTree = "<group>"; };
 		AC1F544C1CCE45350093848B /* OfferManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferManagerViewController.m; sourceTree = "<group>"; };
 		AC1F544E1CCE455D0093848B /* OfferTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferTableViewCell.h; sourceTree = "<group>"; };
@@ -193,6 +200,14 @@
 		AC411E941CC92344008B1E38 /* Category+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Category+CoreDataProperties.m"; sourceTree = "<group>"; };
 		AC411E951CC92344008B1E38 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
 		AC411E961CC92344008B1E38 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
+		AC6200FA1CE31CC9006A80A2 /* Packaging+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Packaging+CoreDataProperties.h"; sourceTree = "<group>"; };
+		AC6200FB1CE31CC9006A80A2 /* Packaging+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Packaging+CoreDataProperties.m"; sourceTree = "<group>"; };
+		AC6200FC1CE31CC9006A80A2 /* Packaging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Packaging.h; sourceTree = "<group>"; };
+		AC6200FD1CE31CC9006A80A2 /* Packaging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Packaging.m; sourceTree = "<group>"; };
+		AC6201001CE34F5F006A80A2 /* DoneTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoneTextField.h; sourceTree = "<group>"; };
+		AC6201011CE34F5F006A80A2 /* DoneTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoneTextField.m; sourceTree = "<group>"; };
+		AC6201061CE390D1006A80A2 /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
+		AC6201071CE390D1006A80A2 /* UIViewController+BackButtonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButtonHandler.m"; sourceTree = "<group>"; };
 		AC68C4581CB51C1F004B78DF /* takestok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = takestok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC68C45C1CB51C1F004B78DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AC68C45E1CB51C1F004B78DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -260,6 +275,8 @@
 		AC049D171CB7C987006A8F21 /* TextControls */ = {
 			isa = PBXGroup;
 			children = (
+				AC6201001CE34F5F006A80A2 /* DoneTextField.h */,
+				AC6201011CE34F5F006A80A2 /* DoneTextField.m */,
 				AC68C47F1CB64241004B78DF /* TextFieldBorderBottom.h */,
 				AC68C4801CB64241004B78DF /* TextFieldBorderBottom.m */,
 				AC68C4901CB68865004B78DF /* PaddingTextField.h */,
@@ -311,6 +328,8 @@
 				ACFCB6B31CDA14A4005A4024 /* User+CoreDataProperties.m */,
 				ACFCB6B41CDA14A4005A4024 /* User.h */,
 				ACFCB6B51CDA14A4005A4024 /* User.m */,
+				AC1911501CE22D6C00C5A4A5 /* SortData.h */,
+				AC1911511CE22D6C00C5A4A5 /* SortData.m */,
 				AC411E0B1CBF9693008B1E38 /* Model.xcdatamodeld */,
 			);
 			path = Model;
@@ -389,6 +408,10 @@
 				AC411E6F1CC8D186008B1E38 /* Certification+CoreDataProperties.m */,
 				AC411E701CC8D186008B1E38 /* Certification.h */,
 				AC411E711CC8D186008B1E38 /* Certification.m */,
+				AC6200FA1CE31CC9006A80A2 /* Packaging+CoreDataProperties.h */,
+				AC6200FB1CE31CC9006A80A2 /* Packaging+CoreDataProperties.m */,
+				AC6200FC1CE31CC9006A80A2 /* Packaging.h */,
+				AC6200FD1CE31CC9006A80A2 /* Packaging.m */,
 			);
 			name = Dictionary;
 			sourceTree = "<group>";
@@ -441,6 +464,8 @@
 		AC68C4721CB51C90004B78DF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AC6201061CE390D1006A80A2 /* UIViewController+BackButtonHandler.h */,
+				AC6201071CE390D1006A80A2 /* UIViewController+BackButtonHandler.m */,
 				AC049D091CB7C490006A8F21 /* BaseViewController.h */,
 				AC049D0A1CB7C490006A8F21 /* BaseViewController.m */,
 				AC049D061CB7C47F006A8F21 /* HomeViewController.h */,
@@ -622,6 +647,7 @@
 				AC411E131CBF970A008B1E38 /* Advert.m in Sources */,
 				ACCE7FD11CDCD37000A76CB6 /* AskQuestionView.m in Sources */,
 				AC68C4841CB64966004B78DF /* CreateAdvertViewController.m in Sources */,
+				AC1911521CE22D6C00C5A4A5 /* SortData.m in Sources */,
 				AC411E781CC8D186008B1E38 /* Certification+CoreDataProperties.m in Sources */,
 				AC411E611CC7DC8E008B1E38 /* PaddingLabel.m in Sources */,
 				ACDC246D1CBE8308003E9715 /* TitleTextContainerView.m in Sources */,
@@ -648,6 +674,7 @@
 				AC411E261CBFA220008B1E38 /* ImageCacheUrlResolver.m in Sources */,
 				ACDC24721CBEAC5F003E9715 /* AdvertDetailViewController.m in Sources */,
 				AC411E5B1CC7D257008B1E38 /* BuyingViewController.m in Sources */,
+				AC6201021CE34F5F006A80A2 /* DoneTextField.m in Sources */,
 				AC411E731CC8D186008B1E38 /* Shipping.m in Sources */,
 				ACFCB6B61CDA14A4005A4024 /* User+CoreDataProperties.m in Sources */,
 				ACCE7FD61CDCDB6B00A76CB6 /* QATableViewCell.m in Sources */,
@@ -659,6 +686,7 @@
 				AC411E741CC8D186008B1E38 /* Dictionary+CoreDataProperties.m in Sources */,
 				ACF317B91CDB558D00F49797 /* RatingView.m in Sources */,
 				AC049D111CB7C86A006A8F21 /* SearchFilterSortView.m in Sources */,
+				AC6200FF1CE31CC9006A80A2 /* Packaging.m in Sources */,
 				AC411E751CC8D186008B1E38 /* Dictionary.m in Sources */,
 				AC411E481CC50A00008B1E38 /* ImagesCollectionViewController.m in Sources */,
 				AC411E361CC0EFB8008B1E38 /* SerachCollectionViewLayout.m in Sources */,
@@ -666,10 +694,12 @@
 				ACFCB6B71CDA14A4005A4024 /* User.m in Sources */,
 				AC049D211CBBD2D7006A8F21 /* LoginViewController.m in Sources */,
 				AC049D0E1CB7C7E5006A8F21 /* SearchCollectionViewCell.m in Sources */,
+				AC6201081CE390D2006A80A2 /* UIViewController+BackButtonHandler.m in Sources */,
 				AC411E981CC92344008B1E38 /* Category.m in Sources */,
 				AC68C4771CB53F3D004B78DF /* CALayer+BorderUIColor.m in Sources */,
 				AC411E4B1CC63825008B1E38 /* ServerConnectionHelper.m in Sources */,
 				AC411E451CC50884008B1E38 /* ImageScrollCollectionViewCell.m in Sources */,
+				AC6200FE1CE31CC9006A80A2 /* Packaging+CoreDataProperties.m in Sources */,
 				AC411E7E1CC8D61E008B1E38 /* BaseEntity+CoreDataProperties.m in Sources */,
 				AC19114F1CE1E74000C5A4A5 /* NSData+base64.m in Sources */,
 				AC411E221CBF9CEF008B1E38 /* Image.m in Sources */,

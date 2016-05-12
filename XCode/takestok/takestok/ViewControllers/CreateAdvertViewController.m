@@ -22,10 +22,14 @@
 #import "Certification.h"
 
 #import "RadioButton.h"
-
 #import "ServerConnectionHelper.h"
+#import "AdvertDetailViewController.h"
+
+#import "Settings.h"
 
 @implementation CreateAdvertViewController
+
+#define SIZE_REGEX @"^\\d+ ?x ?\\d+ ?x ?\\d+$"
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -107,7 +111,7 @@
         }
     }
     
-    //TODO: for debug
+//    //TODO: for debug
 //     _additionalViewHeight.constant = _saveButton.frame.size.height + _saveButton.frame.origin.y + 20;
     
     [self.view setNeedsUpdateConstraints];
@@ -120,6 +124,12 @@
     self.navigationController.navigationBar.backItem.title = @"Home";
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"AdvertDetailSegue"]) {
+        AdvertDetailViewController* advertVC = (AdvertDetailViewController*)segue.destinationViewController;
+        [advertVC setAdvert:advert];
+    }
+}
 
 -(void)setCertification:(RadioButton*)owner{
     _certificationsContainerView.tag = owner.tag;
@@ -152,8 +162,8 @@
     UIImage *image = (UIImage*)[info objectForKey:UIImagePickerControllerOriginalImage];
     image = [image fixOrientation];
 //TODO: Change size if need
-//    CGSize size = image.size;
-//    image = [UIImage imageWithImage:image scaledToSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.width * size.height / size.width)];
+    CGSize size = image.size;
+    image = [UIImage imageWithImage:image scaledToSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.width * size.height / size.width)];
     
     if (_isAddNewImage){
        [_images addObject:image];
@@ -269,7 +279,7 @@
                                 
                                 [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(nextTextField)],
                                 [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                                [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(resignKeyboard)],
+                                [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(hideKeyboard:)],
                                 nil]];
     
     if (control == [_textControlsArray firstObject]){
@@ -295,13 +305,6 @@
     index--;
     UIView* textControl = [_textControlsArray objectAtIndex:index];
     [textControl becomeFirstResponder];
-}
-
--(void)resignKeyboard {
-    if (_currentInputControl){
-        [_currentInputControl resignFirstResponder];
-    }
-    
 }
 
 -(BOOL)textViewShouldBeginEditing:(UITextView *)textView{
@@ -348,9 +351,7 @@
     }else if (textField == _subCategoryTextField) {
         [self configureDataPickerWithData:[SubCategory getAll] withTextField:textField];
     }else if (textField == _unitTextField) {
-        _pickerData = [NSArray arrayWithObjects:@"first", @"Second", @"Olala", @"Bebebe", nil];
-        textField.inputView = _textPiker;
-        [_textPiker reloadAllComponents];
+        [self configureDataPickerWithData:[Packaging getAll] withTextField:textField];
     }else if (textField == _shippingTextField) {
         [self configureDataPickerWithData:[Shipping getAll] withTextField:textField];
     }else if (textField == _conditionTextField) {
@@ -387,6 +388,12 @@
         }
     }
     return YES;
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    _additionalViewHeight.constant = _saveButton.frame.size.height + _saveButton.frame.origin.y + 20;
+    [_scrollView setNeedsUpdateConstraints];
+    [_scrollView updateConstraints];
 }
 
 //- (id)findFirstResponder:(UIView*)view
@@ -430,6 +437,11 @@
         if ([item isKindOfClass:[Dictionary class]]){
             [_currentInputControl setText:((Dictionary*)item).title];
             [_currentInputControl setTag:((Dictionary*)item).ident];
+            if (_currentInputControl == _unitTextField){
+                for (UILabel* unitLabel in _packagingLabelCollection){
+                    unitLabel.text = ((Dictionary*)item).title;
+                }
+            }
         }else if ([item isKindOfClass:[NSString class]]){
              [_currentInputControl setText:item];
         }else{
@@ -440,12 +452,77 @@
 
 #pragma mark - Outlets
 
-- (IBAction)createAdverb:(id)sender{
-    return;
+-(BOOL)verifyFields{
+    NSMutableArray* messagesArray = [NSMutableArray array];
+    if (_images.count <= 0)
+        [messagesArray addObject:@"Image"];
+    if (_productTitleTextField.text.length <= 0)
+        [messagesArray addObject:@"Title"];
+    if (_categoryTextField.text.length <= 0)
+        [messagesArray addObject:@"Category"];
+    if (_subCategoryTextField.text.length <= 0)
+        [messagesArray addObject:@"Subcategory"];
+    if (_unitTextField.text.length <= 0)
+        [messagesArray addObject:@"Unit / type of packaging"];
+    if (_countUnitTextField.text.length <= 0)
+        [messagesArray addObject:@"Count"];
+    if (_minimumOrderTextField.text.length <= 0)
+        [messagesArray addObject:@"Minimum order"];
+    if (_priceTextField.text.length <= 0)
+        [messagesArray addObject:@"Price"];
+    if (_descriptionTextView.text.length <= 0)
+        [messagesArray addObject:@"Product description"];
+    if (_locationTextField.text.length <= 0)
+        [messagesArray addObject:@"Location"];
+    if (_conditionTextField.text.length <= 0)
+        [messagesArray addObject:@"Condition"];
+    if (_expairyTextField.text.length <= 0)
+        [messagesArray addObject:@"Expairy date"];
+    if (_sizeTypeTextField.text.length <= 0)
+        [messagesArray addObject:@"Size type"];
+    
+    NSRegularExpression *regEx = [[NSRegularExpression alloc] initWithPattern:SIZE_REGEX options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger regExMatches = [regEx numberOfMatchesInString:_sizeTextField.text options:0 range:NSMakeRange(0, [_sizeTextField.text length])];
+    
+    if (regExMatches == 0) {
+        [messagesArray addObject:@"Size"];
+    }
+    
+    if (_certificationsContainerView.tag <= 0)
+        [messagesArray addObject:@"Certification"];
+    if (_keywordTextField.text.length <= 0)
+        [messagesArray addObject:@"Keywords"];
+    
+    if (messagesArray.count > 0){
+        NSString* message = [NSString stringWithFormat:@"%@ %@ empty", [messagesArray componentsJoinedByString:@"\n"], messagesArray.count > 0 ? @"are" : @"is"];
+        UIAlertController* emptyFieldsAlertController = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* closeAction = [UIAlertAction
+                                      actionWithTitle:@"Ok"
+                                      style:UIAlertActionStyleCancel
+                                      handler:^(UIAlertAction * action)
+                                      {
+                                          [emptyFieldsAlertController dismissViewControllerAnimated:YES completion:nil];
+                                          
+                                      }];
+        
+        
+        [emptyFieldsAlertController addAction:closeAction];
+        
+        [self presentViewController:emptyFieldsAlertController animated:YES completion:nil];
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
+-(void)createAdvert{
+    if (!advert){
+        advert = [Advert storedEntity];
+    }
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterLongStyle];
     
-    Advert* advert = [Advert storedEntity];
     NSMutableOrderedSet* imageSet = [[NSMutableOrderedSet alloc] init];
     for (UIImage* image in _images){
         Image* advImage = [Image storedEntity];
@@ -468,16 +545,30 @@
     advert.certificationOther = _otherTextField.text;
     advert.count = [_countUnitTextField.text intValue];
     advert.category = [Category getEntityWithId:_categoryTextField.tag];
-    advert.subCategory = [Category getEntityWithId:_subCategoryTextField.tag];
+    advert.subCategory = [SubCategory getEntityWithId:_subCategoryTextField.tag];
     advert.certification = [Certification getEntityWithId:_certificationsContainerView.tag];
     advert.condition = [Condition getEntityWithId:_conditionTextField.tag];
     advert.shipping = [Shipping getEntityWithId:_shippingTextField.tag];
     advert.sizeType = [SizeType getEntityWithId:_sizeTextField.tag];
-    
-    [[ServerConnectionHelper sharedInstance] createAdvert:advert];
+    advert.tags = _keywordTextField.text;
+    advert.packaging = [Packaging getEntityWithId:_unitTextField.tag];
+    advert.author = [User getEntityWithId:[Settings getUserId]];
     
     [[DB sharedInstance].storedManagedObjectContext save:nil];
-    
+
+}
+
+- (IBAction)saveAdvert:(id)sender{
+    if ([self verifyFields]){
+        [self createAdvert];
+    }
+}
+
+- (IBAction)previewAdvert:(id)sender {
+    if ([self verifyFields]){
+        [self createAdvert];
+        [self performSegueWithIdentifier:@"AdvertDetailSegue" sender:nil];
+    }
 }
 
 @end

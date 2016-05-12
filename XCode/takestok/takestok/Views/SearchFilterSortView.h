@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "UIView+NibLoadView.h"
 
+@class SortData;
+
 @protocol SerachFilterSortDelegate <NSObject>
 
 @required
@@ -17,8 +19,10 @@
 -(NSArray*)filterData;
 -(NSMutableSet*)selectedFilterData;
 -(void)filterItem:(NSString*)item selected:(BOOL)selected;
--(NSArray*)sortData;
--(void)sortItemSelected:(NSString*)item;
+
+-(NSArray*)sortItems;
+-(SortData*)getSelectedSortItem;
+-(void)sortItemSelected:(SortData*)item;
 
 @end
 
@@ -28,7 +32,7 @@ typedef enum {
     kSort
 } PanelType;
 
-@interface SearchFilterSortView : UICollectionReusableView<UIPickerViewDelegate, UIPickerViewDataSource>{
+@interface SearchFilterSortView : UICollectionReusableView<UIPickerViewDelegate, UIPickerViewDataSource, UIGestureRecognizerDelegate>{
     
     __weak IBOutlet UIButton *_filterButton;
     __weak IBOutlet UIButton *_sortButton;
@@ -37,7 +41,7 @@ typedef enum {
     float height;
 }
 
-@property (assign)id<SerachFilterSortDelegate>delegate;
+@property (nonatomic ,assign)id<SerachFilterSortDelegate>delegate;
 
 +(float)defaultHeight;
 -(float)height;

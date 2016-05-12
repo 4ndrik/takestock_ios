@@ -15,34 +15,36 @@
 #import "SubCategory.h"
 #import "NSData+base64.h"
 #import "ImageCacheUrlResolver.h"
+#import "Packaging.h"
 
 
-#define ID_PARAM @"id"
-#define NAME_PARAM @"name"
-#define CREATED_PARAM @"created_at"
-#define EXPIRES_PARAM @"expires_at"
-#define UPDATED_AT @"updated_at"
-#define GUIDE_PRICE_PARAM @"guide_price"
-#define DESCRIPTION_PARAM @"description"
-#define LOCATION_PARAM @"location"
-#define MAIN_ORDER_QUANTITY_PARAM @"min_order_quantity"
-#define ITEMS_COUNT_PARAM @"items_count"
-#define CERTIFICARIONS_EXTRA_PARAM @"certification_extra"
-#define SIZE_PARAM @"size"
-#define TAGS_PARAM @"tags"
-#define SHIPPING_PARAM @"shipping"
-#define CATEGORY_PARAM @"category"
-#define SUBCATEGORY_PARAM @"subcategory"
-#define CERTIFICATIONS_PARAM @"certification"
-#define CONDITION_PARAM @"condition"
-#define AUTHOR_PARAM @"author"
-#define AUTHOR_DETAILS_PARAM @"author_detailed"
-#define PHOTOS_PARAM @"photos"
+#define ID_PARAM                    @"id"
+#define NAME_PARAM                  @"name"
+#define CREATED_PARAM               @"created_at"
+#define EXPIRES_PARAM               @"expires_at"
+#define UPDATED_AT                  @"updated_at"
+#define GUIDE_PRICE_PARAM           @"guide_price"
+#define DESCRIPTION_PARAM           @"description"
+#define LOCATION_PARAM              @"location"
+#define MAIN_ORDER_QUANTITY_PARAM   @"min_order_quantity"
+#define ITEMS_COUNT_PARAM           @"items_count"
+#define CERTIFICARIONS_EXTRA_PARAM  @"certification_extra"
+#define SIZE_PARAM                  @"size"
+#define TAGS_PARAM                  @"tags"
+#define SHIPPING_PARAM              @"shipping"
+#define CATEGORY_PARAM              @"category"
+#define SUBCATEGORY_PARAM           @"subcategory"
+#define CERTIFICATIONS_PARAM        @"certification"
+#define CONDITION_PARAM             @"condition"
+#define AUTHOR_PARAM                @"author"
+#define AUTHOR_DETAILS_PARAM        @"author_detailed"
+#define PHOTOS_PARAM                @"photos"
+#define PACKAGING_PARAM             @"packaging"
 
-#define PHOTOS_HEIGHT_PARAM @"height"
-#define PHOTOS_WIDTH_PARAM @"width"
-#define PHOTOS_IMAGE_PARAM @"image"
-#define PHOTOS_IS_MAIN_PARAM @"is_main"
+#define PHOTOS_HEIGHT_PARAM         @"height"
+#define PHOTOS_WIDTH_PARAM          @"width"
+#define PHOTOS_IMAGE_PARAM          @"image"
+#define PHOTOS_IS_MAIN_PARAM        @"is_main"
 
 
 @implementation Advert
@@ -100,12 +102,18 @@
     }
     self.condition = condition;
     
+    Packaging* packaging = [Packaging getEntityWithId:[[jsonDic objectForKeyNotNull:PACKAGING_PARAM] intValue]];
+    if (packaging && packaging.managedObjectContext != self.managedObjectContext){
+        packaging = [self.managedObjectContext objectWithID:[packaging objectID]];
+    }
+    self.packaging = packaging;
     
     User* user = [User getEntityWithId:[[jsonDic objectForKeyNotNull:AUTHOR_PARAM] intValue]];
-    if (user && user.managedObjectContext != self.managedObjectContext){
-        user = [self.managedObjectContext objectWithID:[user objectID]];
-    }else{
+    if (!user){
         user = [User tempEntity];
+    }
+    if (user.managedObjectContext != self.managedObjectContext){
+        user = [self.managedObjectContext objectWithID:[user objectID]];
     }
     NSDictionary* userDic = [jsonDic objectForKeyNotNull:AUTHOR_DETAILS_PARAM];
     [user updateWithDic:userDic];
@@ -152,19 +160,19 @@
     [result setValue:[NSNumber numberWithInteger:self.count] forKey:ITEMS_COUNT_PARAM];
     [result setValue:self.certificationOther forKey:CERTIFICARIONS_EXTRA_PARAM];
     [result setValue:self.size forKey:SIZE_PARAM];
-    [result setValue:self.tags forKey:TAGS_PARAM];
+    [result setValue:[self.tags componentsSeparatedByString:@", "] forKey:TAGS_PARAM];
     [result setValue:[NSNumber numberWithInteger:self.shipping.ident] forKey:SHIPPING_PARAM];
     [result setValue:[NSNumber numberWithInteger:self.category.ident] forKey:CATEGORY_PARAM];
     [result setValue:[NSNumber numberWithInteger:self.subCategory.ident] forKey:SUBCATEGORY_PARAM];
     [result setValue:[NSNumber numberWithInteger:self.certification.ident] forKey:CERTIFICATIONS_PARAM];
     [result setValue:[NSNumber numberWithInteger:self.condition.ident] forKey:CONDITION_PARAM];
+    [result setValue:[NSNumber numberWithInt:self.packaging.ident] forKey:PACKAGING_PARAM];
     [result setValue:[NSNumber numberWithInteger:self.author.ident] forKey:AUTHOR_PARAM];
     
     NSFileManager* fileManager = [NSFileManager defaultManager];
     
     NSMutableArray* photos = [NSMutableArray arrayWithCapacity:self.images.count];
     for (int i = 0; i < self.images.count; i++ ){
-        NSMutableDictionary* photoDic = [NSMutableDictionary dictionary];
         Image* image = [self.images objectAtIndex:i];
         NSString* filePath = [ImageCacheUrlResolver getPathForImage:image];
         
@@ -172,12 +180,10 @@
         {
             NSData *imageData = [NSData dataWithContentsOfFile:filePath];
             NSString* imageString = [imageData base64Encoding];
-            [photoDic setValue:imageString forKey:PHOTOS_IMAGE_PARAM];
-            [photoDic setValue:[NSNumber numberWithBool:i == 0] forKey:PHOTOS_IS_MAIN_PARAM];
-            [photos addObject:photoDic];
+            [photos addObject:[NSString stringWithFormat:@"data:image/png;base64,%@",imageString]];
         }
     }
-    [result setValue:photos forKey:PHOTOS_PARAM];
+    [result setValue:photos forKey:@"photos_list"];
     return result;
 }
 
