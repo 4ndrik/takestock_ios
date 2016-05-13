@@ -39,11 +39,11 @@
     cell.countLabel.text = [NSString stringWithFormat:@"%i %@", advert.count, advert.packaging ? advert.packaging.title: @""];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateStyle = kCFDateFormatterMediumStyle; //(@"yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'");
+    dateFormatter.dateStyle = kCFDateFormatterMediumStyle;
     NSDate* updatedDate = [NSDate dateWithTimeIntervalSinceReferenceDate:advert.updated];
     cell.createdLabel.text = [NSString stringWithFormat:@"Updated: %@", [dateFormatter stringFromDate:updatedDate]];
     
-    cell.offersCountLabel.text = @"0";
+    cell.offersCountLabel.text = [NSString stringWithFormat:@"%i", advert.offers.count];
     cell.questionCountLabel.text = @"0";
     
     cell.expiresDayCountLabel.text = [NSString stringWithFormat:@"%i", [[NSDate dateWithTimeIntervalSinceReferenceDate:advert.expires] daysFromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:advert.created]]];

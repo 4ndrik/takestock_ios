@@ -18,6 +18,7 @@
         <relationship name="certification" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Certification" inverseName="advert" inverseEntity="Certification" syncable="YES"/>
         <relationship name="condition" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Condition" inverseName="advert" inverseEntity="Condition" syncable="YES"/>
         <relationship name="images" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Image" inverseName="advert" inverseEntity="Image" syncable="YES"/>
+        <relationship name="offers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Offer" inverseName="advert" inverseEntity="Offer" syncable="YES"/>
         <relationship name="packaging" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Packaging" inverseName="advert" inverseEntity="Packaging" syncable="YES"/>
         <relationship name="shipping" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shipping" inverseName="advert" inverseEntity="Shipping" syncable="YES"/>
         <relationship name="sizeType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SizeType" inverseName="advert" inverseEntity="SizeType" syncable="YES"/>
@@ -50,6 +51,19 @@
         <relationship name="certification" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Certification" inverseName="image" inverseEntity="Certification" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="image" inverseEntity="User" syncable="YES"/>
     </entity>
+    <entity name="Offer" representedClassName="Offer" parentEntity="BaseEntity" syncable="YES">
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="updated" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="advert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Advert" inverseName="offers" inverseEntity="Advert" syncable="YES"/>
+        <relationship name="status" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OfferStatus" inverseName="offer" inverseEntity="OfferStatus" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="offer" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="OfferStatus" representedClassName="OfferStatus" parentEntity="Dictionary" syncable="YES">
+        <relationship name="offer" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Offer" inverseName="status" inverseEntity="Offer" syncable="YES"/>
+    </entity>
     <entity name="Packaging" representedClassName="Packaging" parentEntity="Dictionary" syncable="YES">
         <relationship name="advert" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="packaging" inverseEntity="Advert" syncable="YES"/>
     </entity>
@@ -74,19 +88,22 @@
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="advert" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="author" inverseEntity="Advert" syncable="YES"/>
         <relationship name="image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="user" inverseEntity="Image" syncable="YES"/>
+        <relationship name="offer" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Offer" inverseName="user" inverseEntity="Offer" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Advert" positionX="-63" positionY="-18" width="128" height="360"/>
+        <element name="Advert" positionX="-63" positionY="-18" width="128" height="375"/>
         <element name="BaseEntity" positionX="18" positionY="135" width="128" height="60"/>
         <element name="Category" positionX="-18" positionY="81" width="128" height="75"/>
         <element name="Certification" positionX="0" positionY="108" width="128" height="90"/>
         <element name="Condition" positionX="-18" positionY="99" width="128" height="60"/>
         <element name="Dictionary" positionX="-45" positionY="81" width="128" height="60"/>
         <element name="Image" positionX="-54" positionY="54" width="128" height="150"/>
+        <element name="Offer" positionX="-18" positionY="135" width="128" height="165"/>
+        <element name="OfferStatus" positionX="-9" positionY="144" width="128" height="60"/>
+        <element name="Packaging" positionX="-18" positionY="135" width="128" height="60"/>
         <element name="Shipping" positionX="-36" positionY="90" width="128" height="60"/>
         <element name="SizeType" positionX="-27" positionY="72" width="128" height="60"/>
         <element name="SubCategory" positionX="-18" positionY="135" width="128" height="75"/>
-        <element name="User" positionX="-18" positionY="117" width="128" height="195"/>
-        <element name="Packaging" positionX="-18" positionY="135" width="128" height="60"/>
+        <element name="User" positionX="-18" positionY="117" width="128" height="210"/>
     </elements>
 </model>

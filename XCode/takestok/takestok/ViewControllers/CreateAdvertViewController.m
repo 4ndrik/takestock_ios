@@ -175,11 +175,6 @@
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.backItem.title = @"Home";
-}
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"AdvertDetailSegue"]) {
         AdvertDetailViewController* advertVC = (AdvertDetailViewController*)segue.destinationViewController;

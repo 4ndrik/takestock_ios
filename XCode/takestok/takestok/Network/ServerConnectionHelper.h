@@ -12,12 +12,14 @@
 @class Advert;
 @class User;
 @class SortData;
+@class MainThreadRecursiveLock;
 
 @interface ServerConnectionHelper : NSObject{
     Reachability* _reachability;
     NSURLSession *_session;
-    
     NSURLSessionDataTask* _loadAdvertCancelTask;
+    MainThreadRecursiveLock* _dictionaryLock;
+    MainThreadRecursiveLock* _advertLock;
 }
 
 +(ServerConnectionHelper*)sharedInstance;
@@ -25,7 +27,7 @@
 -(void)loadAdvertWithSortData:(SortData*)sortData page:(int)page compleate:(void(^)(NSArray* adverbs, NSDictionary* additionalData, NSError* error))compleate;
 -(void)createAdvert:(Advert*)advert compleate:(void(^)(NSError* error))compleate;
 -(void)loadRequiredData;
--(void)loadUser:(int)ident compleate:(void(^)(User* user, NSError* error))compleate;
+-(void)loadUsers:(NSArray*)idents compleate:(void(^)(NSArray* users, NSError* error))compleate;
 -(void)signIn:(NSString*)username password:(NSString*)password compleate:(void(^)(NSError* error))compleate;
 
 @end

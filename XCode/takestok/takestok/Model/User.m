@@ -20,17 +20,17 @@
 -(void)updateWithDic:(NSDictionary*)jsonDic{
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = (@"yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'");
+    dateFormatter.dateFormat = DEFAULT_DATE_FORMAT;
     
-    self.ident = [[jsonDic objectForKeyNotNull:@"id"] intValue];
-    self.lastLogin = [[dateFormatter dateFromString:[jsonDic objectForKeyNotNull:@"last_login"]] timeIntervalSinceReferenceDate];
-    self.userName = [jsonDic objectForKeyNotNull:@"username"];
-    self.firstName = [jsonDic objectForKeyNotNull:@"first_name"];
-    self.lastName = [jsonDic objectForKeyNotNull:@"last_name"];
-    self.email = [jsonDic objectForKeyNotNull:@"email"];
-    self.isVerified = [[jsonDic objectForKeyNotNull:@"is_verified"] boolValue];
-    self.isSubscribed = [[jsonDic objectForKeyNotNull:@"is_subscribed"] boolValue];
-    self.rating = [[jsonDic objectForKeyNotNull:@"is_subscribed"] floatValue];
+    self.ident = [[jsonDic objectForKeyNotNull:USER_ID_PARAM] intValue];
+    self.lastLogin = [[dateFormatter dateFromString:[jsonDic objectForKeyNotNull:USER_LAST_LOGIN_PARAM]] timeIntervalSinceReferenceDate];
+    self.userName = [jsonDic objectForKeyNotNull:USER_USER_NAME_PARAM];
+    self.firstName = [jsonDic objectForKeyNotNull:USER_FIRST_NAME_PARAM];
+    self.lastName = [jsonDic objectForKeyNotNull:USER_LAST_NAME_PARAM];
+    self.email = [jsonDic objectForKeyNotNull:USER_EMAIL_PARAM];
+    self.isVerified = [[jsonDic objectForKeyNotNull:USER_VERIFIED_PARAM] boolValue];
+    self.isSubscribed = [[jsonDic objectForKeyNotNull:USER_SUBSCRIBED_PARAMS] boolValue];
+    self.rating = [[jsonDic objectForKeyNotNull:USER_AVG_RATING_PARAM] floatValue];
     
     /*
     "is_staff": true,

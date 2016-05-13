@@ -10,6 +10,11 @@
 #import "Dictionary.h"
 #import "Image.h"
 
+#define CERT_ID_PARAM               @"pk"
+#define CERT_NAME_PARAM             @"name"
+#define CERT_DESCRIPTION_PARAM      @"description"
+#define CERT_LOGO_PARAM             @"logo"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Certification : Dictionary

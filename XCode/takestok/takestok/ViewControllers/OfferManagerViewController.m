@@ -35,7 +35,7 @@
     return cell;
 }
 
--(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return [OfferTitleView defaultSize];
 }
 

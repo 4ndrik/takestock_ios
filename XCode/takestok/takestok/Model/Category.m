@@ -18,7 +18,7 @@
 }
 
 +(Dictionary*)syncClass:(Class)class withDb:(NSArray*)dbCategories withJson:(NSDictionary*)jsonCategory{
-    int ident = [[jsonCategory objectForKeyNotNull:@"pk"] intValue];
+    int ident = [[jsonCategory objectForKeyNotNull:CATEGORY_ID_PARAM] intValue];
     NSUInteger index = [dbCategories indexOfObjectPassingTest:^BOOL(Dictionary*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         return obj.ident = ident;
     }];
@@ -31,7 +31,7 @@
     }
     
     dbCategory.ident = ident;
-    dbCategory.title = [jsonCategory objectForKeyNotNull:@"name"];
+    dbCategory.title = [jsonCategory objectForKeyNotNull:CATEGORY_NAME_PARAM];
     
     return dbCategory;
 
@@ -43,7 +43,7 @@
     //    NSMutableArray* allIdents = [NSMutableArray array];
     for (NSDictionary* jsonCategory in array){
         Category* dbCategory = (Category*)[self syncClass:[Category class] withDb:dbCategories withJson:jsonCategory];
-        for (NSDictionary* subCategory in [jsonCategory objectForKeyNotNull:@"subcategories"]){
+        for (NSDictionary* subCategory in [jsonCategory objectForKeyNotNull:CATEGORY_SUBCATEGORIES_PARAM]){
             SubCategory* dbSubCategory = (SubCategory*)[self syncClass:[SubCategory class] withDb:dbSubCategories withJson:subCategory];
             dbSubCategory.category = dbCategory;
         }

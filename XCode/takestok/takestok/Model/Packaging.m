@@ -19,7 +19,7 @@
 +(void)syncWithJsonArray:(NSArray*)array{
     NSArray* dbPackagings = [self getAll];
     for (NSDictionary* jsonDic in array){
-        int ident = [[jsonDic objectForKeyNotNull:@"id"] intValue];
+        int ident = [[jsonDic objectForKeyNotNull:PACKAGING_ID_PARAM] intValue];
         NSUInteger index = [dbPackagings indexOfObjectPassingTest:^BOOL(Dictionary*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             return obj.ident == ident;
         }];
@@ -32,7 +32,7 @@
         }
         
         dbPackaging.ident = ident;
-        dbPackaging.title = [jsonDic objectForKeyNotNull:@"name"];
+        dbPackaging.title = [jsonDic objectForKeyNotNull:PACKAGING_NAME_PARAM];
     }
     [[DB sharedInstance].storedManagedObjectContext save:nil];
     //TODO Remove old items

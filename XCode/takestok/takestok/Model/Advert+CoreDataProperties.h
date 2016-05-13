@@ -2,7 +2,7 @@
 //  Advert+CoreDataProperties.h
 //  takestok
 //
-//  Created by Artem on 5/11/16.
+//  Created by Artem on 5/13/16.
 //  Copyright © 2016 Artem. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -32,10 +32,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) Certification *certification;
 @property (nullable, nonatomic, retain) Condition *condition;
 @property (nullable, nonatomic, retain) NSOrderedSet<Image *> *images;
+@property (nullable, nonatomic, retain) Packaging *packaging;
 @property (nullable, nonatomic, retain) Shipping *shipping;
 @property (nullable, nonatomic, retain) SizeType *sizeType;
 @property (nullable, nonatomic, retain) SubCategory *subCategory;
-@property (nullable, nonatomic, retain) Packaging *packaging;
+@property (nullable, nonatomic, retain) NSSet<NSManagedObject *> *offers;
 
 @end
 
@@ -51,6 +52,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeImagesObject:(Image *)value;
 - (void)addImages:(NSOrderedSet<Image *> *)values;
 - (void)removeImages:(NSOrderedSet<Image *> *)values;
+
+- (void)addOffersObject:(NSManagedObject *)value;
+- (void)removeOffersObject:(NSManagedObject *)value;
+- (void)addOffers:(NSSet<NSManagedObject *> *)values;
+- (void)removeOffers:(NSSet<NSManagedObject *> *)values;
 
 @end
 

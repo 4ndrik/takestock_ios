@@ -32,4 +32,13 @@
     return @"Image";
 }
 
+-(void)updateWithDic:(NSDictionary*)imageDic{
+    self.ident = [[imageDic objectForKeyNotNull:IMAGE_ID_PARAM] intValue];
+    self.height = [[imageDic objectForKeyNotNull:PHOTOS_HEIGHT_PARAM] intValue];
+    self.width = [[imageDic objectForKeyNotNull:PHOTOS_WIDTH_PARAM] intValue];
+    
+    self.url = [imageDic objectForKeyNotNull:PHOTOS_IMAGE_PARAM];
+    self.resId = [self.url lastPathComponent];
+}
+
 @end

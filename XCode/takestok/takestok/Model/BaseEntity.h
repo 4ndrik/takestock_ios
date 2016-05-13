@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "DB.h"
+#import "NSDictionary+HandleNil.h"
+
+#define DEFAULT_DATE_FORMAT @"yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'"
 
 NS_ASSUME_NONNULL_BEGIN
 

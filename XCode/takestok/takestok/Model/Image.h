@@ -11,6 +11,12 @@
 #import "BaseEntity.h"
 #import "ImageProtocol.h"
 
+#define IMAGE_ID_PARAM             @"id"
+#define IMAGE_HEIGHT_PARAM         @"height"
+#define IMAGE_WIDTH_PARAM          @"width"
+#define IAMGE_IMAGE_PARAM          @"image"
+#define IMAGE_IS_MAIN_PARAM        @"is_main"
+
 @class User;
 @class Advert;
 @class Certification;

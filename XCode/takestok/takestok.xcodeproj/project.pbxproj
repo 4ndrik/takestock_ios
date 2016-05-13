@@ -15,6 +15,7 @@
 		AC049D161CB7C95D006A8F21 /* UIView+NibLoadView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D151CB7C95D006A8F21 /* UIView+NibLoadView.m */; };
 		AC049D1E1CBBBA0A006A8F21 /* SearchTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D1D1CBBBA0A006A8F21 /* SearchTitleView.m */; };
 		AC049D211CBBD2D7006A8F21 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D201CBBD2D7006A8F21 /* LoginViewController.m */; };
+		AC1481181CE5D16E00CA64D4 /* MainThreadRecursiveLock.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1481171CE5D16E00CA64D4 /* MainThreadRecursiveLock.m */; };
 		AC19114F1CE1E74000C5A4A5 /* NSData+base64.m in Sources */ = {isa = PBXBuildFile; fileRef = AC19114E1CE1E74000C5A4A5 /* NSData+base64.m */; };
 		AC1911521CE22D6C00C5A4A5 /* SortData.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1911511CE22D6C00C5A4A5 /* SortData.m */; };
 		AC1F544D1CCE45350093848B /* OfferManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1F544C1CCE45350093848B /* OfferManagerViewController.m */; };
@@ -77,6 +78,10 @@
 		AC68C4891CB6534A004B78DF /* UIImage+ExtendedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4881CB6534A004B78DF /* UIImage+ExtendedImage.m */; };
 		AC68C48C1CB67090004B78DF /* ImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */; };
 		AC68C4921CB68865004B78DF /* PaddingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4911CB68865004B78DF /* PaddingTextField.m */; };
+		ACA2E8CF1CE5BEDD00BAB401 /* OfferStatus+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA2E8C81CE5BEDD00BAB401 /* OfferStatus+CoreDataProperties.m */; };
+		ACA2E8D01CE5BEDD00BAB401 /* OfferStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA2E8CA1CE5BEDD00BAB401 /* OfferStatus.m */; };
+		ACA2E8D11CE5BEDD00BAB401 /* Offer+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA2E8CC1CE5BEDD00BAB401 /* Offer+CoreDataProperties.m */; };
+		ACA2E8D21CE5BEDD00BAB401 /* Offer.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA2E8CE1CE5BEDD00BAB401 /* Offer.m */; };
 		ACCE7FCA1CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCE7FC71CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.m */; };
 		ACCE7FCB1CDB8F6400A76CB6 /* SubCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCE7FC91CDB8F6400A76CB6 /* SubCategory.m */; };
 		ACCE7FCE1CDCC3A400A76CB6 /* QAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCE7FCD1CDCC3A400A76CB6 /* QAViewController.m */; };
@@ -110,6 +115,8 @@
 		AC049D1D1CBBBA0A006A8F21 /* SearchTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTitleView.m; sourceTree = "<group>"; };
 		AC049D1F1CBBD2D7006A8F21 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AC049D201CBBD2D7006A8F21 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		AC1481161CE5D16E00CA64D4 /* MainThreadRecursiveLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainThreadRecursiveLock.h; sourceTree = "<group>"; };
+		AC1481171CE5D16E00CA64D4 /* MainThreadRecursiveLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainThreadRecursiveLock.m; sourceTree = "<group>"; };
 		AC19114D1CE1E74000C5A4A5 /* NSData+base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+base64.h"; sourceTree = "<group>"; };
 		AC19114E1CE1E74000C5A4A5 /* NSData+base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+base64.m"; sourceTree = "<group>"; };
 		AC1911501CE22D6C00C5A4A5 /* SortData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortData.h; sourceTree = "<group>"; };
@@ -232,6 +239,14 @@
 		AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCollectionViewCell.m; sourceTree = "<group>"; };
 		AC68C4901CB68865004B78DF /* PaddingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaddingTextField.h; sourceTree = "<group>"; };
 		AC68C4911CB68865004B78DF /* PaddingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddingTextField.m; sourceTree = "<group>"; };
+		ACA2E8C71CE5BEDD00BAB401 /* OfferStatus+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OfferStatus+CoreDataProperties.h"; sourceTree = "<group>"; };
+		ACA2E8C81CE5BEDD00BAB401 /* OfferStatus+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OfferStatus+CoreDataProperties.m"; sourceTree = "<group>"; };
+		ACA2E8C91CE5BEDD00BAB401 /* OfferStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferStatus.h; sourceTree = "<group>"; };
+		ACA2E8CA1CE5BEDD00BAB401 /* OfferStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferStatus.m; sourceTree = "<group>"; };
+		ACA2E8CB1CE5BEDD00BAB401 /* Offer+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Offer+CoreDataProperties.h"; sourceTree = "<group>"; };
+		ACA2E8CC1CE5BEDD00BAB401 /* Offer+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Offer+CoreDataProperties.m"; sourceTree = "<group>"; };
+		ACA2E8CD1CE5BEDD00BAB401 /* Offer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Offer.h; sourceTree = "<group>"; };
+		ACA2E8CE1CE5BEDD00BAB401 /* Offer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Offer.m; sourceTree = "<group>"; };
 		ACCE7FC61CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SubCategory+CoreDataProperties.h"; sourceTree = "<group>"; };
 		ACCE7FC71CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SubCategory+CoreDataProperties.m"; sourceTree = "<group>"; };
 		ACCE7FC81CDB8F6400A76CB6 /* SubCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubCategory.h; sourceTree = "<group>"; };
@@ -328,6 +343,10 @@
 				ACFCB6B31CDA14A4005A4024 /* User+CoreDataProperties.m */,
 				ACFCB6B41CDA14A4005A4024 /* User.h */,
 				ACFCB6B51CDA14A4005A4024 /* User.m */,
+				ACA2E8CB1CE5BEDD00BAB401 /* Offer+CoreDataProperties.h */,
+				ACA2E8CC1CE5BEDD00BAB401 /* Offer+CoreDataProperties.m */,
+				ACA2E8CD1CE5BEDD00BAB401 /* Offer.h */,
+				ACA2E8CE1CE5BEDD00BAB401 /* Offer.m */,
 				AC1911501CE22D6C00C5A4A5 /* SortData.h */,
 				AC1911511CE22D6C00C5A4A5 /* SortData.m */,
 				AC411E0B1CBF9693008B1E38 /* Model.xcdatamodeld */,
@@ -380,14 +399,14 @@
 		AC411E8F1CC92244008B1E38 /* Dictionary */ = {
 			isa = PBXGroup;
 			children = (
-				ACCE7FC61CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.h */,
-				ACCE7FC71CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.m */,
-				ACCE7FC81CDB8F6400A76CB6 /* SubCategory.h */,
-				ACCE7FC91CDB8F6400A76CB6 /* SubCategory.m */,
 				AC411E661CC8D186008B1E38 /* Dictionary+CoreDataProperties.h */,
 				AC411E671CC8D186008B1E38 /* Dictionary+CoreDataProperties.m */,
 				AC411E681CC8D186008B1E38 /* Dictionary.h */,
 				AC411E691CC8D186008B1E38 /* Dictionary.m */,
+				ACCE7FC61CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.h */,
+				ACCE7FC71CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.m */,
+				ACCE7FC81CDB8F6400A76CB6 /* SubCategory.h */,
+				ACCE7FC91CDB8F6400A76CB6 /* SubCategory.m */,
 				AC411E931CC92344008B1E38 /* Category+CoreDataProperties.h */,
 				AC411E941CC92344008B1E38 /* Category+CoreDataProperties.m */,
 				AC411E951CC92344008B1E38 /* Category.h */,
@@ -412,6 +431,10 @@
 				AC6200FB1CE31CC9006A80A2 /* Packaging+CoreDataProperties.m */,
 				AC6200FC1CE31CC9006A80A2 /* Packaging.h */,
 				AC6200FD1CE31CC9006A80A2 /* Packaging.m */,
+				ACA2E8C71CE5BEDD00BAB401 /* OfferStatus+CoreDataProperties.h */,
+				ACA2E8C81CE5BEDD00BAB401 /* OfferStatus+CoreDataProperties.m */,
+				ACA2E8C91CE5BEDD00BAB401 /* OfferStatus.h */,
+				ACA2E8CA1CE5BEDD00BAB401 /* OfferStatus.m */,
 			);
 			name = Dictionary;
 			sourceTree = "<group>";
@@ -524,6 +547,8 @@
 		AC68C4741CB51CB2004B78DF /* Additional */ = {
 			isa = PBXGroup;
 			children = (
+				AC1481161CE5D16E00CA64D4 /* MainThreadRecursiveLock.h */,
+				AC1481171CE5D16E00CA64D4 /* MainThreadRecursiveLock.m */,
 				AC19114D1CE1E74000C5A4A5 /* NSData+base64.h */,
 				AC19114E1CE1E74000C5A4A5 /* NSData+base64.m */,
 				AC411E401CC5002E008B1E38 /* NSDictionary+HandleNil.h */,
@@ -594,6 +619,7 @@
 				TargetAttributes = {
 					AC68C4571CB51C1F004B78DF = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = SFW28NB7BE;
 					};
 				};
 			};
@@ -659,6 +685,7 @@
 				AC411E5E1CC7D2C9008B1E38 /* BuyingTableViewCell.m in Sources */,
 				AC411E1C1CBF995A008B1E38 /* DB.m in Sources */,
 				AC411E511CC78D06008B1E38 /* SellingViewController.m in Sources */,
+				ACA2E8D01CE5BEDD00BAB401 /* OfferStatus.m in Sources */,
 				AC049D0B1CB7C490006A8F21 /* BaseViewController.m in Sources */,
 				AC049D051CB7C449006A8F21 /* SearchViewController.m in Sources */,
 				AC1F54501CCE455D0093848B /* OfferTableViewCell.m in Sources */,
@@ -672,6 +699,8 @@
 				AC411E301CBFBB30008B1E38 /* BackgroundImageView.m in Sources */,
 				AC411E0D1CBF9693008B1E38 /* Model.xcdatamodeld in Sources */,
 				AC411E261CBFA220008B1E38 /* ImageCacheUrlResolver.m in Sources */,
+				AC1481181CE5D16E00CA64D4 /* MainThreadRecursiveLock.m in Sources */,
+				ACA2E8D11CE5BEDD00BAB401 /* Offer+CoreDataProperties.m in Sources */,
 				ACDC24721CBEAC5F003E9715 /* AdvertDetailViewController.m in Sources */,
 				AC411E5B1CC7D257008B1E38 /* BuyingViewController.m in Sources */,
 				AC6201021CE34F5F006A80A2 /* DoneTextField.m in Sources */,
@@ -679,6 +708,7 @@
 				ACFCB6B61CDA14A4005A4024 /* User+CoreDataProperties.m in Sources */,
 				ACCE7FD61CDCDB6B00A76CB6 /* QATableViewCell.m in Sources */,
 				AC049D1E1CBBBA0A006A8F21 /* SearchTitleView.m in Sources */,
+				ACA2E8CF1CE5BEDD00BAB401 /* OfferStatus+CoreDataProperties.m in Sources */,
 				AC411E7F1CC8D61E008B1E38 /* BaseEntity.m in Sources */,
 				AC1F54531CCE484F0093848B /* OfferTitleView.m in Sources */,
 				AC411E8D1CC92230008B1E38 /* SizeType+CoreDataProperties.m in Sources */,
@@ -706,6 +736,7 @@
 				ACDC246A1CBCF610003E9715 /* RadioButton.m in Sources */,
 				AC68C4891CB6534A004B78DF /* UIImage+ExtendedImage.m in Sources */,
 				AC411E2C1CBFB832008B1E38 /* ImageLoader.m in Sources */,
+				ACA2E8D21CE5BEDD00BAB401 /* Offer.m in Sources */,
 				AC68C4601CB51C1F004B78DF /* AppDelegate.m in Sources */,
 				AC411E761CC8D186008B1E38 /* Condition+CoreDataProperties.m in Sources */,
 				AC68C48C1CB67090004B78DF /* ImageCollectionViewCell.m in Sources */,
@@ -825,12 +856,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = takestok/takestok.pch;
 				INFOPLIST_FILE = takestok/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.devabit.takestok;
+				PRODUCT_BUNDLE_IDENTIFIER = com.takestock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -838,12 +872,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = takestok/takestok.pch;
 				INFOPLIST_FILE = takestok/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.devabit.takestok;
+				PRODUCT_BUNDLE_IDENTIFIER = com.takestock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

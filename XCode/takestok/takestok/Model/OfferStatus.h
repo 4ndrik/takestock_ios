@@ -1,22 +1,19 @@
 //
-//  Packaging.h
+//  OfferStatus.h
 //  takestok
 //
-//  Created by Artem on 5/11/16.
+//  Created by Artem on 5/13/16.
 //  Copyright © 2016 Artem. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "Dictionary.h"
 
-@class Advert;
-
-#define PACKAGING_ID_PARAM               @"id"
-#define PACKAGING_NAME_PARAM             @"name"
+@class Offer;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Packaging : Dictionary
+@interface OfferStatus : Dictionary
 
 // Insert code here to declare functionality of your managed object subclass
 
@@ -24,4 +21,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#import "Packaging+CoreDataProperties.h"
+#import "OfferStatus+CoreDataProperties.h"

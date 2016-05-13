@@ -20,7 +20,7 @@
     NSArray* dbCertifications = [self getAll];
 //    NSMutableArray* allIdents = [NSMutableArray array];
     for (NSDictionary* jsonCerts in array){
-        int ident = [[jsonCerts objectForKeyNotNull:@"pk"] intValue];
+        int ident = [[jsonCerts objectForKeyNotNull:CERT_ID_PARAM] intValue];
         NSUInteger index = [dbCertifications indexOfObjectPassingTest:^BOOL(Dictionary*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             return obj.ident = ident;
         }];
@@ -33,11 +33,11 @@
         }
         
         dbCert.ident = ident;
-        dbCert.title = [jsonCerts objectForKeyNotNull:@"name"];
-        dbCert.certDescription = [jsonCerts objectForKeyNotNull:@"description"];
+        dbCert.title = [jsonCerts objectForKeyNotNull:CERT_NAME_PARAM];
+        dbCert.certDescription = [jsonCerts objectForKeyNotNull:CERT_DESCRIPTION_PARAM];
         
         Image* image = [Image storedEntity];
-        NSString* url = [jsonCerts objectForKeyNotNull:@"logo"];
+        NSString* url = [jsonCerts objectForKeyNotNull:CERT_LOGO_PARAM];
         image.url = url;
         image.resId = [url lastPathComponent];
         dbCert.image = image;

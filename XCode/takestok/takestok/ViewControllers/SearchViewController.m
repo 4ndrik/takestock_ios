@@ -75,11 +75,6 @@
     [self reloadData:nil];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.backItem.title = @"Home";
-}
-
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     [_searchCollectionView.collectionViewLayout invalidateLayout];

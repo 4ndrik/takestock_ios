@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "Dictionary.h"
 
+#define CATEGORY_ID_PARAM               @"pk"
+#define CATEGORY_NAME_PARAM             @"name"
+#define CATEGORY_SUBCATEGORIES_PARAM    @"subcategories"
+
+
 @class Advert;
 @class SubCategory;
 
