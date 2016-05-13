@@ -216,8 +216,8 @@ typedef enum
     [self loadPackaging];
     [self loadOfferStatus];
     
-    if (![User getMe]){
-        [self loadUsers:[NSArray arrayWithObjects:[NSNumber numberWithInt:[User getMe].ident], nil] compleate:nil];
+    if ([AppSettings getUserId] > 0){
+        [self loadUsers:[NSArray arrayWithObjects:[NSNumber numberWithInt:[AppSettings getUserId]], nil] compleate:nil];
         [self loadUserAdvert];
         [self loadUserOffers];
     }
@@ -227,7 +227,7 @@ typedef enum
 
 -(void)loadUserAdvert{
     [_advertLock lock];
-    NSURLSessionDataTask *loadUserAdvertTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:[NSString stringWithFormat:@"author_id=%i", [User getMe].ident] methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    NSURLSessionDataTask *loadUserAdvertTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:[NSString stringWithFormat:@"author_id=%i", [AppSettings getUserId]] methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         [_dictionaryLock waitUntilDone];
         NSMutableArray* adverts;
         if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:data error:&error])
@@ -322,7 +322,7 @@ typedef enum
 
 #pragma mark - Offers
 -(void)loadUserOffers{
-    NSURLSessionDataTask* loadOffersTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:[NSString stringWithFormat:@"user=%i", [User getMe].ident] methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    NSURLSessionDataTask* loadOffersTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:[NSString stringWithFormat:@"user=%i", [AppSettings getUserId]] methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         [_advertLock waitUntilDone];
         if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:data error:&error]){
             

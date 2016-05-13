@@ -16,7 +16,7 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    _adverts = [Advert getMyAdverts];
+    _adverts = [Advert getAdvertsForMe];
 }
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
