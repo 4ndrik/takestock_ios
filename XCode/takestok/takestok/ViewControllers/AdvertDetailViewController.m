@@ -16,7 +16,7 @@
 #import "TopBottomStripesLabel.h"
 #import "BackgroundImageView.h"
 #import "RatingView.h"
-#import "Settings.h"
+#import "AppSettings.h"
 #import "QAViewController.h"
 #import "ServerConnectionHelper.h"
 #import "UIViewController+BackButtonHandler.h"
@@ -97,7 +97,7 @@
     
     if (_advert.ident <= 0){
         [_makeButton setTitle:@"Create advert" forState:UIControlStateNormal];
-    }else if (_advert.author.ident == [Settings getUserId]){
+    }else if (_advert.author.ident == [User getMe].ident){
         [_makeButton setBackgroundColor:[UIColor lightGrayColor]];
         _makeButton.enabled = NO;
     }

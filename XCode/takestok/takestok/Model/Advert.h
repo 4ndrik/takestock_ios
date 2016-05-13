@@ -51,6 +51,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Advert : BaseEntity
 
++(NSArray*)getMyAdverts;
++(NSArray*)getAdvertsForMe;
 
 @end
 

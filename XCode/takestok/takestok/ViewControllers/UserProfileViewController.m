@@ -6,22 +6,22 @@
 //  Copyright © 2016 Artem. All rights reserved.
 //
 
-#import "UserDetailsViewController.h"
+#import "UserProfileViewController.h"
 #import "User.h"
-#import "Settings.h"
+#import "AppSettings.h"
 #import "BackgroundImageView.h"
 #import "PaddingTextField.h"
 #import "UIImage+ExtendedImage.h"
 
-@interface UserDetailsViewController ()
+@interface UserProfileViewController ()
 
 @end
 
-@implementation UserDetailsViewController
+@implementation UserProfileViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _user = [User getEntityWithId:[Settings getUserId]];
+    _user = [User getMe];
     [self refreshUserData];
     // Do any additional setup after loading the view.
 }

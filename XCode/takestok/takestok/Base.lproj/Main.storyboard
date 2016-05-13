@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3ZZ-8G-Niz">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -104,7 +103,7 @@
         <!--MY PROFILE-->
         <scene sceneID="y4y-UK-8sF">
             <objects>
-                <viewController title="MY PROFILE" id="daJ-tC-g3G" customClass="UserDetailsViewController" sceneMemberID="viewController">
+                <viewController title="MY PROFILE" id="daJ-tC-g3G" customClass="UserProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bTx-hu-UbN"/>
                         <viewControllerLayoutGuide type="bottom" id="I5d-W2-viG"/>

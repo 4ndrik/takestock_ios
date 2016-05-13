@@ -14,7 +14,7 @@
 @class RadioButton;
 @class User;
 
-@interface UserDetailsViewController : BaseViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>{
+@interface UserProfileViewController : BaseViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>{
     User* _user;
     
     __weak IBOutlet UILabel *_addImageTitle;

@@ -166,4 +166,15 @@
     return result;
 }
 
++(NSArray*)getMyAdverts{
+    NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"updated" ascending:NO];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"author == %@", [User getMe]];
+    NSFetchRequest* request = [self getFetchRequestForPredicate:predicate withSortDescriptions:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    return [[DB sharedInstance].storedManagedObjectContext executeFetchRequest:request error:nil];
+}
+
++(NSArray*)getAdvertsForMe{
+    return nil;
+}
+
 @end

@@ -18,7 +18,7 @@
 #import "ServerConnectionHelper.h"
 #import "SortData.h"
 #import "NSDictionary+HandleNil.h"
-#import "Settings.h"
+#import "AppSettings.h"
 
 #define CellTitleFont [UIFont fontWithName:@"HelveticaNeue-Bold" size:16]
 #define CellOtherFont [UIFont fontWithName:@"HelveticaNeue" size:16]
@@ -39,7 +39,7 @@
     [super viewDidLoad];
     
     _adverts = [NSMutableArray array];
-    int defaultSort = [Settings getSearchSort];
+    int defaultSort = [AppSettings getSearchSort];
     if (defaultSort > 0){
         NSArray* sortData = [SortData getAll];
         int index = [sortData indexOfObjectPassingTest:^BOOL(SortData*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -283,7 +283,7 @@
 -(void)sortItemSelected:(SortData*)item{
     if (item.ident != _sortData.ident){
         _sortData = item;
-        [Settings setSearchSort:_sortData.ident];
+        [AppSettings setSearchSort:_sortData.ident];
         [self reloadData:nil];
     }
 }

@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 #import "HomeViewController.h"
-#import "Settings.h"
+#import "User.h"
 #import "LoginViewController.h"
 
 @implementation BaseViewController
@@ -27,7 +27,7 @@
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    if ([Settings getUserId] <= 0)
+    if (![User getMe])
     {
         if ([identifier isEqualToString:@"SellSegue"] ||
             [identifier isEqualToString:@"SellingSegue"] ||

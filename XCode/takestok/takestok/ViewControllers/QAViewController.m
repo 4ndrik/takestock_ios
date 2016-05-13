@@ -11,7 +11,7 @@
 #import "QATableViewCell.h"
 #import "AskQuestionView.h"
 #import "UIView+NibLoadView.h"
-#import "Settings.h"
+#import "AppSettings.h"
 
 @interface QAViewController ()
 
@@ -105,11 +105,11 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return _advert.author.ident == [Settings getUserId] ? 0 : [AskQuestionView defaultHeight];
+    return _advert.author.ident == [User getMe].ident ? 0 : [AskQuestionView defaultHeight];
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    if (_advert.author.ident == [Settings getUserId])
+    if (_advert.author.ident == [User getMe].ident)
         return nil;
     
     if (!_askQuestionView){

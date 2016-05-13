@@ -15,7 +15,7 @@
 #import "SizeType.h"
 #import "Category.h"
 #import "NSDictionary+HandleNil.h"
-#import "Settings.h"
+#import "AppSettings.h"
 #import "SortData.h"
 #import "Offer.h"
 #import "OfferStatus.h"
@@ -216,8 +216,8 @@ typedef enum
     [self loadPackaging];
     [self loadOfferStatus];
     
-    if ([Settings getUserId] > 0){
-        [self loadUsers:[NSArray arrayWithObjects:[NSNumber numberWithInt:[Settings getUserId]], nil] compleate:nil];
+    if (![User getMe]){
+        [self loadUsers:[NSArray arrayWithObjects:[NSNumber numberWithInt:[User getMe].ident], nil] compleate:nil];
         [self loadUserAdvert];
         [self loadUserOffers];
     }
@@ -227,7 +227,7 @@ typedef enum
 
 -(void)loadUserAdvert{
     [_advertLock lock];
-    NSURLSessionDataTask *loadUserAdvertTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:[NSString stringWithFormat:@"author_id=%i", [Settings getUserId]] methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    NSURLSessionDataTask *loadUserAdvertTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:[NSString stringWithFormat:@"author_id=%i", [User getMe].ident] methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         [_dictionaryLock waitUntilDone];
         NSMutableArray* adverts;
         if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:data error:&error])
@@ -322,7 +322,7 @@ typedef enum
 
 #pragma mark - Offers
 -(void)loadUserOffers{
-    NSURLSessionDataTask* loadOffersTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:[NSString stringWithFormat:@"user=%i", [Settings getUserId]] methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    NSURLSessionDataTask* loadOffersTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:[NSString stringWithFormat:@"user=%i", [User getMe].ident] methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         [_advertLock waitUntilDone];
         if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:data error:&error]){
             
@@ -381,8 +381,8 @@ typedef enum
                 int userId = [[userDic objectForKeyNotNull:USER_ID_PARAM] intValue];
                 NSString* token = [responceDic objectForKey:USER_TOKEN_PARAM];
                 if (userId >= 0 && token.length > 0){
-                    [Settings setToken:token];
-                    [Settings setUserId:userId];
+                    [AppSettings setToken:token];
+                    [AppSettings setUserId:userId];
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         User* user = [User getEntityWithId:userId];
                         if (!user){
@@ -512,8 +512,8 @@ typedef enum
     }
     
     NSString* token = SIGNATURE;
-    if ([Settings getToken].length > 0){
-        token = [NSString stringWithFormat:@"JWT %@",[Settings getToken]];
+    if ([AppSettings getToken].length > 0){
+        token = [NSString stringWithFormat:@"JWT %@",[AppSettings getToken]];
     }
     [request setValue:token forHTTPHeaderField:@"Authorization"];
     

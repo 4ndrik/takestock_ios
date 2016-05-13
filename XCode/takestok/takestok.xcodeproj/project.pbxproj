@@ -94,8 +94,8 @@
 		ACF317B91CDB558D00F49797 /* RatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF317B81CDB558D00F49797 /* RatingView.m */; };
 		ACFCB6B61CDA14A4005A4024 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B31CDA14A4005A4024 /* User+CoreDataProperties.m */; };
 		ACFCB6B71CDA14A4005A4024 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B51CDA14A4005A4024 /* User.m */; };
-		ACFCB6BA1CDA200A005A4024 /* UserDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B91CDA200A005A4024 /* UserDetailsViewController.m */; };
-		ACFCB6BD1CDA5047005A4024 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6BC1CDA5047005A4024 /* Settings.m */; };
+		ACFCB6BA1CDA200A005A4024 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B91CDA200A005A4024 /* UserProfileViewController.m */; };
+		ACFCB6BD1CDA5047005A4024 /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6BC1CDA5047005A4024 /* AppSettings.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -270,10 +270,10 @@
 		ACFCB6B31CDA14A4005A4024 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
 		ACFCB6B41CDA14A4005A4024 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		ACFCB6B51CDA14A4005A4024 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		ACFCB6B81CDA200A005A4024 /* UserDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailsViewController.h; sourceTree = "<group>"; };
-		ACFCB6B91CDA200A005A4024 /* UserDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsViewController.m; sourceTree = "<group>"; };
-		ACFCB6BB1CDA5047005A4024 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
-		ACFCB6BC1CDA5047005A4024 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
+		ACFCB6B81CDA200A005A4024 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
+		ACFCB6B91CDA200A005A4024 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
+		ACFCB6BB1CDA5047005A4024 /* AppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettings.h; sourceTree = "<group>"; };
+		ACFCB6BC1CDA5047005A4024 /* AppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettings.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -502,8 +502,8 @@
 				AC411E501CC78D06008B1E38 /* SellingViewController.m */,
 				AC411E591CC7D257008B1E38 /* BuyingViewController.h */,
 				AC411E5A1CC7D257008B1E38 /* BuyingViewController.m */,
-				ACFCB6B81CDA200A005A4024 /* UserDetailsViewController.h */,
-				ACFCB6B91CDA200A005A4024 /* UserDetailsViewController.m */,
+				ACFCB6B81CDA200A005A4024 /* UserProfileViewController.h */,
+				ACFCB6B91CDA200A005A4024 /* UserProfileViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -561,8 +561,8 @@
 				AC68C4881CB6534A004B78DF /* UIImage+ExtendedImage.m */,
 				AC411E271CBFA6D0008B1E38 /* NSDate+Extended.h */,
 				AC411E281CBFA6D0008B1E38 /* NSDate+Extended.m */,
-				ACFCB6BB1CDA5047005A4024 /* Settings.h */,
-				ACFCB6BC1CDA5047005A4024 /* Settings.m */,
+				ACFCB6BB1CDA5047005A4024 /* AppSettings.h */,
+				ACFCB6BC1CDA5047005A4024 /* AppSettings.m */,
 			);
 			path = Additional;
 			sourceTree = "<group>";
@@ -680,7 +680,7 @@
 				AC411E791CC8D186008B1E38 /* Certification.m in Sources */,
 				AC1F544D1CCE45350093848B /* OfferManagerViewController.m in Sources */,
 				ACCE7FCE1CDCC3A400A76CB6 /* QAViewController.m in Sources */,
-				ACFCB6BA1CDA200A005A4024 /* UserDetailsViewController.m in Sources */,
+				ACFCB6BA1CDA200A005A4024 /* UserProfileViewController.m in Sources */,
 				AC411E211CBF9CEF008B1E38 /* Image+CoreDataProperties.m in Sources */,
 				AC411E5E1CC7D2C9008B1E38 /* BuyingTableViewCell.m in Sources */,
 				AC411E1C1CBF995A008B1E38 /* DB.m in Sources */,
@@ -689,7 +689,7 @@
 				AC049D0B1CB7C490006A8F21 /* BaseViewController.m in Sources */,
 				AC049D051CB7C449006A8F21 /* SearchViewController.m in Sources */,
 				AC1F54501CCE455D0093848B /* OfferTableViewCell.m in Sources */,
-				ACFCB6BD1CDA5047005A4024 /* Settings.m in Sources */,
+				ACFCB6BD1CDA5047005A4024 /* AppSettings.m in Sources */,
 				ACCE7FCA1CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.m in Sources */,
 				AC049D081CB7C47F006A8F21 /* HomeViewController.m in Sources */,
 				AC411E4E1CC63ECA008B1E38 /* Reachability.m in Sources */,

@@ -25,7 +25,7 @@
 #import "ServerConnectionHelper.h"
 #import "AdvertDetailViewController.h"
 
-#import "Settings.h"
+#import "AppSettings.h"
 
 @implementation CreateAdvertViewController
 
@@ -603,7 +603,7 @@
     _advert.sizeType = [SizeType getEntityWithId:_sizeTextField.tag];
     _advert.tags = _keywordTextField.text;
     _advert.packaging = [Packaging getEntityWithId:_unitTextField.tag];
-    _advert.author = [User getEntityWithId:[Settings getUserId]];
+    _advert.author = [User getMe];
     
     [[DB sharedInstance].storedManagedObjectContext save:nil];
 

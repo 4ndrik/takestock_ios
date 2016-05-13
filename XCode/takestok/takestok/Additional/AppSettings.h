@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Settings : NSObject
+@interface AppSettings : NSObject
 
 +(int)getUserId;
 +(void)setUserId:(int)ident;

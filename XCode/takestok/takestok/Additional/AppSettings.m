@@ -6,13 +6,13 @@
 //  Copyright © 2016 Artem. All rights reserved.
 //
 
-#import "Settings.h"
+#import "AppSettings.h"
 
 #define USER_ID         @"UserIdKey"
 #define USER_TOKEN      @"UserTokenKey"
 #define SEARCH_SORT     @"SearchSortKey"
 
-@implementation Settings
+@implementation AppSettings
 
 +(int)getUserId{
     return [[[NSUserDefaults standardUserDefaults] valueForKey:USER_ID] intValue];

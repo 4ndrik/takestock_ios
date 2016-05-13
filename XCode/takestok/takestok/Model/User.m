@@ -10,6 +10,7 @@
 #import "Advert.h"
 #import "Image.h"
 #import "NSDictionary+HandleNil.h"
+#import "AppSettings.h"
 
 @implementation User
 
@@ -38,6 +39,14 @@
     "date_joined": "2016-03-16T17:52:43Z",
      */
     
+}
+
++(User*)getMe{
+    static User* _me;
+    if (!_me && [AppSettings getUserId] > 0){
+        _me = [User getEntityWithId:[AppSettings getUserId]];
+    }
+    return _me;
 }
 
 @end
