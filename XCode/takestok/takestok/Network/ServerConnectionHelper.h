@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class Reachability;
+@class AFURLSessionManager;
 @class Advert;
 @class User;
 @class SortData;
@@ -16,8 +16,7 @@
 @class Offer;
 
 @interface ServerConnectionHelper : NSObject{
-    Reachability* _reachability;
-    NSURLSession *_session;
+    AFURLSessionManager *_session;
     NSURLSessionDataTask* _loadAdvertCancelTask;
     MainThreadRecursiveLock* _dictionaryLock;
     MainThreadRecursiveLock* _advertLock;

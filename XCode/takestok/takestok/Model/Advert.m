@@ -16,6 +16,7 @@
 #import "NSData+base64.h"
 #import "ImageCacheUrlResolver.h"
 #import "Packaging.h"
+#import "Offer.h"
 
 
 @implementation Advert
@@ -177,7 +178,20 @@
     NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"updated" ascending:NO];
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"ANY offers.user == %@", [User getMe]];
     NSFetchRequest* request = [self getFetchRequestForPredicate:predicate withSortDescriptions:[NSArray arrayWithObjects:sortDescriptor, nil]];
-    return [[DB sharedInstance].storedManagedObjectContext executeFetchRequest:request error:nil];
+    NSArray* result = [[DB sharedInstance].storedManagedObjectContext executeFetchRequest:request error:nil];
+    return [result sortedArrayUsingComparator:^NSComparisonResult(Advert*  _Nonnull obj1, Advert*  _Nonnull obj2) {
+        NSTimeInterval time1 = 0;
+        for (Offer* offer in obj1.offers) {
+            if (offer.updated > time1)
+                time1 = offer.updated;
+        }
+        NSTimeInterval time2 = 0;
+        for (Offer* offer in obj2.offers) {
+            if (offer.updated > time1)
+                time2 = offer.updated;
+        }
+        return time2 > time1;
+    }];
 }
 
 @end
