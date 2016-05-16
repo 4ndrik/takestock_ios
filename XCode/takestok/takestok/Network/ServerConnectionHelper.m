@@ -33,17 +33,17 @@ typedef enum
 
 #define JSON_CONTENT_TYPE           @"application/json"
 
-#define USER_URL_PATH               @"users/"
-#define ADVERTS_URL_PATH            @"adverts/"
-#define CONDITIONS_URL_PATH         @"conditions/"
-#define SHIPPING_URL_PATH           @"shipping/"
-#define CATEGORIES_URL_PATH         @"category/"
-#define CERTIFICATIONS_URL_PATH     @"certifications/"
-#define PACKAGING_URL_PATH          @"packaging/"
-#define SIZE_TYPES_URL_PATH         @"size_types/"
-#define OFFER_STATUS_URL_PATH       @"offer_status/"
-#define SIGN_IN_URL_PATH            @"token/auth/"
-#define OFFERS_URL_PATH             @"offers/"
+#define USER_URL_PATH               @"users"
+#define ADVERTS_URL_PATH            @"adverts"
+#define CONDITIONS_URL_PATH         @"conditions"
+#define SHIPPING_URL_PATH           @"shipping"
+#define CATEGORIES_URL_PATH         @"category"
+#define CERTIFICATIONS_URL_PATH     @"certifications"
+#define PACKAGING_URL_PATH          @"packaging"
+#define SIZE_TYPES_URL_PATH         @"size_types"
+#define OFFER_STATUS_URL_PATH       @"offer_status"
+#define SIGN_IN_URL_PATH            @"token/auth"
+#define OFFERS_URL_PATH             @"offers"
 
 
 #define SERVER_RESPONCE_RESULT_PARAM                  @"results"
@@ -58,14 +58,15 @@ typedef enum
     
     _dictionaryLock = [[MainThreadRecursiveLock alloc] init];
     _advertLock = [[MainThreadRecursiveLock alloc] init];
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
     NSString *remoteHostName = @"www.apple.com";
     _reachability = [Reachability reachabilityWithHostName:remoteHostName];
     [_reachability startNotifier];
     
     NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    _session = [NSURLSession sessionWithConfiguration:sessionConfig];
+    NSOperationQueue* queu = [[NSOperationQueue alloc] init];
+    _session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:queu];
     
     return self;
 }
@@ -207,7 +208,7 @@ typedef enum
 }
 
 -(void)loadRequiredData{
-
+    
     [self loadConditions];
     [self loadShipping];
     [self loadCertifications];
@@ -218,40 +219,53 @@ typedef enum
     
     if ([AppSettings getUserId] > 0){
         [self loadUsers:[NSArray arrayWithObjects:[NSNumber numberWithInt:[AppSettings getUserId]], nil] compleate:nil];
-        [self loadUserAdvert];
+        [self loadAdverts:0 userId:[AppSettings getUserId]];
         [self loadUserOffers];
     }
 }
 
+-(void)waitLock:(MainThreadRecursiveLock*)lock andPerform:(void (^)())compleate{
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        [lock waitUntilDone];
+        compleate();
+    });
+}
+
 #pragma mark - Advert
 
--(void)loadUserAdvert{
+-(void)loadAdverts:(int)ident userId:(int)userId{
     [_advertLock lock];
-    NSURLSessionDataTask *loadUserAdvertTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:[NSString stringWithFormat:@"author_id=%i", [AppSettings getUserId]] methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        [_dictionaryLock waitUntilDone];
-        NSMutableArray* adverts;
+    NSString* method = ADVERTS_URL_PATH;
+    if (ident > 0){
+        method = [NSString stringWithFormat:@"%@/%i", ADVERTS_URL_PATH, ident];
+    }
+    
+    NSURLSessionDataTask *loadAdvertTask = [_session dataTaskWithRequest:[self request:method query:userId > 0 ? [NSString stringWithFormat:@"author_id=%i", userId] : nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:data error:&error])
         {
             NSDictionary* result = [self jsonFromData:data error:&error];
-            NSArray* array = [result objectForKeyNotNull:SERVER_RESPONCE_RESULT_PARAM];
-            adverts = [NSMutableArray arrayWithCapacity:array.count];
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                if (!error){
-                    for (NSDictionary* advertDic in array) {
-                        int advertId = [[advertDic objectForKeyNotNull:ADVERT_ID_PARAM] intValue];
-                        Advert* advert = [Advert getEntityWithId:advertId];
-                        if (!advert){
-                            advert = [Advert storedEntity];
-                        }
-                        [advert updateWithDic:advertDic];
-                        [adverts addObject:advert];
-                    }
+            if (!error){
+                NSMutableArray* array = [result objectForKeyNotNull:SERVER_RESPONCE_RESULT_PARAM];
+                if (!array){
+                    array = [NSMutableArray array];
+                    [array addObject:result];
                 }
-            });
+                [_dictionaryLock waitUntilDone];
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        for (NSDictionary* advertDic in array) {
+                            int advertId = [[advertDic objectForKeyNotNull:ADVERT_ID_PARAM] intValue];
+                            Advert* advert = [Advert getEntityWithId:advertId];
+                            if (!advert){
+                                advert = [Advert storedEntity];
+                            }
+                            [advert updateWithDic:advertDic];
+                        }
+                    });
+            }
         }
         [_advertLock unlock];
     }];
-    [loadUserAdvertTask resume];
+    [loadAdvertTask resume];
 }
 
 -(void)loadAdvertWithSortData:(SortData*)sortData page:(int)page compleate:(void(^)(NSArray* adverbs, NSDictionary* additionalData, NSError* error))compleate{
@@ -271,12 +285,13 @@ typedef enum
         else if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:data error:&error])
         {
             NSDictionary* result = [self jsonFromData:data error:&error];
-            additionalDic = [NSMutableDictionary dictionaryWithDictionary:result];
-            [additionalDic removeObjectForKey:SERVER_RESPONCE_RESULT_PARAM];
-            NSArray* array = [result objectForKeyNotNull:SERVER_RESPONCE_RESULT_PARAM];
-            adverts = [NSMutableArray arrayWithCapacity:array.count];
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                if (!error){
+            if (!error){
+                additionalDic = [NSMutableDictionary dictionaryWithDictionary:result];
+                [additionalDic removeObjectForKey:SERVER_RESPONCE_RESULT_PARAM];
+                NSArray* array = [result objectForKeyNotNull:SERVER_RESPONCE_RESULT_PARAM];
+                adverts = [NSMutableArray arrayWithCapacity:array.count];
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    
                     for (NSDictionary* advertDic in array) {
                         int advertId = [[advertDic objectForKeyNotNull:ADVERT_ID_PARAM] intValue];
                         Advert* advert = [Advert getEntityWithId:advertId];
@@ -286,13 +301,12 @@ typedef enum
                         [advert updateWithDic:advertDic];
                         [adverts addObject:advert];
                     }
-                }
-            });
+                });
+            }
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             compleate(adverts, additionalDic, error);
         });
-        
     }];
     [_loadAdvertCancelTask resume];
 }
@@ -329,23 +343,19 @@ typedef enum
             NSDictionary* result = [self jsonFromData:data error:&error];
             NSMutableArray* offers = [result objectForKeyNotNull:SERVER_RESPONCE_RESULT_PARAM];
             if (offers){
-            
-            NSMutableArray* unknownUserIds = [NSMutableArray array];
-            
-            NSArray* usersArray = [User getAll];
-            for (NSDictionary* offer in offers) {
-                int userId = [[offer objectForKey:OFFER_USER_PARAM] intValue];
-                if ([usersArray indexOfObjectPassingTest:^BOOL(User*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    return obj.ident == userId;
-                }] == NSNotFound){
-                    [unknownUserIds addObject:[NSNumber numberWithInteger:userId]];
+                //TODO: Update date
+                NSMutableSet* advertIdSet = [NSMutableSet set];
+                for (NSDictionary* offer in offers) {
+                    int advertId = [[offer objectForKeyNotNull:OFFER_ADVERT_PARAM] intValue];
+                    if (advertId > 0)
+                        [advertIdSet addObject:[NSNumber numberWithInt:advertId]];
                 }
-            }
-//TODO: load unknown users
-//            if (unknownUserIds.count > 0){
-//                
-//            }
-            
+                //                dispatch_sync(dispatch_get_main_queue(), ^{
+                for (NSNumber* number in advertIdSet) {
+                    [self loadAdverts:[number intValue] userId:0];
+                }
+                //                });
+                [_advertLock waitUntilDone];
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     for (NSDictionary* offerDic in offers) {
                         Offer* offer = [Offer getEntityWithId:[[offerDic objectForKeyNotNull:OFFER_ID_PARAM] intValue]];
@@ -362,6 +372,25 @@ typedef enum
     [loadOffersTask resume];
 }
 
+-(void)createOffer:(Offer*)offer compleate:(void(^)(NSError* error))compleate{
+    NSDictionary* offerData = [offer getDictionary];
+    NSError* error;
+    NSString* params = [self jsonStringFromDicOrArray:offerData error:&error];
+    
+    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:data error:&error])
+        {
+            [self jsonFromData:data error:&error];
+            [self loadUserOffers];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            compleate(error);
+        });
+    }];
+    
+    [dataTask resume];
+}
+
 #pragma mark - User
 -(void)signIn:(NSString*)username password:(NSString*)password compleate:(void(^)(NSError* error))compleate{
     NSString *params = [NSString stringWithFormat:
@@ -371,7 +400,7 @@ typedef enum
                         username,
                         password
                         ];
-
+    
     NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:SIGN_IN_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:data error:&error])
         {
@@ -389,14 +418,14 @@ typedef enum
                             user = [User storedEntity];
                         }
                         [user updateWithDic:userDic];
-                        [self loadUserAdvert];
+                        [self loadAdverts:0 userId:userId];
                         [self loadUserOffers];
                     });
                 }
             }
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-             compleate(error);
+            compleate(error);
         });
     }];
     
@@ -407,7 +436,7 @@ typedef enum
     
     NSString* method = USER_URL_PATH;
     if (idents.count == 1){
-        method = [NSString stringWithFormat:@"%@%@/",USER_URL_PATH, idents.firstObject];
+        method = [NSString stringWithFormat:@"%@/%@",USER_URL_PATH, idents.firstObject];
     }
     
     NSURLSessionDataTask* loadUserTask = [_session dataTaskWithRequest:[self request:method query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -416,7 +445,7 @@ typedef enum
             NSDictionary* result = [self jsonFromData:data error:&error];
             if (!error){
                 NSMutableArray* usersArray = [result objectForKey:SERVER_RESPONCE_RESULT_PARAM];
-                if (usersArray){
+                if (!usersArray){
                     usersArray = [NSMutableArray array];
                     [usersArray addObject:result];
                 }
@@ -480,7 +509,7 @@ typedef enum
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
     request.cachePolicy = NSURLRequestUseProtocolCachePolicy;
     
-    NSString *urlString = [NSString stringWithFormat:@"%@%@", TAKESTOK_URL, method];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/", TAKESTOK_URL, method];
     
     switch (methodType) {
         case HTTP_METHOD_GET:
@@ -523,6 +552,7 @@ typedef enum
     
     request.URL = [NSURL URLWithString:urlString];
     request.timeoutInterval = 180;
+    
     return request;
 }
 

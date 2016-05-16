@@ -20,6 +20,8 @@
 #import "QAViewController.h"
 #import "ServerConnectionHelper.h"
 #import "UIViewController+BackButtonHandler.h"
+#import "PaddingTextField.h"
+#import "Offer.h"
 
 @interface AdvertDetailViewController ()
 
@@ -37,6 +39,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:self.view.window];
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:self.view.window];
     if (_advert)
         [self refreshAdData];
 }
@@ -95,11 +106,12 @@
     _userName.text = _advert.author.userName;
     [_ratingView setRate:_advert.author.rating];
     
+    _offerViewHeight.constant = 43;
+    
     if (_advert.ident <= 0){
         [_makeButton setTitle:@"Create advert" forState:UIControlStateNormal];
     }else if (_advert.author.ident == [User getMe].ident){
-        [_makeButton setBackgroundColor:[UIColor lightGrayColor]];
-        _makeButton.enabled = NO;
+        _offerViewHeight.constant = 0;
     }
     
     [self.view setNeedsUpdateConstraints];
@@ -107,38 +119,76 @@
     [self.view layoutIfNeeded];
 }
 
+#pragma mark - Handle keyboard
+
+- (void)keyboardWillHide:(NSNotification *)n
+{
+    _scrollView.contentInset = UIEdgeInsetsZero;
+}
+
+- (void)keyboardWillShow:(NSNotification *)n
+{
+    NSDictionary* userInfo = [n userInfo];
+    
+    // get the size of the keyboard
+    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    _scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0);
+    
+}
+
 -(void)createOrder{
-    return;
-    UIAlertController* orderController = [UIAlertController alertControllerWithTitle:@"" message:@"Set price and quantity" preferredStyle:UIAlertControllerStyleAlert];
-    [orderController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        textField.text = @"$1.0";
-    }];
-    [orderController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        textField.text = @"kg 1";
-    }];
-    
-    UIAlertAction* makeOrderAction = [UIAlertAction
-                                      actionWithTitle:@"Make order"
-                                      style:UIAlertActionStyleDefault
-                                      handler:^(UIAlertAction * action)
-                                      {
-                                          [orderController dismissViewControllerAnimated:YES completion:nil];
-                                          
-                                      }];
-    
-    UIAlertAction* cancelAction = [UIAlertAction
-                                   actionWithTitle:@"Cancel"
-                                   style:UIAlertActionStyleCancel
-                                   handler:^(UIAlertAction * action)
-                                   {
-                                       [orderController dismissViewControllerAnimated:YES completion:nil];
-                                       
-                                   }];
-    
-    [orderController addAction:makeOrderAction];
-    [orderController addAction:cancelAction];
-    
-    [self presentViewController:orderController animated:YES completion:nil];
+    if (_createOrderAction){
+        if (!_offer)
+            _offer = [_advert isForStore] ? [Offer storedEntity] : [Offer tempEntity];
+        _offer.advert = _advert;
+        User* user = [User getMe];
+        if (user.managedObjectContext != _offer.managedObjectContext){
+            user = [_offer.managedObjectContext objectWithID:[user objectID]];
+        }
+        _offer.user = user;
+        _offer.price = [_offerPriceTextField.text floatValue];
+        _offer.quantity = [_offerQuantityTextField.text floatValue];
+        
+        [self showLoading];
+        [[ServerConnectionHelper sharedInstance] createOffer:_offer compleate:^(NSError *error) {
+            [self hideLoading];
+            NSString* title = @"";
+            NSString* message = @"Offer created";
+            if (error){
+                title = @"Error";
+                message = [error localizedDescription];
+            }else{
+                [self closeOfferPanel:nil];
+                [_makeButton setBackgroundColor:[UIColor lightGrayColor]];
+                _makeButton.enabled = NO;
+            }
+            UIAlertController* errorController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* closeAction = [UIAlertAction
+                                          actionWithTitle:@"Ok"
+                                          style:UIAlertActionStyleCancel
+                                          handler:^(UIAlertAction * action)
+                                          {
+                                              [errorController dismissViewControllerAnimated:YES completion:nil];
+                                              
+                                          }];
+            
+            
+            [errorController addAction:closeAction];
+            
+            [self presentViewController:errorController animated:YES completion:nil];
+        }];
+        
+    }else{
+        _offerPriceLabel.text = [NSString stringWithFormat:@"£/%@", _advert.packaging.title];
+        _offerQuantityLabel.text = _advert.packaging.title;
+        _offerViewHeight.constant = 186;
+        [_scrollView setContentOffset:CGPointMake(0, _scrollView.contentOffset.y + 143) animated:NO];
+        [self.view setNeedsUpdateConstraints];
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
+        _createOrderAction = YES;
+    }
 }
 
 -(void)createAdvert{
@@ -170,8 +220,6 @@
         [errorController addAction:closeAction];
         
         [self presentViewController:errorController animated:YES completion:nil];
-        
-
     }];
     
 }
@@ -182,6 +230,15 @@
     }else {
         [self createAdvert];
     }
+}
+
+- (IBAction)closeOfferPanel:(id)sender {
+    _offerViewHeight.constant = 43;
+    [_scrollView setContentOffset:CGPointMake(0, _scrollView.contentOffset.y - 143)];
+    [self.view setNeedsUpdateConstraints];
+    [self.view setNeedsLayout];
+    [self.view layoutIfNeeded];
+    _createOrderAction = NO;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

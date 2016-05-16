@@ -33,7 +33,7 @@
 -(void)waitUntilDone{
     NSAssert(![NSThread isMainThread], @"Wait dictionaries can not work in the main thred");
     while (![super tryLock]) {
-        sleep(0.1);
+        sleep(1.);
     }
     [super unlock];
 }

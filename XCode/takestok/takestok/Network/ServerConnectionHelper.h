@@ -13,6 +13,7 @@
 @class User;
 @class SortData;
 @class MainThreadRecursiveLock;
+@class Offer;
 
 @interface ServerConnectionHelper : NSObject{
     Reachability* _reachability;
@@ -26,6 +27,7 @@
 -(BOOL)isInternetConnection;
 -(void)loadAdvertWithSortData:(SortData*)sortData page:(int)page compleate:(void(^)(NSArray* adverbs, NSDictionary* additionalData, NSError* error))compleate;
 -(void)createAdvert:(Advert*)advert compleate:(void(^)(NSError* error))compleate;
+-(void)createOffer:(Offer*)offer compleate:(void(^)(NSError* error))compleate;
 -(void)loadRequiredData;
 -(void)loadUsers:(NSArray*)idents compleate:(void(^)(NSArray* users, NSError* error))compleate;
 -(void)signIn:(NSString*)username password:(NSString*)password compleate:(void(^)(NSError* error))compleate;

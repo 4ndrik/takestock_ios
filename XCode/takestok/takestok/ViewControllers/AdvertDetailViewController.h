@@ -12,11 +12,18 @@
 @class TopBottomStripesLabel;
 @class RatingView;
 @class BackgroundImageView;
+@class PaddingTextField;
+@class Offer;
 
 @interface AdvertDetailViewController : BaseViewController<UICollectionViewDelegate, UICollectionViewDataSource>{
     Advert* _advert;
+    Offer* _offer;
     
     BOOL _popToRootViewController;
+    
+    BOOL _createOrderAction;
+    
+    __weak IBOutlet UIScrollView *_scrollView;
     
     __weak IBOutlet TopBottomStripesLabel *_titleLabel;
     __weak IBOutlet TitleTextContainerView *_priceTextContainerView;
@@ -37,7 +44,14 @@
     __weak IBOutlet NSLayoutConstraint *_certificationHeightConstraint;
     __weak IBOutlet NSLayoutConstraint *_conditionHeightConstraint;
     
+    __weak IBOutlet NSLayoutConstraint *_offerViewHeight;
+    __weak IBOutlet PaddingTextField *_offerQuantityTextField;
+    __weak IBOutlet UILabel *_offerQuantityLabel;
+    __weak IBOutlet PaddingTextField *_offerPriceTextField;
+    __weak IBOutlet UILabel *_offerPriceLabel;
     __weak IBOutlet UIButton *_makeButton;
+    
+    
     __weak IBOutlet UIButton *_questionButton;
     
     __weak IBOutlet BackgroundImageView *_userPicture;
@@ -49,5 +63,6 @@
 
 -(void)setAdvert:(Advert*)advert;
 - (IBAction)makeAction:(id)sender;
+- (IBAction)closeOfferPanel:(id)sender;
 
 @end
