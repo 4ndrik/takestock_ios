@@ -17,6 +17,7 @@
 #import "Certification.h"
 #import "User.h"
 #import "Packaging.h"
+#import "Question.h"
 
 
 #define ADVERT_ID_PARAM                    @"id"

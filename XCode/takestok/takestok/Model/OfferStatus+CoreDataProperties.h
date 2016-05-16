@@ -2,7 +2,7 @@
 //  OfferStatus+CoreDataProperties.h
 //  takestok
 //
-//  Created by Artem on 5/13/16.
+//  Created by Artem on 5/16/16.
 //  Copyright © 2016 Artem. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,16 +15,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OfferStatus (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSSet<Offer *> *offer;
+@property (nullable, nonatomic, retain) NSSet<Offer *> *offers;
 
 @end
 
 @interface OfferStatus (CoreDataGeneratedAccessors)
 
-- (void)addOfferObject:(Offer *)value;
-- (void)removeOfferObject:(Offer *)value;
-- (void)addOffer:(NSSet<Offer *> *)values;
-- (void)removeOffer:(NSSet<Offer *> *)values;
+- (void)addOffersObject:(Offer *)value;
+- (void)removeOffersObject:(Offer *)value;
+- (void)addOffers:(NSSet<Offer *> *)values;
+- (void)removeOffers:(NSSet<Offer *> *)values;
 
 @end
 

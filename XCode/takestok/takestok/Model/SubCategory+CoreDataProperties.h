@@ -2,7 +2,7 @@
 //  SubCategory+CoreDataProperties.h
 //  takestok
 //
-//  Created by Artem on 5/5/16.
+//  Created by Artem on 5/16/16.
 //  Copyright © 2016 Artem. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,17 +15,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SubCategory (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSSet<Advert *> *subAdverb;
 @property (nullable, nonatomic, retain) Category *category;
+@property (nullable, nonatomic, retain) NSSet<Advert *> *subAdverbs;
 
 @end
 
 @interface SubCategory (CoreDataGeneratedAccessors)
 
-- (void)addSubAdverbObject:(Advert *)value;
-- (void)removeSubAdverbObject:(Advert *)value;
-- (void)addSubAdverb:(NSSet<Advert *> *)values;
-- (void)removeSubAdverb:(NSSet<Advert *> *)values;
+- (void)addSubAdverbsObject:(Advert *)value;
+- (void)removeSubAdverbsObject:(Advert *)value;
+- (void)addSubAdverbs:(NSSet<Advert *> *)values;
+- (void)removeSubAdverbs:(NSSet<Advert *> *)values;
 
 @end
 

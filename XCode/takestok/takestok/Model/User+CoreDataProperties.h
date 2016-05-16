@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.h
 //  takestok
 //
-//  Created by Artem on 5/13/16.
+//  Created by Artem on 5/16/16.
 //  Copyright © 2016 Artem. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -23,23 +23,35 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *lastName;
 @property (nonatomic) float rating;
 @property (nullable, nonatomic, retain) NSString *userName;
-@property (nullable, nonatomic, retain) NSSet<Advert *> *advert;
+@property (nullable, nonatomic, retain) NSSet<Advert *> *adverts;
 @property (nullable, nonatomic, retain) Image *image;
-@property (nullable, nonatomic, retain) NSSet<Offer *> *offer;
+@property (nullable, nonatomic, retain) NSSet<Offer *> *offers;
+@property (nullable, nonatomic, retain) NSSet<NSManagedObject *> *questions;
+@property (nullable, nonatomic, retain) NSSet<NSManagedObject *> *answers;
 
 @end
 
 @interface User (CoreDataGeneratedAccessors)
 
-- (void)addAdvertObject:(Advert *)value;
-- (void)removeAdvertObject:(Advert *)value;
-- (void)addAdvert:(NSSet<Advert *> *)values;
-- (void)removeAdvert:(NSSet<Advert *> *)values;
+- (void)addAdvertsObject:(Advert *)value;
+- (void)removeAdvertsObject:(Advert *)value;
+- (void)addAdverts:(NSSet<Advert *> *)values;
+- (void)removeAdverts:(NSSet<Advert *> *)values;
 
-- (void)addOfferObject:(Offer *)value;
-- (void)removeOfferObject:(Offer *)value;
-- (void)addOffer:(NSSet<Offer *> *)values;
-- (void)removeOffer:(NSSet<Offer *> *)values;
+- (void)addOffersObject:(Offer *)value;
+- (void)removeOffersObject:(Offer *)value;
+- (void)addOffers:(NSSet<Offer *> *)values;
+- (void)removeOffers:(NSSet<Offer *> *)values;
+
+- (void)addQuestionsObject:(NSManagedObject *)value;
+- (void)removeQuestionsObject:(NSManagedObject *)value;
+- (void)addQuestions:(NSSet<NSManagedObject *> *)values;
+- (void)removeQuestions:(NSSet<NSManagedObject *> *)values;
+
+- (void)addAnswersObject:(NSManagedObject *)value;
+- (void)removeAnswersObject:(NSManagedObject *)value;
+- (void)addAnswers:(NSSet<NSManagedObject *> *)values;
+- (void)removeAnswers:(NSSet<NSManagedObject *> *)values;
 
 @end
 

@@ -1,5 +1,5 @@
 //
-//  Offer+CoreDataProperties.h
+//  Answer+CoreDataProperties.h
 //  takestok
 //
 //  Created by Artem on 5/16/16.
@@ -9,19 +9,15 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Offer.h"
+#import "Answer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Offer (CoreDataProperties)
+@interface Answer (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSString *comment;
+@property (nullable, nonatomic, retain) NSString *message;
 @property (nonatomic) NSTimeInterval created;
-@property (nonatomic) double price;
-@property (nonatomic) int32_t quantity;
-@property (nonatomic) NSTimeInterval updated;
-@property (nullable, nonatomic, retain) Advert *advert;
-@property (nullable, nonatomic, retain) OfferStatus *status;
+@property (nullable, nonatomic, retain) Question *question;
 @property (nullable, nonatomic, retain) User *user;
 
 @end

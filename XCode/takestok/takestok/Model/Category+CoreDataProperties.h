@@ -2,7 +2,7 @@
 //  Category+CoreDataProperties.h
 //  takestok
 //
-//  Created by Artem on 5/5/16.
+//  Created by Artem on 5/16/16.
 //  Copyright © 2016 Artem. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,22 +15,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Category (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSSet<Advert *> *advert;
-@property (nullable, nonatomic, retain) NSSet<NSManagedObject *> *subCategories;
+@property (nullable, nonatomic, retain) NSSet<Advert *> *adverts;
+@property (nullable, nonatomic, retain) NSSet<SubCategory *> *subCategories;
 
 @end
 
 @interface Category (CoreDataGeneratedAccessors)
 
-- (void)addAdvertObject:(Advert *)value;
-- (void)removeAdvertObject:(Advert *)value;
-- (void)addAdvert:(NSSet<Advert *> *)values;
-- (void)removeAdvert:(NSSet<Advert *> *)values;
+- (void)addAdvertsObject:(Advert *)value;
+- (void)removeAdvertsObject:(Advert *)value;
+- (void)addAdverts:(NSSet<Advert *> *)values;
+- (void)removeAdverts:(NSSet<Advert *> *)values;
 
-- (void)addSubCategoriesObject:(NSManagedObject *)value;
-- (void)removeSubCategoriesObject:(NSManagedObject *)value;
-- (void)addSubCategories:(NSSet<NSManagedObject *> *)values;
-- (void)removeSubCategories:(NSSet<NSManagedObject *> *)values;
+- (void)addSubCategoriesObject:(SubCategory *)value;
+- (void)removeSubCategoriesObject:(SubCategory *)value;
+- (void)addSubCategories:(NSSet<SubCategory *> *)values;
+- (void)removeSubCategories:(NSSet<SubCategory *> *)values;
 
 @end
 

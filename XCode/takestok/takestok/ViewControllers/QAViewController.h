@@ -7,16 +7,20 @@
 //
 
 #import "BaseViewController.h"
+#import "AskQuestionView.h"
 
 @class Advert;
-@class AskQuestionView;
-@interface QAViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource>{
+@class UIRefreshControl;
+
+@interface QAViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, AskQuestionProtocol>{
     Advert* _advert;
     AskQuestionView* _askQuestionView;
     __weak IBOutlet UITableView *_askTableView;
     NSMutableArray* _qaData;
-    
+    BOOL _loading;
+    int _page;
     float _keyboardFrame;
+    UIRefreshControl* _refreshControl;
 }
 
 -(void)setAdvert:(Advert*)advert;

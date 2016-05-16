@@ -2,7 +2,7 @@
 //  SubCategory+CoreDataProperties.m
 //  takestok
 //
-//  Created by Artem on 5/5/16.
+//  Created by Artem on 5/16/16.
 //  Copyright © 2016 Artem. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,7 +13,7 @@
 
 @implementation SubCategory (CoreDataProperties)
 
-@dynamic subAdverb;
 @dynamic category;
+@dynamic subAdverbs;
 
 @end

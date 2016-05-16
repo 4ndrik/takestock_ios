@@ -23,5 +23,7 @@
 }
 
 - (IBAction)askQuestion:(id)sender {
+    [self.delegate askQuestion];
 }
+
 @end

@@ -19,6 +19,8 @@
 #import "Offer.h"
 #import "OfferStatus.h"
 #import "MainThreadRecursiveLock.h"
+#import "Question.h"
+#import "Answer.h"
 
 #import <AFNetworking.h>
 
@@ -45,6 +47,7 @@ typedef enum
 #define OFFER_STATUS_URL_PATH       @"offer_status"
 #define SIGN_IN_URL_PATH            @"token/auth"
 #define OFFERS_URL_PATH             @"offers"
+#define QUESTIONS_URL_PATH          @"qa/questions"
 
 
 #define SERVER_RESPONCE_RESULT_PARAM                  @"results"
@@ -59,6 +62,7 @@ typedef enum
     
     _dictionaryLock = [[MainThreadRecursiveLock alloc] init];
     _advertLock = [[MainThreadRecursiveLock alloc] init];
+    _usersLock = [[MainThreadRecursiveLock alloc] init];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     _session = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
@@ -398,6 +402,7 @@ typedef enum
                         [user updateWithDic:userDic];
                         [self loadAdverts:0 userId:userId];
                         [self loadUserOffers];
+                        [[DB sharedInstance].storedManagedObjectContext save:nil];
                     });
                 }
             }
@@ -412,6 +417,7 @@ typedef enum
 
 -(void)loadUsers:(NSArray*)idents compleate:(void(^)(NSArray* users, NSError* error))compleate{
     
+    [_usersLock lock];
     NSString* method = USER_URL_PATH;
     if (idents.count == 1){
         method = [NSString stringWithFormat:@"%@/%@",USER_URL_PATH, idents.firstObject];
@@ -444,9 +450,81 @@ typedef enum
             if (compleate)
                 compleate(users, error);
         });
+        [_usersLock unlock];
     }];
     
     [loadUserTask resume];
+}
+
+#pragma mark - QA
+
+-(void)loadQuestionAnswersWithAdvId:(int)advertId page:(int)page compleate:(void(^)(NSArray* adverbs, NSDictionary* additionalData, NSError* error))compleate{
+    NSURLSessionDataTask* loadUserTask = [_session dataTaskWithRequest:[self request:QUESTIONS_URL_PATH query:[NSString stringWithFormat:@"advert_id=%i", advertId] methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        NSMutableArray* questions;
+        NSMutableDictionary* additionalDic;
+        if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error]){
+            if (!error){
+                additionalDic = [NSMutableDictionary dictionaryWithDictionary:result];
+                [additionalDic removeObjectForKey:SERVER_RESPONCE_RESULT_PARAM];
+                NSArray* array = [result objectForKeyNotNull:SERVER_RESPONCE_RESULT_PARAM];
+                questions = [NSMutableArray arrayWithCapacity:array.count];
+                
+                NSMutableSet* usersIdSet = [NSMutableSet set];
+                for (NSDictionary* questionDic in array) {
+                    int userId = [[questionDic objectForKeyNotNull:QUESTION_USER_PARAM] intValue];
+                    if (userId > 0 && ![User getEntityWithId:userId])
+                        [usersIdSet addObject:[NSNumber numberWithInt:userId]];
+                    
+                    NSDictionary* answer = [questionDic objectForKeyNotNull:QUESTION_ANSWER_PARAM];
+                    userId = [[answer objectForKeyNotNull:ANSWER_USER_PARAM] intValue];
+                    if (userId > 0 && ![User getEntityWithId:userId])
+                        [usersIdSet addObject:[NSNumber numberWithInt:userId]];
+                }
+                
+                for (NSNumber* number in usersIdSet) {
+                    [self loadUsers:[NSArray arrayWithObjects:number, nil] compleate:nil];
+                }
+                [_usersLock waitUntilDone];
+                
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    for (NSDictionary* questionDic in array) {
+                        int qId = [[questionDic objectForKeyNotNull:QUESTION_ID_PARAM] intValue];
+                        Question* question = [Question getEntityWithId:qId];
+                        if (!question){
+                            question = [Question tempEntity];
+                        }
+                        [question updateWithDic:questionDic];
+                        [questions addObject:question];
+                    }
+                });
+            }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (compleate)
+                 compleate(questions, additionalDic, error);
+        });
+    }];
+    
+    [loadUserTask resume];
+}
+
+-(void)askQuestion:(Question*)question compleate:(void(^)(NSError* error))compleate{
+    NSDictionary* questionData = [question getDictionary];
+    NSError* error;
+    NSString* params = [self jsonStringFromDicOrArray:questionData error:&error];
+    
+    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:QUESTIONS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
+        {
+            NSLog(@"q asked");
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            compleate(error);
+        });
+    }];
+    
+    [dataTask resume];
 }
 
 #pragma mark - Helpers

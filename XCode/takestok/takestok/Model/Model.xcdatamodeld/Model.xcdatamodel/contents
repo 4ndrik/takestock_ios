@@ -13,31 +13,38 @@
         <attribute name="size" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tags" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updated" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="author" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="advert" inverseEntity="User" syncable="YES"/>
-        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="advert" inverseEntity="Category" syncable="YES"/>
-        <relationship name="certification" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Certification" inverseName="advert" inverseEntity="Certification" syncable="YES"/>
-        <relationship name="condition" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Condition" inverseName="advert" inverseEntity="Condition" syncable="YES"/>
+        <relationship name="author" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="adverts" inverseEntity="User" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="adverts" inverseEntity="Category" syncable="YES"/>
+        <relationship name="certification" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Certification" inverseName="adverts" inverseEntity="Certification" syncable="YES"/>
+        <relationship name="condition" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Condition" inverseName="adverts" inverseEntity="Condition" syncable="YES"/>
         <relationship name="images" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Image" inverseName="advert" inverseEntity="Image" syncable="YES"/>
         <relationship name="offers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Offer" inverseName="advert" inverseEntity="Offer" syncable="YES"/>
-        <relationship name="packaging" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Packaging" inverseName="advert" inverseEntity="Packaging" syncable="YES"/>
-        <relationship name="shipping" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shipping" inverseName="advert" inverseEntity="Shipping" syncable="YES"/>
-        <relationship name="sizeType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SizeType" inverseName="advert" inverseEntity="SizeType" syncable="YES"/>
-        <relationship name="subCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="subAdverb" inverseEntity="SubCategory" syncable="YES"/>
+        <relationship name="packaging" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Packaging" inverseName="adverts" inverseEntity="Packaging" syncable="YES"/>
+        <relationship name="questions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Question" inverseName="advert" inverseEntity="Question" syncable="YES"/>
+        <relationship name="shipping" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shipping" inverseName="adverts" inverseEntity="Shipping" syncable="YES"/>
+        <relationship name="sizeType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SizeType" inverseName="adverts" inverseEntity="SizeType" syncable="YES"/>
+        <relationship name="subCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="subAdverbs" inverseEntity="SubCategory" syncable="YES"/>
+    </entity>
+    <entity name="Answer" representedClassName="Answer" parentEntity="BaseEntity" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="question" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Question" inverseName="answer" inverseEntity="Question" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="answers" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="BaseEntity" representedClassName="BaseEntity" isAbstract="YES" syncable="YES">
         <attribute name="ident" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
     </entity>
     <entity name="Category" representedClassName="Category" parentEntity="Dictionary" syncable="YES">
-        <relationship name="advert" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="category" inverseEntity="Advert" syncable="YES"/>
+        <relationship name="adverts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="category" inverseEntity="Advert" syncable="YES"/>
         <relationship name="subCategories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="category" inverseEntity="SubCategory" syncable="YES"/>
     </entity>
     <entity name="Certification" representedClassName="Certification" parentEntity="Dictionary" syncable="YES">
         <attribute name="certDescription" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="advert" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="certification" inverseEntity="Advert" syncable="YES"/>
+        <relationship name="adverts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="certification" inverseEntity="Advert" syncable="YES"/>
         <relationship name="image" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Image" inverseName="certification" inverseEntity="Image" syncable="YES"/>
     </entity>
     <entity name="Condition" representedClassName="Condition" parentEntity="Dictionary" syncable="YES">
-        <relationship name="advert" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="condition" inverseEntity="Advert" syncable="YES"/>
+        <relationship name="adverts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="condition" inverseEntity="Advert" syncable="YES"/>
     </entity>
     <entity name="Dictionary" representedClassName="Dictionary" isAbstract="YES" parentEntity="BaseEntity" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -58,24 +65,31 @@
         <attribute name="quantity" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="updated" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="advert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Advert" inverseName="offers" inverseEntity="Advert" syncable="YES"/>
-        <relationship name="status" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OfferStatus" inverseName="offer" inverseEntity="OfferStatus" syncable="YES"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="offer" inverseEntity="User" syncable="YES"/>
+        <relationship name="status" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OfferStatus" inverseName="offers" inverseEntity="OfferStatus" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="offers" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="OfferStatus" representedClassName="OfferStatus" parentEntity="Dictionary" syncable="YES">
-        <relationship name="offer" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Offer" inverseName="status" inverseEntity="Offer" syncable="YES"/>
+        <relationship name="offers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Offer" inverseName="status" inverseEntity="Offer" syncable="YES"/>
     </entity>
     <entity name="Packaging" representedClassName="Packaging" parentEntity="Dictionary" syncable="YES">
-        <relationship name="advert" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="packaging" inverseEntity="Advert" syncable="YES"/>
+        <relationship name="adverts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="packaging" inverseEntity="Advert" syncable="YES"/>
+    </entity>
+    <entity name="Question" representedClassName="Question" parentEntity="BaseEntity" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="advert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Advert" inverseName="questions" inverseEntity="Advert" syncable="YES"/>
+        <relationship name="answer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Answer" inverseName="question" inverseEntity="Answer" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="questions" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Shipping" representedClassName="Shipping" parentEntity="Dictionary" syncable="YES">
-        <relationship name="advert" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="shipping" inverseEntity="Advert" syncable="YES"/>
+        <relationship name="adverts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="shipping" inverseEntity="Advert" syncable="YES"/>
     </entity>
     <entity name="SizeType" representedClassName="SizeType" parentEntity="Dictionary" syncable="YES">
-        <relationship name="advert" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="sizeType" inverseEntity="Advert" syncable="YES"/>
+        <relationship name="adverts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="sizeType" inverseEntity="Advert" syncable="YES"/>
     </entity>
     <entity name="SubCategory" representedClassName="SubCategory" parentEntity="Dictionary" syncable="YES">
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="subCategories" inverseEntity="Category" syncable="YES"/>
-        <relationship name="subAdverb" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="subCategory" inverseEntity="Advert" syncable="YES"/>
+        <relationship name="subAdverbs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="subCategory" inverseEntity="Advert" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" parentEntity="BaseEntity" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
@@ -86,12 +100,14 @@
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="advert" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="author" inverseEntity="Advert" syncable="YES"/>
+        <relationship name="adverts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="author" inverseEntity="Advert" syncable="YES"/>
+        <relationship name="answers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Answer" inverseName="user" inverseEntity="Answer" syncable="YES"/>
         <relationship name="image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="user" inverseEntity="Image" syncable="YES"/>
-        <relationship name="offer" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Offer" inverseName="user" inverseEntity="Offer" syncable="YES"/>
+        <relationship name="offers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Offer" inverseName="user" inverseEntity="Offer" syncable="YES"/>
+        <relationship name="questions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Question" inverseName="user" inverseEntity="Question" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Advert" positionX="-63" positionY="-18" width="128" height="375"/>
+        <element name="Advert" positionX="-63" positionY="-18" width="128" height="390"/>
         <element name="BaseEntity" positionX="18" positionY="135" width="128" height="60"/>
         <element name="Category" positionX="-18" positionY="81" width="128" height="75"/>
         <element name="Certification" positionX="0" positionY="108" width="128" height="90"/>
@@ -104,6 +120,8 @@
         <element name="Shipping" positionX="-36" positionY="90" width="128" height="60"/>
         <element name="SizeType" positionX="-27" positionY="72" width="128" height="60"/>
         <element name="SubCategory" positionX="-18" positionY="135" width="128" height="75"/>
-        <element name="User" positionX="-18" positionY="117" width="128" height="210"/>
+        <element name="User" positionX="-18" positionY="117" width="128" height="240"/>
+        <element name="Question" positionX="-18" positionY="135" width="128" height="120"/>
+        <element name="Answer" positionX="-9" positionY="144" width="128" height="105"/>
     </elements>
 </model>

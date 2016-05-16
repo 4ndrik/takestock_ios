@@ -2,7 +2,7 @@
 //  Certification+CoreDataProperties.h
 //  takestok
 //
-//  Created by Artem on 4/28/16.
+//  Created by Artem on 5/16/16.
 //  Copyright © 2016 Artem. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,17 +16,17 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Certification (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSString *certDescription;
-@property (nullable, nonatomic, retain) NSSet<Advert *> *advert;
+@property (nullable, nonatomic, retain) NSSet<Advert *> *adverts;
 @property (nullable, nonatomic, retain) Image *image;
 
 @end
 
 @interface Certification (CoreDataGeneratedAccessors)
 
-- (void)addAdvertObject:(Advert *)value;
-- (void)removeAdvertObject:(Advert *)value;
-- (void)addAdvert:(NSSet<Advert *> *)values;
-- (void)removeAdvert:(NSSet<Advert *> *)values;
+- (void)addAdvertsObject:(Advert *)value;
+- (void)removeAdvertsObject:(Advert *)value;
+- (void)addAdverts:(NSSet<Advert *> *)values;
+- (void)removeAdverts:(NSSet<Advert *> *)values;
 
 @end
 

@@ -14,12 +14,14 @@
 @class SortData;
 @class MainThreadRecursiveLock;
 @class Offer;
+@class Question;
 
 @interface ServerConnectionHelper : NSObject{
     AFURLSessionManager *_session;
     NSURLSessionDataTask* _loadAdvertCancelTask;
     MainThreadRecursiveLock* _dictionaryLock;
     MainThreadRecursiveLock* _advertLock;
+    MainThreadRecursiveLock* _usersLock;
 }
 
 +(ServerConnectionHelper*)sharedInstance;
@@ -30,5 +32,7 @@
 -(void)loadRequiredData;
 -(void)loadUsers:(NSArray*)idents compleate:(void(^)(NSArray* users, NSError* error))compleate;
 -(void)signIn:(NSString*)username password:(NSString*)password compleate:(void(^)(NSError* error))compleate;
+-(void)loadQuestionAnswersWithAdvId:(int)advertId page:(int)page compleate:(void(^)(NSArray* adverbs, NSDictionary* additionalData, NSError* error))compleate;
+-(void)askQuestion:(Question*)question compleate:(void(^)(NSError* error))compleate;
 
 @end

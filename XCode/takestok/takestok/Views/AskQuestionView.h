@@ -8,9 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol AskQuestionProtocol <NSObject>
+
+-(void)askQuestion;
+
+@end
+
 @interface AskQuestionView : UIView
 
 @property (weak, nonatomic) IBOutlet UITextView *questionTextView;
+@property (weak) id<AskQuestionProtocol>delegate;
 
 - (IBAction)askQuestion:(id)sender;
 

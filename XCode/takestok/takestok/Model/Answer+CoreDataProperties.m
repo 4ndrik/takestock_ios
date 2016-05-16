@@ -1,5 +1,5 @@
 //
-//  Shipping+CoreDataProperties.m
+//  Answer+CoreDataProperties.m
 //  takestok
 //
 //  Created by Artem on 5/16/16.
@@ -9,10 +9,13 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Shipping+CoreDataProperties.h"
+#import "Answer+CoreDataProperties.h"
 
-@implementation Shipping (CoreDataProperties)
+@implementation Answer (CoreDataProperties)
 
-@dynamic adverts;
+@dynamic message;
+@dynamic created;
+@dynamic question;
+@dynamic user;
 
 @end
