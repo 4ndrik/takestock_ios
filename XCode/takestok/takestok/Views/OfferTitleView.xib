@@ -4,123 +4,146 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="AgendaMedium.ttf">
-            <string>Agenda-Medium</string>
-        </mutableArray>
-        <mutableArray key="brandon_bld.otf">
-            <string>BrandonGrotesque-Bold</string>
-            <string>BrandonGrotesque-Bold</string>
-            <string>BrandonGrotesque-Bold</string>
-        </mutableArray>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="OfferTitleView">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="102"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gYU-Ba-A92" customClass="BackgroundImageView">
-                    <rect key="frame" x="4" y="10" width="100" height="80"/>
+                    <rect key="frame" x="4" y="10" width="80" height="80"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="gIh-0O-kMr"/>
+                        <constraint firstAttribute="width" constant="80" id="gIh-0O-kMr"/>
                         <constraint firstAttribute="height" constant="80" id="rMB-cB-iKb"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="rMB-cB-iKb"/>
+                        </mask>
+                    </variation>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Kb-px-pDP" customClass="TopBottomStripesLabel">
-                    <rect key="frame" x="114" y="10" width="400" height="40"/>
+                    <rect key="frame" x="94" y="10" width="496" height="20"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="uLd-Ve-yfc"/>
+                        <constraint firstAttribute="height" constant="20" id="uLd-Ve-yfc"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="BrandonGrotesque-Bold" family="Brandon Grotesque" pointSize="24"/>
-                    <color key="textColor" red="0.49803921569999998" green="0.066666666669999999" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                             <color key="value" red="0.49803921569999998" green="0.066666666669999999" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                            <integer key="value" value="1"/>
+                            <integer key="value" value="0"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 kg " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebX-RX-Umq">
-                    <rect key="frame" x="524" y="10" width="66" height="30"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7.50" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebX-RX-Umq">
+                    <rect key="frame" x="94" y="58" width="243" height="32"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="alD-qN-hZx"/>
+                        <constraint firstAttribute="height" constant="40" id="alD-qN-hZx"/>
                         <constraint firstAttribute="width" constant="55" id="g9m-Eu-9KC"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="BrandonGrotesque-Bold" family="Brandon Grotesque" pointSize="22"/>
-                    <color key="textColor" red="0.49803921569999998" green="0.066666666669999999" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                    <color key="textColor" red="0.30196078431372547" green="0.30196078431372547" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                     <variation key="default">
                         <mask key="constraints">
+                            <exclude reference="alD-qN-hZx"/>
                             <exclude reference="g9m-Eu-9KC"/>
                         </mask>
                     </variation>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AVAILABLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gS5-v3-0id">
-                    <rect key="frame" x="524" y="42" width="66" height="22"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100kg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gS5-v3-0id">
+                    <rect key="frame" x="347" y="58" width="243" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="54" id="366-f6-2Ud"/>
-                        <constraint firstAttribute="height" constant="22" id="Bt5-8I-kXB"/>
+                        <constraint firstAttribute="height" constant="40" id="Bt5-8I-kXB"/>
+                        <constraint firstAttribute="width" constant="68" id="gul-Dk-XIB"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="BrandonGrotesque-Bold" family="Brandon Grotesque" pointSize="10"/>
-                    <color key="textColor" red="0.49803921569999998" green="0.066666666669999999" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                    <color key="textColor" red="0.30196078431372547" green="0.30196078431372547" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="366-f6-2Ud"/>
+                            <exclude reference="Bt5-8I-kXB"/>
+                            <exclude reference="gul-Dk-XIB"/>
                         </mask>
                     </variation>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Listed on Apri" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HnY-Xx-MAa">
-                    <rect key="frame" x="114" y="66" width="69" height="20"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="oyd-4K-UAR"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Agenda-Medium" family="Agenda" pointSize="12"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PsJ-KJ-BHG">
-                    <rect key="frame" x="0.0" y="100" width="600" height="2"/>
-                    <color key="backgroundColor" red="0.49803921569999998" green="0.066666666669999999" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="0.0" y="98" width="600" height="2"/>
+                    <color key="backgroundColor" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="2" id="Ko6-8J-5UX"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Listed on Apri" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HnY-Xx-MAa">
+                    <rect key="frame" x="94" y="32" width="496" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="oyd-4K-UAR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                    <color key="textColor" red="0.57647058823529407" green="0.58431372549019611" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="HnY-Xx-MAa" firstAttribute="top" secondItem="7Kb-px-pDP" secondAttribute="bottom" constant="16" id="1Zy-1b-hCa"/>
                 <constraint firstItem="ebX-RX-Umq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="6Ye-4j-wqt"/>
                 <constraint firstItem="gYU-Ba-A92" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="6rX-ID-csg"/>
+                <constraint firstItem="ebX-RX-Umq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="114" id="AMC-bW-fO3"/>
                 <constraint firstItem="gS5-v3-0id" firstAttribute="width" secondItem="ebX-RX-Umq" secondAttribute="width" id="Agf-Ud-do0"/>
+                <constraint firstAttribute="trailing" secondItem="7Kb-px-pDP" secondAttribute="trailing" constant="10" id="CMP-nd-RU9"/>
+                <constraint firstAttribute="bottom" secondItem="HnY-Xx-MAa" secondAttribute="bottom" constant="10" id="GqJ-nf-r9a"/>
+                <constraint firstItem="gS5-v3-0id" firstAttribute="top" secondItem="HnY-Xx-MAa" secondAttribute="bottom" constant="10" id="M20-NF-8D9"/>
                 <constraint firstAttribute="trailing" secondItem="gS5-v3-0id" secondAttribute="trailing" constant="10" id="MXw-hC-3IN"/>
+                <constraint firstAttribute="bottom" secondItem="ebX-RX-Umq" secondAttribute="bottom" constant="10" id="Mys-Jc-ZiL"/>
                 <constraint firstAttribute="bottom" secondItem="PsJ-KJ-BHG" secondAttribute="bottom" id="Odm-m3-r9T"/>
                 <constraint firstAttribute="bottom" secondItem="gYU-Ba-A92" secondAttribute="bottom" constant="10" id="QRv-8W-dTw"/>
                 <constraint firstItem="7Kb-px-pDP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="VEG-fi-MmJ"/>
                 <constraint firstItem="gS5-v3-0id" firstAttribute="top" secondItem="ebX-RX-Umq" secondAttribute="bottom" constant="2" id="WIT-hz-B2h"/>
                 <constraint firstItem="7Kb-px-pDP" firstAttribute="leading" secondItem="gYU-Ba-A92" secondAttribute="trailing" constant="10" id="Wqp-lB-7fA"/>
+                <constraint firstItem="ebX-RX-Umq" firstAttribute="top" secondItem="HnY-Xx-MAa" secondAttribute="bottom" constant="10" id="eOf-IB-XO3"/>
                 <constraint firstItem="HnY-Xx-MAa" firstAttribute="leading" secondItem="gYU-Ba-A92" secondAttribute="trailing" constant="10" id="f5w-Lc-xng"/>
+                <constraint firstItem="gS5-v3-0id" firstAttribute="leading" secondItem="ebX-RX-Umq" secondAttribute="trailing" constant="10" id="g7p-Ud-xes"/>
+                <constraint firstItem="ebX-RX-Umq" firstAttribute="leading" secondItem="gYU-Ba-A92" secondAttribute="trailing" constant="10" id="hBG-OI-9v7"/>
                 <constraint firstItem="PsJ-KJ-BHG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jql-AV-iYo"/>
                 <constraint firstAttribute="trailing" secondItem="ebX-RX-Umq" secondAttribute="trailing" constant="10" id="kGM-6W-E1i"/>
                 <constraint firstItem="gYU-Ba-A92" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="4" id="nsJ-Xi-Jck"/>
                 <constraint firstItem="ebX-RX-Umq" firstAttribute="leading" secondItem="7Kb-px-pDP" secondAttribute="trailing" constant="10" id="ptk-W5-eyP"/>
+                <constraint firstAttribute="bottom" secondItem="gS5-v3-0id" secondAttribute="bottom" constant="10" id="qbD-9P-BO9"/>
+                <constraint firstItem="HnY-Xx-MAa" firstAttribute="top" secondItem="7Kb-px-pDP" secondAttribute="bottom" constant="2" id="qn8-Sd-1JW"/>
                 <constraint firstAttribute="trailing" secondItem="PsJ-KJ-BHG" secondAttribute="trailing" id="rVh-VZ-2sw"/>
+                <constraint firstAttribute="trailing" secondItem="HnY-Xx-MAa" secondAttribute="trailing" constant="10" id="rcE-h1-yfD"/>
+                <constraint firstItem="ebX-RX-Umq" firstAttribute="top" secondItem="HnY-Xx-MAa" secondAttribute="bottom" id="wIe-V3-XPY"/>
+                <constraint firstItem="gS5-v3-0id" firstAttribute="leading" secondItem="HnY-Xx-MAa" secondAttribute="trailing" constant="10" id="y8c-Ye-PmT"/>
+                <constraint firstAttribute="bottom" secondItem="gYU-Ba-A92" secondAttribute="bottom" constant="10" id="zjH-rS-DuN"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="QRv-8W-dTw"/>
+                    <exclude reference="1Zy-1b-hCa"/>
+                    <exclude reference="GqJ-nf-r9a"/>
+                    <exclude reference="6Ye-4j-wqt"/>
+                    <exclude reference="AMC-bW-fO3"/>
+                    <exclude reference="kGM-6W-E1i"/>
+                    <exclude reference="ptk-W5-eyP"/>
+                    <exclude reference="wIe-V3-XPY"/>
+                    <exclude reference="WIT-hz-B2h"/>
+                    <exclude reference="y8c-Ye-PmT"/>
                 </mask>
             </variation>
             <connections>
-                <outlet property="advertAvailableLabel" destination="ebX-RX-Umq" id="KX6-m3-3Gx"/>
+                <outlet property="advertAvailableLabel" destination="gS5-v3-0id" id="OUt-Lj-Dtk"/>
                 <outlet property="advertDataCreated" destination="HnY-Xx-MAa" id="fAQ-Br-PjN"/>
                 <outlet property="advertImageView" destination="gYU-Ba-A92" id="pyp-3h-CH6"/>
+                <outlet property="advertPriceLabel" destination="ebX-RX-Umq" id="Xek-7y-N3g"/>
                 <outlet property="advertTitleLabel" destination="7Kb-px-pDP" id="SzS-J5-tqH"/>
             </connections>
         </view>

@@ -22,4 +22,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *quantityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *offerPriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *offerCountLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *offerStatusLabel;
+
 @end

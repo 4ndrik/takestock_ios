@@ -66,7 +66,7 @@
 -(void)refreshAdData{
     _titleLabel.text = _advert.name;
     
-    _priceTextContainerView.text = [NSString stringWithFormat:@"%.02f £", _advert.guidePrice];
+    _priceTextContainerView.text = [NSString stringWithFormat:@"£%.02f", _advert.guidePrice];
     [_priceTextContainerView setNeedsDisplay];
     
     _minimumOrderTextContainerView.text = [NSString stringWithFormat:@"%i %@", _advert.minOrderQuantity, _advert.packaging ? _advert.packaging.title: @""];

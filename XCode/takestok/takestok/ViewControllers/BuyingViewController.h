@@ -9,7 +9,7 @@
 #import "BaseViewController.h"
 
 @interface BuyingViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource>{
-    NSArray* _adverts;
+    NSArray* _offers;
     __weak IBOutlet UITableView *_buyingTableView;
 }
 

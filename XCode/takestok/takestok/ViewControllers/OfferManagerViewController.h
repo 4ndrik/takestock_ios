@@ -8,9 +8,12 @@
 
 #import "BaseViewController.h"
 #import "Advert.h"
+#import "OfferTableViewCell.h"
 
-@interface OfferManagerViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource>{
+
+@interface OfferManagerViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, OfferActionDelegate>{
      __weak IBOutlet UITableView *_offersTableView;
+    NSArray* _offers;
 }
 
 @property (nonatomic, retain)Advert* advert;

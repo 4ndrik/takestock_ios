@@ -35,8 +35,8 @@
     [cell.adImageView loadImage:advert.images.firstObject];
     cell.titleLabel.text = advert.name;
     
-    cell.priceLabel.text = [NSString stringWithFormat:@"%.02f £", advert.guidePrice];
-    cell.countLabel.text = [NSString stringWithFormat:@"%i %@", advert.count, advert.packaging ? advert.packaging.title: @""];
+    cell.priceLabel.text = [NSString stringWithFormat:@"£%.02f", advert.guidePrice];
+    cell.countLabel.text = [NSString stringWithFormat:@"%i%@", advert.count, advert.packaging ? advert.packaging.title: @""];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateStyle = kCFDateFormatterMediumStyle;
@@ -51,6 +51,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    Advert* advert = [_adverts objectAtIndex:indexPath.row];
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
                                                                    message:nil
                                                             preferredStyle:UIAlertControllerStyleAlert];
@@ -87,8 +88,8 @@
                                                                [tableView deselectRowAtIndexPath:indexPath animated:NO];
                                                               NSLog(@"You pressed button two");
                                                           }];
-    
-    [alert addAction:manageOffersAction];
+    if (advert.offers.count > 0)
+        [alert addAction:manageOffersAction];
     [alert addAction:viewAdvertAction];
     [alert addAction:editAdvertAction];
     [alert addAction:cancelAction];

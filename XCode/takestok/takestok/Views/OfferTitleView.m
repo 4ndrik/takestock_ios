@@ -11,7 +11,7 @@
 @implementation OfferTitleView
 
 +(float)defaultSize{
-    return 102;
+    return 100;
 }
 
 @end

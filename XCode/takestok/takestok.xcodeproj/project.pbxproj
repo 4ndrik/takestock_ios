@@ -416,8 +416,6 @@
 				AC68C4831CB64966004B78DF /* CreateAdvertViewController.m */,
 				AC411E461CC50A00008B1E38 /* ImagesCollectionViewController.h */,
 				AC411E471CC50A00008B1E38 /* ImagesCollectionViewController.m */,
-				AC1F544B1CCE45350093848B /* OfferManagerViewController.h */,
-				AC1F544C1CCE45350093848B /* OfferManagerViewController.m */,
 				ACCE7FCC1CDCC3A400A76CB6 /* QAViewController.h */,
 				ACCE7FCD1CDCC3A400A76CB6 /* QAViewController.m */,
 			);
@@ -528,10 +526,8 @@
 				AC411E521CC78D61008B1E38 /* Adverts */,
 				AC049D1F1CBBD2D7006A8F21 /* LoginViewController.h */,
 				AC049D201CBBD2D7006A8F21 /* LoginViewController.m */,
-				AC411E4F1CC78D06008B1E38 /* SellingViewController.h */,
-				AC411E501CC78D06008B1E38 /* SellingViewController.m */,
-				AC411E591CC7D257008B1E38 /* BuyingViewController.h */,
-				AC411E5A1CC7D257008B1E38 /* BuyingViewController.m */,
+				AC854C271CEB3E46006AFF2D /* Selling */,
+				AC854C281CEB3E56006AFF2D /* Buying */,
 				ACFCB6B81CDA200A005A4024 /* UserProfileViewController.h */,
 				ACFCB6B91CDA200A005A4024 /* UserProfileViewController.m */,
 			);
@@ -616,6 +612,26 @@
 				AC411E581CC7CBD0008B1E38 /* AgendaMedium.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		AC854C271CEB3E46006AFF2D /* Selling */ = {
+			isa = PBXGroup;
+			children = (
+				AC411E4F1CC78D06008B1E38 /* SellingViewController.h */,
+				AC411E501CC78D06008B1E38 /* SellingViewController.m */,
+				AC1F544B1CCE45350093848B /* OfferManagerViewController.h */,
+				AC1F544C1CCE45350093848B /* OfferManagerViewController.m */,
+			);
+			name = Selling;
+			sourceTree = "<group>";
+		};
+		AC854C281CEB3E56006AFF2D /* Buying */ = {
+			isa = PBXGroup;
+			children = (
+				AC411E591CC7D257008B1E38 /* BuyingViewController.h */,
+				AC411E5A1CC7D257008B1E38 /* BuyingViewController.m */,
+			);
+			name = Buying;
 			sourceTree = "<group>";
 		};
 		D9CDB975853D8ADD3B918602 /* Pods */ = {

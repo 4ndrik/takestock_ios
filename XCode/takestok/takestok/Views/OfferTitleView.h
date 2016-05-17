@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet TopBottomStripesLabel *advertTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *advertAvailableLabel;
 @property (weak, nonatomic) IBOutlet UILabel *advertDataCreated;
+@property (weak, nonatomic) IBOutlet UILabel *advertPriceLabel;
 
 +(float)defaultSize;
 
