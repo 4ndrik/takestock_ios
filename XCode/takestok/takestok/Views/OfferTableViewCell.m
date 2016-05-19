@@ -11,15 +11,15 @@
 @implementation OfferTableViewCell
 
 - (IBAction)acceptAction:(id)sender {
-    [self.delegate acceptOffer:self];
+    [self.delegate acceptOfferAction:self];
 }
 
 - (IBAction)rejectAction:(id)sender {
-    [self.delegate rejectOffer:self];
+    [self.delegate rejectOfferAction:self];
 }
 
 - (IBAction)counterAction:(id)sender {
-    [self.delegate counterOffer:self];
+    [self.delegate counterOfferAction:self];
 }
 
 @end

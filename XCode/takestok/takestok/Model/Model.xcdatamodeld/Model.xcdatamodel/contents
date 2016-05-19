@@ -65,6 +65,8 @@
         <attribute name="quantity" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="updated" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="advert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Advert" inverseName="offers" inverseEntity="Advert" syncable="YES"/>
+        <relationship name="counterOffer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Offer" inverseName="parentOffer" inverseEntity="Offer" syncable="YES"/>
+        <relationship name="parentOffer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Offer" inverseName="counterOffer" inverseEntity="Offer" syncable="YES"/>
         <relationship name="status" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OfferStatus" inverseName="offers" inverseEntity="OfferStatus" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="offers" inverseEntity="User" syncable="YES"/>
     </entity>
@@ -108,20 +110,20 @@
     </entity>
     <elements>
         <element name="Advert" positionX="-63" positionY="-18" width="128" height="390"/>
+        <element name="Answer" positionX="-9" positionY="144" width="128" height="105"/>
         <element name="BaseEntity" positionX="18" positionY="135" width="128" height="60"/>
         <element name="Category" positionX="-18" positionY="81" width="128" height="75"/>
         <element name="Certification" positionX="0" positionY="108" width="128" height="90"/>
         <element name="Condition" positionX="-18" positionY="99" width="128" height="60"/>
         <element name="Dictionary" positionX="-45" positionY="81" width="128" height="60"/>
         <element name="Image" positionX="-54" positionY="54" width="128" height="150"/>
-        <element name="Offer" positionX="-18" positionY="135" width="128" height="165"/>
+        <element name="Offer" positionX="-18" positionY="135" width="128" height="195"/>
         <element name="OfferStatus" positionX="-9" positionY="144" width="128" height="60"/>
         <element name="Packaging" positionX="-18" positionY="135" width="128" height="60"/>
+        <element name="Question" positionX="-18" positionY="135" width="128" height="120"/>
         <element name="Shipping" positionX="-36" positionY="90" width="128" height="60"/>
         <element name="SizeType" positionX="-27" positionY="72" width="128" height="60"/>
         <element name="SubCategory" positionX="-18" positionY="135" width="128" height="75"/>
         <element name="User" positionX="-18" positionY="117" width="128" height="240"/>
-        <element name="Question" positionX="-18" positionY="135" width="128" height="120"/>
-        <element name="Answer" positionX="-9" positionY="144" width="128" height="105"/>
     </elements>
 </model>

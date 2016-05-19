@@ -22,6 +22,7 @@
 #import "UIViewController+BackButtonHandler.h"
 #import "PaddingTextField.h"
 #import "Offer.h"
+#import "OfferStatus.h"
 
 @interface AdvertDetailViewController ()
 
@@ -138,23 +139,24 @@
 
 -(void)createOrder{
     if (_createOrderAction){
-        if (!_offer)
-            _offer = [_advert isForStore] ? [Offer storedEntity] : [Offer tempEntity];
-        _offer.advert = _advert;
+        Offer* offer = [_advert isForStore] ? [Offer storedEntity] : [Offer tempEntity];
+        offer.advert = _advert;
         User* user = [User getMe];
-        if (user.managedObjectContext != _offer.managedObjectContext){
-            user = [_offer.managedObjectContext objectWithID:[user objectID]];
+        if (user.managedObjectContext != offer.managedObjectContext){
+            user = [offer.managedObjectContext objectWithID:[user objectID]];
         }
-        _offer.user = user;
-        _offer.price = [_offerPriceTextField.text floatValue];
-        _offer.quantity = [_offerQuantityTextField.text floatValue];
+        offer.user = user;
+        offer.price = [_offerPriceTextField.text floatValue];
+        offer.quantity = [_offerQuantityTextField.text floatValue];
+        offer.status = [OfferStatus getEntityWithId:stPending];
         
         [self showLoading];
-        [[ServerConnectionHelper sharedInstance] createOffer:_offer compleate:^(NSError *error) {
+        [[ServerConnectionHelper sharedInstance] createOffer:offer compleate:^(NSError *error) {
             [self hideLoading];
             NSString* title = @"";
             NSString* message = @"Offer created";
             if (error){
+                [offer.managedObjectContext deleteObject:offer];
                 title = @"Error";
                 message = [error localizedDescription];
             }else{

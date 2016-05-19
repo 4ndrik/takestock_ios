@@ -13,7 +13,22 @@
 
 @implementation BaseViewController
 
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    _loadingView = [[UIView alloc] initWithFrame:self.view.bounds];
+    _loadingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _loadingView.backgroundColor = [UIColor clearColor];
+    UIView* blackPanel = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    blackPanel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    blackPanel.layer.cornerRadius = 3.;
+    blackPanel.center = _loadingView.center;
+    [_loadingView addSubview:blackPanel];
+    UIActivityIndicatorView* activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [activityIndicator startAnimating];
+    activityIndicator.center = _loadingView.center;
+    [_loadingView addSubview:activityIndicator];
 
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -50,19 +65,8 @@
 
 -(void)showLoading{
     [self hideKeyboard:nil];
-    _loadingView = [[UIView alloc] initWithFrame:self.view.bounds];
-    _loadingView.backgroundColor = [UIColor clearColor];
-    UIView* blackPanel = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-    blackPanel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-    blackPanel.layer.cornerRadius = 3.;
-    blackPanel.center = _loadingView.center;
-    [_loadingView addSubview:blackPanel];
-    UIActivityIndicatorView* activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    [activityIndicator startAnimating];
-    activityIndicator.center = _loadingView.center;
-    [_loadingView addSubview:activityIndicator];
-    
-    [self.view addSubview:_loadingView];
+    if (!_loadingView.superview)
+        [self.view addSubview:_loadingView];
 }
 
 -(void)hideLoading{

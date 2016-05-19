@@ -12,7 +12,7 @@
 #define OFFER_ID_PARAM              @"id"
 #define OFFER_USER_PARAM            @"user"
 #define OFFER_ADVERT_PARAM          @"advert"
-//#define OFFER_COUNTEROFFER_PARAM    @"offer"
+#define OFFER_PARENT_OFFER_PARAM    @"offer"
 #define OFFER_PRICE_PARAM           @"price"
 #define OFFER_QUANTITY_PARAM        @"quantity"
 #define OFFER_STATUS_PARAM          @"status"

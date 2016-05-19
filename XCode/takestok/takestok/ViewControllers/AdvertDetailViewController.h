@@ -17,7 +17,6 @@
 
 @interface AdvertDetailViewController : BaseViewController<UICollectionViewDelegate, UICollectionViewDataSource>{
     Advert* _advert;
-    Offer* _offer;
     
     BOOL _popToRootViewController;
     

@@ -13,7 +13,9 @@
 - (CGSize)intrinsicContentSize
 {
     CGSize size = [super intrinsicContentSize];
-    return CGSizeMake(size.width + _leftInset + _rightInset, size.height + _topInset + _bottomInset);
+    if (size.width > 0 && size.height > 0)
+        size = CGSizeMake(size.width + _leftInset + _rightInset, size.height + _topInset + _bottomInset);
+    return size;
 }
 
 @end

@@ -11,6 +11,13 @@
 
 @class Offer;
 
+typedef enum {
+    stAccept = 1,
+    stDecline = 2,
+    stPending = 3,
+    stCountered = 4
+} StatusType;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OfferStatus : Dictionary

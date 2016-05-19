@@ -63,6 +63,7 @@ typedef enum
     _dictionaryLock = [[MainThreadRecursiveLock alloc] init];
     _advertLock = [[MainThreadRecursiveLock alloc] init];
     _usersLock = [[MainThreadRecursiveLock alloc] init];
+    _offersLock = [[MainThreadRecursiveLock alloc] init];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     _session = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
@@ -83,6 +84,24 @@ typedef enum
 -(BOOL)isInternetConnection
 {
     return [_session.reachabilityManager networkReachabilityStatus] != AFNetworkReachabilityStatusNotReachable;
+}
+
+
+-(void)loadRequiredData{
+    
+    [self loadConditions];
+    [self loadShipping];
+    [self loadCertifications];
+    [self loadSize];
+    [self loadCategory];
+    [self loadPackaging];
+    [self loadOfferStatus];
+    
+    if ([AppSettings getUserId] > 0){
+        [self loadUsers:[NSArray arrayWithObjects:[NSNumber numberWithInt:[AppSettings getUserId]], nil] compleate:nil];
+        [self loadAdverts:0 userId:[AppSettings getUserId]];
+        [self loadUserOffers];
+    }
 }
 
 #pragma mark - Dictionaries
@@ -197,30 +216,6 @@ typedef enum
     [loadOfferStatusTask resume];
 }
 
--(void)loadRequiredData{
-    
-    [self loadConditions];
-    [self loadShipping];
-    [self loadCertifications];
-    [self loadSize];
-    [self loadCategory];
-    [self loadPackaging];
-    [self loadOfferStatus];
-    
-    if ([AppSettings getUserId] > 0){
-        [self loadUsers:[NSArray arrayWithObjects:[NSNumber numberWithInt:[AppSettings getUserId]], nil] compleate:nil];
-        [self loadAdverts:0 userId:[AppSettings getUserId]];
-        [self loadUserOffers];
-    }
-}
-
--(void)waitLock:(MainThreadRecursiveLock*)lock andPerform:(void (^)())compleate{
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        [lock waitUntilDone];
-        compleate();
-    });
-}
-
 #pragma mark - Advert
 
 -(void)loadAdverts:(int)ident userId:(int)userId{
@@ -258,7 +253,7 @@ typedef enum
     [loadAdvertTask resume];
 }
 
--(void)loadAdvertWithSortData:(SortData*)sortData page:(int)page compleate:(void(^)(NSArray* adverbs, NSDictionary* additionalData, NSError* error))compleate{
+-(void)loadAdvertWithSortData:(SortData*)sortData page:(int)page compleate:(resultBlock)compleate{
     [_loadAdvertCancelTask cancel];
     _loadAdvertCancelTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:[NSString stringWithFormat:@"o=%@&page=%i", sortData.value, page] methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         [_dictionaryLock waitUntilDone];
@@ -300,7 +295,7 @@ typedef enum
     [_loadAdvertCancelTask resume];
 }
 
--(void)createAdvert:(Advert*)advert compleate:(void(^)(NSError* error))compleate{
+-(void)createAdvert:(Advert*)advert compleate:(errorBlock)compleate{
     NSDictionary* advertData = [advert getDictionary];
     NSError* error;
     NSString* params = [self jsonStringFromDicOrArray:advertData error:&error];
@@ -349,6 +344,7 @@ typedef enum
                         [offer updateWithDic:offerDic];
                     }
                 });
+                [self loadOffersForMe];
             }
         }
     }];
@@ -356,7 +352,55 @@ typedef enum
     [loadOffersTask resume];
 }
 
--(void)createOffer:(Offer*)offer compleate:(void(^)(NSError* error))compleate{
+-(void)loadOffersForMe{
+    NSArray* adverts = [Advert getMyAdverts];
+    NSMutableArray* allOffers = [NSMutableArray array];
+    for (Advert* advert in adverts) {
+        [_offersLock lock];
+        NSURLSessionDataTask* loadOffersTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:[NSString stringWithFormat:@"advert=%i", advert.ident] methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+            if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error]){
+                NSArray* offers = [result objectForKeyNotNull:SERVER_RESPONCE_RESULT_PARAM];
+                @synchronized (allOffers) {
+                    [allOffers addObjectsFromArray:offers];
+                }
+            }
+             [_offersLock unlock];
+        }];
+        
+        [loadOffersTask resume];
+    }
+    
+    [_offersLock waitUntilDone];
+    
+    if (allOffers.count > 0){
+        NSMutableSet* userIdSet = [NSMutableSet set];
+        for (NSDictionary* offer in allOffers) {
+            int userId = [[offer objectForKeyNotNull:OFFER_USER_PARAM] intValue];
+            if (userId > 0)
+                [userIdSet addObject:[NSNumber numberWithInt:userId]];
+        }
+        for (NSNumber* number in userIdSet) {
+            [self loadUsers:[NSArray arrayWithObjects:number, nil] compleate:nil];
+        }
+        [_usersLock waitUntilDone];
+
+        [allOffers sortUsingComparator:^NSComparisonResult(NSDictionary*  _Nonnull obj1, NSDictionary*  _Nonnull obj2) {
+            return [[obj1 objectForKeyNotNull:OFFER_ID_PARAM] compare:[obj2 objectForKeyNotNull:OFFER_ID_PARAM]];
+        }];
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            for (NSDictionary* offerDic in allOffers) {
+                Offer* offer = [Offer getEntityWithId:[[offerDic objectForKeyNotNull:OFFER_ID_PARAM] intValue]];
+                if (!offer){
+                    offer = [Offer storedEntity];
+                }
+                [offer updateWithDic:offerDic];
+            }
+        });
+    }
+}
+
+-(void)createOffer:(Offer*)offer compleate:(errorBlock)compleate{
     NSDictionary* offerData = [offer getDictionary];
     NSError* error;
     NSString* params = [self jsonStringFromDicOrArray:offerData error:&error];
@@ -374,8 +418,26 @@ typedef enum
     [dataTask resume];
 }
 
+-(void)updateOffer:(Offer*)offer compleate:(errorBlock)compleate{
+    NSDictionary* offerData = [offer getDictionary];
+    NSError* error;
+    NSString* params = [self jsonStringFromDicOrArray:offerData error:&error];
+    
+    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:[NSString stringWithFormat:@"%@/%i", OFFERS_URL_PATH, offer.ident] query:params methodType:HTTP_METHOD_PUT contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
+        {
+            [self loadUserOffers];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            compleate(error);
+        });
+    }];
+    
+    [dataTask resume];
+}
+
 #pragma mark - User
--(void)signIn:(NSString*)username password:(NSString*)password compleate:(void(^)(NSError* error))compleate{
+-(void)signIn:(NSString*)username password:(NSString*)password compleate:(errorBlock)compleate{
     NSString *params = [NSString stringWithFormat:
                         @"{"
                         @"\"username\""           @":\"%@\","
@@ -458,7 +520,7 @@ typedef enum
 
 #pragma mark - QA
 
--(void)loadQuestionAnswersWithAdvId:(int)advertId page:(int)page compleate:(void(^)(NSArray* adverbs, NSDictionary* additionalData, NSError* error))compleate{
+-(void)loadQuestionAnswersWithAdvId:(int)advertId page:(int)page compleate:(resultBlock)compleate{
     NSURLSessionDataTask* loadUserTask = [_session dataTaskWithRequest:[self request:QUESTIONS_URL_PATH query:[NSString stringWithFormat:@"advert_id=%i", advertId] methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         NSMutableArray* questions;
         NSMutableDictionary* additionalDic;
@@ -509,7 +571,7 @@ typedef enum
     [loadUserTask resume];
 }
 
--(void)askQuestion:(Question*)question compleate:(void(^)(NSError* error))compleate{
+-(void)askQuestion:(Question*)question compleate:(errorBlock)compleate{
     NSDictionary* questionData = [question getDictionary];
     NSError* error;
     NSString* params = [self jsonStringFromDicOrArray:questionData error:&error];
