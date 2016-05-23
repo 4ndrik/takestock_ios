@@ -10,9 +10,12 @@
 #import "Advert.h"
 #import "OfferTableViewCell.h"
 
+@class OfferActionView;
 @interface OfferManagerViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, OfferActionDelegate>{
-     __weak IBOutlet UITableView *_offersTableView;
     NSArray* _offers;
+    OfferActionView* _offerAlertView;
+    
+    __weak IBOutlet UITableView *_offersTableView;
 }
 
 @property (nonatomic, retain)Advert* advert;

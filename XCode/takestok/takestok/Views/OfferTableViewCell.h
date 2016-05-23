@@ -7,15 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OfferActionDelegate.h"
 
 @class OfferTableViewCell;
-@protocol OfferActionDelegate <NSObject>
 
--(void)acceptOfferAction:(OfferTableViewCell*)owner;
--(void)rejectOfferAction:(OfferTableViewCell*)owner;
--(void)counterOfferAction:(OfferTableViewCell*)owner;
-
-@end
 
 @class BackgroundImageView;
 @interface OfferTableViewCell : UITableViewCell
@@ -28,16 +23,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *myRequestLabel;
 @property (weak, nonatomic) IBOutlet UILabel *myQuantityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *myPricelabel;
-@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UIView *operationsView;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
-@property (weak, nonatomic) IBOutlet UILabel *counterStatus;
-@property (weak, nonatomic) IBOutlet UILabel *counterComment;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *operationPanelHeight;
 
 - (IBAction)acceptAction:(id)sender;
 - (IBAction)rejectAction:(id)sender;
 - (IBAction)counterAction:(id)sender;
-
 
 @end
 

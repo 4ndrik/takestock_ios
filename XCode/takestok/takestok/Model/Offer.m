@@ -68,7 +68,7 @@
 +(NSArray*)getMyOffers{
     NSSortDescriptor* updatedSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"updated" ascending:NO];
     NSSortDescriptor* createdSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"created" ascending:NO];
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"user == %@", [User getMe]];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"user == %@ && parentOffer == null", [User getMe]];
     NSFetchRequest* request = [self getFetchRequestForPredicate:predicate withSortDescriptions:[NSArray arrayWithObjects:updatedSortDescriptor, createdSortDescriptor, nil]];
     NSArray* ar =  [[DB sharedInstance].storedManagedObjectContext executeFetchRequest:request error:nil];
     return ar;

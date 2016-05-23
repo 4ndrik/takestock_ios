@@ -11,4 +11,6 @@
 
 @interface PaddingTextField : DoneTextField
 
+@property (nonatomic) IBInspectable NSInteger padding;
+
 @end

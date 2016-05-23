@@ -408,6 +408,9 @@ typedef enum
     NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
         {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [offer updateWithDic:result];
+            });
             [self loadUserOffers];
         }
         dispatch_async(dispatch_get_main_queue(), ^{

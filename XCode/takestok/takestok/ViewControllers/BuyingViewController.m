@@ -13,12 +13,179 @@
 #import "BackgroundImageView.h"
 #import "BuyingTableViewCell.h"
 #import "OfferManagerViewController.h"
+#import "ServerConnectionHelper.h"
+#import "OfferActionView.h"
+#import "UIView+NibLoadView.h"
 
 @implementation BuyingViewController
 
 -(void)viewDidLoad{
     [super viewDidLoad];
     _offers = [Offer getMyOffers];
+    
+    _buyingTableView.estimatedRowHeight = 116.0;
+    _buyingTableView.rowHeight = UITableViewAutomaticDimension;
+}
+
+#pragma mark - Helpers
+
+-(NSMutableAttributedString*)spaceForFont{
+    NSMutableAttributedString* spaceString = [[NSMutableAttributedString alloc] initWithString:@"\n \n"];
+    [spaceString addAttribute:NSFontAttributeName
+                         value:[UIFont systemFontOfSize:6]
+                         range:NSMakeRange(0, spaceString.length)];
+    return spaceString;
+}
+
+-(NSMutableAttributedString*)fillOfferInformation:(Offer*)offer advert:(Advert*)advert cell:(BuyingTableViewCell*)cell{
+    
+     NSMutableAttributedString* textString = [[NSMutableAttributedString alloc] init];
+    if (offer.status.ident == stAccept){
+        
+        if (textString.length > 0)
+            [textString appendAttributedString:[self spaceForFont]];
+        
+        NSMutableAttributedString* acceptString = [[NSMutableAttributedString alloc] initWithString:@"ACCEPTED"];
+        [acceptString addAttribute:NSFontAttributeName
+                             value:BrandonGrotesqueBold14
+                             range:NSMakeRange(0, acceptString.length)];
+        [acceptString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, acceptString.length)];
+        [textString appendAttributedString:acceptString];
+        
+        cell.acceptHeight.constant = 30.;
+        [cell.acceptButton setTitle:@"ADD SHIPPING" forState:UIControlStateNormal];
+    }else if (offer.status.ident == stDecline){
+        
+        if (textString.length > 0)
+            [textString appendAttributedString:[self spaceForFont]];
+        
+        NSMutableAttributedString* declineString = [[NSMutableAttributedString alloc] initWithString:@"REJECTED"];
+        [declineString addAttribute:NSFontAttributeName
+                              value:BrandonGrotesqueBold14
+                              range:NSMakeRange(0, declineString.length)];
+        [declineString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, declineString.length)];
+        [textString appendAttributedString:declineString];
+        
+        if (offer.comment.length > 0){
+            [textString appendAttributedString:[self spaceForFont]];
+            
+            NSMutableAttributedString* commentString = [[NSMutableAttributedString alloc] initWithString:offer.comment];
+            [commentString addAttribute:NSFontAttributeName
+                                  value:HelveticaNeue14
+                                  range:NSMakeRange(0, commentString.length)];
+            [commentString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, commentString.length)];
+            [textString appendAttributedString:commentString];
+        }
+        
+    }else if (offer.status.ident == stPending){
+        
+        if (offer.parentOffer){
+            cell.additionalActionHeight.constant = 30.;
+        }else{
+            NSMutableAttributedString* pendingString = [[NSMutableAttributedString alloc] initWithString:@"WAITING RESPONCE"];
+            [pendingString addAttribute:NSFontAttributeName
+                                  value:BrandonGrotesqueBold14
+                                  range:NSMakeRange(0, pendingString.length)];
+            [pendingString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, pendingString.length)];
+            [textString appendAttributedString:pendingString];
+        }
+    }
+    else if (offer.status.ident == stCountered ){
+        
+        cell.counterTextLabel.text = @"Counteroffer:";
+        cell.counterCountLabel.text = [NSString stringWithFormat:@"%i%@", offer.counterOffer.quantity, advert.packaging ? advert.packaging.title: @""];
+        cell.counterPriceLabel.text = [NSString stringWithFormat:@"£%.02f", offer.counterOffer.price];
+        
+        
+        if (offer.comment.length > 0){
+            if (textString.length > 0)
+                [textString appendAttributedString:[self spaceForFont]];
+            
+            NSMutableAttributedString* commentString = [[NSMutableAttributedString alloc] initWithString:offer.comment];
+            [commentString addAttribute:NSFontAttributeName
+                                  value:HelveticaNeue14
+                                  range:NSMakeRange(0, commentString.length)];
+            [commentString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, commentString.length)];
+            [textString appendAttributedString:commentString];
+        }
+        
+        NSMutableAttributedString* additionalTextString = [self fillOfferInformation:offer.counterOffer advert:advert cell:cell];
+        if (additionalTextString.length > 0){
+            if (textString.length > 0)
+                [textString appendAttributedString:[self spaceForFont]];
+            [textString appendAttributedString:additionalTextString];
+        }
+    }
+    
+    return textString;
+
+}
+
+-(void)updateOffer:(Offer*)offer compleate:(void(^)(NSError* error))compleate{
+    [self showLoading];
+    [[ServerConnectionHelper sharedInstance] updateOffer:offer compleate:^(NSError *error) {
+        [self hideLoading];
+        compleate(error);
+    }];
+}
+
+-(void)showOkAlert:(NSString*)title text:(NSString*)text{
+    UIAlertController * alertController =   [UIAlertController
+                                             alertControllerWithTitle:title
+                                             message:text
+                                             preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+-(void)acceptOffer:(Offer*)offer{
+    offer = offer.counterOffer;
+    offer.status = [OfferStatus getEntityWithId:stAccept];
+    [self updateOffer:offer compleate:^(NSError *error) {
+        NSString* title = @"";
+        NSString* text = @"Offer accepted";
+        if (error){
+            title = @"Error";
+            text = [error localizedDescription];
+            offer.status = [OfferStatus getEntityWithId:stPending];
+        }
+        
+        [self showOkAlert:title text:text];
+        [_buyingTableView reloadData];
+    }];
+}
+
+-(void)rejectOffer:(id)owner{
+    int index = [_offers indexOfObjectPassingTest:^BOOL(Offer*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        return obj.ident == _offerAlertView.tag;
+    }];
+    if (index != NSNotFound){
+        Offer* offer = ((Offer*)[_offers objectAtIndex:index]).counterOffer;
+        offer.status = [OfferStatus getEntityWithId:stDecline];
+        offer.comment = _offerAlertView.commentTextView.text;
+        [_offerAlertView removeFromSuperview];
+        [self updateOffer:offer compleate:^(NSError *error) {
+            NSString* title = @"";
+            NSString* text = @"Offer rejected";
+            if (error){
+                title = @"Error";
+                text = [error localizedDescription];
+                offer.status = [OfferStatus getEntityWithId:stPending];
+            }
+            
+            [self showOkAlert:title text:text];
+            [_buyingTableView reloadData];
+        }];
+    }
+}
+
+-(void)hideOfferView:(id)owner{
+    [_offerAlertView removeFromSuperview];
+    _offerAlertView = nil;
 }
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
@@ -44,10 +211,65 @@
     cell.offerPriceLabel.text = [NSString stringWithFormat:@"£%.02f", offer.price];
     cell.offerCountLabel.text = [NSString stringWithFormat:@"%i%@", offer.quantity, advert.packaging ? advert.packaging.title: @""];
     
-    cell.offerStatusLabel.text = [offer.status.title uppercaseString];
+    cell.counterTextLabel.text = @"";
+    cell.counterCountLabel.text = @"";
+    cell.counterPriceLabel.text = @"";
+    
+    cell.additionalActionHeight.constant = 0;
+    cell.acceptHeight.constant = 0;
+    
+    NSMutableAttributedString* textString = [self fillOfferInformation:offer advert:advert cell:cell];
+    
+    [cell.offerTextLabel setAttributedText:textString];
+    
+    cell.delegate = self;
     
     return cell;
 }
 
+#pragma mark - OfferActionDelegate
+
+-(void)mainAction:(UITableViewCell*)owner{
+    
+}
+
+-(void)acceptOfferAction:(UITableViewCell*)owner{
+    UIAlertController * alertController =   [UIAlertController
+                                             alertControllerWithTitle:@""
+                                             message:@"Accept offer?"
+                                             preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Accept" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self dismissViewControllerAnimated:NO completion:nil];
+        int index = [_buyingTableView indexPathForCell:owner].row;
+        Offer* offer = [_offers objectAtIndex:index];
+        [self acceptOffer:offer];
+    }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+
+}
+
+-(void)rejectOfferAction:(UITableViewCell*)owner{
+    _offerAlertView =  [OfferActionView loadFromXib];
+    _offerAlertView.frame = self.view.bounds;
+    
+    _offerAlertView.titleLabel.text = @"Reject offer.";
+    _offerAlertView.priceQtyHeightConstraints.constant = 0;
+    int index = [_buyingTableView indexPathForCell:owner].row;
+    Offer* offer = [_offers objectAtIndex:index];
+    _offerAlertView.tag = offer.ident;
+    [_offerAlertView.cancelButton addTarget:self action:@selector(hideOfferView:) forControlEvents:UIControlEventTouchUpInside];
+    [_offerAlertView.sendButton addTarget:self action:@selector(rejectOffer:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIWindow* currentWindow = [UIApplication sharedApplication].keyWindow;
+    [currentWindow addSubview:_offerAlertView];
+    
+    [_offerAlertView.commentTextView becomeFirstResponder];
+}
 
 @end

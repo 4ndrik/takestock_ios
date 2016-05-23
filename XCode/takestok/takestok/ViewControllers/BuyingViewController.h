@@ -7,9 +7,13 @@
 //
 
 #import "BaseViewController.h"
+#import "OfferActionDelegate.h"
 
-@interface BuyingViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource>{
+@class OfferActionView;
+@interface BuyingViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, OfferActionDelegate>{
     NSArray* _offers;
+    OfferActionView* _offerAlertView;
+    
     __weak IBOutlet UITableView *_buyingTableView;
 }
 
