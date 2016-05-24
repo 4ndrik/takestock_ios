@@ -17,6 +17,7 @@
 #import "Answer.h"
 #import "AppSettings.h"
 #import "LoginViewController.h"
+#import "Answer.h"
 
 @interface QAViewController ()
 
@@ -24,27 +25,10 @@
 
 @implementation QAViewController
 
--(void)setAdvert:(Advert*)advert{
-    _advert = advert;
-
-    if (self.isViewLoaded){
-        [self reloadData:nil];
-    }
-}
-
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-}
-
-
-- (IBAction)hideKeyboard:(id)sender {
-    if ([_askQuestionView.questionTextView isFirstResponder]){
-        [_askQuestionView.questionTextView resignFirstResponder];
-    }
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _askTableView.estimatedRowHeight = 118.0;
+    _askTableView.rowHeight = UITableViewAutomaticDimension;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification
@@ -63,9 +47,26 @@
     [self reloadData:nil];
 }
 
+
+#pragma mark - Helpers
+
+-(void)setAdvert:(Advert*)advert{
+    _advert = advert;
+    if (self.isViewLoaded){
+        [self reloadData:nil];
+    }
+}
+
+- (IBAction)hideKeyboard:(id)sender {
+    if ([_askQuestionView.questionTextView isFirstResponder]){
+        [_askQuestionView.questionTextView resignFirstResponder];
+    }
+}
+
+
 -(void)loadQA{
     _loading = YES;
-    [[ServerConnectionHelper sharedInstance] loadQuestionAnswersWithAdvId:_advert.ident page:0 compleate:^(NSArray *qaArray, NSDictionary *additionalData, NSError *error) {
+    [[ServerConnectionHelper sharedInstance] loadQuestionAnswersWithAd:_advert page:0 compleate:^(NSArray *qaArray, NSDictionary *additionalData, NSError *error) {
         [_qaData addObjectsFromArray:qaArray];
         [_askTableView reloadData];
         [_refreshControl endRefreshing];
@@ -74,12 +75,17 @@
 }
 
 -(void)reloadData:(id)owner{
-    _page = 1;
-    _qaData = [NSMutableArray array];
-    _page = 1;
+    if (_advert.author.ident == [User getMe].ident){
+        _qaData = [NSMutableArray arrayWithArray:[_advert.questions allObjects]];
+        _loading = NO;
+        [_refreshControl endRefreshing];
+    }else{
+        _qaData = [NSMutableArray array];
+        _page = 1;
+        [_refreshControl beginRefreshing];
+        [self loadQA];
+    }
     [_askTableView reloadData];
-    [_refreshControl beginRefreshing];
-    [self loadQA];
 }
 
 #pragma mark - Handle keyboard
@@ -110,6 +116,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     QATableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"QATableViewCell"];
     
+    cell.delegate = self;
+    
     Question* question = [_qaData objectAtIndex:indexPath.row];
     
     NSString* questionText = [NSString stringWithFormat:@"%@: %@", question.user.userName, question.message];
@@ -127,6 +135,7 @@
     cell.questionLabel.attributedText = buyerText;
     
     if (question.answer){
+        cell.replyHeightConstraint.constant = 0;
         NSString* answerText = [NSString stringWithFormat:@"%@: %@", question.answer.user.userName, question.answer.message];
         int index = question.answer.user.userName.length +1;
         NSMutableAttributedString *sellerText = [[NSMutableAttributedString alloc] initWithString:answerText];
@@ -139,8 +148,11 @@
                           range:NSMakeRange(index, sellerText.length - index)];
         
         cell.answerLabel.attributedText = sellerText;
+    }else if (_advert.author.ident == [User getMe].ident){
+        cell.replyHeightConstraint.constant = 98;
     }else{
-        cell.answerLabel.hidden = YES;
+        cell.answerLabel.text = @"";
+        cell.replyHeightConstraint.constant = 0;
     }
     return cell;
 }
@@ -200,6 +212,7 @@
             if (error){
                 title = @"Error";
                 message = [error localizedDescription];
+                [question.managedObjectContext deleteObject:question];
             }else{
                 [self reloadData:nil];
                 _askQuestionView.questionTextView.text = @"";
@@ -220,6 +233,52 @@
             
             [self presentViewController:errorController animated:YES completion:nil];
             
+        }];
+    }
+}
+
+#pragma mark - ReplyPrototcol
+
+-(void)reply:(QATableViewCell*)sender{
+    Question* question = [_qaData objectAtIndex:[_askTableView indexPathForCell:sender].row];
+    if (question){
+        Answer* answer = question.isForStore ? [Answer storedEntity] : [Answer tempEntity];
+        answer.question = question;
+        User* user = [User getMe];
+        if (user.managedObjectContext != answer.managedObjectContext){
+            user = [answer.managedObjectContext objectWithID:[user objectID]];
+        }
+        answer.user = user;
+        answer.message = sender.replyTextEdit.text;
+        
+        [self showLoading];
+        [[ServerConnectionHelper sharedInstance] sendAnswer:answer compleate:^(NSError *error) {
+            [self hideLoading];
+            NSString* title = @"";
+            NSString* message = @"Question asked";
+            if (error){
+                title = @"Error";
+                message = [error localizedDescription];
+                [answer.managedObjectContext deleteObject:answer];
+            }else{
+                [self reloadData:nil];
+                [_askTableView reloadData];
+            }
+            UIAlertController* errorController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* closeAction = [UIAlertAction
+                                          actionWithTitle:@"Ok"
+                                          style:UIAlertActionStyleCancel
+                                          handler:^(UIAlertAction * action)
+                                          {
+                                              [errorController dismissViewControllerAnimated:YES completion:nil];
+                                              
+                                          }];
+            
+            
+            [errorController addAction:closeAction];
+            
+            [self presentViewController:errorController animated:YES completion:nil];
         }];
     }
 }

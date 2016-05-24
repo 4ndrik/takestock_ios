@@ -48,6 +48,7 @@ typedef enum
 #define SIGN_IN_URL_PATH            @"token/auth"
 #define OFFERS_URL_PATH             @"offers"
 #define QUESTIONS_URL_PATH          @"qa/questions"
+#define ANSWERS_URL_PATH          @"qa/answers"
 
 
 #define SERVER_RESPONCE_RESULT_PARAM                  @"results"
@@ -64,6 +65,7 @@ typedef enum
     _advertLock = [[MainThreadRecursiveLock alloc] init];
     _usersLock = [[MainThreadRecursiveLock alloc] init];
     _offersLock = [[MainThreadRecursiveLock alloc] init];
+    _qaLock = [[MainThreadRecursiveLock alloc] init];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     _session = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
@@ -86,6 +88,18 @@ typedef enum
     return [_session.reachabilityManager networkReachabilityStatus] != AFNetworkReachabilityStatusNotReachable;
 }
 
+-(void)saveData{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) , ^{
+        [_advertLock waitUntilDone];
+        [_offersLock waitUntilDone];
+        [_usersLock waitUntilDone];
+        [_qaLock waitUntilDone];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[DB sharedInstance].storedManagedObjectContext save:nil];
+        });
+    });
+
+}
 
 -(void)loadRequiredData{
     
@@ -101,6 +115,7 @@ typedef enum
         [self loadUsers:[NSArray arrayWithObjects:[NSNumber numberWithInt:[AppSettings getUserId]], nil] compleate:nil];
         [self loadAdverts:0 userId:[AppSettings getUserId]];
         [self loadUserOffers];
+        [self loadUserQustionsAndAnswers];
     }
 }
 
@@ -467,7 +482,7 @@ typedef enum
                         [user updateWithDic:userDic];
                         [self loadAdverts:0 userId:userId];
                         [self loadUserOffers];
-                        [[DB sharedInstance].storedManagedObjectContext save:nil];
+                        [self loadUserQustionsAndAnswers];
                     });
                 }
             }
@@ -523,8 +538,24 @@ typedef enum
 
 #pragma mark - QA
 
--(void)loadQuestionAnswersWithAdvId:(int)advertId page:(int)page compleate:(resultBlock)compleate{
-    NSURLSessionDataTask* loadUserTask = [_session dataTaskWithRequest:[self request:QUESTIONS_URL_PATH query:[NSString stringWithFormat:@"advert_id=%i", advertId] methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+-(void)loadUserQustionsAndAnswers{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) , ^{
+        [_advertLock waitUntilDone];
+        [_offersLock waitUntilDone];
+        [_usersLock waitUntilDone];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSArray* adverts = [Advert getMyAdverts];
+            for (Advert* advert in adverts) {
+                [self loadQuestionAnswersWithAd:advert page:0 compleate:nil];
+            }
+            [self saveData];
+        });
+    });
+}
+
+-(void)loadQuestionAnswersWithAd:(Advert*)advert page:(int)page compleate:(resultBlock)compleate{
+    [_qaLock lock];
+    NSURLSessionDataTask* loadQATask = [_session dataTaskWithRequest:[self request:QUESTIONS_URL_PATH query:[NSString stringWithFormat:@"advert_id=%i", advert.ident] methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         NSMutableArray* questions;
         NSMutableDictionary* additionalDic;
         if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error]){
@@ -556,12 +587,13 @@ typedef enum
                         int qId = [[questionDic objectForKeyNotNull:QUESTION_ID_PARAM] intValue];
                         Question* question = [Question getEntityWithId:qId];
                         if (!question){
-                            question = [Question tempEntity];
+                            question = [advert isForStore] ? [Question storedEntity]:[Question tempEntity];
                         }
                         [question updateWithDic:questionDic];
                         [questions addObject:question];
                     }
                 });
+                [_qaLock unlock];
             }
         }
         
@@ -571,7 +603,7 @@ typedef enum
         });
     }];
     
-    [loadUserTask resume];
+    [loadQATask resume];
 }
 
 -(void)askQuestion:(Question*)question compleate:(errorBlock)compleate{
@@ -582,7 +614,25 @@ typedef enum
     NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:QUESTIONS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
         {
-            NSLog(@"q asked");
+           [question updateWithDic:result];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            compleate(error);
+        });
+    }];
+    
+    [dataTask resume];
+}
+
+-(void)sendAnswer:(Answer*)answer compleate:(errorBlock)compleate{
+    NSDictionary* questionData = [answer getDictionary];
+    NSError* error;
+    NSString* params = [self jsonStringFromDicOrArray:questionData error:&error];
+    
+    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:ANSWERS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        if (!error && ![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
+        {
+            [answer updateWithDic:result];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             compleate(error);

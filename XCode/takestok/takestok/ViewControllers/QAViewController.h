@@ -8,11 +8,12 @@
 
 #import "BaseViewController.h"
 #import "AskQuestionView.h"
+#import "QATableViewCell.h"
 
 @class Advert;
 @class UIRefreshControl;
 
-@interface QAViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, AskQuestionProtocol>{
+@interface QAViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, AskQuestionProtocol, ReplyProtocol>{
     Advert* _advert;
     AskQuestionView* _askQuestionView;
     __weak IBOutlet UITableView *_askTableView;

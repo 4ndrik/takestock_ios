@@ -15,6 +15,7 @@
 @class MainThreadRecursiveLock;
 @class Offer;
 @class Question;
+@class Answer;
 
 typedef void (^errorBlock)(NSError* error);
 typedef void (^resultBlock)(NSArray* result, NSDictionary* additionalData, NSError* error);
@@ -26,6 +27,7 @@ typedef void (^resultBlock)(NSArray* result, NSDictionary* additionalData, NSErr
     MainThreadRecursiveLock* _advertLock;
     MainThreadRecursiveLock* _usersLock;
     MainThreadRecursiveLock* _offersLock;
+    MainThreadRecursiveLock* _qaLock;
 }
 
 +(ServerConnectionHelper*)sharedInstance;
@@ -42,7 +44,8 @@ typedef void (^resultBlock)(NSArray* result, NSDictionary* additionalData, NSErr
 -(void)loadUsers:(NSArray*)idents compleate:(void(^)(NSArray* users, NSError* error))compleate;
 -(void)signIn:(NSString*)username password:(NSString*)password compleate:(errorBlock)compleate;
 
--(void)loadQuestionAnswersWithAdvId:(int)advertId page:(int)page compleate:(resultBlock)compleate;
+-(void)loadQuestionAnswersWithAd:(Advert*)advert page:(int)page compleate:(resultBlock)compleate;
 -(void)askQuestion:(Question*)question compleate:(errorBlock)compleate;
+-(void)sendAnswer:(Answer*)answer compleate:(errorBlock)compleate;
 
 @end

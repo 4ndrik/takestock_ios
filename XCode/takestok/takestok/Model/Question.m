@@ -42,13 +42,18 @@
     self.created = [[dateFormatter dateFromString:[jsonDic objectForKeyNotNull:QUESTION_CREATED_PARAM]] timeIntervalSinceReferenceDate];
     self.message = [jsonDic objectForKeyNotNull:QUESTION_MESSAGE_PARAM];
     NSDictionary* ansDic = [jsonDic objectForKeyNotNull:QUESTION_ANSWER_PARAM];
-    Answer* answer = [Answer getEntityWithId:[[ansDic objectForKeyNotNull:ANSWER_ID_PARAM] intValue]];
-    if (!answer){
-        answer = self.isForStore ? [Answer storedEntity] : [Answer tempEntity];
-    }else if (answer.managedObjectContext != self.managedObjectContext){
-        answer = [self.managedObjectContext objectWithID:[answer objectID]];
+    
+    int answerId = [[ansDic objectForKeyNotNull:ANSWER_ID_PARAM] intValue];
+    if (answerId > 0){
+        Answer* answer = [Answer getEntityWithId:answerId];
+        if (!answer){
+            answer = self.isForStore ? [Answer storedEntity] : [Answer tempEntity];
+        }else if (answer.managedObjectContext != self.managedObjectContext){
+            answer = [self.managedObjectContext objectWithID:[answer objectID]];
+        }
+        self.answer = answer;
+        [answer updateWithDic:ansDic];
     }
-    [answer updateWithDic:ansDic];
 }
 
 -(NSDictionary*)getDictionary{

@@ -15,6 +15,7 @@
 #import "AdvertDetailViewController.h"
 #import "CreateAdvertViewController.h"
 #import "OfferManagerViewController.h"
+#import "QAViewController.h"
 
 @implementation SellingViewController
 
@@ -44,7 +45,7 @@
     cell.createdLabel.text = [NSString stringWithFormat:@"Updated: %@", [dateFormatter stringFromDate:updatedDate]];
     
     cell.offersCountLabel.text = [NSString stringWithFormat:@"%i", advert.offers.count];
-    cell.questionCountLabel.text = @"0";
+    cell.questionCountLabel.text = [NSString stringWithFormat:@"%i", advert.questions.count];
     
     cell.expiresDayCountLabel.text = [NSString stringWithFormat:@"%i", [[NSDate dateWithTimeIntervalSinceReferenceDate:advert.expires] daysFromDate:[NSDate date]]];
     return cell;
@@ -55,15 +56,24 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
                                                                    message:nil
                                                             preferredStyle:UIAlertControllerStyleAlert];
+    
     UIAlertAction *manageOffersAction = [UIAlertAction actionWithTitle:@"Manage offers"
+                                                             style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                                 [tableView deselectRowAtIndexPath:indexPath animated:NO];
+                                                                 
+                                                                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                                                                 OfferManagerViewController *controller = (OfferManagerViewController *)[storyboard instantiateViewControllerWithIdentifier:@"OfferManagerViewController"];
+                                                                 [controller setAdvert:[_adverts objectAtIndex:indexPath.row]];
+                                                                 [self.navigationController pushViewController:controller animated:YES];
+                                                             }];
+    UIAlertAction *viewMessagesAction = [UIAlertAction actionWithTitle:@"View messages"
                                                           style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                                                               [tableView deselectRowAtIndexPath:indexPath animated:NO];
                                                               
                                                               UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                                                              OfferManagerViewController *controller = (OfferManagerViewController *)[storyboard instantiateViewControllerWithIdentifier:@"OfferManagerViewController"];
+                                                              QAViewController *controller = (QAViewController *)[storyboard instantiateViewControllerWithIdentifier:@"QAViewController"];
                                                               [controller setAdvert:[_adverts objectAtIndex:indexPath.row]];
                                                               [self.navigationController pushViewController:controller animated:YES];
-                                                              NSLog(@"You pressed button one");
                                                           }];
     UIAlertAction *viewAdvertAction = [UIAlertAction actionWithTitle:@"View advert"
                                                            style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
@@ -90,6 +100,8 @@
                                                           }];
     if (advert.offers.count > 0)
         [alert addAction:manageOffersAction];
+    if (advert.questions.count > 0)
+        [alert addAction:viewMessagesAction];
     [alert addAction:viewAdvertAction];
     [alert addAction:editAdvertAction];
     [alert addAction:cancelAction];

@@ -21,4 +21,7 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)reply:(id)sender {
+    [self.delegate reply:self];
+}
 @end
