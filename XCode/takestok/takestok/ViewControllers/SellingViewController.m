@@ -51,6 +51,22 @@
     return cell;
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"OffersSegue"]) {
+        OfferManagerViewController* vc = (OfferManagerViewController*)segue.destinationViewController;
+        [vc setAdvert:sender];
+    }else if ([segue.identifier isEqualToString:@"QuestionSegue"]) {
+        QAViewController* vc = (QAViewController*)segue.destinationViewController;
+        [vc setAdvert:sender];
+    }else if([segue.identifier isEqualToString:@"AdvertDetailSegue"]) {
+        AdvertDetailViewController* vc = (AdvertDetailViewController*)segue.destinationViewController;
+        [vc setAdvert:sender];
+    }else if([segue.identifier isEqualToString:@"EditAdvertSegue"]) {
+        CreateAdvertViewController* vc = (CreateAdvertViewController*)segue.destinationViewController;
+        [vc setAdvert:sender];
+    }
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     Advert* advert = [_adverts objectAtIndex:indexPath.row];
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
@@ -60,37 +76,23 @@
     UIAlertAction *manageOffersAction = [UIAlertAction actionWithTitle:@"Manage offers"
                                                              style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                                                                  [tableView deselectRowAtIndexPath:indexPath animated:NO];
-                                                                 
-                                                                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                                                                 OfferManagerViewController *controller = (OfferManagerViewController *)[storyboard instantiateViewControllerWithIdentifier:@"OfferManagerViewController"];
-                                                                 [controller setAdvert:[_adverts objectAtIndex:indexPath.row]];
-                                                                 [self.navigationController pushViewController:controller animated:YES];
+                                                                 [self performSegueWithIdentifier:@"OffersSegue" sender:advert];
                                                              }];
     UIAlertAction *viewMessagesAction = [UIAlertAction actionWithTitle:@"View messages"
                                                           style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                                                               [tableView deselectRowAtIndexPath:indexPath animated:NO];
-                                                              
-                                                              UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                                                              QAViewController *controller = (QAViewController *)[storyboard instantiateViewControllerWithIdentifier:@"QAViewController"];
-                                                              [controller setAdvert:[_adverts objectAtIndex:indexPath.row]];
-                                                              [self.navigationController pushViewController:controller animated:YES];
+                                                              [self performSegueWithIdentifier:@"QuestionSegue" sender:advert];
                                                           }];
     UIAlertAction *viewAdvertAction = [UIAlertAction actionWithTitle:@"View advert"
                                                            style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                                                                 [tableView deselectRowAtIndexPath:indexPath animated:NO];
-                                                               UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                                                               AdvertDetailViewController *controller = (AdvertDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"AdvertDetailViewController"];
-                                                               [controller setAdvert:[_adverts objectAtIndex:indexPath.row]];
-                                                               [self.navigationController pushViewController:controller animated:YES];
+                                                                [self performSegueWithIdentifier:@"AdvertDetailSegue" sender:advert];
                                                            }];
     
     UIAlertAction *editAdvertAction = [UIAlertAction actionWithTitle:@"Edit advert"
                                                            style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                                                                 [tableView deselectRowAtIndexPath:indexPath animated:NO];
-                                                               UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                                                               CreateAdvertViewController *controller = (CreateAdvertViewController *)[storyboard instantiateViewControllerWithIdentifier:@"CreateAdvertViewController"];
-                                                               [controller setAdvert:[_adverts objectAtIndex:indexPath.row]];
-                                                               [self.navigationController pushViewController:controller animated:YES];
+                                                                [self performSegueWithIdentifier:@"EditAdvertSegue" sender:advert];
                                                            }];
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
