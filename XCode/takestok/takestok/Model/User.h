@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "BaseEntity.h"
+#import "Image.h"
+#import "Category.h"
+#import "Condition.h"
+#import "Shipping.h"
+#import "SizeType.h"
+#import "Certification.h"
+#import "User.h"
+#import "Packaging.h"
+#import "Question.h"
+
 
 #define USER_ID_PARAM           @"id"
 #define USER_LAST_LOGIN_PARAM   @"last_login"

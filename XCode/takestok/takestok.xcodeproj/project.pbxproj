@@ -53,13 +53,11 @@
 		AC411E611CC7DC8E008B1E38 /* PaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E601CC7DC8E008B1E38 /* PaddingLabel.m */; };
 		AC411E721CC8D186008B1E38 /* Shipping+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E631CC8D186008B1E38 /* Shipping+CoreDataProperties.m */; };
 		AC411E731CC8D186008B1E38 /* Shipping.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E651CC8D186008B1E38 /* Shipping.m */; };
-		AC411E741CC8D186008B1E38 /* Dictionary+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E671CC8D186008B1E38 /* Dictionary+CoreDataProperties.m */; };
 		AC411E751CC8D186008B1E38 /* Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E691CC8D186008B1E38 /* Dictionary.m */; };
 		AC411E761CC8D186008B1E38 /* Condition+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E6B1CC8D186008B1E38 /* Condition+CoreDataProperties.m */; };
 		AC411E771CC8D186008B1E38 /* Condition.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E6D1CC8D186008B1E38 /* Condition.m */; };
 		AC411E781CC8D186008B1E38 /* Certification+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E6F1CC8D186008B1E38 /* Certification+CoreDataProperties.m */; };
 		AC411E791CC8D186008B1E38 /* Certification.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E711CC8D186008B1E38 /* Certification.m */; };
-		AC411E7E1CC8D61E008B1E38 /* BaseEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E7B1CC8D61E008B1E38 /* BaseEntity+CoreDataProperties.m */; };
 		AC411E7F1CC8D61E008B1E38 /* BaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E7D1CC8D61E008B1E38 /* BaseEntity.m */; };
 		AC411E8D1CC92230008B1E38 /* SizeType+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E881CC92230008B1E38 /* SizeType+CoreDataProperties.m */; };
 		AC411E8E1CC92230008B1E38 /* SizeType.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E8A1CC92230008B1E38 /* SizeType.m */; };
@@ -196,8 +194,6 @@
 		AC411E631CC8D186008B1E38 /* Shipping+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Shipping+CoreDataProperties.m"; sourceTree = "<group>"; };
 		AC411E641CC8D186008B1E38 /* Shipping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shipping.h; sourceTree = "<group>"; };
 		AC411E651CC8D186008B1E38 /* Shipping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shipping.m; sourceTree = "<group>"; };
-		AC411E661CC8D186008B1E38 /* Dictionary+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Dictionary+CoreDataProperties.h"; sourceTree = "<group>"; };
-		AC411E671CC8D186008B1E38 /* Dictionary+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Dictionary+CoreDataProperties.m"; sourceTree = "<group>"; };
 		AC411E681CC8D186008B1E38 /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dictionary.h; sourceTree = "<group>"; };
 		AC411E691CC8D186008B1E38 /* Dictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dictionary.m; sourceTree = "<group>"; };
 		AC411E6A1CC8D186008B1E38 /* Condition+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Condition+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -208,8 +204,6 @@
 		AC411E6F1CC8D186008B1E38 /* Certification+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Certification+CoreDataProperties.m"; sourceTree = "<group>"; };
 		AC411E701CC8D186008B1E38 /* Certification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Certification.h; sourceTree = "<group>"; };
 		AC411E711CC8D186008B1E38 /* Certification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Certification.m; sourceTree = "<group>"; };
-		AC411E7A1CC8D61E008B1E38 /* BaseEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BaseEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
-		AC411E7B1CC8D61E008B1E38 /* BaseEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BaseEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
 		AC411E7C1CC8D61E008B1E38 /* BaseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseEntity.h; sourceTree = "<group>"; };
 		AC411E7D1CC8D61E008B1E38 /* BaseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseEntity.m; sourceTree = "<group>"; };
 		AC411E871CC92230008B1E38 /* SizeType+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SizeType+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -356,8 +350,6 @@
 				AC411E1A1CBF995A008B1E38 /* DB.h */,
 				AC411E1B1CBF995A008B1E38 /* DB.m */,
 				AC411E8F1CC92244008B1E38 /* Dictionary */,
-				AC411E7A1CC8D61E008B1E38 /* BaseEntity+CoreDataProperties.h */,
-				AC411E7B1CC8D61E008B1E38 /* BaseEntity+CoreDataProperties.m */,
 				AC411E7C1CC8D61E008B1E38 /* BaseEntity.h */,
 				AC411E7D1CC8D61E008B1E38 /* BaseEntity.m */,
 				AC411E0E1CBF970A008B1E38 /* Advert+CoreDataProperties.h */,
@@ -432,8 +424,6 @@
 		AC411E8F1CC92244008B1E38 /* Dictionary */ = {
 			isa = PBXGroup;
 			children = (
-				AC411E661CC8D186008B1E38 /* Dictionary+CoreDataProperties.h */,
-				AC411E671CC8D186008B1E38 /* Dictionary+CoreDataProperties.m */,
 				AC411E681CC8D186008B1E38 /* Dictionary.h */,
 				AC411E691CC8D186008B1E38 /* Dictionary.m */,
 				ACCE7FC61CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.h */,
@@ -832,7 +822,6 @@
 				AC1F54531CCE484F0093848B /* OfferTitleView.m in Sources */,
 				AC411E8D1CC92230008B1E38 /* SizeType+CoreDataProperties.m in Sources */,
 				AC411E421CC5002E008B1E38 /* NSDictionary+HandleNil.m in Sources */,
-				AC411E741CC8D186008B1E38 /* Dictionary+CoreDataProperties.m in Sources */,
 				ACF317B91CDB558D00F49797 /* RatingView.m in Sources */,
 				AC049D111CB7C86A006A8F21 /* SearchFilterSortView.m in Sources */,
 				AC6200FF1CE31CC9006A80A2 /* Packaging.m in Sources */,
@@ -851,7 +840,6 @@
 				AC411E4B1CC63825008B1E38 /* ServerConnectionHelper.m in Sources */,
 				AC411E451CC50884008B1E38 /* ImageScrollCollectionViewCell.m in Sources */,
 				AC6200FE1CE31CC9006A80A2 /* Packaging+CoreDataProperties.m in Sources */,
-				AC411E7E1CC8D61E008B1E38 /* BaseEntity+CoreDataProperties.m in Sources */,
 				AC19114F1CE1E74000C5A4A5 /* NSData+base64.m in Sources */,
 				AC411E221CBF9CEF008B1E38 /* Image.m in Sources */,
 				ACDC246A1CBCF610003E9715 /* RadioButton.m in Sources */,
@@ -982,7 +970,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = takestok/takestok.pch;
 				INFOPLIST_FILE = takestok/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.takestock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -999,7 +987,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = takestok/takestok.pch;
 				INFOPLIST_FILE = takestok/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.takestock;
 				PRODUCT_NAME = "$(TARGET_NAME)";

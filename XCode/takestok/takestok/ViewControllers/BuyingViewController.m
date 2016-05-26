@@ -206,7 +206,7 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateStyle = kCFDateFormatterMediumStyle;
-    NSDate* updatedDate = [NSDate dateWithTimeIntervalSinceReferenceDate:offer.updated];
+    NSDate* updatedDate = [NSDate dateWithTimeIntervalSinceReferenceDate:offer.date_updated];
     cell.createdLabel.text = [NSString stringWithFormat:@"Updated: %@", [dateFormatter stringFromDate:updatedDate]];
     
     cell.offerPriceLabel.text = [NSString stringWithFormat:@"£%.02f", offer.price];

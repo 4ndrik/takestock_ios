@@ -94,7 +94,6 @@
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"DB.sqlite"];
     
-    
     NSError *error = nil;
     NSDictionary *options = @{ NSMigratePersistentStoresAutomaticallyOption : @(YES),
                                NSInferMappingModelAutomaticallyOption : @(YES) };

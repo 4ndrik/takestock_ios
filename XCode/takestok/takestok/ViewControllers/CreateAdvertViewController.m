@@ -591,7 +591,7 @@
     _advert.adDescription = _descriptionTextView.text;
     _advert.expires = [[formatter dateFromString:_expairyTextField.text] timeIntervalSinceReferenceDate];
     _advert.created = [[NSDate date] timeIntervalSinceReferenceDate];
-    _advert.updated = [[NSDate date] timeIntervalSinceReferenceDate];
+    _advert.date_updated = [[NSDate date] timeIntervalSinceReferenceDate];
     _advert.minOrderQuantity = [_minimumOrderTextField.text intValue];
     _advert.certificationOther = _otherTextField.text;
     _advert.count = [_countUnitTextField.text intValue];

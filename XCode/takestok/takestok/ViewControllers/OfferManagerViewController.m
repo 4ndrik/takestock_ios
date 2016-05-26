@@ -274,7 +274,7 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateStyle = kCFDateFormatterMediumStyle;
-    NSDate* updatedDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_advert.updated];
+    NSDate* updatedDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_advert.date_updated];
     offerTitleView.advertDataCreated.text = [NSString stringWithFormat:@"Updated: %@", [dateFormatter stringFromDate:updatedDate]];
     
     offerTitleView.advertPriceLabel.text = [NSString stringWithFormat:@"£%.02f", _advert.guidePrice];

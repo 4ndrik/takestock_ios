@@ -31,7 +31,7 @@
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.includesSubentities = YES;
-    [fetchRequest setEntity: [NSEntityDescription entityForName:[[self class] entityName] inManagedObjectContext:[DB sharedInstance].storedManagedObjectContext]];
+    [fetchRequest setEntity: [NSEntityDescription entityForName:[self entityName] inManagedObjectContext:[DB sharedInstance].storedManagedObjectContext]];
     [fetchRequest setPredicate:predicate];
     [fetchRequest setSortDescriptors:sortDescriptors];
     return fetchRequest;

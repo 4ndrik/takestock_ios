@@ -9,6 +9,8 @@
 #import "Dictionary.h"
 
 @implementation Dictionary
+@dynamic ident, title;
+
 
 + (instancetype)tempEntity {
     [self doesNotRecognizeSelector:_cmd];

@@ -2,7 +2,7 @@
 //  Image+CoreDataProperties.h
 //  takestok
 //
-//  Created by Artem on 5/16/16.
+//  Created by Artem on 5/26/16.
 //  Copyright © 2016 Artem. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Image (CoreDataProperties)
 
 @property (nonatomic) int32_t height;
+@property (nonatomic) int32_t ident;
 @property (nullable, nonatomic, retain) NSString *resId;
 @property (nullable, nonatomic, retain) NSString *url;
 @property (nonatomic) int32_t width;

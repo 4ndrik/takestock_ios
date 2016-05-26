@@ -13,10 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Dictionary : BaseEntity
 
+@property (nonatomic) int32_t ident;
+@property (nullable, nonatomic, retain) NSString *title;
+
 +(void)syncWithJsonArray:(NSArray*)array;
 
 @end
 
 NS_ASSUME_NONNULL_END
-
-#import "Dictionary+CoreDataProperties.h"

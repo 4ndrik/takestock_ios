@@ -42,7 +42,7 @@
     self.status = [OfferStatus getEntityWithId:[[jsonDic objectForKeyNotNull:OFFER_STATUS_PARAM]intValue]];
     self.comment = [jsonDic objectForKeyNotNull:OFFER_COMMENT_PARAM];
     self.created = [[dateFormatter dateFromString:[jsonDic objectForKeyNotNull:OFFER_CREATE_PARAM]] timeIntervalSinceReferenceDate];
-    self.updated = [[dateFormatter dateFromString:[jsonDic objectForKeyNotNull:OFFER_UPDATE_PARAM]] timeIntervalSinceReferenceDate];
+    self.date_updated = [[dateFormatter dateFromString:[jsonDic objectForKeyNotNull:OFFER_UPDATE_PARAM]] timeIntervalSinceReferenceDate];
 }
 
 -(NSDictionary*)getDictionary{
@@ -66,7 +66,7 @@
 }
 
 +(NSArray*)getMyOffers{
-    NSSortDescriptor* updatedSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"updated" ascending:NO];
+    NSSortDescriptor* updatedSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date_updated" ascending:NO];
     NSSortDescriptor* createdSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"created" ascending:NO];
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"user == %@ && parentOffer == null", [User getMe]];
     NSFetchRequest* request = [self getFetchRequestForPredicate:predicate withSortDescriptions:[NSArray arrayWithObjects:updatedSortDescriptor, createdSortDescriptor, nil]];

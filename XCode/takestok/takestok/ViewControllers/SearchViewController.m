@@ -39,6 +39,7 @@
     [super viewDidLoad];
     
     _adverts = [NSMutableArray array];
+    
     int defaultSort = [AppSettings getSearchSort];
     if (defaultSort > 0){
         NSArray* sortData = [SortData getAll];

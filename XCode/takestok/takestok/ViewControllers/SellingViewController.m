@@ -23,7 +23,7 @@
     [super viewDidLoad];
     _adverts = [Advert getMyAdverts];
 }
-   
+
 #pragma mark - UITableViewDelegate UITableViewDataSource
     
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -41,7 +41,7 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateStyle = kCFDateFormatterMediumStyle;
-    NSDate* updatedDate = [NSDate dateWithTimeIntervalSinceReferenceDate:advert.updated];
+    NSDate* updatedDate = [NSDate dateWithTimeIntervalSinceReferenceDate:advert.date_updated];
     cell.createdLabel.text = [NSString stringWithFormat:@"Updated: %@", [dateFormatter stringFromDate:updatedDate]];
     
     cell.offersCountLabel.text = [NSString stringWithFormat:@"%i", advert.offers.count];

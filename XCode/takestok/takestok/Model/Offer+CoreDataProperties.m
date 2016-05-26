@@ -2,7 +2,7 @@
 //  Offer+CoreDataProperties.m
 //  takestok
 //
-//  Created by Artem on 5/19/16.
+//  Created by Artem on 5/26/16.
 //  Copyright © 2016 Artem. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,13 +15,14 @@
 
 @dynamic comment;
 @dynamic created;
+@dynamic ident;
 @dynamic price;
 @dynamic quantity;
-@dynamic updated;
+@dynamic date_updated;
 @dynamic advert;
+@dynamic counterOffer;
+@dynamic parentOffer;
 @dynamic status;
 @dynamic user;
-@dynamic parentOffer;
-@dynamic counterOffer;
 
 @end

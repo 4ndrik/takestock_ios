@@ -34,7 +34,7 @@
     
     self.created = [[dateFormatter dateFromString:[jsonDic objectForKeyNotNull:ADVERT_CREATED_PARAM]] timeIntervalSinceReferenceDate];
     self.expires = [[dateFormatter dateFromString:[jsonDic objectForKeyNotNull:ADVERT_EXPIRES_PARAM]] timeIntervalSinceReferenceDate];
-    self.updated = [[dateFormatter dateFromString:[jsonDic objectForKeyNotNull:ADVERT_UPDATED_AT]] timeIntervalSinceReferenceDate];
+    self.date_updated = [[dateFormatter dateFromString:[jsonDic objectForKeyNotNull:ADVERT_UPDATED_AT]] timeIntervalSinceReferenceDate];
     self.guidePrice = [[jsonDic objectForKeyNotNull:ADVERT_GUIDE_PRICE_PARAM] floatValue];
     self.adDescription = [jsonDic objectForKeyNotNull:ADVERT_DESCRIPTION_PARAM];
     self.location = [jsonDic objectForKeyNotNull:ADVERT_LOCATION_PARAM];
@@ -168,7 +168,7 @@
 }
 
 +(NSArray*)getMyAdverts{
-    NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"updated" ascending:YES];
+    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date_updated" ascending:NO];
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"author == %@", [User getMe]];
     NSFetchRequest* request = [self getFetchRequestForPredicate:predicate withSortDescriptions:[NSArray arrayWithObjects:sortDescriptor, nil]];
     return [[DB sharedInstance].storedManagedObjectContext executeFetchRequest:request error:nil];

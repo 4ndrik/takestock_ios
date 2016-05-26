@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.m
 //  takestok
 //
-//  Created by Artem on 5/16/16.
+//  Created by Artem on 5/26/16.
 //  Copyright © 2016 Artem. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,6 +15,7 @@
 
 @dynamic email;
 @dynamic firstName;
+@dynamic ident;
 @dynamic isSubscribed;
 @dynamic isVerified;
 @dynamic lastLogin;
@@ -22,9 +23,9 @@
 @dynamic rating;
 @dynamic userName;
 @dynamic adverts;
+@dynamic answers;
 @dynamic image;
 @dynamic offers;
 @dynamic questions;
-@dynamic answers;
 
 @end
