@@ -23,6 +23,7 @@
 #import "PaddingTextField.h"
 #import "Offer.h"
 #import "OfferStatus.h"
+#import "UserDetailsViewController.h"
 
 @interface AdvertDetailViewController ()
 
@@ -250,6 +251,9 @@
     }else if ([segue.identifier isEqualToString:@"AQSegue"]){
         QAViewController* aqVC = (QAViewController*)segue.destinationViewController;
         [aqVC setAdvert:_advert];
+    }else if ([segue.identifier isEqualToString:@"UserDetailsSegue"]){
+        UserDetailsViewController* udVC = (UserDetailsViewController*)segue.destinationViewController;
+        [udVC setUser:_advert.author];
     }
 }
 

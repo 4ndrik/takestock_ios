@@ -90,6 +90,7 @@
 		ACCE7FD11CDCD37000A76CB6 /* AskQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCE7FD01CDCD37000A76CB6 /* AskQuestionView.m */; };
 		ACCE7FD31CDCD38200A76CB6 /* AskQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACCE7FD21CDCD38200A76CB6 /* AskQuestionView.xib */; };
 		ACCE7FD61CDCDB6B00A76CB6 /* QATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCE7FD51CDCDB6B00A76CB6 /* QATableViewCell.m */; };
+		ACCF26A21CF7395000BA55A9 /* UserDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCF26A11CF7395000BA55A9 /* UserDetailsViewController.m */; };
 		ACDA2ECD1CEF28A3009F51A0 /* OfferActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDA2ECC1CEF28A3009F51A0 /* OfferActionView.m */; };
 		ACDA2ECF1CEF28B8009F51A0 /* OfferActionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACDA2ECE1CEF28B8009F51A0 /* OfferActionView.xib */; };
 		ACDC246A1CBCF610003E9715 /* RadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDC24691CBCF610003E9715 /* RadioButton.m */; };
@@ -266,6 +267,8 @@
 		ACCE7FD21CDCD38200A76CB6 /* AskQuestionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AskQuestionView.xib; sourceTree = "<group>"; };
 		ACCE7FD41CDCDB6B00A76CB6 /* QATableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QATableViewCell.h; sourceTree = "<group>"; };
 		ACCE7FD51CDCDB6B00A76CB6 /* QATableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QATableViewCell.m; sourceTree = "<group>"; };
+		ACCF26A01CF7395000BA55A9 /* UserDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailsViewController.h; sourceTree = "<group>"; };
+		ACCF26A11CF7395000BA55A9 /* UserDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsViewController.m; sourceTree = "<group>"; };
 		ACDA2ECB1CEF28A3009F51A0 /* OfferActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferActionView.h; sourceTree = "<group>"; };
 		ACDA2ECC1CEF28A3009F51A0 /* OfferActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferActionView.m; sourceTree = "<group>"; };
 		ACDA2ECE1CEF28B8009F51A0 /* OfferActionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfferActionView.xib; sourceTree = "<group>"; };
@@ -521,12 +524,9 @@
 				AC049D031CB7C449006A8F21 /* SearchViewController.h */,
 				AC049D041CB7C449006A8F21 /* SearchViewController.m */,
 				AC411E521CC78D61008B1E38 /* Adverts */,
-				AC049D1F1CBBD2D7006A8F21 /* LoginViewController.h */,
-				AC049D201CBBD2D7006A8F21 /* LoginViewController.m */,
 				AC854C271CEB3E46006AFF2D /* Selling */,
 				AC854C281CEB3E56006AFF2D /* Buying */,
-				ACFCB6B81CDA200A005A4024 /* UserProfileViewController.h */,
-				ACFCB6B91CDA200A005A4024 /* UserProfileViewController.m */,
+				ACCF269F1CF7392800BA55A9 /* User */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -632,6 +632,19 @@
 				AC411E5A1CC7D257008B1E38 /* BuyingViewController.m */,
 			);
 			name = Buying;
+			sourceTree = "<group>";
+		};
+		ACCF269F1CF7392800BA55A9 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				AC049D1F1CBBD2D7006A8F21 /* LoginViewController.h */,
+				AC049D201CBBD2D7006A8F21 /* LoginViewController.m */,
+				ACFCB6B81CDA200A005A4024 /* UserProfileViewController.h */,
+				ACFCB6B91CDA200A005A4024 /* UserProfileViewController.m */,
+				ACCF26A01CF7395000BA55A9 /* UserDetailsViewController.h */,
+				ACCF26A11CF7395000BA55A9 /* UserDetailsViewController.m */,
+			);
+			name = User;
 			sourceTree = "<group>";
 		};
 		D9CDB975853D8ADD3B918602 /* Pods */ = {
@@ -802,6 +815,7 @@
 				ACCE7FCA1CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.m in Sources */,
 				AC049D081CB7C47F006A8F21 /* HomeViewController.m in Sources */,
 				AC68C4811CB64241004B78DF /* TextFieldBorderBottom.m in Sources */,
+				ACCF26A21CF7395000BA55A9 /* UserDetailsViewController.m in Sources */,
 				AC411E721CC8D186008B1E38 /* Shipping+CoreDataProperties.m in Sources */,
 				AC411E291CBFA6D0008B1E38 /* NSDate+Extended.m in Sources */,
 				AC411E301CBFBB30008B1E38 /* BackgroundImageView.m in Sources */,
