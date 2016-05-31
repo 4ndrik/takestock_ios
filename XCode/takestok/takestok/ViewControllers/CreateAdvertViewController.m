@@ -26,6 +26,10 @@
 #import "AdvertDetailViewController.h"
 
 #import "AppSettings.h"
+#import "StoredImage.h"
+#import "GUIDCreator.h"
+
+#import "NSManagedObject+NSManagedObject_RevertChanges.h"
 
 @implementation CreateAdvertViewController
 
@@ -37,6 +41,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[DB sharedInstance].storedManagedObjectContext save:nil];
     _images = [NSMutableArray array];
     _keyboardFrame = 303;
 
@@ -76,6 +81,8 @@
     
     if (_advert){
         
+        [_images addObjectsFromArray:[_advert.images array]];
+        
         _productTitleTextField.text = _advert.name;
         
         _categoryTextField.tag = _advert.category.ident;
@@ -111,9 +118,16 @@
         _keywordTextField.text = _advert.tags;
         
         self.title = @"EDIT ADVERT";
+        
+        [_saveButton setTitle:@"SAVE CHANGES" forState:UIControlStateNormal];
+        
+        [_imagesCollectionView reloadData];
+        [self collectionView:_imagesCollectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedImage inSection:0]];
+        
     }else{
         _advert = [Advert storedEntity];
         self.title = @"SELL SOMETHING";
+         [_saveButton setTitle:@"CREATE ADVERT" forState:UIControlStateNormal];
     }
     
     //Add certifications
@@ -160,19 +174,26 @@
         }
     }
     
-//    //TODO: for debug
-//     _additionalViewHeight.constant = _saveButton.frame.size.height + _saveButton.frame.origin.y + 20;
-    
     [self.view setNeedsUpdateConstraints];
     [self.view updateConstraints];
     
 }
 
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    if (_advert.ident == 0){
-        [_advert.managedObjectContext deleteObject:_advert];
+- (void)willMoveToParentViewController:(UIViewController *)parent{
+    [super willMoveToParentViewController:parent];
+    if (!parent) {
+        if (_advert.ident == 0){
+            [_advert.managedObjectContext deleteObject:_advert];
+        }else{
+            [_advert.managedObjectContext rollback];
+        }
     }
+}
+
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    _collectionViewHeight.constant =  _images.count > 0 ? ((_imagesCollectionView.frame.size.width - 20) / 3 + 20) * ceilf((_images.count + 1) / 3.) : 0;
+    _additionalViewHeight.constant = _productTitleTextField.text.length > 0 && _images.count > 0 ? _saveButton.frame.size.height + _saveButton.frame.origin.y + 20 : 0;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -212,15 +233,19 @@
     
     UIImage *image = (UIImage*)[info objectForKey:UIImagePickerControllerOriginalImage];
     image = [image fixOrientation];
-//TODO: Change size if need
     CGSize size = image.size;
     image = [UIImage imageWithImage:image scaledToSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.width * size.height / size.width)];
     
+    StoredImage* stImage = [[StoredImage alloc] init];
+    stImage.resId = [GUIDCreator getGuid];
+    
+    [image saveToPath:[ImageCacheUrlResolver getPathForImage:stImage]];
+    
     if (_isAddNewImage){
-       [_images addObject:image];
+       [_images addObject:stImage];
         _selectedImage = _images.count - 1;;
     }else{
-        [_images replaceObjectAtIndex:_selectedImage withObject:image];
+        [_images replaceObjectAtIndex:_selectedImage withObject:stImage];
     }
     
     _addImageLabel.text = @"EDIT";
@@ -249,7 +274,7 @@
     }
     
     if (indexPath.row < _images.count){
-        cell.imageView.image = [_images objectAtIndex:indexPath.row];
+        [cell.imageView loadImage:[_images objectAtIndex:indexPath.row]];
 
     }else{
         cell.imageView.image = [UIImage imageNamed:@"addImageIco"];
@@ -266,7 +291,7 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row < _images.count){
-        _mainImageView.image = [_images objectAtIndex:indexPath.row];
+        [_mainImageView loadImage:[_images objectAtIndex:indexPath.row]];
         _selectedImage = indexPath.row;
         [collectionView reloadData];
     }else{
@@ -571,16 +596,21 @@
     if (!_advert){
         _advert = [Advert storedEntity];
     }
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterLongStyle];
     
     NSMutableOrderedSet* imageSet = [[NSMutableOrderedSet alloc] init];
-    for (UIImage* image in _images){
-        Image* advImage = [Image storedEntity];
-        advImage.height = (int)image.size.height;
-        advImage.width = (int)image.size.width;
-        
-        [image saveToPath:[ImageCacheUrlResolver getPathForImage:advImage]];
+    for (id<ImageProtocol> image in _images){
+        Image* advImage = image;
+        if ([image isKindOfClass:[StoredImage class]]){
+            UIImage* uiImage = [UIImage imageWithContentsOfFile:[ImageCacheUrlResolver getPathForImage:image]];
+            
+            advImage = [Image storedEntity];
+            advImage.resId = image.resId;
+            advImage.height = (int)uiImage.size.height;
+            advImage.width = (int)uiImage.size.width;
+        }
         [imageSet addObject:advImage];
     }
     [_advert setImages:imageSet];
@@ -604,14 +634,41 @@
     _advert.tags = _keywordTextField.text;
     _advert.packaging = [Packaging getEntityWithId:_unitTextField.tag];
     _advert.author = [User getMe];
-    
-    [[DB sharedInstance].storedManagedObjectContext save:nil];
-
 }
 
 - (IBAction)saveAdvert:(id)sender{
     if ([self verifyFields]){
         [self createAdvert];
+        if (_advert.ident == 0){
+            [self showLoading];
+            [[ServerConnectionHelper sharedInstance] createAdvert:_advert compleate:^(NSError *error) {
+                [self hideLoading];
+                NSString* title = @"";
+                NSString* message = @"Advert created";
+                if (error){
+                    title = @"Error";
+                    message = [error localizedDescription];
+                }else{
+                    [[DB sharedInstance].storedManagedObjectContext save:nil];
+                    [_saveButton setTitle:@"SAVE CHANGES" forState:UIControlStateNormal];
+                }
+                UIAlertController* errorController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction* closeAction = [UIAlertAction
+                                              actionWithTitle:@"Ok"
+                                              style:UIAlertActionStyleCancel
+                                              handler:^(UIAlertAction * action)
+                                              {
+                                                  [errorController dismissViewControllerAnimated:YES completion:nil];
+                                                  
+                                              }];
+                
+                
+                [errorController addAction:closeAction];
+                
+                [self presentViewController:errorController animated:YES completion:nil];
+            }];
+        }
     }
 }
 

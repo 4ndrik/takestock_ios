@@ -111,7 +111,7 @@
     _offerViewHeight.constant = 43;
     
     if (_advert.ident <= 0){
-        [_makeButton setTitle:@"Create advert" forState:UIControlStateNormal];
+        [_makeButton setTitle:@"CREATE ADVERT" forState:UIControlStateNormal];
     }else if (_advert.author.ident == [User getMe].ident){
         _offerViewHeight.constant = 0;
     }

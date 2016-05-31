@@ -96,6 +96,8 @@
 		ACDC246A1CBCF610003E9715 /* RadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDC24691CBCF610003E9715 /* RadioButton.m */; };
 		ACDC246D1CBE8308003E9715 /* TitleTextContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDC246C1CBE8308003E9715 /* TitleTextContainerView.m */; };
 		ACDC24721CBEAC5F003E9715 /* AdvertDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDC24711CBEAC5F003E9715 /* AdvertDetailViewController.m */; };
+		ACE110FE1CFD9E2800E6FDB9 /* StoredImage.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE110FD1CFD9E2800E6FDB9 /* StoredImage.m */; };
+		ACE111011CFDB0D000E6FDB9 /* NSManagedObject+NSManagedObject_RevertChanges.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE111001CFDB0D000E6FDB9 /* NSManagedObject+NSManagedObject_RevertChanges.m */; };
 		ACF317B91CDB558D00F49797 /* RatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF317B81CDB558D00F49797 /* RatingView.m */; };
 		ACFCB6B61CDA14A4005A4024 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B31CDA14A4005A4024 /* User+CoreDataProperties.m */; };
 		ACFCB6B71CDA14A4005A4024 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B51CDA14A4005A4024 /* User.m */; };
@@ -278,6 +280,10 @@
 		ACDC246C1CBE8308003E9715 /* TitleTextContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleTextContainerView.m; sourceTree = "<group>"; };
 		ACDC24701CBEAC5F003E9715 /* AdvertDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvertDetailViewController.h; sourceTree = "<group>"; };
 		ACDC24711CBEAC5F003E9715 /* AdvertDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvertDetailViewController.m; sourceTree = "<group>"; };
+		ACE110FC1CFD9E2800E6FDB9 /* StoredImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoredImage.h; sourceTree = "<group>"; };
+		ACE110FD1CFD9E2800E6FDB9 /* StoredImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoredImage.m; sourceTree = "<group>"; };
+		ACE110FF1CFDB0D000E6FDB9 /* NSManagedObject+NSManagedObject_RevertChanges.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+NSManagedObject_RevertChanges.h"; sourceTree = "<group>"; };
+		ACE111001CFDB0D000E6FDB9 /* NSManagedObject+NSManagedObject_RevertChanges.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+NSManagedObject_RevertChanges.m"; sourceTree = "<group>"; };
 		ACF317B71CDB558D00F49797 /* RatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingView.h; sourceTree = "<group>"; };
 		ACF317B81CDB558D00F49797 /* RatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingView.m; sourceTree = "<group>"; };
 		ACFCB6B21CDA14A4005A4024 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -352,6 +358,8 @@
 			children = (
 				AC411E1A1CBF995A008B1E38 /* DB.h */,
 				AC411E1B1CBF995A008B1E38 /* DB.m */,
+				ACE110FF1CFDB0D000E6FDB9 /* NSManagedObject+NSManagedObject_RevertChanges.h */,
+				ACE111001CFDB0D000E6FDB9 /* NSManagedObject+NSManagedObject_RevertChanges.m */,
 				AC411E8F1CC92244008B1E38 /* Dictionary */,
 				AC411E7C1CC8D61E008B1E38 /* BaseEntity.h */,
 				AC411E7D1CC8D61E008B1E38 /* BaseEntity.m */,
@@ -363,6 +371,8 @@
 				AC411E1E1CBF9CEF008B1E38 /* Image+CoreDataProperties.m */,
 				AC411E1F1CBF9CEF008B1E38 /* Image.h */,
 				AC411E201CBF9CEF008B1E38 /* Image.m */,
+				ACE110FC1CFD9E2800E6FDB9 /* StoredImage.h */,
+				ACE110FD1CFD9E2800E6FDB9 /* StoredImage.m */,
 				ACFCB6B21CDA14A4005A4024 /* User+CoreDataProperties.h */,
 				ACFCB6B31CDA14A4005A4024 /* User+CoreDataProperties.m */,
 				ACFCB6B41CDA14A4005A4024 /* User.h */,
@@ -793,11 +803,13 @@
 				AC411E131CBF970A008B1E38 /* Advert.m in Sources */,
 				ACCE7FD11CDCD37000A76CB6 /* AskQuestionView.m in Sources */,
 				AC08D8031CE9FEC200830A53 /* Question+CoreDataProperties.m in Sources */,
+				ACE110FE1CFD9E2800E6FDB9 /* StoredImage.m in Sources */,
 				AC68C4841CB64966004B78DF /* CreateAdvertViewController.m in Sources */,
 				AC1911521CE22D6C00C5A4A5 /* SortData.m in Sources */,
 				AC411E781CC8D186008B1E38 /* Certification+CoreDataProperties.m in Sources */,
 				AC411E611CC7DC8E008B1E38 /* PaddingLabel.m in Sources */,
 				ACDC246D1CBE8308003E9715 /* TitleTextContainerView.m in Sources */,
+				ACE111011CFDB0D000E6FDB9 /* NSManagedObject+NSManagedObject_RevertChanges.m in Sources */,
 				AC411E791CC8D186008B1E38 /* Certification.m in Sources */,
 				AC1F544D1CCE45350093848B /* OfferManagerViewController.m in Sources */,
 				ACCE7FCE1CDCC3A400A76CB6 /* QAViewController.m in Sources */,

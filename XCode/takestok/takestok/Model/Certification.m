@@ -43,11 +43,6 @@
         dbCert.image = image;
 //        [allIdents addObject:[NSNumber numberWithInt:ident]];
     }
-    
-    [[DB sharedInstance].storedManagedObjectContext save:nil];
-    
-    //TODO Remove old items
-    
 }
 
 @end

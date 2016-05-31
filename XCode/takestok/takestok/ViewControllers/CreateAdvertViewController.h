@@ -12,6 +12,7 @@
 @class TextFieldBorderBottom;
 @class PaddingTextField;
 @class Advert;
+@class BackgroundImageView;
 
 @interface CreateAdvertViewController : BaseViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
     
@@ -28,7 +29,7 @@
     id _currentInputControl;
     
     __weak IBOutlet UIScrollView *_scrollView;
-    __weak IBOutlet UIImageView *_mainImageView;
+    __weak IBOutlet BackgroundImageView *_mainImageView;
     __weak IBOutlet UILabel *_addImageLabel;
     
     __weak IBOutlet UICollectionView *_imagesCollectionView;

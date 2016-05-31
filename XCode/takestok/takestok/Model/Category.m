@@ -48,10 +48,6 @@
             dbSubCategory.category = dbCategory;
         }
     }
-    
-    [[DB sharedInstance].storedManagedObjectContext save:nil];
-    
-    //TODO Remove old items
 }
 
 @end

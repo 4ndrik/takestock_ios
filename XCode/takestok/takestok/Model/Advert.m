@@ -62,7 +62,7 @@
     }
     self.subCategory = subCategory;
     
-    Certification* certification = [Certification getEntityWithId:[[jsonDic objectForKeyNotNull:ADVERT_CERTIFICATIONS_PARAM] intValue]];
+    Certification* certification = [Certification getEntityWithId:[[[jsonDic objectForKeyNotNull:ADVERT_CERTIFICATIONS_PARAM] objectForKeyNotNull:@"pk"] intValue]];
     if (certification && certification.managedObjectContext != self.managedObjectContext){
         certification = [self.managedObjectContext objectWithID:[certification objectID]];
     }
@@ -82,11 +82,9 @@
     
     User* user = [User getEntityWithId:[[jsonDic objectForKeyNotNull:ADVERT_AUTHOR_PARAM] intValue]];
     if (!user){
-        user = [User tempEntity];
+        user = self.isForStore ? [User storedEntity] : [User tempEntity];
     }
-    if (user.managedObjectContext != self.managedObjectContext){
-        user = [self.managedObjectContext objectWithID:[user objectID]];
-    }
+
     NSDictionary* userDic = [jsonDic objectForKeyNotNull:ADVERT_AUTHOR_DETAILS_PARAM];
     [user updateWithDic:userDic];
     self.author = user;

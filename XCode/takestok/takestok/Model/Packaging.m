@@ -34,8 +34,6 @@
         dbPackaging.ident = ident;
         dbPackaging.title = [jsonDic objectForKeyNotNull:PACKAGING_NAME_PARAM];
     }
-    [[DB sharedInstance].storedManagedObjectContext save:nil];
-    //TODO Remove old items
 }
 
 @end

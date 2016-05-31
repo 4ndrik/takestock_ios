@@ -24,6 +24,12 @@
     _adverts = [Advert getMyAdverts];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    _adverts = [Advert getMyAdverts];
+    [_sellingTableView reloadData];
+}
+
 #pragma mark - UITableViewDelegate UITableViewDataSource
     
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
