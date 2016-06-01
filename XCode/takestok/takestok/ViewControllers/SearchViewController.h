@@ -11,9 +11,11 @@
 #import "SearchFilterSortView.h"
 #import "SearchTitleView.h"
 #import "SerachCollectionViewLayout.h"
+#import "CategoryViewController.h"
 
 @class SortData;
-@interface SearchViewController : BaseViewController<SerachCollectionViewLayoutProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, SerachFilterSortDelegate>{
+@class Category;
+@interface SearchViewController : BaseViewController<SerachCollectionViewLayoutProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, SerachFilterSortDelegate, CategoryProtocol>{
     
     __weak IBOutlet UICollectionView *_searchCollectionView;
     NSArray* _filterData;
@@ -22,6 +24,7 @@
     SearchTitleView* _searchTitleView;
     NSMutableArray* _adverts;
     NSString* _searchText;
+    Category* _searchCategory;
     UIRefreshControl *_refreshControl;
     BOOL _loading;
     SortData* _sortData;
@@ -30,5 +33,6 @@
 }
 
 -(void)setSearchText:(NSString*)searchText;
+-(void)setCategory:(Category*)category;
 
 @end

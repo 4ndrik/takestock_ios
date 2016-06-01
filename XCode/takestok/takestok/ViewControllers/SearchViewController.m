@@ -98,11 +98,14 @@
     if ([segue.identifier isEqualToString:@"AdvertSelectedSegue"]) {
         AdvertDetailViewController* prodVC = (AdvertDetailViewController*)segue.destinationViewController;
         [prodVC setAdvert:sender];
+    }else if ([segue.identifier isEqualToString:@"CategoriesSegue"]) {
+        CategoryViewController* categoryhVC = (CategoryViewController*)segue.destinationViewController;
+        categoryhVC.delegate = self;
     }
 }
 
 -(void)loadData{
-    [[ServerConnectionHelper sharedInstance] loadAdvertWithSortData:_sortData page:_page compleate:^(NSArray *adverbs, NSDictionary* additionalData, NSError *error) {
+    [[ServerConnectionHelper sharedInstance] loadAdvertWithSortData:_sortData searchString:_searchText category:_searchCategory page:_page compleate:^(NSArray *adverbs, NSDictionary* additionalData, NSError *error) {
         if (error){
             _page = 0;
             UIAlertController* errorController = [UIAlertController alertControllerWithTitle:@"Error" message:ERROR_MESSAGE(error) preferredStyle:UIAlertControllerStyleAlert];
@@ -140,6 +143,7 @@
 }
 
 -(void)reloadData:(id)owner{
+    [_searchTitleView.browseCategoriesButton setTitle:_searchCategory ? [NSString stringWithFormat:@"%@ >", _searchCategory.title]: @"BROWSE BY CATEGORIES >" forState:UIControlStateNormal];
     _page = 1;
      _searchTitleView.countResultLabel.text = @"Loading...";
     [_adverts removeAllObjects];
@@ -152,6 +156,22 @@
     _searchText = searchText;
     if (self.isViewLoaded)
         [self reloadData:nil];
+}
+
+-(void)setCategory:(Category*)category{
+    _searchCategory = category;
+    if (self.isViewLoaded)
+        [self reloadData:nil];
+}
+
+-(void)showCategories:(id)owner{
+    [self performSegueWithIdentifier:@"CategoriesSegue" sender:nil];
+}
+
+#pragma mark - CategoryProtocol
+-(void)categorySelected:(Category*)category{
+    _searchCategory = category;
+    [self reloadData:nil];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -234,6 +254,8 @@
             _searchTitleView = (SearchTitleView*)[collectionView dequeueReusableSupplementaryViewOfKind:TitleSuplementaryViewKind withReuseIdentifier:TitleSuplementaryViewKind forIndexPath:indexPath];
         }
         _searchTitleView.searchWordLabel.text = _searchText.length > 0 ? _searchText : @"SHOW ALL";
+        [_searchTitleView.browseCategoriesButton setTitle:_searchCategory ? [NSString stringWithFormat:@"%@ >", _searchCategory.title]: @"BROWSE BY CATEGORIES >" forState:UIControlStateNormal];
+        [_searchTitleView.browseCategoriesButton addTarget:self action:@selector(showCategories:) forControlEvents:UIControlEventTouchUpInside];
         reusableview = _searchTitleView;
     }
     

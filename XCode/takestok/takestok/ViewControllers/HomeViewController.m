@@ -10,6 +10,7 @@
 #import "TextFieldBorderBottom.h"
 #import "SearchViewController.h"
 #import "OfferActionView.h"
+#import "Category.h"
 
 @interface HomeViewController ()
 
@@ -35,8 +36,20 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"SearchSegue"]) {
         SearchViewController* searchVC = (SearchViewController*)segue.destinationViewController;
-        [searchVC setSearchText:_serachTextField.text];
+        if ([sender isKindOfClass:[Category class]]){
+            [searchVC setCategory:sender];
+        }else if ([sender isKindOfClass:[UITextField class]]){
+            [searchVC setSearchText:_serachTextField.text];
+        }
+    }else if ([segue.identifier isEqualToString:@"CategoriesSegue"]) {
+        CategoryViewController* categoryhVC = (CategoryViewController*)segue.destinationViewController;
+        categoryhVC.delegate = self;
     }
+}
+
+#pragma mark - CategoryProtocol
+-(void)categorySelected:(Category*)category{
+   [self performSegueWithIdentifier:@"SearchSegue" sender:category];
 }
 
 #pragma mark - Handle keyboard
@@ -55,7 +68,7 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [self performSegueWithIdentifier:@"SearchSegue" sender:self];
+    [self performSegueWithIdentifier:@"SearchSegue" sender:textField];
     [_serachTextField resignFirstResponder];
     return YES;
 }

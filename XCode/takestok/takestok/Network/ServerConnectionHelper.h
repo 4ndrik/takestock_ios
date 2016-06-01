@@ -16,6 +16,7 @@
 @class Offer;
 @class Question;
 @class Answer;
+@class Category;
 
 typedef void (^errorBlock)(NSError* error);
 typedef void (^resultBlock)(NSArray* result, NSDictionary* additionalData, NSError* error);
@@ -35,7 +36,7 @@ typedef void (^resultBlock)(NSArray* result, NSDictionary* additionalData, NSErr
 
 -(void)loadRequiredData;
 
--(void)loadAdvertWithSortData:(SortData*)sortData page:(int)page compleate:(resultBlock)compleate;
+-(void)loadAdvertWithSortData:(SortData*)sortData searchString:(NSString*)searchString category:(Category*)category page:(int)page compleate:(resultBlock)compleate;
 -(void)createAdvert:(Advert*)advert compleate:(void(^)(NSError* error))compleate;
 
 -(void)createOffer:(Offer*)offer compleate:(errorBlock)compleate;

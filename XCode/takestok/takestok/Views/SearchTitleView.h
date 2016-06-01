@@ -13,7 +13,7 @@
 }
 @property (weak, nonatomic) IBOutlet UILabel *countResultLabel;
 @property (weak, nonatomic) IBOutlet UILabel *searchWordLabel;
-- (IBAction)browseCategoriesAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *browseCategoriesButton;
 
 +(float)defaultHeight;
 

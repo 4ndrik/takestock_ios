@@ -98,6 +98,7 @@
 		ACDC24721CBEAC5F003E9715 /* AdvertDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDC24711CBEAC5F003E9715 /* AdvertDetailViewController.m */; };
 		ACE110FE1CFD9E2800E6FDB9 /* StoredImage.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE110FD1CFD9E2800E6FDB9 /* StoredImage.m */; };
 		ACE111011CFDB0D000E6FDB9 /* NSManagedObject+NSManagedObject_RevertChanges.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE111001CFDB0D000E6FDB9 /* NSManagedObject+NSManagedObject_RevertChanges.m */; };
+		ACE111041CFF11DE00E6FDB9 /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE111031CFF11DE00E6FDB9 /* CategoryViewController.m */; };
 		ACF317B91CDB558D00F49797 /* RatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF317B81CDB558D00F49797 /* RatingView.m */; };
 		ACFCB6B61CDA14A4005A4024 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B31CDA14A4005A4024 /* User+CoreDataProperties.m */; };
 		ACFCB6B71CDA14A4005A4024 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B51CDA14A4005A4024 /* User.m */; };
@@ -284,6 +285,8 @@
 		ACE110FD1CFD9E2800E6FDB9 /* StoredImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoredImage.m; sourceTree = "<group>"; };
 		ACE110FF1CFDB0D000E6FDB9 /* NSManagedObject+NSManagedObject_RevertChanges.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+NSManagedObject_RevertChanges.h"; sourceTree = "<group>"; };
 		ACE111001CFDB0D000E6FDB9 /* NSManagedObject+NSManagedObject_RevertChanges.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+NSManagedObject_RevertChanges.m"; sourceTree = "<group>"; };
+		ACE111021CFF11DE00E6FDB9 /* CategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewController.h; sourceTree = "<group>"; };
+		ACE111031CFF11DE00E6FDB9 /* CategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewController.m; sourceTree = "<group>"; };
 		ACF317B71CDB558D00F49797 /* RatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingView.h; sourceTree = "<group>"; };
 		ACF317B81CDB558D00F49797 /* RatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingView.m; sourceTree = "<group>"; };
 		ACFCB6B21CDA14A4005A4024 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -531,6 +534,8 @@
 				AC049D0A1CB7C490006A8F21 /* BaseViewController.m */,
 				AC049D061CB7C47F006A8F21 /* HomeViewController.h */,
 				AC049D071CB7C47F006A8F21 /* HomeViewController.m */,
+				ACE111021CFF11DE00E6FDB9 /* CategoryViewController.h */,
+				ACE111031CFF11DE00E6FDB9 /* CategoryViewController.m */,
 				AC049D031CB7C449006A8F21 /* SearchViewController.h */,
 				AC049D041CB7C449006A8F21 /* SearchViewController.m */,
 				AC411E521CC78D61008B1E38 /* Adverts */,
@@ -875,6 +880,7 @@
 				AC68C4601CB51C1F004B78DF /* AppDelegate.m in Sources */,
 				AC411E761CC8D186008B1E38 /* Condition+CoreDataProperties.m in Sources */,
 				AC68C48C1CB67090004B78DF /* ImageCollectionViewCell.m in Sources */,
+				ACE111041CFF11DE00E6FDB9 /* CategoryViewController.m in Sources */,
 				AC1F54581CCE495E0093848B /* TopBottomStripesLabel.m in Sources */,
 				AC411E331CBFBE94008B1E38 /* GUIDCreator.m in Sources */,
 				AC68C45D1CB51C1F004B78DF /* main.m in Sources */,

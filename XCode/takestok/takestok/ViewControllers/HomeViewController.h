@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+#import "CategoryViewController.h"
 
 @class TextFieldBorderBottom;
 
-@interface HomeViewController : BaseViewController<UITextFieldDelegate>{
-    
+@interface HomeViewController : BaseViewController<UITextFieldDelegate, CategoryProtocol>{
     __weak IBOutlet UIScrollView *_scrollView;
     __weak IBOutlet TextFieldBorderBottom *_serachTextField;
 }

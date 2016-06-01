@@ -16,6 +16,4 @@
     return DefaultHeight;
 }
 
-- (IBAction)browseCategoriesAction:(id)sender {
-}
 @end

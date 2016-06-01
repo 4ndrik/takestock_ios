@@ -275,9 +275,19 @@ typedef enum
     [loadAdvertTask resume];
 }
 
--(void)loadAdvertWithSortData:(SortData*)sortData page:(int)page compleate:(resultBlock)compleate{
+-(void)loadAdvertWithSortData:(SortData*)sortData searchString:(NSString*)searchString category:(Category*)category page:(int)page compleate:(resultBlock)compleate;{
     [_loadAdvertCancelTask cancel];
-    _loadAdvertCancelTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:[NSString stringWithFormat:@"o=%@&page=%i", sortData.value, page] methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+    
+    NSMutableString* query = [[NSMutableString alloc] initWithFormat:@"o=%@&page=%i", sortData.value, page];
+    if (searchString.length > 0){
+        [query appendFormat:@"&tags=%@", searchString];
+    }
+    
+    if (category){
+        [query appendFormat:@"&category=%i", category.ident];
+    }
+    
+    _loadAdvertCancelTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         [_dictionaryLock waitUntilDone];
         _loadAdvertCancelTask = nil;
         NSMutableDictionary* additionalDic;
