@@ -1,14 +1,14 @@
 //
-//  SerachCollectionViewLayout.m
+//  SearchCollectionViewLayout.m
 //  takestok
 //
 //  Created by Artem on 4/15/16.
 //  Copyright © 2016 Artem. All rights reserved.
 //
 
-#import "SerachCollectionViewLayout.h"
+#import "SearchCollectionViewLayout.h"
 
-@implementation SerachCollectionViewLayout
+@implementation SearchCollectionViewLayout
 
 -(void)prepareLayout{
     _layoutAtributes = [NSMutableArray array];

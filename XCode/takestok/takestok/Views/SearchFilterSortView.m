@@ -20,7 +20,7 @@
 @implementation SearchFilterSortView
 @synthesize delegate = _delegate;
 
--(void)setDelegate:(id<SerachFilterSortDelegate>)delegate{
+-(void)setDelegate:(id<SearchFilterSortDelegate>)delegate{
     _delegate = delegate;
     [_sortButton setTitle:[NSString stringWithFormat:@"%@ ▼", [_delegate getSelectedSortItem].title] forState:UIControlStateNormal];
     [_filterButton setTitle:@"Filter ▼" forState:UIControlStateNormal];

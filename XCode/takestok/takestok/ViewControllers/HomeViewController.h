@@ -14,7 +14,7 @@
 
 @interface HomeViewController : BaseViewController<UITextFieldDelegate, CategoryProtocol>{
     __weak IBOutlet UIScrollView *_scrollView;
-    __weak IBOutlet TextFieldBorderBottom *_serachTextField;
+    __weak IBOutlet TextFieldBorderBottom *_searchTextField;
 }
 
 - (IBAction)showMenuAction:(id)sender;

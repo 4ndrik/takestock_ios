@@ -1772,7 +1772,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="_scrollView" destination="DDZ-zB-8RJ" id="1jE-yF-fsG"/>
-                        <outlet property="_serachTextField" destination="HID-tb-ZeW" id="Cbg-Cu-s1D"/>
+                        <outlet property="_searchTextField" destination="HID-tb-ZeW" id="Cbg-Cu-s1D"/>
                         <segue destination="iMy-Yp-9O6" kind="show" identifier="SearchSegue" id="YRd-qU-xTs"/>
                         <segue destination="daJ-tC-g3G" kind="show" identifier="MyProfileSegue" id="73h-se-S6V"/>
                         <segue destination="Dlt-ao-awQ" kind="show" identifier="SellingSegue" id="z9J-4k-Nfo"/>
@@ -3137,7 +3137,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.74901960779999999" green="0.73725490199999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="SLe-Rf-Mrh" firstAttribute="leading" secondItem="fyL-nz-VNN" secondAttribute="leading" id="CLM-cz-hJu"/>
                             <constraint firstItem="SLe-Rf-Mrh" firstAttribute="top" secondItem="fyL-nz-VNN" secondAttribute="top" id="IOX-ft-g1F"/>
@@ -3174,7 +3174,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="y8S-Xi-q0c">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <collectionViewLayout key="collectionViewLayout" id="1aV-OG-mLc" customClass="SerachCollectionViewLayout"/>
+                                <collectionViewLayout key="collectionViewLayout" id="1aV-OG-mLc" customClass="SearchCollectionViewLayout"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SearchCollectionViewCell" id="edN-v0-XeH" customClass="SearchCollectionViewCell">
                                         <rect key="frame" x="0.0" y="64" width="145" height="300"/>
@@ -4347,6 +4347,6 @@
         <segue reference="Yjm-Qn-0XU"/>
         <segue reference="IGg-FJ-WJ4"/>
         <segue reference="8hL-uC-X83"/>
-        <segue reference="t1T-ru-oka"/>
+        <segue reference="ON9-6I-4Ue"/>
     </inferredMetricsTieBreakers>
 </document>

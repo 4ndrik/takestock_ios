@@ -1,5 +1,5 @@
 //
-//  SerachCollectionViewLayout.h
+//  SearchCollectionViewLayout.h
 //  takestok
 //
 //  Created by Artem on 4/15/16.
@@ -11,7 +11,7 @@
 #define TitleSuplementaryViewKind @"TitleSuplementaryViewKind"
 #define SearchFilterSuplementaryViewKind @"SearchFilterSuplementaryViewKind"
 
-@protocol SerachCollectionViewLayoutProtocol <NSObject>
+@protocol SearchCollectionViewLayoutProtocol <NSObject>
 
 @required
 -(int)heightForRowAtIndexPath:(NSIndexPath*)indexPath;
@@ -19,7 +19,7 @@
 
 @end
 
-@interface SerachCollectionViewLayout : UICollectionViewLayout{
+@interface SearchCollectionViewLayout : UICollectionViewLayout{
     float contentHeight;
     NSMutableArray* _layoutAtributes;
     NSMutableArray* _noPaddingAtributes;
@@ -29,6 +29,6 @@
 
 @property int numberOfColumns;
 @property int cellPadding;
-@property (weak) id<SerachCollectionViewLayoutProtocol>delegate;
+@property (weak) id<SearchCollectionViewLayoutProtocol>delegate;
 
 @end

@@ -57,7 +57,7 @@
     [_searchCollectionView registerNib:[UINib nibWithNibName:@"SearchTitleView" bundle:nil] forSupplementaryViewOfKind:TitleSuplementaryViewKind withReuseIdentifier:TitleSuplementaryViewKind];
     [_searchCollectionView registerNib:[UINib nibWithNibName:@"SearchFilterSortView" bundle:nil] forSupplementaryViewOfKind:SearchFilterSuplementaryViewKind withReuseIdentifier:SearchFilterSuplementaryViewKind];
     
-    SerachCollectionViewLayout* layout = (SerachCollectionViewLayout*)_searchCollectionView.collectionViewLayout;
+    SearchCollectionViewLayout* layout = (SearchCollectionViewLayout*)_searchCollectionView.collectionViewLayout;
     layout.numberOfColumns = 2;
     layout.cellPadding = 10;
     layout.delegate = self;
@@ -266,7 +266,7 @@
     [self performSegueWithIdentifier:@"AdvertSelectedSegue" sender:[_adverts objectAtIndex:indexPath.row]];
 }
 
-#pragma mark - SerachFilterSortDelegate
+#pragma mark - SearchFilterSortDelegate
 
 -(float)panelWidth{
     return _searchCollectionView.frame.size.width;

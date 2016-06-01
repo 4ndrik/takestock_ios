@@ -11,7 +11,7 @@
 
 @class SortData;
 
-@protocol SerachFilterSortDelegate <NSObject>
+@protocol SearchFilterSortDelegate <NSObject>
 
 @required
 -(float)panelWidth;
@@ -41,7 +41,7 @@ typedef enum {
     float height;
 }
 
-@property (nonatomic ,assign)id<SerachFilterSortDelegate>delegate;
+@property (nonatomic ,assign)id<SearchFilterSortDelegate>delegate;
 
 +(float)defaultHeight;
 -(float)height;

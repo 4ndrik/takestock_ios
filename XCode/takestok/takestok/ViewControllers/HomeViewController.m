@@ -39,7 +39,7 @@
         if ([sender isKindOfClass:[Category class]]){
             [searchVC setCategory:sender];
         }else if ([sender isKindOfClass:[UITextField class]]){
-            [searchVC setSearchText:_serachTextField.text];
+            [searchVC setSearchText:_searchTextField.text];
         }
     }else if ([segue.identifier isEqualToString:@"CategoriesSegue"]) {
         CategoryViewController* categoryhVC = (CategoryViewController*)segue.destinationViewController;
@@ -69,7 +69,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self performSegueWithIdentifier:@"SearchSegue" sender:textField];
-    [_serachTextField resignFirstResponder];
+    [_searchTextField resignFirstResponder];
     return YES;
 }
 

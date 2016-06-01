@@ -27,22 +27,22 @@
     static dispatch_once_t predicate;
     dispatch_once( &predicate, ^{
         NSMutableArray* tempSortData = [NSMutableArray array];
-        SortData* sortData = [[SortData alloc] initWith:1 withTitle:@"Newest post" withValue:@"created_at"];
+        SortData* sortData = [[SortData alloc] initWith:1 withTitle:@"Newest post" withValue:@"-created_at"];
         [tempSortData addObject:sortData];
         
-        sortData = [[SortData alloc] initWith:2 withTitle:@"Oldest post" withValue:@"-created_at"];
+        sortData = [[SortData alloc] initWith:2 withTitle:@"Oldest post" withValue:@"created_at"];
         [tempSortData addObject:sortData];
         
-        sortData = [[SortData alloc] initWith:3 withTitle:@"Guide price (hight to low)" withValue:@"guide_price"];
+        sortData = [[SortData alloc] initWith:3 withTitle:@"Guide price (hight to low)" withValue:@"-guide_price"];
         [tempSortData addObject:sortData];
         
-        sortData = [[SortData alloc] initWith:4 withTitle:@"Guide price (low to hight)" withValue:@"-guide_price"];
+        sortData = [[SortData alloc] initWith:4 withTitle:@"Guide price (low to hight)" withValue:@"guide_price"];
         [tempSortData addObject:sortData];
         
-        sortData = [[SortData alloc] initWith:5 withTitle:@"Soonest expiry date" withValue:@"expires_at"];
+        sortData = [[SortData alloc] initWith:5 withTitle:@"Soonest expiry date" withValue:@"-expires_at"];
         [tempSortData addObject:sortData];
         
-        sortData = [[SortData alloc] initWith:6 withTitle:@"Longest expiry date" withValue:@"-expires_at"];
+        sortData = [[SortData alloc] initWith:6 withTitle:@"Longest expiry date" withValue:@"expires_at"];
         [tempSortData addObject:sortData];
         
         sortDataArray = [NSMutableArray arrayWithArray:tempSortData];
