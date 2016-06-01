@@ -105,7 +105,7 @@
     [[ServerConnectionHelper sharedInstance] loadAdvertWithSortData:_sortData page:_page compleate:^(NSArray *adverbs, NSDictionary* additionalData, NSError *error) {
         if (error){
             _page = 0;
-            UIAlertController* errorController = [UIAlertController alertControllerWithTitle:@"Error" message:[error localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController* errorController = [UIAlertController alertControllerWithTitle:@"Error" message:ERROR_MESSAGE(error) preferredStyle:UIAlertControllerStyleAlert];
             
             UIAlertAction* closeAction = [UIAlertAction
                                           actionWithTitle:@"Ok"

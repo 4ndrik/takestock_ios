@@ -42,7 +42,8 @@ typedef void (^resultBlock)(NSArray* result, NSDictionary* additionalData, NSErr
 -(void)updateOffer:(Offer*)offer compleate:(errorBlock)compleate;
 
 -(void)loadUsers:(NSArray*)idents compleate:(void(^)(NSArray* users, NSError* error))compleate;
--(void)signIn:(NSString*)username password:(NSString*)password compleate:(errorBlock)compleate;
+-(void)signInWithUserName:(NSString*)username password:(NSString*)password compleate:(errorBlock)compleate;
+-(void)signUpWithUserName:(NSString*)username email:(NSString*)email password:(NSString*)password compleate:(errorBlock)compleate;
 
 -(void)loadQuestionAnswersWithAd:(Advert*)advert page:(int)page compleate:(resultBlock)compleate;
 -(void)askQuestion:(Question*)question compleate:(errorBlock)compleate;

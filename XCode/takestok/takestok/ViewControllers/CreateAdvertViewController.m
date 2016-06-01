@@ -161,9 +161,12 @@
         [radioButton.titleLabel setFont:HelveticaLight18];
         [radioButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [radioButton addTarget:self action:@selector(setCertification:) forControlEvents:UIControlEventTouchUpInside];
-        if (_advert)
-            [radioButton setSelected:cert.ident == _advert.certification.ident];
-        
+        if (i == 0 || (_advert && cert.ident == _advert.certification.ident)){
+            [radioButton setSelected:YES];
+            _certificationsContainerView.tag = cert.ident;
+        }else{
+            [radioButton setSelected:NO];
+        }
         [_certificationsContainerView addSubview:radioButton];
     }
     
@@ -630,7 +633,8 @@
     _advert.certification = [Certification getEntityWithId:_certificationsContainerView.tag];
     _advert.condition = [Condition getEntityWithId:_conditionTextField.tag];
     _advert.shipping = [Shipping getEntityWithId:_shippingTextField.tag];
-    _advert.sizeType = [SizeType getEntityWithId:_sizeTextField.tag];
+    _advert.size = _sizeTextField.text;
+    _advert.sizeType = [SizeType getEntityWithId:_sizeTypeTextField.tag];
     _advert.tags = _keywordTextField.text;
     _advert.packaging = [Packaging getEntityWithId:_unitTextField.tag];
     _advert.author = [User getMe];
@@ -647,7 +651,7 @@
                 NSString* message = @"Advert created";
                 if (error){
                     title = @"Error";
-                    message = [error localizedDescription];
+                    message = ERROR_MESSAGE(error);
                 }else{
                     [[DB sharedInstance].storedManagedObjectContext save:nil];
                     [_saveButton setTitle:@"SAVE CHANGES" forState:UIControlStateNormal];

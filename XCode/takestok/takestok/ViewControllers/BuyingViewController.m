@@ -151,7 +151,7 @@
         NSString* text = @"Offer accepted";
         if (error){
             title = @"Error";
-            text = [error localizedDescription];
+            text = ERROR_MESSAGE(error);
             offer.status = [OfferStatus getEntityWithId:stPending];
         }
         
@@ -174,7 +174,7 @@
             NSString* text = @"Offer rejected";
             if (error){
                 title = @"Error";
-                text = [error localizedDescription];
+                text = ERROR_MESSAGE(error);
                 offer.status = [OfferStatus getEntityWithId:stPending];
             }
             

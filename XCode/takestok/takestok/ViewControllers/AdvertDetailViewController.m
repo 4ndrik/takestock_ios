@@ -159,7 +159,7 @@
             if (error){
                 [offer.managedObjectContext deleteObject:offer];
                 title = @"Error";
-                message = [error localizedDescription];
+                message = ERROR_MESSAGE(error);
             }else{
                 [self closeOfferPanel:nil];
                 [_makeButton setBackgroundColor:[UIColor lightGrayColor]];
@@ -202,7 +202,7 @@
         NSString* message = @"Advert created";
         if (error){
             title = @"Error";
-            message = [error localizedDescription];
+            message = ERROR_MESSAGE(error);
         }else{
             [_makeButton setBackgroundColor:[UIColor lightGrayColor]];
             _makeButton.enabled = NO;

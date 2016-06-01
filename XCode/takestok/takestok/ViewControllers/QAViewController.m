@@ -211,7 +211,7 @@
             NSString* message = @"Question asked";
             if (error){
                 title = @"Error";
-                message = [error localizedDescription];
+                message = ERROR_MESSAGE(error);
                 [question.managedObjectContext deleteObject:question];
             }else{
                 [self reloadData:nil];
@@ -258,7 +258,7 @@
             NSString* message = @"Question asked";
             if (error){
                 title = @"Error";
-                message = [error localizedDescription];
+                message = ERROR_MESSAGE(error);
                 [answer.managedObjectContext deleteObject:answer];
             }else{
                 [self reloadData:nil];

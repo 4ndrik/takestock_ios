@@ -568,7 +568,7 @@
                                                     <constraint firstAttribute="height" constant="1" id="M6d-rH-Q9B"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="serbinartem@gmail.com" placeholder="USERNAME OR EMAIL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FGQ-84-Y9J" customClass="TextFieldBorderBottom">
+                                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="serbinartem@gmail.com" placeholder="USERNAME OR EMAIL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FGQ-84-Y9J" customClass="TextFieldBorderBottom">
                                                 <rect key="frame" x="30" y="40" width="540" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="WTH-2p-p2W"/>
@@ -579,7 +579,7 @@
                                                     <outlet property="delegate" destination="k0S-CB-9ke" id="Fdk-KH-nQD"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="qazwsx1@" placeholder="PASSWORD" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cuA-B8-qh6" customClass="TextFieldBorderBottom">
+                                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="qazwsx1@" placeholder="PASSWORD" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cuA-B8-qh6" customClass="TextFieldBorderBottom">
                                                 <rect key="frame" x="30" y="86" width="540" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="VPq-rr-q2h"/>
@@ -764,7 +764,7 @@
                                                     <constraint firstAttribute="height" constant="1" id="LJC-yX-pMJ"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="USERNAME" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b5C-HV-NSi" customClass="TextFieldBorderBottom">
+                                            <textField opaque="NO" clipsSubviews="YES" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="USERNAME" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b5C-HV-NSi" customClass="TextFieldBorderBottom">
                                                 <rect key="frame" x="30" y="158" width="540" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="3BK-VQ-coa"/>
@@ -775,7 +775,7 @@
                                                     <outlet property="delegate" destination="k0S-CB-9ke" id="L89-d7-nE8"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="EMAIL ADDRESS" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DvA-j4-pXj" customClass="TextFieldBorderBottom">
+                                            <textField opaque="NO" clipsSubviews="YES" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="EMAIL ADDRESS" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DvA-j4-pXj" customClass="TextFieldBorderBottom">
                                                 <rect key="frame" x="30" y="204" width="540" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="k09-Kl-gqq"/>
@@ -786,7 +786,7 @@
                                                     <outlet property="delegate" destination="k0S-CB-9ke" id="fjE-tI-zje"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="PASSWORD" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gxd-b0-wFN" customClass="TextFieldBorderBottom">
+                                            <textField opaque="NO" clipsSubviews="YES" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="PASSWORD" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gxd-b0-wFN" customClass="TextFieldBorderBottom">
                                                 <rect key="frame" x="30" y="250" width="540" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="Rlk-hB-aTe"/>
@@ -797,13 +797,13 @@
                                                     <outlet property="delegate" destination="k0S-CB-9ke" id="0To-w1-3y9"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="CONFIRM PASSWORD" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r5c-Xc-Khn" customClass="TextFieldBorderBottom">
+                                            <textField opaque="NO" clipsSubviews="YES" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="CONFIRM PASSWORD" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r5c-Xc-Khn" customClass="TextFieldBorderBottom">
                                                 <rect key="frame" x="30" y="296" width="540" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="Wl4-h9-ZHP"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="BrandonGrotesque-Bold" family="Brandon Grotesque" pointSize="16"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="join" secureTextEntry="YES"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="k0S-CB-9ke" id="Yt4-bl-1u7"/>
                                                 </connections>

@@ -147,7 +147,7 @@
         NSString* text = @"Offer accepted";
         if (error){
             title = @"Error";
-            text = [error localizedDescription];
+            text = ERROR_MESSAGE(error);
             offer.status = [OfferStatus getEntityWithId:stPending];
         }
         
@@ -170,7 +170,7 @@
             NSString* text = @"Offer rejected";
             if (error){
                 title = @"Error";
-                text = [error localizedDescription];
+                text = ERROR_MESSAGE(error);
                 offer.status = [OfferStatus getEntityWithId:stPending];
             }
             
@@ -209,7 +209,7 @@
                 offer.status = [OfferStatus getEntityWithId:stPending];
                 offer.comment = @"";
                 NSString* title = @"Error";
-                NSString* text = [error localizedDescription];
+                NSString* text = ERROR_MESSAGE(error);
                 [self showOkAlert:title text:text];
                 [_offersTableView reloadData];
             }else{
@@ -218,7 +218,7 @@
                     NSString* text = @"Offer Countered";
                     if (error){
                         title = @"Error";
-                        text = [error localizedDescription];
+                        text = ERROR_MESSAGE(error);
                         offer.status = [OfferStatus getEntityWithId:stPending];
                     }
                     [_offersTableView reloadData];
