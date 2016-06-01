@@ -53,7 +53,8 @@
     cell.offersCountLabel.text = [NSString stringWithFormat:@"%i", advert.offers.count];
     cell.questionCountLabel.text = [NSString stringWithFormat:@"%i", advert.questions.count];
     
-    cell.expiresDayCountLabel.text = [NSString stringWithFormat:@"%i", [[NSDate dateWithTimeIntervalSinceReferenceDate:advert.expires] daysFromDate:[NSDate date]]];
+    cell.expiresDayCountLabel.text = advert.expires > 0 ? [NSString stringWithFormat:@"%i", [[NSDate dateWithTimeIntervalSinceReferenceDate:advert.expires] daysFromDate:[NSDate date]]] : @"N/A";
+    
     return cell;
 }
 

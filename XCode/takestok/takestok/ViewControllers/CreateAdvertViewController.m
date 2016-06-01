@@ -107,8 +107,10 @@
         _conditionTextField.tag = _advert.condition.ident;
         _conditionTextField.text = _advert.condition.title;
         
-        NSDate* date = [NSDate dateWithTimeIntervalSinceReferenceDate:_advert.expires];
-        _expairyTextField.text = [formatter stringFromDate:date];
+        if (_advert.expires > 0){
+            NSDate* date = [NSDate dateWithTimeIntervalSinceReferenceDate:_advert.expires];
+            _expairyTextField.text = [formatter stringFromDate:date];
+        }
         _sizeTextField.text = _advert.size;
         
         _sizeTypeTextField.tag = _advert.sizeType.ident;
@@ -161,13 +163,15 @@
         [radioButton.titleLabel setFont:HelveticaLight18];
         [radioButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [radioButton addTarget:self action:@selector(setCertification:) forControlEvents:UIControlEventTouchUpInside];
-        if (i == 0 || (_advert && cert.ident == _advert.certification.ident)){
-            [radioButton setSelected:YES];
-            _certificationsContainerView.tag = cert.ident;
-        }else{
-            [radioButton setSelected:NO];
-        }
         [_certificationsContainerView addSubview:radioButton];
+    }
+    
+    RadioButton* rb = (RadioButton*)group.firstObject;
+    if (_advert.certification.ident > 0){
+        [rb setSelectedWithTag:_advert.certification.ident];
+        _certificationsContainerView.tag = _advert.certification.ident;
+    }else{
+        [rb deselectAllButtons];
     }
     
     for (NSLayoutConstraint *constraint in _certificationsContainerView.constraints) {
@@ -176,6 +180,9 @@
             break;
         }
     }
+    
+    //for debug
+//    _additionalViewHeight.constant = _saveButton.frame.size.height + _saveButton.frame.origin.y + 20;
     
     [self.view setNeedsUpdateConstraints];
     [self.view updateConstraints];
@@ -442,7 +449,6 @@
         datePicker.datePickerMode = UIDatePickerModeDate;
         textField.inputView = datePicker;
         [datePicker addTarget:self action:@selector(setExpirationDate:) forControlEvents:UIControlEventValueChanged];
-        [self setExpirationDate:datePicker];
     }
     
     return YES;
@@ -532,48 +538,59 @@
 #pragma mark - Outlets
 
 -(BOOL)verifyFields{
-    NSMutableArray* messagesArray = [NSMutableArray array];
+    NSMutableArray* emptyFieldsArray = [NSMutableArray array];
     if (_images.count <= 0)
-        [messagesArray addObject:@"Image"];
+        [emptyFieldsArray addObject:@"Image"];
     if (_productTitleTextField.text.length <= 0)
-        [messagesArray addObject:@"Title"];
+        [emptyFieldsArray addObject:@"Title"];
     if (_categoryTextField.text.length <= 0)
-        [messagesArray addObject:@"Category"];
+        [emptyFieldsArray addObject:@"Category"];
     if (_subCategoryTextField.text.length <= 0)
-        [messagesArray addObject:@"Subcategory"];
+        [emptyFieldsArray addObject:@"Subcategory"];
     if (_unitTextField.text.length <= 0)
-        [messagesArray addObject:@"Unit / type of packaging"];
+        [emptyFieldsArray addObject:@"Unit / type of packaging"];
     if (_countUnitTextField.text.length <= 0)
-        [messagesArray addObject:@"Count"];
+        [emptyFieldsArray addObject:@"Count"];
     if (_minimumOrderTextField.text.length <= 0)
-        [messagesArray addObject:@"Minimum order"];
+        [emptyFieldsArray addObject:@"Minimum order"];
     if (_priceTextField.text.length <= 0)
-        [messagesArray addObject:@"Price"];
+        [emptyFieldsArray addObject:@"Price"];
     if (_descriptionTextView.text.length <= 0)
-        [messagesArray addObject:@"Product description"];
+        [emptyFieldsArray addObject:@"Product description"];
     if (_locationTextField.text.length <= 0)
-        [messagesArray addObject:@"Location"];
+        [emptyFieldsArray addObject:@"Location"];
     if (_conditionTextField.text.length <= 0)
-        [messagesArray addObject:@"Condition"];
-    if (_expairyTextField.text.length <= 0)
-        [messagesArray addObject:@"Expairy date"];
-    if (_sizeTypeTextField.text.length <= 0)
-        [messagesArray addObject:@"Size type"];
+        [emptyFieldsArray addObject:@"Condition"];
     
-    NSRegularExpression *regEx = [[NSRegularExpression alloc] initWithPattern:SIZE_REGEX options:NSRegularExpressionCaseInsensitive error:nil];
-    NSUInteger regExMatches = [regEx numberOfMatchesInString:_sizeTextField.text options:0 range:NSMakeRange(0, [_sizeTextField.text length])];
-    
-    if (regExMatches == 0) {
-        [messagesArray addObject:@"Size"];
+    if (_sizeTextField.text.length > 0 || _sizeTypeTextField.text.length > 0) {
+        NSRegularExpression *regEx = [[NSRegularExpression alloc] initWithPattern:SIZE_REGEX options:NSRegularExpressionCaseInsensitive error:nil];
+        NSUInteger regExMatches = [regEx numberOfMatchesInString:_sizeTextField.text options:0 range:NSMakeRange(0, [_sizeTextField.text length])];
+        if (regExMatches == 0){
+            [emptyFieldsArray addObject:@"Size"];
+        }
+        if (_sizeTypeTextField.text.length <= 0){
+            [emptyFieldsArray addObject:@"Size type"];
+        }
     }
     
     if (_certificationsContainerView.tag <= 0)
-        [messagesArray addObject:@"Certification"];
+        [emptyFieldsArray addObject:@"Certification"];
     if (_keywordTextField.text.length <= 0)
-        [messagesArray addObject:@"Keywords"];
+        [emptyFieldsArray addObject:@"Keywords"];
     
-    if (messagesArray.count > 0){
-        NSString* message = [NSString stringWithFormat:@"%@ %@ empty", [messagesArray componentsJoinedByString:@"\n"], messagesArray.count > 0 ? @"are" : @"is"];
+    NSMutableString* message = [[NSMutableString alloc] init];
+    if (emptyFieldsArray.count > 0){
+        [message appendFormat:@"%@ %@ required", [emptyFieldsArray componentsJoinedByString:@"\n"], emptyFieldsArray.count > 0 ? @"are" : @"is"];
+    }
+    
+    int minimumOrder = [_minimumOrderTextField.text intValue];
+    int count = [_countUnitTextField.text intValue];
+    
+    if (_countUnitTextField.text.length > 0 && _minimumOrderTextField.text.length > 0 &&  minimumOrder > count){
+        [message appendFormat:@"%@Minimum order quantity is greater than units available.", message.length > 0 ? @"\n" : @""];
+    }
+    
+    if (message.length > 0){
         UIAlertController* emptyFieldsAlertController = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction* closeAction = [UIAlertAction
@@ -622,7 +639,7 @@
     _advert.guidePrice = [_priceTextField.text floatValue];
     _advert.location = _locationTextField.text;
     _advert.adDescription = _descriptionTextView.text;
-    _advert.expires = [[formatter dateFromString:_expairyTextField.text] timeIntervalSinceReferenceDate];
+    _advert.expires = _expairyTextField.text.length > 0 ? [[formatter dateFromString:_expairyTextField.text] timeIntervalSinceReferenceDate] : 0;
     _advert.created = [[NSDate date] timeIntervalSinceReferenceDate];
     _advert.date_updated = [[NSDate date] timeIntervalSinceReferenceDate];
     _advert.minOrderQuantity = [_minimumOrderTextField.text intValue];
@@ -633,8 +650,13 @@
     _advert.certification = [Certification getEntityWithId:_certificationsContainerView.tag];
     _advert.condition = [Condition getEntityWithId:_conditionTextField.tag];
     _advert.shipping = [Shipping getEntityWithId:_shippingTextField.tag];
-    _advert.size = _sizeTextField.text;
-    _advert.sizeType = [SizeType getEntityWithId:_sizeTypeTextField.tag];
+    if (_sizeTypeTextField.text.length > 0){
+        _advert.size = _sizeTextField.text;
+        _advert.sizeType = [SizeType getEntityWithId:_sizeTypeTextField.tag];
+    }else{
+        _advert.size = @"";
+        _advert.sizeType = nil;
+    }
     _advert.tags = _keywordTextField.text;
     _advert.packaging = [Packaging getEntityWithId:_unitTextField.tag];
     _advert.author = [User getMe];

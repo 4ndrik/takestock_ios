@@ -89,7 +89,7 @@
     if (_shippingTextContainerView.text.length == 0){
         _shippingHeightConstraint.constant = 0;
     }
-    _expiryTextContainerView.text = [NSDate stringFromTimeInterval:_advert.expires];
+    _expiryTextContainerView.text = _advert.expires > 0 ? [NSDate stringFromTimeInterval:_advert.expires] : @"N/A";
     
     NSMutableString* certString = [[NSMutableString alloc] initWithString:_advert.certification.title];
     if (_advert.certificationOther.length > 0){

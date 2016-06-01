@@ -83,6 +83,8 @@
     User* user = [User getEntityWithId:[[jsonDic objectForKeyNotNull:ADVERT_AUTHOR_PARAM] intValue]];
     if (!user){
         user = self.isForStore ? [User storedEntity] : [User tempEntity];
+    }else if (user.managedObjectContext != self.managedObjectContext){
+        user = [self.managedObjectContext objectWithID:[user objectID]];
     }
 
     NSDictionary* userDic = [jsonDic objectForKeyNotNull:ADVERT_AUTHOR_DETAILS_PARAM];
@@ -129,15 +131,23 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = DEFAULT_DATE_FORMAT;
-    
-    [result setValue:[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:self.expires]] forKey:ADVERT_EXPIRES_PARAM];
+    if (self.expires > 0){
+        [result setValue:[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:self.expires]] forKey:ADVERT_EXPIRES_PARAM];
+    }
+    else{
+        [result setValue:nil forKey:ADVERT_EXPIRES_PARAM];
+    }
     [result setValue:[NSNumber numberWithFloat:self.guidePrice] forKey:ADVERT_GUIDE_PRICE_PARAM];
     [result setValue:self.adDescription forKey:ADVERT_DESCRIPTION_PARAM];
     [result setValue:self.location forKey:ADVERT_LOCATION_PARAM];
     [result setValue:[NSNumber numberWithInteger:self.minOrderQuantity] forKey:ADVERT_MAIN_ORDER_QUANTITY_PARAM];
     [result setValue:[NSNumber numberWithInteger:self.count] forKey:ADVERT_ITEMS_COUNT_PARAM];
     [result setValue:self.certificationOther forKey:ADVERT_CERTIFICARIONS_EXTRA_PARAM];
-    [result setValue:self.size forKey:ADVERT_SIZE_PARAM];
+    if (self.sizeType){
+        [result setValue:self.size forKey:ADVERT_SIZE_PARAM];
+    }else{
+        [result setValue:@"" forKey:ADVERT_SIZE_PARAM];
+    }
     [result setValue:[self.tags componentsSeparatedByString:@", "] forKey:ADVERT_TAGS_PARAM];
     [result setValue:[NSNumber numberWithInteger:self.shipping.ident] forKey:ADVERT_SHIPPING_PARAM];
     [result setValue:[NSNumber numberWithInteger:self.category.ident] forKey:ADVERT_CATEGORY_PARAM];

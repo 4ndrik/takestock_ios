@@ -187,7 +187,7 @@
     cell.titleLabel.text = adv.name;
     cell.locationLabel.text = adv.location;
     
-    cell.dateLabel.text = [NSDate stringFromTimeInterval:adv.expires];
+    cell.dateLabel.text = adv.expires > 0 ? [NSDate stringFromTimeInterval:adv.expires] : @"N/A";
     
     cell.priceLabel.text = [NSString stringWithFormat:@"%.02f", adv.guidePrice];
 }
