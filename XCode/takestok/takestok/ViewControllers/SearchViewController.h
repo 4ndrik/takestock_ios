@@ -26,7 +26,6 @@
     NSString* _searchText;
     Category* _searchCategory;
     UIRefreshControl *_refreshControl;
-    BOOL _loading;
     SortData* _sortData;
     int _page;
     UIActivityIndicatorView* _loadingIndicator;

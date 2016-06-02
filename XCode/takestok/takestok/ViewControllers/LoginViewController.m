@@ -24,6 +24,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+#if DEBUG
+    _signInEmailTextField.text = @"serbinartem@gmail.com";
+    _signInPasswordTextField.text = @"qazwsx1@";
+#endif
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)

@@ -22,10 +22,24 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    _offers = [Offer getMyOffers];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData:) name:OFFERS_UPDATED_NOTIFICATION object:nil];
     
     _buyingTableView.estimatedRowHeight = 116.0;
     _buyingTableView.rowHeight = UITableViewAutomaticDimension;
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self refreshData:nil];
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:OFFERS_UPDATED_NOTIFICATION object:nil];
+}
+
+-(void)refreshData:(id)owner{
+    _offers = [Offer getMyOffers];
+    [_buyingTableView reloadData];
 }
 
 #pragma mark - Helpers

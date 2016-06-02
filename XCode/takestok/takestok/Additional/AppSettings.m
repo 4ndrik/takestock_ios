@@ -8,12 +8,13 @@
 
 #import "AppSettings.h"
 
-#define USER_ID             @"UserIdKey"
-#define USER_TOKEN          @"UserTokenKey"
-#define SEARCH_SORT         @"SearchSortKey"
+#define USER_ID                     @"UserIdKey"
+#define USER_TOKEN                  @"UserTokenKey"
+#define SEARCH_SORT                 @"SearchSortKey"
 
-#define ADVERT_REVISION     @"AdvertRevisionKey"
-#define OFFER_REVISION      @"OfferRevisiontKey"
+#define ADVERT_REVISION             @"AdvertRevisionKey"
+#define BUYER_OFFER_REVISION        @"BuyerOfferRevisiontKey"
+#define SELLER_OFFER_REVISION       @"BuyerOfferRevisiontKey"
 
 @implementation AppSettings
 
@@ -44,22 +45,32 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
--(void)updateAdvertRevision{
++(void)updateAdvertRevision{
     [[NSUserDefaults standardUserDefaults] setValue:[NSDate date] forKey:ADVERT_REVISION];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
--(NSDate*)getAdvertRevision{
++(NSDate*)getAdvertRevision{
     return [[NSUserDefaults standardUserDefaults] valueForKey:ADVERT_REVISION];
 }
 
--(void)updateOfferRevision{
-    [[NSUserDefaults standardUserDefaults] setValue:[NSDate date] forKey:OFFER_REVISION];
++(void)updateBuyerOfferRevision{
+    [[NSUserDefaults standardUserDefaults] setValue:[NSDate date] forKey:BUYER_OFFER_REVISION];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
--(NSDate*)getOfferRevision{
-    return [[NSUserDefaults standardUserDefaults] valueForKey:OFFER_REVISION];
++(NSDate*)getBuyerOfferRevision{
+    return [[NSUserDefaults standardUserDefaults] valueForKey:BUYER_OFFER_REVISION];
+}
+
++(void)updateSellerOfferRevision{
+    [[NSUserDefaults standardUserDefaults] setValue:[NSDate date] forKey:SELLER_OFFER_REVISION];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+}
+
++(NSDate*)getSellerOfferRevision{
+    return [[NSUserDefaults standardUserDefaults] valueForKey:SELLER_OFFER_REVISION];
 }
 
 @end

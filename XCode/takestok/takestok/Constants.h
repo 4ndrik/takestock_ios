@@ -19,3 +19,7 @@
 
 #define ERROR_MESSAGE(er) er.localizedFailureReason.length > 0 ? er.localizedFailureReason : er.localizedDescription
 
+#define OFFERS_UPDATED_NOTIFICATION         @"OfferUpdatedNotification"
+#define ADVERTS_UPDATED_NOTIFICATION        @"AdvertUpdatedNotification"
+#define QUESTIONS_UPDATED_NOTIFICATION      @"QuestionsUpdatedNotification"
+

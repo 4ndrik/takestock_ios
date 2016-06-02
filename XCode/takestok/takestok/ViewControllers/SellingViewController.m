@@ -21,11 +21,21 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    _adverts = [Advert getMyAdverts];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData:) name:OFFERS_UPDATED_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData:) name:QUESTIONS_UPDATED_NOTIFICATION object:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self refreshData:nil];
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:OFFERS_UPDATED_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:QUESTIONS_UPDATED_NOTIFICATION object:nil];
+}
+
+-(void)refreshData:(id)owner{
     _adverts = [Advert getMyAdverts];
     [_sellingTableView reloadData];
 }
@@ -105,7 +115,6 @@
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
                                                           style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
                                                                [tableView deselectRowAtIndexPath:indexPath animated:NO];
-                                                              NSLog(@"You pressed button two");
                                                           }];
     if (advert.offers.count > 0)
         [alert addAction:manageOffersAction];

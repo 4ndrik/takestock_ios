@@ -14,11 +14,11 @@
 @class UIRefreshControl;
 
 @interface QAViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, AskQuestionProtocol, ReplyProtocol>{
+    UIActivityIndicatorView* _loadingIndicator;
     Advert* _advert;
     AskQuestionView* _askQuestionView;
     __weak IBOutlet UITableView *_askTableView;
     NSMutableArray* _qaData;
-    BOOL _loading;
     int _page;
     float _keyboardFrame;
     UIRefreshControl* _refreshControl;

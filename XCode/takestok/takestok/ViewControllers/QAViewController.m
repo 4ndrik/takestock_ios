@@ -27,6 +27,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _loadingIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    _loadingIndicator.color = OliveMainColor;
+    _loadingIndicator.hidesWhenStopped = YES;
+    [_loadingIndicator stopAnimating];
+    [_askTableView addSubview:_loadingIndicator];
+    
     _askTableView.estimatedRowHeight = 118.0;
     _askTableView.rowHeight = UITableViewAutomaticDimension;
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -65,19 +72,46 @@
 
 
 -(void)loadQA{
-    _loading = YES;
-    [[ServerConnectionHelper sharedInstance] loadQuestionAnswersWithAd:_advert page:0 compleate:^(NSArray *qaArray, NSDictionary *additionalData, NSError *error) {
-        [_qaData addObjectsFromArray:qaArray];
-        [_askTableView reloadData];
-        [_refreshControl endRefreshing];
-        _loading = NO;
+    [[ServerConnectionHelper sharedInstance] loadQuestionAnswersWithAd:_advert page:_page compleate:^(NSArray *qaArray, NSDictionary *additionalData, NSError *error) {
+        
+        if (error){
+            UIAlertController* errorController = [UIAlertController alertControllerWithTitle:@"Error" message:ERROR_MESSAGE(error) preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* closeAction = [UIAlertAction
+                                          actionWithTitle:@"Ok"
+                                          style:UIAlertActionStyleCancel
+                                          handler:^(UIAlertAction * action)
+                                          {
+                                              [errorController dismissViewControllerAnimated:YES completion:nil];
+                                              
+                                          }];
+            
+            
+            [errorController addAction:closeAction];
+            
+            [self presentViewController:errorController animated:YES completion:nil];
+        }
+        else
+        {
+            if ([additionalData objectForKeyNotNull:@"next"]){
+                _page ++;
+            }else{
+                _page = 0;
+            };
+            [_qaData addObjectsFromArray:qaArray];
+            [_askTableView reloadData];
+        }
+        [_loadingIndicator stopAnimating];
+        if (_refreshControl.isRefreshing)
+            [_refreshControl endRefreshing];
+        _askTableView.contentInset = UIEdgeInsetsZero;
     }];
 }
 
 -(void)reloadData:(id)owner{
     if (_advert.author.ident == [User getMe].ident){
         _qaData = [NSMutableArray arrayWithArray:[_advert.questions allObjects]];
-        _loading = NO;
+        _page = 0;
         [_refreshControl endRefreshing];
     }else{
         _qaData = [NSMutableArray array];
@@ -153,6 +187,13 @@
     }else{
         cell.answerLabel.text = @"";
         cell.replyHeightConstraint.constant = 0;
+    }
+    
+    if (_page > 0 && indexPath.row > _qaData.count -2){
+        _loadingIndicator.center = CGPointMake(tableView.center.x, tableView.contentSize.height + 22);
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
+        [_loadingIndicator startAnimating];
+        [self loadQA];
     }
     return cell;
 }

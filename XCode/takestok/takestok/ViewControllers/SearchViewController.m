@@ -105,9 +105,8 @@
 }
 
 -(void)loadData{
-    [[ServerConnectionHelper sharedInstance] loadAdvertWithSortData:_sortData searchString:_searchText category:_searchCategory page:_page compleate:^(NSArray *adverbs, NSDictionary* additionalData, NSError *error) {
+    [[ServerConnectionHelper sharedInstance] loadAdvertsWithSortData:_sortData searchString:_searchText category:_searchCategory page:_page compleate:^(NSArray *adverbs, NSDictionary* additionalData, NSError *error) {
         if (error){
-            _page = 0;
             UIAlertController* errorController = [UIAlertController alertControllerWithTitle:@"Error" message:ERROR_MESSAGE(error) preferredStyle:UIAlertControllerStyleAlert];
             
             UIAlertAction* closeAction = [UIAlertAction
