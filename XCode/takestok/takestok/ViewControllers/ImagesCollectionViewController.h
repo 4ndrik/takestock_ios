@@ -10,9 +10,9 @@
 
 @interface ImagesCollectionViewController : UICollectionViewController{
     NSArray* _images;
-    int _startIndex;
+    NSInteger _startIndex;
 }
 
--(void)setImages:(NSArray*)images withCurrentIndex:(int)currentIndex;
+-(void)setImages:(NSArray*)images withCurrentIndex:(NSInteger)currentIndex;
 
 @end

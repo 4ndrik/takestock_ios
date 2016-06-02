@@ -43,7 +43,7 @@
     int defaultSort = [AppSettings getSearchSort];
     if (defaultSort > 0){
         NSArray* sortData = [SortData getAll];
-        int index = [sortData indexOfObjectPassingTest:^BOOL(SortData*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSInteger index = [sortData indexOfObjectPassingTest:^BOOL(SortData*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             return obj.ident == defaultSort;
         }];
         if (index != NSNotFound)

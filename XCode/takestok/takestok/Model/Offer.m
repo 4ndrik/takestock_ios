@@ -19,10 +19,6 @@
 }
 
 -(void)updateWithDic:(NSDictionary*)jsonDic{
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = DEFAULT_DATE_FORMAT;
-    
     self.ident = [[jsonDic objectForKeyNotNull:OFFER_ID_PARAM] intValue];
     self.user = [User getEntityWithId:[[jsonDic objectForKeyNotNull:OFFER_USER_PARAM] intValue]];
     
@@ -41,8 +37,10 @@
     self.quantity = [[jsonDic objectForKeyNotNull:OFFER_QUANTITY_PARAM] intValue];
     self.status = [OfferStatus getEntityWithId:[[jsonDic objectForKeyNotNull:OFFER_STATUS_PARAM]intValue]];
     self.comment = [jsonDic objectForKeyNotNull:OFFER_COMMENT_PARAM];
-    self.created = [[dateFormatter dateFromString:[jsonDic objectForKeyNotNull:OFFER_CREATE_PARAM]] timeIntervalSinceReferenceDate];
-    self.date_updated = [[dateFormatter dateFromString:[jsonDic objectForKeyNotNull:OFFER_UPDATE_PARAM]] timeIntervalSinceReferenceDate];
+    
+    NSTimeZone* timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+    self.created = [[NSDate dateFromString:[jsonDic objectForKeyNotNull:OFFER_CREATE_PARAM] format:DEFAULT_DATE_FORMAT timeZone:timeZone] timeIntervalSinceReferenceDate];
+    self.date_updated = [[NSDate dateFromString:[jsonDic objectForKeyNotNull:OFFER_UPDATE_PARAM] format:DEFAULT_DATE_FORMAT timeZone:timeZone] timeIntervalSinceReferenceDate];
 }
 
 -(NSDictionary*)getDictionary{

@@ -24,7 +24,19 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    _offers = [_advert.offers allObjects];
+    _offers = [[_advert.offers allObjects] sortedArrayUsingComparator:^NSComparisonResult(Offer*  _Nonnull obj1, Offer*  _Nonnull obj2) {
+        NSTimeInterval firstDate = obj1.created;
+        if (firstDate < obj1.updated){
+            firstDate = obj1.updated;
+        }
+        
+        NSTimeInterval secondDate = obj2.created;
+        if (secondDate < obj2.updated){
+            secondDate = obj2.updated;
+        }
+        
+        return [[NSNumber numberWithDouble:secondDate] compare:[NSNumber numberWithDouble:firstDate]];
+    }];
     
     _offersTableView.estimatedRowHeight = 124.0;
     _offersTableView.rowHeight = UITableViewAutomaticDimension;
@@ -73,7 +85,7 @@
             [commentString addAttribute:NSFontAttributeName
                                   value:HelveticaNeue14
                                   range:NSMakeRange(0, commentString.length)];
-            [commentString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, commentString.length)];
+            [commentString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, commentString.length)];
             [textString appendAttributedString:commentString];
         }
         
@@ -104,7 +116,7 @@
             [commentString addAttribute:NSFontAttributeName
                                   value:HelveticaNeue14
                                   range:NSMakeRange(0, commentString.length)];
-            [commentString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, commentString.length)];
+            [commentString addAttribute:NSForegroundColorAttributeName value:OberginMainColor range:NSMakeRange(0, commentString.length)];
             [textString appendAttributedString:commentString];
         }
         
@@ -157,7 +169,7 @@
 }
 
 -(void)rejectOffer:(id)owner{
-    int index = [_offers indexOfObjectPassingTest:^BOOL(Offer*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    NSInteger index = [_offers indexOfObjectPassingTest:^BOOL(Offer*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         return obj.ident == _offerAlertView.tag;
     }];
     if (index != NSNotFound){
@@ -184,7 +196,7 @@
     float oPrice = [_offerAlertView.priceTextEdit.text floatValue];
     int oQuantity = [_offerAlertView.qtyTextEdit.text intValue];
     
-    int index = [_offers indexOfObjectPassingTest:^BOOL(Offer*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    NSInteger index = [_offers indexOfObjectPassingTest:^BOOL(Offer*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         return obj.ident == _offerAlertView.tag;
     }];
     
@@ -294,7 +306,7 @@
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"Accept" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self dismissViewControllerAnimated:NO completion:nil];
-        int index = [_offersTableView indexPathForCell:owner].row;
+        NSInteger index = [_offersTableView indexPathForCell:owner].row;
         Offer* offer = [_offers objectAtIndex:index];
         [self acceptOffer:offer];
     }]];
@@ -312,7 +324,7 @@
     
     _offerAlertView.titleLabel.text = @"Reject offer.";
     _offerAlertView.priceQtyHeightConstraints.constant = 0;
-    int index = [_offersTableView indexPathForCell:owner].row;
+    NSInteger index = [_offersTableView indexPathForCell:owner].row;
     Offer* offer = [_offers objectAtIndex:index];
     _offerAlertView.tag = offer.ident;
     [_offerAlertView.cancelButton addTarget:self action:@selector(hideOfferView:) forControlEvents:UIControlEventTouchUpInside];

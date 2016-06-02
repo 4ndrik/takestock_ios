@@ -74,7 +74,7 @@
             [commentString addAttribute:NSFontAttributeName
                                   value:HelveticaNeue14
                                   range:NSMakeRange(0, commentString.length)];
-            [commentString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, commentString.length)];
+            [commentString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, commentString.length)];
             [textString appendAttributedString:commentString];
         }
         
@@ -106,7 +106,7 @@
             [commentString addAttribute:NSFontAttributeName
                                   value:HelveticaNeue14
                                   range:NSMakeRange(0, commentString.length)];
-            [commentString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, commentString.length)];
+            [commentString addAttribute:NSForegroundColorAttributeName value:OberginMainColor range:NSMakeRange(0, commentString.length)];
             [textString appendAttributedString:commentString];
         }
         
@@ -161,7 +161,7 @@
 }
 
 -(void)rejectOffer:(id)owner{
-    int index = [_offers indexOfObjectPassingTest:^BOOL(Offer*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    NSInteger index = [_offers indexOfObjectPassingTest:^BOOL(Offer*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         return obj.ident == _offerAlertView.tag;
     }];
     if (index != NSNotFound){

@@ -57,7 +57,7 @@
 }
 
 -(void)nextTextField:(UITextField*)owner{
-    int currentTag = owner.tag;
+    NSInteger currentTag = owner.tag;
     currentTag++;
     UITextField* nextTextField = [owner.superview viewWithTag:currentTag];
     if (nextTextField){

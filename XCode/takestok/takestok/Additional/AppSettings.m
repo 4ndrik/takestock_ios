@@ -8,9 +8,12 @@
 
 #import "AppSettings.h"
 
-#define USER_ID         @"UserIdKey"
-#define USER_TOKEN      @"UserTokenKey"
-#define SEARCH_SORT     @"SearchSortKey"
+#define USER_ID             @"UserIdKey"
+#define USER_TOKEN          @"UserTokenKey"
+#define SEARCH_SORT         @"SearchSortKey"
+
+#define ADVERT_REVISION     @"AdvertRevisionKey"
+#define OFFER_REVISION      @"OfferRevisiontKey"
 
 @implementation AppSettings
 
@@ -39,6 +42,24 @@
 +(void)setSearchSort:(int)ident{
     [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:ident] forKey:SEARCH_SORT];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(void)updateAdvertRevision{
+    [[NSUserDefaults standardUserDefaults] setValue:[NSDate date] forKey:ADVERT_REVISION];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(NSDate*)getAdvertRevision{
+    return [[NSUserDefaults standardUserDefaults] valueForKey:ADVERT_REVISION];
+}
+
+-(void)updateOfferRevision{
+    [[NSUserDefaults standardUserDefaults] setValue:[NSDate date] forKey:OFFER_REVISION];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(NSDate*)getOfferRevision{
+    return [[NSUserDefaults standardUserDefaults] valueForKey:OFFER_REVISION];
 }
 
 @end

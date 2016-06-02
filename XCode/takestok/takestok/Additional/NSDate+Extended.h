@@ -11,5 +11,11 @@
 @interface NSDate (Extended)
 
 +(NSString*)stringFromTimeInterval:(int)timeInterval;
-- (int)daysFromDate:(NSDate *)pDate;
+-(NSInteger)daysFromDate:(NSDate *)pDate;
+
++(NSDate*)dateFromString:(NSString*)date format:(NSString*)format timeZone:(NSTimeZone*)timeZone;
++(NSString*)stringFromDate:(NSDate*)date format:(NSString*)format timeZone:(NSTimeZone*)timeZone;
+
++(NSString*)stringFromTimeInterval:(NSTimeInterval)date format:(NSString*)format timeZone:(NSTimeZone*)timeZone;
+
 @end

@@ -19,4 +19,10 @@
 +(int)getSearchSort;
 +(void)setSearchSort:(int)ident;
 
+-(void)updateAdvertRevision;
+-(NSDate*)getAdvertRevision;
+
+-(void)updateOfferRevision;
+-(NSDate*)getOfferRevision;
+
 @end

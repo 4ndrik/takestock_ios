@@ -21,7 +21,7 @@
     Advert* _advert;
     
     BOOL _isAddNewImage;
-    int _selectedImage;
+    NSInteger _selectedImage;
     
     float _keyboardFrame;
     NSArray* _pickerData;

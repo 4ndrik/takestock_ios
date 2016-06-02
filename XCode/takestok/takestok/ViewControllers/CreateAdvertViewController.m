@@ -253,7 +253,7 @@
     
     if (_isAddNewImage){
        [_images addObject:stImage];
-        _selectedImage = _images.count - 1;;
+        _selectedImage = _images.count - 1;
     }else{
         [_images replaceObjectAtIndex:_selectedImage withObject:stImage];
     }

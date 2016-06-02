@@ -29,12 +29,11 @@
     self.ident = [[jsonDic objectForKeyNotNull:ADVERT_ID_PARAM] intValue];
     self.name = [jsonDic objectForKeyNotNull:ADVERT_NAME_PARAM];
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = DEFAULT_DATE_FORMAT;
+    NSTimeZone* timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+    self.created = [[NSDate dateFromString:[jsonDic objectForKeyNotNull:ADVERT_CREATED_PARAM] format:DEFAULT_DATE_FORMAT timeZone:timeZone] timeIntervalSinceReferenceDate];
+    self.expires = [[NSDate dateFromString:[jsonDic objectForKeyNotNull:ADVERT_EXPIRES_PARAM] format:DEFAULT_DATE_FORMAT timeZone:timeZone] timeIntervalSinceReferenceDate];
+    self.date_updated = [[NSDate dateFromString:[jsonDic objectForKeyNotNull:ADVERT_UPDATED_AT] format:DEFAULT_DATE_FORMAT timeZone:timeZone] timeIntervalSinceReferenceDate];
     
-    self.created = [[dateFormatter dateFromString:[jsonDic objectForKeyNotNull:ADVERT_CREATED_PARAM]] timeIntervalSinceReferenceDate];
-    self.expires = [[dateFormatter dateFromString:[jsonDic objectForKeyNotNull:ADVERT_EXPIRES_PARAM]] timeIntervalSinceReferenceDate];
-    self.date_updated = [[dateFormatter dateFromString:[jsonDic objectForKeyNotNull:ADVERT_UPDATED_AT]] timeIntervalSinceReferenceDate];
     self.guidePrice = [[jsonDic objectForKeyNotNull:ADVERT_GUIDE_PRICE_PARAM] floatValue];
     self.adDescription = [jsonDic objectForKeyNotNull:ADVERT_DESCRIPTION_PARAM];
     self.location = [jsonDic objectForKeyNotNull:ADVERT_LOCATION_PARAM];
@@ -129,10 +128,10 @@
     }
     [result setValue:self.name forKey:ADVERT_NAME_PARAM];
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = DEFAULT_DATE_FORMAT;
+    NSTimeZone* timeZone = [NSTimeZone systemTimeZone];
     if (self.expires > 0){
-        [result setValue:[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:self.expires]] forKey:ADVERT_EXPIRES_PARAM];
+        
+        [result setValue:[NSDate stringFromTimeInterval:self.expires format:DEFAULT_DATE_FORMAT timeZone:timeZone] forKey:ADVERT_EXPIRES_PARAM];
     }
     else{
         [result setValue:nil forKey:ADVERT_EXPIRES_PARAM];

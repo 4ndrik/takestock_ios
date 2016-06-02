@@ -11,7 +11,7 @@
 
 @implementation ImagesCollectionViewController
 
--(void)setImages:(NSArray*)images withCurrentIndex:(int)currentIndex{
+-(void)setImages:(NSArray*)images withCurrentIndex:(NSInteger)currentIndex{
     _images = images;
     _startIndex = currentIndex;
 }

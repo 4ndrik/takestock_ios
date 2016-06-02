@@ -19,12 +19,9 @@
 }
 
 -(void)updateWithDic:(NSDictionary*)jsonDic{
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = DEFAULT_DATE_FORMAT;
-    
     self.ident = [[jsonDic objectForKeyNotNull:USER_ID_PARAM] intValue];
-    self.lastLogin = [[dateFormatter dateFromString:[jsonDic objectForKeyNotNull:USER_LAST_LOGIN_PARAM]] timeIntervalSinceReferenceDate];
+    NSTimeZone* timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+    self.lastLogin = [[NSDate dateFromString:[jsonDic objectForKeyNotNull:USER_LAST_LOGIN_PARAM] format:DEFAULT_DATE_FORMAT timeZone:timeZone] timeIntervalSinceReferenceDate];
     self.userName = [jsonDic objectForKeyNotNull:USER_USER_NAME_PARAM];
     self.firstName = [jsonDic objectForKeyNotNull:USER_FIRST_NAME_PARAM];
     self.lastName = [jsonDic objectForKeyNotNull:USER_LAST_NAME_PARAM];

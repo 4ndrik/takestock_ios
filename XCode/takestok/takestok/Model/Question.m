@@ -18,9 +18,6 @@
 }
 
 -(void)updateWithDic:(NSDictionary*)jsonDic{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = DEFAULT_DATE_FORMAT;
-
     self.ident = [[jsonDic objectForKeyNotNull:QUESTION_ID_PARAM] intValue];
     
     User* user = [User getEntityWithId:[[jsonDic objectForKeyNotNull:QUESTION_USER_PARAM] intValue]];
@@ -39,7 +36,9 @@
         NSLog(@"Offer %i hasn't required data", self.ident);
         return;
     }
-    self.created = [[dateFormatter dateFromString:[jsonDic objectForKeyNotNull:QUESTION_CREATED_PARAM]] timeIntervalSinceReferenceDate];
+    NSTimeZone* timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+    self.created = [[NSDate dateFromString:[jsonDic objectForKeyNotNull:QUESTION_CREATED_PARAM] format:DEFAULT_DATE_FORMAT timeZone:timeZone] timeIntervalSinceReferenceDate];
+    
     self.message = [jsonDic objectForKeyNotNull:QUESTION_MESSAGE_PARAM];
     NSDictionary* ansDic = [jsonDic objectForKeyNotNull:QUESTION_ANSWER_PARAM];
     

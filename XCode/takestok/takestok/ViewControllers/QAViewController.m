@@ -121,7 +121,7 @@
     Question* question = [_qaData objectAtIndex:indexPath.row];
     
     NSString* questionText = [NSString stringWithFormat:@"%@: %@", question.user.userName, question.message];
-    int index = question.user.userName.length +1;
+    NSInteger index = question.user.userName.length + 1;
     
     NSMutableAttributedString *buyerText = [[NSMutableAttributedString alloc] initWithString:questionText];
     [buyerText addAttribute:NSFontAttributeName
@@ -137,7 +137,7 @@
     if (question.answer){
         cell.replyHeightConstraint.constant = 0;
         NSString* answerText = [NSString stringWithFormat:@"%@: %@", question.answer.user.userName, question.answer.message];
-        int index = question.answer.user.userName.length +1;
+        NSInteger index = question.answer.user.userName.length + 1;
         NSMutableAttributedString *sellerText = [[NSMutableAttributedString alloc] initWithString:answerText];
         [sellerText addAttribute:NSFontAttributeName
                           value:ArialBold14

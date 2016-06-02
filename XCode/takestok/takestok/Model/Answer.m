@@ -17,13 +17,12 @@
 }
 
 -(void)updateWithDic:(NSDictionary*)jsonDic{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = DEFAULT_DATE_FORMAT;
-    
     self.ident = [[jsonDic objectForKeyNotNull:ANSWER_ID_PARAM] intValue];
     self.user = [User getEntityWithId:[[jsonDic objectForKeyNotNull:ANSWER_USER_PARAM] intValue]];
-    self.created = [[dateFormatter dateFromString:[jsonDic objectForKeyNotNull:ANSWER_CREATED_PARAM]] timeIntervalSinceReferenceDate];
     self.message = [jsonDic objectForKeyNotNull:ANSWER_MESSAGE_PARAM];
+    
+    NSTimeZone* timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+    self.created = [[NSDate dateFromString:[jsonDic objectForKeyNotNull:ANSWER_CREATED_PARAM] format:DEFAULT_DATE_FORMAT timeZone:timeZone] timeIntervalSinceReferenceDate];
 }
 
 -(NSDictionary*)getDictionary{
