@@ -348,7 +348,6 @@ typedef enum
     NSDictionary* advertData = [advert getDictionary];
     NSError* error;
     NSString* params = [self jsonStringFromDicOrArray:advertData error:&error];
-    
     NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
         {
@@ -625,6 +624,28 @@ typedef enum
     }];
     
     [loadUserTask resume];
+}
+
+-(void)updateUser:(User*)user compleate:(errorBlock)compleate{
+    
+    NSDictionary* userData = [user getDictionary];
+    NSError* error;
+    NSString* params = [self jsonStringFromDicOrArray:userData error:&error];
+    
+    NSURLSessionDataTask* updateUserTask = [_session dataTaskWithRequest:[self request:[NSString stringWithFormat:@"%@%i/", USER_URL_PATH, user.ident] query:params methodType:HTTP_METHOD_PUT contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error] && result)
+        {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [user updateWithDic:result];
+            });
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            compleate(error);
+        });
+    }];
+    
+    [updateUserTask resume];
 }
 
 #pragma mark - QA

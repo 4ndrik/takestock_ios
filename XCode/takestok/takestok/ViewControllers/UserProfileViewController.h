@@ -13,10 +13,12 @@
 @class PaddingTextField;
 @class RadioButton;
 @class User;
+@class StoredImage;
 
 @interface UserProfileViewController : BaseViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>{
     User* _user;
     
+    StoredImage* _selectedImage;
     __weak IBOutlet UILabel *_addImageTitle;
     __weak IBOutlet BackgroundImageView *_userImageView;
     __weak IBOutlet PaddingTextField *_userNameTextField;

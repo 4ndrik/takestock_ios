@@ -19,6 +19,9 @@
     __weak IBOutlet UILabel *_userameLabel;
     __weak IBOutlet RatingView *_ratingView;
     __weak IBOutlet UILabel *_ratingLabel;
+    
+    __weak IBOutlet UILabel *_otherUserDetails;
+    
 }
 
 -(void)setUser:(User*)user;

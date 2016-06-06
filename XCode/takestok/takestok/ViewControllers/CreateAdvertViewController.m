@@ -41,7 +41,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[DB sharedInstance].storedManagedObjectContext save:nil];
+    NSUndoManager* undoManager = [[NSUndoManager alloc] init];
+    [DB sharedInstance].storedManagedObjectContext.undoManager = undoManager;
+    
     _images = [NSMutableArray array];
     _keyboardFrame = 303;
 
@@ -192,11 +194,10 @@
 - (void)willMoveToParentViewController:(UIViewController *)parent{
     [super willMoveToParentViewController:parent];
     if (!parent) {
-        if (_advert.ident == 0){
-            [_advert.managedObjectContext deleteObject:_advert];
-        }else{
-            [_advert.managedObjectContext rollback];
+        if ([[DB sharedInstance].storedManagedObjectContext.undoManager canUndo]){
+            [[DB sharedInstance].storedManagedObjectContext.undoManager undo];
         }
+        [DB sharedInstance].storedManagedObjectContext.undoManager = nil;
     }
 }
 
@@ -273,8 +274,7 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    ImageCollectionViewCell* cell = (ImageCollectionViewCell*)[collectionView
-                                                               dequeueReusableCellWithReuseIdentifier:@"ImageViewCell" forIndexPath:indexPath];
+    ImageCollectionViewCell* cell = (ImageCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"ImageViewCell" forIndexPath:indexPath];
     
     if (indexPath.row == _selectedImage){
         cell.layer.borderColor = OliveMainColor.CGColor;
@@ -295,7 +295,6 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     float size = (collectionView.frame.size.width - 20) / 3;
-    
     return CGSizeMake(size, size);
 }
 
@@ -613,6 +612,7 @@
 }
 
 -(void)createAdvert{
+    [[DB sharedInstance].storedManagedObjectContext.undoManager beginUndoGrouping];
     if (!_advert){
         _advert = [Advert storedEntity];
     }
@@ -660,6 +660,7 @@
     _advert.tags = _keywordTextField.text;
     _advert.packaging = [Packaging getEntityWithId:_unitTextField.tag];
     _advert.author = [User getMe];
+    [[DB sharedInstance].storedManagedObjectContext.undoManager endUndoGrouping];
 }
 
 - (IBAction)saveAdvert:(id)sender{

@@ -12,6 +12,10 @@
 #import "BackgroundImageView.h"
 #import "PaddingTextField.h"
 #import "UIImage+ExtendedImage.h"
+#import "StoredImage.h"
+#import "GUIDCreator.h"
+#import "ImageCacheUrlResolver.h"
+#import "ServerConnectionHelper.h"
 
 @interface UserProfileViewController ()
 
@@ -32,8 +36,11 @@
 }
 
 -(void)refreshUserData{
-
     if (_user){
+        if (_user.image){
+            [_userImageView loadImage:_user.image];
+            _addImageTitle.text = @"EDIT";
+        }
         _userNameTextField.text = _user.userName;
         _emailTextField.text = _user.email;
     }
@@ -53,6 +60,12 @@
     CGSize size = image.size;
     image = [UIImage imageWithImage:image scaledToSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.width * size.height / size.width)];
     
+    _selectedImage = [[StoredImage alloc] init];
+    _selectedImage.resId = [GUIDCreator getGuid];
+    
+    [image saveToPath:[ImageCacheUrlResolver getPathForImage:_selectedImage]];
+    
+    
     _userImageView.image = image;
     _addImageTitle.text = @"EDIT";
 }
@@ -67,8 +80,86 @@
 - (IBAction)changePasswordAction:(id)sender {
 }
 
-- (IBAction)submit:(id)sender {
+-(BOOL)validateUser{
+    NSMutableArray* errors = [NSMutableArray array];
+    if (_userNameTextField.text <= 0){
+        [errors addObject:@"Username"];
+    }
     
+    if (_emailTextField.text.length <= 0){
+        [errors addObject:@"Email"];
+    }
+    
+    
+    NSMutableString* message = [[NSMutableString alloc] init];
+    if (errors.count > 0){
+        [message appendFormat:@"%@ %@ required", [errors componentsJoinedByString:@"\n"], errors.count > 0 ? @"are" : @"is"];
+    }
+    
+    if (message.length > 0){
+        UIAlertController* emptyFieldsAlertController = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* closeAction = [UIAlertAction
+                                      actionWithTitle:@"Ok"
+                                      style:UIAlertActionStyleCancel
+                                      handler:^(UIAlertAction * action)
+                                      {
+                                          [emptyFieldsAlertController dismissViewControllerAnimated:YES completion:nil];
+                                          
+                                      }];
+        
+        
+        [emptyFieldsAlertController addAction:closeAction];
+        
+        [self presentViewController:emptyFieldsAlertController animated:YES completion:nil];
+        return NO;
+    }else{
+        return YES;
+    }
+
+}
+
+- (IBAction)submit:(id)sender {
+    if ([self validateUser]){
+        NSUndoManager* undoManager = [[NSUndoManager alloc] init];
+        _user.managedObjectContext.undoManager = undoManager;
+        [undoManager beginUndoGrouping];
+        
+        Image* uImage = [Image storedEntity];
+        uImage.resId = _selectedImage.resId;
+        _user.image = uImage;
+        
+        [undoManager endUndoGrouping];
+        
+        [self showLoading];
+        [[ServerConnectionHelper sharedInstance] updateUser:_user compleate:^(NSError *error) {
+            NSString* message = @"User updated successfully";
+            NSString* title = @"";
+            if (error){
+                [undoManager undo];
+                message = ERROR_MESSAGE(error);
+                title = @"Error";
+            }
+            _user.managedObjectContext.undoManager = nil;
+            
+            UIAlertController* errorController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* closeAction = [UIAlertAction
+                                          actionWithTitle:@"Ok"
+                                          style:UIAlertActionStyleCancel
+                                          handler:^(UIAlertAction * action)
+                                          {
+                                              [errorController dismissViewControllerAnimated:YES completion:nil];
+                                              
+                                          }];
+            
+            
+            [errorController addAction:closeAction];
+            
+            [self presentViewController:errorController animated:YES completion:nil];
+            
+        }];
+    }
 }
 
 - (IBAction)addEditImage:(id)sender {

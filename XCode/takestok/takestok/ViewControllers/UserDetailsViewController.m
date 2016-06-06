@@ -47,6 +47,8 @@
     _userameLabel.text = _user.userName;
     _ratingView.rate = _user.rating;
     _ratingLabel.text = [NSString stringWithFormat:@"%.02f", _user.rating];
+    
+    //TODO: Other details atributed string
 }
 
 @end
