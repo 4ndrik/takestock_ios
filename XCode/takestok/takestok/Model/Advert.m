@@ -61,11 +61,13 @@
     }
     self.subCategory = subCategory;
     
-    Certification* certification = [Certification getEntityWithId:[[[jsonDic objectForKeyNotNull:ADVERT_CERTIFICATIONS_PARAM] objectForKeyNotNull:@"pk"] intValue]];
-    if (certification && certification.managedObjectContext != self.managedObjectContext){
-        certification = [self.managedObjectContext objectWithID:[certification objectID]];
+    if ([jsonDic objectForKeyNotNull:ADVERT_CERTIFICATIONS_PARAM]){
+        Certification* certification = [Certification getEntityWithId:[[[jsonDic objectForKeyNotNull:ADVERT_CERTIFICATIONS_PARAM] objectForKeyNotNull:@"pk"] intValue]];
+        if (certification && certification.managedObjectContext != self.managedObjectContext){
+            certification = [self.managedObjectContext objectWithID:[certification objectID]];
+        }
+        self.certification = certification;
     }
-    self.certification = certification;
     
     Condition* condition = [Condition getEntityWithId:[[jsonDic objectForKeyNotNull:ADVERT_CONDITION_PARAM] intValue]];
     if (condition && condition.managedObjectContext != self.managedObjectContext){
@@ -151,7 +153,8 @@
     [result setValue:[NSNumber numberWithInteger:self.shipping.ident] forKey:ADVERT_SHIPPING_PARAM];
     [result setValue:[NSNumber numberWithInteger:self.category.ident] forKey:ADVERT_CATEGORY_PARAM];
     [result setValue:[NSNumber numberWithInteger:self.subCategory.ident] forKey:ADVERT_SUBCATEGORY_PARAM];
-    [result setValue:[NSNumber numberWithInteger:self.certification.ident] forKey:ADVERT_CERTIFICATIONS_PARAM];
+    if (self.certification.ident > 0)
+        [result setValue:[NSNumber numberWithInteger:self.certification.ident] forKey:ADVERT_CERTIFICATIONS_PARAM];
     [result setValue:[NSNumber numberWithInteger:self.condition.ident] forKey:ADVERT_CONDITION_PARAM];
     [result setValue:[NSNumber numberWithInt:self.packaging.ident] forKey:ADVERT_PACKAGING_PARAM];
     [result setValue:[NSNumber numberWithInteger:self.author.ident] forKey:ADVERT_AUTHOR_PARAM];

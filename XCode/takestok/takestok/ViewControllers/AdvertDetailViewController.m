@@ -91,7 +91,7 @@
     }
     _expiryTextContainerView.text = _advert.expires > 0 ? [NSDate stringFromTimeInterval:_advert.expires] : @"N/A";
     
-    NSMutableString* certString = [[NSMutableString alloc] initWithString:_advert.certification.title];
+    NSMutableString* certString = _advert.certification != nil ? [[NSMutableString alloc] initWithString:_advert.certification.title] : [[NSMutableString alloc] init];
     if (_advert.certificationOther.length > 0){
         [certString appendFormat:@", %@", _advert.certificationOther];
     }
