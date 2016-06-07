@@ -164,7 +164,7 @@
 		AC411E281CBFA6D0008B1E38 /* NSDate+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extended.m"; sourceTree = "<group>"; };
 		AC411E2A1CBFB832008B1E38 /* ImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLoader.h; sourceTree = "<group>"; };
 		AC411E2B1CBFB832008B1E38 /* ImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageLoader.m; sourceTree = "<group>"; };
-		AC411E2D1CBFBA37008B1E38 /* ImageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProtocol.h; sourceTree = "<group>"; };
+		AC411E2D1CBFBA37008B1E38 /* ImageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageProtocol.h; path = ../Network/ImageProtocol.h; sourceTree = "<group>"; };
 		AC411E2E1CBFBB30008B1E38 /* BackgroundImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundImageView.h; sourceTree = "<group>"; };
 		AC411E2F1CBFBB30008B1E38 /* BackgroundImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundImageView.m; sourceTree = "<group>"; };
 		AC411E311CBFBE94008B1E38 /* GUIDCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIDCreator.h; sourceTree = "<group>"; };
@@ -334,31 +334,21 @@
 			name = TextControls;
 			sourceTree = "<group>";
 		};
-		AC049D181CB7C99B006A8F21 /* Cells */ = {
+		AC049D181CB7C99B006A8F21 /* Photo */ = {
 			isa = PBXGroup;
 			children = (
 				AC68C48A1CB67090004B78DF /* ImageCollectionViewCell.h */,
 				AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */,
-				AC049D0C1CB7C7E5006A8F21 /* SearchCollectionViewCell.h */,
-				AC049D0D1CB7C7E5006A8F21 /* SearchCollectionViewCell.m */,
 				AC411E431CC50884008B1E38 /* ImageScrollCollectionViewCell.h */,
 				AC411E441CC50884008B1E38 /* ImageScrollCollectionViewCell.m */,
-				AC411E531CC7A72C008B1E38 /* SellingTableViewCell.h */,
-				AC411E541CC7A72C008B1E38 /* SellingTableViewCell.m */,
-				AC58CDA61CF30C7300A2210A /* OfferActionDelegate.h */,
-				AC411E5C1CC7D2C9008B1E38 /* BuyingTableViewCell.h */,
-				AC411E5D1CC7D2C9008B1E38 /* BuyingTableViewCell.m */,
-				AC1F544E1CCE455D0093848B /* OfferTableViewCell.h */,
-				AC1F544F1CCE455D0093848B /* OfferTableViewCell.m */,
-				ACCE7FD41CDCDB6B00A76CB6 /* QATableViewCell.h */,
-				ACCE7FD51CDCDB6B00A76CB6 /* QATableViewCell.m */,
 			);
-			name = Cells;
+			name = Photo;
 			sourceTree = "<group>";
 		};
 		AC411E0A1CBF95D3008B1E38 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AC76862E1D06C78200DD7490 /* NoDB */,
 				AC411E1A1CBF995A008B1E38 /* DB.h */,
 				AC411E1B1CBF995A008B1E38 /* DB.m */,
 				ACE110FF1CFDB0D000E6FDB9 /* NSManagedObject+NSManagedObject_RevertChanges.h */,
@@ -374,8 +364,6 @@
 				AC411E1E1CBF9CEF008B1E38 /* Image+CoreDataProperties.m */,
 				AC411E1F1CBF9CEF008B1E38 /* Image.h */,
 				AC411E201CBF9CEF008B1E38 /* Image.m */,
-				ACE110FC1CFD9E2800E6FDB9 /* StoredImage.h */,
-				ACE110FD1CFD9E2800E6FDB9 /* StoredImage.m */,
 				ACFCB6B21CDA14A4005A4024 /* User+CoreDataProperties.h */,
 				ACFCB6B31CDA14A4005A4024 /* User+CoreDataProperties.m */,
 				ACFCB6B41CDA14A4005A4024 /* User.h */,
@@ -384,8 +372,6 @@
 				ACA2E8CC1CE5BEDD00BAB401 /* Offer+CoreDataProperties.m */,
 				ACA2E8CD1CE5BEDD00BAB401 /* Offer.h */,
 				ACA2E8CE1CE5BEDD00BAB401 /* Offer.m */,
-				AC1911501CE22D6C00C5A4A5 /* SortData.h */,
-				AC1911511CE22D6C00C5A4A5 /* SortData.m */,
 				AC08D7EB1CE9FEC200830A53 /* Question+CoreDataProperties.h */,
 				AC08D7EC1CE9FEC200830A53 /* Question+CoreDataProperties.m */,
 				AC08D7ED1CE9FEC200830A53 /* Question.h */,
@@ -408,7 +394,6 @@
 				AC411E2B1CBFB832008B1E38 /* ImageLoader.m */,
 				AC411E241CBFA220008B1E38 /* ImageCacheUrlResolver.h */,
 				AC411E251CBFA220008B1E38 /* ImageCacheUrlResolver.m */,
-				AC411E2D1CBFBA37008B1E38 /* ImageProtocol.h */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -555,31 +540,17 @@
 				AC411E2F1CBFBB30008B1E38 /* BackgroundImageView.m */,
 				AC049D141CB7C95D006A8F21 /* UIView+NibLoadView.h */,
 				AC049D151CB7C95D006A8F21 /* UIView+NibLoadView.m */,
-				ACDC246B1CBE8308003E9715 /* TitleTextContainerView.h */,
-				ACDC246C1CBE8308003E9715 /* TitleTextContainerView.m */,
-				AC1F54561CCE495E0093848B /* TopBottomStripesLabel.h */,
-				AC1F54571CCE495E0093848B /* TopBottomStripesLabel.m */,
-				AC411E5F1CC7DC8E008B1E38 /* PaddingLabel.h */,
-				AC411E601CC7DC8E008B1E38 /* PaddingLabel.m */,
-				AC049D171CB7C987006A8F21 /* TextControls */,
-				AC049D181CB7C99B006A8F21 /* Cells */,
-				AC049D0F1CB7C86A006A8F21 /* SearchFilterSortView.h */,
-				AC049D101CB7C86A006A8F21 /* SearchFilterSortView.m */,
-				AC411E371CC0F170008B1E38 /* SearchFilterSortView.xib */,
-				AC049D1C1CBBBA0A006A8F21 /* SearchTitleView.h */,
-				AC049D1D1CBBBA0A006A8F21 /* SearchTitleView.m */,
-				AC411E391CC0F309008B1E38 /* SearchTitleView.xib */,
-				AC1F54511CCE484F0093848B /* OfferTitleView.h */,
-				AC1F54521CCE484F0093848B /* OfferTitleView.m */,
-				AC1F54541CCE48630093848B /* OfferTitleView.xib */,
 				ACDC24681CBCF610003E9715 /* RadioButton.h */,
 				ACDC24691CBCF610003E9715 /* RadioButton.m */,
-				ACCE7FCF1CDCD37000A76CB6 /* AskQuestionView.h */,
-				ACCE7FD01CDCD37000A76CB6 /* AskQuestionView.m */,
-				ACCE7FD21CDCD38200A76CB6 /* AskQuestionView.xib */,
-				ACDA2ECB1CEF28A3009F51A0 /* OfferActionView.h */,
-				ACDA2ECC1CEF28A3009F51A0 /* OfferActionView.m */,
-				ACDA2ECE1CEF28B8009F51A0 /* OfferActionView.xib */,
+				AC7686281D06AFDC00DD7490 /* Labels */,
+				AC049D171CB7C987006A8F21 /* TextControls */,
+				AC049D181CB7C99B006A8F21 /* Photo */,
+				AC76862A1D06B15200DD7490 /* Search */,
+				AC58CDA61CF30C7300A2210A /* OfferActionDelegate.h */,
+				AC7686291D06B10200DD7490 /* Buying */,
+				AC76862C1D06B1B100DD7490 /* Selling */,
+				AC76862B1D06B17200DD7490 /* QA */,
+				AC76862D1D06B22800DD7490 /* PopUps */,
 				AC411E3B1CC10346008B1E38 /* CollectionViewLayout */,
 			);
 			path = Views;
@@ -627,6 +598,91 @@
 				AC411E581CC7CBD0008B1E38 /* AgendaMedium.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		AC7686281D06AFDC00DD7490 /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				AC1F54561CCE495E0093848B /* TopBottomStripesLabel.h */,
+				AC1F54571CCE495E0093848B /* TopBottomStripesLabel.m */,
+				AC411E5F1CC7DC8E008B1E38 /* PaddingLabel.h */,
+				AC411E601CC7DC8E008B1E38 /* PaddingLabel.m */,
+				ACDC246B1CBE8308003E9715 /* TitleTextContainerView.h */,
+				ACDC246C1CBE8308003E9715 /* TitleTextContainerView.m */,
+			);
+			name = Labels;
+			sourceTree = "<group>";
+		};
+		AC7686291D06B10200DD7490 /* Buying */ = {
+			isa = PBXGroup;
+			children = (
+				AC411E5C1CC7D2C9008B1E38 /* BuyingTableViewCell.h */,
+				AC411E5D1CC7D2C9008B1E38 /* BuyingTableViewCell.m */,
+			);
+			name = Buying;
+			sourceTree = "<group>";
+		};
+		AC76862A1D06B15200DD7490 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				AC049D0C1CB7C7E5006A8F21 /* SearchCollectionViewCell.h */,
+				AC049D0D1CB7C7E5006A8F21 /* SearchCollectionViewCell.m */,
+				AC049D1C1CBBBA0A006A8F21 /* SearchTitleView.h */,
+				AC049D1D1CBBBA0A006A8F21 /* SearchTitleView.m */,
+				AC411E391CC0F309008B1E38 /* SearchTitleView.xib */,
+				AC049D0F1CB7C86A006A8F21 /* SearchFilterSortView.h */,
+				AC049D101CB7C86A006A8F21 /* SearchFilterSortView.m */,
+				AC411E371CC0F170008B1E38 /* SearchFilterSortView.xib */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		AC76862B1D06B17200DD7490 /* QA */ = {
+			isa = PBXGroup;
+			children = (
+				ACCE7FD41CDCDB6B00A76CB6 /* QATableViewCell.h */,
+				ACCE7FD51CDCDB6B00A76CB6 /* QATableViewCell.m */,
+				ACCE7FCF1CDCD37000A76CB6 /* AskQuestionView.h */,
+				ACCE7FD01CDCD37000A76CB6 /* AskQuestionView.m */,
+				ACCE7FD21CDCD38200A76CB6 /* AskQuestionView.xib */,
+			);
+			name = QA;
+			sourceTree = "<group>";
+		};
+		AC76862C1D06B1B100DD7490 /* Selling */ = {
+			isa = PBXGroup;
+			children = (
+				AC411E531CC7A72C008B1E38 /* SellingTableViewCell.h */,
+				AC411E541CC7A72C008B1E38 /* SellingTableViewCell.m */,
+				AC1F54511CCE484F0093848B /* OfferTitleView.h */,
+				AC1F54521CCE484F0093848B /* OfferTitleView.m */,
+				AC1F54541CCE48630093848B /* OfferTitleView.xib */,
+				AC1F544E1CCE455D0093848B /* OfferTableViewCell.h */,
+				AC1F544F1CCE455D0093848B /* OfferTableViewCell.m */,
+			);
+			name = Selling;
+			sourceTree = "<group>";
+		};
+		AC76862D1D06B22800DD7490 /* PopUps */ = {
+			isa = PBXGroup;
+			children = (
+				ACDA2ECB1CEF28A3009F51A0 /* OfferActionView.h */,
+				ACDA2ECC1CEF28A3009F51A0 /* OfferActionView.m */,
+				ACDA2ECE1CEF28B8009F51A0 /* OfferActionView.xib */,
+			);
+			name = PopUps;
+			sourceTree = "<group>";
+		};
+		AC76862E1D06C78200DD7490 /* NoDB */ = {
+			isa = PBXGroup;
+			children = (
+				AC411E2D1CBFBA37008B1E38 /* ImageProtocol.h */,
+				AC1911501CE22D6C00C5A4A5 /* SortData.h */,
+				AC1911511CE22D6C00C5A4A5 /* SortData.m */,
+				ACE110FC1CFD9E2800E6FDB9 /* StoredImage.h */,
+				ACE110FD1CFD9E2800E6FDB9 /* StoredImage.m */,
+			);
+			name = NoDB;
 			sourceTree = "<group>";
 		};
 		AC854C271CEB3E46006AFF2D /* Selling */ = {

@@ -62,7 +62,7 @@
 
 -(void) onTouchUpInside
 {
-	[self setSelected:YES distinct:YES sendControlEvent:YES];
+	[self setSelected:self.selectedButton != self || self.groupButtons.count > 0 distinct:YES sendControlEvent:YES];
 }
 
 -(void) setGroupButtons:(NSArray *)buttons
