@@ -271,7 +271,8 @@ typedef enum
         lastUpdatedDate = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
     }
     
-    NSString* query = [NSString stringWithFormat:@"author_id=%i&updated_at__gte=%@", [AppSettings getUserId], [dateFormatter stringFromDate:lastUpdatedDate]];
+    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[AppSettings getUserId]], @"author_id", [dateFormatter stringFromDate:lastUpdatedDate], @"updated_at__gte", nil];
+    NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
     
     NSURLSessionDataTask *loadAdvertTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable data, NSError * _Nullable error) {
         if (![self createAdvertWithData:data withResponce:response withError:error]){
@@ -297,14 +298,17 @@ typedef enum
     //Cancel prev request
     [_loadAdvertCancelTask cancel];
     
-    NSMutableString* query = [[NSMutableString alloc] initWithFormat:@"o=%@&page=%i", sortData.value, page];
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:page], @"page", sortData.value, @"o", nil];
+    
     if (searchString.length > 0){
-        [query appendFormat:@"&tags=%@", searchString];
+        [params setValue:searchString forKey:@"tags"];
     }
     
     if (category){
-        [query appendFormat:@"&category=%i", category.ident];
+        [params setValue:[NSNumber numberWithInt:category.ident] forKey:@"category"];
     }
+    
+    NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
     
     _loadAdvertCancelTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         [_dictionaryLock waitUntilDone];
@@ -376,7 +380,8 @@ typedef enum
         lastUpdatedDate = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
     }
     
-    NSString* query = [NSString stringWithFormat:@"user=%i&updated_at__gte=%@", [AppSettings getUserId], [dateFormatter stringFromDate:lastUpdatedDate]];
+    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[AppSettings getUserId]], @"user", [dateFormatter stringFromDate:lastUpdatedDate], @"updated_at__gte", nil];
+    NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
     
     NSURLSessionDataTask* loadOffersTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error]){
@@ -435,7 +440,8 @@ typedef enum
             [advertIdSet addObject:[NSNumber numberWithInt:advert.ident]];
         }
         
-        NSString* query = [NSString stringWithFormat:@"adverts=%@&updated_at__gte=%@", [[advertIdSet allObjects] componentsJoinedByString:@","], [dateFormatter stringFromDate:lastUpdatedDate]];
+        NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:advertIdSet, @"adverts", [dateFormatter stringFromDate:lastUpdatedDate], @"updated_at__gte", nil];
+        NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
         
         NSURLSessionDataTask* loadOffersTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
             if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error]){
@@ -517,6 +523,28 @@ typedef enum
     [dataTask resume];
 }
 
+- (void)payOffer:(Offer*)offer withToken:(STPToken *)token completion:(void (^)(PKPaymentAuthorizationStatus))completion {
+//    NSURL *url = [NSURL URLWithString:@"https://example.com/token"];
+//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+//    request.HTTPMethod = @"POST";
+//    NSString *body     = [NSString stringWithFormat:@"stripeToken=%@", token.tokenId];
+//    request.HTTPBody   = [body dataUsingEncoding:NSUTF8StringEncoding];
+//    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+//    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+//    NSURLSessionDataTask *task =
+//    [session dataTaskWithRequest:request
+//               completionHandler:^(NSData *data,
+//                                   NSURLResponse *response,
+//                                   NSError *error) {
+//                   if (error) {
+//                       completion(PKPaymentAuthorizationStatusFailure);
+//                   } else {
+//                       completion(PKPaymentAuthorizationStatusSuccess);
+//                   }
+//               }];
+//    [task resume];
+}
+
 #pragma mark - User
 -(void)signInWithUserName:(NSString*)username password:(NSString*)password compleate:(errorBlock)compleate{
     NSString *params = [NSString stringWithFormat:
@@ -592,7 +620,9 @@ typedef enum
 -(void)loadUsers:(NSArray*)idents compleate:(void(^)(NSArray* users, NSError* error))compleate{
     
     [_usersLock lock];
-    NSString* query = [NSString stringWithFormat:@"ids=%@", [idents componentsJoinedByString:@","]];
+    
+    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:idents, @"ids", nil];
+    NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
     
     NSURLSessionDataTask* loadUserTask = [_session dataTaskWithRequest:[self request:USER_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         NSMutableArray* users = [NSMutableArray array];
@@ -809,8 +839,19 @@ typedef enum
     id key = nil;
     while ((key = [keyEnumerator nextObject]))
     {
-        NSString *value = [[parameters valueForKey:key] isKindOfClass:[NSString class]] ?
-        [parameters valueForKey:key] : [[parameters valueForKey:key] stringValue];
+        NSString *value;
+        if ([[parameters valueForKey:key] isKindOfClass:[NSString class]]){
+            value = [parameters valueForKey:key];
+        }else if ([[parameters valueForKey:key] isKindOfClass:[NSArray class]]){
+            NSArray* ar = (NSArray*)[parameters valueForKey:key];
+            value = [ar componentsJoinedByString:@","];
+        }else if ([[parameters valueForKey:key] isKindOfClass:[NSSet class]]){
+            NSSet* set = (NSSet*)[parameters valueForKey:key];
+            value = [[set allObjects] componentsJoinedByString:@","];
+        }else{
+            value = [[parameters valueForKey:key] stringValue];
+        }
+
         [stringOfParamters appendFormat:@"%@=%@&",
          [self URLEscaped:key withEncoding:encoding],
          [self URLEscaped:value withEncoding:encoding]];

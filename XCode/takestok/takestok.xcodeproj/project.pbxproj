@@ -410,6 +410,10 @@
 		AC411E521CC78D61008B1E38 /* Adverts */ = {
 			isa = PBXGroup;
 			children = (
+				ACE111021CFF11DE00E6FDB9 /* CategoryViewController.h */,
+				ACE111031CFF11DE00E6FDB9 /* CategoryViewController.m */,
+				AC049D031CB7C449006A8F21 /* SearchViewController.h */,
+				AC049D041CB7C449006A8F21 /* SearchViewController.m */,
 				ACDC24701CBEAC5F003E9715 /* AdvertDetailViewController.h */,
 				ACDC24711CBEAC5F003E9715 /* AdvertDetailViewController.m */,
 				AC68C4821CB64966004B78DF /* CreateAdvertViewController.h */,
@@ -519,10 +523,6 @@
 				AC049D0A1CB7C490006A8F21 /* BaseViewController.m */,
 				AC049D061CB7C47F006A8F21 /* HomeViewController.h */,
 				AC049D071CB7C47F006A8F21 /* HomeViewController.m */,
-				ACE111021CFF11DE00E6FDB9 /* CategoryViewController.h */,
-				ACE111031CFF11DE00E6FDB9 /* CategoryViewController.m */,
-				AC049D031CB7C449006A8F21 /* SearchViewController.h */,
-				AC049D041CB7C449006A8F21 /* SearchViewController.m */,
 				AC411E521CC78D61008B1E38 /* Adverts */,
 				AC854C271CEB3E46006AFF2D /* Selling */,
 				AC854C281CEB3E56006AFF2D /* Buying */,

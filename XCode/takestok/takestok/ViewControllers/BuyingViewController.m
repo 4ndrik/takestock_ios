@@ -17,6 +17,7 @@
 #import "OfferActionView.h"
 #import "UIView+NibLoadView.h"
 #import "AdvertDetailViewController.h"
+#import <Stripe/Stripe.h>
 
 @implementation BuyingViewController
 
@@ -201,6 +202,20 @@
 -(void)hideOfferView:(id)owner{
     [_offerAlertView removeFromSuperview];
     _offerAlertView = nil;
+}
+
+-(void)makePaymant{
+//    [[STPAPIClient sharedClient]
+//     createTokenWithCard:self.paymentTextField.cardParams
+//     completion:^(STPToken *token, NSError *error) {
+//         if (error) {
+//             [self handleError:error];
+//         } else {
+//             [self createBackendChargeWithToken:token completion:^(PKPaymentAuthorizationStatus status) {
+//                 //
+//             }];
+//         }
+//     }];
 }
 
 #pragma mark - UITableViewDelegate UITableViewDataSource

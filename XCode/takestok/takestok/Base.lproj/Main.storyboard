@@ -381,8 +381,15 @@
                                         <color key="textColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QWC-Gl-8RD" customClass="STPPaymentCardTextField">
+                                        <rect key="frame" x="20" y="1436" width="560" height="44"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="NEM-uo-wtA"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SIG-Pl-38H">
-                                        <rect key="frame" x="42" y="1436" width="516" height="40"/>
+                                        <rect key="frame" x="42" y="1500" width="516" height="40"/>
                                         <color key="backgroundColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="JLC-io-Fiw"/>
@@ -421,11 +428,14 @@
                                     <constraint firstItem="PCE-i7-mPy" firstAttribute="centerX" secondItem="t8b-zv-Na1" secondAttribute="centerX" id="ESv-cl-f6G"/>
                                     <constraint firstItem="7sJ-QL-79A" firstAttribute="centerX" secondItem="t8b-zv-Na1" secondAttribute="centerX" id="ElT-jP-zMG"/>
                                     <constraint firstItem="7d5-qa-7Yy" firstAttribute="top" secondItem="Ho0-3s-F4S" secondAttribute="bottom" constant="10" id="FEX-07-kF2"/>
+                                    <constraint firstAttribute="trailing" secondItem="QWC-Gl-8RD" secondAttribute="trailing" constant="20" id="FGn-MY-VeL"/>
                                     <constraint firstItem="t8q-Yw-HtL" firstAttribute="centerX" secondItem="t8b-zv-Na1" secondAttribute="centerX" id="Fwh-jq-AgX"/>
                                     <constraint firstItem="XXQ-we-lJC" firstAttribute="width" secondItem="t8q-Yw-HtL" secondAttribute="width" id="FzL-q7-slt"/>
                                     <constraint firstItem="tan-wU-GF8" firstAttribute="top" secondItem="sAX-B2-3Er" secondAttribute="bottom" constant="20" id="IZ4-x2-Ost"/>
                                     <constraint firstItem="aLg-fD-Wiv" firstAttribute="width" secondItem="7d5-qa-7Yy" secondAttribute="width" id="JUl-cc-6Zv"/>
+                                    <constraint firstItem="QWC-Gl-8RD" firstAttribute="leading" secondItem="t8b-zv-Na1" secondAttribute="leading" constant="20" id="KPo-mR-Uig"/>
                                     <constraint firstItem="qFx-vS-ghe" firstAttribute="width" secondItem="t8b-zv-Na1" secondAttribute="width" constant="-40" id="MvR-ab-51g"/>
+                                    <constraint firstAttribute="bottom" secondItem="SIG-Pl-38H" secondAttribute="bottom" constant="20" id="MwA-Kf-hmO"/>
                                     <constraint firstItem="aLg-fD-Wiv" firstAttribute="top" secondItem="7d5-qa-7Yy" secondAttribute="bottom" constant="20" id="N1Z-To-a0O"/>
                                     <constraint firstItem="8Zt-KY-4eO" firstAttribute="top" secondItem="7sJ-QL-79A" secondAttribute="bottom" constant="20" id="NWD-W7-Dqb"/>
                                     <constraint firstItem="Ho0-3s-F4S" firstAttribute="top" secondItem="XXQ-we-lJC" secondAttribute="bottom" constant="20" id="PhZ-pu-rnA"/>
@@ -436,6 +446,7 @@
                                     <constraint firstItem="SIG-Pl-38H" firstAttribute="leading" secondItem="t8b-zv-Na1" secondAttribute="leading" constant="42" id="RiO-hK-zhK"/>
                                     <constraint firstItem="7d5-qa-7Yy" firstAttribute="centerX" secondItem="t8b-zv-Na1" secondAttribute="centerX" id="RnK-MA-K8V"/>
                                     <constraint firstItem="qFx-vS-ghe" firstAttribute="top" secondItem="t8b-zv-Na1" secondAttribute="top" constant="20" id="S1x-2V-pk6"/>
+                                    <constraint firstItem="SIG-Pl-38H" firstAttribute="top" secondItem="QWC-Gl-8RD" secondAttribute="bottom" constant="156" id="SjO-wQ-LWo"/>
                                     <constraint firstItem="AlI-Li-rCI" firstAttribute="centerX" secondItem="t8b-zv-Na1" secondAttribute="centerX" id="Uos-Rp-dJC"/>
                                     <constraint firstItem="CmG-cu-xGX" firstAttribute="top" secondItem="Z0J-4R-D1y" secondAttribute="bottom" constant="10" id="WQq-f3-vAZ"/>
                                     <constraint firstItem="SIG-Pl-38H" firstAttribute="centerX" secondItem="t8b-zv-Na1" secondAttribute="centerX" id="Wri-Tw-36N"/>
@@ -447,12 +458,14 @@
                                     <constraint firstItem="qFx-vS-ghe" firstAttribute="leading" secondItem="t8b-zv-Na1" secondAttribute="leading" constant="20" id="bYC-CS-5UR"/>
                                     <constraint firstItem="PCE-i7-mPy" firstAttribute="top" secondItem="c8L-Cf-3dm" secondAttribute="bottom" constant="20" id="bsO-WH-P4W"/>
                                     <constraint firstItem="AlI-Li-rCI" firstAttribute="width" secondItem="L8r-1V-4eO" secondAttribute="width" id="cAJ-ca-CdV"/>
+                                    <constraint firstItem="QWC-Gl-8RD" firstAttribute="top" secondItem="PCE-i7-mPy" secondAttribute="bottom" constant="20" id="d8C-C2-TQj"/>
                                     <constraint firstItem="CmG-cu-xGX" firstAttribute="width" secondItem="Z0J-4R-D1y" secondAttribute="width" id="dkK-qn-wup"/>
                                     <constraint firstItem="8Zt-KY-4eO" firstAttribute="width" secondItem="7sJ-QL-79A" secondAttribute="width" id="fce-el-7ro"/>
                                     <constraint firstItem="sAX-B2-3Er" firstAttribute="width" secondItem="aLg-fD-Wiv" secondAttribute="width" id="gCs-Cx-H2i"/>
                                     <constraint firstItem="XXQ-we-lJC" firstAttribute="centerX" secondItem="t8b-zv-Na1" secondAttribute="centerX" id="gnx-d6-pdN"/>
                                     <constraint firstItem="c8L-Cf-3dm" firstAttribute="centerX" secondItem="t8b-zv-Na1" secondAttribute="centerX" id="hsy-8a-sof"/>
                                     <constraint firstAttribute="bottom" secondItem="SIG-Pl-38H" secondAttribute="bottom" constant="20" id="jh8-Kn-jg8"/>
+                                    <constraint firstItem="SIG-Pl-38H" firstAttribute="top" secondItem="QWC-Gl-8RD" secondAttribute="bottom" constant="20" id="kLV-3t-R3v"/>
                                     <constraint firstItem="Ho0-3s-F4S" firstAttribute="centerX" secondItem="t8b-zv-Na1" secondAttribute="centerX" id="kRc-uG-G32"/>
                                     <constraint firstAttribute="trailing" secondItem="qFx-vS-ghe" secondAttribute="trailing" constant="20" id="mrw-01-3FJ"/>
                                     <constraint firstItem="CmG-cu-xGX" firstAttribute="centerX" secondItem="t8b-zv-Na1" secondAttribute="centerX" id="n9H-BP-BXT"/>
@@ -473,6 +486,9 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="rEX-H5-idI"/>
+                                        <exclude reference="9tA-FT-hSj"/>
+                                        <exclude reference="SjO-wQ-LWo"/>
                                         <exclude reference="jh8-Kn-jg8"/>
                                         <exclude reference="y5t-nc-g56"/>
                                     </mask>
@@ -492,6 +508,7 @@
                         <outlet property="_amNotVatRegisteredButton" destination="c8L-Cf-3dm" id="1Hg-Bq-dH7"/>
                         <outlet property="_businessNameTextField" destination="6Kr-AO-3O4" id="plB-HA-Cso"/>
                         <outlet property="_emailTextField" destination="7sJ-QL-79A" id="T6y-4R-AzP"/>
+                        <outlet property="_paymantInformation" destination="QWC-Gl-8RD" id="4CS-iM-YdS"/>
                         <outlet property="_postCodeTextField" destination="XXQ-we-lJC" id="feW-Bh-LaB"/>
                         <outlet property="_subTypeOfBusinessTextField" destination="sAX-B2-3Er" id="7aA-HU-mkB"/>
                         <outlet property="_typeOfBusinessTextField" destination="7d5-qa-7Yy" id="X02-Tc-RJ4"/>

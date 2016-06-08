@@ -10,6 +10,7 @@
 #import "UIImage+ExtendedImage.h"
 #import "ServerConnectionHelper.h"
 #import "DB.h"
+#import <Stripe/Stripe.h>
 
 @interface AppDelegate ()
 
@@ -37,6 +38,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [Stripe setDefaultPublishableKey:@"pk_test_NCwfKANZ66zUvSwPTY3THQ0m"];
     // Override point for customization after application launch.
     
 //    NSArray *fontFamilies = [UIFont familyNames];

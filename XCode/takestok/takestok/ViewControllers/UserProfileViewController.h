@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+#import <Stripe/Stripe.h>
 
 @class BackgroundImageView;
 @class PaddingTextField;
@@ -30,6 +31,8 @@
     __weak IBOutlet PaddingTextField *_subTypeOfBusinessTextField;
     __weak IBOutlet PaddingTextField *_vatNumber;
     __weak IBOutlet RadioButton *_amNotVatRegisteredButton;
+    __weak IBOutlet STPPaymentCardTextField *_paymantInformation;
+    
     
 }
 - (IBAction)changePasswordAction:(id)sender;

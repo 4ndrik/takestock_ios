@@ -24,6 +24,7 @@
 #import "Offer.h"
 #import "OfferStatus.h"
 #import "UserDetailsViewController.h"
+#import "LoginViewController.h"
 
 @interface AdvertDetailViewController ()
 
@@ -228,7 +229,12 @@
 }
 
 - (IBAction)makeAction:(id)sender {
-    if (_advert.ident > 0){
+    if (![User getMe])
+    {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        LoginViewController *controller = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        [self presentViewController:controller animated:YES completion:nil];
+    }else if (_advert.ident > 0){
         [self createOrder];
     }else {
         [self createAdvert];

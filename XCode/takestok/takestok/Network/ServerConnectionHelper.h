@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Stripe/Stripe.h>
+
 
 @class AFURLSessionManager;
 @class Advert;
@@ -17,6 +19,8 @@
 @class Question;
 @class Answer;
 @class Category;
+
+@class STPToken;
 
 typedef void (^errorBlock)(NSError* error);
 typedef void (^resultBlock)(NSArray* result, NSDictionary* additionalData, NSError* error);
@@ -41,6 +45,7 @@ typedef void (^resultBlock)(NSArray* result, NSDictionary* additionalData, NSErr
 
 -(void)createOffer:(Offer*)offer compleate:(errorBlock)compleate;
 -(void)updateOffer:(Offer*)offer compleate:(errorBlock)compleate;
+-(void)payOffer:(Offer*)offer withToken:(STPToken *)token completion:(void (^)(PKPaymentAuthorizationStatus))completion;
 
 -(void)loadUsers:(NSArray*)idents compleate:(void(^)(NSArray* users, NSError* error))compleate;
 -(void)signInWithUserName:(NSString*)username password:(NSString*)password compleate:(errorBlock)compleate;
