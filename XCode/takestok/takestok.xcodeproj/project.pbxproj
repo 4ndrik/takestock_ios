@@ -63,6 +63,7 @@
 		AC411E8E1CC92230008B1E38 /* SizeType.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E8A1CC92230008B1E38 /* SizeType.m */; };
 		AC411E971CC92344008B1E38 /* Category+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E941CC92344008B1E38 /* Category+CoreDataProperties.m */; };
 		AC411E981CC92344008B1E38 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E961CC92344008B1E38 /* Category.m */; };
+		AC5633E41D0978D800ACF1E9 /* NSLayoutConstraint+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5633E31D0978D800ACF1E9 /* NSLayoutConstraint+Description.m */; };
 		AC6200FE1CE31CC9006A80A2 /* Packaging+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6200FB1CE31CC9006A80A2 /* Packaging+CoreDataProperties.m */; };
 		AC6200FF1CE31CC9006A80A2 /* Packaging.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6200FD1CE31CC9006A80A2 /* Packaging.m */; };
 		AC6201021CE34F5F006A80A2 /* DoneTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6201011CE34F5F006A80A2 /* DoneTextField.m */; };
@@ -218,6 +219,8 @@
 		AC411E941CC92344008B1E38 /* Category+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Category+CoreDataProperties.m"; sourceTree = "<group>"; };
 		AC411E951CC92344008B1E38 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
 		AC411E961CC92344008B1E38 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
+		AC5633E21D0978D800ACF1E9 /* NSLayoutConstraint+Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+Description.h"; sourceTree = "<group>"; };
+		AC5633E31D0978D800ACF1E9 /* NSLayoutConstraint+Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+Description.m"; sourceTree = "<group>"; };
 		AC58CDA61CF30C7300A2210A /* OfferActionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OfferActionDelegate.h; sourceTree = "<group>"; };
 		AC6200FA1CE31CC9006A80A2 /* Packaging+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Packaging+CoreDataProperties.h"; sourceTree = "<group>"; };
 		AC6200FB1CE31CC9006A80A2 /* Packaging+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Packaging+CoreDataProperties.m"; sourceTree = "<group>"; };
@@ -575,6 +578,8 @@
 				AC411E281CBFA6D0008B1E38 /* NSDate+Extended.m */,
 				ACFCB6BB1CDA5047005A4024 /* AppSettings.h */,
 				ACFCB6BC1CDA5047005A4024 /* AppSettings.m */,
+				AC5633E21D0978D800ACF1E9 /* NSLayoutConstraint+Description.h */,
+				AC5633E31D0978D800ACF1E9 /* NSLayoutConstraint+Description.m */,
 			);
 			path = Additional;
 			sourceTree = "<group>";
@@ -893,6 +898,7 @@
 				AC411E291CBFA6D0008B1E38 /* NSDate+Extended.m in Sources */,
 				AC411E301CBFBB30008B1E38 /* BackgroundImageView.m in Sources */,
 				AC411E0D1CBF9693008B1E38 /* Model.xcdatamodeld in Sources */,
+				AC5633E41D0978D800ACF1E9 /* NSLayoutConstraint+Description.m in Sources */,
 				AC411E261CBFA220008B1E38 /* ImageCacheUrlResolver.m in Sources */,
 				AC1481181CE5D16E00CA64D4 /* MainThreadRecursiveLock.m in Sources */,
 				ACA2E8D11CE5BEDD00BAB401 /* Offer+CoreDataProperties.m in Sources */,

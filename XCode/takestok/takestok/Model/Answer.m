@@ -18,7 +18,11 @@
 
 -(void)updateWithDic:(NSDictionary*)jsonDic{
     self.ident = [[jsonDic objectForKeyNotNull:ANSWER_ID_PARAM] intValue];
-    self.user = [User getEntityWithId:[[jsonDic objectForKeyNotNull:ANSWER_USER_PARAM] intValue]];
+    User* user = [User getEntityWithId:[[jsonDic objectForKeyNotNull:ANSWER_USER_PARAM] intValue]];
+    if (user && user.managedObjectContext != self.managedObjectContext){
+        user = [self.managedObjectContext objectWithID:[user objectID]];
+    }
+    self.user = user;
     self.message = [jsonDic objectForKeyNotNull:ANSWER_MESSAGE_PARAM];
     
     NSTimeZone* timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
