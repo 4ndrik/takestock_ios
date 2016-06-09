@@ -19,6 +19,7 @@
 @interface UserProfileViewController : BaseViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>{
     User* _user;
     
+    __weak IBOutlet UIScrollView *_scrollView;
     StoredImage* _selectedImage;
     __weak IBOutlet UILabel *_addImageTitle;
     __weak IBOutlet BackgroundImageView *_userImageView;

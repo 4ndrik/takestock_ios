@@ -27,7 +27,27 @@
     [super viewDidLoad];
     _user = [User getMe];
     [self refreshUserData];
+    
+    _paymantInformation.cornerRadius = 3.;
+    _paymantInformation.borderColor = [UIColor colorWithRed:235./255. green:235./255. blue:235./255. alpha:1.];
+    _paymantInformation.font = HelveticaLight18;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:self.view.window];
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:self.view.window];
+    
     // Do any additional setup after loading the view.
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -118,6 +138,25 @@
     }
 
 }
+
+#pragma mark - Handle keyboard
+
+- (void)keyboardWillHide:(NSNotification *)n
+{
+    _scrollView.contentInset = UIEdgeInsetsZero;
+}
+
+- (void)keyboardWillShow:(NSNotification *)n
+{
+    NSDictionary* userInfo = [n userInfo];
+    
+    // get the size of the keyboard
+    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    _scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0);
+    
+}
+
+#pragma mark - Actions
 
 - (IBAction)submit:(id)sender {
     if ([self validateUser]){
