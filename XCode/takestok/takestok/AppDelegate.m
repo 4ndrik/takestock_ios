@@ -41,14 +41,14 @@
     [Stripe setDefaultPublishableKey:@"pk_test_NCwfKANZ66zUvSwPTY3THQ0m"];
     // Override point for customization after application launch.
     
-//    NSArray *fontFamilies = [UIFont familyNames];
-//    
-//    for (int i = 0; i < [fontFamilies count]; i++)
-//    {
-//        NSString *fontFamily = [fontFamilies objectAtIndex:i];
-//        NSArray *fontNames = [UIFont fontNamesForFamilyName:[fontFamilies objectAtIndex:i]];
-//        NSLog (@"%@: %@", fontFamily, fontNames);
-//    }
+    NSArray *fontFamilies = [UIFont familyNames];
+    
+    for (int i = 0; i < [fontFamilies count]; i++)
+    {
+        NSString *fontFamily = [fontFamilies objectAtIndex:i];
+        NSArray *fontNames = [UIFont fontNamesForFamilyName:[fontFamilies objectAtIndex:i]];
+        NSLog (@"%@: %@", fontFamily, fontNames);
+    }
     
     [self customizeNavigationBar];
     

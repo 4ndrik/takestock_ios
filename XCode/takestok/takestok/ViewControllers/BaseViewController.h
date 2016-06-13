@@ -13,6 +13,7 @@
 }
 
 - (IBAction)hideKeyboard:(id)sender;
+- (IBAction)showMenu;
 
 -(void)showLoading;
 -(void)hideLoading;

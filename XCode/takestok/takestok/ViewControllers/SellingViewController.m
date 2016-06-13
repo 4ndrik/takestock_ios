@@ -23,6 +23,7 @@
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData:) name:OFFERS_UPDATED_NOTIFICATION object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData:) name:QUESTIONS_UPDATED_NOTIFICATION object:nil];
+    self.title = @"SELLING";
 }
 
 -(void)viewWillAppear:(BOOL)animated{

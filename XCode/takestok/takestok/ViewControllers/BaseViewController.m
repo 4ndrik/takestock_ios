@@ -10,6 +10,7 @@
 #import "HomeViewController.h"
 #import "User.h"
 #import "LoginViewController.h"
+#import "REFrostedViewController.h"
 
 @implementation BaseViewController
 
@@ -29,36 +30,19 @@
     activityIndicator.center = _loadingView.center;
     activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [_loadingView addSubview:activityIndicator];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:[self isKindOfClass:[HomeViewController class]] animated:YES];
+    if ([self.navigationController.viewControllers firstObject] == self){
+        UIButton* menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
+        [menuButton setImage:[UIImage imageNamed:@"menuWhiteButtonIco"] forState:UIControlStateNormal];
+        [menuButton addTarget:self action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
         
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@" "
-                                                                                 style:UIBarButtonItemStylePlain
-                                                                                target:nil
-                                                                                action:nil];
-}
-
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
-{
-    if (![User getMe])
-    {
-        if ([identifier isEqualToString:@"SellSegue"] ||
-            [identifier isEqualToString:@"SellingSegue"] ||
-            [identifier isEqualToString:@"BuyingSegue"] ||
-            [identifier isEqualToString:@"MyProfileSegue"]
-            )
-        {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            LoginViewController *controller = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-            [self presentViewController:controller animated:YES completion:nil];
-            return NO;
-        }
+        UIBarButtonItem* menuBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
+        self.navigationItem.leftBarButtonItem = menuBarButtonItem;
     }
-    return YES;
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 - (IBAction)hideKeyboard:(id)sender {
@@ -73,6 +57,13 @@
 
 -(void)hideLoading{
     [_loadingView removeFromSuperview];
+}
+
+- (void)showMenu
+{
+    [self.view endEditing:YES];
+    [self.frostedViewController.view endEditing:YES];
+    [self.frostedViewController presentMenuViewController];
 }
 
 @end

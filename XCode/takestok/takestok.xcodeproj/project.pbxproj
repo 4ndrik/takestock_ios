@@ -85,6 +85,13 @@
 		ACA2E8D01CE5BEDD00BAB401 /* OfferStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA2E8CA1CE5BEDD00BAB401 /* OfferStatus.m */; };
 		ACA2E8D11CE5BEDD00BAB401 /* Offer+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA2E8CC1CE5BEDD00BAB401 /* Offer+CoreDataProperties.m */; };
 		ACA2E8D21CE5BEDD00BAB401 /* Offer.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA2E8CE1CE5BEDD00BAB401 /* Offer.m */; };
+		ACC6F21F1D0EB72200F1B6F5 /* TakeStokRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F21E1D0EB72200F1B6F5 /* TakeStokRootViewController.m */; };
+		ACC6F2221D0EBFCE00F1B6F5 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F2211D0EBFCE00F1B6F5 /* MenuViewController.m */; };
+		ACC6F2251D0EC1B600F1B6F5 /* ActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F2241D0EC1B600F1B6F5 /* ActionItem.m */; };
+		ACC6F2281D0EC4C100F1B6F5 /* UserMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F2271D0EC4C100F1B6F5 /* UserMenuView.m */; };
+		ACC6F22A1D0EC4DD00F1B6F5 /* UserMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACC6F2291D0EC4DD00F1B6F5 /* UserMenuView.xib */; };
+		ACC6F22E1D0EEE7000F1B6F5 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F22D1D0EEE7000F1B6F5 /* AboutUsViewController.m */; };
+		ACC6F2311D0EF00200F1B6F5 /* AboutUs.html in Resources */ = {isa = PBXBuildFile; fileRef = ACC6F2301D0EF00200F1B6F5 /* AboutUs.html */; };
 		ACCE7FCA1CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCE7FC71CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.m */; };
 		ACCE7FCB1CDB8F6400A76CB6 /* SubCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCE7FC91CDB8F6400A76CB6 /* SubCategory.m */; };
 		ACCE7FCE1CDCC3A400A76CB6 /* QAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCE7FCD1CDCC3A400A76CB6 /* QAViewController.m */; };
@@ -262,6 +269,18 @@
 		ACA2E8CC1CE5BEDD00BAB401 /* Offer+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Offer+CoreDataProperties.m"; sourceTree = "<group>"; };
 		ACA2E8CD1CE5BEDD00BAB401 /* Offer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Offer.h; sourceTree = "<group>"; };
 		ACA2E8CE1CE5BEDD00BAB401 /* Offer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Offer.m; sourceTree = "<group>"; };
+		ACC6F21D1D0EB72200F1B6F5 /* TakeStokRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakeStokRootViewController.h; sourceTree = "<group>"; };
+		ACC6F21E1D0EB72200F1B6F5 /* TakeStokRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeStokRootViewController.m; sourceTree = "<group>"; };
+		ACC6F2201D0EBFCE00F1B6F5 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		ACC6F2211D0EBFCE00F1B6F5 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		ACC6F2231D0EC1B600F1B6F5 /* ActionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionItem.h; sourceTree = "<group>"; };
+		ACC6F2241D0EC1B600F1B6F5 /* ActionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionItem.m; sourceTree = "<group>"; };
+		ACC6F2261D0EC4C100F1B6F5 /* UserMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMenuView.h; sourceTree = "<group>"; };
+		ACC6F2271D0EC4C100F1B6F5 /* UserMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMenuView.m; sourceTree = "<group>"; };
+		ACC6F2291D0EC4DD00F1B6F5 /* UserMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserMenuView.xib; sourceTree = "<group>"; };
+		ACC6F22C1D0EEE7000F1B6F5 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
+		ACC6F22D1D0EEE7000F1B6F5 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
+		ACC6F2301D0EF00200F1B6F5 /* AboutUs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AboutUs.html; sourceTree = "<group>"; };
 		ACCE7FC61CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SubCategory+CoreDataProperties.h"; sourceTree = "<group>"; };
 		ACCE7FC71CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SubCategory+CoreDataProperties.m"; sourceTree = "<group>"; };
 		ACCE7FC81CDB8F6400A76CB6 /* SubCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubCategory.h; sourceTree = "<group>"; };
@@ -385,7 +404,8 @@
 				AC08D7FE1CE9FEC200830A53 /* Answer.m */,
 				AC411E0B1CBF9693008B1E38 /* Model.xcdatamodeld */,
 			);
-			path = Model;
+			name = Model;
+			path = Data;
 			sourceTree = "<group>";
 		};
 		AC411E231CBFA207008B1E38 /* Network */ = {
@@ -520,15 +540,20 @@
 		AC68C4721CB51C90004B78DF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				ACC6F21D1D0EB72200F1B6F5 /* TakeStokRootViewController.h */,
+				ACC6F21E1D0EB72200F1B6F5 /* TakeStokRootViewController.m */,
 				AC6201061CE390D1006A80A2 /* UIViewController+BackButtonHandler.h */,
 				AC6201071CE390D1006A80A2 /* UIViewController+BackButtonHandler.m */,
 				AC049D091CB7C490006A8F21 /* BaseViewController.h */,
 				AC049D0A1CB7C490006A8F21 /* BaseViewController.m */,
+				ACC6F2201D0EBFCE00F1B6F5 /* MenuViewController.h */,
+				ACC6F2211D0EBFCE00F1B6F5 /* MenuViewController.m */,
 				AC049D061CB7C47F006A8F21 /* HomeViewController.h */,
 				AC049D071CB7C47F006A8F21 /* HomeViewController.m */,
 				AC411E521CC78D61008B1E38 /* Adverts */,
 				AC854C271CEB3E46006AFF2D /* Selling */,
 				AC854C281CEB3E56006AFF2D /* Buying */,
+				ACC6F22B1D0EEE4600F1B6F5 /* Content */,
 				ACCF269F1CF7392800BA55A9 /* User */,
 			);
 			path = ViewControllers;
@@ -545,6 +570,9 @@
 				AC049D151CB7C95D006A8F21 /* UIView+NibLoadView.m */,
 				ACDC24681CBCF610003E9715 /* RadioButton.h */,
 				ACDC24691CBCF610003E9715 /* RadioButton.m */,
+				ACC6F2261D0EC4C100F1B6F5 /* UserMenuView.h */,
+				ACC6F2271D0EC4C100F1B6F5 /* UserMenuView.m */,
+				ACC6F2291D0EC4DD00F1B6F5 /* UserMenuView.xib */,
 				AC7686281D06AFDC00DD7490 /* Labels */,
 				AC049D171CB7C987006A8F21 /* TextControls */,
 				AC049D181CB7C99B006A8F21 /* Photo */,
@@ -587,6 +615,7 @@
 		AC68C4781CB63D50004B78DF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ACC6F22F1D0EEFD500F1B6F5 /* HTMLContent */,
 				AC68C47A1CB63DD1004B78DF /* Fonts */,
 				AC68C4671CB51C1F004B78DF /* Assets.xcassets */,
 			);
@@ -686,6 +715,8 @@
 				AC1911511CE22D6C00C5A4A5 /* SortData.m */,
 				ACE110FC1CFD9E2800E6FDB9 /* StoredImage.h */,
 				ACE110FD1CFD9E2800E6FDB9 /* StoredImage.m */,
+				ACC6F2231D0EC1B600F1B6F5 /* ActionItem.h */,
+				ACC6F2241D0EC1B600F1B6F5 /* ActionItem.m */,
 			);
 			name = NoDB;
 			sourceTree = "<group>";
@@ -708,6 +739,23 @@
 				AC411E5A1CC7D257008B1E38 /* BuyingViewController.m */,
 			);
 			name = Buying;
+			sourceTree = "<group>";
+		};
+		ACC6F22B1D0EEE4600F1B6F5 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				ACC6F22C1D0EEE7000F1B6F5 /* AboutUsViewController.h */,
+				ACC6F22D1D0EEE7000F1B6F5 /* AboutUsViewController.m */,
+			);
+			name = Content;
+			sourceTree = "<group>";
+		};
+		ACC6F22F1D0EEFD500F1B6F5 /* HTMLContent */ = {
+			isa = PBXGroup;
+			children = (
+				ACC6F2301D0EF00200F1B6F5 /* AboutUs.html */,
+			);
+			name = HTMLContent;
 			sourceTree = "<group>";
 		};
 		ACCF269F1CF7392800BA55A9 /* User */ = {
@@ -798,6 +846,8 @@
 				AC68C4681CB51C1F004B78DF /* Assets.xcassets in Resources */,
 				AC1F54551CCE48630093848B /* OfferTitleView.xib in Resources */,
 				AC68C4661CB51C1F004B78DF /* Main.storyboard in Resources */,
+				ACC6F22A1D0EC4DD00F1B6F5 /* UserMenuView.xib in Resources */,
+				ACC6F2311D0EF00200F1B6F5 /* AboutUs.html in Resources */,
 				AC68C47D1CB63F1B004B78DF /* brandon_bld.otf in Resources */,
 				AC411E3A1CC0F309008B1E38 /* SearchTitleView.xib in Resources */,
 				AC68C47E1CB63F1B004B78DF /* brandon_reg.otf in Resources */,
@@ -875,10 +925,12 @@
 				AC411E781CC8D186008B1E38 /* Certification+CoreDataProperties.m in Sources */,
 				AC411E611CC7DC8E008B1E38 /* PaddingLabel.m in Sources */,
 				ACDC246D1CBE8308003E9715 /* TitleTextContainerView.m in Sources */,
+				ACC6F2251D0EC1B600F1B6F5 /* ActionItem.m in Sources */,
 				ACE111011CFDB0D000E6FDB9 /* NSManagedObject+NSManagedObject_RevertChanges.m in Sources */,
 				AC411E791CC8D186008B1E38 /* Certification.m in Sources */,
 				AC1F544D1CCE45350093848B /* OfferManagerViewController.m in Sources */,
 				ACCE7FCE1CDCC3A400A76CB6 /* QAViewController.m in Sources */,
+				ACC6F2221D0EBFCE00F1B6F5 /* MenuViewController.m in Sources */,
 				ACFCB6BA1CDA200A005A4024 /* UserProfileViewController.m in Sources */,
 				AC08D80B1CE9FEC200830A53 /* Answer+CoreDataProperties.m in Sources */,
 				AC411E211CBF9CEF008B1E38 /* Image+CoreDataProperties.m in Sources */,
@@ -908,6 +960,7 @@
 				AC6201021CE34F5F006A80A2 /* DoneTextField.m in Sources */,
 				AC411E731CC8D186008B1E38 /* Shipping.m in Sources */,
 				ACFCB6B61CDA14A4005A4024 /* User+CoreDataProperties.m in Sources */,
+				ACC6F2281D0EC4C100F1B6F5 /* UserMenuView.m in Sources */,
 				ACCE7FD61CDCDB6B00A76CB6 /* QATableViewCell.m in Sources */,
 				AC049D1E1CBBBA0A006A8F21 /* SearchTitleView.m in Sources */,
 				ACA2E8CF1CE5BEDD00BAB401 /* OfferStatus+CoreDataProperties.m in Sources */,
@@ -917,6 +970,7 @@
 				AC411E421CC5002E008B1E38 /* NSDictionary+HandleNil.m in Sources */,
 				ACF317B91CDB558D00F49797 /* RatingView.m in Sources */,
 				AC049D111CB7C86A006A8F21 /* SearchFilterSortView.m in Sources */,
+				ACC6F21F1D0EB72200F1B6F5 /* TakeStokRootViewController.m in Sources */,
 				AC6200FF1CE31CC9006A80A2 /* Packaging.m in Sources */,
 				AC08D80C1CE9FEC200830A53 /* Answer.m in Sources */,
 				ACDA2ECD1CEF28A3009F51A0 /* OfferActionView.m in Sources */,
@@ -937,6 +991,7 @@
 				AC411E221CBF9CEF008B1E38 /* Image.m in Sources */,
 				ACDC246A1CBCF610003E9715 /* RadioButton.m in Sources */,
 				AC68C4891CB6534A004B78DF /* UIImage+ExtendedImage.m in Sources */,
+				ACC6F22E1D0EEE7000F1B6F5 /* AboutUsViewController.m in Sources */,
 				AC411E2C1CBFB832008B1E38 /* ImageLoader.m in Sources */,
 				ACA2E8D21CE5BEDD00BAB401 /* Offer.m in Sources */,
 				AC68C4601CB51C1F004B78DF /* AppDelegate.m in Sources */,

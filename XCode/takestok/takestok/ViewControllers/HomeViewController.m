@@ -10,6 +10,8 @@
 #import "TextFieldBorderBottom.h"
 #import "SearchViewController.h"
 #import "Category.h"
+#import "LoginViewController.h"
+#import "User.h"
 
 @interface HomeViewController ()
 
@@ -32,9 +34,30 @@
                                                object:nil];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if (![User getMe])
+    {
+        if ([identifier isEqualToString:@"SellSegue"]
+            )
+        {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            LoginViewController *controller = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+            [self presentViewController:controller animated:YES completion:nil];
+            return NO;
+        }
+    }
+    return YES;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

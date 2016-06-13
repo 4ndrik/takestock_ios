@@ -27,6 +27,8 @@
     
     _buyingTableView.estimatedRowHeight = 116.0;
     _buyingTableView.rowHeight = UITableViewAutomaticDimension;
+    
+    self.title = @"BUYING";
 }
 
 -(void)viewWillAppear:(BOOL)animated{
