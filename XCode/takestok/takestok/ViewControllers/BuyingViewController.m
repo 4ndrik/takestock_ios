@@ -71,7 +71,7 @@
         [textString appendAttributedString:acceptString];
         
         cell.acceptHeight.constant = 30.;
-        [cell.acceptButton setTitle:@"ADD SHIPPING" forState:UIControlStateNormal];
+        [cell.acceptButton setTitle:@"ADD PAYMENT" forState:UIControlStateNormal];
     }else if (offer.status.ident == stDecline){
         
         if (textString.length > 0)

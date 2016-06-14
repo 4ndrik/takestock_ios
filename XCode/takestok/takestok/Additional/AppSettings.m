@@ -45,6 +45,11 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
++(void)resetAdvertRevision{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:ADVERT_REVISION];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 +(void)updateAdvertRevision{
     [[NSUserDefaults standardUserDefaults] setValue:[NSDate date] forKey:ADVERT_REVISION];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -54,6 +59,11 @@
     return [[NSUserDefaults standardUserDefaults] valueForKey:ADVERT_REVISION];
 }
 
++(void)resetBuyerRevision{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:BUYER_OFFER_REVISION];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 +(void)updateBuyerOfferRevision{
     [[NSUserDefaults standardUserDefaults] setValue:[NSDate date] forKey:BUYER_OFFER_REVISION];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -61,6 +71,11 @@
 
 +(NSDate*)getBuyerOfferRevision{
     return [[NSUserDefaults standardUserDefaults] valueForKey:BUYER_OFFER_REVISION];
+}
+
++(void)resetSellerRevision{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:SELLER_OFFER_REVISION];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 +(void)updateSellerOfferRevision{

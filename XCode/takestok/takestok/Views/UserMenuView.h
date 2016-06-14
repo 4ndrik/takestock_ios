@@ -14,5 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet BackgroundImageView *userPhotoImageView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 
 @end

@@ -81,7 +81,9 @@
 
 +(User*)getMe{
     static User* _me;
-    if (!_me && [AppSettings getUserId] > 0){
+    if (_me && [AppSettings getUserId] <= 0){
+        _me = nil;
+    } else if (!_me && [AppSettings getUserId] > 0){
         _me = [User getEntityWithId:[AppSettings getUserId]];
     }
     return _me;

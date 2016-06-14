@@ -92,6 +92,10 @@
 		ACC6F22A1D0EC4DD00F1B6F5 /* UserMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACC6F2291D0EC4DD00F1B6F5 /* UserMenuView.xib */; };
 		ACC6F22E1D0EEE7000F1B6F5 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F22D1D0EEE7000F1B6F5 /* AboutUsViewController.m */; };
 		ACC6F2311D0EF00200F1B6F5 /* AboutUs.html in Resources */ = {isa = PBXBuildFile; fileRef = ACC6F2301D0EF00200F1B6F5 /* AboutUs.html */; };
+		ACC6F2331D0EFF5300F1B6F5 /* ContactUs.html in Resources */ = {isa = PBXBuildFile; fileRef = ACC6F2321D0EFF5300F1B6F5 /* ContactUs.html */; };
+		ACC6F2361D0EFFE800F1B6F5 /* ContactUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F2351D0EFFE800F1B6F5 /* ContactUsViewController.m */; };
+		ACC6F2391D0F003300F1B6F5 /* LegalInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F2381D0F003300F1B6F5 /* LegalInformationViewController.m */; };
+		ACC6F23B1D0FFBB400F1B6F5 /* LegalInfo.html in Resources */ = {isa = PBXBuildFile; fileRef = ACC6F23A1D0FFBB400F1B6F5 /* LegalInfo.html */; };
 		ACCE7FCA1CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCE7FC71CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.m */; };
 		ACCE7FCB1CDB8F6400A76CB6 /* SubCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCE7FC91CDB8F6400A76CB6 /* SubCategory.m */; };
 		ACCE7FCE1CDCC3A400A76CB6 /* QAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCE7FCD1CDCC3A400A76CB6 /* QAViewController.m */; };
@@ -281,6 +285,12 @@
 		ACC6F22C1D0EEE7000F1B6F5 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
 		ACC6F22D1D0EEE7000F1B6F5 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
 		ACC6F2301D0EF00200F1B6F5 /* AboutUs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AboutUs.html; sourceTree = "<group>"; };
+		ACC6F2321D0EFF5300F1B6F5 /* ContactUs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ContactUs.html; sourceTree = "<group>"; };
+		ACC6F2341D0EFFE800F1B6F5 /* ContactUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactUsViewController.h; sourceTree = "<group>"; };
+		ACC6F2351D0EFFE800F1B6F5 /* ContactUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactUsViewController.m; sourceTree = "<group>"; };
+		ACC6F2371D0F003300F1B6F5 /* LegalInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LegalInformationViewController.h; sourceTree = "<group>"; };
+		ACC6F2381D0F003300F1B6F5 /* LegalInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LegalInformationViewController.m; sourceTree = "<group>"; };
+		ACC6F23A1D0FFBB400F1B6F5 /* LegalInfo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = LegalInfo.html; sourceTree = "<group>"; };
 		ACCE7FC61CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SubCategory+CoreDataProperties.h"; sourceTree = "<group>"; };
 		ACCE7FC71CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SubCategory+CoreDataProperties.m"; sourceTree = "<group>"; };
 		ACCE7FC81CDB8F6400A76CB6 /* SubCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubCategory.h; sourceTree = "<group>"; };
@@ -746,6 +756,10 @@
 			children = (
 				ACC6F22C1D0EEE7000F1B6F5 /* AboutUsViewController.h */,
 				ACC6F22D1D0EEE7000F1B6F5 /* AboutUsViewController.m */,
+				ACC6F2341D0EFFE800F1B6F5 /* ContactUsViewController.h */,
+				ACC6F2351D0EFFE800F1B6F5 /* ContactUsViewController.m */,
+				ACC6F2371D0F003300F1B6F5 /* LegalInformationViewController.h */,
+				ACC6F2381D0F003300F1B6F5 /* LegalInformationViewController.m */,
 			);
 			name = Content;
 			sourceTree = "<group>";
@@ -753,6 +767,8 @@
 		ACC6F22F1D0EEFD500F1B6F5 /* HTMLContent */ = {
 			isa = PBXGroup;
 			children = (
+				ACC6F23A1D0FFBB400F1B6F5 /* LegalInfo.html */,
+				ACC6F2321D0EFF5300F1B6F5 /* ContactUs.html */,
 				ACC6F2301D0EF00200F1B6F5 /* AboutUs.html */,
 			);
 			name = HTMLContent;
@@ -851,8 +867,10 @@
 				AC68C47D1CB63F1B004B78DF /* brandon_bld.otf in Resources */,
 				AC411E3A1CC0F309008B1E38 /* SearchTitleView.xib in Resources */,
 				AC68C47E1CB63F1B004B78DF /* brandon_reg.otf in Resources */,
+				ACC6F23B1D0FFBB400F1B6F5 /* LegalInfo.html in Resources */,
 				ACCE7FD31CDCD38200A76CB6 /* AskQuestionView.xib in Resources */,
 				AC411E381CC0F170008B1E38 /* SearchFilterSortView.xib in Resources */,
+				ACC6F2331D0EFF5300F1B6F5 /* ContactUs.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -911,11 +929,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACC6F2361D0EFFE800F1B6F5 /* ContactUsViewController.m in Sources */,
 				AC411E771CC8D186008B1E38 /* Condition.m in Sources */,
 				AC411E971CC92344008B1E38 /* Category+CoreDataProperties.m in Sources */,
 				AC411E8E1CC92230008B1E38 /* SizeType.m in Sources */,
 				AC68C4921CB68865004B78DF /* PaddingTextField.m in Sources */,
 				AC411E551CC7A72C008B1E38 /* SellingTableViewCell.m in Sources */,
+				ACC6F2391D0F003300F1B6F5 /* LegalInformationViewController.m in Sources */,
 				AC411E131CBF970A008B1E38 /* Advert.m in Sources */,
 				ACCE7FD11CDCD37000A76CB6 /* AskQuestionView.m in Sources */,
 				AC08D8031CE9FEC200830A53 /* Question+CoreDataProperties.m in Sources */,

@@ -10,6 +10,7 @@
 #import "BaseViewController.h"
 
 @class TextFieldBorderBottom;
+@class RadioButton;
 
 @interface LoginViewController : BaseViewController{
     
@@ -23,6 +24,7 @@
     __weak IBOutlet TextFieldBorderBottom *_signUpEmailTextField;
     __weak IBOutlet TextFieldBorderBottom *_signUpPasswordTextField;
     __weak IBOutlet TextFieldBorderBottom *_signUpConfirmtextField;
+    __weak IBOutlet RadioButton *_acceptTermsAndConditionsButton;
     
     __weak IBOutlet UIView *_signInView;
     __weak IBOutlet NSLayoutConstraint *_signInHeightConstraint;
@@ -35,6 +37,8 @@
 - (IBAction)showSignUpView:(id)sender;
 - (IBAction)showSignInView:(id)sender;
 - (IBAction)forgotPasswordAction:(id)sender;
+
+- (IBAction)showTermsAndConditionsAction:(id)sender;
 
 - (IBAction)signIn:(id)sender;
 - (IBAction)signUp:(id)sender;

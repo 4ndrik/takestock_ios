@@ -60,7 +60,7 @@
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
         
-        NSMutableAttributedString* acceptString = [[NSMutableAttributedString alloc] initWithString:@"ACCEPTED WAITING SHIPPING INFO"];
+        NSMutableAttributedString* acceptString = [[NSMutableAttributedString alloc] initWithString:@"ACCEPTED WAITING FOR PAYMENT"];
         [acceptString addAttribute:NSFontAttributeName
                              value:BrandonGrotesqueBold14
                              range:NSMakeRange(0, acceptString.length)];

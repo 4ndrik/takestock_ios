@@ -14,6 +14,7 @@
 #import "User.h"
 #import "REFrostedViewController.h"
 #import "LoginViewController.h"
+#import "AppSettings.h"
 
 @implementation MenuViewController
 
@@ -55,6 +56,16 @@
     actionItem.action = @selector(showAboutUs:);
     [_menuItems addObject:actionItem];
     
+    actionItem = [[ActionItem alloc] init];
+    actionItem.title = @"Contact us";
+    actionItem.action = @selector(showContactUs:);
+    [_menuItems addObject:actionItem];
+    
+    actionItem = [[ActionItem alloc] init];
+    actionItem.title = @" Legal information";
+    actionItem.action = @selector(showLegalInfo:);
+    [_menuItems addObject:actionItem];
+    
 }
 
 -(void)refreshUserData{
@@ -70,9 +81,13 @@
     if (me){
         [_userView.userPhotoImageView loadImage:me.image];
         _userView.userNameLabel.text = me.userName;
+        _userView.logoutButton.hidden = NO;
+        [_userView.logoutButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+        [_userView.logoutButton addTarget:self action:@selector(logOut:) forControlEvents:UIControlEventTouchUpInside];
     }else{
         _userView.userPhotoImageView.image = [UIImage imageNamed:@"addImageIco"];
         _userView.userNameLabel.text = @"Sign in";
+        _userView.logoutButton.hidden = YES;
     }
     _menuTableView.tableHeaderView = _userView;
     
@@ -141,6 +156,51 @@
 -(void)showAboutUs:(id)owner{
     self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AboutUsController"];
     [self.frostedViewController hideMenuViewController];
+}
+
+-(void)showContactUs:(id)owner{
+    self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactUsController"];
+    [self.frostedViewController hideMenuViewController];
+}
+
+-(void)showLegalInfo:(id)owner{
+    self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LegalInformationController"];
+    [self.frostedViewController hideMenuViewController];
+}
+
+-(void)logOut:(id)owner{
+    UIAlertController* logoutController = [UIAlertController alertControllerWithTitle:@"" message:@"Are you sure you want to logout?" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* closeAction = [UIAlertAction
+                                  actionWithTitle:@"NO"
+                                  style:UIAlertActionStyleCancel
+                                  handler:^(UIAlertAction * action)
+                                  {
+                                      [logoutController dismissViewControllerAnimated:YES completion:nil];
+                                      
+                                  }];
+    
+    UIAlertAction* logOutAction = [UIAlertAction
+                                  actionWithTitle:@"YES"
+                                  style:UIAlertActionStyleDefault
+                                  handler:^(UIAlertAction * action)
+                                  {
+                                      [AppSettings setUserId:0];
+                                      [AppSettings setToken:@""];
+                                      [AppSettings resetSellerRevision];
+                                      [AppSettings resetBuyerRevision];
+                                      [AppSettings resetAdvertRevision];
+                                      [self refreshUserData];
+                                      [self showHome:nil];
+                                      [logoutController dismissViewControllerAnimated:YES completion:nil];
+                                      
+                                  }];
+    
+    
+    [logoutController addAction:closeAction];
+    [logoutController addAction:logOutAction];
+    
+    [self presentViewController:logoutController animated:YES completion:nil];
 }
 
 @end

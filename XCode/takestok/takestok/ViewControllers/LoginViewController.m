@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "ServerConnectionHelper.h"
 #import "TextFieldBorderBottom.h"
+#import "RadioButton.h"
 
 #define EMAIL_REGEX @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$"
 //#define PHONE_REGEX @"^\\d+$"
@@ -19,7 +20,7 @@
 @implementation LoginViewController
 
 #define SignInHeight 250
-#define SignUpHeight 476
+#define SignUpHeight 507
 
 
 - (void)viewDidLoad {
@@ -133,6 +134,10 @@
         else if (![_signUpPasswordTextField.text isEqualToString:_signUpConfirmtextField.text]){
             [messagesArray addObject:@"Password and confirm password are different"];
         }
+        
+        if (!_acceptTermsAndConditionsButton.selected){
+           [messagesArray addObject:@"You have to agree with terms and coditions"];
+        }
     }
     if (messagesArray.count > 0){
         NSString* message = [messagesArray componentsJoinedByString:@"\n"];
@@ -157,6 +162,10 @@
 
 - (IBAction)forgotPasswordAction:(id)sender {
 
+}
+
+- (IBAction)showTermsAndConditionsAction:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://takestock.shalakh.in/legal/"]];
 }
 
 - (IBAction)signIn:(id)sender {
