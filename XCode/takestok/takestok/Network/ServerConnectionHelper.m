@@ -53,8 +53,6 @@ typedef enum
 
 #define SERVER_RESPONCE_RESULT_PARAM                  @"results"
 
-#define SIGNATURE @"JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMCwidXNlcm5hbWUiOiJVc2VyQXJ0ZW0iLCJlbWFpbCI6InNlcmJpbmFydGVtQGdtYWlsLmNvbSIsImV4cCI6MTQ2NzM2NDg3NX0.YHMm5oaM7-B_kOHqEj4Cc1jt9fQrlY4DAxYYU3GWvCw"
-
 @implementation ServerConnectionHelper
 
 -(id)init
@@ -271,7 +269,7 @@ typedef enum
         lastUpdatedDate = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
     }
     
-    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[AppSettings getUserId]], @"author_id", [dateFormatter stringFromDate:lastUpdatedDate], @"updated_at__gte", nil];
+    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[AppSettings getUserId]], @"author_id", [dateFormatter stringFromDate:lastUpdatedDate], @"updated_at__gte",[NSNumber numberWithInteger:0], @"page_size", nil];
     NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
     
     NSURLSessionDataTask *loadAdvertTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable data, NSError * _Nullable error) {
@@ -380,7 +378,7 @@ typedef enum
         lastUpdatedDate = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
     }
     
-    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[AppSettings getUserId]], @"user", [dateFormatter stringFromDate:lastUpdatedDate], @"updated_at__gte", nil];
+    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[AppSettings getUserId]], @"user", [dateFormatter stringFromDate:lastUpdatedDate], @"updated_at__gte", [NSNumber numberWithInteger:0], @"page_size", nil];
     NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
     
     NSURLSessionDataTask* loadOffersTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
@@ -440,7 +438,7 @@ typedef enum
             [advertIdSet addObject:[NSNumber numberWithInt:advert.ident]];
         }
         
-        NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:advertIdSet, @"adverts", [dateFormatter stringFromDate:lastUpdatedDate], @"updated_at__gte", nil];
+        NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:advertIdSet, @"adverts", [dateFormatter stringFromDate:lastUpdatedDate], @"updated_at__gte", [NSNumber numberWithInteger:0], @"page_size", nil];
         NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
         
         NSURLSessionDataTask* loadOffersTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
@@ -694,7 +692,7 @@ typedef enum
             [advertIdSet addObject:[NSNumber numberWithInt:advert.ident]];
         }
         
-        NSString* query = [NSString stringWithFormat:@"adverts=%@", [[advertIdSet allObjects] componentsJoinedByString:@","]];
+        NSString* query = [NSString stringWithFormat:@"adverts=%@&page_size=0", [[advertIdSet allObjects] componentsJoinedByString:@","]];
         NSURLSessionDataTask* loadQATask = [_session dataTaskWithRequest:[self request:QUESTIONS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
             if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error]){
                 if (!error){
@@ -906,11 +904,9 @@ typedef enum
             break;
     }
     
-    NSString* token = SIGNATURE;
     if ([AppSettings getToken].length > 0){
-        token = [NSString stringWithFormat:@"JWT %@",[AppSettings getToken]];
+        [request setValue:[NSString stringWithFormat:@"JWT %@",[AppSettings getToken]] forHTTPHeaderField:@"Authorization"];
     }
-    [request setValue:token forHTTPHeaderField:@"Authorization"];
     
     if (contentType.length > 0){
         [request setValue:contentType forHTTPHeaderField:@"content-type"];
