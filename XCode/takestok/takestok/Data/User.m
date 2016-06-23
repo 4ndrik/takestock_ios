@@ -11,6 +11,8 @@
 #import "Image.h"
 #import "NSDictionary+HandleNil.h"
 #import "AppSettings.h"
+#import "BusinessType.h"
+#import "SubBusinessType.h"
 
 @implementation User
 
@@ -29,64 +31,63 @@
     self.isVerified = [[jsonDic objectForKeyNotNull:USER_VERIFIED_PARAM] boolValue];
     self.isSubscribed = [[jsonDic objectForKeyNotNull:USER_SUBSCRIBED_PARAMS] boolValue];
     self.rating = [[jsonDic objectForKeyNotNull:USER_AVG_RATING_PARAM] floatValue];
+    self.isVatRegistered = [[jsonDic objectForKeyNotNull:USER_VAT_REGISTERED_PARAM] boolValue];
+    self.businessName = [jsonDic objectForKeyNotNull:USER_BUSINESS_NAME_PARAM];
+    self.postCode = [[jsonDic objectForKeyNotNull:USER_POST_CODE_PARAM] stringValue];
+    self.vatNumber = [jsonDic objectForKeyNotNull:USER_VAT_NUMBER_PARAM];
     
-    /*
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2016-03-16T17:52:43Z",
-     */
+    self.businessType = [BusinessType getEntityWithId:[[jsonDic objectForKeyNotNull:USER_BUSINESS_TYPE_PARAM] intValue]];
+    self.subBusinessType = [SubBusinessType getEntityWithId:[[jsonDic objectForKeyNotNull:USER_BUSINESS_SYBTYPE_PARAM] intValue]];
     
+    NSString* url = [jsonDic objectForKeyNotNull:USER_PHOTO_PARAM];
+    if (url){
+        NSString* imIdent = [url lastPathComponent];
+        Image* userImage = [Image getImageWithResId:imIdent];
+        if (!userImage){
+            userImage = self.isForStore ? [Image storedEntity] :[Image tempEntity];
+        }else if (userImage.managedObjectContext != self.managedObjectContext){
+            userImage = [self.managedObjectContext objectWithID:[userImage objectID]];
+        }
+        userImage.resId = imIdent;
+        userImage.url = url;
+        self.image = userImage;
+    }
 }
 
 -(NSDictionary*)getDictionary{
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     if (self.ident > 0){
-        [result setValue:[NSNumber numberWithInt:self.ident] forKey:ADVERT_ID_PARAM];
-    }
-    NSTimeZone* timeZone = [NSTimeZone systemTimeZone];
-    if (self.lastLogin > 0){
-        
-        [result setValue:[NSDate stringFromTimeInterval:self.lastLogin format:DEFAULT_DATE_FORMAT timeZone:timeZone] forKey:USER_LAST_LOGIN_PARAM];
+        [result setValue:[NSNumber numberWithInt:self.ident] forKey:USER_ID_PARAM];
     }
     
     [result setValue:self.userName forKey:USER_USER_NAME_PARAM];
     [result setValue:self.firstName forKey:USER_FIRST_NAME_PARAM];
     [result setValue:self.lastName forKey:USER_LAST_NAME_PARAM];
-    [result setValue:self.email forKey:USER_EMAIL_PARAM];
-    [result setValue:[NSNumber numberWithBool:self.isVerified] forKey:USER_VERIFIED_PARAM];
-    [result setValue:[NSNumber numberWithBool:self.isSubscribed] forKey:USER_SUBSCRIBED_PARAMS];
-    [result setValue:[NSNumber numberWithFloat:self.rating] forKey:USER_AVG_RATING_PARAM];
     
-//    if (self.image){
-//        photo
-//        NSFileManager* fileManager = [NSFileManager defaultManager];
-//        
-//        NSMutableArray* photos = [NSMutableArray arrayWithCapacity:self.images.count];
-//        for (int i = 0; i < self.images.count; i++ ){
-//            Image* image = [self.images objectAtIndex:i];
-//            NSString* filePath = [ImageCacheUrlResolver getPathForImage:image];
-//            
-//            if ([fileManager fileExistsAtPath:filePath] && [[[fileManager attributesOfItemAtPath:filePath error:nil] objectForKey:@"NSFileSize"]intValue] > 0)
-//            {
-//                NSData *imageData = [NSData dataWithContentsOfFile:filePath];
-//                NSString* imageString = [imageData base64Encoding];
-//                [photos addObject:[NSString stringWithFormat:@"data:image/png;base64,%@",imageString]];
-//            }
-//        }
-//        [result setValue:photos forKey:@"photos_list"];
-//    }
+    [result setValue:[NSNumber numberWithBool:self.isVatRegistered]  forKey:USER_VAT_REGISTERED_PARAM];
+    [result setValue:self.businessName forKey:USER_BUSINESS_NAME_PARAM];
+    [result setValue:self.postCode forKey:USER_POST_CODE_PARAM];
+    [result setValue:self.vatNumber forKey:USER_VAT_NUMBER_PARAM];
+    
+    [result setValue:[NSNumber numberWithInt:self.businessType.ident] forKey:USER_BUSINESS_TYPE_PARAM];
+    [result setValue:[NSNumber numberWithInt:self.subBusinessType.ident] forKey:USER_BUSINESS_SYBTYPE_PARAM];
+    
     return result;
 }
 
-
+static User* _me;
 +(User*)getMe{
-    static User* _me;
+   
     if (_me && [AppSettings getUserId] <= 0){
         _me = nil;
     } else if (!_me && [AppSettings getUserId] > 0){
         _me = [User getEntityWithId:[AppSettings getUserId]];
     }
     return _me;
+}
+
++(void)refreshUser{
+    _me = nil;
 }
 
 @end

@@ -1,19 +1,20 @@
 //
-//  SubCategory.h
+//  SubBusinessType.h
 //  takestok
 //
-//  Created by Artem on 5/5/16.
+//  Created by Artem on 6/22/16.
 //  Copyright © 2016 Artem. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 #import "Dictionary.h"
 
-@class Advert, Category;
+@class User, BusinessType;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SubCategory : Dictionary
+@interface SubBusinessType : Dictionary
 
 +(NSArray*)getForParent:(int)parentId;
 
@@ -21,4 +22,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#import "SubCategory+CoreDataProperties.h"
+#import "SubBusinessType+CoreDataProperties.h"

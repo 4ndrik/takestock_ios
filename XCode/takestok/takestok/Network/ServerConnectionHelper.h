@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Stripe/Stripe.h>
 
+#define TAKESTOK_API_URL                @"http://dev.takestock.com/api/v1/"
 
 @class AFURLSessionManager;
 @class Advert;
@@ -50,7 +51,7 @@ typedef void (^resultBlock)(NSArray* result, NSDictionary* additionalData, NSErr
 -(void)loadUsers:(NSArray*)idents compleate:(void(^)(NSArray* users, NSError* error))compleate;
 -(void)signInWithUserName:(NSString*)username password:(NSString*)password compleate:(errorBlock)compleate;
 -(void)signUpWithUserName:(NSString*)username email:(NSString*)email password:(NSString*)password compleate:(errorBlock)compleate;
--(void)updateUser:(User*)user compleate:(errorBlock)compleate;
+-(void)updateUser:(User*)user image:(UIImage*)image compleate:(errorBlock)compleate;
 
 -(void)loadQuestionAnswersWithAd:(Advert*)advert page:(int)page compleate:(resultBlock)compleate;
 -(void)askQuestion:(Question*)question compleate:(errorBlock)compleate;

@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Image : BaseEntity<ImageProtocol>
 
-
++(instancetype)getImageWithResId:(NSString*)resId;
 
 @end
 

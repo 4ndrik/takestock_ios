@@ -439,7 +439,7 @@
     if (textField == _categoryTextField) {
         [self configureDataPickerWithData:[Category getAll] withTextField:textField];
     }else if (textField == _subCategoryTextField) {
-        [self configureDataPickerWithData:[SubCategory getAll] withTextField:textField];
+        [self configureDataPickerWithData:[SubCategory getForParent:_categoryTextField.tag] withTextField:textField];
     }else if (textField == _unitTextField) {
         [self configureDataPickerWithData:[Packaging getAll] withTextField:textField];
     }else if (textField == _shippingTextField) {
@@ -530,6 +530,9 @@
                 for (UILabel* unitLabel in _packagingLabelCollection){
                     unitLabel.text = ((Dictionary*)item).title;
                 }
+            }else if (_currentInputControl == _categoryTextField){
+                _subCategoryTextField.tag = 0;
+                _subCategoryTextField.text = @"";
             }
         }else if ([item isKindOfClass:[NSString class]]){
              [_currentInputControl setText:item];

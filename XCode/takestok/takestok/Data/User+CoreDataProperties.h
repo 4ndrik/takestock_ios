@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.h
 //  takestok
 //
-//  Created by Artem on 5/26/16.
+//  Created by Artem on 6/22/16.
 //  Copyright © 2016 Artem. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -24,11 +24,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *lastName;
 @property (nonatomic) float rating;
 @property (nullable, nonatomic, retain) NSString *userName;
+@property (nonatomic) BOOL isVatRegistered;
+@property (nullable, nonatomic, retain) NSString *businessName;
+@property (nullable, nonatomic, retain) NSString *postCode;
+@property (nullable, nonatomic, retain) NSString *vatNumber;
 @property (nullable, nonatomic, retain) NSSet<Advert *> *adverts;
 @property (nullable, nonatomic, retain) NSSet<Answer *> *answers;
 @property (nullable, nonatomic, retain) Image *image;
 @property (nullable, nonatomic, retain) NSSet<Offer *> *offers;
 @property (nullable, nonatomic, retain) NSSet<Question *> *questions;
+@property (nullable, nonatomic, retain) BusinessType *businessType;
+@property (nullable, nonatomic, retain) SubBusinessType *subBusinessType;
 
 @end
 

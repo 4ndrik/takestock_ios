@@ -10,6 +10,8 @@
 #import "BackgroundImageView.h"
 #import "RatingView.h"
 #import "User.h"
+#import "BusinessType.h"
+#import "SubBusinessType.h"
 
 @interface UserDetailsViewController ()
 
@@ -26,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    _otherUserDetails.preferredMaxLayoutWidth = 100;
     if (_user){
         [self fillData];
     }
@@ -35,8 +38,15 @@
     [super didReceiveMemoryWarning];
 }
 
+-(NSMutableAttributedString*)nextLine{
+    NSMutableAttributedString* spaceString = [[NSMutableAttributedString alloc] initWithString:@"\n \n"];
+    [spaceString addAttribute:NSFontAttributeName
+                        value:[UIFont systemFontOfSize:6]
+                        range:NSMakeRange(0, spaceString.length)];
+    return spaceString;
+}
+
 -(void)fillData{
-    
     if (_user.image){
         [_userPicture loadImage:_user.image];
         _noImageLabel.hidden = YES;
@@ -48,7 +58,65 @@
     _ratingView.rate = _user.rating;
     _ratingLabel.text = [NSString stringWithFormat:@"%.02f", _user.rating];
     
-    //TODO: Other details atributed string
+    NSMutableAttributedString* additionalString = [[NSMutableAttributedString alloc] init];
+    if (_user.businessName.length > 0){
+        NSMutableAttributedString* businessTitleString = [[NSMutableAttributedString alloc] initWithString:@"Business name:"];
+        [businessTitleString addAttribute:NSFontAttributeName
+                             value:HelveticaNeue18
+                             range:NSMakeRange(0, businessTitleString.length)];
+        [businessTitleString addAttribute:NSForegroundColorAttributeName value:GrayColor range:NSMakeRange(0, businessTitleString.length)];
+        [additionalString appendAttributedString:businessTitleString];
+         [additionalString appendAttributedString:[self nextLine]];
+        
+        NSMutableAttributedString* businessNameString = [[NSMutableAttributedString alloc] initWithString:_user.businessName];
+        [businessNameString addAttribute:NSFontAttributeName
+                                   value:HelveticaLight18
+                                   range:NSMakeRange(0, businessNameString.length)];
+        [businessNameString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, businessNameString.length)];
+        [additionalString appendAttributedString:businessNameString];
+    }
+    
+    if (_user.businessType){
+        if (additionalString.length > 0){
+            [additionalString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n\n"]];
+        }
+        NSMutableAttributedString* businessTitleString = [[NSMutableAttributedString alloc] initWithString:@"Type of businnes:"];
+        [businessTitleString addAttribute:NSFontAttributeName
+                                    value:HelveticaNeue18
+                                    range:NSMakeRange(0, businessTitleString.length)];
+        [businessTitleString addAttribute:NSForegroundColorAttributeName value:GrayColor range:NSMakeRange(0, businessTitleString.length)];
+        [additionalString appendAttributedString:businessTitleString];
+         [additionalString appendAttributedString:[self nextLine]];
+        
+        NSMutableAttributedString* businessNameString = [[NSMutableAttributedString alloc] initWithString:_user.businessType.title];
+        [businessNameString addAttribute:NSFontAttributeName
+                                   value:HelveticaLight18
+                                   range:NSMakeRange(0, businessNameString.length)];
+        [businessNameString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, businessNameString.length)];
+        [additionalString appendAttributedString:businessNameString];
+    }
+    
+    if (_user.subBusinessType){
+        if (additionalString.length > 0){
+            [additionalString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n\n"]];
+        }
+        NSMutableAttributedString* businessTitleString = [[NSMutableAttributedString alloc] initWithString:@"Subtype:"];
+        [businessTitleString addAttribute:NSFontAttributeName
+                                    value:HelveticaNeue18
+                                    range:NSMakeRange(0, businessTitleString.length)];
+        [businessTitleString addAttribute:NSForegroundColorAttributeName value:GrayColor range:NSMakeRange(0, businessTitleString.length)];
+        [additionalString appendAttributedString:businessTitleString];
+        [additionalString appendAttributedString:[self nextLine]];
+        
+        NSMutableAttributedString* businessNameString = [[NSMutableAttributedString alloc] initWithString:_user.subBusinessType.title];
+        [businessNameString addAttribute:NSFontAttributeName
+                                   value:HelveticaLight18
+                                   range:NSMakeRange(0, businessNameString.length)];
+        [businessNameString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, businessNameString.length)];
+        [additionalString appendAttributedString:businessNameString];
+    }
+    
+    [_otherUserDetails setAttributedText:additionalString];
 }
 
 @end

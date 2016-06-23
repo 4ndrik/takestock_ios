@@ -23,20 +23,24 @@
 #import "Answer.h"
 
 #import <AFNetworking.h>
+#import "NSData+base64.h"
+
+#import "BusinessType.h"
 
 typedef enum
 {
     HTTP_METHOD_GET,
     HTTP_METHOD_POST,
     HTTP_METHOD_PUT,
+    HTTP_METHOD_PATCH,
     HTTP_METHOD_DELETE
 } HTTP_METHOD;
-
-#define TAKESTOK_URL                @"http://takestock.shalakh.in/api/v1/"
 
 #define JSON_CONTENT_TYPE           @"application/json"
 
 #define USER_URL_PATH               @"users"
+#define ME_URL_PATH                 @"me"
+#define BUSINESSTYPES_URL_PATH      @"a/businesstype"
 #define ADVERTS_URL_PATH            @"adverts"
 #define CONDITIONS_URL_PATH         @"conditions"
 #define SHIPPING_URL_PATH           @"shipping"
@@ -108,6 +112,7 @@ typedef enum
     [self loadCategory];
     [self loadPackaging];
     [self loadOfferStatus];
+    [self loadBusinessTypes];
     
     if ([AppSettings getUserId] > 0){
         [self loadUsers:[NSArray arrayWithObjects:[NSNumber numberWithInt:[AppSettings getUserId]], nil] compleate:nil];
@@ -230,6 +235,21 @@ typedef enum
     [loadOfferStatusTask resume];
 }
 
+-(void)loadBusinessTypes{
+    [_dictionaryLock lock];
+    NSURLSessionDataTask* loadOfferStatusTask = [_session dataTaskWithRequest:[self request:BUSINESSTYPES_URL_PATH query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error]){
+            if (result){
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    [BusinessType syncWithJsonArray:result];
+                });
+            }
+        }
+        [_dictionaryLock unlock];
+    }];
+    [loadOfferStatusTask resume];
+}
+
 #pragma mark - Advert
 
 //Parce advert data
@@ -269,7 +289,7 @@ typedef enum
         lastUpdatedDate = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
     }
     
-    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[AppSettings getUserId]], @"author_id", [dateFormatter stringFromDate:lastUpdatedDate], @"updated_at__gte",[NSNumber numberWithInteger:0], @"page_size", nil];
+    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[AppSettings getUserId]], @"author_id", [dateFormatter stringFromDate:lastUpdatedDate], @"updated_at__gte",[NSNumber numberWithInteger:NSIntegerMax], @"page_size", nil];
     NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
     
     NSURLSessionDataTask *loadAdvertTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable data, NSError * _Nullable error) {
@@ -378,7 +398,7 @@ typedef enum
         lastUpdatedDate = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
     }
     
-    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[AppSettings getUserId]], @"user", [dateFormatter stringFromDate:lastUpdatedDate], @"updated_at__gte", [NSNumber numberWithInteger:0], @"page_size", nil];
+    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[AppSettings getUserId]], @"user", [dateFormatter stringFromDate:lastUpdatedDate], @"updated_at__gte", [NSNumber numberWithInteger:NSIntegerMax], @"page_size", nil];
     NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
     
     NSURLSessionDataTask* loadOffersTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
@@ -438,7 +458,7 @@ typedef enum
             [advertIdSet addObject:[NSNumber numberWithInt:advert.ident]];
         }
         
-        NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:advertIdSet, @"adverts", [dateFormatter stringFromDate:lastUpdatedDate], @"updated_at__gte", [NSNumber numberWithInteger:0], @"page_size", nil];
+        NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:advertIdSet, @"adverts", [dateFormatter stringFromDate:lastUpdatedDate], @"updated_at__gte", [NSNumber numberWithInteger:NSIntegerMax], @"page_size", nil];
         NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
         
         NSURLSessionDataTask* loadOffersTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
@@ -654,13 +674,18 @@ typedef enum
     [loadUserTask resume];
 }
 
--(void)updateUser:(User*)user compleate:(errorBlock)compleate{
+-(void)updateUser:(User*)user image:(UIImage*)image compleate:(errorBlock)compleate{
     
-    NSDictionary* userData = [user getDictionary];
+    NSMutableDictionary* userData = [NSMutableDictionary dictionaryWithDictionary:[user getDictionary]];
+    if (image){
+        NSData* data = UIImagePNGRepresentation(image);
+        [userData setValue:[NSString stringWithFormat:@"data:image/png;base64,%@",[data base64Encoding]] forKey:@"photo_b64"];
+    }
+    
     NSError* error;
     NSString* params = [self jsonStringFromDicOrArray:userData error:&error];
     
-    NSURLSessionDataTask* updateUserTask = [_session dataTaskWithRequest:[self request:[NSString stringWithFormat:@"%@%i/", USER_URL_PATH, user.ident] query:params methodType:HTTP_METHOD_PUT contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+    NSURLSessionDataTask* updateUserTask = [_session dataTaskWithRequest:[self request:ME_URL_PATH query:params methodType:HTTP_METHOD_PATCH contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error] && result)
         {
             dispatch_sync(dispatch_get_main_queue(), ^{
@@ -692,7 +717,9 @@ typedef enum
             [advertIdSet addObject:[NSNumber numberWithInt:advert.ident]];
         }
         
-        NSString* query = [NSString stringWithFormat:@"adverts=%@&page_size=0", [[advertIdSet allObjects] componentsJoinedByString:@","]];
+        NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:[[advertIdSet allObjects] componentsJoinedByString:@","], @"adverts", [NSNumber numberWithInteger:NSIntegerMax], @"page_size", nil];
+        NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
+    
         NSURLSessionDataTask* loadQATask = [_session dataTaskWithRequest:[self request:QUESTIONS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
             if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error]){
                 if (!error){
@@ -873,7 +900,7 @@ typedef enum
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
     request.cachePolicy = NSURLRequestUseProtocolCachePolicy;
     
-    NSString *urlString = [NSString stringWithFormat:@"%@%@/", TAKESTOK_URL, method];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/", TAKESTOK_API_URL, method];
     
     switch (methodType) {
         case HTTP_METHOD_GET:
@@ -890,8 +917,14 @@ typedef enum
         }
         case HTTP_METHOD_POST:
         case HTTP_METHOD_PUT:
+        case HTTP_METHOD_PATCH:
         {
-            [request setHTTPMethod:methodType == HTTP_METHOD_POST ? @"POST" : @"PUT"];
+            if (methodType == HTTP_METHOD_POST)
+                [request setHTTPMethod:@"POST"];
+            else if (methodType == HTTP_METHOD_PUT)
+                [request setHTTPMethod:@"PUT"];
+            else
+                [request setHTTPMethod:@"PATCH"];
             
             if (query.length > 0)
             {
@@ -906,6 +939,8 @@ typedef enum
     
     if ([AppSettings getToken].length > 0){
         [request setValue:[NSString stringWithFormat:@"JWT %@",[AppSettings getToken]] forHTTPHeaderField:@"Authorization"];
+    }else{
+        [request setValue:[NSString stringWithFormat:@"JWT %@",@"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwidXNlcm5hbWUiOiJVc2VyQXJ0ZW0xIiwiZW1haWwiOiJzZXJiaW5hcnRlbUBnbWFpbC5jb20iLCJleHAiOjE0NjkxOTAzMTZ9.hNqlPx7lKRMTJcyL_h6PrW10nmjdD1-VAoEugp9C0k8"] forHTTPHeaderField:@"Authorization"];
     }
     
     if (contentType.length > 0){

@@ -16,6 +16,9 @@
 #import "GUIDCreator.h"
 #import "ImageCacheUrlResolver.h"
 #import "ServerConnectionHelper.h"
+#import "RadioButton.h"
+#import "BusinessType.h"
+#import "SubBusinessType.h"
 
 @interface UserProfileViewController ()
 
@@ -42,7 +45,15 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:self.view.window];
     
-    // Do any additional setup after loading the view.
+    _textControlsArray = [NSArray arrayWithObjects:
+                          _businessNameTextField,
+                          _postCodeTextField,
+                          _typeOfBusinessTextField,
+                          _subTypeOfBusinessTextField,
+                          _vatNumber,
+                          _paymantInformation, nil];
+    
+    _keyboardFrame = 303;
 }
 
 -(void)dealloc{
@@ -63,6 +74,20 @@
         }
         _userNameTextField.text = _user.userName;
         _emailTextField.text = _user.email;
+        _businessNameTextField.text = _user.businessName;
+        _postCodeTextField.text = _user.postCode;
+        
+        _typeOfBusinessTextField.tag = _user.businessType.ident;
+        _typeOfBusinessTextField.text = _user.businessType.title;
+        
+        _subTypeOfBusinessTextField.tag = _user.subBusinessType.ident;
+        _subTypeOfBusinessTextField.text = _user.subBusinessType.title;
+        
+        if (_user.isVatRegistered){
+            _vatNumber.text = _user.vatNumber;
+        }
+        [_amNotVatRegisteredButton setSelected:!_user.isVatRegistered];
+        [self vatRegisteredChanged:_amNotVatRegisteredButton];
     }
     
     [self.view setNeedsUpdateConstraints];
@@ -70,21 +95,18 @@
     [self.view layoutIfNeeded];
 }
 
+#pragma mark  - UIImagePickerControllerDelegate
+
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info;
 {
     [self dismissViewControllerAnimated:YES completion:nil];
     
     UIImage *image = (UIImage*)[info objectForKey:UIImagePickerControllerOriginalImage];
     image = [image fixOrientation];
-    //TODO: Change size if need
     CGSize size = image.size;
     image = [UIImage imageWithImage:image scaledToSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.width * size.height / size.width)];
     
-    _selectedImage = [[StoredImage alloc] init];
-    _selectedImage.resId = [GUIDCreator getGuid];
-    
-    [image saveToPath:[ImageCacheUrlResolver getPathForImage:_selectedImage]];
-    
+    _newImage = image;
     
     _userImageView.image = image;
     _addImageTitle.text = @"EDIT";
@@ -96,6 +118,144 @@
     [photoLibraryContoller setSourceType: showLibrary? UIImagePickerControllerSourceTypePhotoLibrary : UIImagePickerControllerSourceTypeCamera];
     [self presentViewController:photoLibraryContoller animated:YES completion:nil];
 }
+
+#pragma mark - UIPickerViewDelegate, UIPickerViewDataSource
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+// returns the # of rows in each component..
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return _pickerData.count;
+}
+
+-(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    
+    id item = [_pickerData objectAtIndex:row];
+    NSString* title = @"";
+    if ([item isKindOfClass:[Dictionary class]]){
+        title = ((Dictionary*)item).title;
+    }else if ([item isKindOfClass:[NSString class]]){
+        title = item;
+    }
+    return title;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    if ([_currentInputControl respondsToSelector:@selector(setText:)]){
+        id item = [_pickerData objectAtIndex:row];
+        if ([item isKindOfClass:[Dictionary class]]){
+            [_currentInputControl setText:((Dictionary*)item).title];
+            [_currentInputControl setTag:((Dictionary*)item).ident];
+            if (_currentInputControl == _typeOfBusinessTextField){
+                _subTypeOfBusinessTextField.tag = 0;
+                _subTypeOfBusinessTextField.text = @"";
+            }
+        }else if ([item isKindOfClass:[NSString class]]){
+            [_currentInputControl setText:item];
+        }else{
+            [_currentInputControl setText:@""];
+        }
+    }
+}
+
+#pragma mark - UITextFieldDelegate
+
+-(void)scrollToView:(UIView*)view{
+    CGRect rect = [view bounds];
+    rect = [view convertRect:rect toView:_scrollView];
+    rect.origin.x = 0 ;
+    rect.origin.y -= 60 ;
+    rect.size.height = 150;
+    
+    [_scrollView scrollRectToVisible:rect animated:YES];
+}
+
+-(UIToolbar*)toolBarForControl:(UIView*)control{
+    UIToolbar * keyboardToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+    
+    keyboardToolBar.barStyle = UIBarStyleDefault;
+    [keyboardToolBar setItems: [NSArray arrayWithObjects:
+                                [[UIBarButtonItem alloc]initWithTitle:@"Previous" style:UIBarButtonItemStylePlain target:self action:@selector(previousTextField)],
+                                
+                                [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(nextTextField)],
+                                [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                                [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(hideKeyboard:)],
+                                nil]];
+    
+    if (control == [_textControlsArray firstObject]){
+        [keyboardToolBar.items objectAtIndex:0].enabled = NO;
+    }
+    if (control == [_textControlsArray lastObject]){
+        [keyboardToolBar.items objectAtIndex:1].enabled = NO;
+    }
+    
+    return keyboardToolBar;
+}
+
+- (void)nextTextField {
+    int index = [_textControlsArray indexOfObject:_currentInputControl];
+    index++;
+    UITextField* textControl = [_textControlsArray objectAtIndex:index];
+    if (![textControl isEnabled]){
+        index++;
+        textControl = [_textControlsArray objectAtIndex:index];
+    }
+    [textControl becomeFirstResponder];
+}
+
+-(void)previousTextField
+{
+    int index = [_textControlsArray indexOfObject:_currentInputControl];
+    index--;
+    UITextField* textControl = [_textControlsArray objectAtIndex:index];
+    if (![textControl isEnabled]){
+        index--;
+        textControl = [_textControlsArray objectAtIndex:index];
+    }
+    [textControl becomeFirstResponder];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [self scrollToView:textField];
+}
+
+-(void)configureDataPickerWithData:(NSArray<Dictionary*>*)data withTextField:(UITextField*)textField{
+    _pickerData = data;
+    [_textPiker reloadAllComponents];
+    
+    textField.inputView = _textPiker;
+    NSUInteger index = [_pickerData indexOfObjectPassingTest:^BOOL(Dictionary* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        return obj.ident == textField.tag;
+    }];
+    [_textPiker selectRow:index == NSNotFound ? 0 : index inComponent:0 animated:NO];
+    [self pickerView:_textPiker didSelectRow:index == NSNotFound ? 0 : index inComponent:0];
+}
+
+-(BOOL)textFieldShouldBeginEditing: (UITextField *)textField
+{
+    _currentInputControl = textField;
+    
+    textField.inputAccessoryView = [self toolBarForControl:textField];
+    
+    if (!_textPiker){
+        _textPiker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, _keyboardFrame - textField.inputAccessoryView.frame.size.height)];
+        [_textPiker setDataSource: self];
+        [_textPiker setDelegate: self];
+        _textPiker.showsSelectionIndicator = YES;
+    }
+    
+    if (textField == _typeOfBusinessTextField) {
+        [self configureDataPickerWithData:[BusinessType getAll] withTextField:textField];
+    }else if (textField == _subTypeOfBusinessTextField) {
+        [self configureDataPickerWithData:[SubBusinessType getForParent:_typeOfBusinessTextField.tag] withTextField:textField];
+    }
+    return YES;
+}
+
+
+#pragma mark - Helpers
 
 - (IBAction)changePasswordAction:(id)sender {
 }
@@ -152,6 +312,7 @@
     
     // get the size of the keyboard
     CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    _keyboardFrame = keyboardSize.height;
     _scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0);
     
 }
@@ -162,22 +323,29 @@
     if ([self validateUser]){
         NSUndoManager* undoManager = [[NSUndoManager alloc] init];
         _user.managedObjectContext.undoManager = undoManager;
+        
         [undoManager beginUndoGrouping];
-        
-        Image* uImage = [Image storedEntity];
-        uImage.resId = _selectedImage.resId;
-        _user.image = uImage;
-        
+        _user.businessName = _businessNameTextField.text;
+        _user.postCode = _postCodeTextField.text;
+        _user.businessType = [BusinessType getEntityWithId:_typeOfBusinessTextField.tag];
+        _user.subBusinessType = [SubBusinessType getEntityWithId:_subTypeOfBusinessTextField.tag];
+        if (![_amNotVatRegisteredButton isSelected]){
+            _user.vatNumber = _vatNumber.text;
+        }
+        _user.isVatRegistered = ![_amNotVatRegisteredButton isSelected];
         [undoManager endUndoGrouping];
         
         [self showLoading];
-        [[ServerConnectionHelper sharedInstance] updateUser:_user compleate:^(NSError *error) {
+        [[ServerConnectionHelper sharedInstance] updateUser:_user image:_newImage compleate:^(NSError *error) {
+            [self hideLoading];
             NSString* message = @"User updated successfully";
             NSString* title = @"";
             if (error){
                 [undoManager undo];
                 message = ERROR_MESSAGE(error);
                 title = @"Error";
+            }else{
+                [_newImage saveToPath:[ImageCacheUrlResolver getPathForImage:_user.image]];
             }
             _user.managedObjectContext.undoManager = nil;
             
@@ -224,6 +392,16 @@
     }]];
     
     [self presentViewController:actionSheet animated:YES completion:nil];
+}
+
+- (IBAction)vatRegisteredChanged:(RadioButton*)sender {
+    _vatNumber.enabled = !sender.isSelected;
+    if (!_vatNumber.enabled){
+        _vatNumber.text = @"";
+        _vatNumber.placeholder = @"";
+    }else{
+        _vatNumber.placeholder = @"VAT number";
+    }
 }
 
 @end

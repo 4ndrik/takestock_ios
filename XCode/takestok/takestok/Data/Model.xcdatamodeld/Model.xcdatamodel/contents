@@ -33,6 +33,12 @@
         <relationship name="question" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Question" inverseName="answer" inverseEntity="Question" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="answers" inverseEntity="User" syncable="YES"/>
     </entity>
+    <entity name="BusinessType" representedClassName="BusinessType" syncable="YES">
+        <attribute name="ident" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="subBusinessTypes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubBusinessType" inverseName="businessType" inverseEntity="SubBusinessType" syncable="YES"/>
+        <relationship name="user" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="businessType" inverseEntity="User" syncable="YES"/>
+    </entity>
     <entity name="Category" representedClassName="Category" syncable="YES">
         <attribute name="ident" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -102,6 +108,12 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="adverts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="sizeType" inverseEntity="Advert" syncable="YES"/>
     </entity>
+    <entity name="SubBusinessType" representedClassName="SubBusinessType" syncable="YES">
+        <attribute name="ident" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="businessType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusinessType" inverseName="subBusinessTypes" inverseEntity="BusinessType" syncable="YES"/>
+        <relationship name="user" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="subBusinessType" inverseEntity="User" syncable="YES"/>
+    </entity>
     <entity name="SubCategory" representedClassName="SubCategory" syncable="YES">
         <attribute name="ident" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -109,20 +121,26 @@
         <relationship name="subAdverbs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="subCategory" inverseEntity="Advert" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="businessName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ident" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="isSubscribed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isVatRegistered" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isVerified" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="lastLogin" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vatNumber" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="adverts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Advert" inverseName="author" inverseEntity="Advert" syncable="YES"/>
         <relationship name="answers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Answer" inverseName="user" inverseEntity="Answer" syncable="YES"/>
+        <relationship name="businessType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusinessType" inverseName="user" inverseEntity="BusinessType" syncable="YES"/>
         <relationship name="image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="user" inverseEntity="Image" syncable="YES"/>
         <relationship name="offers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Offer" inverseName="user" inverseEntity="Offer" syncable="YES"/>
         <relationship name="questions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Question" inverseName="user" inverseEntity="Question" syncable="YES"/>
+        <relationship name="subBusinessType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubBusinessType" inverseName="user" inverseEntity="SubBusinessType" syncable="YES"/>
     </entity>
     <elements>
         <element name="Advert" positionX="-63" positionY="-18" width="128" height="405"/>
@@ -138,6 +156,8 @@
         <element name="Shipping" positionX="-36" positionY="90" width="128" height="90"/>
         <element name="SizeType" positionX="-27" positionY="72" width="128" height="90"/>
         <element name="SubCategory" positionX="-18" positionY="135" width="128" height="105"/>
-        <element name="User" positionX="-18" positionY="117" width="128" height="255"/>
+        <element name="User" positionX="-18" positionY="117" width="128" height="345"/>
+        <element name="BusinessType" positionX="-27" positionY="135" width="128" height="105"/>
+        <element name="SubBusinessType" positionX="-18" positionY="144" width="128" height="105"/>
     </elements>
 </model>

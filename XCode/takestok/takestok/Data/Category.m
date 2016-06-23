@@ -20,7 +20,7 @@
 +(Dictionary*)syncClass:(Class)class withDb:(NSArray*)dbCategories withJson:(NSDictionary*)jsonCategory{
     int ident = [[jsonCategory objectForKeyNotNull:CATEGORY_ID_PARAM] intValue];
     NSUInteger index = [dbCategories indexOfObjectPassingTest:^BOOL(Dictionary*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        return obj.ident = ident;
+        return obj.ident == ident;
     }];
     
     Category* dbCategory;

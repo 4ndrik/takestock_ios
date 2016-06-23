@@ -32,6 +32,12 @@
     return @"Image";
 }
 
++(instancetype)getImageWithResId:(NSString*)resId{
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"resId == %@", resId];
+    NSFetchRequest* request = [self getFetchRequestForPredicate:predicate withSortDescriptions:nil];
+    return [[DB sharedInstance].storedManagedObjectContext executeFetchRequest:request error:nil].firstObject;
+}
+
 -(void)updateWithDic:(NSDictionary*)imageDic{
     self.ident = [[imageDic objectForKeyNotNull:IMAGE_ID_PARAM] intValue];
     self.height = [[imageDic objectForKeyNotNull:PHOTOS_HEIGHT_PARAM] intValue];

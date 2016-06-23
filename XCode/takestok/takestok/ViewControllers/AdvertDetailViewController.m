@@ -32,6 +32,8 @@
 
 @implementation AdvertDetailViewController
 
+#pragma mark - Life cycle
+
 -(void)setAdvert:(Advert*)advert{
     _advert = advert;
     
@@ -71,6 +73,37 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"ImageSelectedSegue"]) {
+        ImagesCollectionViewController* imageVC = (ImagesCollectionViewController*)segue.destinationViewController;
+        [imageVC setImages:[_advert.images array] withCurrentIndex:((NSIndexPath*)sender).row];
+    }else if ([segue.identifier isEqualToString:@"AQSegue"]){
+        QAViewController* aqVC = (QAViewController*)segue.destinationViewController;
+        [aqVC setAdvert:_advert];
+    }else if ([segue.identifier isEqualToString:@"UserDetailsSegue"]){
+        UserDetailsViewController* udVC = (UserDetailsViewController*)segue.destinationViewController;
+        [udVC setUser:_advert.author];
+    }
+}
+
+#pragma mark - Handle keyboard
+
+- (void)keyboardWillHide:(NSNotification *)n
+{
+    _scrollView.contentInset = UIEdgeInsetsZero;
+}
+
+- (void)keyboardWillShow:(NSNotification *)n
+{
+    NSDictionary* userInfo = [n userInfo];
+    
+    // get the size of the keyboard
+    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    _scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0);
+    
+}
+
+#pragma mark - Helpers
 -(void)refreshAdData{
     _titleLabel.text = _advert.name;
     
@@ -111,6 +144,11 @@
         _conditionHeightConstraint.constant = 0;
     }
     
+    if (_advert.author.image)
+        [_userPicture loadImage:_advert.author.image];
+    else
+        [_userPicture setImage:[UIImage imageNamed:@"icon166x176"]];
+    
     _userName.text = _advert.author.userName;
     [_ratingView setRate:_advert.author.rating];
     
@@ -125,23 +163,6 @@
     [self.view setNeedsUpdateConstraints];
     [self.view setNeedsLayout];
     [self.view layoutIfNeeded];
-}
-
-#pragma mark - Handle keyboard
-
-- (void)keyboardWillHide:(NSNotification *)n
-{
-    _scrollView.contentInset = UIEdgeInsetsZero;
-}
-
-- (void)keyboardWillShow:(NSNotification *)n
-{
-    NSDictionary* userInfo = [n userInfo];
-    
-    // get the size of the keyboard
-    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    _scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0);
-    
 }
 
 -(void)createOrder{
@@ -233,6 +254,7 @@
     
 }
 
+#pragma mark - Outlets
 - (IBAction)makeAction:(id)sender {
     if (![User getMe])
     {
@@ -253,19 +275,6 @@
     [self.view setNeedsLayout];
     [self.view layoutIfNeeded];
     _createOrderAction = NO;
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([segue.identifier isEqualToString:@"ImageSelectedSegue"]) {
-        ImagesCollectionViewController* imageVC = (ImagesCollectionViewController*)segue.destinationViewController;
-        [imageVC setImages:[_advert.images array] withCurrentIndex:((NSIndexPath*)sender).row];
-    }else if ([segue.identifier isEqualToString:@"AQSegue"]){
-        QAViewController* aqVC = (QAViewController*)segue.destinationViewController;
-        [aqVC setAdvert:_advert];
-    }else if ([segue.identifier isEqualToString:@"UserDetailsSegue"]){
-        UserDetailsViewController* udVC = (UserDetailsViewController*)segue.destinationViewController;
-        [udVC setUser:_advert.author];
-    }
 }
 
 #pragma mark - UICollectionViewDataSource
