@@ -42,6 +42,10 @@
     [_menuItems addObject:actionItem];
     
     actionItem = [[ActionItem alloc] init];
+    actionItem.title = @"Dashboard";
+    [_menuItems addObject:actionItem];
+    
+    actionItem = [[ActionItem alloc] init];
     actionItem.title = @"Selling";
     actionItem.action = @selector(showSelling:);
     [_menuItems addObject:actionItem];
@@ -49,6 +53,15 @@
     actionItem = [[ActionItem alloc] init];
     actionItem.title = @"Buying";
     actionItem.action = @selector(showBuying:);
+    [_menuItems addObject:actionItem];
+    
+    actionItem = [[ActionItem alloc] init];
+    actionItem.title = @"Watch list";
+    actionItem.action = @selector(showWatchList:);
+    [_menuItems addObject:actionItem];
+    
+    actionItem = [[ActionItem alloc] init];
+    actionItem.title = @"Legal information";
     [_menuItems addObject:actionItem];
     
     actionItem = [[ActionItem alloc] init];
@@ -99,10 +112,26 @@
     return [_menuItems count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ActionItem* action = [_menuItems objectAtIndex:indexPath.row];
+    return action.action ? 46. : 20.;
+}
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ActionItem* action = [_menuItems objectAtIndex:indexPath.row];
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"MenuActionTableViewCell"];
+    UITableViewCell* cell;
+    if (action.action){
+        cell = [tableView dequeueReusableCellWithIdentifier:@"MenuActionTableViewCell"];
+        UILabel* label = (UILabel*)[cell viewWithTag:1980];
+        label.text = action.title;
+        [cell viewWithTag:1981].hidden = _menuItems.count != indexPath.row + 1 && ((ActionItem*)[_menuItems objectAtIndex:indexPath.row + 1]).action == nil;
+        
+    }else{
+    
+    
+    cell = [tableView dequeueReusableCellWithIdentifier:action.action ? @"MenuActionTableViewCell" : @"MenuSectionTableViewCell"];
     cell.textLabel.text = action.title;
+    }
     return cell;
 }
 
@@ -151,6 +180,10 @@
         self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BuyingController"];
         [self.frostedViewController hideMenuViewController];
     }
+}
+
+-(void)showWatchList:(id)owner{
+    NSLog(@"dsa");
 }
 
 -(void)showAboutUs:(id)owner{

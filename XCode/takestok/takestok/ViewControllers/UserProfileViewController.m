@@ -74,6 +74,7 @@
         }
         _userNameTextField.text = _user.userName;
         _emailTextField.text = _user.email;
+        [_emailSubscriberadioButton setSelected:_user.isSubscribed];
         _businessNameTextField.text = _user.businessName;
         _postCodeTextField.text = _user.postCode;
         
@@ -325,6 +326,7 @@
         _user.managedObjectContext.undoManager = undoManager;
         
         [undoManager beginUndoGrouping];
+        _user.isSubscribed = _emailSubscriberadioButton.isSelected;
         _user.businessName = _businessNameTextField.text;
         _user.postCode = _postCodeTextField.text;
         _user.businessType = [BusinessType getEntityWithId:_typeOfBusinessTextField.tag];

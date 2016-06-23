@@ -72,6 +72,7 @@
     [result setValue:self.userName forKey:USER_USER_NAME_PARAM];
     [result setValue:self.firstName forKey:USER_FIRST_NAME_PARAM];
     [result setValue:self.lastName forKey:USER_LAST_NAME_PARAM];
+    [result setValue:[NSNumber numberWithBool:self.isSubscribed]  forKey:USER_SUBSCRIBED_PARAMS];
     
     [result setValue:[NSNumber numberWithBool:self.isVatRegistered]  forKey:USER_VAT_REGISTERED_PARAM];
     [result setValue:self.businessName forKey:USER_BUSINESS_NAME_PARAM];

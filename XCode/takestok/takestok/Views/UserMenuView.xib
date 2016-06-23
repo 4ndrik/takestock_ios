@@ -19,21 +19,35 @@
                     </constraints>
                     <state key="normal" image="logOut"/>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addImageIco" translatesAutoresizingMaskIntoConstraints="NO" id="t8A-1M-Eir" customClass="BackgroundImageView">
-                    <rect key="frame" x="250" y="20" width="100" height="100"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addImageIco" translatesAutoresizingMaskIntoConstraints="NO" id="t8A-1M-Eir" customClass="BackgroundImageView">
+                    <rect key="frame" x="20" y="20" width="560" height="100"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="UB0-Hf-ygT"/>
                         <constraint firstAttribute="height" constant="100" id="cfY-OX-oNh"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="UB0-Hf-ygT"/>
+                        </mask>
+                    </variation>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cem-G2-bVS">
                     <rect key="frame" x="0.0" y="138" width="600" height="26"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yBm-PV-Crx">
+                    <rect key="frame" x="15" y="183" width="570" height="1"/>
+                    <color key="backgroundColor" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="68q-hD-dRC"/>
+                    </constraints>
+                </view>
             </subviews>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="t8A-1M-Eir" secondAttribute="trailing" constant="20" id="4ho-VL-DcT"/>
+                <constraint firstItem="t8A-1M-Eir" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="8AG-L7-Udh"/>
                 <constraint firstAttribute="bottom" secondItem="Cem-G2-bVS" secondAttribute="bottom" constant="20" id="9s7-14-5LX"/>
                 <constraint firstItem="Cem-G2-bVS" firstAttribute="top" secondItem="t8A-1M-Eir" secondAttribute="bottom" constant="10" id="Bqc-4S-3tW"/>
                 <constraint firstItem="Im5-nI-R1E" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="EmI-km-4xU"/>
@@ -41,14 +55,17 @@
                 <constraint firstItem="t8A-1M-Eir" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="Rkl-tU-D6z"/>
                 <constraint firstItem="Cem-G2-bVS" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Xvd-1U-cJP"/>
                 <constraint firstItem="t8A-1M-Eir" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="e4f-xU-2Nb"/>
+                <constraint firstAttribute="trailing" secondItem="yBm-PV-Crx" secondAttribute="trailing" constant="15" id="ed9-j0-wgK"/>
                 <constraint firstItem="Im5-nI-R1E" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="ibc-qi-Qmr"/>
+                <constraint firstAttribute="bottom" secondItem="yBm-PV-Crx" secondAttribute="bottom" id="nfn-rA-8q2"/>
                 <constraint firstItem="Cem-G2-bVS" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="oVx-zA-5Af"/>
+                <constraint firstItem="yBm-PV-Crx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="sAH-gp-Y23"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="EmI-km-4xU"/>
                     <exclude reference="Bqc-4S-3tW"/>
+                    <exclude reference="EmI-km-4xU"/>
                 </mask>
             </variation>
             <connections>

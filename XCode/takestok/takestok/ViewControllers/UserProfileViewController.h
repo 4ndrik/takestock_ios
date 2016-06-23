@@ -26,6 +26,7 @@
     __weak IBOutlet PaddingTextField *_userNameTextField;
     __weak IBOutlet PaddingTextField *_emailTextField;
     
+    __weak IBOutlet RadioButton *_emailSubscriberadioButton;
     __weak IBOutlet PaddingTextField *_businessNameTextField;
     __weak IBOutlet PaddingTextField *_postCodeTextField;
     __weak IBOutlet PaddingTextField *_typeOfBusinessTextField;
