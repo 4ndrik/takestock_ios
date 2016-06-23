@@ -49,9 +49,8 @@
 -(void)fillData{
     if (_user.image){
         [_userPicture loadImage:_user.image];
-        _noImageLabel.hidden = YES;
     }else{
-        _noImageLabel.hidden = NO;
+        [_userPicture setImage:[UIImage imageNamed:@"user_placeholder"]];
     }
     
     _userameLabel.text = _user.userName;

@@ -939,7 +939,8 @@ typedef enum
     
     if ([AppSettings getToken].length > 0){
         [request setValue:[NSString stringWithFormat:@"JWT %@",[AppSettings getToken]] forHTTPHeaderField:@"Authorization"];
-    }else{
+    }
+    else{
         [request setValue:[NSString stringWithFormat:@"JWT %@",@"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwidXNlcm5hbWUiOiJVc2VyQXJ0ZW0xIiwiZW1haWwiOiJzZXJiaW5hcnRlbUBnbWFpbC5jb20iLCJleHAiOjE0NjkxOTAzMTZ9.hNqlPx7lKRMTJcyL_h6PrW10nmjdD1-VAoEugp9C0k8"] forHTTPHeaderField:@"Authorization"];
     }
     

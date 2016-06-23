@@ -15,7 +15,6 @@
     User* _user;
     
     __weak IBOutlet BackgroundImageView *_userPicture;
-    __weak IBOutlet UILabel *_noImageLabel;
     __weak IBOutlet UILabel *_userameLabel;
     __weak IBOutlet RatingView *_ratingView;
     __weak IBOutlet UILabel *_ratingLabel;

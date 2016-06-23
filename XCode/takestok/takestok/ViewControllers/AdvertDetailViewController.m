@@ -132,7 +132,7 @@
     
     NSMutableString* certString = _advert.certification != nil ? [[NSMutableString alloc] initWithString:_advert.certification.title] : [[NSMutableString alloc] init];
     if (_advert.certificationOther.length > 0){
-        [certString appendFormat:@", %@", _advert.certificationOther];
+        [certString appendFormat:@"%@%@", certString.length > 0 ? @", " : @"", _advert.certificationOther];
     }
     
     _certeficationTextContainerView.text = certString;
@@ -147,10 +147,12 @@
     if (_advert.author.image)
         [_userPicture loadImage:_advert.author.image];
     else
-        [_userPicture setImage:[UIImage imageNamed:@"icon166x176"]];
+        [_userPicture setImage:[UIImage imageNamed:@"user_placeholder"]];
     
     _userName.text = _advert.author.userName;
     [_ratingView setRate:_advert.author.rating];
+    
+    _awardImageView.hidden = _advert.author.isVerified;
     
     _offerViewHeight.constant = 43;
     

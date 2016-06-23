@@ -34,10 +34,19 @@
     self.isVatRegistered = [[jsonDic objectForKeyNotNull:USER_VAT_REGISTERED_PARAM] boolValue];
     self.businessName = [jsonDic objectForKeyNotNull:USER_BUSINESS_NAME_PARAM];
     self.postCode = [[jsonDic objectForKeyNotNull:USER_POST_CODE_PARAM] stringValue];
-    self.vatNumber = [jsonDic objectForKeyNotNull:USER_VAT_NUMBER_PARAM];
+    self.vatNumber = [[jsonDic objectForKeyNotNull:USER_VAT_NUMBER_PARAM] stringValue];
     
-    self.businessType = [BusinessType getEntityWithId:[[jsonDic objectForKeyNotNull:USER_BUSINESS_TYPE_PARAM] intValue]];
-    self.subBusinessType = [SubBusinessType getEntityWithId:[[jsonDic objectForKeyNotNull:USER_BUSINESS_SYBTYPE_PARAM] intValue]];
+    BusinessType* bt = [BusinessType getEntityWithId:[[jsonDic objectForKeyNotNull:USER_BUSINESS_TYPE_PARAM] intValue]];
+    if (bt && bt.managedObjectContext != self.managedObjectContext){
+        bt = [self.managedObjectContext objectWithID:[bt objectID]];
+    }
+    self.businessType = bt;
+    
+    SubBusinessType* sbt = [SubBusinessType getEntityWithId:[[jsonDic objectForKeyNotNull:USER_BUSINESS_SYBTYPE_PARAM] intValue]];
+    if (sbt && sbt.managedObjectContext != self.managedObjectContext){
+        sbt = [self.managedObjectContext objectWithID:[sbt objectID]];
+    }
+    self.subBusinessType = sbt;
     
     NSString* url = [jsonDic objectForKeyNotNull:USER_PHOTO_PARAM];
     if (url){

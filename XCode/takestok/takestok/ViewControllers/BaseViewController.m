@@ -11,6 +11,7 @@
 #import "User.h"
 #import "LoginViewController.h"
 #import "REFrostedViewController.h"
+#import "HomeViewController.h"
 
 @implementation BaseViewController
 
@@ -42,6 +43,7 @@
         UIBarButtonItem* menuBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
         self.navigationItem.leftBarButtonItem = menuBarButtonItem;
     }
+    [self.navigationController setNavigationBarHidden:[self isKindOfClass:[HomeViewController class]] animated:YES];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
