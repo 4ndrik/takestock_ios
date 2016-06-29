@@ -39,6 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) Shipping *shipping;
 @property (nullable, nonatomic, retain) SizeType *sizeType;
 @property (nullable, nonatomic, retain) SubCategory *subCategory;
+@property (nonatomic) BOOL inWatchList;
+
 
 @end
 

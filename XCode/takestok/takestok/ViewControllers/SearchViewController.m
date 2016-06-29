@@ -8,7 +8,6 @@
 
 #import "SearchViewController.h"
 #import "SearchFilterSortView.h"
-#import "SearchCollectionViewCell.h"
 #import "Advert.h"
 #import "ImageCacheUrlResolver.h"
 #import "BackgroundImageView.h"
@@ -144,7 +143,7 @@
 -(void)reloadData:(id)owner{
     [_searchTitleView.browseCategoriesButton setTitle:_searchCategory ? [NSString stringWithFormat:@"%@ >", _searchCategory.title]: @"BROWSE BY CATEGORIES >" forState:UIControlStateNormal];
     _page = 1;
-     _searchTitleView.countResultLabel.text = @"Loading...";
+    _searchTitleView.countResultLabel.text = @"Loading...";
     [_adverts removeAllObjects];
     [_searchCollectionView reloadData];
     [_refreshControl beginRefreshing];
@@ -167,10 +166,83 @@
     [self performSegueWithIdentifier:@"CategoriesSegue" sender:nil];
 }
 
+-(void)updateWatchList:(Advert*)advert{
+    [self showLoading];
+    [[ServerConnectionHelper sharedInstance] addToWatchList:advert compleate:^(NSError *error){
+        [self hideLoading];
+        NSString* title = @"";
+        NSString* message = advert.inWatchList ? @"Advert added to watch list" : @"Advert removed to watch list";
+        if (error){
+            title = @"Error";
+            message = ERROR_MESSAGE(error);
+        }
+        UIAlertController* errorController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* closeAction = [UIAlertAction
+                                      actionWithTitle:@"Ok"
+                                      style:UIAlertActionStyleCancel
+                                      handler:^(UIAlertAction * action)
+                                      {
+                                          if (error){
+                                              int row = [_adverts indexOfObject:advert];
+                                              if (row != NSNotFound){
+                                                  [_searchCollectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]]];
+                                              }
+                                              else{
+                                                  [_searchCollectionView reloadData];
+                                              }
+                                          }
+                                          [errorController dismissViewControllerAnimated:YES completion:nil];
+                                          
+                                      }];
+        
+        
+        [errorController addAction:closeAction];
+        
+        [self presentViewController:errorController animated:YES completion:nil];
+    }];
+}
+
 #pragma mark - CategoryProtocol
 -(void)categorySelected:(Category*)category{
     _searchCategory = category;
     [self reloadData:nil];
+}
+
+-(void)addRemoveWatchList:(SearchCollectionViewCell*)owner{
+    if ([self checkUserLogin]){
+        NSIndexPath* indexPath = [_searchCollectionView indexPathForCell:owner];
+        Advert* advert = [_adverts objectAtIndex:indexPath.row];
+        BOOL addToWatchList = !advert.inWatchList;
+        NSString* message = addToWatchList ? @"Add to watch list?" : @"Remove from watch list?";
+        UIAlertController* errorController = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* yesAction = [UIAlertAction
+                                    actionWithTitle:@"YES"
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * action)
+                                    {
+                                        [self updateWatchList:advert];
+                                        [owner.watchListButton setHighlighted:!advert.inWatchList];
+                                        [errorController dismissViewControllerAnimated:YES completion:nil];
+                                        
+                                    }];
+        
+        UIAlertAction* noAction = [UIAlertAction
+                                   actionWithTitle:@"NO"
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction * action)
+                                   {
+                                       [errorController dismissViewControllerAnimated:YES completion:nil];
+                                       
+                                   }];
+        
+        
+        [errorController addAction:yesAction];
+        [errorController addAction:noAction];
+        
+        [self presentViewController:errorController animated:YES completion:nil];
+    }
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -185,7 +257,8 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     SearchCollectionViewCell* cell = (SearchCollectionViewCell*)[collectionView
-                                                               dequeueReusableCellWithReuseIdentifier:@"SearchCollectionViewCell" forIndexPath:indexPath];
+                                                                 dequeueReusableCellWithReuseIdentifier:@"SearchCollectionViewCell" forIndexPath:indexPath];
+    cell.delegate = self;
     cell.layer.shouldRasterize = YES;
     cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
     if (_page > 0 && indexPath.row > _adverts.count -2){
@@ -209,6 +282,7 @@
     cell.dateLabel.text = adv.expires > 0 ? [NSDate stringFromTimeInterval:adv.expires] : @"N/A";
     
     cell.priceLabel.text = [NSString stringWithFormat:@"%.02f", adv.guidePrice];
+    [cell.watchListButton setHighlighted:adv.inWatchList];
 }
 
 -(int)heightForRowAtIndexPath:(NSIndexPath*)indexPath{

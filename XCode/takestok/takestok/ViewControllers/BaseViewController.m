@@ -68,4 +68,15 @@
     [self.frostedViewController presentMenuViewController];
 }
 
+-(BOOL)checkUserLogin{
+    if ([User getMe]){
+        return YES;
+    }else{
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        LoginViewController *controller = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        [self presentViewController:controller animated:YES completion:nil];
+        return NO;
+    }
+}
+
 @end

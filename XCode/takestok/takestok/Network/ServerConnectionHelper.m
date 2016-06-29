@@ -42,6 +42,8 @@ typedef enum
 #define ME_URL_PATH                 @"me"
 #define BUSINESSTYPES_URL_PATH      @"a/businesstype"
 #define ADVERTS_URL_PATH            @"adverts"
+#define ADD_TO_WATCH_LIST_URL_PATH  @"to_watchlist"
+
 #define CONDITIONS_URL_PATH         @"conditions"
 #define SHIPPING_URL_PATH           @"shipping"
 #define CATEGORIES_URL_PATH         @"category"
@@ -117,6 +119,7 @@ typedef enum
     if ([AppSettings getUserId] > 0){
         [self loadUsers:[NSArray arrayWithObjects:[NSNumber numberWithInt:[AppSettings getUserId]], nil] compleate:nil];
         [self loadMyAdverts];
+        [self loadWatchList];
         [self loadBuyerOffers];
         [self loadSellerOffers];
         [self loadQustionsForMe];
@@ -253,7 +256,7 @@ typedef enum
 #pragma mark - Advert
 
 //Parce advert data
--(NSError*)createAdvertWithData:(id)data withResponce:(NSURLResponse *)response withError:(NSError*)error{
+-(NSError*)createAdvertWithData:(id)data withResponce:(NSURLResponse *)response setWatchList:(BOOL)setWatchList withError:(NSError*)error{
     if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:data error:&error])
     {
         [_dictionaryLock waitUntilDone];
@@ -270,6 +273,8 @@ typedef enum
                     advert = [Advert storedEntity];
                 }
                 [advert updateWithDic:advertDic];
+                if (setWatchList)
+                    advert.inWatchList = YES;
             }
         });
     }
@@ -293,11 +298,44 @@ typedef enum
     NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
     
     NSURLSessionDataTask *loadAdvertTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable data, NSError * _Nullable error) {
-        if (![self createAdvertWithData:data withResponce:response withError:error]){
+        if (![self createAdvertWithData:data withResponce:response setWatchList:NO withError:error]){
             [AppSettings updateAdvertRevision];
         }
         [_advertLock unlock];
-        [[NSNotificationCenter defaultCenter] postNotificationName:ADVERTS_UPDATED_NOTIFICATION object:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:ADVERTS_UPDATED_NOTIFICATION object:nil];
+        });
+    }];
+    [loadAdvertTask resume];
+}
+
+-(void)loadWatchList{
+    [_advertLock lock];
+    
+//    //Find last update date
+//    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+//    dateFormatter.dateFormat = @"yyyy-MM-dd";
+//    dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+//    
+//    NSDate* lastUpdatedDate = [AppSettings getAdvertRevision];
+//    if (!lastUpdatedDate || [[NSDate date] compare:lastUpdatedDate] == NSOrderedAscending){
+//        lastUpdatedDate = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
+//    }
+    
+    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:@"watchlist", @"filter",[NSNumber numberWithInteger:NSIntegerMax], @"page_size", nil];
+    NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
+    
+    NSURLSessionDataTask *loadAdvertTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable data, NSError * _Nullable error) {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            for (Advert* advert in [Advert getWatchList]) {
+                advert.inWatchList = NO;
+            }
+        });
+        [self createAdvertWithData:data withResponce:response setWatchList:YES withError:error];
+        [_advertLock unlock];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:ADVERTS_UPDATED_NOTIFICATION object:nil];
+        });
     }];
     [loadAdvertTask resume];
 }
@@ -306,7 +344,7 @@ typedef enum
     [_advertLock lock];
     NSString* query = [NSString stringWithFormat:@"ids=%@", [idents componentsJoinedByString:@","]];
     NSURLSessionDataTask *loadAdvertTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable data, NSError * _Nullable error) {
-        [self createAdvertWithData:data withResponce:response withError:error];
+        [self createAdvertWithData:data withResponce:response setWatchList:NO withError:error];
         [_advertLock unlock];
     }];
     [loadAdvertTask resume];
@@ -375,6 +413,25 @@ typedef enum
         {
             dispatch_sync(dispatch_get_main_queue(), ^{
                 [advert updateWithDic:result];
+            });
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            compleate(error);
+        });
+    }];
+    [dataTask resume];
+}
+
+-(void)addToWatchList:(Advert*)advert compleate:(void(^)(NSError* error))compleate{
+    NSMutableDictionary* paramsDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:advert.ident], @"advert_id", nil];
+    NSError* error;
+    NSString* params = [self jsonStringFromDicOrArray:paramsDic error:&error];
+    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:ADD_TO_WATCH_LIST_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
+        {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                advert.inWatchList = [[result objectForKeyNotNull:@"status"] isEqualToString:@"subscribed"];
+                [self loadWatchList];
             });
         }
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -590,6 +647,7 @@ typedef enum
                     [user updateWithDic:userDic];
                     //Load user data
                     [self loadMyAdverts];
+                    [self loadWatchList];
                     [self loadBuyerOffers];
                     [self loadSellerOffers];
                     [self loadQustionsForMe];
@@ -939,9 +997,6 @@ typedef enum
     
     if ([AppSettings getToken].length > 0){
         [request setValue:[NSString stringWithFormat:@"JWT %@",[AppSettings getToken]] forHTTPHeaderField:@"Authorization"];
-    }
-    else{
-        [request setValue:[NSString stringWithFormat:@"JWT %@",@"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwidXNlcm5hbWUiOiJVc2VyQXJ0ZW0xIiwiZW1haWwiOiJzZXJiaW5hcnRlbUBnbWFpbC5jb20iLCJleHAiOjE0NjkxOTAzMTZ9.hNqlPx7lKRMTJcyL_h6PrW10nmjdD1-VAoEugp9C0k8"] forHTTPHeaderField:@"Authorization"];
     }
     
     if (contentType.length > 0){

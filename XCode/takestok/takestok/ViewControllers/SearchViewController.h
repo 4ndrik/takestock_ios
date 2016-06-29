@@ -12,10 +12,11 @@
 #import "SearchTitleView.h"
 #import "SearchCollectionViewLayout.h"
 #import "CategoryViewController.h"
+#import "SearchCollectionViewCell.h"
 
 @class SortData;
 @class Category;
-@interface SearchViewController : BaseViewController<SearchCollectionViewLayoutProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, SearchFilterSortDelegate, CategoryProtocol>{
+@interface SearchViewController : BaseViewController<SearchCollectionViewLayoutProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, SearchFilterSortDelegate, CategoryProtocol, WatchListProtocol>{
     
     __weak IBOutlet UICollectionView *_searchCollectionView;
     NSArray* _filterData;

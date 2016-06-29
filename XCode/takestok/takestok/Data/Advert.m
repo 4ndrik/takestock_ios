@@ -184,4 +184,11 @@
     return [[DB sharedInstance].storedManagedObjectContext executeFetchRequest:request error:nil];
 }
 
++(NSArray*)getWatchList{
+    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"expires" ascending:YES];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"inWatchList == %i", YES];
+    NSFetchRequest* request = [self getFetchRequestForPredicate:predicate withSortDescriptions:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    return [[DB sharedInstance].storedManagedObjectContext executeFetchRequest:request error:nil];
+}
+
 @end

@@ -233,7 +233,7 @@
     [cell.adImageView loadImage:advert.images.firstObject];
     cell.titleLabel.text = advert.name;
     cell.priceLabel.text = [NSString stringWithFormat:@"£%.02f", advert.guidePrice];
-    cell.quantityLabel.text = [NSString stringWithFormat:@"%i%@", advert.count, advert.packaging ? advert.packaging.title: @""];
+    cell.locationLabel.text = advert.location;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateStyle = kCFDateFormatterMediumStyle;

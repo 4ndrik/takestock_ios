@@ -11,4 +11,7 @@
 @implementation SearchCollectionViewCell
 
 
+- (IBAction)addRemoveWatchList:(id)sender {
+    [self.delegate addRemoveWatchList:self];
+}
 @end

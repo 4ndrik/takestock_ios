@@ -37,5 +37,6 @@
 @dynamic shipping;
 @dynamic sizeType;
 @dynamic subCategory;
+@dynamic inWatchList;
 
 @end

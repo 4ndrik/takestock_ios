@@ -183,7 +183,10 @@
 }
 
 -(void)showWatchList:(id)owner{
-    NSLog(@"dsa");
+    if([self checkUserLogin]){
+        self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WatchListController"];
+        [self.frostedViewController hideMenuViewController];
+    }
 }
 
 -(void)showAboutUs:(id)owner{

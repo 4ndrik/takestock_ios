@@ -18,4 +18,6 @@
 -(void)showLoading;
 -(void)hideLoading;
 
+-(BOOL)checkUserLogin;
+
 @end

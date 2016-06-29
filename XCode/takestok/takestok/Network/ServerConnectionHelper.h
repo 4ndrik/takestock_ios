@@ -43,6 +43,7 @@ typedef void (^resultBlock)(NSArray* result, NSDictionary* additionalData, NSErr
 
 -(void)loadAdvertsWithSortData:(SortData*)sortData searchString:(NSString*)searchString category:(Category*)category page:(int)page compleate:(resultBlock)compleate;
 -(void)createAdvert:(Advert*)advert compleate:(void(^)(NSError* error))compleate;
+-(void)addToWatchList:(Advert*)advert compleate:(void(^)(NSError* error))compleate;
 
 -(void)createOffer:(Offer*)offer compleate:(errorBlock)compleate;
 -(void)updateOffer:(Offer*)offer compleate:(errorBlock)compleate;
