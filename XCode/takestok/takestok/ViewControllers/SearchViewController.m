@@ -93,16 +93,6 @@
     [[_refreshControl.subviews objectAtIndex:0] setFrame:r];
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([segue.identifier isEqualToString:@"AdvertSelectedSegue"]) {
-        AdvertDetailViewController* prodVC = (AdvertDetailViewController*)segue.destinationViewController;
-        [prodVC setAdvert:sender];
-    }else if ([segue.identifier isEqualToString:@"CategoriesSegue"]) {
-        CategoryViewController* categoryhVC = (CategoryViewController*)segue.destinationViewController;
-        categoryhVC.delegate = self;
-    }
-}
-
 -(void)loadData{
     [[ServerConnectionHelper sharedInstance] loadAdvertsWithSortData:_sortData searchString:_searchText category:_searchCategory page:_page compleate:^(NSArray *adverbs, NSDictionary* additionalData, NSError *error) {
         if (error){
@@ -163,7 +153,7 @@
 }
 
 -(void)showCategories:(id)owner{
-    [self performSegueWithIdentifier:@"CategoriesSegue" sender:nil];
+    [self performSegueWithIdentifier:CATEGORIES_SEGUE sender:nil];
 }
 
 -(void)updateWatchList:(Advert*)advert{
@@ -336,7 +326,7 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    [self performSegueWithIdentifier:@"AdvertSelectedSegue" sender:[_adverts objectAtIndex:indexPath.row]];
+    [self performSegueWithIdentifier:ADVERT_DETAIL_SEGUE sender:[_adverts objectAtIndex:indexPath.row]];
 }
 
 #pragma mark - SearchFilterSortDelegate

@@ -309,6 +309,8 @@ typedef enum
     [loadAdvertTask resume];
 }
 
+
+//TEMP REQUEST
 -(void)loadWatchList{
     [_advertLock lock];
     

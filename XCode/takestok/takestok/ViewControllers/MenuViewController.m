@@ -150,57 +150,57 @@
         return YES;
     }else{
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        LoginViewController *controller = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        LoginViewController *controller = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:LOGIN_CONTROLLER];
         [self presentViewController:controller animated:YES completion:nil];
         return NO;
     }
 }
 
 -(void)showHome:(id)sender{
-    self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
+    self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:HOME_CONTROLLER];
     [self.frostedViewController hideMenuViewController];
 }
 
 -(void)showUserProfile:(id)owner{
     if([self checkUserLogin]){
-        self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"UserProfileController"];
+        self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:USER_PROFILE_CONTROLLER];
         [self.frostedViewController hideMenuViewController];
     }
 }
 
 -(void)showSelling:(id)owner{
     if([self checkUserLogin]){
-        self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SellingController"];
+        self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:SELLING_CONTROLLER];
         [self.frostedViewController hideMenuViewController];
     }
 }
 
 -(void)showBuying:(id)owner{
     if([self checkUserLogin]){
-        self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BuyingController"];
+        self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:BUYING_CONTROLLER];
         [self.frostedViewController hideMenuViewController];
     }
 }
 
 -(void)showWatchList:(id)owner{
     if([self checkUserLogin]){
-        self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WatchListController"];
+        self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:WATCH_LIST_CONTROLLER];
         [self.frostedViewController hideMenuViewController];
     }
 }
 
 -(void)showAboutUs:(id)owner{
-    self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AboutUsController"];
+    self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:ABOUT_US_CONTROLLER];
     [self.frostedViewController hideMenuViewController];
 }
 
 -(void)showContactUs:(id)owner{
-    self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactUsController"];
+    self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:CONTACT_US_CONTROLLER];
     [self.frostedViewController hideMenuViewController];
 }
 
 -(void)showLegalInfo:(id)owner{
-    self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LegalInformationController"];
+    self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:LEGAL_INFO_CONTROLLER];
     [self.frostedViewController hideMenuViewController];
 }
 

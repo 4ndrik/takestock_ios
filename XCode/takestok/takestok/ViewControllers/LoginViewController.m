@@ -47,7 +47,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
-
 #pragma mark - Handle keyboard
 
 - (void)keyboardWillHide:(NSNotification *)n

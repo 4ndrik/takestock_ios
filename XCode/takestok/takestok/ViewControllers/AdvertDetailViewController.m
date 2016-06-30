@@ -74,13 +74,13 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([segue.identifier isEqualToString:@"ImageSelectedSegue"]) {
+    if ([segue.identifier isEqualToString:ADVERT_IMAGES_SEGUE]) {
         ImagesCollectionViewController* imageVC = (ImagesCollectionViewController*)segue.destinationViewController;
         [imageVC setImages:[_advert.images array] withCurrentIndex:((NSIndexPath*)sender).row];
-    }else if ([segue.identifier isEqualToString:@"AQSegue"]){
+    }else if ([segue.identifier isEqualToString:@"QuestionsSegue"]){
         QAViewController* aqVC = (QAViewController*)segue.destinationViewController;
         [aqVC setAdvert:_advert];
-    }else if ([segue.identifier isEqualToString:@"UserDetailsSegue"]){
+    }else if ([segue.identifier isEqualToString:USER_DETAILS_SEGUE]){
         UserDetailsViewController* udVC = (UserDetailsViewController*)segue.destinationViewController;
         [udVC setUser:_advert.author];
     }
@@ -258,15 +258,12 @@
 
 #pragma mark - Outlets
 - (IBAction)makeAction:(id)sender {
-    if (![User getMe])
+    if ([self checkUserLogin])
     {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        LoginViewController *controller = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-        [self presentViewController:controller animated:YES completion:nil];
-    }else if (_advert.ident > 0){
-        [self createOrder];
-    }else {
-        [self createAdvert];
+        if (_advert.ident > 0)
+            [self createOrder];
+        else
+            [self createAdvert];
     }
 }
 
@@ -296,7 +293,7 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    [self performSegueWithIdentifier:@"ImageSelectedSegue" sender:indexPath];
+    [self performSegueWithIdentifier:ADVERT_IMAGES_SEGUE sender:indexPath];
 }
 
 

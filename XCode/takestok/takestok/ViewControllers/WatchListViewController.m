@@ -99,6 +99,12 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    Advert* advert = [_watcArray objectAtIndex:indexPath.row];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    [self performSegueWithIdentifier:ADVERT_DETAIL_SEGUE sender:advert];
+}
+
 #pragma mark - WatchListProtocol
 
 -(void)addRemoveWatchList:(id)owner{

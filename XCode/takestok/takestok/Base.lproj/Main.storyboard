@@ -218,7 +218,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ms-gg-FxT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1081" y="-1766"/>
+            <point key="canvasLocation" x="-1148" y="-2474"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9HI-3P-i2X">
@@ -234,7 +234,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Sg-3h-lyD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1081" y="-2474"/>
+            <point key="canvasLocation" x="-1148" y="-1766"/>
         </scene>
         <!--Watch List View Controller-->
         <scene sceneID="v7l-ax-eo6">
@@ -500,11 +500,12 @@
                     <navigationItem key="navigationItem" id="Gru-rO-MTB"/>
                     <connections>
                         <outlet property="_watchListTableView" destination="BV8-ZD-e26" id="HeK-8z-iFN"/>
+                        <segue destination="gcE-k3-tgx" kind="show" identifier="AdvertDetailSegue" id="3XE-IX-W8g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EVy-ec-V78" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-340" y="-2474"/>
+            <point key="canvasLocation" x="-340" y="-1766"/>
         </scene>
         <!--MY PROFILE-->
         <scene sceneID="y4y-UK-8sF">
@@ -975,7 +976,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-340" y="-1766"/>
+            <point key="canvasLocation" x="-340" y="-2474"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="cnf-r9-J4f">
@@ -1519,7 +1520,7 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="95"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mGY-S4-o2I" id="SNa-8t-k0Z">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="95"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="94.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="crx-td-a0Y" customClass="PaddingLabel">
@@ -2122,9 +2123,9 @@
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
                         <outlet property="_sellingTableView" destination="eMn-jB-Klx" id="zzz-Hc-OhN"/>
-                        <segue destination="yc1-R3-EzZ" kind="show" identifier="OffersSegue" id="i0j-tA-L95"/>
+                        <segue destination="yc1-R3-EzZ" kind="show" identifier="AdvertOffersSegue" id="i0j-tA-L95"/>
                         <segue destination="gcE-k3-tgx" kind="show" identifier="AdvertDetailSegue" id="ZcP-5Z-cDQ"/>
-                        <segue destination="IIS-xb-HXw" kind="show" identifier="QuestionSegue" id="WRc-hV-p10"/>
+                        <segue destination="IIS-xb-HXw" kind="show" identifier="QuestionsSegue" id="WRc-hV-p10"/>
                         <segue destination="Zcf-yO-HXd" kind="show" identifier="EditAdvertSegue" id="0se-5o-bgh"/>
                     </connections>
                 </viewController>
@@ -2232,7 +2233,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <segue destination="Zcf-yO-HXd" kind="show" identifier="SellSegue" id="8hL-uC-X83"/>
+                                                    <segue destination="Zcf-yO-HXd" kind="show" identifier="CreateEditAdvertSegue" id="8hL-uC-X83"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -2313,7 +2314,7 @@
                     <connections>
                         <outlet property="_scrollView" destination="DDZ-zB-8RJ" id="1jE-yF-fsG"/>
                         <outlet property="_searchTextField" destination="HID-tb-ZeW" id="Cbg-Cu-s1D"/>
-                        <segue destination="iMy-Yp-9O6" kind="show" identifier="SearchSegue" id="YRd-qU-xTs"/>
+                        <segue destination="iMy-Yp-9O6" kind="show" identifier="SearchAdvertSegue" id="YRd-qU-xTs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -4409,7 +4410,7 @@
                                             <color key="titleColor" red="0.74901960779999999" green="0.73725490199999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="IIS-xb-HXw" kind="show" identifier="AQSegue" id="Yjm-Qn-0XU"/>
+                                            <segue destination="IIS-xb-HXw" kind="show" identifier="QuestionsSegue" id="Yjm-Qn-0XU"/>
                                         </connections>
                                     </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="v0v-0g-Ud0">
@@ -4600,7 +4601,7 @@
                         <outlet property="_titleLabel" destination="9lY-LP-fLR" id="JAA-DR-mAN"/>
                         <outlet property="_userName" destination="FQb-JQ-vlv" id="fmZ-73-ixP"/>
                         <outlet property="_userPicture" destination="Edx-lb-OAj" id="xde-MH-yf1"/>
-                        <segue destination="ncX-Ya-syW" kind="show" identifier="ImageSelectedSegue" id="0gz-U3-3F1"/>
+                        <segue destination="ncX-Ya-syW" kind="show" identifier="AdvertImagesSegue" id="0gz-U3-3F1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Cx-vj-Xe1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4819,7 +4820,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="118" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="07X-dS-Bkc">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.74901960779999999" green="0.73725490199999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -4970,9 +4971,9 @@
         <image name="user_placeholder" width="150" height="150"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WRc-hV-p10"/>
-        <segue reference="0se-5o-bgh"/>
-        <segue reference="t1T-ru-oka"/>
         <segue reference="iVY-xb-QGx"/>
+        <segue reference="Yjm-Qn-0XU"/>
+        <segue reference="ON9-6I-4Ue"/>
+        <segue reference="8hL-uC-X83"/>
     </inferredMetricsTieBreakers>
 </document>

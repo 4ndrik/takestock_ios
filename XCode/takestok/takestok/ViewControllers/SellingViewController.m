@@ -69,48 +69,32 @@
     return cell;
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([segue.identifier isEqualToString:@"OffersSegue"]) {
-        OfferManagerViewController* vc = (OfferManagerViewController*)segue.destinationViewController;
-        [vc setAdvert:sender];
-    }else if ([segue.identifier isEqualToString:@"QuestionSegue"]) {
-        QAViewController* vc = (QAViewController*)segue.destinationViewController;
-        [vc setAdvert:sender];
-    }else if([segue.identifier isEqualToString:@"AdvertDetailSegue"]) {
-        AdvertDetailViewController* vc = (AdvertDetailViewController*)segue.destinationViewController;
-        [vc setAdvert:sender];
-    }else if([segue.identifier isEqualToString:@"EditAdvertSegue"]) {
-        CreateAdvertViewController* vc = (CreateAdvertViewController*)segue.destinationViewController;
-        [vc setAdvert:sender];
-    }
-}
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     Advert* advert = [_adverts objectAtIndex:indexPath.row];
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
                                                                    message:nil
-                                                            preferredStyle:UIAlertControllerStyleAlert];
+                                                            preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *manageOffersAction = [UIAlertAction actionWithTitle:@"Manage offers"
                                                              style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                                                                  [tableView deselectRowAtIndexPath:indexPath animated:NO];
-                                                                 [self performSegueWithIdentifier:@"OffersSegue" sender:advert];
+                                                                 [self performSegueWithIdentifier:ADVERT_OFFERS_SEGUE sender:advert];
                                                              }];
     UIAlertAction *viewMessagesAction = [UIAlertAction actionWithTitle:@"View messages"
                                                           style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                                                               [tableView deselectRowAtIndexPath:indexPath animated:NO];
-                                                              [self performSegueWithIdentifier:@"QuestionSegue" sender:advert];
+                                                              [self performSegueWithIdentifier:ADVERT_QUESTIONS_SEGUE sender:advert];
                                                           }];
     UIAlertAction *viewAdvertAction = [UIAlertAction actionWithTitle:@"View advert"
                                                            style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                                                                 [tableView deselectRowAtIndexPath:indexPath animated:NO];
-                                                                [self performSegueWithIdentifier:@"AdvertDetailSegue" sender:advert];
+                                                                [self performSegueWithIdentifier:ADVERT_DETAIL_SEGUE sender:advert];
                                                            }];
     
     UIAlertAction *editAdvertAction = [UIAlertAction actionWithTitle:@"Edit advert"
                                                            style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                                                                 [tableView deselectRowAtIndexPath:indexPath animated:NO];
-                                                                [self performSegueWithIdentifier:@"EditAdvertSegue" sender:advert];
+                                                                [self performSegueWithIdentifier:EDIT_ADVERT_SEGUE sender:advert];
                                                            }];
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"

@@ -259,42 +259,11 @@
     return cell;
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"AdvertDetailSegue"]) {
-        AdvertDetailViewController* vc = (AdvertDetailViewController*)segue.destinationViewController;
-        [vc setAdvert:sender];
-    }
-}
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     Offer* offer = [_offers objectAtIndex:indexPath.row];
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
-                                                                   message:nil
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *viewAdvertAction = [UIAlertAction actionWithTitle:@"View advert"
-                                                                 style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                                     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-                                                                     [self performSegueWithIdentifier:@"AdvertDetailSegue" sender:offer.advert];
-                                                                 }];
-    UIAlertAction *viewUserAction = [UIAlertAction actionWithTitle:@"View user"
-                                                                 style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                                     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-//                                                                     [self performSegueWithIdentifier:@"QuestionSegue" sender:offer.user];
-                                                                 }];
-    
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
-                                                           style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
-                                                               [tableView deselectRowAtIndexPath:indexPath animated:NO];
-                                                               NSLog(@"You pressed button two");
-                                                           }];
-    [alert addAction:viewAdvertAction];
-    [alert addAction:viewUserAction];
-    [alert addAction:cancelAction];
-    
-    [self presentViewController:alert animated:YES completion:nil];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    [self performSegueWithIdentifier:ADVERT_DETAIL_SEGUE sender:offer.advert];
 }
-
 
 #pragma mark - OfferActionDelegate
 

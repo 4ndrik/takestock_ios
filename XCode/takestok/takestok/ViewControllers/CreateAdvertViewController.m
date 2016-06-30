@@ -212,13 +212,6 @@
     _additionalViewHeight.constant = _productTitleTextField.text.length > 0 && _images.count > 0 ? _saveButton.frame.size.height + _saveButton.frame.origin.y + 20 : 0;
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([segue.identifier isEqualToString:@"AdvertDetailSegue"]) {
-        AdvertDetailViewController* advertVC = (AdvertDetailViewController*)segue.destinationViewController;
-        [advertVC setAdvert:_advert];
-    }
-}
-
 -(void)setCertification:(RadioButton*)owner{
     _certificationsContainerView.tag = owner.tag;
 }
@@ -710,7 +703,7 @@
 - (IBAction)previewAdvert:(id)sender {
     if ([self verifyFields]){
         [self createAdvert];
-        [self performSegueWithIdentifier:@"AdvertDetailSegue" sender:nil];
+        [self performSegueWithIdentifier:ADVERT_DETAIL_SEGUE sender:nil];
     }
 }
 

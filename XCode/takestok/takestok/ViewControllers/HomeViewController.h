@@ -17,7 +17,5 @@
     __weak IBOutlet TextFieldBorderBottom *_searchTextField;
 }
 
-- (IBAction)showMenuAction:(id)sender;
-
 @end
 

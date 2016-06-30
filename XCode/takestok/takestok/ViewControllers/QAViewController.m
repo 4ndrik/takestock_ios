@@ -219,51 +219,9 @@
 }
 
 -(void)askQuestion{
-    if (_askQuestionView.questionTextView.text.length == 0){
-        UIAlertController* errorController = [UIAlertController alertControllerWithTitle:@"" message:@"Message is empty" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* closeAction = [UIAlertAction
-                                      actionWithTitle:@"Ok"
-                                      style:UIAlertActionStyleCancel
-                                      handler:^(UIAlertAction * action)
-                                      {
-                                          [errorController dismissViewControllerAnimated:YES completion:nil];
-                                          
-                                      }];
-        
-        
-        [errorController addAction:closeAction];
-        
-        [self presentViewController:errorController animated:YES completion:nil];
-    }else if ([AppSettings getUserId] == 0){
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        LoginViewController *controller = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-        [self presentViewController:controller animated:YES completion:nil];
-    }else{
-        Question* question = [_advert isForStore] ? [Question storedEntity] : [Question tempEntity];
-        
-        question.advert = _advert;
-        User* user = [User getMe];
-        if (user.managedObjectContext != question.managedObjectContext){
-            user = [question.managedObjectContext objectWithID:[user objectID]];
-        }
-        question.user = user;
-        question.message = _askQuestionView.questionTextView.text;
-        [self showLoading];
-        [[ServerConnectionHelper sharedInstance] askQuestion:question compleate:^(NSError *error) {
-           [self hideLoading];
-            
-            NSString* title = @"";
-            NSString* message = @"Question asked";
-            if (error){
-                title = @"Error";
-                message = ERROR_MESSAGE(error);
-                [question.managedObjectContext deleteObject:question];
-            }else{
-                [self reloadData:nil];
-                _askQuestionView.questionTextView.text = @"";
-            }
-            UIAlertController* errorController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    if ([self checkUserLogin]){
+        if (_askQuestionView.questionTextView.text.length == 0){
+            UIAlertController* errorController = [UIAlertController alertControllerWithTitle:@"" message:@"Message is empty" preferredStyle:UIAlertControllerStyleAlert];
             
             UIAlertAction* closeAction = [UIAlertAction
                                           actionWithTitle:@"Ok"
@@ -278,8 +236,48 @@
             [errorController addAction:closeAction];
             
             [self presentViewController:errorController animated:YES completion:nil];
+        }else{
+            Question* question = [_advert isForStore] ? [Question storedEntity] : [Question tempEntity];
             
-        }];
+            question.advert = _advert;
+            User* user = [User getMe];
+            if (user.managedObjectContext != question.managedObjectContext){
+                user = [question.managedObjectContext objectWithID:[user objectID]];
+            }
+            question.user = user;
+            question.message = _askQuestionView.questionTextView.text;
+            [self showLoading];
+            [[ServerConnectionHelper sharedInstance] askQuestion:question compleate:^(NSError *error) {
+               [self hideLoading];
+                
+                NSString* title = @"";
+                NSString* message = @"Question asked";
+                if (error){
+                    title = @"Error";
+                    message = ERROR_MESSAGE(error);
+                    [question.managedObjectContext deleteObject:question];
+                }else{
+                    [self reloadData:nil];
+                    _askQuestionView.questionTextView.text = @"";
+                }
+                UIAlertController* errorController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction* closeAction = [UIAlertAction
+                                              actionWithTitle:@"Ok"
+                                              style:UIAlertActionStyleCancel
+                                              handler:^(UIAlertAction * action)
+                                              {
+                                                  [errorController dismissViewControllerAnimated:YES completion:nil];
+                                                  
+                                              }];
+                
+                
+                [errorController addAction:closeAction];
+                
+                [self presentViewController:errorController animated:YES completion:nil];
+                
+            }];
+        }
     }
 }
 
