@@ -12,7 +12,9 @@
 #define USER_TOKEN                  @"UserTokenKey"
 #define SEARCH_SORT                 @"SearchSortKey"
 
-#define ADVERT_REVISION             @"AdvertRevisionKey"
+#define MY_ADVERT_REVISION          @"MyAdvertRevisionKey"
+#define WATCH_LIST_REVISION         @"WatchListRevisionKey"
+#define USERS_REVISION              @"UsersRevision"
 #define BUYER_OFFER_REVISION        @"BuyerOfferRevisiontKey"
 #define SELLER_OFFER_REVISION       @"BuyerOfferRevisiontKey"
 
@@ -45,19 +47,48 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+(void)resetAdvertRevision{
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:ADVERT_REVISION];
++(void)resetMyAdvertRevision{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:MY_ADVERT_REVISION];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+(void)updateAdvertRevision{
-    [[NSUserDefaults standardUserDefaults] setValue:[NSDate date] forKey:ADVERT_REVISION];
++(void)updateMyAdvertRevision{
+    [[NSUserDefaults standardUserDefaults] setValue:[NSDate date] forKey:MY_ADVERT_REVISION];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+(NSDate*)getAdvertRevision{
-    return [[NSUserDefaults standardUserDefaults] valueForKey:ADVERT_REVISION];
++(NSDate*)getMyAdvertRevision{
+    return [[NSUserDefaults standardUserDefaults] valueForKey:MY_ADVERT_REVISION];
 }
+
++(void)resetWatchListRevision{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:WATCH_LIST_REVISION];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++(void)updateWatchListRevision{
+    [[NSUserDefaults standardUserDefaults] setValue:[NSDate date] forKey:WATCH_LIST_REVISION];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++(NSDate*)getWatchListRevision{
+    return [[NSUserDefaults standardUserDefaults] valueForKey:WATCH_LIST_REVISION];
+}
+
+//+(void)resetMyAdvertRevision{
+//    [[NSUserDefaults standardUserDefaults] removeObjectForKey:MY_ADVERT_REVISION];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//}
+//
+//+(void)updateMyAdvertRevision{
+//    [[NSUserDefaults standardUserDefaults] setValue:[NSDate date] forKey:MY_ADVERT_REVISION];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//}
+//
+//+(NSDate*)getMyAdvertRevision{
+//    return [[NSUserDefaults standardUserDefaults] valueForKey:MY_ADVERT_REVISION];
+//}
+
 
 +(void)resetBuyerRevision{
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:BUYER_OFFER_REVISION];

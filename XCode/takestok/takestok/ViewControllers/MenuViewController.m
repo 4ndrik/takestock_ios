@@ -225,7 +225,8 @@
                                       [AppSettings setToken:@""];
                                       [AppSettings resetSellerRevision];
                                       [AppSettings resetBuyerRevision];
-                                      [AppSettings resetAdvertRevision];
+                                      [AppSettings resetMyAdvertRevision];
+                                      [AppSettings resetWatchListRevision];
                                       [self refreshUserData];
                                       [self showHome:nil];
                                       [logoutController dismissViewControllerAnimated:YES completion:nil];

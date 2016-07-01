@@ -32,6 +32,7 @@ typedef void (^resultBlock)(NSArray* result, NSDictionary* additionalData, NSErr
     MainThreadRecursiveLock* _dictionaryLock;
     MainThreadRecursiveLock* _advertLock;
     MainThreadRecursiveLock* _usersLock;
+    MainThreadRecursiveLock* _updateUsersLock;
     MainThreadRecursiveLock* _offersLock;
     MainThreadRecursiveLock* _qaLock;
 }
@@ -49,7 +50,6 @@ typedef void (^resultBlock)(NSArray* result, NSDictionary* additionalData, NSErr
 -(void)updateOffer:(Offer*)offer compleate:(errorBlock)compleate;
 -(void)payOffer:(Offer*)offer withToken:(STPToken *)token completion:(void (^)(PKPaymentAuthorizationStatus))completion;
 
--(void)loadUsers:(NSArray*)idents compleate:(void(^)(NSArray* users, NSError* error))compleate;
 -(void)signInWithUserName:(NSString*)username password:(NSString*)password compleate:(errorBlock)compleate;
 -(void)signUpWithUserName:(NSString*)username email:(NSString*)email password:(NSString*)password compleate:(errorBlock)compleate;
 -(void)updateUser:(User*)user image:(UIImage*)image compleate:(errorBlock)compleate;

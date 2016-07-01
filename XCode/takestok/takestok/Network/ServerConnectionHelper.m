@@ -70,6 +70,7 @@ typedef enum
     _usersLock = [[MainThreadRecursiveLock alloc] init];
     _offersLock = [[MainThreadRecursiveLock alloc] init];
     _qaLock = [[MainThreadRecursiveLock alloc] init];
+    _updateUsersLock = [[MainThreadRecursiveLock alloc] init];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     _session = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
@@ -98,6 +99,8 @@ typedef enum
         [_offersLock waitUntilDone];
         [_usersLock waitUntilDone];
         [_qaLock waitUntilDone];
+        [_updateUsersLock waitUntilDone];
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [[DB sharedInstance].storedManagedObjectContext save:nil];
         });
@@ -106,7 +109,6 @@ typedef enum
 }
 
 -(void)loadRequiredData{
-    
     [self loadConditions];
     [self loadShipping];
     [self loadCertifications];
@@ -117,12 +119,13 @@ typedef enum
     [self loadBusinessTypes];
     
     if ([AppSettings getUserId] > 0){
-        [self loadUsers:[NSArray arrayWithObjects:[NSNumber numberWithInt:[AppSettings getUserId]], nil] compleate:nil];
+        [self loadUsersWithParam:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[AppSettings getUserId]], @"ids", nil] compleate:nil];
         [self loadMyAdverts];
         [self loadWatchList];
         [self loadBuyerOffers];
         [self loadSellerOffers];
         [self loadQustionsForMe];
+        [self updateUsers];
         [self saveData];
     }
 }
@@ -289,7 +292,7 @@ typedef enum
     dateFormatter.dateFormat = @"yyyy-MM-dd";
     dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
     
-    NSDate* lastUpdatedDate = [AppSettings getAdvertRevision];
+    NSDate* lastUpdatedDate = [AppSettings getMyAdvertRevision];
     if (!lastUpdatedDate || [[NSDate date] compare:lastUpdatedDate] == NSOrderedAscending){
         lastUpdatedDate = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
     }
@@ -299,7 +302,7 @@ typedef enum
     
     NSURLSessionDataTask *loadAdvertTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable data, NSError * _Nullable error) {
         if (![self createAdvertWithData:data withResponce:response setWatchList:NO withError:error]){
-            [AppSettings updateAdvertRevision];
+            [AppSettings updateMyAdvertRevision];
         }
         [_advertLock unlock];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -310,34 +313,46 @@ typedef enum
 }
 
 
-//TEMP REQUEST
 -(void)loadWatchList{
     [_advertLock lock];
     
-//    //Find last update date
-//    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-//    dateFormatter.dateFormat = @"yyyy-MM-dd";
-//    dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
-//    
-//    NSDate* lastUpdatedDate = [AppSettings getAdvertRevision];
-//    if (!lastUpdatedDate || [[NSDate date] compare:lastUpdatedDate] == NSOrderedAscending){
-//        lastUpdatedDate = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
-//    }
+    //Find last update date
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd";
+    dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
     
-    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:@"watchlist", @"filter",[NSNumber numberWithInteger:NSIntegerMax], @"page_size", nil];
+    NSDate* lastUpdatedDate = [AppSettings getWatchListRevision];
+    if (!lastUpdatedDate || [[NSDate date] compare:lastUpdatedDate] == NSOrderedAscending){
+        lastUpdatedDate = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
+    }
+    
+    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:@"watchlist", @"filter",[dateFormatter stringFromDate:lastUpdatedDate], @"updated_at__gte", [NSNumber numberWithInteger:NSIntegerMax], @"page_size", nil];
     NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
     
     NSURLSessionDataTask *loadAdvertTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable data, NSError * _Nullable error) {
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            for (Advert* advert in [Advert getWatchList]) {
-                advert.inWatchList = NO;
+        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:data error:&error]){
+            NSArray* __block myWatchList;
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                myWatchList = [Advert getWatchList];
+                for (Advert* advert in myWatchList) {
+                    advert.inWatchList = NO;
+                }
+            });
+            if (![self createAdvertWithData:data withResponce:response setWatchList:YES withError:error]){
+                [AppSettings updateWatchListRevision];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[NSNotificationCenter defaultCenter] postNotificationName:ADVERTS_UPDATED_NOTIFICATION object:nil];
+                });
+            }else{
+                //Return last watch list
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    for (Advert* advert in myWatchList) {
+                        advert.inWatchList = YES;
+                    }
+                });
             }
-        });
-        [self createAdvertWithData:data withResponce:response setWatchList:YES withError:error];
+        }
         [_advertLock unlock];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:ADVERTS_UPDATED_NOTIFICATION object:nil];
-        });
     }];
     [loadAdvertTask resume];
 }
@@ -532,8 +547,9 @@ typedef enum
                             [userIdSet addObject:[NSNumber numberWithInt:userId]];
                     }
                     //Load unknown users
-                    if (userIdSet.count > 0)
-                        [self loadUsers:[userIdSet allObjects] compleate:nil];
+                    if (userIdSet.count > 0){
+                        [self loadUsersWithParam:[NSDictionary dictionaryWithObjectsAndKeys:[userIdSet allObjects], @"ids", nil] compleate:nil];
+                    }
                     [_usersLock waitUntilDone];
                     
                     offers = [offers sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
@@ -695,11 +711,9 @@ typedef enum
     [dataTask resume];
 }
 
--(void)loadUsers:(NSArray*)idents compleate:(void(^)(NSArray* users, NSError* error))compleate{
-    
+-(void)loadUsersWithParam:(NSDictionary*)params compleate:(void(^)(NSArray* users, NSError* error))compleate{
     [_usersLock lock];
     
-    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:idents, @"ids", nil];
     NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
     
     NSURLSessionDataTask* loadUserTask = [_session dataTaskWithRequest:[self request:USER_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
@@ -761,6 +775,28 @@ typedef enum
     [updateUserTask resume];
 }
 
+-(void)updateUsers{
+    [_updateUsersLock lock];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) , ^{
+        [_advertLock waitUntilDone];
+        [_offersLock waitUntilDone];
+        [_usersLock waitUntilDone];
+        [_qaLock waitUntilDone];
+        
+        NSArray* users = [User getAll];
+        NSMutableSet* userIdSet = [[NSMutableSet alloc] init];
+        for (User* user in users) {
+            [userIdSet addObject:[NSNumber numberWithInt:user.ident]];
+        }
+        
+        //Get update data
+        [self loadUsersWithParam:[NSDictionary dictionaryWithObjectsAndKeys:[userIdSet allObjects], @"ids", nil] compleate:nil];
+        //Set update revision
+        [_usersLock waitUntilDone];
+        [_updateUsersLock unlock];
+    });
+}
+
 #pragma mark - QA
 
 -(void)loadQustionsForMe{
@@ -800,7 +836,7 @@ typedef enum
                     
                     //Load unknown users
                     if (usersIdSet.count > 0)
-                        [self loadUsers:[usersIdSet allObjects] compleate:nil];
+                        [self loadUsersWithParam:[NSDictionary dictionaryWithObjectsAndKeys:[usersIdSet allObjects], @"ids", nil] compleate:nil];
                     [_usersLock waitUntilDone];
                     
                     dispatch_sync(dispatch_get_main_queue(), ^{
@@ -849,7 +885,7 @@ typedef enum
                 }
                 
                 if (usersIdSet.count > 0)
-                    [self loadUsers:[usersIdSet allObjects] compleate:nil];
+                    [self loadUsersWithParam:[NSDictionary dictionaryWithObjectsAndKeys:[usersIdSet allObjects], @"ids", nil] compleate:nil];
                 [_usersLock waitUntilDone];
                 
                 dispatch_sync(dispatch_get_main_queue(), ^{
