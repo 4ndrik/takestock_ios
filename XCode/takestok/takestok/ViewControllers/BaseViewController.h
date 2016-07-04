@@ -20,4 +20,6 @@
 
 -(BOOL)checkUserLogin;
 
+-(void)showOkAlert:(NSString*)title text:(NSString*)text;
+
 @end

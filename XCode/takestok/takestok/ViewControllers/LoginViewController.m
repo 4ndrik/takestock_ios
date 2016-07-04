@@ -140,21 +140,7 @@
     }
     if (messagesArray.count > 0){
         NSString* message = [messagesArray componentsJoinedByString:@"\n"];
-        UIAlertController* emptyFieldsAlertController = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* closeAction = [UIAlertAction
-                                      actionWithTitle:@"Ok"
-                                      style:UIAlertActionStyleCancel
-                                      handler:^(UIAlertAction * action)
-                                      {
-                                          [emptyFieldsAlertController dismissViewControllerAnimated:YES completion:nil];
-                                          
-                                      }];
-        
-        
-        [emptyFieldsAlertController addAction:closeAction];
-        
-        [self presentViewController:emptyFieldsAlertController animated:YES completion:nil];
+        [self showOkAlert:@"" text:message];
     }
     return messagesArray.count == 0;
 }
@@ -175,21 +161,7 @@
             if (error){
                 NSString* title = @"Error";
                 NSString* message = ERROR_MESSAGE(error);
-                UIAlertController* errorController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-                
-                UIAlertAction* closeAction = [UIAlertAction
-                                              actionWithTitle:@"Ok"
-                                              style:UIAlertActionStyleCancel
-                                              handler:^(UIAlertAction * action)
-                                              {
-                                                  [errorController dismissViewControllerAnimated:YES completion:nil];
-                                                  
-                                              }];
-                
-                
-                [errorController addAction:closeAction];
-                
-                [self presentViewController:errorController animated:YES completion:nil];
+                [self showOkAlert:title text:message];
             }else{
                 [self dismissViewControllerAnimated:YES completion:nil];
             }
@@ -203,23 +175,7 @@
         [[ServerConnectionHelper sharedInstance] signUpWithUserName:_signUpUserNameTextField.text email:_signUpEmailTextField.text password:_signUpPasswordTextField.text compleate:^(NSError *error) {
             [self hideLoading];
             if (error){
-                NSString* title = @"Error";
-                NSString* message = ERROR_MESSAGE(error);
-                UIAlertController* errorController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-                
-                UIAlertAction* closeAction = [UIAlertAction
-                                              actionWithTitle:@"Ok"
-                                              style:UIAlertActionStyleCancel
-                                              handler:^(UIAlertAction * action)
-                                              {
-                                                  [errorController dismissViewControllerAnimated:YES completion:nil];
-                                                  
-                                              }];
-                
-                
-                [errorController addAction:closeAction];
-                
-                [self presentViewController:errorController animated:YES completion:nil];
+                [self showOkAlert:@"Error" text:ERROR_MESSAGE(error)];
             }else{
                 [self dismissViewControllerAnimated:YES completion:nil];
             }

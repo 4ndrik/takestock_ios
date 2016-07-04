@@ -80,21 +80,7 @@
     [[ServerConnectionHelper sharedInstance] loadQuestionAnswersWithAd:_advert page:_page compleate:^(NSArray *qaArray, NSDictionary *additionalData, NSError *error) {
         
         if (error){
-            UIAlertController* errorController = [UIAlertController alertControllerWithTitle:@"Error" message:ERROR_MESSAGE(error) preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* closeAction = [UIAlertAction
-                                          actionWithTitle:@"Ok"
-                                          style:UIAlertActionStyleCancel
-                                          handler:^(UIAlertAction * action)
-                                          {
-                                              [errorController dismissViewControllerAnimated:YES completion:nil];
-                                              
-                                          }];
-            
-            
-            [errorController addAction:closeAction];
-            
-            [self presentViewController:errorController animated:YES completion:nil];
+            [self showOkAlert:@"Error" text:ERROR_MESSAGE(error)];
         }
         else
         {
@@ -221,21 +207,7 @@
 -(void)askQuestion{
     if ([self checkUserLogin]){
         if (_askQuestionView.questionTextView.text.length == 0){
-            UIAlertController* errorController = [UIAlertController alertControllerWithTitle:@"" message:@"Message is empty" preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* closeAction = [UIAlertAction
-                                          actionWithTitle:@"Ok"
-                                          style:UIAlertActionStyleCancel
-                                          handler:^(UIAlertAction * action)
-                                          {
-                                              [errorController dismissViewControllerAnimated:YES completion:nil];
-                                              
-                                          }];
-            
-            
-            [errorController addAction:closeAction];
-            
-            [self presentViewController:errorController animated:YES completion:nil];
+            [self showOkAlert:@"" text:@"Message is empty"];
         }else{
             Question* question = [_advert isForStore] ? [Question storedEntity] : [Question tempEntity];
             
@@ -260,22 +232,7 @@
                     [self reloadData:nil];
                     _askQuestionView.questionTextView.text = @"";
                 }
-                UIAlertController* errorController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-                
-                UIAlertAction* closeAction = [UIAlertAction
-                                              actionWithTitle:@"Ok"
-                                              style:UIAlertActionStyleCancel
-                                              handler:^(UIAlertAction * action)
-                                              {
-                                                  [errorController dismissViewControllerAnimated:YES completion:nil];
-                                                  
-                                              }];
-                
-                
-                [errorController addAction:closeAction];
-                
-                [self presentViewController:errorController animated:YES completion:nil];
-                
+                [self showOkAlert:title text:message];
             }];
         }
     }
@@ -308,21 +265,7 @@
                 [self reloadData:nil];
                 [_askTableView reloadData];
             }
-            UIAlertController* errorController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* closeAction = [UIAlertAction
-                                          actionWithTitle:@"Ok"
-                                          style:UIAlertActionStyleCancel
-                                          handler:^(UIAlertAction * action)
-                                          {
-                                              [errorController dismissViewControllerAnimated:YES completion:nil];
-                                              
-                                          }];
-            
-            
-            [errorController addAction:closeAction];
-            
-            [self presentViewController:errorController animated:YES completion:nil];
+            [self showOkAlert:title text:message];
         }];
     }
 }

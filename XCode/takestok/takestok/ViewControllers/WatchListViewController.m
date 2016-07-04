@@ -51,19 +51,7 @@
             title = @"Error";
             message = ERROR_MESSAGE(error);
         }
-        UIAlertController* errorController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* closeAction = [UIAlertAction
-                                      actionWithTitle:@"Ok"
-                                      style:UIAlertActionStyleCancel
-                                      handler:^(UIAlertAction * action)
-                                      {
-                                          [errorController dismissViewControllerAnimated:YES completion:nil];
-                                      }];
-        
-        
-        [errorController addAction:closeAction];
-        [self presentViewController:errorController animated:YES completion:nil];
+        [self showOkAlert:title text:message];
         
         [self reloadData];
     }];

@@ -96,21 +96,7 @@
 -(void)loadData{
     [[ServerConnectionHelper sharedInstance] loadAdvertsWithSortData:_sortData searchString:_searchText category:_searchCategory page:_page compleate:^(NSArray *adverbs, NSDictionary* additionalData, NSError *error) {
         if (error){
-            UIAlertController* errorController = [UIAlertController alertControllerWithTitle:@"Error" message:ERROR_MESSAGE(error) preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* closeAction = [UIAlertAction
-                                          actionWithTitle:@"Ok"
-                                          style:UIAlertActionStyleCancel
-                                          handler:^(UIAlertAction * action)
-                                          {
-                                              [errorController dismissViewControllerAnimated:YES completion:nil];
-                                              
-                                          }];
-            
-            
-            [errorController addAction:closeAction];
-            
-            [self presentViewController:errorController animated:YES completion:nil];
+            [self showOkAlert:@"Error" text:ERROR_MESSAGE(error)];
         }
         else
         {
@@ -166,30 +152,7 @@
             title = @"Error";
             message = ERROR_MESSAGE(error);
         }
-        UIAlertController* errorController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* closeAction = [UIAlertAction
-                                      actionWithTitle:@"Ok"
-                                      style:UIAlertActionStyleCancel
-                                      handler:^(UIAlertAction * action)
-                                      {
-                                          if (error){
-                                              int row = [_adverts indexOfObject:advert];
-                                              if (row != NSNotFound){
-                                                  [_searchCollectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]]];
-                                              }
-                                              else{
-                                                  [_searchCollectionView reloadData];
-                                              }
-                                          }
-                                          [errorController dismissViewControllerAnimated:YES completion:nil];
-                                          
-                                      }];
-        
-        
-        [errorController addAction:closeAction];
-        
-        [self presentViewController:errorController animated:YES completion:nil];
+        [self showOkAlert:title text:message];
     }];
 }
 

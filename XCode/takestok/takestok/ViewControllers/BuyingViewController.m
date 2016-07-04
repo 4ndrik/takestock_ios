@@ -147,19 +147,6 @@
     }];
 }
 
--(void)showOkAlert:(NSString*)title text:(NSString*)text{
-    UIAlertController * alertController =   [UIAlertController
-                                             alertControllerWithTitle:title
-                                             message:text
-                                             preferredStyle:UIAlertControllerStyleAlert];
-    
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }]];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
-}
-
 -(void)acceptOffer:(Offer*)offer{
     offer = offer.counterOffer;
     offer.status = [OfferStatus getEntityWithId:stAccept];
@@ -220,21 +207,7 @@
     }
     
     if (message.length > 0){
-        UIAlertController* emptyFieldsAlertController = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* closeAction = [UIAlertAction
-                                      actionWithTitle:@"Ok"
-                                      style:UIAlertActionStyleCancel
-                                      handler:^(UIAlertAction * action)
-                                      {
-                                          [emptyFieldsAlertController dismissViewControllerAnimated:YES completion:nil];
-                                          
-                                      }];
-        
-        
-        [emptyFieldsAlertController addAction:closeAction];
-        
-        [self presentViewController:emptyFieldsAlertController animated:YES completion:nil];
+        [self showOkAlert:@"" text:message];
         return NO;
         
     }else{

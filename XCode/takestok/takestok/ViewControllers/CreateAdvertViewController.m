@@ -591,21 +591,7 @@
     }
     
     if (message.length > 0){
-        UIAlertController* emptyFieldsAlertController = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* closeAction = [UIAlertAction
-                                      actionWithTitle:@"Ok"
-                                      style:UIAlertActionStyleCancel
-                                      handler:^(UIAlertAction * action)
-                                      {
-                                          [emptyFieldsAlertController dismissViewControllerAnimated:YES completion:nil];
-                                          
-                                      }];
-        
-        
-        [emptyFieldsAlertController addAction:closeAction];
-        
-        [self presentViewController:emptyFieldsAlertController animated:YES completion:nil];
+        [self showOkAlert:@"" text:message];
         return NO;
     }else{
         return YES;
@@ -680,21 +666,7 @@
                     [[DB sharedInstance].storedManagedObjectContext save:nil];
                     [_saveButton setTitle:@"SAVE CHANGES" forState:UIControlStateNormal];
                 }
-                UIAlertController* errorController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-                
-                UIAlertAction* closeAction = [UIAlertAction
-                                              actionWithTitle:@"Ok"
-                                              style:UIAlertActionStyleCancel
-                                              handler:^(UIAlertAction * action)
-                                              {
-                                                  [errorController dismissViewControllerAnimated:YES completion:nil];
-                                                  
-                                              }];
-                
-                
-                [errorController addAction:closeAction];
-                
-                [self presentViewController:errorController animated:YES completion:nil];
+                [self showOkAlert:title text:message];
             }];
         }
     }

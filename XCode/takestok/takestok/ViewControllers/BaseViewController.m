@@ -129,4 +129,17 @@
     }
 }
 
+-(void)showOkAlert:(NSString*)title text:(NSString*)text{
+    UIAlertController * alertController =   [UIAlertController
+                                             alertControllerWithTitle:title
+                                             message:text
+                                             preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 @end
