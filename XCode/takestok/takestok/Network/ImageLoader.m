@@ -92,11 +92,11 @@
         if ([ServerConnectionHelper sharedInstance].isInternetConnection){
             NSString* url = [ImageCacheUrlResolver getUrlForImage:item.image];
             NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:180];
-            NSHTTPURLResponse* responce;
+            NSHTTPURLResponse* response;
             NSError* reqError;
             
-            imageData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responce error:&reqError];
-            if (([responce isKindOfClass:[NSHTTPURLResponse class]] && responce.statusCode != 200) || reqError)
+            imageData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&reqError];
+            if (([response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode != 200) || reqError)
             {
                 imageData = nil;
             }

@@ -23,11 +23,11 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    _loadingView = [[UIView alloc] initWithFrame:self.view.bounds];
+    _loadingView = [[UIView alloc] init];
     _loadingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    _loadingView.backgroundColor = [UIColor clearColor];
+    _loadingView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
     UIView* blackPanel = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-    blackPanel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    blackPanel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
     blackPanel.layer.cornerRadius = 3.;
     blackPanel.center = _loadingView.center;
     blackPanel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
@@ -93,12 +93,18 @@
 
 - (IBAction)hideKeyboard:(id)sender {
     [self.view endEditing:YES];
+    [self.navigationController.view endEditing:YES];
 }
 
 -(void)showLoading{
     [self hideKeyboard:nil];
-    if (!_loadingView.superview)
-        [self.view addSubview:_loadingView];
+    if (!_loadingView.superview){
+        UIView* superView = self.navigationController.view;
+        if (!superView)
+            superView = self.view;
+        _loadingView.frame = superView.bounds;
+        [superView addSubview:_loadingView];
+    }
 }
 
 -(void)hideLoading{
@@ -107,7 +113,7 @@
 
 - (void)showMenu
 {
-    [self.view endEditing:YES];
+    [self hideKeyboard:nil];
     [self.frostedViewController.view endEditing:YES];
     [self.frostedViewController presentMenuViewController];
 }

@@ -48,7 +48,7 @@ typedef void (^resultBlock)(NSArray* result, NSDictionary* additionalData, NSErr
 
 -(void)createOffer:(Offer*)offer compleate:(errorBlock)compleate;
 -(void)updateOffer:(Offer*)offer compleate:(errorBlock)compleate;
--(void)payOffer:(Offer*)offer withToken:(STPToken *)token completion:(void (^)(PKPaymentAuthorizationStatus))completion;
+-(void)payOffer:(Offer*)offer withToken:(STPToken *)token completion:(errorBlock)compleate;
 
 -(void)signInWithUserName:(NSString*)username password:(NSString*)password compleate:(errorBlock)compleate;
 -(void)signUpWithUserName:(NSString*)username email:(NSString*)email password:(NSString*)password compleate:(errorBlock)compleate;

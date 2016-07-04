@@ -82,6 +82,8 @@
 		AC68C4891CB6534A004B78DF /* UIImage+ExtendedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4881CB6534A004B78DF /* UIImage+ExtendedImage.m */; };
 		AC68C48C1CB67090004B78DF /* ImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */; };
 		AC68C4921CB68865004B78DF /* PaddingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4911CB68865004B78DF /* PaddingTextField.m */; };
+		AC7ADD481D2A5FC500E0FBC9 /* PayDestAddressOfferView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7ADD471D2A5FC500E0FBC9 /* PayDestAddressOfferView.xib */; };
+		AC7ADD4B1D2A5FDA00E0FBC9 /* PayDestAddressOfferView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7ADD4A1D2A5FDA00E0FBC9 /* PayDestAddressOfferView.m */; };
 		AC9776A61D26BAD60060DF73 /* ShippingInfoActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9776A51D26BAD60060DF73 /* ShippingInfoActionView.m */; };
 		AC9776A81D26BAEA0060DF73 /* ShippingInfoActionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC9776A71D26BAEA0060DF73 /* ShippingInfoActionView.xib */; };
 		ACA2E8CF1CE5BEDD00BAB401 /* OfferStatus+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA2E8C81CE5BEDD00BAB401 /* OfferStatus+CoreDataProperties.m */; };
@@ -275,6 +277,9 @@
 		AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCollectionViewCell.m; sourceTree = "<group>"; };
 		AC68C4901CB68865004B78DF /* PaddingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaddingTextField.h; sourceTree = "<group>"; };
 		AC68C4911CB68865004B78DF /* PaddingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddingTextField.m; sourceTree = "<group>"; };
+		AC7ADD471D2A5FC500E0FBC9 /* PayDestAddressOfferView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayDestAddressOfferView.xib; sourceTree = "<group>"; };
+		AC7ADD491D2A5FDA00E0FBC9 /* PayDestAddressOfferView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayDestAddressOfferView.h; sourceTree = "<group>"; };
+		AC7ADD4A1D2A5FDA00E0FBC9 /* PayDestAddressOfferView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayDestAddressOfferView.m; sourceTree = "<group>"; };
 		AC9776A41D26BAD60060DF73 /* ShippingInfoActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShippingInfoActionView.h; sourceTree = "<group>"; };
 		AC9776A51D26BAD60060DF73 /* ShippingInfoActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShippingInfoActionView.m; sourceTree = "<group>"; };
 		AC9776A71D26BAEA0060DF73 /* ShippingInfoActionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShippingInfoActionView.xib; sourceTree = "<group>"; };
@@ -750,6 +755,9 @@
 				AC9776A41D26BAD60060DF73 /* ShippingInfoActionView.h */,
 				AC9776A51D26BAD60060DF73 /* ShippingInfoActionView.m */,
 				AC9776A71D26BAEA0060DF73 /* ShippingInfoActionView.xib */,
+				AC7ADD491D2A5FDA00E0FBC9 /* PayDestAddressOfferView.h */,
+				AC7ADD4A1D2A5FDA00E0FBC9 /* PayDestAddressOfferView.m */,
+				AC7ADD471D2A5FC500E0FBC9 /* PayDestAddressOfferView.xib */,
 			);
 			name = PopUps;
 			sourceTree = "<group>";
@@ -904,6 +912,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC68C46B1CB51C20004B78DF /* LaunchScreen.storyboard in Resources */,
+				AC7ADD481D2A5FC500E0FBC9 /* PayDestAddressOfferView.xib in Resources */,
 				ACDA2ECF1CEF28B8009F51A0 /* OfferActionView.xib in Resources */,
 				AC68C4681CB51C1F004B78DF /* Assets.xcassets in Resources */,
 				AC1F54551CCE48630093848B /* OfferTitleView.xib in Resources */,
@@ -1011,6 +1020,7 @@
 				AC049D051CB7C449006A8F21 /* SearchViewController.m in Sources */,
 				AC1F54501CCE455D0093848B /* OfferTableViewCell.m in Sources */,
 				ACD65F541D23D204005D3967 /* WatchTableViewCell.m in Sources */,
+				AC7ADD4B1D2A5FDA00E0FBC9 /* PayDestAddressOfferView.m in Sources */,
 				ACFCB6BD1CDA5047005A4024 /* AppSettings.m in Sources */,
 				ACCE7FCA1CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.m in Sources */,
 				AC049D081CB7C47F006A8F21 /* HomeViewController.m in Sources */,

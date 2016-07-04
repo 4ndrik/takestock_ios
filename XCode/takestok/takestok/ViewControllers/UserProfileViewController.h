@@ -15,6 +15,7 @@
 @class RadioButton;
 @class User;
 @class StoredImage;
+@class PaddingLabel;
 
 @interface UserProfileViewController : BaseViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
     User* _user;
@@ -33,7 +34,7 @@
     __weak IBOutlet PaddingTextField *_subTypeOfBusinessTextField;
     __weak IBOutlet PaddingTextField *_vatNumber;
     __weak IBOutlet RadioButton *_amNotVatRegisteredButton;
-    __weak IBOutlet STPPaymentCardTextField *_paymantInformation;
+    __weak IBOutlet PaddingLabel *_cardNumberLabel;
 
     float _keyboardFrame;
     UIPickerView* _textPiker;
@@ -46,6 +47,7 @@
 - (IBAction)submit:(id)sender;
 - (IBAction)addEditImage:(id)sender;
 - (IBAction)vatRegisteredChanged:(id)sender;
+- (IBAction)changeCardNumber:(id)sender;
 
 
 @end

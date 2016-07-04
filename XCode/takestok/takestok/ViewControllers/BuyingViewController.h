@@ -10,9 +10,12 @@
 #import "OfferActionDelegate.h"
 
 @class OfferActionView;
+@class PayDestAddressOfferView;
+
 @interface BuyingViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, OfferActionDelegate>{
     NSArray* _offers;
     OfferActionView* _offerAlertView;
+    PayDestAddressOfferView* _payView;
     
     __weak IBOutlet UITableView *_buyingTableView;
 }

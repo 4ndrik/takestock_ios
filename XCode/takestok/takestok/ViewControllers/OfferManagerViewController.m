@@ -94,7 +94,7 @@
         if (!offer.parentOffer){
             cell.operationPanelHeight.constant = 30.;
         }else{
-            NSMutableAttributedString* pendingString = [[NSMutableAttributedString alloc] initWithString:@"WAITING RESPONCE"];
+            NSMutableAttributedString* pendingString = [[NSMutableAttributedString alloc] initWithString:@"WAITING RESPONSE"];
             [pendingString addAttribute:NSFontAttributeName
                                   value:BrandonGrotesqueBold14
                                   range:NSMakeRange(0, pendingString.length)];
@@ -320,7 +320,7 @@
 
 -(void)rejectOfferAction:(OfferTableViewCell*)owner{
     _offerAlertView =  [OfferActionView loadFromXib];
-    _offerAlertView.frame = self.view.bounds;
+    _offerAlertView.frame = self.navigationController.view.bounds;
     
     _offerAlertView.titleLabel.text = @"Reject offer.";
     _offerAlertView.priceQtyHeightConstraints.constant = 0;
@@ -330,8 +330,7 @@
     [_offerAlertView.cancelButton addTarget:self action:@selector(hideOfferView:) forControlEvents:UIControlEventTouchUpInside];
     [_offerAlertView.sendButton addTarget:self action:@selector(rejectOffer:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIWindow* currentWindow = [UIApplication sharedApplication].keyWindow;
-    [currentWindow addSubview:_offerAlertView];
+    [self.navigationController.view addSubview:_offerAlertView];
     
     [_offerAlertView.commentTextView becomeFirstResponder];
 }
@@ -339,7 +338,7 @@
 -(void)counterOfferAction:(OfferTableViewCell*)owner{
     
     _offerAlertView =  [OfferActionView loadFromXib];
-    _offerAlertView.frame = self.view.bounds;
+    _offerAlertView.frame = self.navigationController.view.bounds;
     
     _offerAlertView.titleLabel.text = @"Counter offer.";
     int index = [_offersTableView indexPathForCell:owner].row;
@@ -348,8 +347,7 @@
     [_offerAlertView.cancelButton addTarget:self action:@selector(hideOfferView:) forControlEvents:UIControlEventTouchUpInside];
     [_offerAlertView.sendButton addTarget:self action:@selector(counterOffer:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIWindow* currentWindow = [UIApplication sharedApplication].keyWindow;
-    [currentWindow addSubview:_offerAlertView];
+    [self.navigationController.view addSubview:_offerAlertView];
     
     _offerAlertView.priceTypeLabel.text = @"£";
     _offerAlertView.qtytypeLabel.text = offer.advert.packaging ? offer.advert.packaging.title: @"";

@@ -18,6 +18,7 @@
 #import "UIView+NibLoadView.h"
 #import "AdvertDetailViewController.h"
 #import <Stripe/Stripe.h>
+#import "PayDestAddressOfferView.h"
 
 @implementation BuyingViewController
 
@@ -56,8 +57,7 @@
 }
 
 -(NSMutableAttributedString*)fillOfferInformation:(Offer*)offer advert:(Advert*)advert cell:(BuyingTableViewCell*)cell{
-    
-     NSMutableAttributedString* textString = [[NSMutableAttributedString alloc] init];
+    NSMutableAttributedString* textString = [[NSMutableAttributedString alloc] init];
     if (offer.status.ident == stAccept){
         
         if (textString.length > 0)
@@ -100,7 +100,7 @@
         if (offer.parentOffer){
             cell.additionalActionHeight.constant = 30.;
         }else{
-            NSMutableAttributedString* pendingString = [[NSMutableAttributedString alloc] initWithString:@"WAITING RESPONCE"];
+            NSMutableAttributedString* pendingString = [[NSMutableAttributedString alloc] initWithString:@"WAITING RESPONSE"];
             [pendingString addAttribute:NSFontAttributeName
                                   value:BrandonGrotesqueBold14
                                   range:NSMakeRange(0, pendingString.length)];
@@ -201,23 +201,88 @@
     }
 }
 
--(void)hideOfferView:(id)owner{
+-(void)hideAlertView:(id)owner{
     [_offerAlertView removeFromSuperview];
     _offerAlertView = nil;
+    
+    [_payView removeFromSuperview];
+    _payView = nil;
 }
 
--(void)makePaymant{
-//    [[STPAPIClient sharedClient]
-//     createTokenWithCard:self.paymentTextField.cardParams
-//     completion:^(STPToken *token, NSError *error) {
-//         if (error) {
-//             [self handleError:error];
-//         } else {
-//             [self createBackendChargeWithToken:token completion:^(PKPaymentAuthorizationStatus status) {
-//                 //
-//             }];
-//         }
-//     }];
+-(BOOL)validatePayment{
+    NSMutableString* message = [[NSMutableString alloc] init];
+    if (_payView.destinationAddress.text.length == 0)
+        [message appendString:@"Fill destination address.\n"];
+    
+    if (![_payView.cardControl isValid]){
+        [message appendString:@"Card data invalid."];
+        
+    }
+    
+    if (message.length > 0){
+        UIAlertController* emptyFieldsAlertController = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* closeAction = [UIAlertAction
+                                      actionWithTitle:@"Ok"
+                                      style:UIAlertActionStyleCancel
+                                      handler:^(UIAlertAction * action)
+                                      {
+                                          [emptyFieldsAlertController dismissViewControllerAnimated:YES completion:nil];
+                                          
+                                      }];
+        
+        
+        [emptyFieldsAlertController addAction:closeAction];
+        
+        [self presentViewController:emptyFieldsAlertController animated:YES completion:nil];
+        return NO;
+        
+    }else{
+        return YES;
+    }
+}
+
+-(void)makePayment:(id)owner{
+    if ([self validatePayment]){
+        [self showLoading];
+        [[STPAPIClient sharedClient]
+         createTokenWithCard:_payView.cardControl.cardParams
+         completion:^(STPToken *token, NSError *error) {
+             if (error) {
+                 [self hideLoading];
+                 [self showOkAlert:@"" text:[error localizedDescription]];
+             } else {
+                 Offer* offer = [Offer getEntityWithId:(int)_payView.tag];
+                 [[ServerConnectionHelper sharedInstance] payOffer:offer withToken:token completion:^(NSError *error) {
+                     [self hideLoading];
+                     NSString* title = @"";
+                     NSString* message = @"Payment made successfully.";
+                     if (error){
+                         title = @"Error";
+                         message = ERROR_MESSAGE(error);
+                     }
+                     else{
+                         [self hideAlertView:nil];
+                     }
+                     [self showOkAlert:title text:message];
+                 }];
+             }
+         }];
+    }
+}
+
+-(void)showPaymentAlert:(Offer*)offer{
+    _payView = [PayDestAddressOfferView loadFromXib];
+    _payView.frame = self.navigationController.view.bounds;
+    _payView.tag = offer.ident;
+    [_payView.payButton setTitle:[NSString stringWithFormat:@"PAY £%.02f", offer.price * offer.quantity] forState:UIControlStateNormal];
+    
+    [_payView.payButton addTarget:self action:@selector(makePayment:) forControlEvents:UIControlEventTouchUpInside];
+    [_payView.cancelButton addTarget:self action:@selector(hideAlertView:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.navigationController.view addSubview:_payView];
+    
+    [_payView.cardControl becomeFirstResponder];
 }
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
@@ -268,7 +333,11 @@
 #pragma mark - OfferActionDelegate
 
 -(void)mainAction:(UITableViewCell*)owner{
-    
+    int index = [_buyingTableView indexPathForCell:owner].row;
+    Offer* offer = [_offers objectAtIndex:index];
+    if (offer.status.ident == stAccept){
+        [self showPaymentAlert:offer];
+    }
 }
 
 -(void)acceptOfferAction:(UITableViewCell*)owner{
@@ -294,18 +363,17 @@
 
 -(void)rejectOfferAction:(UITableViewCell*)owner{
     _offerAlertView =  [OfferActionView loadFromXib];
-    _offerAlertView.frame = self.view.bounds;
+    _offerAlertView.frame = self.navigationController.view.bounds;
     
     _offerAlertView.titleLabel.text = @"Reject offer.";
     _offerAlertView.priceQtyHeightConstraints.constant = 0;
     int index = [_buyingTableView indexPathForCell:owner].row;
     Offer* offer = [_offers objectAtIndex:index];
     _offerAlertView.tag = offer.ident;
-    [_offerAlertView.cancelButton addTarget:self action:@selector(hideOfferView:) forControlEvents:UIControlEventTouchUpInside];
+    [_offerAlertView.cancelButton addTarget:self action:@selector(hideAlertView:) forControlEvents:UIControlEventTouchUpInside];
     [_offerAlertView.sendButton addTarget:self action:@selector(rejectOffer:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIWindow* currentWindow = [UIApplication sharedApplication].keyWindow;
-    [currentWindow addSubview:_offerAlertView];
+    [self.navigationController.view addSubview:_offerAlertView];
     
     [_offerAlertView.commentTextView becomeFirstResponder];
 }

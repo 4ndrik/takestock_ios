@@ -28,12 +28,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
     _user = [User getMe];
     [self refreshUserData];
-    
-    _paymantInformation.cornerRadius = 3.;
-    _paymantInformation.borderColor = [UIColor colorWithRed:235./255. green:235./255. blue:235./255. alpha:1.];
-    _paymantInformation.font = HelveticaLight18;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
@@ -50,8 +47,7 @@
                           _postCodeTextField,
                           _typeOfBusinessTextField,
                           _subTypeOfBusinessTextField,
-                          _vatNumber,
-                          _paymantInformation, nil];
+                          _vatNumber, nil];
     
     _keyboardFrame = 303;
 }
@@ -404,6 +400,9 @@
     }else{
         _vatNumber.placeholder = @"VAT number";
     }
+}
+
+- (IBAction)changeCardNumber:(id)sender {
 }
 
 @end
