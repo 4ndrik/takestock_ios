@@ -62,7 +62,7 @@
     self.subCategory = subCategory;
     
     if ([jsonDic objectForKeyNotNull:ADVERT_CERTIFICATIONS_PARAM]){
-        Certification* certification = [Certification getEntityWithId:[[[jsonDic objectForKeyNotNull:ADVERT_CERTIFICATIONS_PARAM] objectForKeyNotNull:@"pk"] intValue]];
+        Certification* certification = [Certification getEntityWithId:[[jsonDic objectForKeyNotNull:ADVERT_CERTIFICATIONS_PARAM] intValue]];
         if (certification && certification.managedObjectContext != self.managedObjectContext){
             certification = [self.managedObjectContext objectWithID:[certification objectID]];
         }

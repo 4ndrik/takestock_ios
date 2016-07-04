@@ -82,6 +82,8 @@
 		AC68C4891CB6534A004B78DF /* UIImage+ExtendedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4881CB6534A004B78DF /* UIImage+ExtendedImage.m */; };
 		AC68C48C1CB67090004B78DF /* ImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */; };
 		AC68C4921CB68865004B78DF /* PaddingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4911CB68865004B78DF /* PaddingTextField.m */; };
+		AC9776A61D26BAD60060DF73 /* ShippingInfoActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9776A51D26BAD60060DF73 /* ShippingInfoActionView.m */; };
+		AC9776A81D26BAEA0060DF73 /* ShippingInfoActionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC9776A71D26BAEA0060DF73 /* ShippingInfoActionView.xib */; };
 		ACA2E8CF1CE5BEDD00BAB401 /* OfferStatus+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA2E8C81CE5BEDD00BAB401 /* OfferStatus+CoreDataProperties.m */; };
 		ACA2E8D01CE5BEDD00BAB401 /* OfferStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA2E8CA1CE5BEDD00BAB401 /* OfferStatus.m */; };
 		ACA2E8D11CE5BEDD00BAB401 /* Offer+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA2E8CC1CE5BEDD00BAB401 /* Offer+CoreDataProperties.m */; };
@@ -273,6 +275,9 @@
 		AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCollectionViewCell.m; sourceTree = "<group>"; };
 		AC68C4901CB68865004B78DF /* PaddingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaddingTextField.h; sourceTree = "<group>"; };
 		AC68C4911CB68865004B78DF /* PaddingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddingTextField.m; sourceTree = "<group>"; };
+		AC9776A41D26BAD60060DF73 /* ShippingInfoActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShippingInfoActionView.h; sourceTree = "<group>"; };
+		AC9776A51D26BAD60060DF73 /* ShippingInfoActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShippingInfoActionView.m; sourceTree = "<group>"; };
+		AC9776A71D26BAEA0060DF73 /* ShippingInfoActionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShippingInfoActionView.xib; sourceTree = "<group>"; };
 		ACA2E8C71CE5BEDD00BAB401 /* OfferStatus+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OfferStatus+CoreDataProperties.h"; sourceTree = "<group>"; };
 		ACA2E8C81CE5BEDD00BAB401 /* OfferStatus+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OfferStatus+CoreDataProperties.m"; sourceTree = "<group>"; };
 		ACA2E8C91CE5BEDD00BAB401 /* OfferStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferStatus.h; sourceTree = "<group>"; };
@@ -742,6 +747,9 @@
 				ACDA2ECB1CEF28A3009F51A0 /* OfferActionView.h */,
 				ACDA2ECC1CEF28A3009F51A0 /* OfferActionView.m */,
 				ACDA2ECE1CEF28B8009F51A0 /* OfferActionView.xib */,
+				AC9776A41D26BAD60060DF73 /* ShippingInfoActionView.h */,
+				AC9776A51D26BAD60060DF73 /* ShippingInfoActionView.m */,
+				AC9776A71D26BAEA0060DF73 /* ShippingInfoActionView.xib */,
 			);
 			name = PopUps;
 			sourceTree = "<group>";
@@ -904,6 +912,7 @@
 				ACC6F2311D0EF00200F1B6F5 /* AboutUs.html in Resources */,
 				AC68C47D1CB63F1B004B78DF /* brandon_bld.otf in Resources */,
 				AC411E3A1CC0F309008B1E38 /* SearchTitleView.xib in Resources */,
+				AC9776A81D26BAEA0060DF73 /* ShippingInfoActionView.xib in Resources */,
 				AC68C47E1CB63F1B004B78DF /* brandon_reg.otf in Resources */,
 				ACC6F23B1D0FFBB400F1B6F5 /* LegalInfo.html in Resources */,
 				ACCE7FD31CDCD38200A76CB6 /* AskQuestionView.xib in Resources */,
@@ -982,6 +991,7 @@
 				AC68C4841CB64966004B78DF /* CreateAdvertViewController.m in Sources */,
 				AC1911521CE22D6C00C5A4A5 /* SortData.m in Sources */,
 				AC411E781CC8D186008B1E38 /* Certification+CoreDataProperties.m in Sources */,
+				AC9776A61D26BAD60060DF73 /* ShippingInfoActionView.m in Sources */,
 				AC411E611CC7DC8E008B1E38 /* PaddingLabel.m in Sources */,
 				ACDC246D1CBE8308003E9715 /* TitleTextContainerView.m in Sources */,
 				ACC6F2251D0EC1B600F1B6F5 /* ActionItem.m in Sources */,

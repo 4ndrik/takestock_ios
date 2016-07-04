@@ -36,7 +36,7 @@
 #define ADVERT_SHIPPING_PARAM              @"shipping"
 #define ADVERT_CATEGORY_PARAM              @"category"
 #define ADVERT_SUBCATEGORY_PARAM           @"subcategory"
-#define ADVERT_CERTIFICATIONS_PARAM        @"certification"
+#define ADVERT_CERTIFICATIONS_PARAM        @"certification_id"
 #define ADVERT_CONDITION_PARAM             @"condition"
 #define ADVERT_AUTHOR_PARAM                @"author"
 #define ADVERT_AUTHOR_DETAILS_PARAM        @"author_detailed"
