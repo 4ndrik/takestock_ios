@@ -18,6 +18,7 @@
 #import "OfferStatus.h"
 #import "OfferActionView.h"
 #import "PaddingTextField.h"
+#import "ShippingInfoActionView.h"
 
 @implementation OfferManagerViewController
 @synthesize advert = _advert;
@@ -42,7 +43,7 @@
     _offersTableView.rowHeight = UITableViewAutomaticDimension;
 }
 
-#pragma mark - helpers
+#pragma mark - Helpers
 
 -(NSMutableAttributedString*)spaceForFont{
     NSMutableAttributedString* spaceString = [[NSMutableAttributedString alloc] initWithString:@"\n \n"];
@@ -60,7 +61,7 @@
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
         
-        NSMutableAttributedString* acceptString = [[NSMutableAttributedString alloc] initWithString:@"ACCEPTED WAITING FOR PAYMENT"];
+        NSMutableAttributedString* acceptString = [[NSMutableAttributedString alloc] initWithString:@"WAITING FOR PAYMENT"];
         [acceptString addAttribute:NSFontAttributeName
                              value:BrandonGrotesqueBold14
                              range:NSMakeRange(0, acceptString.length)];
@@ -92,7 +93,7 @@
     }else if (offer.status.ident == stPending){
         
         if (!offer.parentOffer){
-            cell.operationPanelHeight.constant = 30.;
+            cell.replyPanelHeight.constant = 30.;
         }else{
             NSMutableAttributedString* pendingString = [[NSMutableAttributedString alloc] initWithString:@"WAITING RESPONSE"];
             [pendingString addAttribute:NSFontAttributeName
@@ -126,6 +127,25 @@
                 [textString appendAttributedString:[self spaceForFont]];
             [textString appendAttributedString:additionalTextString];
         }
+    }else if (offer.status.ident == stPayment){
+        cell.operationPanelHeight.constant = 30.;
+        
+        NSMutableAttributedString* deliveryString = [[NSMutableAttributedString alloc] initWithString:@"DELIVERY ADDRESS:\n"];
+        [deliveryString addAttribute:NSFontAttributeName
+                              value:BrandonGrotesqueBold13
+                              range:NSMakeRange(0, deliveryString.length)];
+        [deliveryString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, deliveryString.length)];
+        [textString appendAttributedString:deliveryString];
+        
+        NSMutableAttributedString* deliveryAddressString = [[NSMutableAttributedString alloc] initWithString:@"Delivery address\nSome address"];
+        [deliveryAddressString addAttribute:NSFontAttributeName
+                               value:HelveticaNeue14
+                               range:NSMakeRange(0, deliveryAddressString.length)];
+        [deliveryAddressString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, deliveryString.length)];
+        [textString appendAttributedString:deliveryAddressString];
+        [textString appendAttributedString:[self spaceForFont]];
+        
+        [cell.mainButton setTitle:@"SET SHIPPING DETAILS" forState:UIControlStateNormal];
     }
     
     return textString;
@@ -228,9 +248,37 @@
     }
 }
 
--(void)hideOfferView:(id)owner{
+-(BOOL)validateShippingInfo{
+    NSMutableString* message = [[NSMutableString alloc] init];
+//    if (_payView.destinationAddress.text.length == 0)
+//        [message appendString:@"Fill destination address.\n"];
+//    
+//    if (![_payView.cardControl isValid]){
+//        [message appendString:@"Card data invalid."];
+//        
+//    }
+    
+    if (message.length > 0){
+        [self showOkAlert:@"" text:message];
+        return NO;
+        
+    }else{
+        return YES;
+    }
+}
+
+-(void)setShippingInfo:(id)owner{
+    if ([self validateShippingInfo]){
+        NSLog(@"dasd");
+    }
+}
+
+-(void)hideAlertView:(id)owner{
     [_offerAlertView removeFromSuperview];
     _offerAlertView = nil;
+    
+    [_shippingInfoActionView removeFromSuperview];
+    _shippingInfoActionView = nil;
 }
 
 #pragma mark - UITableViewDelegates
@@ -239,11 +287,10 @@
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    OfferTableViewCell* cell = (OfferTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"OfferTableViewCell"];
-    
-    cell.delegate = self;
-    
     Offer* offer = [_offers objectAtIndex:indexPath.row];
+    
+    OfferTableViewCell* cell = (OfferTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"OfferTableViewCell"];
+    cell.delegate = self;
     
     cell.autorNameLabel.text = offer.user.userName;
     cell.quantityLabel.text = [NSString stringWithFormat:@"%i%@", offer.quantity, _advert.packaging ? _advert.packaging.title: @""];
@@ -253,12 +300,11 @@
     cell.myRequestLabel.text = @"";
     cell.myQuantityLabel.text = @"";
     cell.myPricelabel.text = @"";
+    cell.replyPanelHeight.constant = 0.;
     cell.operationPanelHeight.constant = 0.;
     
     NSMutableAttributedString* textString = [self fillOfferInformation:offer advert:offer.advert cell:cell];
     [cell.commentLabel setAttributedText:textString];
-    return cell;
-    
     return cell;
 }
 
@@ -314,7 +360,7 @@
     NSInteger index = [_offersTableView indexPathForCell:owner].row;
     Offer* offer = [_offers objectAtIndex:index];
     _offerAlertView.tag = offer.ident;
-    [_offerAlertView.cancelButton addTarget:self action:@selector(hideOfferView:) forControlEvents:UIControlEventTouchUpInside];
+    [_offerAlertView.cancelButton addTarget:self action:@selector(hideAlertView:) forControlEvents:UIControlEventTouchUpInside];
     [_offerAlertView.sendButton addTarget:self action:@selector(rejectOffer:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.navigationController.view addSubview:_offerAlertView];
@@ -331,7 +377,7 @@
     int index = [_offersTableView indexPathForCell:owner].row;
     Offer* offer = [_offers objectAtIndex:index];
     _offerAlertView.tag = offer.ident;
-    [_offerAlertView.cancelButton addTarget:self action:@selector(hideOfferView:) forControlEvents:UIControlEventTouchUpInside];
+    [_offerAlertView.cancelButton addTarget:self action:@selector(hideAlertView:) forControlEvents:UIControlEventTouchUpInside];
     [_offerAlertView.sendButton addTarget:self action:@selector(counterOffer:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.navigationController.view addSubview:_offerAlertView];
@@ -340,6 +386,18 @@
     _offerAlertView.qtytypeLabel.text = offer.advert.packaging ? offer.advert.packaging.title: @"";
     
     [_offerAlertView.priceTextEdit becomeFirstResponder];
+}
+
+-(void)mainAction:(OfferTableViewCell *)owner{
+    _shippingInfoActionView = [ShippingInfoActionView loadFromXib];
+    _shippingInfoActionView.frame = self.navigationController.view.bounds;
+    
+    [_shippingInfoActionView.cancelButton addTarget:self action:@selector(hideAlertView:) forControlEvents:UIControlEventTouchUpInside];
+    [_shippingInfoActionView.setButton addTarget:self action:@selector(setShippingInfo:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.navigationController.view addSubview:_shippingInfoActionView];
+    
+    [_shippingInfoActionView.dateShippedTextField becomeFirstResponder];
 }
 
 @end

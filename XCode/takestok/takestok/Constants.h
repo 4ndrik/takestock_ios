@@ -10,6 +10,7 @@
 //FONTS
 #define BrandonGrotesqueBold16  [UIFont fontWithName:@"BrandonGrotesque-Bold" size:16]
 #define BrandonGrotesqueBold14  [UIFont fontWithName:@"BrandonGrotesque-Bold" size:14]
+#define BrandonGrotesqueBold13  [UIFont fontWithName:@"BrandonGrotesque-Bold" size:13]
 #define HelveticaNeue18         [UIFont fontWithName:@"HelveticaNeue" size:18]
 #define HelveticaNeue14         [UIFont fontWithName:@"HelveticaNeue" size:14]
 #define HelveticaLight18        [UIFont fontWithName:@"Helvetica-Light" size:18]

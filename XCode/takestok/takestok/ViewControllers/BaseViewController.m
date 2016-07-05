@@ -111,6 +111,26 @@
     [_loadingView removeFromSuperview];
 }
 
+-(void)showNoItems{
+    if (!_noItemsLabel){
+        _noItemsLabel = [[UILabel alloc] initWithFrame:self.view.bounds];
+        _noItemsLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _noItemsLabel.backgroundColor = [UIColor clearColor];
+        _noItemsLabel.textColor = GrayColor;
+        _noItemsLabel.font = HelveticaNeue14;
+        _noItemsLabel.text = @"No items";
+        _noItemsLabel.textAlignment = NSTextAlignmentCenter;
+        [self.view addSubview:_noItemsLabel];
+    }else{
+        [self.view bringSubviewToFront:_noItemsLabel];
+    }
+}
+
+-(void)hideNoItems{
+    [_noItemsLabel removeFromSuperview];
+    _noItemsLabel = nil;
+}
+
 - (void)showMenu
 {
     [self hideKeyboard:nil];

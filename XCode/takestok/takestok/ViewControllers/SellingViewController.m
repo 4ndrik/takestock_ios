@@ -39,6 +39,11 @@
 -(void)refreshData:(id)owner{
     _adverts = [Advert getMyAdverts];
     [_sellingTableView reloadData];
+    if (_adverts.count == 0){
+        [self showNoItems];
+    }else{
+        [self hideNoItems];
+    }
 }
 
 #pragma mark - UITableViewDelegate UITableViewDataSource

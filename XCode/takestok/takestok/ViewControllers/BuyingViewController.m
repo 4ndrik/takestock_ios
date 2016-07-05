@@ -44,6 +44,11 @@
 -(void)refreshData:(id)owner{
     _offers = [Offer getMyOffers];
     [_buyingTableView reloadData];
+    if (_offers.count == 0){
+        [self showNoItems];
+    }else{
+        [self hideNoItems];
+    }
 }
 
 #pragma mark - Helpers
@@ -133,6 +138,29 @@
                 [textString appendAttributedString:[self spaceForFont]];
             [textString appendAttributedString:additionalTextString];
         }
+    }else if (offer.status.ident == stPayment){
+        
+        NSMutableAttributedString* deliveryString = [[NSMutableAttributedString alloc] initWithString:@"DELIVERY ADDRESS:\n"];
+        [deliveryString addAttribute:NSFontAttributeName
+                               value:BrandonGrotesqueBold13
+                               range:NSMakeRange(0, deliveryString.length)];
+        [deliveryString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, deliveryString.length)];
+        [textString appendAttributedString:deliveryString];
+        
+        NSMutableAttributedString* deliveryAddressString = [[NSMutableAttributedString alloc] initWithString:@"Delivery address\nSome address"];
+        [deliveryAddressString addAttribute:NSFontAttributeName
+                                      value:HelveticaNeue14
+                                      range:NSMakeRange(0, deliveryAddressString.length)];
+        [deliveryAddressString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, deliveryString.length)];
+        [textString appendAttributedString:deliveryAddressString];
+        [textString appendAttributedString:[self spaceForFont]];
+        
+        NSMutableAttributedString* pendingString = [[NSMutableAttributedString alloc] initWithString:@"AWAITING DELIVERY INFO"];
+        [pendingString addAttribute:NSFontAttributeName
+                              value:BrandonGrotesqueBold14
+                              range:NSMakeRange(0, pendingString.length)];
+        [pendingString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, pendingString.length)];
+        [textString appendAttributedString:pendingString];
     }
     
     return textString;
@@ -308,7 +336,9 @@
 -(void)mainAction:(UITableViewCell*)owner{
     int index = [_buyingTableView indexPathForCell:owner].row;
     Offer* offer = [_offers objectAtIndex:index];
-    if (offer.status.ident == stAccept){
+    if (offer.counterOffer)
+        offer = offer.counterOffer;
+    if (offer.status.ident == stAccept ){
         [self showPaymentAlert:offer];
     }
 }

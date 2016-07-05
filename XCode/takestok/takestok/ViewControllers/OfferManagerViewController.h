@@ -11,9 +11,12 @@
 #import "OfferTableViewCell.h"
 
 @class OfferActionView;
+@class ShippingInfoActionView;
+
 @interface OfferManagerViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, OfferActionDelegate>{
     NSArray* _offers;
     OfferActionView* _offerAlertView;
+    ShippingInfoActionView* _shippingInfoActionView;
     
     __weak IBOutlet UITableView *_offersTableView;
 }

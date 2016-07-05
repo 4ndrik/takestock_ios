@@ -637,27 +637,6 @@ typedef enum
     }];
     
     [dataTask resume];
-    
-    
-//    NSURL *url = [NSURL URLWithString:@"https://example.com/token"];
-//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-//    request.HTTPMethod = @"POST";
-//    NSString *body     = [NSString stringWithFormat:@"stripeToken=%@", token.tokenId];
-//    request.HTTPBody   = [body dataUsingEncoding:NSUTF8StringEncoding];
-//    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-//    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-//    NSURLSessionDataTask *task =
-//    [session dataTaskWithRequest:request
-//               completionHandler:^(NSData *data,
-//                                   NSURLResponse *response,
-//                                   NSError *error) {
-//                   if (error) {
-//                       completion(PKPaymentAuthorizationStatusFailure);
-//                   } else {
-//                       completion(PKPaymentAuthorizationStatusSuccess);
-//                   }
-//               }];
-//    [task resume];
 }
 
 #pragma mark - User

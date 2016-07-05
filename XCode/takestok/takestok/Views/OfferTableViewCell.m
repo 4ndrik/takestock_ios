@@ -22,4 +22,8 @@
     [self.delegate counterOfferAction:self];
 }
 
+- (IBAction)mainAction:(id)sender {
+    [self.delegate mainAction:self];
+}
+
 @end

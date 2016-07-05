@@ -39,6 +39,11 @@
 -(void)reloadData{
     _watcArray = [Advert getWatchList];
     [_watchListTableView reloadData];
+    if (_watcArray.count == 0){
+        [self showNoItems];
+    }else{
+        [self hideNoItems];
+    }
 }
 
 -(void)updateWatchList:(Advert*)advert{

@@ -15,7 +15,8 @@ typedef enum {
     stAccept = 1,
     stDecline = 2,
     stPending = 3,
-    stCountered = 4
+    stCountered = 4,
+    stPayment = 5
 } StatusType;
 
 NS_ASSUME_NONNULL_BEGIN

@@ -23,13 +23,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *myRequestLabel;
 @property (weak, nonatomic) IBOutlet UILabel *myQuantityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *myPricelabel;
-@property (weak, nonatomic) IBOutlet UIView *operationsView;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
+@property (weak, nonatomic) IBOutlet UIButton *mainButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *operationPanelHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *replyPanelHeight;
 
 - (IBAction)acceptAction:(id)sender;
 - (IBAction)rejectAction:(id)sender;
 - (IBAction)counterAction:(id)sender;
+- (IBAction)mainAction:(id)sender;
 
 @end
 

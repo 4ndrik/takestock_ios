@@ -10,6 +10,7 @@
 
 @interface BaseViewController : UIViewController{
     UIView* _loadingView;
+    UILabel* _noItemsLabel;
 }
 
 - (IBAction)hideKeyboard:(id)sender;
@@ -17,6 +18,9 @@
 
 -(void)showLoading;
 -(void)hideLoading;
+
+-(void)showNoItems;
+-(void)hideNoItems;
 
 -(BOOL)checkUserLogin;
 
