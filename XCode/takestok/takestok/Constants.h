@@ -7,6 +7,10 @@
 //
 
 
+#define TAKESTOK_API_URL                @"http://uat.takestock.com/api/v1/"
+#define TAKESTOK_IMAGE_URL              @"http://uat.takestock.com/media/images"
+
+
 //FONTS
 #define BrandonGrotesqueBold16  [UIFont fontWithName:@"BrandonGrotesque-Bold" size:16]
 #define BrandonGrotesqueBold14  [UIFont fontWithName:@"BrandonGrotesque-Bold" size:14]

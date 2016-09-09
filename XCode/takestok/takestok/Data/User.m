@@ -33,8 +33,8 @@
     self.rating = [[jsonDic objectForKeyNotNull:USER_AVG_RATING_PARAM] floatValue];
     self.isVatRegistered = [[jsonDic objectForKeyNotNull:USER_VAT_REGISTERED_PARAM] boolValue];
     self.businessName = [jsonDic objectForKeyNotNull:USER_BUSINESS_NAME_PARAM];
-    self.postCode = [[jsonDic objectForKeyNotNull:USER_POST_CODE_PARAM] stringValue];
-    self.vatNumber = [[jsonDic objectForKeyNotNull:USER_VAT_NUMBER_PARAM] stringValue];
+    self.postCode = [jsonDic objectForKeyNotNull:USER_POST_CODE_PARAM];
+    self.vatNumber = [jsonDic objectForKeyNotNull:USER_VAT_NUMBER_PARAM];
     
     BusinessType* bt = [BusinessType getEntityWithId:[[jsonDic objectForKeyNotNull:USER_BUSINESS_TYPE_PARAM] intValue]];
     if (bt && bt.managedObjectContext != self.managedObjectContext){

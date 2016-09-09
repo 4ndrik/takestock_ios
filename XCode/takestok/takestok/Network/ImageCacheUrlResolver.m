@@ -9,15 +9,14 @@
 #import "ImageCacheUrlResolver.h"
 #import "Image.h"
 
-#define IMAGE_URL @"http://takestock.shalakh.in/media/images"
-
 @implementation ImageCacheUrlResolver
 
 +(NSString*)getUrlForImage:(id<ImageProtocol>)image {
     NSString* url = image.url;
-    if (url.length <= 0){
-        url = [NSString stringWithFormat:@"%@/%@", IMAGE_URL, image.resId];
-    }
+//TODO: 
+//    if (url.length <= 0){
+        url = [NSString stringWithFormat:@"%@/%@", TAKESTOK_IMAGE_URL, image.resId];
+//    }
     return url;
 }
 

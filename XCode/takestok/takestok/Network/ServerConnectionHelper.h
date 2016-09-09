@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <Stripe/Stripe.h>
 
-#define TAKESTOK_API_URL                @"http://dev.takestock.com/api/v1/"
-
 @class AFURLSessionManager;
 @class Advert;
 @class User;
