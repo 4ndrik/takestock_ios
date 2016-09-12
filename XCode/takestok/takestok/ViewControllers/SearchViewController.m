@@ -157,9 +157,9 @@
 }
 
 #pragma mark - CategoryProtocol
--(void)categorySelected:(Category*)category{
-    _searchCategory = category;
-    [self reloadData:nil];
+-(void)categorySelected:(TSBaseDictionaryEntity*)category{
+//    _searchCategory = category;
+//    [self reloadData:nil];
 }
 
 -(void)addRemoveWatchList:(SearchCollectionViewCell*)owner{

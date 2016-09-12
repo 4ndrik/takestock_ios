@@ -82,6 +82,8 @@ static AdvertServiceManager *_manager = nil;
     return self;
 }
 
+
+#pragma mark - Fetch Dictionaries
 -(void)fetchRequiredData{
     [self fetchState];
     [self fetchSizeTypes];
@@ -239,6 +241,16 @@ static AdvertServiceManager *_manager = nil;
     }
 }
 
+
+#pragma mark Dictionaries getters
+
+-(NSArray*)getCategories{
+    return [_categories allValues];
+}
+
+-(TSAdvertCategory*)getCategoyWithId:(NSNumber*)ident{
+    return [_categories objectForKey:ident];
+}
 
 
 @end

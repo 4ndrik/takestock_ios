@@ -8,6 +8,12 @@
 
 #import "TSBaseDictionaryEntity.h"
 
-@interface TSAdvertSubCategory : TSBaseDictionaryEntity
+@interface TSAdvertSubCategory : TSBaseDictionaryEntity{
+    NSNumber* _parentIdent;
+}
+
+@property (readonly)NSNumber* parentIdent;
+
+-(instancetype)initWithParentIdent:(NSNumber*)parentIdent;
 
 @end

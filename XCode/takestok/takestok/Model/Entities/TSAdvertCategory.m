@@ -34,7 +34,7 @@
         if (index != NSNotFound){
             subCategory = [_subCategories objectAtIndex:index];
         }else{
-            subCategory = [[TSAdvertSubCategory alloc] init];
+            subCategory = [[TSAdvertSubCategory alloc] initWithParentIdent:_ident];
             @synchronized (self) {
                 [_subCategories addObject:subCategory];
             }
@@ -57,6 +57,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
+    [super encodeWithCoder:aCoder];
     [aCoder encodeBool:_isFood forKey:CATEGORY_ISFOOD_PARAM];
     [aCoder encodeObject:_subCategories forKey:CATEGORY_SUBCATEGORY_PARAM];
 }

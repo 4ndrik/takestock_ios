@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class TSAdvertCategory;
+
 @interface AdvertServiceManager : NSObject{
     NSMutableDictionary* _states;
     NSMutableDictionary* _sizeTypes;
@@ -20,5 +22,8 @@
 
 +(instancetype)sharedManager;
 -(void)fetchRequiredData;
+
+-(NSArray*)getCategories;
+-(TSAdvertCategory*)getCategoyWithId:(NSNumber*)ident;
 
 @end

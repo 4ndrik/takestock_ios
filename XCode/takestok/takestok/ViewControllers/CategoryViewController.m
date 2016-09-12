@@ -7,33 +7,73 @@
 //
 
 #import "CategoryViewController.h"
-#import "Category.h"
+#import "AdvertServiceManager.h"
+#import "TSAdvertCategory.h"
+#import "TSAdvertSubCategory.h"
 
 @implementation CategoryViewController
 @synthesize delegate;
 
+-(void)setCategory:(TSAdvertCategory*)category{
+    if (category){
+        _subCategories = YES;
+        _items = category.subCategories;
+    }
+}
+
 -(void)viewDidLoad{
     [super viewDidLoad];
-    _categories = [Category getAll];
+    if (!_subCategories){
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(close:)];
+        _items = [[AdvertServiceManager sharedManager] getCategories];
+    }
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _categories.count;
+    return _items.count + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"CategoryCell"];
-    Category* category = [_categories objectAtIndex:indexPath.row];
-    cell.textLabel.text = category.title;
+    NSString* title = @"All";
+    if (indexPath.row > 0){
+        TSBaseDictionaryEntity* category = [_items objectAtIndex:indexPath.row - 1];
+        title = category.title;
+    }
+    cell.textLabel.text = title;
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.delegate categorySelected:[_categories objectAtIndex:indexPath.row]];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    TSBaseDictionaryEntity* selectedCategory = nil;
+    if (indexPath.row > 0){
+        selectedCategory = [_items objectAtIndex:indexPath.row - 1];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        CategoryViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"CategoryVC"];
+        [vc setCategory:(TSAdvertCategory*)selectedCategory];
+        vc.delegate = self.delegate;
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+
+    }else{
+        TSBaseDictionaryEntity* selectedSubCategory = [_items objectAtIndex:0];
+        if ([selectedSubCategory isKindOfClass:[TSAdvertSubCategory class]]){
+            selectedCategory = [[AdvertServiceManager sharedManager] getCategoyWithId:((TSAdvertSubCategory*)selectedSubCategory).parentIdent];
+        }
+    }
+    
+    [self.delegate categorySelected:selectedCategory];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)close:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
+
 @end

@@ -44,7 +44,7 @@
 }
 
 #pragma mark - CategoryProtocol
--(void)categorySelected:(Category*)category{
+-(void)categorySelected:(TSBaseDictionaryEntity*)category{
    [self performSegueWithIdentifier:SEARCH_ADVERT_SEGUE sender:category];
 }
 

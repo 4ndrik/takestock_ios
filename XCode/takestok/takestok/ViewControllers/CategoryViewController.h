@@ -8,19 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
-@class Category;
+@class TSAdvertCategory;
+@class TSBaseDictionaryEntity;
 
 @protocol CategoryProtocol <NSObject>
 
--(void)categorySelected:(Category*)category;
+-(void)categorySelected:(TSBaseDictionaryEntity*)category;
 
 @end
 
 @interface CategoryViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>{
-    NSArray* _categories;
+    NSArray* _items;
+    BOOL _subCategories;
 }
 
 @property (assign)id<CategoryProtocol>delegate;
+-(void)setCategory:(TSAdvertCategory*)category;
 - (IBAction)close:(id)sender;
 
 @end
