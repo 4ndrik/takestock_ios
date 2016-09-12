@@ -10,6 +10,8 @@
 
 @interface AppSettings : NSObject
 
++(NSString*)getStorageFolder;
+
 +(int)getUserId;
 +(void)setUserId:(int)ident;
 

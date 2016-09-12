@@ -24,6 +24,8 @@
 typedef void (^errorBlock)(NSError* error);
 typedef void (^resultBlock)(NSArray* result, NSDictionary* additionalData, NSError* error);
 
+typedef void (^tsResultBlock)(id result, NSError* error);
+
 @interface ServerConnectionHelper : NSObject{
     AFURLSessionManager *_session;
     NSURLSessionDataTask* _loadAdvertCancelTask;
@@ -37,6 +39,23 @@ typedef void (^resultBlock)(NSArray* result, NSDictionary* additionalData, NSErr
 
 +(ServerConnectionHelper*)sharedInstance;
 -(BOOL)isInternetConnection;
+
+-(void)loadStates:(tsResultBlock)resultBlock;
+-(void)loadSizeTypes:(tsResultBlock)resultBlock;
+-(void)loadCertifications:(tsResultBlock)resultBlock;
+-(void)loadShipping:(tsResultBlock)resultBlock;
+-(void)loadCategories:(tsResultBlock)resultBlock;
+-(void)loadConditions:(tsResultBlock)resultBlock;
+-(void)loadPackagingTypes:(tsResultBlock)resultBlock;
+
+
+
+
+
+
+
+
+//=====================//
 
 -(void)loadRequiredData;
 

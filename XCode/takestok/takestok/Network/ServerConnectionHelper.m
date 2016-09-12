@@ -47,6 +47,7 @@ typedef enum
 #define CONDITIONS_URL_PATH         @"conditions"
 #define SHIPPING_URL_PATH           @"shipping"
 #define CATEGORIES_URL_PATH         @"category"
+#define STATES_URL_PATH             @"state"
 #define CERTIFICATIONS_URL_PATH     @"certifications"
 #define PACKAGING_URL_PATH          @"packaging"
 #define SIZE_TYPES_URL_PATH         @"size_types"
@@ -93,6 +94,80 @@ typedef enum
 {
     return [_session.reachabilityManager networkReachabilityStatus] != AFNetworkReachabilityStatusNotReachable;
 }
+
+
+-(void)loadStates:(tsResultBlock)resultBlock{
+    [_dictionaryLock lock];
+    NSURLSessionDataTask* loadCategoryTask = [_session dataTaskWithRequest:[self request:STATES_URL_PATH query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        resultBlock(result, error);
+        [_dictionaryLock unlock];
+    }];
+    [loadCategoryTask resume];
+}
+
+-(void)loadSizeTypes:(tsResultBlock)resultBlock{
+    [_dictionaryLock lock];
+    NSURLSessionDataTask* loadSizeTask = [_session dataTaskWithRequest:[self request:SIZE_TYPES_URL_PATH query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        resultBlock([result objectForKeyNotNull:@"types"], error);
+        [_dictionaryLock unlock];
+    }];
+    [loadSizeTask resume];
+}
+
+-(void)loadCertifications:(tsResultBlock)resultBlock{
+    [_dictionaryLock lock];
+    NSURLSessionDataTask* loadCertificationTask = [_session dataTaskWithRequest:[self request:CERTIFICATIONS_URL_PATH query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        resultBlock(result, error);
+        [_dictionaryLock unlock];
+    }];
+    [loadCertificationTask resume];
+}
+
+-(void)loadShipping:(tsResultBlock)resultBlock{
+    [_dictionaryLock lock];
+    NSURLSessionDataTask* loadShippingTask = [_session dataTaskWithRequest:[self request:SHIPPING_URL_PATH query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        resultBlock([result objectForKeyNotNull:@"shipping"], error);
+        [_dictionaryLock unlock];
+    }];
+    [loadShippingTask resume];
+}
+
+-(void)loadConditions:(tsResultBlock)resultBlock{
+    [_dictionaryLock lock];
+    NSURLSessionDataTask* loadConditionsTask = [_session dataTaskWithRequest:[self request:CONDITIONS_URL_PATH query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        resultBlock([result objectForKeyNotNull:@"conditions"], error);
+        [_dictionaryLock unlock];
+    }];
+    [loadConditionsTask resume];
+}
+
+-(void)loadCategories:(tsResultBlock)resultBlock{
+    [_dictionaryLock lock];
+    NSURLSessionDataTask* loadCategoryTask = [_session dataTaskWithRequest:[self request:CATEGORIES_URL_PATH query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        resultBlock(result, error);
+        [_dictionaryLock unlock];
+    }];
+    [loadCategoryTask resume];
+}
+
+-(void)loadPackagingTypes:(tsResultBlock)resultBlock{
+    [_dictionaryLock lock];
+    NSURLSessionDataTask* loadPackagingTask = [_session dataTaskWithRequest:[self request:PACKAGING_URL_PATH query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        resultBlock(result, error);
+        [_dictionaryLock unlock];
+    }];
+    [loadPackagingTask resume];
+}
+
+
+//===============================================
 
 -(void)saveData{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) , ^{

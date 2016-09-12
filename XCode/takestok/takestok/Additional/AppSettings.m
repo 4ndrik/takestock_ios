@@ -20,6 +20,12 @@
 
 @implementation AppSettings
 
++(NSString*)getStorageFolder{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    return documentsDirectory;
+}
+
 +(int)getUserId{
     return [[[NSUserDefaults standardUserDefaults] valueForKey:USER_ID] intValue];
 }

@@ -82,6 +82,8 @@
 		AC68C4891CB6534A004B78DF /* UIImage+ExtendedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4881CB6534A004B78DF /* UIImage+ExtendedImage.m */; };
 		AC68C48C1CB67090004B78DF /* ImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */; };
 		AC68C4921CB68865004B78DF /* PaddingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4911CB68865004B78DF /* PaddingTextField.m */; };
+		AC756E5E1D86A50700C45BA3 /* TSAdvertShipping.m in Sources */ = {isa = PBXBuildFile; fileRef = AC756E5D1D86A50700C45BA3 /* TSAdvertShipping.m */; };
+		AC756E611D86A8CB00C45BA3 /* TSAdvertPackagingType.m in Sources */ = {isa = PBXBuildFile; fileRef = AC756E601D86A8CB00C45BA3 /* TSAdvertPackagingType.m */; };
 		AC7ADD481D2A5FC500E0FBC9 /* PayDestAddressOfferView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7ADD471D2A5FC500E0FBC9 /* PayDestAddressOfferView.xib */; };
 		AC7ADD4B1D2A5FDA00E0FBC9 /* PayDestAddressOfferView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7ADD4A1D2A5FDA00E0FBC9 /* PayDestAddressOfferView.m */; };
 		AC9776A61D26BAD60060DF73 /* ShippingInfoActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9776A51D26BAD60060DF73 /* ShippingInfoActionView.m */; };
@@ -121,6 +123,15 @@
 		ACE110FE1CFD9E2800E6FDB9 /* StoredImage.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE110FD1CFD9E2800E6FDB9 /* StoredImage.m */; };
 		ACE111011CFDB0D000E6FDB9 /* NSManagedObject+NSManagedObject_RevertChanges.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE111001CFDB0D000E6FDB9 /* NSManagedObject+NSManagedObject_RevertChanges.m */; };
 		ACE111041CFF11DE00E6FDB9 /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE111031CFF11DE00E6FDB9 /* CategoryViewController.m */; };
+		ACEFEE771D82B908001B9BA0 /* TSBaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEFEE761D82B908001B9BA0 /* TSBaseEntity.m */; };
+		ACEFEE7A1D82BBF1001B9BA0 /* TSBaseDictionaryEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEFEE791D82BBF1001B9BA0 /* TSBaseDictionaryEntity.m */; };
+		ACEFEE7D1D82BF3B001B9BA0 /* TSAdvertCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEFEE7C1D82BF3B001B9BA0 /* TSAdvertCategory.m */; };
+		ACEFEE801D82C687001B9BA0 /* TSAdvertSubCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEFEE7F1D82C687001B9BA0 /* TSAdvertSubCategory.m */; };
+		ACEFEE8F1D82EE0D001B9BA0 /* AdvertServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEFEE8E1D82EE0D001B9BA0 /* AdvertServiceManager.m */; };
+		ACEFEE921D82F4D5001B9BA0 /* TSAdvertConditions.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEFEE911D82F4D5001B9BA0 /* TSAdvertConditions.m */; };
+		ACEFEE951D82F57C001B9BA0 /* TSAdvertSizeType.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEFEE941D82F57C001B9BA0 /* TSAdvertSizeType.m */; };
+		ACEFEE981D82F615001B9BA0 /* TSAdvertState.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEFEE971D82F615001B9BA0 /* TSAdvertState.m */; };
+		ACEFEE9B1D82FB27001B9BA0 /* TSAdvertCertification.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEFEE9A1D82FB27001B9BA0 /* TSAdvertCertification.m */; };
 		ACF317B91CDB558D00F49797 /* RatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF317B81CDB558D00F49797 /* RatingView.m */; };
 		ACFCB6B61CDA14A4005A4024 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B31CDA14A4005A4024 /* User+CoreDataProperties.m */; };
 		ACFCB6B71CDA14A4005A4024 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B51CDA14A4005A4024 /* User.m */; };
@@ -277,6 +288,10 @@
 		AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCollectionViewCell.m; sourceTree = "<group>"; };
 		AC68C4901CB68865004B78DF /* PaddingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaddingTextField.h; sourceTree = "<group>"; };
 		AC68C4911CB68865004B78DF /* PaddingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddingTextField.m; sourceTree = "<group>"; };
+		AC756E5C1D86A50700C45BA3 /* TSAdvertShipping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAdvertShipping.h; sourceTree = "<group>"; };
+		AC756E5D1D86A50700C45BA3 /* TSAdvertShipping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAdvertShipping.m; sourceTree = "<group>"; };
+		AC756E5F1D86A8CB00C45BA3 /* TSAdvertPackagingType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAdvertPackagingType.h; sourceTree = "<group>"; };
+		AC756E601D86A8CB00C45BA3 /* TSAdvertPackagingType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAdvertPackagingType.m; sourceTree = "<group>"; };
 		AC7ADD471D2A5FC500E0FBC9 /* PayDestAddressOfferView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayDestAddressOfferView.xib; sourceTree = "<group>"; };
 		AC7ADD491D2A5FDA00E0FBC9 /* PayDestAddressOfferView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayDestAddressOfferView.h; sourceTree = "<group>"; };
 		AC7ADD4A1D2A5FDA00E0FBC9 /* PayDestAddressOfferView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayDestAddressOfferView.m; sourceTree = "<group>"; };
@@ -347,6 +362,24 @@
 		ACE111001CFDB0D000E6FDB9 /* NSManagedObject+NSManagedObject_RevertChanges.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+NSManagedObject_RevertChanges.m"; sourceTree = "<group>"; };
 		ACE111021CFF11DE00E6FDB9 /* CategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewController.h; sourceTree = "<group>"; };
 		ACE111031CFF11DE00E6FDB9 /* CategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewController.m; sourceTree = "<group>"; };
+		ACEFEE751D82B908001B9BA0 /* TSBaseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBaseEntity.h; sourceTree = "<group>"; };
+		ACEFEE761D82B908001B9BA0 /* TSBaseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBaseEntity.m; sourceTree = "<group>"; };
+		ACEFEE781D82BBF1001B9BA0 /* TSBaseDictionaryEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBaseDictionaryEntity.h; sourceTree = "<group>"; };
+		ACEFEE791D82BBF1001B9BA0 /* TSBaseDictionaryEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBaseDictionaryEntity.m; sourceTree = "<group>"; };
+		ACEFEE7B1D82BF3B001B9BA0 /* TSAdvertCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAdvertCategory.h; sourceTree = "<group>"; };
+		ACEFEE7C1D82BF3B001B9BA0 /* TSAdvertCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAdvertCategory.m; sourceTree = "<group>"; };
+		ACEFEE7E1D82C687001B9BA0 /* TSAdvertSubCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAdvertSubCategory.h; sourceTree = "<group>"; };
+		ACEFEE7F1D82C687001B9BA0 /* TSAdvertSubCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAdvertSubCategory.m; sourceTree = "<group>"; };
+		ACEFEE8D1D82EE0D001B9BA0 /* AdvertServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvertServiceManager.h; sourceTree = "<group>"; };
+		ACEFEE8E1D82EE0D001B9BA0 /* AdvertServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvertServiceManager.m; sourceTree = "<group>"; };
+		ACEFEE901D82F4D5001B9BA0 /* TSAdvertConditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAdvertConditions.h; sourceTree = "<group>"; };
+		ACEFEE911D82F4D5001B9BA0 /* TSAdvertConditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAdvertConditions.m; sourceTree = "<group>"; };
+		ACEFEE931D82F57C001B9BA0 /* TSAdvertSizeType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAdvertSizeType.h; sourceTree = "<group>"; };
+		ACEFEE941D82F57C001B9BA0 /* TSAdvertSizeType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAdvertSizeType.m; sourceTree = "<group>"; };
+		ACEFEE961D82F615001B9BA0 /* TSAdvertState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAdvertState.h; sourceTree = "<group>"; };
+		ACEFEE971D82F615001B9BA0 /* TSAdvertState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAdvertState.m; sourceTree = "<group>"; };
+		ACEFEE991D82FB27001B9BA0 /* TSAdvertCertification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAdvertCertification.h; sourceTree = "<group>"; };
+		ACEFEE9A1D82FB27001B9BA0 /* TSAdvertCertification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAdvertCertification.m; sourceTree = "<group>"; };
 		ACF317B71CDB558D00F49797 /* RatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingView.h; sourceTree = "<group>"; };
 		ACF317B81CDB558D00F49797 /* RatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingView.m; sourceTree = "<group>"; };
 		ACFCB6B21CDA14A4005A4024 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -405,7 +438,7 @@
 			name = Photo;
 			sourceTree = "<group>";
 		};
-		AC411E0A1CBF95D3008B1E38 /* Model */ = {
+		AC411E0A1CBF95D3008B1E38 /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				AC76862E1D06C78200DD7490 /* NoDB */,
@@ -442,7 +475,6 @@
 				AC08D7FE1CE9FEC200830A53 /* Answer.m */,
 				AC411E0B1CBF9693008B1E38 /* Model.xcdatamodeld */,
 			);
-			name = Model;
 			path = Data;
 			sourceTree = "<group>";
 		};
@@ -559,8 +591,9 @@
 		AC68C45A1CB51C1F004B78DF /* takestok */ = {
 			isa = PBXGroup;
 			children = (
+				ACEFEE721D82B81C001B9BA0 /* Model */,
 				AC411E231CBFA207008B1E38 /* Network */,
-				AC411E0A1CBF95D3008B1E38 /* Model */,
+				AC411E0A1CBF95D3008B1E38 /* Data */,
 				AC68C4741CB51CB2004B78DF /* Additional */,
 				AC68C4731CB51CA3004B78DF /* Views */,
 				AC68C4721CB51C90004B78DF /* ViewControllers */,
@@ -841,6 +874,59 @@
 			name = WatchList;
 			sourceTree = "<group>";
 		};
+		ACEFEE721D82B81C001B9BA0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ACEFEE731D82B8A7001B9BA0 /* Entities */,
+				ACEFEE741D82B8A7001B9BA0 /* Repositories */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		ACEFEE731D82B8A7001B9BA0 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				ACEFEE751D82B908001B9BA0 /* TSBaseEntity.h */,
+				ACEFEE761D82B908001B9BA0 /* TSBaseEntity.m */,
+				ACEFEE781D82BBF1001B9BA0 /* TSBaseDictionaryEntity.h */,
+				ACEFEE791D82BBF1001B9BA0 /* TSBaseDictionaryEntity.m */,
+				ACEFEE9C1D82FBA9001B9BA0 /* AdvertDics */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		ACEFEE741D82B8A7001B9BA0 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				ACEFEE8D1D82EE0D001B9BA0 /* AdvertServiceManager.h */,
+				ACEFEE8E1D82EE0D001B9BA0 /* AdvertServiceManager.m */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		ACEFEE9C1D82FBA9001B9BA0 /* AdvertDics */ = {
+			isa = PBXGroup;
+			children = (
+				ACEFEE7B1D82BF3B001B9BA0 /* TSAdvertCategory.h */,
+				ACEFEE7C1D82BF3B001B9BA0 /* TSAdvertCategory.m */,
+				ACEFEE7E1D82C687001B9BA0 /* TSAdvertSubCategory.h */,
+				ACEFEE7F1D82C687001B9BA0 /* TSAdvertSubCategory.m */,
+				ACEFEE901D82F4D5001B9BA0 /* TSAdvertConditions.h */,
+				ACEFEE911D82F4D5001B9BA0 /* TSAdvertConditions.m */,
+				ACEFEE931D82F57C001B9BA0 /* TSAdvertSizeType.h */,
+				ACEFEE941D82F57C001B9BA0 /* TSAdvertSizeType.m */,
+				ACEFEE961D82F615001B9BA0 /* TSAdvertState.h */,
+				ACEFEE971D82F615001B9BA0 /* TSAdvertState.m */,
+				ACEFEE991D82FB27001B9BA0 /* TSAdvertCertification.h */,
+				ACEFEE9A1D82FB27001B9BA0 /* TSAdvertCertification.m */,
+				AC756E5C1D86A50700C45BA3 /* TSAdvertShipping.h */,
+				AC756E5D1D86A50700C45BA3 /* TSAdvertShipping.m */,
+				AC756E5F1D86A8CB00C45BA3 /* TSAdvertPackagingType.h */,
+				AC756E601D86A8CB00C45BA3 /* TSAdvertPackagingType.m */,
+			);
+			name = AdvertDics;
+			sourceTree = "<group>";
+		};
 		D9CDB975853D8ADD3B918602 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -992,6 +1078,7 @@
 				ACA42F7A1D1AC7CD00C586BB /* SubBusinessType.m in Sources */,
 				AC68C4921CB68865004B78DF /* PaddingTextField.m in Sources */,
 				AC411E551CC7A72C008B1E38 /* SellingTableViewCell.m in Sources */,
+				ACEFEE801D82C687001B9BA0 /* TSAdvertSubCategory.m in Sources */,
 				ACC6F2391D0F003300F1B6F5 /* LegalInformationViewController.m in Sources */,
 				AC411E131CBF970A008B1E38 /* Advert.m in Sources */,
 				ACCE7FD11CDCD37000A76CB6 /* AskQuestionView.m in Sources */,
@@ -1000,11 +1087,14 @@
 				AC68C4841CB64966004B78DF /* CreateAdvertViewController.m in Sources */,
 				AC1911521CE22D6C00C5A4A5 /* SortData.m in Sources */,
 				AC411E781CC8D186008B1E38 /* Certification+CoreDataProperties.m in Sources */,
+				ACEFEE9B1D82FB27001B9BA0 /* TSAdvertCertification.m in Sources */,
 				AC9776A61D26BAD60060DF73 /* ShippingInfoActionView.m in Sources */,
 				AC411E611CC7DC8E008B1E38 /* PaddingLabel.m in Sources */,
+				ACEFEE771D82B908001B9BA0 /* TSBaseEntity.m in Sources */,
 				ACDC246D1CBE8308003E9715 /* TitleTextContainerView.m in Sources */,
 				ACC6F2251D0EC1B600F1B6F5 /* ActionItem.m in Sources */,
 				ACE111011CFDB0D000E6FDB9 /* NSManagedObject+NSManagedObject_RevertChanges.m in Sources */,
+				ACEFEE981D82F615001B9BA0 /* TSAdvertState.m in Sources */,
 				AC411E791CC8D186008B1E38 /* Certification.m in Sources */,
 				AC1F544D1CCE45350093848B /* OfferManagerViewController.m in Sources */,
 				ACCE7FCE1CDCC3A400A76CB6 /* QAViewController.m in Sources */,
@@ -1013,6 +1103,7 @@
 				AC08D80B1CE9FEC200830A53 /* Answer+CoreDataProperties.m in Sources */,
 				AC411E211CBF9CEF008B1E38 /* Image+CoreDataProperties.m in Sources */,
 				AC411E5E1CC7D2C9008B1E38 /* BuyingTableViewCell.m in Sources */,
+				ACEFEE8F1D82EE0D001B9BA0 /* AdvertServiceManager.m in Sources */,
 				AC411E1C1CBF995A008B1E38 /* DB.m in Sources */,
 				AC411E511CC78D06008B1E38 /* SellingViewController.m in Sources */,
 				ACA2E8D01CE5BEDD00BAB401 /* OfferStatus.m in Sources */,
@@ -1024,10 +1115,12 @@
 				ACFCB6BD1CDA5047005A4024 /* AppSettings.m in Sources */,
 				ACCE7FCA1CDB8F6400A76CB6 /* SubCategory+CoreDataProperties.m in Sources */,
 				AC049D081CB7C47F006A8F21 /* HomeViewController.m in Sources */,
+				AC756E5E1D86A50700C45BA3 /* TSAdvertShipping.m in Sources */,
 				AC68C4811CB64241004B78DF /* TextFieldBorderBottom.m in Sources */,
 				ACCF26A21CF7395000BA55A9 /* UserDetailsViewController.m in Sources */,
 				AC411E721CC8D186008B1E38 /* Shipping+CoreDataProperties.m in Sources */,
 				AC411E291CBFA6D0008B1E38 /* NSDate+Extended.m in Sources */,
+				ACEFEE921D82F4D5001B9BA0 /* TSAdvertConditions.m in Sources */,
 				AC411E301CBFBB30008B1E38 /* BackgroundImageView.m in Sources */,
 				AC411E0D1CBF9693008B1E38 /* Model.xcdatamodeld in Sources */,
 				AC5633E41D0978D800ACF1E9 /* NSLayoutConstraint+Description.m in Sources */,
@@ -1038,8 +1131,10 @@
 				AC411E5B1CC7D257008B1E38 /* BuyingViewController.m in Sources */,
 				AC08D8041CE9FEC200830A53 /* Question.m in Sources */,
 				AC6201021CE34F5F006A80A2 /* DoneTextField.m in Sources */,
+				ACEFEE7D1D82BF3B001B9BA0 /* TSAdvertCategory.m in Sources */,
 				AC411E731CC8D186008B1E38 /* Shipping.m in Sources */,
 				AC0A2C4A1D1D784E0040282D /* WatchListViewController.m in Sources */,
+				ACEFEE7A1D82BBF1001B9BA0 /* TSBaseDictionaryEntity.m in Sources */,
 				ACFCB6B61CDA14A4005A4024 /* User+CoreDataProperties.m in Sources */,
 				ACC6F2281D0EC4C100F1B6F5 /* UserMenuView.m in Sources */,
 				ACCE7FD61CDCDB6B00A76CB6 /* QATableViewCell.m in Sources */,
@@ -1064,6 +1159,7 @@
 				ACFCB6B71CDA14A4005A4024 /* User.m in Sources */,
 				AC049D211CBBD2D7006A8F21 /* LoginViewController.m in Sources */,
 				AC049D0E1CB7C7E5006A8F21 /* SearchCollectionViewCell.m in Sources */,
+				ACEFEE951D82F57C001B9BA0 /* TSAdvertSizeType.m in Sources */,
 				AC6201081CE390D2006A80A2 /* UIViewController+BackButtonHandler.m in Sources */,
 				AC411E981CC92344008B1E38 /* Category.m in Sources */,
 				AC68C4771CB53F3D004B78DF /* CALayer+BorderUIColor.m in Sources */,
@@ -1079,6 +1175,7 @@
 				ACA2E8D21CE5BEDD00BAB401 /* Offer.m in Sources */,
 				AC68C4601CB51C1F004B78DF /* AppDelegate.m in Sources */,
 				ACA42F7C1D1AC7CD00C586BB /* BusinessType.m in Sources */,
+				AC756E611D86A8CB00C45BA3 /* TSAdvertPackagingType.m in Sources */,
 				AC411E761CC8D186008B1E38 /* Condition+CoreDataProperties.m in Sources */,
 				AC68C48C1CB67090004B78DF /* ImageCollectionViewCell.m in Sources */,
 				ACE111041CFF11DE00E6FDB9 /* CategoryViewController.m in Sources */,
