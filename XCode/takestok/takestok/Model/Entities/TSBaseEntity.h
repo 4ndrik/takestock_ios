@@ -8,9 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TSBaseEntity : NSObject
+#define DEFAULT_DATE_FORMAT @"yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'"
+
+@interface TSBaseEntity : NSObject{
+        NSNumber* _ident;
+}
+@property (nonatomic, readonly) NSNumber* ident;
 
 + (instancetype)objectWithDictionary:(NSDictionary *)dict;
 -(NSDictionary*)dictionaryRepresentation;
++(NSNumber*)identFromDic:(NSDictionary*)jsonDic;
+-(void)updateWithDic:(NSDictionary*)jsonDic;
 
 @end

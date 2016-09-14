@@ -8,6 +8,6 @@
 
 #import "TSBaseDictionaryEntity.h"
 
-@interface TSAdvertConditions : TSBaseDictionaryEntity
+@interface TSAdvertCondition : TSBaseDictionaryEntity
 
 @end

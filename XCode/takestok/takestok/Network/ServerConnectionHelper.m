@@ -166,6 +166,48 @@ typedef enum
     [loadPackagingTask resume];
 }
 
+-(void)loadBusinessTypes:(tsResultBlock)resultBlock{
+    [_dictionaryLock lock];
+    NSURLSessionDataTask* loadOfferStatusTask = [_session dataTaskWithRequest:[self request:BUSINESSTYPES_URL_PATH query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        resultBlock(result, error);
+        [_dictionaryLock unlock];
+    }];
+    [loadOfferStatusTask resume];
+}
+
+#pragma mark - Adverts
+-(void)loadAdvertsWithSort:(NSString*)sort search:(NSString*)search category:(NSNumber*)category subCategory:(NSNumber*)subCategory page:(int)page compleate:(tsResultBlock)compleate{
+    //Cancel prev request
+    [_loadAdvertCancelTask cancel];
+    
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:page], @"page", sort, @"o", nil];
+    
+    if (search.length > 0){
+        [params setValue:search forKey:@"q"];
+    }
+    
+    if (category){
+        [params setValue:category forKey:@"category"];
+    }
+    
+    if (subCategory){
+        [params setValue:subCategory forKey:@"subcategory"];
+    }
+    
+    NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
+    
+    _loadAdvertCancelTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        [_dictionaryLock waitUntilDone];
+        _loadAdvertCancelTask = nil;
+        if (!error){
+            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        }
+        compleate(result, error);
+    }];
+    [_loadAdvertCancelTask resume];
+}
+
 
 //===============================================
 
@@ -443,7 +485,7 @@ typedef enum
     [loadAdvertTask resume];
 }
 
--(void)loadAdvertsWithSortData:(SortData*)sortData searchString:(NSString*)searchString category:(Category*)category page:(int)page compleate:(resultBlock)compleate;{
+-(void)loadAdvertsWithSortData:(SortData*)sortData searchString:(NSString*)searchString category:(Category*)category page:(int)page compleate:(resultBlock)compleate{
     //Cancel prev request
     [_loadAdvertCancelTask cancel];
     

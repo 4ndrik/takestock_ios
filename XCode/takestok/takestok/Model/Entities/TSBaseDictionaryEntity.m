@@ -12,7 +12,7 @@
 #define DICTIONARY_NAME_PARAM             @"name"
 
 @implementation TSBaseDictionaryEntity
-@synthesize ident = _ident, title = _title;
+@synthesize title = _title;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict
 {

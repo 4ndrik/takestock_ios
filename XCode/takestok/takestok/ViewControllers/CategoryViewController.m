@@ -54,12 +54,14 @@
     TSBaseDictionaryEntity* selectedCategory = nil;
     if (indexPath.row > 0){
         selectedCategory = [_items objectAtIndex:indexPath.row - 1];
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        CategoryViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"CategoryVC"];
-        [vc setCategory:(TSAdvertCategory*)selectedCategory];
-        vc.delegate = self.delegate;
-        [self.navigationController pushViewController:vc animated:YES];
-        return;
+        if ([selectedCategory isKindOfClass:[TSAdvertCategory class]]){
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            CategoryViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"CategoryVC"];
+            [vc setCategory:(TSAdvertCategory*)selectedCategory];
+            vc.delegate = self.delegate;
+            [self.navigationController pushViewController:vc animated:YES];
+            return;
+        }
 
     }else{
         TSBaseDictionaryEntity* selectedSubCategory = [_items objectAtIndex:0];

@@ -13,10 +13,9 @@
 
 +(NSString*)getUrlForImage:(id<ImageProtocol>)image {
     NSString* url = image.url;
-//TODO: 
-//    if (url.length <= 0){
+    if (url.length <= 0){
         url = [NSString stringWithFormat:@"%@/%@", TAKESTOK_IMAGE_URL, image.resId];
-//    }
+    }
     return url;
 }
 

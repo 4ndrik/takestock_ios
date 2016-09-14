@@ -9,6 +9,7 @@
 #import "TSBaseEntity.h"
 
 @implementation TSBaseEntity
+@synthesize ident = _ident;
 
 + (instancetype)objectWithDictionary:(NSDictionary *)dict
 {
@@ -17,13 +18,22 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict
 {
-    NSAssert(YES, @"Must be overridden in subclasses");
+    NSAssert(NO, @"Must be overridden in subclasses");
     return nil;
 }
 
 -(NSDictionary*)dictionaryRepresentation{
-     NSAssert(YES, @"Must be overridden in subclasses");
+     NSAssert(NO, @"Must be overridden in subclasses");
     return nil;
+}
+
++(NSNumber*)identFromDic:(NSDictionary*)jsonDic{
+    NSAssert(NO, @"Must be overridden in subclasses");
+    return nil;
+}
+
+-(void)updateWithDic:(NSDictionary*)jsonDic{
+    NSAssert(NO, @"Must be overridden in subclasses");
 }
 
 @end

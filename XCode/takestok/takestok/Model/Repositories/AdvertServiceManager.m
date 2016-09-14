@@ -10,12 +10,15 @@
 #import "AppSettings.h"
 #import "ServerConnectionHelper.h"
 #import "TSAdvertCategory.h"
-#import "TSAdvertConditions.h"
+#import "TSAdvertCondition.h"
 #import "TSAdvertState.h"
 #import "TSAdvertSizeType.h"
 #import "TSAdvertShipping.h"
 #import "TSAdvertPackagingType.h"
 #import "TSAdvertCertification.h"
+#import "SortData.h"
+#import "TSAdvertSubCategory.h"
+#import "TSAdvert.h"
 
 @implementation AdvertServiceManager
 
@@ -183,10 +186,10 @@ static AdvertServiceManager *_manager = nil;
         [[ServerConnectionHelper sharedInstance] loadConditions:^(id result, NSError *error) {
             if (!error){
                 for (NSDictionary* jsConditions in result) {
-                    NSNumber* ident = [TSAdvertConditions identFromDic:jsConditions];
-                    TSAdvertConditions* condition = [_conditions objectForKey:ident];
+                    NSNumber* ident = [TSAdvertCondition identFromDic:jsConditions];
+                    TSAdvertCondition* condition = [_conditions objectForKey:ident];
                     if (!condition){
-                        condition = [[TSAdvertConditions alloc] init];
+                        condition = [[TSAdvertCondition alloc] init];
                         @synchronized (_conditions) {
                             [_conditions setObject:condition forKey:ident];
                         }
@@ -243,6 +246,41 @@ static AdvertServiceManager *_manager = nil;
 
 
 #pragma mark Dictionaries getters
+-(NSArray*)getStates{
+    return [_states allValues];
+}
+-(TSAdvertState*)getStateWithId:(NSNumber*)ident{
+    return [_states objectForKey:ident];
+}
+
+-(NSArray*)getSizeType{
+    return [_sizeTypes allValues];
+}
+-(TSAdvertSizeType*)getSizeTypeWithId:(NSNumber*)ident{
+    return [_sizeTypes objectForKey:ident];
+}
+
+-(NSArray*)getCertifications{
+    return [_certifications allValues];
+}
+-(TSAdvertCertification*)getCertificationWithId:(NSNumber*)ident{
+    return [_certifications objectForKey:ident];
+}
+
+-(NSArray*)getShippings{
+    return [_shipping allValues];
+}
+-(TSAdvertShipping*)getShippingWithId:(NSNumber*)ident{
+    return [_shipping objectForKey:ident];
+}
+
+-(NSArray*)getConditions{
+    return [_conditions allValues];
+}
+-(TSAdvertCondition*)getConditionWithId:(NSNumber*)ident{
+    return [_conditions objectForKey:ident];
+}
+
 
 -(NSArray*)getCategories{
     return [_categories allValues];
@@ -252,5 +290,46 @@ static AdvertServiceManager *_manager = nil;
     return [_categories objectForKey:ident];
 }
 
+-(NSArray*)getPackageTypes{
+    return [_packageTypes allValues];
+}
+-(TSAdvertPackagingType*)getPackageTypeWithId:(NSNumber*)ident{
+    return [_packageTypes objectForKey:ident];
+}
+
+-(void)loadAdverts:(SortData*)sortData search:(NSString*)search category:(TSBaseDictionaryEntity*)category page:(int)page compleate:(resultBlock)compleate{
+    NSNumber* categoryId;
+    NSNumber* subCategoryId;
+    if (category){
+        if ([category isKindOfClass:[TSAdvertSubCategory class]]){
+            subCategoryId = ((TSAdvertSubCategory*)category).ident;
+            categoryId = ((TSAdvertSubCategory*)category).parentIdent;
+        }
+    }
+    [[ServerConnectionHelper sharedInstance] loadAdvertsWithSort:sortData.value search:search category:categoryId subCategory:subCategoryId page:page compleate:^(id result, NSError *error) {
+        NSMutableDictionary* additionalDic;
+        NSMutableArray* adverts;
+        if (!error)
+        {
+            additionalDic = [NSMutableDictionary dictionaryWithDictionary:result];
+            [additionalDic removeObjectForKey:@"results"];
+            NSArray* array = [result objectForKeyNotNull:@"results"];
+            adverts = [NSMutableArray arrayWithCapacity:array.count];
+                
+            for (NSDictionary* advertDic in array) {
+                TSAdvert* advert = [TSAdvert objectWithDictionary:advertDic];
+                if (advert)
+                    [adverts addObject:advert];
+            }
+
+        }else if ([[error localizedDescription] isEqualToString:@"cancelled"]){
+            return;
+        }
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            compleate(adverts, additionalDic, error);
+        });
+    }];
+}
 
 @end

@@ -6,8 +6,8 @@
 //  Copyright © 2016 Artem. All rights reserved.
 //
 
-#import "TSAdvertConditions.h"
+#import "TSAdvertCondition.h"
 
-@implementation TSAdvertConditions
+@implementation TSAdvertCondition
 
 @end

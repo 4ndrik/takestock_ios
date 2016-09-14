@@ -8,7 +8,7 @@
 
 
 #define TAKESTOK_API_URL                @"http://uat.takestock.com/api/v1/"
-#define TAKESTOK_IMAGE_URL              @"http://uat.takestock.com/media/images"
+#define TAKESTOK_IMAGE_URL              @"http://uat.takestock.com"
 
 
 //FONTS

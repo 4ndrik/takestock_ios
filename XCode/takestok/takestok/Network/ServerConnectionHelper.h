@@ -47,9 +47,10 @@ typedef void (^tsResultBlock)(id result, NSError* error);
 -(void)loadCategories:(tsResultBlock)resultBlock;
 -(void)loadConditions:(tsResultBlock)resultBlock;
 -(void)loadPackagingTypes:(tsResultBlock)resultBlock;
+-(void)loadBusinessTypes:(tsResultBlock)resultBlock;
 
-
-
+//Adevrts
+-(void)loadAdvertsWithSort:(NSString*)sort search:(NSString*)search category:(NSNumber*)category subCategory:(NSNumber*)subCategory page:(int)page compleate:(tsResultBlock)compleate;
 
 
 

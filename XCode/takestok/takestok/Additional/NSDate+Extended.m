@@ -17,6 +17,13 @@
     return [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval]];
 }
 
++(NSString*)stringFromDate:(NSDate*)date{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterLongStyle];
+    formatter.timeZone = [NSTimeZone systemTimeZone];
+    return [formatter stringFromDate:date];
+}
+
 - (NSInteger)daysFromDate:(NSDate *)pDate {
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSInteger startDay=[calendar ordinalityOfUnit:NSCalendarUnitDay

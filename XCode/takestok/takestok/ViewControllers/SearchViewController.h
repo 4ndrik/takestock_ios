@@ -15,7 +15,8 @@
 #import "SearchCollectionViewCell.h"
 
 @class SortData;
-@class Category;
+@class TSBaseDictionaryEntity;
+
 @interface SearchViewController : BaseViewController<SearchCollectionViewLayoutProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, SearchFilterSortDelegate, CategoryProtocol, WatchListProtocol>{
     
     __weak IBOutlet UICollectionView *_searchCollectionView;
@@ -25,7 +26,7 @@
     SearchTitleView* _searchTitleView;
     NSMutableArray* _adverts;
     NSString* _searchText;
-    Category* _searchCategory;
+    TSBaseDictionaryEntity* _searchCategory;
     UIRefreshControl *_refreshControl;
     SortData* _sortData;
     int _page;
@@ -33,6 +34,6 @@
 }
 
 -(void)setSearchText:(NSString*)searchText;
--(void)setCategory:(Category*)category;
+-(void)setCategory:(TSBaseDictionaryEntity*)category;
 
 @end

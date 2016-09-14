@@ -18,6 +18,7 @@
 #import "CreateAdvertViewController.h"
 #import "SearchViewController.h"
 #import "UserDetailsViewController.h"
+#import "TSBaseDictionaryEntity.h"
 
 @implementation BaseViewController
 
@@ -67,12 +68,13 @@
         CreateAdvertViewController* vc = (CreateAdvertViewController*)segue.destinationViewController;
         [vc setAdvert:sender];
     } else if ([segue.identifier isEqualToString:CATEGORIES_SEGUE]) {
-        CategoryViewController* categoryhVC = (CategoryViewController*)segue.destinationViewController;
+        UINavigationController* categoryNC = (UINavigationController*)segue.destinationViewController;
+        CategoryViewController* categoryhVC = (CategoryViewController*)categoryNC.viewControllers.firstObject;
         if ([[self class]conformsToProtocol:@protocol(CategoryProtocol)])
             categoryhVC.delegate = (id<CategoryProtocol>)self;
     } else if ([segue.identifier isEqualToString:SEARCH_ADVERT_SEGUE]) {
         SearchViewController* searchVC = (SearchViewController*)segue.destinationViewController;
-        if ([sender isKindOfClass:[Category class]]){
+        if ([sender isKindOfClass:[TSBaseDictionaryEntity class]]){
             [searchVC setCategory:sender];
         }else if ([sender isKindOfClass:[NSString class]]){
             [searchVC setSearchText:sender];
