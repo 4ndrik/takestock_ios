@@ -56,6 +56,10 @@ static UserServiceManager *_manager = nil;
     return [_businessTypes objectForKey:ident];
 }
 
+-(TSUserEntity*)getMe{
+    return nil;
+}
+
 -(TSUserEntity*)getOrCreateAuthor:(NSDictionary*)authodDic{
     NSNumber* ident = [TSUserEntity identFromDic:authodDic];
     TSUserEntity* user = [_users objectForKey:ident];

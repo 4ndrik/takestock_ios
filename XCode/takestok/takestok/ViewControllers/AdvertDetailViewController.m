@@ -8,7 +8,7 @@
 
 #import "AdvertDetailViewController.h"
 #import "ImageCollectionViewCell.h"
-#import "Advert.h"
+#import "TSAdvert.h"
 #import "BackgroundImageView.h"
 #import "TitleTextContainerView.h"
 #import "NSDate+Extended.h"
@@ -25,6 +25,8 @@
 #import "OfferStatus.h"
 #import "UserDetailsViewController.h"
 #import "LoginViewController.h"
+#import "TSUserEntity.h"
+#import "UserServiceManager.h"
 
 @interface AdvertDetailViewController ()
 
@@ -34,7 +36,7 @@
 
 #pragma mark - Life cycle
 
--(void)setAdvert:(Advert*)advert{
+-(void)setAdvert:(TSAdvert*)advert{
     _advert = advert;
     
     if (self.isViewLoaded){
@@ -73,16 +75,27 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [_priceTextContainerView invalidateIntrinsicContentSize];
+    [_minimumOrderTextContainerView invalidateIntrinsicContentSize];
+    [_qtyAvailableTextContainerView invalidateIntrinsicContentSize];
+    [_locationTextContainerView invalidateIntrinsicContentSize];
+    [_shippingTextContainerView invalidateIntrinsicContentSize];
+    [_expiryTextContainerView invalidateIntrinsicContentSize];
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:ADVERT_IMAGES_SEGUE]) {
         ImagesCollectionViewController* imageVC = (ImagesCollectionViewController*)segue.destinationViewController;
-        [imageVC setImages:[_advert.images array] withCurrentIndex:((NSIndexPath*)sender).row];
-    }else if ([segue.identifier isEqualToString:@"QuestionsSegue"]){
-        QAViewController* aqVC = (QAViewController*)segue.destinationViewController;
-        [aqVC setAdvert:_advert];
-    }else if ([segue.identifier isEqualToString:USER_DETAILS_SEGUE]){
-        UserDetailsViewController* udVC = (UserDetailsViewController*)segue.destinationViewController;
-        [udVC setUser:_advert.author];
+        [imageVC setImages:_advert.photos withCurrentIndex:((NSIndexPath*)sender).row];
+//    }else if ([segue.identifier isEqualToString:@"QuestionsSegue"]){
+//            QAViewController* aqVC = (QAViewController*)segue.destinationViewController;
+//            [aqVC setAdvert:_advert];
+//        
+//    }else if ([segue.identifier isEqualToString:USER_DETAILS_SEGUE]){
+//        UserDetailsViewController* udVC = (UserDetailsViewController*)segue.destinationViewController;
+//        [udVC setUser:_advert.author];
     }
 }
 
@@ -108,27 +121,11 @@
     _titleLabel.text = _advert.name;
     
     _priceTextContainerView.text = [NSString stringWithFormat:@"£%.02f", _advert.guidePrice];
-    [_priceTextContainerView setNeedsDisplay];
-    
-    _minimumOrderTextContainerView.text = [NSString stringWithFormat:@"%i %@", _advert.minOrderQuantity, _advert.packaging ? _advert.packaging.title: @""];
-    if (_minimumOrderTextContainerView.text.length == 0){
-        _minimumOrderHeightConstraint.constant = 0;
-    }
-    _qtyAvailableTextContainerView.text = [NSString stringWithFormat:@"%i %@", _advert.count, _advert.packaging ? _advert.packaging.title: @""];
-    if (_qtyAvailableTextContainerView.text.length == 0){
-        _qtyAvailableHeightConstraint.constant = 0;
-        [_qtyAvailableTextContainerView setNeedsUpdateConstraints];
-    }
-    _descriptionTextView.text = _advert.adDescription;
+    _minimumOrderTextContainerView.text = _advert.minOrderQuantity > 0 ? [NSString stringWithFormat:@"%i %@", _advert.minOrderQuantity, _advert.packaging ? _advert.packaging.title: @""]  : @"";
+    _qtyAvailableTextContainerView.text =  [NSString stringWithFormat:@"%i %@", _advert.count, _advert.packaging ? _advert.packaging.title: @""];
     _locationTextContainerView.text = _advert.location;
-    if (_locationTextContainerView.text.length == 0){
-        _locationHeightConstraint.constant = 0;
-    }
     _shippingTextContainerView.text = _advert.shipping.title;
-    if (_shippingTextContainerView.text.length == 0){
-        _shippingHeightConstraint.constant = 0;
-    }
-    _expiryTextContainerView.text = _advert.expires > 0 ? [NSDate stringFromTimeInterval:_advert.expires] : @"N/A";
+    _expiryTextContainerView.text = _advert.dateExpires ? [NSDate stringFromDate:_advert.dateExpires] : @"N/A";
     
     NSMutableString* certString = _advert.certification != nil ? [[NSMutableString alloc] initWithString:_advert.certification.title] : [[NSMutableString alloc] init];
     if (_advert.certificationOther.length > 0){
@@ -136,16 +133,11 @@
     }
     
     _certeficationTextContainerView.text = certString;
-    if (_certeficationTextContainerView.text.length == 0){
-        _certificationHeightConstraint.constant = 0;
-    }
     _conditionTextContainerView.text = _advert.condition.title;
-    if (_conditionTextContainerView.text.length == 0){
-        _conditionHeightConstraint.constant = 0;
-    }
+        _descriptionTextView.text = _advert.adDescription;
     
-    if (_advert.author.image)
-        [_userPicture loadImage:_advert.author.image];
+    if (_advert.author.photo)
+        [_userPicture loadImage:_advert.author.photo];
     else
         [_userPicture setImage:[UIImage imageNamed:@"user_placeholder"]];
     
@@ -158,7 +150,7 @@
     
     if (_advert.ident <= 0){
         [_makeButton setTitle:@"CREATE ADVERT" forState:UIControlStateNormal];
-    }else if (_advert.author.ident == [User getMe].ident){
+    }else if (_advert.author.ident == [[UserServiceManager sharedManager] getMe].ident){
         _offerViewHeight.constant = 0;
     }
     
@@ -168,63 +160,63 @@
 }
 
 -(void)createOrder{
-    if (_createOrderAction){
-        Offer* offer = [_advert isForStore] ? [Offer storedEntity] : [Offer tempEntity];
-        offer.advert = _advert;
-        User* user = [User getMe];
-        if (user.managedObjectContext != offer.managedObjectContext){
-            user = [offer.managedObjectContext objectWithID:[user objectID]];
-        }
-        offer.user = user;
-        offer.price = [_offerPriceTextField.text floatValue];
-        offer.quantity = [_offerQuantityTextField.text floatValue];
-        offer.status = [OfferStatus getEntityWithId:stPending];
-        
-        [self showLoading];
-        [[ServerConnectionHelper sharedInstance] createOffer:offer compleate:^(NSError *error) {
-            [self hideLoading];
-            NSString* title = @"";
-            NSString* message = @"Offer created";
-            if (error){
-                [offer.managedObjectContext deleteObject:offer];
-                title = @"Error";
-                message = ERROR_MESSAGE(error);
-            }else{
-                [self closeOfferPanel:nil];
-                [_makeButton setBackgroundColor:[UIColor lightGrayColor]];
-                _makeButton.enabled = NO;
-            }
-            [self showOkAlert:title text:message];
-        }];
-        
-    }else{
-        _offerPriceLabel.text = [NSString stringWithFormat:@"£/%@", _advert.packaging.title];
-        _offerQuantityLabel.text = _advert.packaging.title;
-        _offerViewHeight.constant = 186;
-        [_scrollView setContentOffset:CGPointMake(0, _scrollView.contentOffset.y + 143) animated:NO];
-        [self.view setNeedsUpdateConstraints];
-        [self.view setNeedsLayout];
-        [self.view layoutIfNeeded];
-        _createOrderAction = YES;
-    }
+//    if (_createOrderAction){
+//        Offer* offer = [_advert isForStore] ? [Offer storedEntity] : [Offer tempEntity];
+//        offer.advert = _advert;
+//        User* user = [User getMe];
+//        if (user.managedObjectContext != offer.managedObjectContext){
+//            user = [offer.managedObjectContext objectWithID:[user objectID]];
+//        }
+//        offer.user = user;
+//        offer.price = [_offerPriceTextField.text floatValue];
+//        offer.quantity = [_offerQuantityTextField.text floatValue];
+//        offer.status = [OfferStatus getEntityWithId:stPending];
+//        
+//        [self showLoading];
+//        [[ServerConnectionHelper sharedInstance] createOffer:offer compleate:^(NSError *error) {
+//            [self hideLoading];
+//            NSString* title = @"";
+//            NSString* message = @"Offer created";
+//            if (error){
+//                [offer.managedObjectContext deleteObject:offer];
+//                title = @"Error";
+//                message = ERROR_MESSAGE(error);
+//            }else{
+//                [self closeOfferPanel:nil];
+//                [_makeButton setBackgroundColor:[UIColor lightGrayColor]];
+//                _makeButton.enabled = NO;
+//            }
+//            [self showOkAlert:title text:message];
+//        }];
+//        
+//    }else{
+//        _offerPriceLabel.text = [NSString stringWithFormat:@"£/%@", _advert.packaging.title];
+//        _offerQuantityLabel.text = _advert.packaging.title;
+//        _offerViewHeight.constant = 186;
+//        [_scrollView setContentOffset:CGPointMake(0, _scrollView.contentOffset.y + 143) animated:NO];
+//        [self.view setNeedsUpdateConstraints];
+//        [self.view setNeedsLayout];
+//        [self.view layoutIfNeeded];
+//        _createOrderAction = YES;
+//    }
 }
 
 -(void)createAdvert{
-    [self showLoading];
-    [[ServerConnectionHelper sharedInstance] createAdvert:_advert compleate:^(NSError *error) {
-        [self hideLoading];
-        NSString* title = @"";
-        NSString* message = @"Advert created";
-        if (error){
-            title = @"Error";
-            message = ERROR_MESSAGE(error);
-        }else{
-            [_makeButton setBackgroundColor:[UIColor lightGrayColor]];
-            _makeButton.enabled = NO;
-            _popToRootViewController = YES;
-        }
-        [self showOkAlert:title text:message];
-    }];
+//    [self showLoading];
+//    [[ServerConnectionHelper sharedInstance] createAdvert:_advert compleate:^(NSError *error) {
+//        [self hideLoading];
+//        NSString* title = @"";
+//        NSString* message = @"Advert created";
+//        if (error){
+//            title = @"Error";
+//            message = ERROR_MESSAGE(error);
+//        }else{
+//            [_makeButton setBackgroundColor:[UIColor lightGrayColor]];
+//            _makeButton.enabled = NO;
+//            _popToRootViewController = YES;
+//        }
+//        [self showOkAlert:title text:message];
+//    }];
     
 }
 
@@ -250,12 +242,12 @@
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return _advert.images.count;
+    return _advert.photos.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ImageCollectionViewCell* cell = (ImageCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"ImageViewCell" forIndexPath:indexPath];
-    [(BackgroundImageView*)cell.imageView loadImage:[_advert.images objectAtIndex:indexPath.row]];
+    [(BackgroundImageView*)cell.imageView loadImage:[_advert.photos objectAtIndex:indexPath.row]];
     return cell;
 }
 

@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 IB_DESIGNABLE
-@interface TitleTextContainerView : UIView{
-    
-}
+@interface TitleTextContainerView : UIView
+
+@property (nonatomic) IBInspectable float verticalPadding;
 
 @property (nonatomic) IBInspectable UIColor* titleColor;
 @property (nonatomic) IBInspectable NSString* titleFont;

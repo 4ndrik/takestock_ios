@@ -22,6 +22,7 @@
 -(NSArray*)getBusinessType;
 -(TSUserBusinessType*)getBusinessTypeWithId:(NSNumber*)ident;
 
+-(TSUserEntity*)getMe;
 -(TSUserEntity*)getOrCreateAuthor:(NSDictionary*)authodDic;
 
 @end

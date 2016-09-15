@@ -7,10 +7,11 @@
 //
 
 #import "TSBaseEntity.h"
+#import "TSImageEntity.h"
 
 @class TSUserBusinessType;
 @class TSUserSubBusinessType;
-@class TSImageEntity;
+
 
 @interface TSUserEntity : TSBaseEntity
 
@@ -18,6 +19,7 @@
 @property (readonly, nonatomic, retain) NSString *firstName;
 @property (readonly, nonatomic, retain) NSString *lastName;
 @property (readonly, nonatomic, retain) NSString *email;
+@property (readonly, nonatomic, assign) BOOL isVerified;
 @property (readonly, nonatomic, assign) BOOL isVatExtempt;
 @property (readonly, nonatomic, assign) float rating;
 @property (readonly, nonatomic, retain) TSImageEntity *photo;

@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 @class TitleTextContainerView;
-@class Advert;
+@class TSAdvert;
 @class TopBottomStripesLabel;
 @class RatingView;
 @class BackgroundImageView;
@@ -16,7 +16,7 @@
 @class Offer;
 
 @interface AdvertDetailViewController : BaseViewController<UICollectionViewDelegate, UICollectionViewDataSource>{
-    Advert* _advert;
+    TSAdvert* _advert;
     
     BOOL _popToRootViewController;
     
@@ -35,14 +35,6 @@
     __weak IBOutlet TitleTextContainerView *_certeficationTextContainerView;
     __weak IBOutlet TitleTextContainerView *_conditionTextContainerView;
     
-    __weak IBOutlet NSLayoutConstraint *_minimumOrderHeightConstraint;
-    __weak IBOutlet NSLayoutConstraint *_qtyAvailableHeightConstraint;
-    __weak IBOutlet NSLayoutConstraint *_locationHeightConstraint;
-    __weak IBOutlet NSLayoutConstraint *_shippingHeightConstraint;
-    __weak IBOutlet NSLayoutConstraint *_expiryHeightConstraint;
-    __weak IBOutlet NSLayoutConstraint *_certificationHeightConstraint;
-    __weak IBOutlet NSLayoutConstraint *_conditionHeightConstraint;
-    
     __weak IBOutlet NSLayoutConstraint *_offerViewHeight;
     __weak IBOutlet PaddingTextField *_offerQuantityTextField;
     __weak IBOutlet UILabel *_offerQuantityLabel;
@@ -60,7 +52,7 @@
     __weak IBOutlet UIImageView *_awardImageView;
 }
 
--(void)setAdvert:(Advert*)advert;
+-(void)setAdvert:(TSAdvert*)advert;
 - (IBAction)makeAction:(id)sender;
 - (IBAction)closeOfferPanel:(id)sender;
 

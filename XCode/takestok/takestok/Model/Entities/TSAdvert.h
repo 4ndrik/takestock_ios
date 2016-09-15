@@ -14,6 +14,7 @@
 #import "TSAdvertCertification.h"
 #import "TSAdvertCondition.h"
 #import "TSAdvertState.h"
+#import "TSUserEntity.h"
 
 @interface TSAdvert : TSBaseEntity
 
@@ -27,7 +28,7 @@
 @property (readonly, nonatomic, retain) TSAdvertShipping *shipping;
 @property (readonly, nonatomic, assign) BOOL isVatExtempt;
 @property (readonly, nonatomic, retain) NSArray* photos;
-@property (readonly, nonatomic, retain) id author;
+@property (readonly, nonatomic, retain) TSUserEntity* author;
 @property (readonly, nonatomic, retain) TSAdvertCategory* category;
 @property (readonly, nonatomic, retain) TSAdvertSubCategory* subCategory;
 @property (readonly, nonatomic, retain) TSAdvertPackagingType *packaging;

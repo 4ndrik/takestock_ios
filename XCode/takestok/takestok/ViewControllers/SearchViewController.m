@@ -221,7 +221,7 @@
     
 }
 
--(void)updateWatchList:(Advert*)advert{
+-(void)updateWatchList:(TSAdvert*)advert{
 //    [self showLoading];
 //    [[ServerConnectionHelper sharedInstance] addToWatchList:advert compleate:^(NSError *error){
 //        [self hideLoading];

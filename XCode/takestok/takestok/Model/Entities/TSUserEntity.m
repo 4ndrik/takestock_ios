@@ -16,6 +16,7 @@
 #define AUTHOR_FIRST_NAME_PARAM         @"first_name"
 #define AUTHOR_LAST_NAME_PARAM          @"last_name"
 #define AUTHOR_EMAIL_PARAM              @"email"
+#define AUTHOR_VERIFIED_PARAM           @"is_verified"
 #define AUTHOR_IS_VAT_PARAM             @"is_vat_exempt"
 #define AUTHOR_RATING_PARAM             @"avg_rating"
 #define AUTHOR_PHOTO_PARAM              @"photo"
@@ -60,6 +61,7 @@
     _firstName = [dict objectForKeyNotNull:AUTHOR_FIRST_NAME_PARAM];
     _lastName = [dict objectForKeyNotNull:AUTHOR_LAST_NAME_PARAM];
     _email = [dict objectForKeyNotNull:AUTHOR_EMAIL_PARAM];
+    _isVerified = [[dict objectForKeyNotNull:AUTHOR_VERIFIED_PARAM] boolValue];
     _isVatExtempt = [[dict objectForKeyNotNull:AUTHOR_IS_VAT_PARAM] boolValue];
     _rating = [[dict objectForKeyNotNull:AUTHOR_RATING_PARAM] floatValue];
     

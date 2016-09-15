@@ -26,7 +26,7 @@
     }
     for (NSDictionary* subCatDic in [dict objectForKeyNotNull:CATEGORY_SUBCATEGORY_PARAM]){
         NSNumber* sident = [TSAdvertSubCategory identFromDic:subCatDic];
-        int index = [_subCategories indexOfObjectPassingTest:^BOOL(TSAdvertSubCategory*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSUInteger index = [_subCategories indexOfObjectPassingTest:^BOOL(TSAdvertSubCategory*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             return [obj.ident isEqual:sident];
         }];
         

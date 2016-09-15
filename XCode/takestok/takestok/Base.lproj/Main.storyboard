@@ -820,7 +820,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hdu-Gx-i9n" customClass="PaddingLabel">
                                         <rect key="frame" x="20" y="1441" width="560" height="0.0"/>
                                         <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="18"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="topInset">
@@ -4088,10 +4088,10 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BOe-fQ-yS5">
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LABELG" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lY-LP-fLR" customClass="TopBottomStripesLabel">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LABELG" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lY-LP-fLR" customClass="TopBottomStripesLabel">
                                         <rect key="frame" x="20" y="600" width="560" height="32"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="32" id="596-8v-eHO"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="596-8v-eHO"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="BrandonGrotesque-Bold" family="Brandon Grotesque" pointSize="22"/>
                                         <color key="textColor" red="0.74901960779999999" green="0.73725490199999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -4108,9 +4108,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KGu-ll-mkn" customClass="TitleTextContainerView">
                                         <rect key="frame" x="20" y="642" width="560" height="34"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="GIP-e3-8CC"/>
-                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
                                                 <color key="value" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -4128,14 +4125,14 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="titleFontSize">
                                                 <integer key="value" value="18"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="verticalPadding">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KfW-pT-RT5" customClass="TitleTextContainerView">
                                         <rect key="frame" x="20" y="676" width="560" height="34"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="NYf-G7-3dA"/>
-                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
                                                 <color key="value" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -4153,14 +4150,14 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="titleFontSize">
                                                 <integer key="value" value="18"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="verticalPadding">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vf9-lf-pCJ" customClass="TitleTextContainerView">
                                         <rect key="frame" x="20" y="710" width="560" height="34"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="T0H-TA-6Fc"/>
-                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
                                                 <color key="value" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -4178,14 +4175,14 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="titleFontSize">
                                                 <integer key="value" value="18"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="verticalPadding">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tR3-O7-Ov2" customClass="TitleTextContainerView">
                                         <rect key="frame" x="20" y="744" width="560" height="34"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="Oak-Pd-WKO"/>
-                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
                                                 <color key="value" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -4203,14 +4200,14 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="titleFontSize">
                                                 <integer key="value" value="18"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="verticalPadding">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eDV-c8-BmX" customClass="TitleTextContainerView">
                                         <rect key="frame" x="20" y="778" width="560" height="34"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="HAh-vr-uQw"/>
-                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
                                                 <color key="value" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -4228,14 +4225,14 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="titleFontSize">
                                                 <integer key="value" value="18"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="verticalPadding">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PNC-by-mi7" customClass="TitleTextContainerView">
                                         <rect key="frame" x="20" y="812" width="560" height="34"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="A3B-t0-WiF"/>
-                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
                                                 <color key="value" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -4253,14 +4250,14 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="titleFontSize">
                                                 <integer key="value" value="18"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="verticalPadding">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="57n-Fp-iIk" customClass="TitleTextContainerView">
                                         <rect key="frame" x="20" y="846" width="560" height="34"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="PX0-ty-cJf"/>
-                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
                                                 <color key="value" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -4278,14 +4275,14 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="titleFontSize">
                                                 <integer key="value" value="18"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="verticalPadding">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eBJ-lt-QSd" customClass="TitleTextContainerView">
                                         <rect key="frame" x="20" y="880" width="560" height="34"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="Lee-ef-SuE"/>
-                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
                                                 <color key="value" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -4302,6 +4299,9 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="titleFontSize">
                                                 <integer key="value" value="18"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="verticalPadding">
+                                                <real key="value" value="4"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
@@ -4673,16 +4673,11 @@
                     <connections>
                         <outlet property="_awardImageView" destination="cpg-hs-gqc" id="QR3-4u-KVm"/>
                         <outlet property="_certeficationTextContainerView" destination="57n-Fp-iIk" id="h9i-pV-cLU"/>
-                        <outlet property="_certificationHeightConstraint" destination="PX0-ty-cJf" id="5lp-Hs-DED"/>
-                        <outlet property="_conditionHeightConstraint" destination="Lee-ef-SuE" id="lzZ-Bw-As3"/>
                         <outlet property="_conditionTextContainerView" destination="eBJ-lt-QSd" id="Ox4-Qc-4xE"/>
                         <outlet property="_descriptionTextView" destination="Ahh-Yh-ie5" id="afA-3F-YP2"/>
-                        <outlet property="_expiryHeightConstraint" destination="A3B-t0-WiF" id="zzP-4i-MZH"/>
                         <outlet property="_expiryTextContainerView" destination="PNC-by-mi7" id="Ias-Dw-S1g"/>
-                        <outlet property="_locationHeightConstraint" destination="Oak-Pd-WKO" id="DXb-Ye-u72"/>
                         <outlet property="_locationTextContainerView" destination="tR3-O7-Ov2" id="JJh-X3-Kjn"/>
                         <outlet property="_makeButton" destination="ZKY-nt-lXv" id="7ba-ex-oYl"/>
-                        <outlet property="_minimumOrderHeightConstraint" destination="NYf-G7-3dA" id="f08-gQ-54l"/>
                         <outlet property="_minimumOrderTextContainerView" destination="KfW-pT-RT5" id="thf-FL-zAn"/>
                         <outlet property="_offerPriceLabel" destination="yrQ-PJ-f4z" id="Pe0-vN-C0X"/>
                         <outlet property="_offerPriceTextField" destination="cTN-kD-sL1" id="p4W-yy-Wh4"/>
@@ -4690,12 +4685,10 @@
                         <outlet property="_offerQuantityTextField" destination="pHM-ok-cwU" id="5ZP-i0-dOg"/>
                         <outlet property="_offerViewHeight" destination="JPF-MH-fPc" id="Lnh-WQ-nYG"/>
                         <outlet property="_priceTextContainerView" destination="KGu-ll-mkn" id="aQk-pr-pFU"/>
-                        <outlet property="_qtyAvailableHeightConstraint" destination="T0H-TA-6Fc" id="edk-A9-6xE"/>
                         <outlet property="_qtyAvailableTextContainerView" destination="Vf9-lf-pCJ" id="jPW-hG-jnM"/>
                         <outlet property="_questionButton" destination="shA-cE-3fm" id="WYr-KO-xbi"/>
                         <outlet property="_ratingView" destination="UIF-Ku-hrE" id="4A9-Wa-S4H"/>
                         <outlet property="_scrollView" destination="BOe-fQ-yS5" id="aBo-es-nAg"/>
-                        <outlet property="_shippingHeightConstraint" destination="HAh-vr-uQw" id="Swg-tr-lQy"/>
                         <outlet property="_shippingTextContainerView" destination="eDV-c8-BmX" id="WM9-Yj-fa1"/>
                         <outlet property="_titleLabel" destination="9lY-LP-fLR" id="JAA-DR-mAN"/>
                         <outlet property="_userName" destination="FQb-JQ-vlv" id="fmZ-73-ixP"/>

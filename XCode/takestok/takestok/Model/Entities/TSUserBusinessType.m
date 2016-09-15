@@ -24,7 +24,7 @@
     }
     for (NSDictionary* subBTDic in [dict objectForKeyNotNull:BUSINESS_SUB_PARAM]){
         NSNumber* sident = [TSUserSubBusinessType identFromDic:subBTDic];
-        int index = [_subTypes indexOfObjectPassingTest:^BOOL(TSUserSubBusinessType*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSUInteger index = [_subTypes indexOfObjectPassingTest:^BOOL(TSUserSubBusinessType*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             return [obj.ident isEqual:sident];
         }];
         
