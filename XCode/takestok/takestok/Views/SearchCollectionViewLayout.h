@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-#define TitleSuplementaryViewKind @"TitleSuplementaryViewKind"
-#define SearchFilterSuplementaryViewKind @"SearchFilterSuplementaryViewKind"
+//#define TitleSuplementaryViewKind @"TitleSuplementaryViewKind"
+//#define SearchFilterSuplementaryViewKind @"SearchFilterSuplementaryViewKind"
 
 @protocol SearchCollectionViewLayoutProtocol <NSObject>
 
 @required
 -(int)heightForRowAtIndexPath:(NSIndexPath*)indexPath;
+@optional
 -(int)heightForsuplementaryViewOfKind:(NSString*)kind;
 
 @end
@@ -22,9 +23,9 @@
 @interface SearchCollectionViewLayout : UICollectionViewLayout{
     float contentHeight;
     NSMutableArray* _layoutAtributes;
-    NSMutableArray* _noPaddingAtributes;
-    UICollectionViewLayoutAttributes* _alwaysVisibleLayoutAttribute;
-    float _alwaysVisibleDefaultY;
+//    NSMutableArray* _noPaddingAtributes;
+//    UICollectionViewLayoutAttributes* _alwaysVisibleLayoutAttribute;
+//    float _alwaysVisibleDefaultY;
 }
 
 @property int numberOfColumns;

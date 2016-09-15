@@ -20,6 +20,8 @@
 #import "TSBaseDictionaryEntity.h"
 #import "TSAdvert.h"
 #import "TSImageEntity.h"
+#import "TSAdvertSubCategory.h"
+#import "TSAdvertCategory.h"
 
 #define CellTitleFont [UIFont fontWithName:@"HelveticaNeue-Bold" size:16]
 #define CellOtherFont [UIFont fontWithName:@"HelveticaNeue" size:16]
@@ -27,12 +29,13 @@
 #define SmallMargin 4
 #define LongMargin 10
 
+@interface SearchViewController()<UIPickerViewDelegate, UIPickerViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, CategoryProtocol, WatchListProtocol, UIGestureRecognizerDelegate, SearchCollectionViewLayoutProtocol>
+@end
+
 @implementation SearchViewController
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
-    _filterData = [NSArray arrayWithObjects:@"Beverages", @"Bakery", @"Sweets & Snacks", @"Finished goods", @"Ingradients", @"Condiments", @"Nuts & dried fruit", @"Herbs, spices & flavourings", @"Other", nil];
-    _selectedFilterData = [[NSMutableSet alloc] init];
     return self;
 }
 
@@ -54,10 +57,6 @@
     if (!_sortData)
         _sortData = [SortData getAll].firstObject;
     
-    
-    [_searchCollectionView registerNib:[UINib nibWithNibName:@"SearchTitleView" bundle:nil] forSupplementaryViewOfKind:TitleSuplementaryViewKind withReuseIdentifier:TitleSuplementaryViewKind];
-    [_searchCollectionView registerNib:[UINib nibWithNibName:@"SearchFilterSortView" bundle:nil] forSupplementaryViewOfKind:SearchFilterSuplementaryViewKind withReuseIdentifier:SearchFilterSuplementaryViewKind];
-    
     SearchCollectionViewLayout* layout = (SearchCollectionViewLayout*)_searchCollectionView.collectionViewLayout;
     layout.numberOfColumns = 2;
     layout.cellPadding = 10;
@@ -75,24 +74,44 @@
     [_searchCollectionView addSubview:_loadingIndicator];
     
     [self reloadData:nil];
+    
+    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
+    _titleLabel.textColor = [UIColor whiteColor];
+    _titleLabel.numberOfLines = 2;
+    [self refreshTitleLabelForCount:-1];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    _titleLabel.frame = CGRectMake(0, 0, self.view.bounds.size.width, 44);
+    self.navigationItem.titleView = _titleLabel;
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     [_searchCollectionView.collectionViewLayout invalidateLayout];
-    [self reposRefreshControl];
 }
 
--(void)reposRefreshControl{
-    float height = [SearchTitleView defaultHeight];
-    if (_searchFilterSortView){
-        height += [_searchFilterSortView height];
-    }else{
-        height += [SearchFilterSortView defaultHeight];
-    }
-    CGRect r = [_refreshControl.subviews objectAtIndex:0].frame;
-    r.origin.y = height / 2.;
-    [[_refreshControl.subviews objectAtIndex:0] setFrame:r];
+-(void)refreshTitleLabelForCount:(int)count{
+    
+    NSMutableAttributedString* titleString = [[NSMutableAttributedString alloc] init];
+    
+    NSMutableAttributedString* searchString = [[NSMutableAttributedString alloc] initWithString:_searchText.length > 0 ? [NSString stringWithFormat:@"\"%@\"",_searchText] : @"ALL"];
+    [searchString addAttribute:NSFontAttributeName
+                         value:BrandonGrotesqueBold16
+                         range:NSMakeRange(0, searchString.length)];
+    [searchString addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, searchString.length)];
+    [titleString appendAttributedString:searchString];
+    
+    NSMutableAttributedString* countResultString = [[NSMutableAttributedString alloc] initWithString:count >= 0 ? [NSString stringWithFormat:@"\n%i results", count] : @"\nLoading results"];
+    [countResultString addAttribute:NSFontAttributeName
+                              value:BrandonGrotesqueBold13
+                              range:NSMakeRange(0, countResultString.length)];
+    [countResultString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithWhite:1. alpha:0.7] range:NSMakeRange(0, countResultString.length)];
+    [titleString appendAttributedString:countResultString];
+    
+    _titleLabel.attributedText = titleString;
 }
 
 -(void)loadData{
@@ -102,7 +121,7 @@
         }
         else
         {
-            _searchTitleView.countResultLabel.text = [NSString stringWithFormat:@"%@",[additionalData objectForKeyNotNull:@"count"]];
+            [self refreshTitleLabelForCount:[[additionalData objectForKeyNotNull:@"count"] intValue]];
             if ([additionalData objectForKeyNotNull:@"next"]){
                 _page ++;
             }else{
@@ -119,9 +138,41 @@
 }
 
 -(void)reloadData:(id)owner{
-    [_searchTitleView.browseCategoriesButton setTitle:_searchCategory ? [NSString stringWithFormat:@"%@ >", _searchCategory.title]: @"BROWSE BY CATEGORIES >" forState:UIControlStateNormal];
+    [_sortButton setTitle:_sortData.title forState:UIControlStateNormal];
+    if (_searchCategory){
+        _categoryButton.titleLabel.minimumScaleFactor = 5;
+        _categoryButton.titleLabel.numberOfLines = 2;
+        
+        NSMutableAttributedString* titleString = [[NSMutableAttributedString alloc] init];
+        
+        if ([_searchCategory isKindOfClass:[TSAdvertSubCategory class]]){
+            TSAdvertCategory* category = [[AdvertServiceManager sharedManager] getCategoyWithId:((TSAdvertSubCategory*)_searchCategory).parentIdent];
+            NSMutableAttributedString* categoryString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n", category.title]];
+            [categoryString addAttribute:NSFontAttributeName
+                                 value:Helvetica14
+                                 range:NSMakeRange(0, categoryString.length)];
+            [categoryString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, categoryString.length)];
+            [titleString appendAttributedString:categoryString];
+        }
+        
+        NSMutableAttributedString* lastString = [[NSMutableAttributedString alloc] initWithString:_searchCategory.title];
+        [lastString addAttribute:NSFontAttributeName
+                                  value:Helvetica14
+                                  range:NSMakeRange(0, lastString.length)];
+        [lastString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, lastString.length)];
+        [titleString appendAttributedString:lastString];
+        
+        _categoryButton.titleLabel.adjustsFontSizeToFitWidth = true;
+        _categoryButton.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+        [_categoryButton setAttributedTitle:titleString forState:UIControlStateNormal];
+        _categoryButton.titleLabel.textAlignment = NSTextAlignmentLeft;
+    }else{
+        [_categoryButton setAttributedTitle:nil forState:UIControlStateNormal];
+        [_categoryButton setTitle:@"Category" forState:UIControlStateNormal];
+        _categoryButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    }
     _page = 1;
-    _searchTitleView.countResultLabel.text = @"Loading...";
+     [self refreshTitleLabelForCount:-1];
     [_adverts removeAllObjects];
     [_searchCollectionView reloadData];
     [_refreshControl beginRefreshing];
@@ -140,8 +191,34 @@
         [self reloadData:nil];
 }
 
--(void)showCategories:(id)owner{
+- (IBAction)selectCategory:(id)sender {
     [self performSegueWithIdentifier:CATEGORIES_SEGUE sender:nil];
+}
+
+- (IBAction)selectSort:(id)sender {
+    _sortView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height)];
+    _sortView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:_sortView];
+    
+    UIView* background = [[UIView alloc] initWithFrame:CGRectMake(0, _sortView.bounds.size.height - 200, _sortView.bounds.size.width, 200)];
+    background.backgroundColor = [UIColor colorWithRed:235./255. green:235./255. blue:235./255. alpha:1.];
+    [_sortView addSubview:background];
+    
+    UIPickerView* picker = [[UIPickerView alloc] initWithFrame:CGRectMake(20, _sortView.bounds.size.height - 200, _sortView.bounds.size.width - 40, 200)];
+    picker.backgroundColor = [UIColor clearColor];
+    picker.delegate = self;
+    picker.dataSource = self;
+    picker.showsSelectionIndicator = YES;
+    [_sortView addSubview:picker];
+    
+    UITapGestureRecognizer *tapToSelect = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tappedToSelectRow:)];
+    tapToSelect.delegate = self;
+    [picker addGestureRecognizer:tapToSelect];
+
+    [UIView animateWithDuration:0.3 animations:^{
+        _sortView.frame = self.view.bounds;
+    }];
+    
 }
 
 -(void)updateWatchList:(Advert*)advert{
@@ -160,8 +237,8 @@
 
 #pragma mark - CategoryProtocol
 -(void)categorySelected:(TSBaseDictionaryEntity*)category{
-//    _searchCategory = category;
-//    [self reloadData:nil];
+    _searchCategory = category;
+    [self reloadData:nil];
 }
 
 -(void)addRemoveWatchList:(SearchCollectionViewCell*)owner{
@@ -252,91 +329,62 @@
     return height;
 }
 
--(int)heightForsuplementaryViewOfKind:(NSString*)kind{
-    if ([kind isEqualToString:SearchFilterSuplementaryViewKind]) {
-        float height = [SearchFilterSortView defaultHeight];
-        if (_searchFilterSortView){
-            height = [_searchFilterSortView height];
-        }
-        return height;
-    }
-    else if ([kind isEqualToString:TitleSuplementaryViewKind]) {
-        return [SearchTitleView defaultHeight];
-    }
-    return 0;
-}
-
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionReusableView *reusableview = nil;
-    
-    if ([kind isEqualToString:SearchFilterSuplementaryViewKind]) {
-        if (!_searchFilterSortView){
-            _searchFilterSortView = (SearchFilterSortView*)[collectionView dequeueReusableSupplementaryViewOfKind:SearchFilterSuplementaryViewKind withReuseIdentifier:SearchFilterSuplementaryViewKind forIndexPath:indexPath];
-            _searchFilterSortView.delegate = self;
-        }
-        reusableview = _searchFilterSortView;
-    }
-    else if ([kind isEqualToString:TitleSuplementaryViewKind]) {
-        if (!_searchTitleView){
-            _searchTitleView = (SearchTitleView*)[collectionView dequeueReusableSupplementaryViewOfKind:TitleSuplementaryViewKind withReuseIdentifier:TitleSuplementaryViewKind forIndexPath:indexPath];
-        }
-        _searchTitleView.searchWordLabel.text = _searchText.length > 0 ? _searchText : @"SHOW ALL";
-        [_searchTitleView.browseCategoriesButton setTitle:_searchCategory ? [NSString stringWithFormat:@"%@ >", _searchCategory.title]: @"BROWSE BY CATEGORIES >" forState:UIControlStateNormal];
-        [_searchTitleView.browseCategoriesButton addTarget:self action:@selector(showCategories:) forControlEvents:UIControlEventTouchUpInside];
-        reusableview = _searchTitleView;
-    }
-    
-    return reusableview;
-}
-
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [self performSegueWithIdentifier:ADVERT_DETAIL_SEGUE sender:[_adverts objectAtIndex:indexPath.row]];
 }
 
-#pragma mark - SearchFilterSortDelegate
+#pragma mark - UIGestureRecognizerDelegate
 
--(float)panelWidth{
-    return _searchCollectionView.frame.size.width;
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return true;
 }
 
--(void)panelTypeChanged{
-    [self.view setNeedsUpdateConstraints];
-    [self.view setNeedsLayout];
-    [self.view layoutIfNeeded];
-    [_searchCollectionView reloadData];
-}
-
--(NSArray*)filterData{
-    return _filterData;
-}
-
--(NSMutableSet*)selectedFilterData{
-    return _selectedFilterData;
-}
-
--(void)filterItem:(NSString*)item selected:(BOOL)selected{
-    if (selected){
-        [_selectedFilterData addObject:item];
-    }else{
-        [_selectedFilterData removeObject:item];
+- (void)tappedToSelectRow:(UITapGestureRecognizer *)tapRecognizer
+{
+    if (tapRecognizer.state == UIGestureRecognizerStateEnded) {
+        UIPickerView* picker = (UIPickerView*)tapRecognizer.view;
+        CGFloat rowHeight = [picker rowSizeForComponent:0].height;
+        CGRect selectedRowFrame = CGRectInset(picker.bounds, 0.0, (CGRectGetHeight(picker.frame) - rowHeight) / 2.0 );
+        BOOL userTappedOnSelectedRow = (CGRectContainsPoint(selectedRowFrame, [tapRecognizer locationInView:picker]));
+        if (userTappedOnSelectedRow) {
+            NSInteger selectedRow = [picker selectedRowInComponent:0];
+            SortData* newSortData = [[SortData getAll] objectAtIndex:selectedRow];
+            if (newSortData.ident != _sortData.ident){
+                _sortData = newSortData;
+                [AppSettings setSearchSort:_sortData.ident];
+                [self reloadData:nil];
+                CGRect r = _sortView.frame;
+                r.origin.y = r.size.height;
+                [UIView animateWithDuration:0.3 animations:^{
+                    _sortView.frame = r;
+                }];
+            }
+        }
     }
 }
 
--(NSArray*)sortItems{
-    return [SortData getAll];
+#pragma mark - UIPickerViewDelegate
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
 }
 
--(SortData*)getSelectedSortItem{
-    return _sortData;
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return [SortData getAll].count;
 }
 
--(void)sortItemSelected:(SortData*)item{
-    if (item.ident != _sortData.ident){
-        _sortData = item;
-        [AppSettings setSearchSort:_sortData.ident];
-        [self reloadData:nil];
-    }
+- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    NSString *title = ((SortData*)[[SortData getAll] objectAtIndex:row]).title;
+    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:GrayColor}];
+    
+    return attString;
+    
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
+    return 40.;
 }
 
 @end

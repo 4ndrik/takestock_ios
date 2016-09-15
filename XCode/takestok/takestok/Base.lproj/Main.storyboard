@@ -3858,13 +3858,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ROB-t4-1d8">
+                                <rect key="frame" x="0.0" y="64" width="600" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NzV-8k-SU4">
+                                        <rect key="frame" x="10" y="0.0" width="285" height="50"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                        <state key="normal" title="Category">
+                                            <color key="titleColor" red="0.74901960779999999" green="0.73725490199999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="selectCategory:" destination="iMy-Yp-9O6" eventType="touchUpInside" id="nxk-IV-t9n"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5BR-we-yXW">
+                                        <rect key="frame" x="305" y="0.0" width="285" height="50"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                        <state key="normal" title="Sort by:">
+                                            <color key="titleColor" red="0.74901960779999999" green="0.73725490199999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="selectSort:" destination="iMy-Yp-9O6" eventType="touchUpInside" id="ktN-MY-onf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="1jZ-WN-bMn"/>
+                                    <constraint firstAttribute="trailing" secondItem="NzV-8k-SU4" secondAttribute="trailing" constant="489" id="Hyj-aK-xkl"/>
+                                    <constraint firstItem="5BR-we-yXW" firstAttribute="width" secondItem="NzV-8k-SU4" secondAttribute="width" id="IaI-yz-ryW"/>
+                                    <constraint firstItem="NzV-8k-SU4" firstAttribute="top" secondItem="ROB-t4-1d8" secondAttribute="top" id="JvS-fz-wIn"/>
+                                    <constraint firstItem="5BR-we-yXW" firstAttribute="top" secondItem="ROB-t4-1d8" secondAttribute="top" id="LTR-af-0X5"/>
+                                    <constraint firstAttribute="bottom" secondItem="NzV-8k-SU4" secondAttribute="bottom" id="Wba-IO-MAH"/>
+                                    <constraint firstAttribute="bottom" secondItem="5BR-we-yXW" secondAttribute="bottom" id="eXr-td-ylz"/>
+                                    <constraint firstItem="5BR-we-yXW" firstAttribute="leading" secondItem="NzV-8k-SU4" secondAttribute="trailing" constant="10" id="m7q-zh-Hkx"/>
+                                    <constraint firstItem="NzV-8k-SU4" firstAttribute="leading" secondItem="ROB-t4-1d8" secondAttribute="leading" constant="10" id="nPt-A3-eEP"/>
+                                    <constraint firstAttribute="trailing" secondItem="5BR-we-yXW" secondAttribute="trailing" constant="10" id="sKB-Vb-YeS"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Hyj-aK-xkl"/>
+                                    </mask>
+                                </variation>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="y8S-Xi-q0c">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="114" width="600" height="486"/>
                                 <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewLayout key="collectionViewLayout" id="1aV-OG-mLc" customClass="SearchCollectionViewLayout"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SearchCollectionViewCell" id="edN-v0-XeH" customClass="SearchCollectionViewCell">
-                                        <rect key="frame" x="0.0" y="64" width="145" height="300"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="145" height="300"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="145" height="300"/>
@@ -4002,15 +4045,26 @@
                         </subviews>
                         <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="ROB-t4-1d8" firstAttribute="leading" secondItem="mEi-h8-ilS" secondAttribute="leading" id="58s-wt-q5q"/>
+                            <constraint firstAttribute="trailing" secondItem="ROB-t4-1d8" secondAttribute="trailing" id="ADF-ZA-CZ9"/>
                             <constraint firstItem="y8S-Xi-q0c" firstAttribute="top" secondItem="iZy-Ak-SKf" secondAttribute="bottom" id="FDT-CI-VHt"/>
+                            <constraint firstItem="y8S-Xi-q0c" firstAttribute="top" secondItem="ROB-t4-1d8" secondAttribute="bottom" id="MBg-Yn-IWI"/>
                             <constraint firstItem="G0s-i8-qCF" firstAttribute="top" secondItem="y8S-Xi-q0c" secondAttribute="bottom" id="P3y-hn-Q1g"/>
                             <constraint firstItem="y8S-Xi-q0c" firstAttribute="leading" secondItem="mEi-h8-ilS" secondAttribute="leading" id="fKF-sZ-BbU"/>
+                            <constraint firstItem="ROB-t4-1d8" firstAttribute="top" secondItem="iZy-Ak-SKf" secondAttribute="bottom" id="hMd-5w-uT1"/>
                             <constraint firstAttribute="trailing" secondItem="y8S-Xi-q0c" secondAttribute="trailing" id="wg8-lh-eGI"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="FDT-CI-VHt"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="_categoryButton" destination="NzV-8k-SU4" id="89F-kl-AiD"/>
                         <outlet property="_searchCollectionView" destination="y8S-Xi-q0c" id="75O-W2-SZm"/>
+                        <outlet property="_sortButton" destination="5BR-we-yXW" id="cMq-oy-ddO"/>
                         <segue destination="gcE-k3-tgx" kind="show" identifier="AdvertDetailSegue" id="L9m-5S-tgR"/>
                         <segue destination="vlL-jO-rW3" kind="presentation" identifier="CategoriesSegue" id="tgr-2u-m4u"/>
                     </connections>
@@ -5017,8 +5071,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="8hL-uC-X83"/>
+        <segue reference="L9m-5S-tgR"/>
         <segue reference="tgr-2u-m4u"/>
-        <segue reference="IGg-FJ-WJ4"/>
         <segue reference="Yjm-Qn-0XU"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -14,26 +14,26 @@
     _layoutAtributes = [NSMutableArray array];
     
     float startY = 0;
+    float h = 0;
     
-    UICollectionViewLayoutAttributes* atribute;
-    float h;
-    
-    _noPaddingAtributes = [NSMutableArray array];
-    
-    atribute = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:TitleSuplementaryViewKind withIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    h = [_delegate heightForsuplementaryViewOfKind:TitleSuplementaryViewKind];
-    atribute.frame = CGRectMake(0, 0, self.collectionView.frame.size.width, h);
-    [_layoutAtributes addObject:atribute];
-    startY += h;
-    [_noPaddingAtributes addObject:atribute];
-    
-    atribute = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:SearchFilterSuplementaryViewKind withIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    h = [_delegate heightForsuplementaryViewOfKind:SearchFilterSuplementaryViewKind];
-    atribute.frame = CGRectMake(0, startY, self.collectionView.frame.size.width, h);
-    [_layoutAtributes addObject:atribute];
-    _alwaysVisibleLayoutAttribute = atribute;
-    _alwaysVisibleDefaultY = startY;
-    [_noPaddingAtributes addObject:atribute];
+//    _noPaddingAtributes = [NSMutableArray array];
+//    
+//    UICollectionViewLayoutAttributes* atribute;
+//    
+//    atribute = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:TitleSuplementaryViewKind withIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+//    h = [_delegate heightForsuplementaryViewOfKind:TitleSuplementaryViewKind];
+//    atribute.frame = CGRectMake(0, 0, self.collectionView.frame.size.width, h);
+//    [_layoutAtributes addObject:atribute];
+//    startY += h;
+//    [_noPaddingAtributes addObject:atribute];
+//    
+//    atribute = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:SearchFilterSuplementaryViewKind withIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+//    h = [_delegate heightForsuplementaryViewOfKind:SearchFilterSuplementaryViewKind];
+//    atribute.frame = CGRectMake(0, startY, self.collectionView.frame.size.width, h);
+//    [_layoutAtributes addObject:atribute];
+//    _alwaysVisibleLayoutAttribute = atribute;
+//    _alwaysVisibleDefaultY = startY;
+//    [_noPaddingAtributes addObject:atribute];
     
     startY += h;
     startY += _cellPadding;
@@ -91,20 +91,20 @@
         }
     }
     
-    if ([result indexOfObject:_alwaysVisibleLayoutAttribute] == NSNotFound){
-        [result addObject:_alwaysVisibleLayoutAttribute];
-    }
-    
-    if (self.collectionView.contentOffset.y < 0){
-        float y = 0;
-        for (UICollectionViewLayoutAttributes* atribute in _noPaddingAtributes){
-            atribute.frame = CGRectMake(0, self.collectionView.contentOffset.y + y, self.collectionView.bounds.size.width, atribute.frame.size.height);
-            y += atribute.frame.size.height;
-        }
-    }else{
-        _alwaysVisibleLayoutAttribute.zIndex = 1024;
-        _alwaysVisibleLayoutAttribute.frame = CGRectMake(0, self.collectionView.contentOffset.y > _alwaysVisibleDefaultY ? self.collectionView.contentOffset.y : _alwaysVisibleDefaultY, self.collectionView.bounds.size.width, _alwaysVisibleLayoutAttribute.frame.size.height);
-    }
+//    if (_alwaysVisibleLayoutAttribute && [result indexOfObject:_alwaysVisibleLayoutAttribute] == NSNotFound){
+//        [result addObject:_alwaysVisibleLayoutAttribute];
+//    }
+//    
+//    if (self.collectionView.contentOffset.y < 0){
+//        float y = 0;
+//        for (UICollectionViewLayoutAttributes* atribute in _noPaddingAtributes){
+//            atribute.frame = CGRectMake(0, self.collectionView.contentOffset.y + y, self.collectionView.bounds.size.width, atribute.frame.size.height);
+//            y += atribute.frame.size.height;
+//        }
+//    }else if (_alwaysVisibleLayoutAttribute){
+//        _alwaysVisibleLayoutAttribute.zIndex = 1024;
+//        _alwaysVisibleLayoutAttribute.frame = CGRectMake(0, self.collectionView.contentOffset.y > _alwaysVisibleDefaultY ? self.collectionView.contentOffset.y : _alwaysVisibleDefaultY, self.collectionView.bounds.size.width, _alwaysVisibleLayoutAttribute.frame.size.height);
+//    }
     
     return result;
 }

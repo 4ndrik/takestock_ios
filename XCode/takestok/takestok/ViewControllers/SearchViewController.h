@@ -17,13 +17,13 @@
 @class SortData;
 @class TSBaseDictionaryEntity;
 
-@interface SearchViewController : BaseViewController<SearchCollectionViewLayoutProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, SearchFilterSortDelegate, CategoryProtocol, WatchListProtocol>{
+@interface SearchViewController : BaseViewController{
+    UILabel* _titleLabel;
     
+    __weak IBOutlet UIButton *_sortButton;
+    __weak IBOutlet UIButton *_categoryButton;
     __weak IBOutlet UICollectionView *_searchCollectionView;
-    NSArray* _filterData;
-    NSMutableSet* _selectedFilterData;
-    SearchFilterSortView* _searchFilterSortView;
-    SearchTitleView* _searchTitleView;
+    
     NSMutableArray* _adverts;
     NSString* _searchText;
     TSBaseDictionaryEntity* _searchCategory;
@@ -31,9 +31,14 @@
     SortData* _sortData;
     int _page;
     UIActivityIndicatorView* _loadingIndicator;
+    
+    UIView* _sortView;
 }
 
 -(void)setSearchText:(NSString*)searchText;
 -(void)setCategory:(TSBaseDictionaryEntity*)category;
+- (IBAction)selectCategory:(id)sender;
+- (IBAction)selectSort:(id)sender;
+
 
 @end

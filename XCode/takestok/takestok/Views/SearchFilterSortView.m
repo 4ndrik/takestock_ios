@@ -82,6 +82,7 @@
                 [label addGestureRecognizer:tapGesture];
                 label.userInteractionEnabled = YES;
             }
+            height += 200;
             break;
         }
         case kSort:{
@@ -89,6 +90,7 @@
             [_filterButton setTitle:@"Filter ▼" forState:UIControlStateNormal];
             [[_contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
             UIPickerView* picker = [[UIPickerView alloc] initWithFrame:CGRectMake(20, 0, _contentView.frame.size.width - 40, SortPanelHeight)];
+            picker.backgroundColor = [UIColor greenColor];
             picker.delegate = self;
             picker.dataSource = self;
             picker.showsSelectionIndicator = YES;
