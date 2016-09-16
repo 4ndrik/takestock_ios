@@ -208,6 +208,19 @@ typedef enum
     [_loadAdvertCancelTask resume];
 }
 
+-(void)loadQuestionAnswersWith:(NSNumber*)advertId page:(int)page compleate:(tsResultBlock)compleate{
+    [_qaLock lock];
+    NSString* query = [NSString stringWithFormat:@"adverts=%@&page=%i", advertId, page];
+    NSURLSessionDataTask* loadQATask = [_session dataTaskWithRequest:[self request:QUESTIONS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        if (!error){
+            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        }
+        compleate(result, error);
+    }];
+    
+    [loadQATask resume];
+}
+
 
 //===============================================
 

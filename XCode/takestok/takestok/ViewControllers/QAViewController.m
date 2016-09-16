@@ -7,17 +7,18 @@
 //
 
 #import "QAViewController.h"
-#import "Advert.h"
+#import "TSAdvert.h"
+#import "TSQuestion.h"
+#import "TSAnswer.h"
 #import "QATableViewCell.h"
 #import "AskQuestionView.h"
 #import "UIView+NibLoadView.h"
 #import "AppSettings.h"
 #import "ServerConnectionHelper.h"
-#import "Question.h"
-#import "Answer.h"
 #import "AppSettings.h"
 #import "LoginViewController.h"
-#import "Answer.h"
+#import "QuestionAnswerServiceManager.h"
+#import "UserServiceManager.h"
 
 @interface QAViewController ()
 
@@ -62,7 +63,7 @@
 
 #pragma mark - Helpers
 
--(void)setAdvert:(Advert*)advert{
+-(void)setAdvert:(TSAdvert*)advert{
     _advert = advert;
     if (self.isViewLoaded){
         [self reloadData:nil];
@@ -77,8 +78,7 @@
 
 
 -(void)loadQA{
-    [[ServerConnectionHelper sharedInstance] loadQuestionAnswersWithAd:_advert page:_page compleate:^(NSArray *qaArray, NSDictionary *additionalData, NSError *error) {
-        
+    [[QuestionAnswerServiceManager sharedManager] loadQuestionsAnswers:_advert page:_page compleate:^(NSArray *result, NSDictionary *additionalData, NSError *error) {
         if (error){
             [self showOkAlert:@"Error" text:ERROR_MESSAGE(error)];
         }
@@ -89,7 +89,7 @@
             }else{
                 _page = 0;
             };
-            [_qaData addObjectsFromArray:qaArray];
+            [_qaData addObjectsFromArray:result];
             [_askTableView reloadData];
         }
         [_loadingIndicator stopAnimating];
@@ -100,16 +100,10 @@
 }
 
 -(void)reloadData:(id)owner{
-    if (_advert.author.ident == [User getMe].ident){
-        _qaData = [NSMutableArray arrayWithArray:[_advert.questions allObjects]];
-        _page = 0;
-        [_refreshControl endRefreshing];
-    }else{
-        _qaData = [NSMutableArray array];
-        _page = 1;
-        [_refreshControl beginRefreshing];
-        [self loadQA];
-    }
+    _qaData = [NSMutableArray array];
+    _page = 1;
+    [_refreshControl beginRefreshing];
+    [self loadQA];
     [_askTableView reloadData];
 }
 
@@ -143,10 +137,10 @@
     
     cell.delegate = self;
     
-    Question* question = [_qaData objectAtIndex:indexPath.row];
+    TSQuestion* question = [_qaData objectAtIndex:indexPath.row];
     
-    NSString* questionText = [NSString stringWithFormat:@"%@: %@", question.user.userName, question.message];
-    NSInteger index = question.user.userName.length + 1;
+    NSString* questionText = [NSString stringWithFormat:@"%@: %@", question.userName, question.message];
+    NSInteger index = question.userName.length + 1;
     
     NSMutableAttributedString *buyerText = [[NSMutableAttributedString alloc] initWithString:questionText];
     [buyerText addAttribute:NSFontAttributeName
@@ -161,8 +155,8 @@
     
     if (question.answer){
         cell.replyHeightConstraint.constant = 0;
-        NSString* answerText = [NSString stringWithFormat:@"%@: %@", question.answer.user.userName, question.answer.message];
-        NSInteger index = question.answer.user.userName.length + 1;
+        NSString* answerText = [NSString stringWithFormat:@"%@: %@", question.answer.userName, question.answer.message];
+        NSInteger index = question.answer.userName.length + 1;
         NSMutableAttributedString *sellerText = [[NSMutableAttributedString alloc] initWithString:answerText];
         [sellerText addAttribute:NSFontAttributeName
                           value:ArialBold14
@@ -173,7 +167,7 @@
                           range:NSMakeRange(index, sellerText.length - index)];
         
         cell.answerLabel.attributedText = sellerText;
-    }else if (_advert.author.ident == [User getMe].ident){
+    }else if (_advert.author.ident == [[UserServiceManager sharedManager] getMe].ident){
         cell.replyHeightConstraint.constant = 98;
     }else{
         cell.answerLabel.text = @"";
@@ -190,11 +184,11 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return _advert.author.ident == [User getMe].ident ? 0 : [AskQuestionView defaultHeight];
+    return _advert.author.ident == [[UserServiceManager sharedManager] getMe].ident ? 0 : [AskQuestionView defaultHeight];
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    if (_advert.author.ident == [User getMe].ident)
+    if (_advert.author.ident == [[UserServiceManager sharedManager] getMe].ident)
         return nil;
     
     if (!_askQuestionView){
@@ -205,69 +199,69 @@
 }
 
 -(void)askQuestion{
-    if ([self checkUserLogin]){
-        if (_askQuestionView.questionTextView.text.length == 0){
-            [self showOkAlert:@"" text:@"Message is empty"];
-        }else{
-            Question* question = [_advert isForStore] ? [Question storedEntity] : [Question tempEntity];
-            
-            question.advert = _advert;
-            User* user = [User getMe];
-            if (user.managedObjectContext != question.managedObjectContext){
-                user = [question.managedObjectContext objectWithID:[user objectID]];
-            }
-            question.user = user;
-            question.message = _askQuestionView.questionTextView.text;
-            [self showLoading];
-            [[ServerConnectionHelper sharedInstance] askQuestion:question compleate:^(NSError *error) {
-               [self hideLoading];
-                
-                NSString* title = @"";
-                NSString* message = @"Question asked";
-                if (error){
-                    title = @"Error";
-                    message = ERROR_MESSAGE(error);
-                    [question.managedObjectContext deleteObject:question];
-                }else{
-                    [self reloadData:nil];
-                    _askQuestionView.questionTextView.text = @"";
-                }
-                [self showOkAlert:title text:message];
-            }];
-        }
-    }
+//    if ([self checkUserLogin]){
+//        if (_askQuestionView.questionTextView.text.length == 0){
+//            [self showOkAlert:@"" text:@"Message is empty"];
+//        }else{
+//            Question* question = [_advert isForStore] ? [Question storedEntity] : [Question tempEntity];
+//            
+//            question.advert = _advert;
+//            User* user = [User getMe];
+//            if (user.managedObjectContext != question.managedObjectContext){
+//                user = [question.managedObjectContext objectWithID:[user objectID]];
+//            }
+//            question.user = user;
+//            question.message = _askQuestionView.questionTextView.text;
+//            [self showLoading];
+//            [[ServerConnectionHelper sharedInstance] askQuestion:question compleate:^(NSError *error) {
+//               [self hideLoading];
+//                
+//                NSString* title = @"";
+//                NSString* message = @"Question asked";
+//                if (error){
+//                    title = @"Error";
+//                    message = ERROR_MESSAGE(error);
+//                    [question.managedObjectContext deleteObject:question];
+//                }else{
+//                    [self reloadData:nil];
+//                    _askQuestionView.questionTextView.text = @"";
+//                }
+//                [self showOkAlert:title text:message];
+//            }];
+//        }
+//    }
 }
 
 #pragma mark - ReplyPrototcol
 
 -(void)reply:(QATableViewCell*)sender{
-    Question* question = [_qaData objectAtIndex:[_askTableView indexPathForCell:sender].row];
-    if (question){
-        Answer* answer = question.isForStore ? [Answer storedEntity] : [Answer tempEntity];
-        answer.question = question;
-        User* user = [User getMe];
-        if (user.managedObjectContext != answer.managedObjectContext){
-            user = [answer.managedObjectContext objectWithID:[user objectID]];
-        }
-        answer.user = user;
-        answer.message = sender.replyTextEdit.text;
-        
-        [self showLoading];
-        [[ServerConnectionHelper sharedInstance] sendAnswer:answer compleate:^(NSError *error) {
-            [self hideLoading];
-            NSString* title = @"";
-            NSString* message = @"Question asked";
-            if (error){
-                title = @"Error";
-                message = ERROR_MESSAGE(error);
-                [answer.managedObjectContext deleteObject:answer];
-            }else{
-                [self reloadData:nil];
-                [_askTableView reloadData];
-            }
-            [self showOkAlert:title text:message];
-        }];
-    }
+//    Question* question = [_qaData objectAtIndex:[_askTableView indexPathForCell:sender].row];
+//    if (question){
+//        Answer* answer = question.isForStore ? [Answer storedEntity] : [Answer tempEntity];
+//        answer.question = question;
+//        User* user = [User getMe];
+//        if (user.managedObjectContext != answer.managedObjectContext){
+//            user = [answer.managedObjectContext objectWithID:[user objectID]];
+//        }
+//        answer.user = user;
+//        answer.message = sender.replyTextEdit.text;
+//        
+//        [self showLoading];
+//        [[ServerConnectionHelper sharedInstance] sendAnswer:answer compleate:^(NSError *error) {
+//            [self hideLoading];
+//            NSString* title = @"";
+//            NSString* message = @"Question asked";
+//            if (error){
+//                title = @"Error";
+//                message = ERROR_MESSAGE(error);
+//                [answer.managedObjectContext deleteObject:answer];
+//            }else{
+//                [self reloadData:nil];
+//                [_askTableView reloadData];
+//            }
+//            [self showOkAlert:title text:message];
+//        }];
+//    }
 }
 
 @end

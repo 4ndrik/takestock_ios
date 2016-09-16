@@ -19,7 +19,7 @@
 
 @class SortData;
 
-typedef void (^resultBlock)(NSArray* result, NSDictionary* additionalData, NSError* error);
+
 
 @interface AdvertServiceManager : NSObject{
     NSMutableDictionary* _states;

@@ -14,13 +14,6 @@
 @implementation TSBaseDictionaryEntity
 @synthesize title = _title;
 
-- (instancetype)initWithDictionary:(NSDictionary *)dict
-{
-    self = [super init];
-    [self updateWithDic:dict];
-    return self;
-}
-
 -(void)updateWithDic:(NSDictionary*)jsonDic{
     _ident = [TSBaseDictionaryEntity identFromDic:jsonDic];
     _title = [jsonDic allValues].firstObject;

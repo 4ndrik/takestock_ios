@@ -10,12 +10,12 @@
 #import "AskQuestionView.h"
 #import "QATableViewCell.h"
 
-@class Advert;
+@class TSAdvert;
 @class UIRefreshControl;
 
 @interface QAViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, AskQuestionProtocol, ReplyProtocol>{
     UIActivityIndicatorView* _loadingIndicator;
-    Advert* _advert;
+    TSAdvert* _advert;
     AskQuestionView* _askQuestionView;
     __weak IBOutlet UITableView *_askTableView;
     NSMutableArray* _qaData;
@@ -24,7 +24,7 @@
     UIRefreshControl* _refreshControl;
 }
 
--(void)setAdvert:(Advert*)advert;
+-(void)setAdvert:(TSAdvert*)advert;
 - (IBAction)hideKeyboard:(id)sender;
 
 @end

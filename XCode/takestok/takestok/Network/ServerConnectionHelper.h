@@ -52,6 +52,8 @@ typedef void (^tsResultBlock)(id result, NSError* error);
 //Adevrts
 -(void)loadAdvertsWithSort:(NSString*)sort search:(NSString*)search category:(NSNumber*)category subCategory:(NSNumber*)subCategory page:(int)page compleate:(tsResultBlock)compleate;
 
+//QA
+-(void)loadQuestionAnswersWith:(NSNumber*)advertId page:(int)page compleate:(tsResultBlock)compleate;
 
 
 

@@ -89,10 +89,10 @@
     if ([segue.identifier isEqualToString:ADVERT_IMAGES_SEGUE]) {
         ImagesCollectionViewController* imageVC = (ImagesCollectionViewController*)segue.destinationViewController;
         [imageVC setImages:_advert.photos withCurrentIndex:((NSIndexPath*)sender).row];
-//    }else if ([segue.identifier isEqualToString:@"QuestionsSegue"]){
-//            QAViewController* aqVC = (QAViewController*)segue.destinationViewController;
-//            [aqVC setAdvert:_advert];
-//        
+    }else if ([segue.identifier isEqualToString:@"QuestionsSegue"]){
+            QAViewController* aqVC = (QAViewController*)segue.destinationViewController;
+            [aqVC setAdvert:_advert];
+
 //    }else if ([segue.identifier isEqualToString:USER_DETAILS_SEGUE]){
 //        UserDetailsViewController* udVC = (UserDetailsViewController*)segue.destinationViewController;
 //        [udVC setUser:_advert.author];

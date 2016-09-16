@@ -68,7 +68,6 @@
 		AC5F6C6B1D87F9A1003918D3 /* TSImageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5F6C6A1D87F9A1003918D3 /* TSImageEntity.m */; };
 		AC5F6C6E1D88016B003918D3 /* TSUserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5F6C6D1D88016B003918D3 /* TSUserEntity.m */; };
 		AC5F6C721D88026E003918D3 /* TSUserBusinessType.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5F6C711D88026E003918D3 /* TSUserBusinessType.m */; };
-		AC5F6C751D880529003918D3 /* TSUserSubBusinessType.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5F6C741D880529003918D3 /* TSUserSubBusinessType.m */; };
 		AC5F6C781D881D93003918D3 /* UserServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5F6C771D881D93003918D3 /* UserServiceManager.m */; };
 		AC6200FE1CE31CC9006A80A2 /* Packaging+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6200FB1CE31CC9006A80A2 /* Packaging+CoreDataProperties.m */; };
 		AC6200FF1CE31CC9006A80A2 /* Packaging.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6200FD1CE31CC9006A80A2 /* Packaging.m */; };
@@ -87,9 +86,13 @@
 		AC68C4891CB6534A004B78DF /* UIImage+ExtendedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4881CB6534A004B78DF /* UIImage+ExtendedImage.m */; };
 		AC68C48C1CB67090004B78DF /* ImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */; };
 		AC68C4921CB68865004B78DF /* PaddingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4911CB68865004B78DF /* PaddingTextField.m */; };
+		AC7249781D8AEC8900AD940A /* TSUserSubBusinessType.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5F6C741D880529003918D3 /* TSUserSubBusinessType.m */; };
 		AC756E5E1D86A50700C45BA3 /* TSAdvertShipping.m in Sources */ = {isa = PBXBuildFile; fileRef = AC756E5D1D86A50700C45BA3 /* TSAdvertShipping.m */; };
 		AC756E611D86A8CB00C45BA3 /* TSAdvertPackagingType.m in Sources */ = {isa = PBXBuildFile; fileRef = AC756E601D86A8CB00C45BA3 /* TSAdvertPackagingType.m */; };
 		AC756E641D86E0D800C45BA3 /* TSAdvert.m in Sources */ = {isa = PBXBuildFile; fileRef = AC756E631D86E0D800C45BA3 /* TSAdvert.m */; };
+		AC79A2F91D8AEDBB009B442E /* TSAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = AC79A2F51D8AEDBB009B442E /* TSAnswer.m */; };
+		AC79A2FA1D8AEDBB009B442E /* TSQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = AC79A2F71D8AEDBB009B442E /* TSQuestion.m */; };
+		AC79A2FD1D8AEDC8009B442E /* QuestionAnswerServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC79A2FB1D8AEDC8009B442E /* QuestionAnswerServiceManager.m */; };
 		AC7ADD481D2A5FC500E0FBC9 /* PayDestAddressOfferView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7ADD471D2A5FC500E0FBC9 /* PayDestAddressOfferView.xib */; };
 		AC7ADD4B1D2A5FDA00E0FBC9 /* PayDestAddressOfferView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7ADD4A1D2A5FDA00E0FBC9 /* PayDestAddressOfferView.m */; };
 		AC9776A61D26BAD60060DF73 /* ShippingInfoActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9776A51D26BAD60060DF73 /* ShippingInfoActionView.m */; };
@@ -310,6 +313,12 @@
 		AC756E601D86A8CB00C45BA3 /* TSAdvertPackagingType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAdvertPackagingType.m; sourceTree = "<group>"; };
 		AC756E621D86E0D800C45BA3 /* TSAdvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAdvert.h; sourceTree = "<group>"; };
 		AC756E631D86E0D800C45BA3 /* TSAdvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAdvert.m; sourceTree = "<group>"; };
+		AC79A2F51D8AEDBB009B442E /* TSAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAnswer.m; sourceTree = "<group>"; };
+		AC79A2F61D8AEDBB009B442E /* TSQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSQuestion.h; sourceTree = "<group>"; };
+		AC79A2F71D8AEDBB009B442E /* TSQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSQuestion.m; sourceTree = "<group>"; };
+		AC79A2F81D8AEDBB009B442E /* TSAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAnswer.h; sourceTree = "<group>"; };
+		AC79A2FB1D8AEDC8009B442E /* QuestionAnswerServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionAnswerServiceManager.m; sourceTree = "<group>"; };
+		AC79A2FC1D8AEDC8009B442E /* QuestionAnswerServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionAnswerServiceManager.h; sourceTree = "<group>"; };
 		AC7ADD471D2A5FC500E0FBC9 /* PayDestAddressOfferView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayDestAddressOfferView.xib; sourceTree = "<group>"; };
 		AC7ADD491D2A5FDA00E0FBC9 /* PayDestAddressOfferView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayDestAddressOfferView.h; sourceTree = "<group>"; };
 		AC7ADD4A1D2A5FDA00E0FBC9 /* PayDestAddressOfferView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayDestAddressOfferView.m; sourceTree = "<group>"; };
@@ -750,6 +759,10 @@
 		AC72496D1D8AC29B00AD940A /* QuestionAnswers */ = {
 			isa = PBXGroup;
 			children = (
+				AC79A2F81D8AEDBB009B442E /* TSAnswer.h */,
+				AC79A2F51D8AEDBB009B442E /* TSAnswer.m */,
+				AC79A2F61D8AEDBB009B442E /* TSQuestion.h */,
+				AC79A2F71D8AEDBB009B442E /* TSQuestion.m */,
 			);
 			name = QuestionAnswers;
 			sourceTree = "<group>";
@@ -944,6 +957,8 @@
 				ACEFEE8E1D82EE0D001B9BA0 /* AdvertServiceManager.m */,
 				AC5F6C761D881D93003918D3 /* UserServiceManager.h */,
 				AC5F6C771D881D93003918D3 /* UserServiceManager.m */,
+				AC79A2FC1D8AEDC8009B442E /* QuestionAnswerServiceManager.h */,
+				AC79A2FB1D8AEDC8009B442E /* QuestionAnswerServiceManager.m */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1173,6 +1188,7 @@
 				AC5633E41D0978D800ACF1E9 /* NSLayoutConstraint+Description.m in Sources */,
 				AC411E261CBFA220008B1E38 /* ImageCacheUrlResolver.m in Sources */,
 				AC1481181CE5D16E00CA64D4 /* MainThreadRecursiveLock.m in Sources */,
+				AC7249781D8AEC8900AD940A /* TSUserSubBusinessType.m in Sources */,
 				ACA2E8D11CE5BEDD00BAB401 /* Offer+CoreDataProperties.m in Sources */,
 				ACDC24721CBEAC5F003E9715 /* AdvertDetailViewController.m in Sources */,
 				AC411E5B1CC7D257008B1E38 /* BuyingViewController.m in Sources */,
@@ -1188,6 +1204,7 @@
 				AC5F6C721D88026E003918D3 /* TSUserBusinessType.m in Sources */,
 				ACCE7FD61CDCDB6B00A76CB6 /* QATableViewCell.m in Sources */,
 				AC049D1E1CBBBA0A006A8F21 /* SearchTitleView.m in Sources */,
+				AC79A2FA1D8AEDBB009B442E /* TSQuestion.m in Sources */,
 				ACA2E8CF1CE5BEDD00BAB401 /* OfferStatus+CoreDataProperties.m in Sources */,
 				AC411E7F1CC8D61E008B1E38 /* BaseEntity.m in Sources */,
 				AC1F54531CCE484F0093848B /* OfferTitleView.m in Sources */,
@@ -1200,6 +1217,7 @@
 				AC6200FF1CE31CC9006A80A2 /* Packaging.m in Sources */,
 				ACA42F7B1D1AC7CD00C586BB /* BusinessType+CoreDataProperties.m in Sources */,
 				AC08D80C1CE9FEC200830A53 /* Answer.m in Sources */,
+				AC79A2F91D8AEDBB009B442E /* TSAnswer.m in Sources */,
 				ACDA2ECD1CEF28A3009F51A0 /* OfferActionView.m in Sources */,
 				AC411E751CC8D186008B1E38 /* Dictionary.m in Sources */,
 				AC411E481CC50A00008B1E38 /* ImagesCollectionViewController.m in Sources */,
@@ -1225,13 +1243,13 @@
 				ACA2E8D21CE5BEDD00BAB401 /* Offer.m in Sources */,
 				AC68C4601CB51C1F004B78DF /* AppDelegate.m in Sources */,
 				ACA42F7C1D1AC7CD00C586BB /* BusinessType.m in Sources */,
-				AC5F6C751D880529003918D3 /* TSUserSubBusinessType.m in Sources */,
 				AC756E611D86A8CB00C45BA3 /* TSAdvertPackagingType.m in Sources */,
 				AC411E761CC8D186008B1E38 /* Condition+CoreDataProperties.m in Sources */,
 				AC68C48C1CB67090004B78DF /* ImageCollectionViewCell.m in Sources */,
 				ACE111041CFF11DE00E6FDB9 /* CategoryViewController.m in Sources */,
 				AC5F6C781D881D93003918D3 /* UserServiceManager.m in Sources */,
 				AC1F54581CCE495E0093848B /* TopBottomStripesLabel.m in Sources */,
+				AC79A2FD1D8AEDC8009B442E /* QuestionAnswerServiceManager.m in Sources */,
 				AC411E331CBFBE94008B1E38 /* GUIDCreator.m in Sources */,
 				AC68C45D1CB51C1F004B78DF /* main.m in Sources */,
 				ACCE7FCB1CDB8F6400A76CB6 /* SubCategory.m in Sources */,

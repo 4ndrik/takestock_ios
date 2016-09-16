@@ -18,8 +18,9 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict
 {
-    NSAssert(NO, @"Must be overridden in subclasses");
-    return nil;
+    self = [super init];
+    [self updateWithDic:dict];
+    return self;
 }
 
 -(NSDictionary*)dictionaryRepresentation{
