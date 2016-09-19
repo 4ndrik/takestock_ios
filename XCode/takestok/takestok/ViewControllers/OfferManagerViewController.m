@@ -374,7 +374,7 @@
     _offerAlertView.frame = self.navigationController.view.bounds;
     
     _offerAlertView.titleLabel.text = @"Counter offer.";
-    int index = [_offersTableView indexPathForCell:owner].row;
+    NSUInteger index = [_offersTableView indexPathForCell:owner].row;
     Offer* offer = [_offers objectAtIndex:index];
     _offerAlertView.tag = offer.ident;
     [_offerAlertView.cancelButton addTarget:self action:@selector(hideAlertView:) forControlEvents:UIControlEventTouchUpInside];

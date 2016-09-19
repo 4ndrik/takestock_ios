@@ -11,6 +11,7 @@
 @implementation PayDestAddressOfferView
 
 -(void)awakeFromNib{
+    [super awakeFromNib];
     _cardControl.cornerRadius = 3.;
     _cardControl.borderColor = [UIColor colorWithRed:235./255. green:235./255. blue:235./255. alpha:1.];
     _cardControl.font = HelveticaLight18;

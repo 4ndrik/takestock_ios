@@ -97,4 +97,8 @@ static UserServiceManager *_manager = nil;
     }
 }
 
+-(void)fetchUserData{
+    
+}
+
 @end

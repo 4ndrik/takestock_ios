@@ -192,7 +192,7 @@
 }
 
 - (void)nextTextField {
-    int index = [_textControlsArray indexOfObject:_currentInputControl];
+    NSUInteger index = [_textControlsArray indexOfObject:_currentInputControl];
     index++;
     UITextField* textControl = [_textControlsArray objectAtIndex:index];
     if (![textControl isEnabled]){
@@ -204,7 +204,7 @@
 
 -(void)previousTextField
 {
-    int index = [_textControlsArray indexOfObject:_currentInputControl];
+    NSUInteger index = [_textControlsArray indexOfObject:_currentInputControl];
     index--;
     UITextField* textControl = [_textControlsArray objectAtIndex:index];
     if (![textControl isEnabled]){

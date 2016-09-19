@@ -334,7 +334,7 @@
 #pragma mark - OfferActionDelegate
 
 -(void)mainAction:(UITableViewCell*)owner{
-    int index = [_buyingTableView indexPathForCell:owner].row;
+    NSUInteger index = [_buyingTableView indexPathForCell:owner].row;
     Offer* offer = [_offers objectAtIndex:index];
     if (offer.counterOffer)
         offer = offer.counterOffer;
@@ -351,7 +351,7 @@
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"Accept" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self dismissViewControllerAnimated:NO completion:nil];
-        int index = [_buyingTableView indexPathForCell:owner].row;
+        NSUInteger index = [_buyingTableView indexPathForCell:owner].row;
         Offer* offer = [_offers objectAtIndex:index];
         [self acceptOffer:offer];
     }]];
@@ -370,7 +370,7 @@
     
     _offerAlertView.titleLabel.text = @"Reject offer.";
     _offerAlertView.priceQtyHeightConstraints.constant = 0;
-    int index = [_buyingTableView indexPathForCell:owner].row;
+    NSUInteger index = [_buyingTableView indexPathForCell:owner].row;
     Offer* offer = [_offers objectAtIndex:index];
     _offerAlertView.tag = offer.ident;
     [_offerAlertView.cancelButton addTarget:self action:@selector(hideAlertView:) forControlEvents:UIControlEventTouchUpInside];

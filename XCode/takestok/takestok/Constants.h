@@ -17,7 +17,7 @@
 #define BrandonGrotesqueBold13  [UIFont fontWithName:@"BrandonGrotesque-Bold" size:13]
 #define HelveticaNeue18         [UIFont fontWithName:@"HelveticaNeue" size:18]
 #define HelveticaNeue14         [UIFont fontWithName:@"HelveticaNeue" size:14]
-#define Helvetica14         [UIFont fontWithName:@"Helvetica" size:14]
+#define Helvetica14             [UIFont fontWithName:@"Helvetica" size:14]
 #define HelveticaLight18        [UIFont fontWithName:@"Helvetica-Light" size:18]
 #define ArialBold14             [UIFont fontWithName:@"Arial-BoldMT" size:14]
 #define ArialItalic14           [UIFont fontWithName:@"Arial-ItalicMT" size:14]

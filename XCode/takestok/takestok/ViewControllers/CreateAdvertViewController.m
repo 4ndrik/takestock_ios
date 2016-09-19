@@ -376,7 +376,7 @@
 }
 
 - (void)nextTextField {
-    int index = [_textControlsArray indexOfObject:_currentInputControl];
+    NSUInteger index = [_textControlsArray indexOfObject:_currentInputControl];
     index++;
     UIView* textControl = [_textControlsArray objectAtIndex:index];
     [textControl becomeFirstResponder];
@@ -384,7 +384,7 @@
 
 -(void)previousTextField
 {
-    int index = [_textControlsArray indexOfObject:_currentInputControl];
+    NSUInteger index = [_textControlsArray indexOfObject:_currentInputControl];
     index--;
     UIView* textControl = [_textControlsArray objectAtIndex:index];
     [textControl becomeFirstResponder];

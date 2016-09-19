@@ -13,6 +13,7 @@
 @implementation ShippingInfoActionView
 
 -(void)awakeFromNib{
+    [super awakeFromNib];
     UIDatePicker* datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 303)];
     datePicker.datePickerMode = UIDatePickerModeDate;
     self.dateShippedTextField.inputView = datePicker;

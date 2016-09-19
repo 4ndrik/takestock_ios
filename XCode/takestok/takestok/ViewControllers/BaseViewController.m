@@ -8,7 +8,6 @@
 
 #import "BaseViewController.h"
 #import "HomeViewController.h"
-#import "User.h"
 #import "LoginViewController.h"
 #import "REFrostedViewController.h"
 #import "HomeViewController.h"
@@ -19,6 +18,7 @@
 #import "SearchViewController.h"
 #import "UserDetailsViewController.h"
 #import "TSBaseDictionaryEntity.h"
+#import "UserServiceManager.h"
 
 @implementation BaseViewController
 
@@ -141,7 +141,7 @@
 }
 
 -(BOOL)checkUserLogin{
-    if ([User getMe]){
+    if ([[UserServiceManager sharedManager] getMe]){
         return YES;
     }else{
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
