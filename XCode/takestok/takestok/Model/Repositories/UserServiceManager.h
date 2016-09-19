@@ -25,4 +25,7 @@
 -(TSUserEntity*)getMe;
 -(TSUserEntity*)getOrCreateAuthor:(NSDictionary*)authodDic;
 
+-(void)signInWithUserName:(NSString*)username password:(NSString*)password compleate:(errorBlock)compleate;
+-(void)signUpWithUserName:(NSString*)username email:(NSString*)email password:(NSString*)password compleate:(errorBlock)compleate;
+
 @end

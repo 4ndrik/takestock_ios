@@ -95,6 +95,7 @@ typedef enum
     return [_session.reachabilityManager networkReachabilityStatus] != AFNetworkReachabilityStatusNotReachable;
 }
 
+#pragma mark - Dictionaries
 
 -(void)loadStates:(tsResultBlock)resultBlock{
     [_dictionaryLock lock];
@@ -208,6 +209,8 @@ typedef enum
     [_loadAdvertCancelTask resume];
 }
 
+#pragma mark - QA
+
 -(void)loadQuestionAnswersWith:(NSNumber*)advertId page:(int)page compleate:(tsResultBlock)compleate{
     [_qaLock lock];
     NSString* query = [NSString stringWithFormat:@"adverts=%@&page=%i", advertId, page];
@@ -219,6 +222,51 @@ typedef enum
     }];
     
     [loadQATask resume];
+}
+
+#pragma mark - User
+-(void)signInWithUserName:(NSString*)username password:(NSString*)password compleate:(tsResultBlock)compleate{
+    NSMutableDictionary* paramsDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:username, @"username", password, @"password",nil];
+    NSError* error;
+    NSString* params = [self jsonStringFromDicOrArray:paramsDic error:&error];
+    
+    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:SIGN_IN_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        [_dictionaryLock waitUntilDone];
+        if (!error){
+            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        }
+        compleate(result, error);
+    }];
+    [dataTask resume];
+}
+
+-(void)signUpWithUserName:(NSString*)username email:(NSString*)email password:(NSString*)password compleate:(tsResultBlock)compleate{
+
+    NSMutableDictionary* paramsDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:email, @"email", username, @"username", password, @"password",nil];
+    NSError* error;
+    NSString* params = [self jsonStringFromDicOrArray:paramsDic error:&error];
+
+    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:SIGN_UP_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        [_dictionaryLock waitUntilDone];
+        if (!error){
+            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        }
+        compleate(result, error);
+    }];
+    [dataTask resume];
+}
+
+-(void)loadUsersWithIds:(NSArray*)userIds compleate:(tsResultBlock)compleate{
+    NSString* query = [self makeParamtersString:[NSDictionary dictionaryWithObjectsAndKeys:userIds, @"ids", nil] withEncoding:NSUTF8StringEncoding];
+    NSURLSessionDataTask* loadUserTask = [_session dataTaskWithRequest:[self request:USER_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        [_dictionaryLock waitUntilDone];
+        if (!error){
+            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        }
+        compleate(result, error);
+    }];
+    
+    [loadUserTask resume];
 }
 
 
@@ -770,68 +818,68 @@ typedef enum
 }
 
 #pragma mark - User
--(void)signInWithUserName:(NSString*)username password:(NSString*)password compleate:(errorBlock)compleate{
-    NSMutableDictionary* paramsDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:username, @"username", password, @"password",nil];
-    NSError* error;
-    NSString* params = [self jsonStringFromDicOrArray:paramsDic error:&error];
-    
-    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:SIGN_IN_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
-        {
-            NSDictionary* userDic = [result objectForKeyNotNull:@"user"];
-            int userId = [[userDic objectForKeyNotNull:USER_ID_PARAM] intValue];
-            NSString* token = [result objectForKey:USER_TOKEN_PARAM];
-            if (userId >= 0 && token.length > 0){
-                [AppSettings setToken:token];
-                [AppSettings setUserId:userId];
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    User* user = [User getEntityWithId:userId];
-                    if (!user){
-                        user = [User storedEntity];
-                    }
-                    [user updateWithDic:userDic];
-                    //Load user data
-                    [self loadMyAdverts];
-                    [self loadWatchList];
-                    [self loadBuyerOffers];
-                    [self loadSellerOffers];
-                    [self loadQustionsForMe];
-                    [self saveData];
-                });
-            }
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            compleate(error);
-        });
-    }];
-    
-    [dataTask resume];
-}
-
--(void)signUpWithUserName:(NSString*)username email:(NSString*)email password:(NSString*)password compleate:(errorBlock)compleate{
-    
-    NSMutableDictionary* paramsDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:email, @"email", username, @"username", password, @"password",nil];
-    NSError* error;
-    NSString* params = [self jsonStringFromDicOrArray:paramsDic error:&error];
-    
-    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:SIGN_UP_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
-        {
-            if (!error){
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self signInWithUserName:username password:password compleate:compleate];
-                });
-            }
-        }
-        if (error){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                compleate(error);
-            });
-        }
-    }];
-    
-    [dataTask resume];
-}
+//-(void)signInWithUserName:(NSString*)username password:(NSString*)password compleate:(errorBlock)compleate{
+//    NSMutableDictionary* paramsDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:username, @"username", password, @"password",nil];
+//    NSError* error;
+//    NSString* params = [self jsonStringFromDicOrArray:paramsDic error:&error];
+//    
+//    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:SIGN_IN_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+//        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
+//        {
+//            NSDictionary* userDic = [result objectForKeyNotNull:@"user"];
+//            int userId = [[userDic objectForKeyNotNull:USER_ID_PARAM] intValue];
+//            NSString* token = [result objectForKey:USER_TOKEN_PARAM];
+//            if (userId >= 0 && token.length > 0){
+//                [AppSettings setToken:token];
+//                [AppSettings setUserId:userId];
+//                dispatch_sync(dispatch_get_main_queue(), ^{
+//                    User* user = [User getEntityWithId:userId];
+//                    if (!user){
+//                        user = [User storedEntity];
+//                    }
+//                    [user updateWithDic:userDic];
+//                    //Load user data
+//                    [self loadMyAdverts];
+//                    [self loadWatchList];
+//                    [self loadBuyerOffers];
+//                    [self loadSellerOffers];
+//                    [self loadQustionsForMe];
+//                    [self saveData];
+//                });
+//            }
+//        }
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            compleate(error);
+//        });
+//    }];
+//    
+//    [dataTask resume];
+//}
+//
+//-(void)signUpWithUserName:(NSString*)username email:(NSString*)email password:(NSString*)password compleate:(errorBlock)compleate{
+//    
+//    NSMutableDictionary* paramsDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:email, @"email", username, @"username", password, @"password",nil];
+//    NSError* error;
+//    NSString* params = [self jsonStringFromDicOrArray:paramsDic error:&error];
+//    
+//    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:SIGN_UP_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+//        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
+//        {
+//            if (!error){
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [self signInWithUserName:username password:password compleate:compleate];
+//                });
+//            }
+//        }
+//        if (error){
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                compleate(error);
+//            });
+//        }
+//    }];
+//    
+//    [dataTask resume];
+//}
 
 -(void)loadUsersWithParam:(NSDictionary*)params compleate:(void(^)(NSArray* users, NSError* error))compleate{
     [_usersLock lock];

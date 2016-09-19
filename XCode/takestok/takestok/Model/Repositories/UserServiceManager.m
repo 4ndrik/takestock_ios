@@ -15,6 +15,7 @@
 @implementation UserServiceManager
 
 #define businessTypeStorgeFile [[AppSettings getStorageFolder] stringByAppendingPathComponent:@"businessType.data"]
+#define userStorgeFile(userId) [[AppSettings getStorageFolder] stringByAppendingPathComponent: [NSString stringWithFormat:@"%@.data", userId]]
 
 static UserServiceManager *_manager = nil;
 
@@ -44,6 +45,12 @@ static UserServiceManager *_manager = nil;
         _businessTypes = [[NSMutableDictionary alloc] init];
     }
     _users = [[NSMutableDictionary alloc] init];
+    NSNumber* userIdent = [AppSettings getUserId];
+    if (userIdent){
+        TSUserEntity* user = [NSKeyedUnarchiver unarchiveObjectWithFile:userStorgeFile(userIdent)];
+        if (user)
+            [_users setObject:user forKey:userIdent];
+    }
     
     return self;
 }
@@ -57,7 +64,11 @@ static UserServiceManager *_manager = nil;
 }
 
 -(TSUserEntity*)getMe{
-    return nil;
+    TSUserEntity* user = nil;
+    if ([AppSettings getUserId]){
+        user = [_users objectForKey:[AppSettings getUserId]];
+    }
+    return user;
 }
 
 -(TSUserEntity*)getOrCreateAuthor:(NSDictionary*)authodDic{
@@ -65,16 +76,55 @@ static UserServiceManager *_manager = nil;
     TSUserEntity* user = [_users objectForKey:ident];
     if (!user){
         user = [[TSUserEntity alloc] init];
-        [_users setObject:user forKey:ident];
+        @synchronized (_users) {
+            [_users setObject:user forKey:ident];
+        }
     }
     [user updateWithDic:authodDic];
     return user;
 }
 
-#pragma mark - Fetch Dictionaries
 -(void)fetchRequiredData{
     [self fetchBusinessTypes];
+    [self fetchUserData];
 }
+
+-(void)signInWithUserName:(NSString*)username password:(NSString*)password compleate:(errorBlock)compleate{
+    [[ServerConnectionHelper sharedInstance] signInWithUserName:username password:password compleate:^(id result, NSError *error) {
+        if (!error){
+            NSString* token = [result objectForKey:@"token"];
+            if (token.length > 0){
+                [AppSettings setToken:token];
+            }
+            NSDictionary* userDic = [result objectForKeyNotNull:@"user"];
+            NSNumber* userId = [TSUserEntity identFromDic:userDic];
+            TSUserEntity* me = [_users objectForKey:userId];
+            if (!me){
+                me = [TSUserEntity objectWithDictionary:userDic];
+                @synchronized (_users) {
+                   [_users setObject:me forKey:userId];
+                }
+            }else{
+                [me updateWithDic:userDic];
+            }
+            [AppSettings setUserId:userId];
+            [NSKeyedArchiver archiveRootObject:me toFile:userStorgeFile(userId)];
+        }
+        compleate(error);
+    }];
+}
+
+-(void)signUpWithUserName:(NSString*)username email:(NSString*)email password:(NSString*)password compleate:(errorBlock)compleate{
+    [[ServerConnectionHelper sharedInstance] signUpWithUserName:username email:email password:password compleate:^(id result, NSError *error) {
+        if (!error){
+            [self signInWithUserName:username password:password compleate:compleate];
+        }else{
+            compleate(error);
+        }
+    }];
+}
+
+#pragma mark - Fetch BusinessTypes
 
 -(void)fetchBusinessTypes{
     if ([[ServerConnectionHelper sharedInstance] isInternetConnection]){
@@ -97,8 +147,34 @@ static UserServiceManager *_manager = nil;
     }
 }
 
+#pragma mark - UserData
+
 -(void)fetchUserData{
-    
+    if ([AppSettings getUserId]){
+        if ([[ServerConnectionHelper sharedInstance] isInternetConnection]){
+            [[ServerConnectionHelper sharedInstance] loadUsersWithIds:[NSArray arrayWithObjects:[AppSettings getUserId], nil] compleate:^(id result, NSError *error) {
+                if (!error){
+                    NSMutableArray* usersArray = [result objectForKey:@"results"];
+                    for (NSDictionary* userDic in usersArray) {
+                        NSNumber* userId = [TSUserEntity identFromDic:userDic];
+                        TSUserEntity* user = [_users objectForKey:userId];
+                        if (!user){
+                            user = [TSUserEntity objectWithDictionary:userDic];
+                            @synchronized (_users) {
+                                [_users setObject:user forKey:userId];
+                            }
+                        }else{
+                            [user updateWithDic:userDic];
+                        }
+                        
+                        if ([user.ident isEqual:[AppSettings getUserId]]){
+                            [NSKeyedArchiver archiveRootObject:user toFile:userStorgeFile(userId)];
+                        }
+                    }
+                }
+            }];
+        }
+    }
 }
 
 @end

@@ -88,5 +88,45 @@
     return [dict objectForKeyNotNull:AUTHOR_ID_PARAM];
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    _ident = [aDecoder decodeObjectForKey:AUTHOR_ID_PARAM];
+    _userName = [aDecoder decodeObjectForKey:AUTHOR_USER_NAME_PARAM];
+    _firstName = [aDecoder decodeObjectForKey:AUTHOR_FIRST_NAME_PARAM];
+    _lastName = [aDecoder decodeObjectForKey:AUTHOR_LAST_NAME_PARAM];
+    _email = [aDecoder decodeObjectForKey:AUTHOR_EMAIL_PARAM];
+    _isVerified = [[aDecoder decodeObjectForKey:AUTHOR_VERIFIED_PARAM] boolValue];
+    _isVatExtempt = [[aDecoder decodeObjectForKey:AUTHOR_IS_VAT_PARAM] boolValue];
+    _rating = [[aDecoder decodeObjectForKey:AUTHOR_RATING_PARAM] floatValue];
+    
+    _postCode = [aDecoder decodeObjectForKey:AUTHOR_POSTCODE_PARAM];
+    _vatNumber = [aDecoder decodeObjectForKey:AUTHOR_VAT_NUMBER_PARAM];
+    _stripeId = [aDecoder decodeObjectForKey:AUTHOR_STRIPE_PARAM];
+    _last4 = [aDecoder decodeObjectForKey:AUTHOR_LAST4_PARAM];
+    
+    _businessType = [aDecoder decodeObjectForKey:AUTHOR_BUSINESS_TYPE_PARAM];
+    _subBusinessType = [aDecoder decodeObjectForKey:AUTHOR_BUSINESS_SUB_TYPE_PARAM];
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:_ident forKey:AUTHOR_ID_PARAM];
+    [aCoder encodeObject:_userName forKey:AUTHOR_USER_NAME_PARAM];
+    [aCoder encodeObject:_firstName forKey:AUTHOR_FIRST_NAME_PARAM];
+    [aCoder encodeObject:_lastName forKey:AUTHOR_LAST_NAME_PARAM];
+    [aCoder encodeObject:_email forKey:AUTHOR_EMAIL_PARAM];
+    [aCoder encodeBool:_isVerified forKey:AUTHOR_VERIFIED_PARAM];
+    [aCoder encodeBool:_isVatExtempt forKey:AUTHOR_IS_VAT_PARAM];
+    [aCoder encodeFloat:_rating forKey:AUTHOR_RATING_PARAM];
+    [aCoder encodeObject:_postCode forKey:AUTHOR_POSTCODE_PARAM];
+    [aCoder encodeObject:_vatNumber forKey:AUTHOR_VAT_NUMBER_PARAM];
+    [aCoder encodeObject:_stripeId forKey:AUTHOR_STRIPE_PARAM];
+    [aCoder encodeObject:_last4 forKey:AUTHOR_LAST4_PARAM];
+    [aCoder encodeObject:_businessType forKey:AUTHOR_BUSINESS_TYPE_PARAM];
+    [aCoder encodeObject:_subBusinessType forKey:AUTHOR_BUSINESS_SUB_TYPE_PARAM];
+}
+
 
 @end

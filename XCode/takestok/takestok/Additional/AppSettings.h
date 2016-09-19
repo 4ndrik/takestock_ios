@@ -12,8 +12,8 @@
 
 +(NSString*)getStorageFolder;
 
-+(int)getUserId;
-+(void)setUserId:(int)ident;
++(NSNumber*)getUserId;
++(void)setUserId:(NSNumber*)ident;
 
 +(NSString*)getToken;
 +(void)setToken:(NSString*)token;

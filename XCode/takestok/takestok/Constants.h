@@ -37,7 +37,7 @@
 #define QUESTIONS_UPDATED_NOTIFICATION      @"QuestionsUpdatedNotification"
 
 //SEGUE IDS
-#define CREATE_ADVERT_SEGUE         @"CreateAdvertSegue"
+#define CREATE_ADVERT_SEGUE         @"CreateEditAdvertSegue"
 #define EDIT_ADVERT_SEGUE           @"EditAdvertSegue"
 #define ADVERT_OFFERS_SEGUE         @"AdvertOffersSegue"
 #define SEARCH_ADVERT_SEGUE         @"SearchAdvertSegue"
@@ -60,6 +60,7 @@
 #define LEGAL_INFO_CONTROLLER       @"LegalInformationController"
 
 typedef void (^resultBlock)(NSArray* result, NSDictionary* additionalData, NSError* error);
+typedef void (^errorBlock)(NSError* error);
 
 
 

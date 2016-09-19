@@ -10,6 +10,7 @@
 #import "ServerConnectionHelper.h"
 #import "TextFieldBorderBottom.h"
 #import "RadioButton.h"
+#import "UserServiceManager.h"
 
 #define EMAIL_REGEX @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$"
 //#define PHONE_REGEX @"^\\d+$"
@@ -27,8 +28,8 @@
     [super viewDidLoad];
     
 #if DEBUG
-    _signInEmailTextField.text = @"serbinartem@gmail.com";
-    _signInPasswordTextField.text = @"qazwsx1@";
+    _signInEmailTextField.text = @"g2306804@mvrht.com";
+    _signInPasswordTextField.text = @"test";
 #endif
 
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -156,7 +157,7 @@
 - (IBAction)signIn:(id)sender {
     if ([self validateData:YES]){
         [self showLoading];
-        [[ServerConnectionHelper sharedInstance] signInWithUserName:_signInEmailTextField.text password:_signInPasswordTextField.text compleate:^(NSError *error) {
+        [[UserServiceManager sharedManager] signInWithUserName:_signInEmailTextField.text password:_signInPasswordTextField.text compleate:^(NSError *error) {
             [self hideLoading];
             if (error){
                 NSString* title = @"Error";
@@ -172,7 +173,7 @@
 - (IBAction)signUp:(id)sender {
     if ([self validateData:NO]){
         [self showLoading];
-        [[ServerConnectionHelper sharedInstance] signUpWithUserName:_signUpUserNameTextField.text email:_signUpEmailTextField.text password:_signUpPasswordTextField.text compleate:^(NSError *error) {
+        [[UserServiceManager sharedManager] signUpWithUserName:_signUpUserNameTextField.text email:_signUpEmailTextField.text password:_signUpPasswordTextField.text compleate:^(NSError *error) {
             [self hideLoading];
             if (error){
                 [self showOkAlert:@"Error" text:ERROR_MESSAGE(error)];

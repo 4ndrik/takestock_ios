@@ -13,7 +13,7 @@
 @class TSUserSubBusinessType;
 
 
-@interface TSUserEntity : TSBaseEntity
+@interface TSUserEntity : TSBaseEntity<NSCoding>
 
 @property (readonly, nonatomic, retain) NSString *userName;
 @property (readonly, nonatomic, retain) NSString *firstName;

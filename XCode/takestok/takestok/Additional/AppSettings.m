@@ -26,12 +26,12 @@
     return documentsDirectory;
 }
 
-+(int)getUserId{
-    return [[[NSUserDefaults standardUserDefaults] valueForKey:USER_ID] intValue];
++(NSNumber*)getUserId{
+    return [[NSUserDefaults standardUserDefaults] valueForKey:USER_ID];
 }
 
-+(void)setUserId:(int)ident{
-    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:ident] forKey:USER_ID];
++(void)setUserId:(NSNumber*)ident{
+    [[NSUserDefaults standardUserDefaults] setValue:ident forKey:USER_ID];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

@@ -19,8 +19,6 @@
 
 @class SortData;
 
-
-
 @interface AdvertServiceManager : NSObject{
     NSMutableDictionary* _states;
     NSMutableDictionary* _sizeTypes;

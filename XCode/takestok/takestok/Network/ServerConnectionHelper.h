@@ -55,8 +55,10 @@ typedef void (^tsResultBlock)(id result, NSError* error);
 //QA
 -(void)loadQuestionAnswersWith:(NSNumber*)advertId page:(int)page compleate:(tsResultBlock)compleate;
 
-
-
+//User
+-(void)signInWithUserName:(NSString*)username password:(NSString*)password compleate:(tsResultBlock)compleate;
+-(void)signUpWithUserName:(NSString*)username email:(NSString*)email password:(NSString*)password compleate:(tsResultBlock)compleate;
+-(void)loadUsersWithIds:(NSArray*)userIds compleate:(tsResultBlock)compleate;
 
 //=====================//
 
@@ -70,9 +72,9 @@ typedef void (^tsResultBlock)(id result, NSError* error);
 -(void)updateOffer:(Offer*)offer compleate:(errorBlock)compleate;
 -(void)payOffer:(Offer*)offer withToken:(STPToken *)token completion:(errorBlock)compleate;
 
--(void)signInWithUserName:(NSString*)username password:(NSString*)password compleate:(errorBlock)compleate;
--(void)signUpWithUserName:(NSString*)username email:(NSString*)email password:(NSString*)password compleate:(errorBlock)compleate;
--(void)updateUser:(User*)user image:(UIImage*)image compleate:(errorBlock)compleate;
+//-(void)signInWithUserName:(NSString*)username password:(NSString*)password compleate:(errorBlock)compleate;
+//-(void)signUpWithUserName:(NSString*)username email:(NSString*)email password:(NSString*)password compleate:(errorBlock)compleate;
+//-(void)updateUser:(User*)user image:(UIImage*)image compleate:(errorBlock)compleate;
 
 -(void)loadQuestionAnswersWithAd:(Advert*)advert page:(int)page compleate:(resultBlock)compleate;
 -(void)askQuestion:(Question*)question compleate:(errorBlock)compleate;

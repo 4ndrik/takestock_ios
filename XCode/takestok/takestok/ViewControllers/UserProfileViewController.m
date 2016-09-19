@@ -303,39 +303,39 @@
 #pragma mark - Actions
 
 - (IBAction)submit:(id)sender {
-    if ([self validateUser]){
-        NSUndoManager* undoManager = [[NSUndoManager alloc] init];
-        _user.managedObjectContext.undoManager = undoManager;
-        
-        [undoManager beginUndoGrouping];
-        _user.isSubscribed = _emailSubscriberadioButton.isSelected;
-        _user.businessName = _businessNameTextField.text;
-        _user.postCode = _postCodeTextField.text;
-        _user.businessType = [BusinessType getEntityWithId:_typeOfBusinessTextField.tag];
-        _user.subBusinessType = [SubBusinessType getEntityWithId:_subTypeOfBusinessTextField.tag];
-        if (![_amNotVatRegisteredButton isSelected]){
-            _user.vatNumber = _vatNumber.text;
-        }
-        _user.isVatRegistered = ![_amNotVatRegisteredButton isSelected];
-        [undoManager endUndoGrouping];
-        
-        [self showLoading];
-        [[ServerConnectionHelper sharedInstance] updateUser:_user image:_newImage compleate:^(NSError *error) {
-            [self hideLoading];
-            NSString* message = @"User updated successfully";
-            NSString* title = @"";
-            if (error){
-                [undoManager undo];
-                message = ERROR_MESSAGE(error);
-                title = @"Error";
-            }else{
-                [_newImage saveToPath:[ImageCacheUrlResolver getPathForImage:_user.image]];
-            }
-            _user.managedObjectContext.undoManager = nil;
-            [self showOkAlert:title text:message];
-            
-        }];
-    }
+//    if ([self validateUser]){
+//        NSUndoManager* undoManager = [[NSUndoManager alloc] init];
+//        _user.managedObjectContext.undoManager = undoManager;
+//        
+//        [undoManager beginUndoGrouping];
+//        _user.isSubscribed = _emailSubscriberadioButton.isSelected;
+//        _user.businessName = _businessNameTextField.text;
+//        _user.postCode = _postCodeTextField.text;
+//        _user.businessType = [BusinessType getEntityWithId:_typeOfBusinessTextField.tag];
+//        _user.subBusinessType = [SubBusinessType getEntityWithId:_subTypeOfBusinessTextField.tag];
+//        if (![_amNotVatRegisteredButton isSelected]){
+//            _user.vatNumber = _vatNumber.text;
+//        }
+//        _user.isVatRegistered = ![_amNotVatRegisteredButton isSelected];
+//        [undoManager endUndoGrouping];
+//        
+//        [self showLoading];
+//        [[ServerConnectionHelper sharedInstance] updateUser:_user image:_newImage compleate:^(NSError *error) {
+//            [self hideLoading];
+//            NSString* message = @"User updated successfully";
+//            NSString* title = @"";
+//            if (error){
+//                [undoManager undo];
+//                message = ERROR_MESSAGE(error);
+//                title = @"Error";
+//            }else{
+//                [_newImage saveToPath:[ImageCacheUrlResolver getPathForImage:_user.image]];
+//            }
+//            _user.managedObjectContext.undoManager = nil;
+//            [self showOkAlert:title text:message];
+//            
+//        }];
+//    }
 }
 
 - (IBAction)addEditImage:(id)sender {
