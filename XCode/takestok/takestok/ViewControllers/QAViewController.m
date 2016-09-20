@@ -19,6 +19,7 @@
 #import "LoginViewController.h"
 #import "QuestionAnswerServiceManager.h"
 #import "UserServiceManager.h"
+#import "TSQuestion+Mutable.h"
 
 @interface QAViewController ()
 
@@ -199,37 +200,38 @@
 }
 
 -(void)askQuestion{
-//    if ([self checkUserLogin]){
-//        if (_askQuestionView.questionTextView.text.length == 0){
-//            [self showOkAlert:@"" text:@"Message is empty"];
-//        }else{
-//            Question* question = [_advert isForStore] ? [Question storedEntity] : [Question tempEntity];
-//            
-//            question.advert = _advert;
-//            User* user = [User getMe];
-//            if (user.managedObjectContext != question.managedObjectContext){
-//                user = [question.managedObjectContext objectWithID:[user objectID]];
-//            }
-//            question.user = user;
-//            question.message = _askQuestionView.questionTextView.text;
-//            [self showLoading];
-//            [[ServerConnectionHelper sharedInstance] askQuestion:question compleate:^(NSError *error) {
-//               [self hideLoading];
-//                
-//                NSString* title = @"";
-//                NSString* message = @"Question asked";
-//                if (error){
-//                    title = @"Error";
-//                    message = ERROR_MESSAGE(error);
-//                    [question.managedObjectContext deleteObject:question];
-//                }else{
-//                    [self reloadData:nil];
-//                    _askQuestionView.questionTextView.text = @"";
-//                }
-//                [self showOkAlert:title text:message];
-//            }];
-//        }
-//    }
+    if ([self checkUserLogin]){
+        if (_askQuestionView.questionTextView.text.length == 0){
+            [self showOkAlert:@"" text:@"Message is empty"];
+        }else{
+            
+            TSQuestion* question = [[TSQuestion alloc] init];
+            question.dateCreated = [NSDate date];
+            question.message = _askQuestionView.questionTextView.text;
+            question.userIdent = [[UserServiceManager sharedManager] getMe].ident;
+            question.userName = [[UserServiceManager sharedManager] getMe].userName;
+            question.advertId = _advert.ident;
+
+            [self showLoading];
+            
+            [[QuestionAnswerServiceManager sharedManager] askQuestion:question compleate:^(NSError *error) {
+               [self hideLoading];
+
+                NSString* title = @"";
+                NSString* message = @"Question asked";
+                if (error){
+                    title = @"Error";
+                    message = ERROR_MESSAGE(error);
+                }else{
+                    [_qaData insertObject:question atIndex:0];
+                    [_askTableView reloadData];
+                    [_askTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                    _askQuestionView.questionTextView.text = @"";
+                }
+                [self showOkAlert:title text:message];
+            }];
+        }
+    }
 }
 
 #pragma mark - ReplyPrototcol

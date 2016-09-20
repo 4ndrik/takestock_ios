@@ -93,9 +93,9 @@
             QAViewController* aqVC = (QAViewController*)segue.destinationViewController;
             [aqVC setAdvert:_advert];
 
-//    }else if ([segue.identifier isEqualToString:USER_DETAILS_SEGUE]){
-//        UserDetailsViewController* udVC = (UserDetailsViewController*)segue.destinationViewController;
-//        [udVC setUser:_advert.author];
+    }else if ([segue.identifier isEqualToString:USER_DETAILS_SEGUE]){
+        UserDetailsViewController* udVC = (UserDetailsViewController*)segue.destinationViewController;
+        [udVC setUser:_advert.author];
     }
 }
 

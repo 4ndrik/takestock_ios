@@ -102,7 +102,7 @@ static UserServiceManager *_manager = nil;
             if (!me){
                 me = [TSUserEntity objectWithDictionary:userDic];
                 @synchronized (_users) {
-                   [_users setObject:me forKey:userId];
+                    [_users setObject:me forKey:userId];
                 }
             }else{
                 [me updateWithDic:userDic];

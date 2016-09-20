@@ -13,6 +13,7 @@
 #define ANSWERS_MESSAGE_PARAM            @"message"
 #define ANSWERS_CREATED_PARAM            @"created_at"
 #define ANSWERS_USER_NAME_PARAM          @"user_username"
+#define ANSWER_QUESTION_SET_PARAM        @"question_set"
 
 @implementation TSAnswer
 
@@ -36,6 +37,15 @@
 
 +(NSNumber*)identFromDic:(NSDictionary*)dict{
     return [dict objectForKeyNotNull:ANSWERS_ID_PARAM];
+}
+
+-(NSDictionary*)dictionaryRepresentation{
+    NSMutableDictionary* dic = [[NSMutableDictionary alloc] init];
+    [dic setObjectNotNull:_ident forKey:ANSWERS_ID_PARAM];
+    [dic setObjectNotNull:_userIdent forKey:ANSWERS_USER_ID_PARAM];
+    [dic setObjectNotNull:_message forKey:ANSWERS_MESSAGE_PARAM];
+    [dic setValue:[NSArray arrayWithObjects:_questionId, nil] forKey:ANSWER_QUESTION_SET_PARAM];
+    return dic;
 }
 
 @end

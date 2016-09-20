@@ -10,6 +10,7 @@
 #import "ServerConnectionHelper.h"
 #import "TSAdvert.h"
 #import "TSQuestion.h"
+#import "TSAnswer.h"
 
 @implementation QuestionAnswerServiceManager
 
@@ -60,6 +61,30 @@ static QuestionAnswerServiceManager *_manager = nil;
 
         dispatch_async(dispatch_get_main_queue(), ^{
             compleate(questions, additionalDic, error);
+        });
+    }];
+}
+
+-(void)askQuestion:(TSQuestion*)question compleate:(errorBlock)compleate{
+    NSDictionary* dic = [question dictionaryRepresentation];
+    [[ServerConnectionHelper sharedInstance] askQuestion:dic compleate:^(id result, NSError *error) {
+        if (!error){
+            [question updateWithDic:dic];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            compleate(error);
+        });
+    }];
+}
+
+-(void)makeAnswer:(TSAnswer*)answer compleate:(errorBlock)compleate{
+    NSDictionary* dic = [answer dictionaryRepresentation];
+    [[ServerConnectionHelper sharedInstance] askQuestion:dic compleate:^(id result, NSError *error) {
+        if (!error){
+            [answer updateWithDic:dic];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            compleate(error);
         });
     }];
 }

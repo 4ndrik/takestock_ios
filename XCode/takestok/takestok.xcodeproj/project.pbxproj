@@ -143,6 +143,7 @@
 		ACEFEE9B1D82FB27001B9BA0 /* TSAdvertCertification.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEFEE9A1D82FB27001B9BA0 /* TSAdvertCertification.m */; };
 		ACF317B91CDB558D00F49797 /* RatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF317B81CDB558D00F49797 /* RatingView.m */; };
 		ACF8DA6B1D913AFD00BD5114 /* TSUserEntity+Mutable.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF8DA6A1D913AFD00BD5114 /* TSUserEntity+Mutable.m */; };
+		ACF8DA6E1D91535600BD5114 /* TSQuestion+Mutable.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF8DA6D1D91535600BD5114 /* TSQuestion+Mutable.m */; };
 		ACFCB6B61CDA14A4005A4024 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B31CDA14A4005A4024 /* User+CoreDataProperties.m */; };
 		ACFCB6B71CDA14A4005A4024 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B51CDA14A4005A4024 /* User.m */; };
 		ACFCB6BA1CDA200A005A4024 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B91CDA200A005A4024 /* UserProfileViewController.m */; };
@@ -412,6 +413,8 @@
 		ACF317B81CDB558D00F49797 /* RatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingView.m; sourceTree = "<group>"; };
 		ACF8DA691D913AFD00BD5114 /* TSUserEntity+Mutable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TSUserEntity+Mutable.h"; sourceTree = "<group>"; };
 		ACF8DA6A1D913AFD00BD5114 /* TSUserEntity+Mutable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSUserEntity+Mutable.m"; sourceTree = "<group>"; };
+		ACF8DA6C1D91535600BD5114 /* TSQuestion+Mutable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TSQuestion+Mutable.h"; sourceTree = "<group>"; };
+		ACF8DA6D1D91535600BD5114 /* TSQuestion+Mutable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSQuestion+Mutable.m"; sourceTree = "<group>"; };
 		ACFCB6B21CDA14A4005A4024 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
 		ACFCB6B31CDA14A4005A4024 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
 		ACFCB6B41CDA14A4005A4024 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -766,6 +769,8 @@
 			children = (
 				AC79A2F81D8AEDBB009B442E /* TSAnswer.h */,
 				AC79A2F51D8AEDBB009B442E /* TSAnswer.m */,
+				ACF8DA6C1D91535600BD5114 /* TSQuestion+Mutable.h */,
+				ACF8DA6D1D91535600BD5114 /* TSQuestion+Mutable.m */,
 				AC79A2F61D8AEDBB009B442E /* TSQuestion.h */,
 				AC79A2F71D8AEDBB009B442E /* TSQuestion.m */,
 			);
@@ -1260,6 +1265,7 @@
 				AC68C45D1CB51C1F004B78DF /* main.m in Sources */,
 				ACCE7FCB1CDB8F6400A76CB6 /* SubCategory.m in Sources */,
 				AC049D161CB7C95D006A8F21 /* UIView+NibLoadView.m in Sources */,
+				ACF8DA6E1D91535600BD5114 /* TSQuestion+Mutable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

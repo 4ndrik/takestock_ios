@@ -213,7 +213,7 @@ typedef enum
 
 -(void)loadQuestionAnswersWith:(NSNumber*)advertId page:(int)page compleate:(tsResultBlock)compleate{
     [_qaLock lock];
-    NSString* query = [NSString stringWithFormat:@"adverts=%@&page=%i", advertId, page];
+    NSString* query = [NSString stringWithFormat:@"adverts=%@&page=%i&o=-created_at", advertId, page];
     NSURLSessionDataTask* loadQATask = [_session dataTaskWithRequest:[self request:QUESTIONS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         if (!error){
             [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
@@ -222,6 +222,32 @@ typedef enum
     }];
     
     [loadQATask resume];
+}
+
+-(void)askQuestion:(NSDictionary*)question compleate:(tsResultBlock)compleate{
+    NSString* params = [self jsonStringFromDicOrArray:question error:nil];
+    
+    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:QUESTIONS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        if (!error){
+            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        }
+        compleate(result, error);
+    }];
+    
+    [dataTask resume];
+}
+
+-(void)sendAnswer:(NSDictionary*)answer compleate:(tsResultBlock)compleate{
+    NSString* params = [self jsonStringFromDicOrArray:answer error:nil];
+    
+    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:ANSWERS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        if (!error){
+            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        }
+        compleate(result, error);
+    }];
+    
+    [dataTask resume];
 }
 
 #pragma mark - User
@@ -1095,42 +1121,42 @@ typedef enum
     
     [loadQATask resume];
 }
-
--(void)askQuestion:(Question*)question compleate:(errorBlock)compleate{
-    NSDictionary* questionData = [question getDictionary];
-    NSError* error;
-    NSString* params = [self jsonStringFromDicOrArray:questionData error:&error];
-    
-    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:QUESTIONS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
-        {
-            [question updateWithDic:result];
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            compleate(error);
-        });
-    }];
-    
-    [dataTask resume];
-}
-
--(void)sendAnswer:(Answer*)answer compleate:(errorBlock)compleate{
-    NSDictionary* questionData = [answer getDictionary];
-    NSError* error;
-    NSString* params = [self jsonStringFromDicOrArray:questionData error:&error];
-    
-    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:ANSWERS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
-        {
-            [answer updateWithDic:result];
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            compleate(error);
-        });
-    }];
-    
-    [dataTask resume];
-}
+//
+//-(void)askQuestion:(Question*)question compleate:(errorBlock)compleate{
+//    NSDictionary* questionData = [question getDictionary];
+//    NSError* error;
+//    NSString* params = [self jsonStringFromDicOrArray:questionData error:&error];
+//    
+//    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:QUESTIONS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+//        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
+//        {
+//            [question updateWithDic:result];
+//        }
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            compleate(error);
+//        });
+//    }];
+//    
+//    [dataTask resume];
+//}
+//
+//-(void)sendAnswer:(Answer*)answer compleate:(errorBlock)compleate{
+//    NSDictionary* questionData = [answer getDictionary];
+//    NSError* error;
+//    NSString* params = [self jsonStringFromDicOrArray:questionData error:&error];
+//    
+//    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:ANSWERS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+//        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
+//        {
+//            [answer updateWithDic:result];
+//        }
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            compleate(error);
+//        });
+//    }];
+//    
+//    [dataTask resume];
+//}
 
 #pragma mark - Helpers
 

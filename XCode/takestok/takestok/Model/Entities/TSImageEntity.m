@@ -21,6 +21,9 @@
 -(instancetype)initWithUrl:(NSString *)url{
     self = [super init];
     _url = url;
+    if (![_url hasPrefix:@"http:"]){
+        _url = [NSString stringWithFormat:@"%@%@", TAKESTOK_IMAGE_URL, _url];
+    }
     _resId = [_url lastPathComponent];
     return self;
 }
