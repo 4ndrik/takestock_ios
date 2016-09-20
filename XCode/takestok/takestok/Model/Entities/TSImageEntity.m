@@ -18,6 +18,13 @@
 @implementation TSImageEntity
 @synthesize url = _url, resId = _resId;
 
+-(instancetype)initWithUrl:(NSString *)url{
+    self = [super init];
+    _url = url;
+    _resId = [_url lastPathComponent];
+    return self;
+}
+
 - (instancetype)initWithDictionary:(NSDictionary *)dict{
     self = [super init];
     [self updateWithDic:dict];

@@ -55,7 +55,7 @@ static UserServiceManager *_manager = nil;
     return self;
 }
 
--(NSArray*)getBusinessType{
+-(NSArray*)getBusinessTypes{
     return [_businessTypes allValues];
 }
 
@@ -110,7 +110,9 @@ static UserServiceManager *_manager = nil;
             [AppSettings setUserId:userId];
             [NSKeyedArchiver archiveRootObject:me toFile:userStorgeFile(userId)];
         }
-        compleate(error);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            compleate(error);
+        });
     }];
 }
 
@@ -119,8 +121,42 @@ static UserServiceManager *_manager = nil;
         if (!error){
             [self signInWithUserName:username password:password compleate:compleate];
         }else{
-            compleate(error);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                compleate(error);
+            });
         }
+    }];
+}
+
+-(void)updateUser:(TSUserEntity*)user withImage:(UIImage*)image compleate:(errorBlock)compleate{
+    
+    NSMutableDictionary* dic = [[NSMutableDictionary alloc] initWithDictionary:[user dictionaryRepresentation]];
+    [dic removeObjectForKey:@"photo"];
+    
+    NSData* imageData = UIImagePNGRepresentation(image);
+    if (imageData.length > 0){
+        [dic setValue:[NSString stringWithFormat:@"data:image/png;base64,%@",[imageData base64Encoding]] forKey:@"photo_b64"];
+    }
+    
+    [[ServerConnectionHelper sharedInstance] updateUser:dic compleate:^(id result, NSError *error) {
+        if (!error){
+            NSDictionary* userDic = result;
+            NSNumber* userId = [TSUserEntity identFromDic:userDic];
+            TSUserEntity* me = [_users objectForKey:userId];
+            if (!me){
+                me = [TSUserEntity objectWithDictionary:userDic];
+                @synchronized (_users) {
+                    [_users setObject:me forKey:userId];
+                }
+            }else{
+                [me updateWithDic:userDic];
+            }
+            [AppSettings setUserId:userId];
+            [NSKeyedArchiver archiveRootObject:me toFile:userStorgeFile(userId)];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            compleate(error);
+        });
     }];
 }
 

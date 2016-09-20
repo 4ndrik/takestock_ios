@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:HOME_CONTROLLER];
     self.menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:MENU_CONTROLLER];
 }

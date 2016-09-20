@@ -269,6 +269,20 @@ typedef enum
     [loadUserTask resume];
 }
 
+-(void)updateUser:(NSDictionary*)userData compleate:(tsResultBlock)compleate{
+    NSError* error;
+    NSString* params = [self jsonStringFromDicOrArray:userData error:&error];
+    
+    NSURLSessionDataTask* updateUserTask = [_session dataTaskWithRequest:[self request:ME_URL_PATH query:params methodType:HTTP_METHOD_PATCH contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        if (!error){
+            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        }
+        compleate(result, error);
+    }];
+    
+    [updateUserTask resume];
+}
+
 
 //===============================================
 
@@ -918,32 +932,32 @@ typedef enum
     [loadUserTask resume];
 }
 
--(void)updateUser:(User*)user image:(UIImage*)image compleate:(errorBlock)compleate{
-    
-    NSMutableDictionary* userData = [NSMutableDictionary dictionaryWithDictionary:[user getDictionary]];
-    if (image){
-        NSData* data = UIImagePNGRepresentation(image);
-        [userData setValue:[NSString stringWithFormat:@"data:image/png;base64,%@",[data base64Encoding]] forKey:@"photo_b64"];
-    }
-    
-    NSError* error;
-    NSString* params = [self jsonStringFromDicOrArray:userData error:&error];
-    
-    NSURLSessionDataTask* updateUserTask = [_session dataTaskWithRequest:[self request:ME_URL_PATH query:params methodType:HTTP_METHOD_PATCH contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error] && result)
-        {
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [user updateWithDic:result];
-            });
-        }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            compleate(error);
-        });
-    }];
-    
-    [updateUserTask resume];
-}
+//-(void)updateUser:(User*)user image:(UIImage*)image compleate:(errorBlock)compleate{
+//    
+//    NSMutableDictionary* userData = [NSMutableDictionary dictionaryWithDictionary:[user getDictionary]];
+//    if (image){
+//        NSData* data = UIImagePNGRepresentation(image);
+//        [userData setValue:[NSString stringWithFormat:@"data:image/png;base64,%@",[data base64Encoding]] forKey:@"photo_b64"];
+//    }
+//    
+//    NSError* error;
+//    NSString* params = [self jsonStringFromDicOrArray:userData error:&error];
+//    
+//    NSURLSessionDataTask* updateUserTask = [_session dataTaskWithRequest:[self request:ME_URL_PATH query:params methodType:HTTP_METHOD_PATCH contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+//        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error] && result)
+//        {
+//            dispatch_sync(dispatch_get_main_queue(), ^{
+//                [user updateWithDic:result];
+//            });
+//        }
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            compleate(error);
+//        });
+//    }];
+//    
+//    [updateUserTask resume];
+//}
 
 -(void)updateUsers{
     [_updateUsersLock lock];

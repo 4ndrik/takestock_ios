@@ -142,6 +142,7 @@
 		ACEFEE981D82F615001B9BA0 /* TSAdvertState.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEFEE971D82F615001B9BA0 /* TSAdvertState.m */; };
 		ACEFEE9B1D82FB27001B9BA0 /* TSAdvertCertification.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEFEE9A1D82FB27001B9BA0 /* TSAdvertCertification.m */; };
 		ACF317B91CDB558D00F49797 /* RatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF317B81CDB558D00F49797 /* RatingView.m */; };
+		ACF8DA6B1D913AFD00BD5114 /* TSUserEntity+Mutable.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF8DA6A1D913AFD00BD5114 /* TSUserEntity+Mutable.m */; };
 		ACFCB6B61CDA14A4005A4024 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B31CDA14A4005A4024 /* User+CoreDataProperties.m */; };
 		ACFCB6B71CDA14A4005A4024 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B51CDA14A4005A4024 /* User.m */; };
 		ACFCB6BA1CDA200A005A4024 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B91CDA200A005A4024 /* UserProfileViewController.m */; };
@@ -409,6 +410,8 @@
 		ACEFEE9A1D82FB27001B9BA0 /* TSAdvertCertification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAdvertCertification.m; sourceTree = "<group>"; };
 		ACF317B71CDB558D00F49797 /* RatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingView.h; sourceTree = "<group>"; };
 		ACF317B81CDB558D00F49797 /* RatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingView.m; sourceTree = "<group>"; };
+		ACF8DA691D913AFD00BD5114 /* TSUserEntity+Mutable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TSUserEntity+Mutable.h"; sourceTree = "<group>"; };
+		ACF8DA6A1D913AFD00BD5114 /* TSUserEntity+Mutable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSUserEntity+Mutable.m"; sourceTree = "<group>"; };
 		ACFCB6B21CDA14A4005A4024 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
 		ACFCB6B31CDA14A4005A4024 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
 		ACFCB6B41CDA14A4005A4024 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -600,6 +603,8 @@
 		AC5F6C6F1D88022B003918D3 /* Users */ = {
 			isa = PBXGroup;
 			children = (
+				ACF8DA691D913AFD00BD5114 /* TSUserEntity+Mutable.h */,
+				ACF8DA6A1D913AFD00BD5114 /* TSUserEntity+Mutable.m */,
 				AC5F6C6C1D88016B003918D3 /* TSUserEntity.h */,
 				AC5F6C6D1D88016B003918D3 /* TSUserEntity.m */,
 				AC5F6C701D88026E003918D3 /* TSUserBusinessType.h */,
@@ -1212,6 +1217,7 @@
 				AC411E421CC5002E008B1E38 /* NSDictionary+HandleNil.m in Sources */,
 				ACF317B91CDB558D00F49797 /* RatingView.m in Sources */,
 				AC049D111CB7C86A006A8F21 /* SearchFilterSortView.m in Sources */,
+				ACF8DA6B1D913AFD00BD5114 /* TSUserEntity+Mutable.m in Sources */,
 				ACC6F21F1D0EB72200F1B6F5 /* TakeStokRootViewController.m in Sources */,
 				AC5F6C6E1D88016B003918D3 /* TSUserEntity.m in Sources */,
 				AC6200FF1CE31CC9006A80A2 /* Packaging.m in Sources */,

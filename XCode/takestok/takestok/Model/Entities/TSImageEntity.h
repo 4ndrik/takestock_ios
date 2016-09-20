@@ -15,7 +15,7 @@
 @property (nonatomic, assign, readonly) int width;
 @property (nonatomic, assign, readonly) BOOL isMain;
 
-
+-(instancetype)initWithUrl:(NSString *)url;
 +(NSNumber*)identFromDic:(NSDictionary*)dict;
 
 @end

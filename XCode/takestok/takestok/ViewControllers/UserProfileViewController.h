@@ -13,13 +13,11 @@
 @class BackgroundImageView;
 @class PaddingTextField;
 @class RadioButton;
-@class User;
+@class TSUserEntity;
 @class StoredImage;
 @class PaddingLabel;
 
 @interface UserProfileViewController : BaseViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
-    User* _user;
-    
     __weak IBOutlet UIScrollView *_scrollView;
     UIImage* _newImage;
     __weak IBOutlet UILabel *_addImageTitle;

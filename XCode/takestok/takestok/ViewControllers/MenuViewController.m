@@ -11,10 +11,11 @@
 #import "BackgroundImageView.h"
 #import "UserMenuView.h"
 #import "UIView+NibLoadView.h"
-#import "User.h"
+#import "TSUserEntity.h"
 #import "REFrostedViewController.h"
 #import "LoginViewController.h"
 #import "AppSettings.h"
+#import "UserServiceManager.h"
 
 @implementation MenuViewController
 
@@ -90,9 +91,9 @@
         [_userView addGestureRecognizer:showUserProfileGesture];
     }
     
-    User* me = [User getMe];
+    TSUserEntity* me = [[UserServiceManager sharedManager] getMe];
     if (me){
-        [_userView.userPhotoImageView loadImage:me.image];
+        [_userView.userPhotoImageView loadImage:me.photo];
         _userView.userNameLabel.text = me.userName;
         _userView.logoutButton.hidden = NO;
         [_userView.logoutButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
@@ -146,7 +147,7 @@
 }
 
 -(BOOL)checkUserLogin{
-    if ([User getMe]){
+    if ([[UserServiceManager sharedManager] getMe]){
         return YES;
     }else{
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

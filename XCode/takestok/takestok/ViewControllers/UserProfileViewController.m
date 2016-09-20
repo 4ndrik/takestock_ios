@@ -7,7 +7,8 @@
 //
 
 #import "UserProfileViewController.h"
-#import "User.h"
+#import "TSUserEntity.h"
+#import "UserServiceManager.h"
 #import "AppSettings.h"
 #import "BackgroundImageView.h"
 #import "PaddingTextField.h"
@@ -17,8 +18,9 @@
 #import "ImageCacheUrlResolver.h"
 #import "ServerConnectionHelper.h"
 #import "RadioButton.h"
-#import "BusinessType.h"
-#import "SubBusinessType.h"
+#import "TSUserBusinessType.h"
+#import "TSUserSubBusinessType.h"
+#import "TSUserEntity+Mutable.h"
 
 @interface UserProfileViewController ()
 
@@ -29,7 +31,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    _user = [User getMe];
     [self refreshUserData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -63,27 +64,36 @@
 }
 
 -(void)refreshUserData{
-    if (_user){
-        if (_user.image){
-            [_userImageView loadImage:_user.image];
+    TSUserEntity* user = [[UserServiceManager sharedManager] getMe];
+    if (user){
+        if (user.photo){
+            [_userImageView loadImage:user.photo];
             _addImageTitle.text = @"EDIT";
         }
-        _userNameTextField.text = _user.userName;
-        _emailTextField.text = _user.email;
-        [_emailSubscriberadioButton setSelected:_user.isSubscribed];
-        _businessNameTextField.text = _user.businessName;
-        _postCodeTextField.text = _user.postCode;
+        _userNameTextField.text = user.userName;
+        _emailTextField.text = user.email;
+        [_emailSubscriberadioButton setSelected:user.isSuscribed];
+        _businessNameTextField.text = user.businessName;
+        _postCodeTextField.text = user.postCode;
         
-        _typeOfBusinessTextField.tag = _user.businessType.ident;
-        _typeOfBusinessTextField.text = _user.businessType.title;
-        
-        _subTypeOfBusinessTextField.tag = _user.subBusinessType.ident;
-        _subTypeOfBusinessTextField.text = _user.subBusinessType.title;
-        
-        if (_user.isVatRegistered){
-            _vatNumber.text = _user.vatNumber;
+        TSUserBusinessType* bt = user.businessType;
+        if (!bt){
+            bt = [[[UserServiceManager sharedManager] getBusinessTypes] firstObject];
         }
-        [_amNotVatRegisteredButton setSelected:!_user.isVatRegistered];
+        _typeOfBusinessTextField.tag = [bt.ident intValue];
+        _typeOfBusinessTextField.text = bt.title;
+        
+        TSUserSubBusinessType* sb = user.subBusinessType;
+        if (sb){
+            sb = [bt.subTypes firstObject];
+        }
+        _subTypeOfBusinessTextField.tag = [sb.ident intValue];
+        _subTypeOfBusinessTextField.text = sb.title;
+        
+        if (user.isVatExtempt){
+            _vatNumber.text = user.vatNumber;
+        }
+        [_amNotVatRegisteredButton setSelected:!user.isVatExtempt];
         [self vatRegisteredChanged:_amNotVatRegisteredButton];
     }
     
@@ -128,11 +138,10 @@
 }
 
 -(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    
     id item = [_pickerData objectAtIndex:row];
     NSString* title = @"";
-    if ([item isKindOfClass:[Dictionary class]]){
-        title = ((Dictionary*)item).title;
+    if ([item isKindOfClass:[TSBaseDictionaryEntity class]]){
+        title = ((TSBaseDictionaryEntity*)item).title;
     }else if ([item isKindOfClass:[NSString class]]){
         title = item;
     }
@@ -142,9 +151,9 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     if ([_currentInputControl respondsToSelector:@selector(setText:)]){
         id item = [_pickerData objectAtIndex:row];
-        if ([item isKindOfClass:[Dictionary class]]){
-            [_currentInputControl setText:((Dictionary*)item).title];
-            [_currentInputControl setTag:((Dictionary*)item).ident];
+        if ([item isKindOfClass:[TSBaseDictionaryEntity class]]){
+            [_currentInputControl setText:((TSBaseDictionaryEntity*)item).title];
+            [_currentInputControl setTag:[((TSBaseDictionaryEntity*)item).ident intValue]];
             if (_currentInputControl == _typeOfBusinessTextField){
                 _subTypeOfBusinessTextField.tag = 0;
                 _subTypeOfBusinessTextField.text = @"";
@@ -218,13 +227,13 @@
     [self scrollToView:textField];
 }
 
--(void)configureDataPickerWithData:(NSArray<Dictionary*>*)data withTextField:(UITextField*)textField{
+-(void)configureDataPickerWithData:(NSArray<TSBaseDictionaryEntity*>*)data withTextField:(UITextField*)textField{
     _pickerData = data;
     [_textPiker reloadAllComponents];
     
     textField.inputView = _textPiker;
-    NSUInteger index = [_pickerData indexOfObjectPassingTest:^BOOL(Dictionary* obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        return obj.ident == textField.tag;
+    NSUInteger index = [_pickerData indexOfObjectPassingTest:^BOOL(TSBaseDictionaryEntity* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        return [obj.ident intValue] == textField.tag;
     }];
     [_textPiker selectRow:index == NSNotFound ? 0 : index inComponent:0 animated:NO];
     [self pickerView:_textPiker didSelectRow:index == NSNotFound ? 0 : index inComponent:0];
@@ -244,9 +253,10 @@
     }
     
     if (textField == _typeOfBusinessTextField) {
-        [self configureDataPickerWithData:[BusinessType getAll] withTextField:textField];
+        [self configureDataPickerWithData:[[UserServiceManager sharedManager] getBusinessTypes] withTextField:textField];
     }else if (textField == _subTypeOfBusinessTextField) {
-        [self configureDataPickerWithData:[SubBusinessType getForParent:_typeOfBusinessTextField.tag] withTextField:textField];
+        TSUserBusinessType* type = [[UserServiceManager sharedManager] getBusinessTypeWithId:[NSNumber numberWithInt:_typeOfBusinessTextField.tag]];
+        [self configureDataPickerWithData:[type subTypes] withTextField:textField];
     }
     return YES;
 }
@@ -265,6 +275,10 @@
     
     if (_emailTextField.text.length <= 0){
         [errors addObject:@"Email"];
+    }
+    
+    if (_businessNameTextField.text.length <= 0){
+        [errors addObject:@"Business name"];
     }
     
     
@@ -303,39 +317,38 @@
 #pragma mark - Actions
 
 - (IBAction)submit:(id)sender {
-//    if ([self validateUser]){
-//        NSUndoManager* undoManager = [[NSUndoManager alloc] init];
-//        _user.managedObjectContext.undoManager = undoManager;
-//        
-//        [undoManager beginUndoGrouping];
-//        _user.isSubscribed = _emailSubscriberadioButton.isSelected;
-//        _user.businessName = _businessNameTextField.text;
-//        _user.postCode = _postCodeTextField.text;
-//        _user.businessType = [BusinessType getEntityWithId:_typeOfBusinessTextField.tag];
-//        _user.subBusinessType = [SubBusinessType getEntityWithId:_subTypeOfBusinessTextField.tag];
-//        if (![_amNotVatRegisteredButton isSelected]){
-//            _user.vatNumber = _vatNumber.text;
-//        }
-//        _user.isVatRegistered = ![_amNotVatRegisteredButton isSelected];
-//        [undoManager endUndoGrouping];
-//        
-//        [self showLoading];
-//        [[ServerConnectionHelper sharedInstance] updateUser:_user image:_newImage compleate:^(NSError *error) {
-//            [self hideLoading];
-//            NSString* message = @"User updated successfully";
-//            NSString* title = @"";
-//            if (error){
-//                [undoManager undo];
-//                message = ERROR_MESSAGE(error);
-//                title = @"Error";
-//            }else{
-//                [_newImage saveToPath:[ImageCacheUrlResolver getPathForImage:_user.image]];
-//            }
-//            _user.managedObjectContext.undoManager = nil;
-//            [self showOkAlert:title text:message];
-//            
-//        }];
-//    }
+    if ([self validateUser]){
+        TSUserEntity* newUser = [[[UserServiceManager sharedManager] getMe] copy];
+        newUser.isSuscribed = _emailSubscriberadioButton.isSelected;
+        newUser.businessName = _businessNameTextField.text;
+        newUser.postCode = _postCodeTextField.text;
+        newUser.businessType = [[UserServiceManager sharedManager] getBusinessTypeWithId:[NSNumber numberWithInt:_typeOfBusinessTextField.tag]];
+        for (TSUserSubBusinessType* subBt in newUser.businessType.subTypes) {
+            if ([subBt.ident intValue] == _subTypeOfBusinessTextField.tag){
+                newUser.subBusinessType = subBt;
+                break;
+            }
+        }
+        newUser.isVatExtempt = ![_amNotVatRegisteredButton isSelected];
+        if (newUser.isVatExtempt){
+            newUser.vatNumber = _vatNumber.text;
+        }
+        
+        [self showLoading];
+        
+        [[UserServiceManager sharedManager] updateUser:newUser withImage:_newImage compleate:^(NSError *error) {
+            [self hideLoading];
+            NSString* message = @"User updated successfully";
+            NSString* title = @"";
+            if (error){
+                message = ERROR_MESSAGE(error);
+                title = @"Error";
+            }else{
+                [_newImage saveToPath:[ImageCacheUrlResolver getPathForImage:[[UserServiceManager sharedManager] getMe].photo]];
+            }
+            [self showOkAlert:title text:message];
+        }];
+    }
 }
 
 - (IBAction)addEditImage:(id)sender {

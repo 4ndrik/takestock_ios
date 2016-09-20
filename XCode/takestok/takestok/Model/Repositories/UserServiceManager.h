@@ -19,7 +19,7 @@
 +(instancetype)sharedManager;
 -(void)fetchRequiredData;
 
--(NSArray*)getBusinessType;
+-(NSArray*)getBusinessTypes;
 -(TSUserBusinessType*)getBusinessTypeWithId:(NSNumber*)ident;
 
 -(TSUserEntity*)getMe;
@@ -27,5 +27,7 @@
 
 -(void)signInWithUserName:(NSString*)username password:(NSString*)password compleate:(errorBlock)compleate;
 -(void)signUpWithUserName:(NSString*)username email:(NSString*)email password:(NSString*)password compleate:(errorBlock)compleate;
+
+-(void)updateUser:(TSUserEntity*)user withImage:(UIImage*)image compleate:(errorBlock)compleate;
 
 @end

@@ -297,6 +297,7 @@ static AdvertServiceManager *_manager = nil;
     return [_packageTypes objectForKey:ident];
 }
 
+#pragma mark - Adverts
 -(void)loadAdverts:(SortData*)sortData search:(NSString*)search category:(TSBaseDictionaryEntity*)category page:(int)page compleate:(resultBlock)compleate{
     NSNumber* categoryId;
     NSNumber* subCategoryId;

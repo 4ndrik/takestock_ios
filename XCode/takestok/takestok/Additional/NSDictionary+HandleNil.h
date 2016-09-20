@@ -11,4 +11,5 @@
 @interface NSDictionary (HandleNil)
 - (id)objectForKeyNotNull:(id)key;
 -(id)valueForKeyNotNull:(NSString *)key;
+-(void)setObjectNotNull:(id)object forKey:(id)key;
 @end

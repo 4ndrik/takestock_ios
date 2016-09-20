@@ -59,6 +59,7 @@ typedef void (^tsResultBlock)(id result, NSError* error);
 -(void)signInWithUserName:(NSString*)username password:(NSString*)password compleate:(tsResultBlock)compleate;
 -(void)signUpWithUserName:(NSString*)username email:(NSString*)email password:(NSString*)password compleate:(tsResultBlock)compleate;
 -(void)loadUsersWithIds:(NSArray*)userIds compleate:(tsResultBlock)compleate;
+-(void)updateUser:(NSDictionary*)userData compleate:(tsResultBlock)compleate;
 
 //=====================//
 

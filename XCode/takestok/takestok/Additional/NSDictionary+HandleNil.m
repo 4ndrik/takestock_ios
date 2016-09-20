@@ -26,4 +26,10 @@
     return [self objectForKeyNotNull:key];
 }
 
+-(void)setObjectNotNull:(id)object forKey:(id)key{
+    if (object && object != [NSNull null]){
+        [(NSMutableDictionary*)self setObject:object forKey:key];
+    }
+}
+
 @end
