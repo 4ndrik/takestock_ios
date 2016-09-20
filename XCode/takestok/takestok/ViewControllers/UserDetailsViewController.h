@@ -7,12 +7,12 @@
 //
 
 #import "BaseViewController.h"
-@class User;
+@class TSUserEntity;
 @class BackgroundImageView;
 @class RatingView;
 
 @interface UserDetailsViewController : BaseViewController{
-    User* _user;
+    TSUserEntity* _user;
     
     __weak IBOutlet BackgroundImageView *_userPicture;
     __weak IBOutlet UILabel *_userameLabel;
@@ -23,6 +23,6 @@
     
 }
 
--(void)setUser:(User*)user;
+-(void)setUser:(TSUserEntity*)user;
 
 @end

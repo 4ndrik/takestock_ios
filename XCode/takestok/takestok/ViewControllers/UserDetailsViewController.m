@@ -9,9 +9,9 @@
 #import "UserDetailsViewController.h"
 #import "BackgroundImageView.h"
 #import "RatingView.h"
-#import "User.h"
-#import "BusinessType.h"
-#import "SubBusinessType.h"
+#import "TSUserEntity.h"
+#import "TSUserBusinessType.h"
+#import "TSUserSubBusinessType.h"
 
 @interface UserDetailsViewController ()
 
@@ -19,7 +19,7 @@
 
 @implementation UserDetailsViewController
 
--(void)setUser:(User *)user{
+-(void)setUser:(TSUserEntity *)user{
     _user = user;
     if (self.isViewLoaded){
         [self fillData];
@@ -47,8 +47,8 @@
 }
 
 -(void)fillData{
-    if (_user.image){
-        [_userPicture loadImage:_user.image];
+    if (_user.photo){
+        [_userPicture loadImage:_user.photo];
     }else{
         [_userPicture setImage:[UIImage imageNamed:@"user_placeholder"]];
     }
