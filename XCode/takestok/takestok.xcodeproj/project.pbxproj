@@ -144,6 +144,8 @@
 		ACF317B91CDB558D00F49797 /* RatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF317B81CDB558D00F49797 /* RatingView.m */; };
 		ACF8DA6B1D913AFD00BD5114 /* TSUserEntity+Mutable.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF8DA6A1D913AFD00BD5114 /* TSUserEntity+Mutable.m */; };
 		ACF8DA6E1D91535600BD5114 /* TSQuestion+Mutable.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF8DA6D1D91535600BD5114 /* TSQuestion+Mutable.m */; };
+		ACF8DA711D91729F00BD5114 /* TSImageEntity+Mutable.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF8DA701D91729F00BD5114 /* TSImageEntity+Mutable.m */; };
+		ACF8DA741D91747E00BD5114 /* TSAdvert+Mutable.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF8DA731D91747E00BD5114 /* TSAdvert+Mutable.m */; };
 		ACFCB6B61CDA14A4005A4024 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B31CDA14A4005A4024 /* User+CoreDataProperties.m */; };
 		ACFCB6B71CDA14A4005A4024 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B51CDA14A4005A4024 /* User.m */; };
 		ACFCB6BA1CDA200A005A4024 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B91CDA200A005A4024 /* UserProfileViewController.m */; };
@@ -415,6 +417,10 @@
 		ACF8DA6A1D913AFD00BD5114 /* TSUserEntity+Mutable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSUserEntity+Mutable.m"; sourceTree = "<group>"; };
 		ACF8DA6C1D91535600BD5114 /* TSQuestion+Mutable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TSQuestion+Mutable.h"; sourceTree = "<group>"; };
 		ACF8DA6D1D91535600BD5114 /* TSQuestion+Mutable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSQuestion+Mutable.m"; sourceTree = "<group>"; };
+		ACF8DA6F1D91729F00BD5114 /* TSImageEntity+Mutable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TSImageEntity+Mutable.h"; sourceTree = "<group>"; };
+		ACF8DA701D91729F00BD5114 /* TSImageEntity+Mutable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSImageEntity+Mutable.m"; sourceTree = "<group>"; };
+		ACF8DA721D91747E00BD5114 /* TSAdvert+Mutable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TSAdvert+Mutable.h"; sourceTree = "<group>"; };
+		ACF8DA731D91747E00BD5114 /* TSAdvert+Mutable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSAdvert+Mutable.m"; sourceTree = "<group>"; };
 		ACFCB6B21CDA14A4005A4024 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
 		ACFCB6B31CDA14A4005A4024 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
 		ACFCB6B41CDA14A4005A4024 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -952,6 +958,8 @@
 				ACEFEE781D82BBF1001B9BA0 /* TSBaseDictionaryEntity.h */,
 				ACEFEE791D82BBF1001B9BA0 /* TSBaseDictionaryEntity.m */,
 				ACEFEE9C1D82FBA9001B9BA0 /* AdvertDics */,
+				ACF8DA6F1D91729F00BD5114 /* TSImageEntity+Mutable.h */,
+				ACF8DA701D91729F00BD5114 /* TSImageEntity+Mutable.m */,
 				AC5F6C691D87F9A1003918D3 /* TSImageEntity.h */,
 				AC5F6C6A1D87F9A1003918D3 /* TSImageEntity.m */,
 				AC72496D1D8AC29B00AD940A /* QuestionAnswers */,
@@ -992,6 +1000,8 @@
 				AC756E5D1D86A50700C45BA3 /* TSAdvertShipping.m */,
 				AC756E5F1D86A8CB00C45BA3 /* TSAdvertPackagingType.h */,
 				AC756E601D86A8CB00C45BA3 /* TSAdvertPackagingType.m */,
+				ACF8DA721D91747E00BD5114 /* TSAdvert+Mutable.h */,
+				ACF8DA731D91747E00BD5114 /* TSAdvert+Mutable.m */,
 				AC756E621D86E0D800C45BA3 /* TSAdvert.h */,
 				AC756E631D86E0D800C45BA3 /* TSAdvert.m */,
 			);
@@ -1145,6 +1155,7 @@
 				ACC6F2361D0EFFE800F1B6F5 /* ContactUsViewController.m in Sources */,
 				AC411E771CC8D186008B1E38 /* Condition.m in Sources */,
 				AC756E641D86E0D800C45BA3 /* TSAdvert.m in Sources */,
+				ACF8DA741D91747E00BD5114 /* TSAdvert+Mutable.m in Sources */,
 				AC411E971CC92344008B1E38 /* Category+CoreDataProperties.m in Sources */,
 				AC411E8E1CC92230008B1E38 /* SizeType.m in Sources */,
 				ACA42F7A1D1AC7CD00C586BB /* SubBusinessType.m in Sources */,
@@ -1171,6 +1182,7 @@
 				AC1F544D1CCE45350093848B /* OfferManagerViewController.m in Sources */,
 				ACCE7FCE1CDCC3A400A76CB6 /* QAViewController.m in Sources */,
 				ACC6F2221D0EBFCE00F1B6F5 /* MenuViewController.m in Sources */,
+				ACF8DA711D91729F00BD5114 /* TSImageEntity+Mutable.m in Sources */,
 				ACFCB6BA1CDA200A005A4024 /* UserProfileViewController.m in Sources */,
 				AC08D80B1CE9FEC200830A53 /* Answer+CoreDataProperties.m in Sources */,
 				AC411E211CBF9CEF008B1E38 /* Image+CoreDataProperties.m in Sources */,

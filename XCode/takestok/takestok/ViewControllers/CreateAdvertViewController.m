@@ -11,15 +11,12 @@
 #import "ImageCollectionViewCell.h"
 #import "PaddingTextField.h"
 #import "TextFieldBorderBottom.h"
-#import "Advert.h"
+#import "TSAdvert.h"
+#import "TSAdvert+Mutable.h"
+#import "TSImageEntity+Mutable.h"
 #import "ImageCacheUrlResolver.h"
-
-#import "Category.h"
-#import "SubCategory.h"
-#import "Shipping.h"
-#import "Condition.h"
-#import "SizeType.h"
-#import "Certification.h"
+#import "TSAdvertCertification.h"
+#import "TSAdvertSubCategory.h"
 
 #import "RadioButton.h"
 #import "ServerConnectionHelper.h"
@@ -31,18 +28,19 @@
 
 #import "NSManagedObject+NSManagedObject_RevertChanges.h"
 
+#import "AdvertServiceManager.h"
+#import "UserServiceManager.h"
+
 @implementation CreateAdvertViewController
 
 #define SIZE_REGEX @"^\\d+ ?x ?\\d+ ?x ?\\d+$"
 
--(void)setAdvert:(Advert*)advert{
+-(void)setAdvert:(TSAdvert*)advert{
     _advert = advert;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSUndoManager* undoManager = [[NSUndoManager alloc] init];
-    [DB sharedInstance].storedManagedObjectContext.undoManager = undoManager;
     
     _images = [NSMutableArray array];
     _keyboardFrame = 303;
@@ -83,17 +81,17 @@
     
     if (_advert){
         
-        [_images addObjectsFromArray:[_advert.images array]];
+        [_images addObjectsFromArray:_advert.photos];
         
         _productTitleTextField.text = _advert.name;
         
-        _categoryTextField.tag = _advert.category.ident;
+        _categoryTextField.tag = [_advert.category.ident intValue];
         _categoryTextField.text = _advert.category.title;
         
-        _subCategoryTextField.tag = _advert.subCategory.ident;
+        _subCategoryTextField.tag = [_advert.subCategory.ident intValue];
         _subCategoryTextField.text = _advert.subCategory.title;
         
-        _unitTextField.tag = _advert.packaging.ident;
+        _unitTextField.tag = [_advert.packaging.ident intValue];
         _unitTextField.text = _advert.packaging.title;
         
         _countUnitTextField.text = [NSString stringWithFormat:@"%i", _advert.count];
@@ -103,45 +101,43 @@
         _descriptionTextView.text = _advert.adDescription;
         _locationTextField.text = _advert.location;
         
-        _shippingTextField.tag = _advert.shipping.ident;
+        _shippingTextField.tag = [_advert.shipping.ident intValue];
         _shippingTextField.text = _advert.shipping.title;
         
-        _conditionTextField.tag = _advert.condition.ident;
+        _conditionTextField.tag = [_advert.condition.ident intValue];
         _conditionTextField.text = _advert.condition.title;
         
-        if (_advert.expires > 0){
-            NSDate* date = [NSDate dateWithTimeIntervalSinceReferenceDate:_advert.expires];
-            _expairyTextField.text = [formatter stringFromDate:date];
+        if (_advert.dateExpires){
+            _expairyTextField.text = [NSDate stringFromDate:_advert.dateExpires];
         }
         _sizeTextField.text = _advert.size;
         
-        _sizeTypeTextField.tag = _advert.sizeType.ident;
-        _sizeTypeTextField.text = _advert.sizeType.title;
+//        _sizeTypeTextField.tag = [_advert.siz.ident intValue];
+//        _sizeTypeTextField.text = _advert.sizeType.title;
         
         _otherTextField.text = _advert.certificationOther;
         _keywordTextField.text = _advert.tags;
         
         self.title = @"EDIT ADVERT";
         
-        [_saveButton setTitle:@"SAVE CHANGES" forState:UIControlStateNormal];
+//        [_saveButton setTitle:@"SAVE CHANGES" forState:UIControlStateNormal];
         
         [_imagesCollectionView reloadData];
         [self collectionView:_imagesCollectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedImage inSection:0]];
         
     }else{
-        _advert = [Advert storedEntity];
         self.title = @"SELL SOMETHING";
-         [_saveButton setTitle:@"CREATE ADVERT" forState:UIControlStateNormal];
+//         [_saveButton setTitle:@"PREVIEW & MAKE ALIVE" forState:UIControlStateNormal];
     }
     
     //Add certifications
     
     float size = self.view.bounds.size.width - 40;
-    NSArray* certifications = [Certification getAll];
+    NSArray* certifications = [[AdvertServiceManager sharedManager] getCertifications];
     float y = -44;
     NSMutableArray* group = [NSMutableArray array];
     for (int i = 0; i < certifications.count; i++){
-        Certification* cert = [certifications objectAtIndex:i];
+        TSAdvertCertification* cert = [certifications objectAtIndex:i];
         float x = 0;
         
         if (i % 2){
@@ -152,7 +148,7 @@
         }
         
         RadioButton* radioButton = [[RadioButton alloc] initWithFrame:CGRectMake(x, y, 135, 24)];
-        radioButton.tag = cert.ident;
+        radioButton.tag = [cert.ident intValue];
         [group addObject:radioButton];
         radioButton.autoresizingMask = UIViewAutoresizingNone;
         [radioButton setTitle:cert.title forState:UIControlStateNormal];
@@ -170,8 +166,8 @@
     
     RadioButton* rb = (RadioButton*)group.firstObject;
     if (_advert.certification.ident > 0){
-        [rb setSelectedWithTag:_advert.certification.ident];
-        _certificationsContainerView.tag = _advert.certification.ident;
+        [rb setSelectedWithTag:[_advert.certification.ident intValue]];
+        _certificationsContainerView.tag = [_advert.certification.ident intValue];
     }else{
         [rb deselectAllButtons];
     }
@@ -196,20 +192,10 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)willMoveToParentViewController:(UIViewController *)parent{
-    [super willMoveToParentViewController:parent];
-    if (!parent) {
-        if ([[DB sharedInstance].storedManagedObjectContext.undoManager canUndo]){
-            [[DB sharedInstance].storedManagedObjectContext.undoManager undo];
-        }
-        [DB sharedInstance].storedManagedObjectContext.undoManager = nil;
-    }
-}
-
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     _collectionViewHeight.constant =  _images.count > 0 ? ((_imagesCollectionView.frame.size.width - 20) / 3 + 20) * ceilf((_images.count + 1) / 3.) : 0;
-    _additionalViewHeight.constant = _productTitleTextField.text.length > 0 && _images.count > 0 ? _saveButton.frame.size.height + _saveButton.frame.origin.y + 20 : 0;
+    _additionalViewHeight.constant = _productTitleTextField.text.length > 0 && _images.count > 0 ? _previewButton.frame.size.height + _previewButton.frame.origin.y + 20 : 0;
 }
 
 -(void)setCertification:(RadioButton*)owner{
@@ -262,7 +248,7 @@
     _collectionViewHeight.constant = ((_imagesCollectionView.frame.size.width - 20) / 3 + 20) * ceilf((_images.count + 1) / 3.);
     [_imagesCollectionView reloadData];
     [self collectionView:_imagesCollectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedImage inSection:0]];
-    _additionalViewHeight.constant = _productTitleTextField.text.length > 0 && _images.count > 0 ? _saveButton.frame.size.height + _saveButton.frame.origin.y + 20 : 0;
+    _additionalViewHeight.constant = _productTitleTextField.text.length > 0 && _images.count > 0 ? _previewButton.frame.size.height + _previewButton.frame.origin.y + 20 : 0;
 }
 
 
@@ -404,13 +390,13 @@
     [self scrollToView:textView];
 }
 
--(void)configureDataPickerWithData:(NSArray<Dictionary*>*)data withTextField:(UITextField*)textField{
+-(void)configureDataPickerWithData:(NSArray<TSBaseDictionaryEntity*>*)data withTextField:(UITextField*)textField{
     _pickerData = data;
     [_textPiker reloadAllComponents];
     
     textField.inputView = _textPiker;
-    NSUInteger index = [_pickerData indexOfObjectPassingTest:^BOOL(Dictionary* obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        return obj.ident == textField.tag;
+    NSUInteger index = [_pickerData indexOfObjectPassingTest:^BOOL(TSBaseDictionaryEntity* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        return [obj.ident intValue] == textField.tag;
     }];
     [_textPiker selectRow:index == NSNotFound ? 0 : index inComponent:0 animated:NO];
     [self pickerView:_textPiker didSelectRow:index == NSNotFound ? 0 : index inComponent:0];
@@ -430,17 +416,18 @@
     }
     
     if (textField == _categoryTextField) {
-        [self configureDataPickerWithData:[Category getAll] withTextField:textField];
+        [self configureDataPickerWithData:[[AdvertServiceManager sharedManager] getCategories] withTextField:textField];
     }else if (textField == _subCategoryTextField) {
-        [self configureDataPickerWithData:[SubCategory getForParent:_categoryTextField.tag] withTextField:textField];
+        TSAdvertCategory* category = [[AdvertServiceManager sharedManager] getCategoyWithId:[NSNumber numberWithInt:_categoryTextField.tag]];
+        [self configureDataPickerWithData:category.subCategories withTextField:textField];
     }else if (textField == _unitTextField) {
-        [self configureDataPickerWithData:[Packaging getAll] withTextField:textField];
+        [self configureDataPickerWithData:[[AdvertServiceManager sharedManager] getPackageTypes] withTextField:textField];
     }else if (textField == _shippingTextField) {
-        [self configureDataPickerWithData:[Shipping getAll] withTextField:textField];
+        [self configureDataPickerWithData:[[AdvertServiceManager sharedManager] getShippings] withTextField:textField];
     }else if (textField == _conditionTextField) {
-        [self configureDataPickerWithData:[Condition getAll] withTextField:textField];
+        [self configureDataPickerWithData:[[AdvertServiceManager sharedManager] getConditions] withTextField:textField];
     }else if (textField == _sizeTypeTextField) {
-        [self configureDataPickerWithData:[SizeType getAll] withTextField:textField];
+        [self configureDataPickerWithData:[[AdvertServiceManager sharedManager] getSizeType] withTextField:textField];
     }else if (textField == _expairyTextField) {
         UIDatePicker* datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, _keyboardFrame - textField.inputAccessoryView.frame.size.height)];
         datePicker.datePickerMode = UIDatePickerModeDate;
@@ -462,7 +449,7 @@
     if (textField == _productTitleTextField){
         NSString* str = [textField.text stringByReplacingCharactersInRange:range withString:string];
         if (str.length > 0 && _images.count > 0){
-            _additionalViewHeight.constant = _saveButton.frame.size.height + _saveButton.frame.origin.y + 20;
+            _additionalViewHeight.constant = _previewButton.frame.size.height + _previewButton.frame.origin.y + 20;
             [((UIToolbar*)textField.inputAccessoryView).items objectAtIndex:1].enabled = YES;
         }else{
             _additionalViewHeight.constant = 0;
@@ -473,7 +460,7 @@
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView{
-    _additionalViewHeight.constant = _saveButton.frame.size.height + _saveButton.frame.origin.y + 20;
+    _additionalViewHeight.constant = _previewButton.frame.size.height + _previewButton.frame.origin.y + 20;
     [_scrollView setNeedsUpdateConstraints];
     [_scrollView updateConstraints];
 }
@@ -505,8 +492,8 @@
     
     id item = [_pickerData objectAtIndex:row];
     NSString* title = @"";
-    if ([item isKindOfClass:[Dictionary class]]){
-        title = ((Dictionary*)item).title;
+    if ([item isKindOfClass:[TSBaseDictionaryEntity class]]){
+        title = ((TSBaseDictionaryEntity*)item).title;
     }else if ([item isKindOfClass:[NSString class]]){
         title = item;
     }
@@ -516,12 +503,12 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     if ([_currentInputControl respondsToSelector:@selector(setText:)]){
         id item = [_pickerData objectAtIndex:row];
-        if ([item isKindOfClass:[Dictionary class]]){
-            [_currentInputControl setText:((Dictionary*)item).title];
-            [_currentInputControl setTag:((Dictionary*)item).ident];
+        if ([item isKindOfClass:[TSBaseDictionaryEntity class]]){
+            [_currentInputControl setText:((TSBaseDictionaryEntity*)item).title];
+            [_currentInputControl setTag:[((TSBaseDictionaryEntity*)item).ident intValue]];
             if (_currentInputControl == _unitTextField){
                 for (UILabel* unitLabel in _packagingLabelCollection){
-                    unitLabel.text = ((Dictionary*)item).title;
+                    unitLabel.text = ((TSBaseDictionaryEntity*)item).title;
                 }
             }else if (_currentInputControl == _categoryTextField){
                 _subCategoryTextField.tag = 0;
@@ -599,83 +586,96 @@
 }
 
 -(void)createAdvert{
-    [[DB sharedInstance].storedManagedObjectContext.undoManager beginUndoGrouping];
     if (!_advert){
-        _advert = [Advert storedEntity];
+        _advert = [[TSAdvert alloc] init];
     }
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterLongStyle];
     
-    NSMutableOrderedSet* imageSet = [[NSMutableOrderedSet alloc] init];
+    NSMutableArray* images = [[NSMutableArray alloc] init];
     for (id<ImageProtocol> image in _images){
-        Image* advImage = image;
+        TSImageEntity* advImage = image;
         if ([image isKindOfClass:[StoredImage class]]){
             UIImage* uiImage = [UIImage imageWithContentsOfFile:[ImageCacheUrlResolver getPathForImage:image]];
             
-            advImage = [Image storedEntity];
+            advImage = [[TSImageEntity alloc] init];
             advImage.resId = image.resId;
             advImage.height = (int)uiImage.size.height;
             advImage.width = (int)uiImage.size.width;
         }
-        [imageSet addObject:advImage];
+        [images addObject:advImage];
     }
-    [_advert setImages:imageSet];
+    [_advert setPhotos:images];
     
     _advert.name = _productTitleTextField.text;
     _advert.guidePrice = [_priceTextField.text floatValue];
     _advert.location = _locationTextField.text;
     _advert.adDescription = _descriptionTextView.text;
-    _advert.expires = _expairyTextField.text.length > 0 ? [[formatter dateFromString:_expairyTextField.text] timeIntervalSinceReferenceDate] : 0;
-    _advert.created = [[NSDate date] timeIntervalSinceReferenceDate];
-    _advert.date_updated = [[NSDate date] timeIntervalSinceReferenceDate];
+    _advert.dateExpires = _expairyTextField.text.length > 0 ? [formatter dateFromString:_expairyTextField.text] : nil;
+    
     _advert.minOrderQuantity = [_minimumOrderTextField.text intValue];
     _advert.certificationOther = _otherTextField.text;
     _advert.count = [_countUnitTextField.text intValue];
-    _advert.category = [Category getEntityWithId:_categoryTextField.tag];
-    _advert.subCategory = [SubCategory getEntityWithId:_subCategoryTextField.tag];
-    _advert.certification = [Certification getEntityWithId:_certificationsContainerView.tag];
-    _advert.condition = [Condition getEntityWithId:_conditionTextField.tag];
-    _advert.shipping = [Shipping getEntityWithId:_shippingTextField.tag];
+    _advert.category = [[AdvertServiceManager sharedManager] getCategoyWithId:[NSNumber numberWithInt:_categoryTextField.tag]];
+    
+    for (TSAdvertSubCategory* subCategory in _advert.category.subCategories) {
+        if ([subCategory.ident intValue] == _subCategoryTextField.tag){
+            _advert.subCategory = subCategory;
+            break;
+        }
+    }
+    
+    _advert.certification = [[AdvertServiceManager sharedManager] getCertificationWithId:[NSNumber numberWithInt:_certificationsContainerView.tag]];
+    _advert.condition = [[AdvertServiceManager sharedManager] getConditionWithId:[NSNumber numberWithInt:_conditionTextField.tag]];
+    _advert.shipping = [[AdvertServiceManager sharedManager] getShippingWithId:[NSNumber numberWithInt:_shippingTextField.tag]];
+    
     if (_sizeTypeTextField.text.length > 0){
         _advert.size = _sizeTextField.text;
-        _advert.sizeType = [SizeType getEntityWithId:_sizeTypeTextField.tag];
+//        _advert.sizeType = [[AdvertServiceManager sharedManager] getSizeTypeWithId:[NSNumber numberWithInt:_sizeTypeTextField.tag]];
     }else{
         _advert.size = @"";
-        _advert.sizeType = nil;
+//        _advert.sizeType = nil;
     }
     _advert.tags = _keywordTextField.text;
-    _advert.packaging = [Packaging getEntityWithId:_unitTextField.tag];
-    _advert.author = [User getMe];
-    [[DB sharedInstance].storedManagedObjectContext.undoManager endUndoGrouping];
+    _advert.packaging = [[AdvertServiceManager sharedManager] getPackageTypeWithId:[NSNumber numberWithInt:_unitTextField.tag]];
+    _advert.author = [[UserServiceManager sharedManager] getMe];
 }
 
 - (IBAction)saveAdvert:(id)sender{
     if ([self verifyFields]){
         [self createAdvert];
-        if (_advert.ident == 0){
-            [self showLoading];
-            [[ServerConnectionHelper sharedInstance] createAdvert:_advert compleate:^(NSError *error) {
-                [self hideLoading];
-                NSString* title = @"";
-                NSString* message = @"Advert created";
-                if (error){
-                    title = @"Error";
-                    message = ERROR_MESSAGE(error);
-                }else{
-                    [[DB sharedInstance].storedManagedObjectContext save:nil];
-                    [_saveButton setTitle:@"SAVE CHANGES" forState:UIControlStateNormal];
+        _advert.isInDrafts = true;
+        
+        [self showLoading];
+        [[AdvertServiceManager sharedManager] createAdvert:_advert compleate:^(NSDictionary *advertDic, NSError *error) {
+            [self hideLoading];
+            NSString* title = @"";
+            NSString* message = @"Advert created";
+            if (error){
+                title = @"Error";
+                message = ERROR_MESSAGE(error);
+            }
+            UIAlertController * alertController =   [UIAlertController
+                                                     alertControllerWithTitle:title
+                                                     message:message
+                                                     preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+                if (!error){
+                    [self.navigationController popViewControllerAnimated:YES];
                 }
-                [self showOkAlert:title text:message];
-            }];
-        }
+            }]];
+            [self presentViewController:alertController animated:YES completion:nil];
+        }];
     }
 }
 
 - (IBAction)previewAdvert:(id)sender {
     if ([self verifyFields]){
         [self createAdvert];
-        [self performSegueWithIdentifier:ADVERT_DETAIL_SEGUE sender:nil];
+        [self performSegueWithIdentifier:ADVERT_DETAIL_SEGUE sender:_advert];
     }
 }
 

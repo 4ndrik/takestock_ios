@@ -16,7 +16,40 @@
 #import "TSAdvertState.h"
 #import "TSUserEntity.h"
 
+@class TSImageEntity;
+
 @interface TSAdvert : TSBaseEntity
+{
+    NSString* _name;
+    NSDate* _dateCreated;
+    NSDate* _dateExpires;
+    NSDate* _dateUpdated;
+    float _guidePrice;
+    NSString* _adDescription;
+    NSString* _location;
+    TSAdvertShipping *_shipping;
+    BOOL _isVatExtempt;
+    NSArray* _photos;
+    TSUserEntity* _author;
+    TSAdvertCategory* _category;
+    TSAdvertSubCategory* _subCategory;
+    TSAdvertPackagingType *_packaging;
+    int _minOrderQuantity;
+    NSString *_size;
+    NSString *_certificationOther;
+    TSAdvertCertification* _certification;
+    TSAdvertCondition *_condition;
+    int _count;
+    NSString *_tags;
+    int _newOffersCount;
+    int _offersCount;
+    int _newQuestionsCount;
+    int _questionCount;
+    BOOL _isInDrafts;
+    BOOL _canOffer;
+    int _notifications;
+    TSAdvertState* _state;
+}
 
 @property (readonly, nonatomic, retain) NSString *name;
 @property (readonly, nonatomic, retain) NSDate* dateCreated;
@@ -27,7 +60,7 @@
 @property (readonly, nonatomic, retain) NSString *location;
 @property (readonly, nonatomic, retain) TSAdvertShipping *shipping;
 @property (readonly, nonatomic, assign) BOOL isVatExtempt;
-@property (readonly, nonatomic, retain) NSArray* photos;
+@property (readonly, nonatomic, retain) NSArray<TSImageEntity*>* photos;
 @property (readonly, nonatomic, retain) TSUserEntity* author;
 @property (readonly, nonatomic, retain) TSAdvertCategory* category;
 @property (readonly, nonatomic, retain) TSAdvertSubCategory* subCategory;
@@ -38,11 +71,10 @@
 @property (readonly, nonatomic, retain) TSAdvertCertification* certification;
 @property (readonly, nonatomic, retain) TSAdvertCondition *condition;
 @property (readonly, nonatomic, assign) int count;
-@property (readonly, nonatomic, assign) int countNow;
 @property (readonly, nonatomic, retain) NSString *tags;
-@property (readonly, nonatomic, assign)int newOffersCount;
+@property (readonly, nonatomic, assign) int newOffersCount;
 @property (readonly, nonatomic, assign) int offersCount;
-@property (readonly, nonatomic, assign)int newQuestionsCount;
+@property (readonly, nonatomic, assign) int newQuestionsCount;
 @property (readonly, nonatomic, assign) int questionCount;
 @property (readonly, nonatomic, assign) BOOL isInDrafts;
 @property (readonly, nonatomic, assign) BOOL canOffer;

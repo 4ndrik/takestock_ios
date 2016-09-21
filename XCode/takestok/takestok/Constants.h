@@ -11,6 +11,8 @@
 #define TAKESTOK_IMAGE_URL              @"http://uat.takestock.com"
 
 
+#define PUT_ON_HOLD_STATE 2
+
 //FONTS
 #define BrandonGrotesqueBold16  [UIFont fontWithName:@"BrandonGrotesque-Bold" size:16]
 #define BrandonGrotesqueBold14  [UIFont fontWithName:@"BrandonGrotesque-Bold" size:14]

@@ -11,7 +11,7 @@
 #define DEFAULT_DATE_FORMAT @"yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'"
 
 @interface TSBaseEntity : NSObject{
-        NSNumber* _ident;
+    NSNumber* _ident;
 }
 @property (nonatomic, readonly) NSNumber* ident;
 

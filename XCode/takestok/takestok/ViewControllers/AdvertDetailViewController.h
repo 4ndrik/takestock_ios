@@ -40,8 +40,8 @@
     __weak IBOutlet UILabel *_offerQuantityLabel;
     __weak IBOutlet PaddingTextField *_offerPriceTextField;
     __weak IBOutlet UILabel *_offerPriceLabel;
-    __weak IBOutlet UIButton *_makeButton;
     
+    __weak IBOutlet NSLayoutConstraint *_createAdvertViewHeight;
     
     __weak IBOutlet UIButton *_questionButton;
     
@@ -52,8 +52,10 @@
     __weak IBOutlet UIImageView *_awardImageView;
 }
 
--(void)setAdvert:(TSAdvert*)advert;
-- (IBAction)makeAction:(id)sender;
+- (void)setAdvert:(TSAdvert*)advert;
+- (IBAction)createOrderAction:(id)sender;
 - (IBAction)closeOfferPanel:(id)sender;
+- (IBAction)advertPutOnHold:(id)sender;
+- (IBAction)advertCreate:(id)sender;
 
 @end

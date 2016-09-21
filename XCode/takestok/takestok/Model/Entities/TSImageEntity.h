@@ -9,7 +9,13 @@
 #import "TSBaseEntity.h"
 #import "ImageProtocol.h"
 
-@interface TSImageEntity : TSBaseEntity<ImageProtocol>
+@interface TSImageEntity : TSBaseEntity<ImageProtocol>{
+    int _height;
+    int _width;
+    BOOL _isMain;
+    NSString* _resId;
+    NSString* _url;
+}
 
 @property (nonatomic, assign, readonly) int height;
 @property (nonatomic, assign, readonly) int width;

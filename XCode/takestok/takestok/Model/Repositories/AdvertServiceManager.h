@@ -16,8 +16,10 @@
 @class TSAdvertShipping;
 @class TSAdvertCondition;
 @class TSAdvertPackagingType;
-
+@class TSAdvert;
 @class SortData;
+
+typedef void (^advertResultBlock)(NSDictionary* advertDic, NSError* error);
 
 @interface AdvertServiceManager : NSObject{
     NSMutableDictionary* _states;
@@ -48,5 +50,7 @@
 -(TSAdvertPackagingType*)getPackageTypeWithId:(NSNumber*)ident;
 
 -(void)loadAdverts:(SortData*)sortData search:(NSString*)search category:(TSBaseDictionaryEntity*)category page:(int)page compleate:(resultBlock)compleate;
+-(void)createAdvert:(TSAdvert*)advert compleate:(advertResultBlock)compleate;
+-(void)editAdvert:(TSAdvert*)advert compleate:(advertResultBlock)compleate;
 
 @end

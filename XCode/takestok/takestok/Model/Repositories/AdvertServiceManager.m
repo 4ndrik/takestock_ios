@@ -333,4 +333,22 @@ static AdvertServiceManager *_manager = nil;
     }];
 }
 
+-(void)createAdvert:(TSAdvert*)advert compleate:(advertResultBlock)compleate{
+    NSDictionary* advertDic = [advert dictionaryRepresentation];
+    [[ServerConnectionHelper sharedInstance] createAdvert:advertDic compleate:^(id result, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            compleate(result, error);
+        });
+    }];
+}
+
+-(void)editAdvert:(TSAdvert*)advert compleate:(advertResultBlock)compleate{
+    NSDictionary* advertDic = [advert dictionaryRepresentation];
+    [[ServerConnectionHelper sharedInstance]editAdvertWithId:advert.ident withDic:advertDic compleate:^(id result, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            compleate(result, error);
+        });
+    }];
+}
+
 @end

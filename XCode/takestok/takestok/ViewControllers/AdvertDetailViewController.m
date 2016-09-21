@@ -27,6 +27,8 @@
 #import "LoginViewController.h"
 #import "TSUserEntity.h"
 #import "UserServiceManager.h"
+#import "AdvertServiceManager.h"
+#import "TSAdvert+Mutable.h"
 
 @interface AdvertDetailViewController ()
 
@@ -146,13 +148,19 @@
     
     _awardImageView.hidden = _advert.author.isVerified;
     
-    _offerViewHeight.constant = 43;
-    
-    if (_advert.ident <= 0){
-        [_makeButton setTitle:@"CREATE ADVERT" forState:UIControlStateNormal];
-    }else if (_advert.author.ident == [[UserServiceManager sharedManager] getMe].ident){
+    if (!_advert.ident){
         _offerViewHeight.constant = 0;
+        _createAdvertViewHeight.constant = 86;
     }
+    else if ([_advert.author.ident isEqualToNumber:[[UserServiceManager sharedManager] getMe].ident ]){
+        _createAdvertViewHeight.constant = 0;
+        _offerViewHeight.constant = 0;
+    }else{
+        _offerViewHeight.constant = 43;
+        _createAdvertViewHeight.constant = 0;
+    }
+    
+    _questionButton.hidden = !_advert.ident;
     
     [self.view setNeedsUpdateConstraints];
     [self.view setNeedsLayout];
@@ -202,32 +210,37 @@
 }
 
 -(void)createAdvert{
-//    [self showLoading];
-//    [[ServerConnectionHelper sharedInstance] createAdvert:_advert compleate:^(NSError *error) {
-//        [self hideLoading];
-//        NSString* title = @"";
-//        NSString* message = @"Advert created";
-//        if (error){
-//            title = @"Error";
-//            message = ERROR_MESSAGE(error);
-//        }else{
-//            [_makeButton setBackgroundColor:[UIColor lightGrayColor]];
-//            _makeButton.enabled = NO;
-//            _popToRootViewController = YES;
-//        }
-//        [self showOkAlert:title text:message];
-//    }];
-    
+    [self showLoading];
+    [[AdvertServiceManager sharedManager] createAdvert:_advert compleate:^(NSDictionary *advertDic, NSError *error) {
+        [self hideLoading];
+        NSString* title = @"";
+        NSString* message = @"Advert created";
+        if (error){
+            title = @"Error";
+            message = ERROR_MESSAGE(error);
+        }
+        UIAlertController * alertController =   [UIAlertController
+                                                 alertControllerWithTitle:title
+                                                 message:message
+                                                 preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            if (!error){
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
+        }]];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }];
+
 }
 
 #pragma mark - Outlets
-- (IBAction)makeAction:(id)sender {
+- (IBAction)createOrderAction:(id)sender {
     if ([self checkUserLogin])
     {
         if (_advert.ident > 0)
             [self createOrder];
-        else
-            [self createAdvert];
     }
 }
 
@@ -238,6 +251,15 @@
     [self.view setNeedsLayout];
     [self.view layoutIfNeeded];
     _createOrderAction = NO;
+}
+
+- (IBAction)advertPutOnHold:(id)sender {
+    _advert.state = [[AdvertServiceManager sharedManager] getStateWithId:[NSNumber numberWithInt:PUT_ON_HOLD_STATE]];
+    [self createAdvert];
+}
+
+- (IBAction)advertCreate:(id)sender {
+    [self createAdvert];
 }
 
 #pragma mark - UICollectionViewDataSource

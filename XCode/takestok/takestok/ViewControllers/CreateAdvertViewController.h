@@ -11,14 +11,14 @@
 
 @class TextFieldBorderBottom;
 @class PaddingTextField;
-@class Advert;
+@class TSAdvert;
 @class BackgroundImageView;
 
 @interface CreateAdvertViewController : BaseViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
     
     NSMutableArray* _images;
     
-    Advert* _advert;
+    TSAdvert* _advert;
     
     BOOL _isAddNewImage;
     NSInteger _selectedImage;
@@ -37,6 +37,7 @@
     __weak IBOutlet NSLayoutConstraint *_additionalViewHeight;
   
     __weak IBOutlet UIButton *_saveButton;
+    __weak IBOutlet UIButton *_previewButton;
     
     NSArray* _textControlsArray;
     __weak IBOutlet TextFieldBorderBottom *_productTitleTextField;
@@ -60,7 +61,7 @@
     IBOutletCollection(UILabel) NSArray *_packagingLabelCollection;
 }
 
--(void)setAdvert:(Advert*)advert;
+-(void)setAdvert:(TSAdvert*)advert;
 
 - (IBAction)addImage:(id)sender;
 - (IBAction)saveAdvert:(id)sender;

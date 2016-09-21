@@ -209,6 +209,30 @@ typedef enum
     [_loadAdvertCancelTask resume];
 }
 
+-(void)createAdvert:(NSDictionary*)advertDic compleate:(tsResultBlock)compleate{
+    NSError* error;
+    NSString* params = [self jsonStringFromDicOrArray:advertDic error:&error];
+    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        if (!error){
+            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        }
+        compleate(result, error);
+    }];
+    [dataTask resume];
+}
+
+-(void)editAdvertWithId:(NSNumber*)advertId withDic:(NSDictionary*)advertDic compleate:(tsResultBlock)compleate{
+    NSError* error;
+    NSString* params = [self jsonStringFromDicOrArray:advertDic error:&error];
+    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:[NSString stringWithFormat:@"%@%@/", ADVERTS_URL_PATH, advertId] query:params methodType:HTTP_METHOD_PATCH contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        if (!error){
+            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        }
+        compleate(result, error);
+    }];
+    [dataTask resume];
+}
+
 #pragma mark - QA
 
 -(void)loadQuestionAnswersWith:(NSNumber*)advertId page:(int)page compleate:(tsResultBlock)compleate{
@@ -640,23 +664,23 @@ typedef enum
     [_loadAdvertCancelTask resume];
 }
 
--(void)createAdvert:(Advert*)advert compleate:(errorBlock)compleate{
-    NSDictionary* advertData = [advert getDictionary];
-    NSError* error;
-    NSString* params = [self jsonStringFromDicOrArray:advertData error:&error];
-    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
-        {
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [advert updateWithDic:result];
-            });
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            compleate(error);
-        });
-    }];
-    [dataTask resume];
-}
+//-(void)createAdvert:(Advert*)advert compleate:(errorBlock)compleate{
+//    NSDictionary* advertData = [advert getDictionary];
+//    NSError* error;
+//    NSString* params = [self jsonStringFromDicOrArray:advertData error:&error];
+//    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+//        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
+//        {
+//            dispatch_sync(dispatch_get_main_queue(), ^{
+//                [advert updateWithDic:result];
+//            });
+//        }
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            compleate(error);
+//        });
+//    }];
+//    [dataTask resume];
+//}
 
 -(void)addToWatchList:(Advert*)advert compleate:(void(^)(NSError* error))compleate{
     NSMutableDictionary* paramsDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:advert.ident], @"advert_id", nil];

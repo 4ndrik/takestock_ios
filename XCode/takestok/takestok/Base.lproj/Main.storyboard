@@ -2837,12 +2837,12 @@
                                                     <outlet property="delegate" destination="Zcf-yO-HXd" id="aS0-Cq-3qG"/>
                                                 </connections>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="js8-mp-DnK">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="js8-mp-DnK">
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="42" id="V84-yW-GJF"/>
+                                                    <constraint firstAttribute="width" constant="62" id="V84-yW-GJF"/>
                                                     <constraint firstAttribute="height" constant="40" id="jxH-VA-iQc"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                 <color key="textColor" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -2872,12 +2872,12 @@
                                                     <outlet property="delegate" destination="Zcf-yO-HXd" id="iHr-8e-03N"/>
                                                 </connections>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tsS-qw-Hyp">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="tsS-qw-Hyp">
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="UC7-A4-6NS"/>
-                                                    <constraint firstAttribute="width" constant="42" id="pia-MZ-kBS"/>
+                                                    <constraint firstAttribute="width" constant="62" id="pia-MZ-kBS"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                 <color key="textColor" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -2907,12 +2907,12 @@
                                                     <outlet property="delegate" destination="Zcf-yO-HXd" id="u8F-2e-e3d"/>
                                                 </connections>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="£" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g34-AM-djM">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="£" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="g34-AM-djM">
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="RbN-gB-lsX"/>
-                                                    <constraint firstAttribute="width" constant="42" id="uea-6X-Ztz"/>
+                                                    <constraint firstAttribute="width" constant="62" id="uea-6X-Ztz"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                 <color key="textColor" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -3130,12 +3130,12 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R5H-qa-t5r">
-                                                <color key="backgroundColor" red="0.49803921569999998" green="0.066666666669999999" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.52941176469999995" green="0.50980392159999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="TYI-Tr-xeN"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="BrandonGrotesque-Bold" family="Brandon Grotesque" pointSize="14"/>
-                                                <state key="normal" title="PREVIEW AD">
+                                                <state key="normal" title="SAVE TO DRAFTS">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -3144,16 +3144,16 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="previewAdvert:" destination="Zcf-yO-HXd" eventType="touchUpInside" id="dyQ-d2-UyH"/>
+                                                    <action selector="saveAdvert:" destination="Zcf-yO-HXd" eventType="touchUpInside" id="mK7-gp-p29"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dK8-5r-ah0">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dK8-5r-ah0" userLabel="Preview Button">
                                                 <color key="backgroundColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="NK1-YW-p74"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="BrandonGrotesque-Bold" family="Brandon Grotesque" pointSize="14"/>
-                                                <state key="normal" title="CREATE ADVERT">
+                                                <state key="normal" title="PREVIEW &amp; MAKE ALIVE">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -3162,7 +3162,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="saveAdvert:" destination="Zcf-yO-HXd" eventType="touchUpInside" id="2j7-11-Zi4"/>
+                                                    <action selector="previewAdvert:" destination="Zcf-yO-HXd" eventType="touchUpInside" id="zMm-MB-Rt4"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -3360,9 +3360,10 @@
                         <outlet property="_mainImageView" destination="NDr-Uo-TOY" id="hEg-pA-x5v"/>
                         <outlet property="_minimumOrderTextField" destination="cmJ-2e-e6w" id="Xx3-i6-iP3"/>
                         <outlet property="_otherTextField" destination="NgW-wm-Aam" id="9RH-Vp-nxr"/>
+                        <outlet property="_previewButton" destination="dK8-5r-ah0" id="QQk-qK-qNH"/>
                         <outlet property="_priceTextField" destination="J0Z-9x-OFG" id="CEK-QU-nzX"/>
                         <outlet property="_productTitleTextField" destination="9u0-nd-9Ff" id="OZ8-No-SjB"/>
-                        <outlet property="_saveButton" destination="dK8-5r-ah0" id="1L3-iM-i9m"/>
+                        <outlet property="_saveButton" destination="R5H-qa-t5r" id="aXw-uK-wMk"/>
                         <outlet property="_scrollView" destination="VwJ-rH-uGT" id="dlE-Kn-IUf"/>
                         <outlet property="_shippingTextField" destination="RjG-Ry-epy" id="ruP-pS-tVf"/>
                         <outlet property="_sizeTextField" destination="8mD-Dd-Ijo" id="Tuy-OD-FmG"/>
@@ -4118,7 +4119,7 @@
                                             <constraint firstAttribute="height" constant="1" id="5Uf-qf-OvG"/>
                                         </constraints>
                                     </view>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t0S-pa-bWg">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t0S-pa-bWg" userLabel="OfferView">
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Qty you want" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pHM-ok-cwU" customClass="PaddingTextField">
                                                 <constraints>
@@ -4185,9 +4186,6 @@
                                                         <integer key="value" value="3"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="closeOfferPanel:" destination="gcE-k3-tgx" eventType="touchUpInside" id="ukS-84-T8B"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKY-nt-lXv">
                                                 <color key="backgroundColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4201,7 +4199,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="makeAction:" destination="gcE-k3-tgx" eventType="touchUpInside" id="cUL-es-jm3"/>
+                                                    <action selector="createOrderAction:" destination="gcE-k3-tgx" eventType="touchUpInside" id="P4a-sS-dC2"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -4224,6 +4222,50 @@
                                             <constraint firstAttribute="bottom" secondItem="ZKY-nt-lXv" secondAttribute="bottom" id="qrJ-bV-5dw"/>
                                             <constraint firstItem="cTN-kD-sL1" firstAttribute="leading" secondItem="t0S-pa-bWg" secondAttribute="leading" constant="20" id="txa-oJ-pQa"/>
                                             <constraint firstItem="uXw-rT-vWm" firstAttribute="width" secondItem="t0S-pa-bWg" secondAttribute="width" constant="-40" id="wWB-hu-HJb"/>
+                                        </constraints>
+                                    </view>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="26d-Ko-cQQ" userLabel="CreateAdvertView">
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhJ-Oa-ufc">
+                                                <color key="backgroundColor" red="0.64313725489999995" green="0.64705882349999999" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="BrandonGrotesque-Bold" family="Brandon Grotesque" pointSize="14"/>
+                                                <state key="normal" title="SAVE &amp; PUT ON HOLD">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="advertPutOnHold:" destination="gcE-k3-tgx" eventType="touchUpInside" id="J2f-7E-hrH"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Q8-zT-ugR">
+                                                <color key="backgroundColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="BrandonGrotesque-Bold" family="Brandon Grotesque" pointSize="14"/>
+                                                <state key="normal" title="MAKE LIVE">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="advertCreate:" destination="gcE-k3-tgx" eventType="touchUpInside" id="XA5-c7-EgQ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="86" id="5S9-n1-s2b"/>
+                                            <constraint firstItem="6Q8-zT-ugR" firstAttribute="width" secondItem="26d-Ko-cQQ" secondAttribute="width" constant="-40" id="a2o-lv-sop"/>
+                                            <constraint firstItem="rhJ-Oa-ufc" firstAttribute="centerX" secondItem="26d-Ko-cQQ" secondAttribute="centerX" id="aXT-Cc-5Ss"/>
+                                            <constraint firstItem="rhJ-Oa-ufc" firstAttribute="top" secondItem="26d-Ko-cQQ" secondAttribute="top" constant="10" id="e4q-gv-FrA"/>
+                                            <constraint firstItem="rhJ-Oa-ufc" firstAttribute="width" secondItem="26d-Ko-cQQ" secondAttribute="width" constant="-40" id="g0D-qI-b3I"/>
+                                            <constraint firstItem="6Q8-zT-ugR" firstAttribute="top" secondItem="rhJ-Oa-ufc" secondAttribute="bottom" constant="10" id="gSm-HT-sQH"/>
+                                            <constraint firstItem="6Q8-zT-ugR" firstAttribute="centerX" secondItem="26d-Ko-cQQ" secondAttribute="centerX" id="nIN-qy-lAr"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shA-cE-3fm">
@@ -4283,6 +4325,7 @@
                                     <constraint firstItem="Vf9-lf-pCJ" firstAttribute="leading" secondItem="BOe-fQ-yS5" secondAttribute="leading" constant="20" id="3uc-Qh-DFi"/>
                                     <constraint firstAttribute="bottom" secondItem="KGu-ll-mkn" secondAttribute="bottom" constant="-129" id="5DW-V3-VMU"/>
                                     <constraint firstItem="Vf9-lf-pCJ" firstAttribute="top" secondItem="KfW-pT-RT5" secondAttribute="bottom" id="5fg-yn-0Tl"/>
+                                    <constraint firstItem="26d-Ko-cQQ" firstAttribute="centerX" secondItem="BOe-fQ-yS5" secondAttribute="centerX" id="6hM-lr-RdU"/>
                                     <constraint firstAttribute="trailing" secondItem="eBJ-lt-QSd" secondAttribute="trailing" constant="20" id="752-TU-Var"/>
                                     <constraint firstItem="eDV-c8-BmX" firstAttribute="top" secondItem="tR3-O7-Ov2" secondAttribute="bottom" constant="8" symbolic="YES" id="7N9-MN-Rwc"/>
                                     <constraint firstItem="t0S-pa-bWg" firstAttribute="centerX" secondItem="BOe-fQ-yS5" secondAttribute="centerX" id="7Zp-jA-NTz"/>
@@ -4309,22 +4352,24 @@
                                     <constraint firstItem="eDV-c8-BmX" firstAttribute="leading" secondItem="eBJ-lt-QSd" secondAttribute="leading" id="Moo-CK-VIc"/>
                                     <constraint firstItem="Ahh-Yh-ie5" firstAttribute="top" secondItem="eBJ-lt-QSd" secondAttribute="bottom" constant="10" id="MqH-Qs-WpO"/>
                                     <constraint firstItem="57n-Fp-iIk" firstAttribute="top" secondItem="PNC-by-mi7" secondAttribute="bottom" id="NAB-8H-FPg"/>
+                                    <constraint firstItem="26d-Ko-cQQ" firstAttribute="top" secondItem="t0S-pa-bWg" secondAttribute="bottom" constant="10" id="NKb-CY-6cy"/>
                                     <constraint firstAttribute="bottom" secondItem="shA-cE-3fm" secondAttribute="bottom" constant="20" id="NdE-lY-Lu1"/>
                                     <constraint firstItem="t0S-pa-bWg" firstAttribute="width" secondItem="BOe-fQ-yS5" secondAttribute="width" id="O95-FI-KZ3"/>
                                     <constraint firstItem="Ahh-Yh-ie5" firstAttribute="leading" secondItem="BOe-fQ-yS5" secondAttribute="leading" constant="20" id="Pqt-A9-Rxt"/>
                                     <constraint firstItem="VEi-aD-LT6" firstAttribute="leading" secondItem="BOe-fQ-yS5" secondAttribute="leading" constant="20" id="RUc-Mi-ObT"/>
                                     <constraint firstAttribute="trailing" secondItem="v0v-0g-Ud0" secondAttribute="trailing" id="RoU-1U-9Jp"/>
+                                    <constraint firstItem="26d-Ko-cQQ" firstAttribute="width" secondItem="BOe-fQ-yS5" secondAttribute="width" id="SqE-bW-Aca"/>
                                     <constraint firstItem="eDV-c8-BmX" firstAttribute="leading" secondItem="tR3-O7-Ov2" secondAttribute="leading" id="Vmb-9k-Mr2"/>
                                     <constraint firstItem="Ahh-Yh-ie5" firstAttribute="top" secondItem="Vf9-lf-pCJ" secondAttribute="bottom" constant="10" id="WBs-Kf-Put"/>
                                     <constraint firstAttribute="trailing" secondItem="9lY-LP-fLR" secondAttribute="trailing" constant="20" id="YR7-P7-iys"/>
                                     <constraint firstAttribute="trailing" secondItem="57n-Fp-iIk" secondAttribute="trailing" constant="20" id="ZKG-kB-jUb"/>
                                     <constraint firstItem="2f9-r9-RDi" firstAttribute="width" secondItem="uWC-EN-vA1" secondAttribute="width" id="aEv-eb-LqV"/>
                                     <constraint firstItem="2f9-r9-RDi" firstAttribute="centerX" secondItem="BOe-fQ-yS5" secondAttribute="centerX" id="b0W-Yg-f14"/>
-                                    <constraint firstItem="shA-cE-3fm" firstAttribute="top" secondItem="t0S-pa-bWg" secondAttribute="bottom" constant="10" id="cK7-qu-T7p"/>
                                     <constraint firstItem="eDV-c8-BmX" firstAttribute="top" secondItem="tR3-O7-Ov2" secondAttribute="bottom" id="dhS-fY-Urz"/>
                                     <constraint firstItem="tR3-O7-Ov2" firstAttribute="top" secondItem="Vf9-lf-pCJ" secondAttribute="bottom" id="eBA-kB-nTY"/>
                                     <constraint firstItem="VEi-aD-LT6" firstAttribute="top" secondItem="uWC-EN-vA1" secondAttribute="bottom" constant="-1" id="eEk-0o-nYD"/>
                                     <constraint firstItem="tR3-O7-Ov2" firstAttribute="leading" secondItem="BOe-fQ-yS5" secondAttribute="leading" constant="20" id="eey-kd-RVu"/>
+                                    <constraint firstItem="shA-cE-3fm" firstAttribute="top" secondItem="26d-Ko-cQQ" secondAttribute="bottom" constant="10" id="fIE-UI-tJ0"/>
                                     <constraint firstItem="eBJ-lt-QSd" firstAttribute="top" secondItem="57n-Fp-iIk" secondAttribute="bottom" id="g2c-A9-wfm"/>
                                     <constraint firstItem="eBJ-lt-QSd" firstAttribute="leading" secondItem="BOe-fQ-yS5" secondAttribute="leading" constant="20" id="gFf-As-Wys"/>
                                     <constraint firstAttribute="trailing" secondItem="eDV-c8-BmX" secondAttribute="trailing" constant="20" id="hIL-kX-Lya"/>
@@ -4347,14 +4392,9 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="8dG-4O-jtp"/>
-                                        <exclude reference="WBs-Kf-Put"/>
                                         <exclude reference="5DW-V3-VMU"/>
                                         <exclude reference="Bw6-3k-vLT"/>
-                                        <exclude reference="8cL-vd-2aa"/>
-                                        <exclude reference="x5k-n2-HO9"/>
-                                        <exclude reference="eEk-0o-nYD"/>
-                                        <exclude reference="MI8-2Y-Gl8"/>
+                                        <exclude reference="APz-g9-fOA"/>
                                         <exclude reference="7N9-MN-Rwc"/>
                                         <exclude reference="9OQ-lK-kjd"/>
                                         <exclude reference="Ij8-4J-lxL"/>
@@ -4364,7 +4404,12 @@
                                         <exclude reference="hWo-qQ-CJL"/>
                                         <exclude reference="pJa-6h-X6n"/>
                                         <exclude reference="zLa-2k-CIi"/>
-                                        <exclude reference="APz-g9-fOA"/>
+                                        <exclude reference="8cL-vd-2aa"/>
+                                        <exclude reference="x5k-n2-HO9"/>
+                                        <exclude reference="8dG-4O-jtp"/>
+                                        <exclude reference="MI8-2Y-Gl8"/>
+                                        <exclude reference="WBs-Kf-Put"/>
+                                        <exclude reference="eEk-0o-nYD"/>
                                     </mask>
                                 </variation>
                                 <connections>
@@ -4393,10 +4438,10 @@
                         <outlet property="_awardImageView" destination="cpg-hs-gqc" id="QR3-4u-KVm"/>
                         <outlet property="_certeficationTextContainerView" destination="57n-Fp-iIk" id="h9i-pV-cLU"/>
                         <outlet property="_conditionTextContainerView" destination="eBJ-lt-QSd" id="Ox4-Qc-4xE"/>
+                        <outlet property="_createAdvertViewHeight" destination="5S9-n1-s2b" id="42b-dY-g4N"/>
                         <outlet property="_descriptionTextView" destination="Ahh-Yh-ie5" id="afA-3F-YP2"/>
                         <outlet property="_expiryTextContainerView" destination="PNC-by-mi7" id="Ias-Dw-S1g"/>
                         <outlet property="_locationTextContainerView" destination="tR3-O7-Ov2" id="JJh-X3-Kjn"/>
-                        <outlet property="_makeButton" destination="ZKY-nt-lXv" id="7ba-ex-oYl"/>
                         <outlet property="_minimumOrderTextContainerView" destination="KfW-pT-RT5" id="thf-FL-zAn"/>
                         <outlet property="_offerPriceLabel" destination="yrQ-PJ-f4z" id="Pe0-vN-C0X"/>
                         <outlet property="_offerPriceTextField" destination="cTN-kD-sL1" id="p4W-yy-Wh4"/>
@@ -4769,9 +4814,9 @@
         <image name="user_placeholder" width="150" height="150"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8hL-uC-X83"/>
-        <segue reference="yiY-2h-fr4"/>
-        <segue reference="ZcP-5Z-cDQ"/>
+        <segue reference="0se-5o-bgh"/>
+        <segue reference="IGg-FJ-WJ4"/>
         <segue reference="Yjm-Qn-0XU"/>
+        <segue reference="yiY-2h-fr4"/>
     </inferredMetricsTieBreakers>
 </document>

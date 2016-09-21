@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @protocol ImageProtocol<NSObject>
-@property NSString *resId;
-@property NSString *url;
+
+@property (nonatomic, retain, readwrite) NSString *resId;
+@property (nonatomic, retain, readwrite) NSString *url;
 
 @end

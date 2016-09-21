@@ -16,7 +16,12 @@
 #define IMAGE_RES_ID_PARAM         @"res_id"
 
 @implementation TSImageEntity
-@synthesize url = _url, resId = _resId;
+
+@synthesize height = _height;
+@synthesize width = _width;
+@synthesize isMain = _isMain;
+@synthesize url = _url;
+@synthesize resId = _resId;
 
 -(instancetype)initWithUrl:(NSString *)url{
     self = [super init];
