@@ -42,7 +42,7 @@
         <scene sceneID="rTx-2L-Kdk">
             <objects>
                 <navigationController storyboardIdentifier="HomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3ZZ-8G-Niz" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ApY-r5-Jar">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ApY-r5-Jar">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -154,7 +154,7 @@
         <scene sceneID="gdx-8W-MhY">
             <objects>
                 <navigationController storyboardIdentifier="UserProfileController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xMw-mz-GdX" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="haY-Qg-LrM">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="haY-Qg-LrM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -170,7 +170,7 @@
         <scene sceneID="9HI-3P-i2X">
             <objects>
                 <navigationController storyboardIdentifier="WatchListController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IsB-az-QMY" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ugQ-pt-sSn">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ugQ-pt-sSn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1410,8 +1410,7 @@
                                             <frame key="frameInset" width="375" height="124"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Author name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="95f-Oc-77K" customClass="PaddingLabel">
-                                                    <frame key="frameInset" minX="8" minY="8" width="252" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Author name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="95f-Oc-77K" customClass="PaddingLabel">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="AtY-ot-Ppa"/>
                                                     </constraints>
@@ -1476,8 +1475,7 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="You offer:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgw-eq-3Tu" customClass="PaddingLabel">
-                                                    <frame key="frameInset" minX="8" minY="25" width="262" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="You offer:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgw-eq-3Tu" customClass="PaddingLabel">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="dfo-GT-Flo"/>
                                                     </constraints>
@@ -1498,8 +1496,7 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="10 kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="lqt-F6-OTL" customClass="PaddingLabel">
-                                                    <frame key="frameInset" minX="280" minY="25" width="46.5" height="21.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="lqt-F6-OTL" customClass="PaddingLabel">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="1Qp-IZ-oNo"/>
                                                         <constraint firstAttribute="width" constant="50" id="LYT-8w-oqg"/>
@@ -1522,8 +1519,7 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="$20" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="z6D-zF-Let" customClass="PaddingLabel">
-                                                    <frame key="frameInset" minX="336.5" minY="25" width="30.5" height="21.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$20" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="z6D-zF-Let" customClass="PaddingLabel">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="9u1-l8-Iwo"/>
                                                         <constraint firstAttribute="width" constant="50" id="wCd-wx-S1t"/>
@@ -1546,8 +1542,7 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ank-7A-hf4" customClass="PaddingLabel">
-                                                    <frame key="frameInset" minX="8" minY="42" width="359" height="16.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ank-7A-hf4" customClass="PaddingLabel">
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1746,7 +1741,7 @@
         <scene sceneID="y7o-zg-dQP">
             <objects>
                 <navigationController storyboardIdentifier="SellingController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gQj-er-QpX" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="s5D-e3-D9m">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="s5D-e3-D9m">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2216,7 +2211,7 @@
         <scene sceneID="cef-2l-Vgb">
             <objects>
                 <navigationController storyboardIdentifier="BuyingController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IZL-a8-jLW" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Ys-Ip-k5y">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4Ys-Ip-k5y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3441,7 +3436,7 @@
         <scene sceneID="3WF-zS-WUV">
             <objects>
                 <navigationController storyboardIdentifier="AboutUsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BLd-ZN-KST" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5wh-D2-LSp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="5wh-D2-LSp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3457,7 +3452,7 @@
         <scene sceneID="cbZ-Oo-DA2">
             <objects>
                 <navigationController storyboardIdentifier="ContactUsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zbb-5K-VS6" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WnY-64-LnG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WnY-64-LnG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3473,7 +3468,7 @@
         <scene sceneID="aQ8-0g-kg7">
             <objects>
                 <navigationController storyboardIdentifier="LegalInformationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="z0x-xJ-lIy" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1dD-1I-10y">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1dD-1I-10y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3563,7 +3558,7 @@
         <scene sceneID="cLE-j0-eyf">
             <objects>
                 <navigationController id="vlL-jO-rW3" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Szy-JJ-ETa">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Szy-JJ-ETa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4392,9 +4387,14 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="8dG-4O-jtp"/>
+                                        <exclude reference="WBs-Kf-Put"/>
                                         <exclude reference="5DW-V3-VMU"/>
                                         <exclude reference="Bw6-3k-vLT"/>
-                                        <exclude reference="APz-g9-fOA"/>
+                                        <exclude reference="8cL-vd-2aa"/>
+                                        <exclude reference="x5k-n2-HO9"/>
+                                        <exclude reference="eEk-0o-nYD"/>
+                                        <exclude reference="MI8-2Y-Gl8"/>
                                         <exclude reference="7N9-MN-Rwc"/>
                                         <exclude reference="9OQ-lK-kjd"/>
                                         <exclude reference="Ij8-4J-lxL"/>
@@ -4404,12 +4404,7 @@
                                         <exclude reference="hWo-qQ-CJL"/>
                                         <exclude reference="pJa-6h-X6n"/>
                                         <exclude reference="zLa-2k-CIi"/>
-                                        <exclude reference="8cL-vd-2aa"/>
-                                        <exclude reference="x5k-n2-HO9"/>
-                                        <exclude reference="8dG-4O-jtp"/>
-                                        <exclude reference="MI8-2Y-Gl8"/>
-                                        <exclude reference="WBs-Kf-Put"/>
-                                        <exclude reference="eEk-0o-nYD"/>
+                                        <exclude reference="APz-g9-fOA"/>
                                     </mask>
                                 </variation>
                                 <connections>
@@ -4582,7 +4577,7 @@
         <scene sceneID="kNJ-rB-RNE">
             <objects>
                 <collectionViewController id="ncX-Ya-syW" customClass="ImagesCollectionViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" id="Rsh-w9-K42">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" pagingEnabled="YES" dataMode="prototypes" id="Rsh-w9-K42">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="hNM-fM-xi4">
@@ -4680,11 +4675,19 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEF-hH-O2J">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEF-hH-O2J" customClass="PaddingLabel">
                                                     <frame key="frameInset" width="1000" height="1000"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TB4-V5-jva">
                                                     <frame key="frameInset" width="1000" height="1000"/>

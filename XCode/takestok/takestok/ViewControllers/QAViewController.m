@@ -20,6 +20,7 @@
 #import "QuestionAnswerServiceManager.h"
 #import "UserServiceManager.h"
 #import "TSQuestion+Mutable.h"
+#import "TSAnswer+Mutable.h"
 
 @interface QAViewController ()
 
@@ -169,6 +170,7 @@
         
         cell.answerLabel.attributedText = sellerText;
     }else if (_advert.author.ident == [[UserServiceManager sharedManager] getMe].ident){
+        cell.answerLabel.text = @"";
         cell.replyHeightConstraint.constant = 98;
     }else{
         cell.answerLabel.text = @"";
@@ -218,7 +220,7 @@
                [self hideLoading];
 
                 NSString* title = @"";
-                NSString* message = @"Question asked";
+                NSString* message = @"Question is sent successfully.";
                 if (error){
                     title = @"Error";
                     message = ERROR_MESSAGE(error);
@@ -237,33 +239,30 @@
 #pragma mark - ReplyPrototcol
 
 -(void)reply:(QATableViewCell*)sender{
-//    Question* question = [_qaData objectAtIndex:[_askTableView indexPathForCell:sender].row];
-//    if (question){
-//        Answer* answer = question.isForStore ? [Answer storedEntity] : [Answer tempEntity];
-//        answer.question = question;
-//        User* user = [User getMe];
-//        if (user.managedObjectContext != answer.managedObjectContext){
-//            user = [answer.managedObjectContext objectWithID:[user objectID]];
-//        }
-//        answer.user = user;
-//        answer.message = sender.replyTextEdit.text;
-//        
-//        [self showLoading];
-//        [[ServerConnectionHelper sharedInstance] sendAnswer:answer compleate:^(NSError *error) {
-//            [self hideLoading];
-//            NSString* title = @"";
-//            NSString* message = @"Question asked";
-//            if (error){
-//                title = @"Error";
-//                message = ERROR_MESSAGE(error);
-//                [answer.managedObjectContext deleteObject:answer];
-//            }else{
-//                [self reloadData:nil];
-//                [_askTableView reloadData];
-//            }
-//            [self showOkAlert:title text:message];
-//        }];
-//    }
+    __block TSQuestion* question = [_qaData objectAtIndex:[_askTableView indexPathForCell:sender].row];
+    if (question){
+        TSAnswer* answer = [[TSAnswer alloc] init];
+        answer.questionId = question.ident;
+        answer.userIdent = [[UserServiceManager sharedManager] getMe].ident;
+        answer.message = sender.replyTextEdit.text;
+        
+        [self showLoading];
+        
+        [[QuestionAnswerServiceManager sharedManager] makeAnswer:answer compleate:^(NSError *error) {
+            [self hideLoading];
+            NSString* title = @"";
+            NSString* message = @"Answer is sent successfully.";
+            if (error){
+                title = @"Error";
+                message = ERROR_MESSAGE(error);
+            }else{
+                question.answer = answer;
+                [self reloadData:nil];
+                [_askTableView reloadData];
+            }
+            [self showOkAlert:title text:message];
+        }];
+    }
 }
 
 @end

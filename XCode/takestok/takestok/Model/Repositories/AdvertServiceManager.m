@@ -19,6 +19,7 @@
 #import "SortData.h"
 #import "TSAdvertSubCategory.h"
 #import "TSAdvert.h"
+#import "UserServiceManager.h"
 
 @implementation AdvertServiceManager
 
@@ -298,6 +299,35 @@ static AdvertServiceManager *_manager = nil;
 }
 
 #pragma mark - Adverts
+
+-(void)loadMyAdvertsWithPage:(int)page compleate:(resultBlock)compleate{
+    [[ServerConnectionHelper sharedInstance]loadAdvertsWithUser:[[UserServiceManager sharedManager] getMe].ident page:page compleate:^(id result, NSError *error) {
+        NSMutableDictionary* additionalDic;
+        NSMutableArray* adverts;
+        if (!error)
+        {
+            additionalDic = [NSMutableDictionary dictionaryWithDictionary:result];
+            [additionalDic removeObjectForKey:@"results"];
+            NSArray* array = [result objectForKeyNotNull:@"results"];
+            adverts = [NSMutableArray arrayWithCapacity:array.count];
+            
+            for (NSDictionary* advertDic in array) {
+                TSAdvert* advert = [TSAdvert objectWithDictionary:advertDic];
+                if (advert)
+                    [adverts addObject:advert];
+            }
+            
+        }else if ([[error localizedDescription] isEqualToString:@"cancelled"]){
+            return;
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            compleate(adverts, additionalDic, error);
+        });
+
+    }];
+}
+
 -(void)loadAdverts:(SortData*)sortData search:(NSString*)search category:(TSBaseDictionaryEntity*)category page:(int)page compleate:(resultBlock)compleate{
     NSNumber* categoryId;
     NSNumber* subCategoryId;

@@ -9,7 +9,11 @@
 #import "BaseViewController.h"
 
 @interface SellingViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource>{
-    NSArray* _adverts;
+    NSMutableArray* _adverts;
+    UIRefreshControl *_refreshControl;
+    int _page;
+    UIActivityIndicatorView* _loadingIndicator;
+    
     __weak IBOutlet UITableView *_sellingTableView;
 }
 

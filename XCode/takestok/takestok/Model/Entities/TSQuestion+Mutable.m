@@ -34,4 +34,8 @@
     _userName = userName;
 }
 
+-(void)setAnswer:(TSAnswer *)answer{
+    _answer = answer;
+}
+
 @end

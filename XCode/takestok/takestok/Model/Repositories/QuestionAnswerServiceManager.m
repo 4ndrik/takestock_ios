@@ -69,7 +69,7 @@ static QuestionAnswerServiceManager *_manager = nil;
     NSDictionary* dic = [question dictionaryRepresentation];
     [[ServerConnectionHelper sharedInstance] askQuestion:dic compleate:^(id result, NSError *error) {
         if (!error){
-            [question updateWithDic:dic];
+            [question updateWithDic:result];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             compleate(error);
@@ -79,9 +79,9 @@ static QuestionAnswerServiceManager *_manager = nil;
 
 -(void)makeAnswer:(TSAnswer*)answer compleate:(errorBlock)compleate{
     NSDictionary* dic = [answer dictionaryRepresentation];
-    [[ServerConnectionHelper sharedInstance] askQuestion:dic compleate:^(id result, NSError *error) {
+    [[ServerConnectionHelper sharedInstance] sendAnswer:dic compleate:^(id result, NSError *error) {
         if (!error){
-            [answer updateWithDic:dic];
+            [answer updateWithDic:result];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             compleate(error);

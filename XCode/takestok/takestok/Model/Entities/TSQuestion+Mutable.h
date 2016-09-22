@@ -16,5 +16,6 @@
 @property (nonatomic, readwrite, retain) NSDate* dateCreated;
 @property (nonatomic, readwrite, retain) NSNumber* advertId;
 @property (nonatomic, readwrite, assign) BOOL isNew;
+@property (nonatomic, readwrite, retain) TSAnswer* answer;
 
 @end

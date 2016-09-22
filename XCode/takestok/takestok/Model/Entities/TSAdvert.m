@@ -150,6 +150,7 @@
     _isInDrafts = [[dict objectForKeyNotNull:ADVERT_IN_DRAFTS_PARAM] boolValue];
     _canOffer = [[dict objectForKeyNotNull:ADVERT_CAN_OFFER_PARAM] boolValue];
     _notifications = [[dict objectForKeyNotNull:ADVERT_NOTIFICATIONS_PARAM] intValue];
+    _offersCount = [[dict objectForKeyNotNull:ADVERT_OFFERS_COUNT_PARAM] intValue];
     
     NSNumber* stateIdent = [dict objectForKeyNotNull:ADVERT_STATE_PARAM];
     TSAdvertState* state = [[AdvertServiceManager sharedManager] getStateWithId:stateIdent];

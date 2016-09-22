@@ -64,6 +64,9 @@
 		AC411E8E1CC92230008B1E38 /* SizeType.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E8A1CC92230008B1E38 /* SizeType.m */; };
 		AC411E971CC92344008B1E38 /* Category+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E941CC92344008B1E38 /* Category+CoreDataProperties.m */; };
 		AC411E981CC92344008B1E38 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E961CC92344008B1E38 /* Category.m */; };
+		AC4655BC1D93D3AF00A5CC76 /* TSAnswer+Mutable.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4655BB1D93D3AF00A5CC76 /* TSAnswer+Mutable.m */; };
+		AC4906871D92BF8B00E2768A /* OfferServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4906861D92BF8B00E2768A /* OfferServiceManager.m */; };
+		AC49068D1D92CADF00E2768A /* TSOffer.m in Sources */ = {isa = PBXBuildFile; fileRef = AC49068C1D92CADF00E2768A /* TSOffer.m */; };
 		AC5633E41D0978D800ACF1E9 /* NSLayoutConstraint+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5633E31D0978D800ACF1E9 /* NSLayoutConstraint+Description.m */; };
 		AC5F6C6B1D87F9A1003918D3 /* TSImageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5F6C6A1D87F9A1003918D3 /* TSImageEntity.m */; };
 		AC5F6C6E1D88016B003918D3 /* TSUserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5F6C6D1D88016B003918D3 /* TSUserEntity.m */; };
@@ -266,6 +269,12 @@
 		AC411E941CC92344008B1E38 /* Category+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Category+CoreDataProperties.m"; sourceTree = "<group>"; };
 		AC411E951CC92344008B1E38 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
 		AC411E961CC92344008B1E38 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
+		AC4655BA1D93D3AF00A5CC76 /* TSAnswer+Mutable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TSAnswer+Mutable.h"; sourceTree = "<group>"; };
+		AC4655BB1D93D3AF00A5CC76 /* TSAnswer+Mutable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSAnswer+Mutable.m"; sourceTree = "<group>"; };
+		AC4906851D92BF8B00E2768A /* OfferServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferServiceManager.h; sourceTree = "<group>"; };
+		AC4906861D92BF8B00E2768A /* OfferServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferServiceManager.m; sourceTree = "<group>"; };
+		AC49068B1D92CADF00E2768A /* TSOffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSOffer.h; sourceTree = "<group>"; };
+		AC49068C1D92CADF00E2768A /* TSOffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSOffer.m; sourceTree = "<group>"; };
 		AC5633E21D0978D800ACF1E9 /* NSLayoutConstraint+Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+Description.h"; sourceTree = "<group>"; };
 		AC5633E31D0978D800ACF1E9 /* NSLayoutConstraint+Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+Description.m"; sourceTree = "<group>"; };
 		AC58CDA61CF30C7300A2210A /* OfferActionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OfferActionDelegate.h; sourceTree = "<group>"; };
@@ -609,6 +618,15 @@
 			name = Dictionary;
 			sourceTree = "<group>";
 		};
+		AC4906841D92BE7500E2768A /* Offer */ = {
+			isa = PBXGroup;
+			children = (
+				AC49068B1D92CADF00E2768A /* TSOffer.h */,
+				AC49068C1D92CADF00E2768A /* TSOffer.m */,
+			);
+			name = Offer;
+			sourceTree = "<group>";
+		};
 		AC5F6C6F1D88022B003918D3 /* Users */ = {
 			isa = PBXGroup;
 			children = (
@@ -773,6 +791,8 @@
 		AC72496D1D8AC29B00AD940A /* QuestionAnswers */ = {
 			isa = PBXGroup;
 			children = (
+				AC4655BA1D93D3AF00A5CC76 /* TSAnswer+Mutable.h */,
+				AC4655BB1D93D3AF00A5CC76 /* TSAnswer+Mutable.m */,
 				AC79A2F81D8AEDBB009B442E /* TSAnswer.h */,
 				AC79A2F51D8AEDBB009B442E /* TSAnswer.m */,
 				ACF8DA6C1D91535600BD5114 /* TSQuestion+Mutable.h */,
@@ -964,6 +984,7 @@
 				AC5F6C6A1D87F9A1003918D3 /* TSImageEntity.m */,
 				AC72496D1D8AC29B00AD940A /* QuestionAnswers */,
 				AC5F6C6F1D88022B003918D3 /* Users */,
+				AC4906841D92BE7500E2768A /* Offer */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -977,6 +998,8 @@
 				AC5F6C771D881D93003918D3 /* UserServiceManager.m */,
 				AC79A2FC1D8AEDC8009B442E /* QuestionAnswerServiceManager.h */,
 				AC79A2FB1D8AEDC8009B442E /* QuestionAnswerServiceManager.m */,
+				AC4906851D92BF8B00E2768A /* OfferServiceManager.h */,
+				AC4906861D92BF8B00E2768A /* OfferServiceManager.m */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1179,6 +1202,7 @@
 				ACE111011CFDB0D000E6FDB9 /* NSManagedObject+NSManagedObject_RevertChanges.m in Sources */,
 				ACEFEE981D82F615001B9BA0 /* TSAdvertState.m in Sources */,
 				AC411E791CC8D186008B1E38 /* Certification.m in Sources */,
+				AC4655BC1D93D3AF00A5CC76 /* TSAnswer+Mutable.m in Sources */,
 				AC1F544D1CCE45350093848B /* OfferManagerViewController.m in Sources */,
 				ACCE7FCE1CDCC3A400A76CB6 /* QAViewController.m in Sources */,
 				ACC6F2221D0EBFCE00F1B6F5 /* MenuViewController.m in Sources */,
@@ -1213,6 +1237,7 @@
 				AC7249781D8AEC8900AD940A /* TSUserSubBusinessType.m in Sources */,
 				ACA2E8D11CE5BEDD00BAB401 /* Offer+CoreDataProperties.m in Sources */,
 				ACDC24721CBEAC5F003E9715 /* AdvertDetailViewController.m in Sources */,
+				AC49068D1D92CADF00E2768A /* TSOffer.m in Sources */,
 				AC411E5B1CC7D257008B1E38 /* BuyingViewController.m in Sources */,
 				AC08D8041CE9FEC200830A53 /* Question.m in Sources */,
 				AC5F6C6B1D87F9A1003918D3 /* TSImageEntity.m in Sources */,
@@ -1225,6 +1250,7 @@
 				ACC6F2281D0EC4C100F1B6F5 /* UserMenuView.m in Sources */,
 				AC5F6C721D88026E003918D3 /* TSUserBusinessType.m in Sources */,
 				ACCE7FD61CDCDB6B00A76CB6 /* QATableViewCell.m in Sources */,
+				AC4906871D92BF8B00E2768A /* OfferServiceManager.m in Sources */,
 				AC049D1E1CBBBA0A006A8F21 /* SearchTitleView.m in Sources */,
 				AC79A2FA1D8AEDBB009B442E /* TSQuestion.m in Sources */,
 				ACA2E8CF1CE5BEDD00BAB401 /* OfferStatus+CoreDataProperties.m in Sources */,

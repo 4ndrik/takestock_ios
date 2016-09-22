@@ -163,7 +163,7 @@
     [dic setObjectNotNull:_lastName forKey:AUTHOR_LAST_NAME_PARAM];
     [dic setObjectNotNull:_email forKey:AUTHOR_EMAIL_PARAM];
     [dic setObjectNotNull:[NSNumber numberWithBool:_isSuscribed] forKey:AUTHOR_SUBSCRIBED_PARAM];
-    [dic setObjectNotNull:[NSNumber numberWithBool:_isVerified] forKey:AUTHOR_VERIFIED_PARAM];
+    [dic setObjectNotNull:[NSNumber numberWithBool:YES] forKey:AUTHOR_VERIFIED_PARAM];
     [dic setObjectNotNull:[NSNumber numberWithBool:_isVatExtempt] forKey:AUTHOR_IS_VAT_PARAM];
     [dic setObjectNotNull:_postCode forKey:AUTHOR_POSTCODE_PARAM];
     [dic setObjectNotNull:_vatNumber forKey:AUTHOR_VAT_NUMBER_PARAM];

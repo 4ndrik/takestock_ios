@@ -53,4 +53,6 @@ typedef void (^advertResultBlock)(NSDictionary* advertDic, NSError* error);
 -(void)createAdvert:(TSAdvert*)advert compleate:(advertResultBlock)compleate;
 -(void)editAdvert:(TSAdvert*)advert compleate:(advertResultBlock)compleate;
 
+-(void)loadMyAdvertsWithPage:(int)page compleate:(resultBlock)compleate;
+
 @end
