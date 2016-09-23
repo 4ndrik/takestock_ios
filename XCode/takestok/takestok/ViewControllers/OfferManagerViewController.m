@@ -30,6 +30,7 @@
     [super viewDidLoad];
     _offers = [NSMutableArray array];
     _offersTableView.estimatedRowHeight = 124.0;
+    _offersTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _offersTableView.rowHeight = UITableViewAutomaticDimension;
     
     _refreshControl = [[UIRefreshControl alloc] init];
