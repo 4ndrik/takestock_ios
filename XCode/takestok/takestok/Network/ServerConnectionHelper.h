@@ -48,6 +48,7 @@ typedef void (^tsResultBlock)(id result, NSError* error);
 -(void)loadConditions:(tsResultBlock)resultBlock;
 -(void)loadPackagingTypes:(tsResultBlock)resultBlock;
 -(void)loadBusinessTypes:(tsResultBlock)resultBlock;
+-(void)loadOfferStatuses:(tsResultBlock)resultBlock;
 
 //Adevrts
 -(void)loadAdvertsWithUser:(NSNumber*)userId page:(int)page compleate:(tsResultBlock)compleate;
@@ -66,6 +67,11 @@ typedef void (^tsResultBlock)(id result, NSError* error);
 -(void)loadUsersWithIds:(NSArray*)userIds compleate:(tsResultBlock)compleate;
 -(void)updateUser:(NSDictionary*)userData compleate:(tsResultBlock)compleate;
 
+//Offers
+-(void)loadOffersWithAdvert:(NSNumber*)advertId page:(int)page compleate:(tsResultBlock)compleate;
+-(void)createOffer:(NSDictionary*)offer compleate:(tsResultBlock)compleate;
+-(void)updateOffer:(NSDictionary*)offer compleate:(tsResultBlock)compleate;
+
 //=====================//
 
 -(void)loadRequiredData;
@@ -73,8 +79,8 @@ typedef void (^tsResultBlock)(id result, NSError* error);
 -(void)loadAdvertsWithSortData:(SortData*)sortData searchString:(NSString*)searchString category:(Category*)category page:(int)page compleate:(resultBlock)compleate;
 -(void)addToWatchList:(Advert*)advert compleate:(void(^)(NSError* error))compleate;
 
--(void)createOffer:(Offer*)offer compleate:(errorBlock)compleate;
--(void)updateOffer:(Offer*)offer compleate:(errorBlock)compleate;
+//-(void)createOffer:(Offer*)offer compleate:(errorBlock)compleate;
+//-(void)updateOffer:(Offer*)offer compleate:(errorBlock)compleate;
 -(void)payOffer:(Offer*)offer withToken:(STPToken *)token completion:(errorBlock)compleate;
 
 //-(void)signInWithUserName:(NSString*)username password:(NSString*)password compleate:(errorBlock)compleate;

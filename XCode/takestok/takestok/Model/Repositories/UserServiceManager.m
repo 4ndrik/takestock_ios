@@ -71,6 +71,10 @@ static UserServiceManager *_manager = nil;
     return user;
 }
 
+-(TSUserEntity*)getAuthorWithId:(NSNumber*)authorId{
+    return [_users objectForKey:authorId];
+}
+
 -(TSUserEntity*)getOrCreateAuthor:(NSDictionary*)authodDic{
     NSNumber* ident = [TSUserEntity identFromDic:authodDic];
     TSUserEntity* user = [_users objectForKey:ident];

@@ -168,52 +168,52 @@
 }
 
 -(void)updateOffer:(Offer*)offer compleate:(void(^)(NSError* error))compleate{
-    [self showLoading];
-    [[ServerConnectionHelper sharedInstance] updateOffer:offer compleate:^(NSError *error) {
-        [self hideLoading];
-        compleate(error);
-    }];
+//    [self showLoading];
+//    [[ServerConnectionHelper sharedInstance] updateOffer:offer compleate:^(NSError *error) {
+//        [self hideLoading];
+//        compleate(error);
+//    }];
 }
 
 -(void)acceptOffer:(Offer*)offer{
-    offer = offer.counterOffer;
-    offer.status = [OfferStatus getEntityWithId:stAccept];
-    [self updateOffer:offer compleate:^(NSError *error) {
-        NSString* title = @"";
-        NSString* text = @"Offer accepted";
-        if (error){
-            title = @"Error";
-            text = ERROR_MESSAGE(error);
-            offer.status = [OfferStatus getEntityWithId:stPending];
-        }
-        
-        [self showOkAlert:title text:text];
-        [_buyingTableView reloadData];
-    }];
+//    offer = offer.counterOffer;
+//    offer.status = [OfferStatus getEntityWithId:stAccept];
+//    [self updateOffer:offer compleate:^(NSError *error) {
+//        NSString* title = @"";
+//        NSString* text = @"Offer accepted";
+//        if (error){
+//            title = @"Error";
+//            text = ERROR_MESSAGE(error);
+//            offer.status = [OfferStatus getEntityWithId:stPending];
+//        }
+//        
+//        [self showOkAlert:title text:text];
+//        [_buyingTableView reloadData];
+//    }];
 }
 
 -(void)rejectOffer:(id)owner{
-    NSInteger index = [_offers indexOfObjectPassingTest:^BOOL(Offer*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        return obj.ident == _offerAlertView.tag;
-    }];
-    if (index != NSNotFound){
-        Offer* offer = ((Offer*)[_offers objectAtIndex:index]).counterOffer;
-        offer.status = [OfferStatus getEntityWithId:stDecline];
-        offer.comment = _offerAlertView.commentTextView.text;
-        [_offerAlertView removeFromSuperview];
-        [self updateOffer:offer compleate:^(NSError *error) {
-            NSString* title = @"";
-            NSString* text = @"Offer rejected";
-            if (error){
-                title = @"Error";
-                text = ERROR_MESSAGE(error);
-                offer.status = [OfferStatus getEntityWithId:stPending];
-            }
-            
-            [self showOkAlert:title text:text];
-            [_buyingTableView reloadData];
-        }];
-    }
+//    NSInteger index = [_offers indexOfObjectPassingTest:^BOOL(Offer*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        return obj.ident == _offerAlertView.tag;
+//    }];
+//    if (index != NSNotFound){
+//        Offer* offer = ((Offer*)[_offers objectAtIndex:index]).counterOffer;
+//        offer.status = [OfferStatus getEntityWithId:stDecline];
+//        offer.comment = _offerAlertView.commentTextView.text;
+//        [_offerAlertView removeFromSuperview];
+//        [self updateOffer:offer compleate:^(NSError *error) {
+//            NSString* title = @"";
+//            NSString* text = @"Offer rejected";
+//            if (error){
+//                title = @"Error";
+//                text = ERROR_MESSAGE(error);
+//                offer.status = [OfferStatus getEntityWithId:stPending];
+//            }
+//            
+//            [self showOkAlert:title text:text];
+//            [_buyingTableView reloadData];
+//        }];
+//    }
 }
 
 -(void)hideAlertView:(id)owner{

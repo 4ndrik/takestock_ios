@@ -55,6 +55,7 @@ typedef enum
 #define SIGN_IN_URL_PATH            @"token/auth"
 #define SIGN_UP_URL_PATH            @"token/register"
 #define OFFERS_URL_PATH             @"offers"
+#define OFFERS_UPDATE_URL_PATH      @"accept_offer"
 #define QUESTIONS_URL_PATH          @"qa/questions"
 #define ANSWERS_URL_PATH            @"qa/answers"
 
@@ -172,6 +173,16 @@ typedef enum
     NSURLSessionDataTask* loadOfferStatusTask = [_session dataTaskWithRequest:[self request:BUSINESSTYPES_URL_PATH query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         resultBlock(result, error);
+        [_dictionaryLock unlock];
+    }];
+    [loadOfferStatusTask resume];
+}
+
+-(void)loadOfferStatuses:(tsResultBlock)resultBlock{
+    [_dictionaryLock lock];
+    NSURLSessionDataTask* loadOfferStatusTask = [_session dataTaskWithRequest:[self request:OFFER_STATUS_URL_PATH query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        resultBlock([result objectForKeyNotNull:@"status"], error);
         [_dictionaryLock unlock];
     }];
     [loadOfferStatusTask resume];
@@ -351,6 +362,43 @@ typedef enum
     }];
     
     [updateUserTask resume];
+}
+
+#pragma mark - Offers
+-(void)loadOffersWithAdvert:(NSNumber*)advertId page:(int)page compleate:(tsResultBlock)compleate{
+    NSString* query = [NSString stringWithFormat:@"adverts=%@&page=%i&o=-updated_at", advertId, page];
+    NSURLSessionDataTask* loadOffersTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        if (!error){
+            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        }
+        compleate(result, error);
+    }];
+    [loadOffersTask resume];
+}
+
+-(void)createOffer:(NSDictionary*)offer compleate:(tsResultBlock)compleate{
+    NSString* params = [self jsonStringFromDicOrArray:offer error:nil];
+    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        if (!error){
+            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        }
+        compleate(result, error);
+    }];
+    
+    [dataTask resume];
+}
+
+-(void)updateOffer:(NSDictionary*)offer compleate:(tsResultBlock)compleate{
+    
+    NSString* params = [self jsonStringFromDicOrArray:offer error:nil];
+    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:OFFERS_UPDATE_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        if (!error){
+            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        }
+        compleate(result, error);
+    }];
+    
+    [dataTask resume];
 }
 
 
@@ -838,46 +886,46 @@ typedef enum
         [loadOffersTask resume];
     });
 }
+//
+//-(void)createOffer:(Offer*)offer compleate:(errorBlock)compleate{
+//    NSDictionary* offerData = [offer getDictionary];
+//    NSError* error;
+//    NSString* params = [self jsonStringFromDicOrArray:offerData error:&error];
+//    
+//    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+//        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
+//        {
+//            dispatch_sync(dispatch_get_main_queue(), ^{
+//                [offer updateWithDic:result];
+//            });
+//        }
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            compleate(error);
+//        });
+//    }];
+//    
+//    [dataTask resume];
+//}
 
--(void)createOffer:(Offer*)offer compleate:(errorBlock)compleate{
-    NSDictionary* offerData = [offer getDictionary];
-    NSError* error;
-    NSString* params = [self jsonStringFromDicOrArray:offerData error:&error];
-    
-    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
-        {
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [offer updateWithDic:result];
-            });
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            compleate(error);
-        });
-    }];
-    
-    [dataTask resume];
-}
-
--(void)updateOffer:(Offer*)offer compleate:(errorBlock)compleate{
-    NSDictionary* offerData = [offer getDictionary];
-    NSError* error;
-    NSString* params = [self jsonStringFromDicOrArray:offerData error:&error];
-    
-    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:[NSString stringWithFormat:@"%@/%i", OFFERS_URL_PATH, offer.ident] query:params methodType:HTTP_METHOD_PUT contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
-        {
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [offer updateWithDic:result];
-            });
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            compleate(error);
-        });
-    }];
-    
-    [dataTask resume];
-}
+//-(void)updateOffer:(Offer*)offer compleate:(errorBlock)compleate{
+//    NSDictionary* offerData = [offer getDictionary];
+//    NSError* error;
+//    NSString* params = [self jsonStringFromDicOrArray:offerData error:&error];
+//    
+//    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:[NSString stringWithFormat:@"%@/%i", OFFERS_URL_PATH, offer.ident] query:params methodType:HTTP_METHOD_PUT contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+//        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
+//        {
+//            dispatch_sync(dispatch_get_main_queue(), ^{
+//                [offer updateWithDic:result];
+//            });
+//        }
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            compleate(error);
+//        });
+//    }];
+//    
+//    [dataTask resume];
+//}
 
 - (void)payOffer:(Offer*)offer withToken:(STPToken *)token completion:(errorBlock)compleate {
     
@@ -1286,6 +1334,8 @@ typedef enum
         default:
             break;
     }
+    
+    NSString* token = [AppSettings getToken];
     
     if ([AppSettings getToken].length > 0){
         [request setValue:[NSString stringWithFormat:@"JWT %@",[AppSettings getToken]] forHTTPHeaderField:@"Authorization"];

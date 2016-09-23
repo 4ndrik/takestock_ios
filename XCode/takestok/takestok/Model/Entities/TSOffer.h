@@ -9,12 +9,15 @@
 #import "TSBaseEntity.h"
 
 @class TSUserEntity;
+@class TSOfferStatus;
 
 @interface TSOffer : TSBaseEntity{
     NSNumber* _advertId;
     float _price;
     int _quantity;
     TSUserEntity* _user;
+    TSOfferStatus* _status;
+    NSString* _comment;
     
     NSNumber* _parentOfferId;
     NSArray* _childOffers;
@@ -24,9 +27,10 @@
 @property (readonly, nonatomic, assign) float price;
 @property (readonly, nonatomic, assign) int quantity;
 @property (readonly, nonatomic, retain) TSUserEntity* user;
+@property (readonly, nonatomic, retain) TSOfferStatus* status;
+@property (readonly, nonatomic, retain) NSString *comment;
 
 @property (readonly, nonatomic, retain) NSNumber *parentOfferId;
 @property (readonly, nonatomic, retain) NSArray *childOffers;
-
 
 @end

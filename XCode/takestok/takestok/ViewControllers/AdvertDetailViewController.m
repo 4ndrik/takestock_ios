@@ -21,13 +21,17 @@
 #import "ServerConnectionHelper.h"
 #import "UIViewController+BackButtonHandler.h"
 #import "PaddingTextField.h"
-#import "Offer.h"
-#import "OfferStatus.h"
+#import "TSOffer.h"
+#import "TSOfferStatus.h"
 #import "UserDetailsViewController.h"
 #import "LoginViewController.h"
 #import "TSUserEntity.h"
 #import "UserServiceManager.h"
 #import "AdvertServiceManager.h"
+#import "TSAdvert+Mutable.h"
+#import "TSOffer+Mutable.h"
+#import "OfferServiceManager.h"
+#import "OfferStatus.h"
 #import "TSAdvert+Mutable.h"
 
 @interface AdvertDetailViewController ()
@@ -155,8 +159,8 @@
     else if ([_advert.author.ident isEqualToNumber:[[UserServiceManager sharedManager] getMe].ident ]){
         _createAdvertViewHeight.constant = 0;
         _offerViewHeight.constant = 0;
-    }else{
-        _offerViewHeight.constant = 43;
+    }else {
+        _offerViewHeight.constant = _advert.canOffer ? 43 : 0;
         _createAdvertViewHeight.constant = 0;
     }
     
@@ -168,50 +172,43 @@
 }
 
 -(void)createOrder{
-//    if (_createOrderAction){
-//        Offer* offer = [_advert isForStore] ? [Offer storedEntity] : [Offer tempEntity];
-//        offer.advert = _advert;
-//        User* user = [User getMe];
-//        if (user.managedObjectContext != offer.managedObjectContext){
-//            user = [offer.managedObjectContext objectWithID:[user objectID]];
-//        }
-//        offer.user = user;
-//        offer.price = [_offerPriceTextField.text floatValue];
-//        offer.quantity = [_offerQuantityTextField.text floatValue];
-//        offer.status = [OfferStatus getEntityWithId:stPending];
-//        
-//        [self showLoading];
-//        [[ServerConnectionHelper sharedInstance] createOffer:offer compleate:^(NSError *error) {
-//            [self hideLoading];
-//            NSString* title = @"";
-//            NSString* message = @"Offer created";
-//            if (error){
-//                [offer.managedObjectContext deleteObject:offer];
-//                title = @"Error";
-//                message = ERROR_MESSAGE(error);
-//            }else{
-//                [self closeOfferPanel:nil];
-//                [_makeButton setBackgroundColor:[UIColor lightGrayColor]];
-//                _makeButton.enabled = NO;
-//            }
-//            [self showOkAlert:title text:message];
-//        }];
-//        
-//    }else{
-//        _offerPriceLabel.text = [NSString stringWithFormat:@"£/%@", _advert.packaging.title];
-//        _offerQuantityLabel.text = _advert.packaging.title;
-//        _offerViewHeight.constant = 186;
-//        [_scrollView setContentOffset:CGPointMake(0, _scrollView.contentOffset.y + 143) animated:NO];
-//        [self.view setNeedsUpdateConstraints];
-//        [self.view setNeedsLayout];
-//        [self.view layoutIfNeeded];
-//        _createOrderAction = YES;
-//    }
+    if (_createOrderAction){
+        TSOffer* offer = [[TSOffer alloc] init];
+        offer.advertId = _advert.ident;
+        offer.user = [[UserServiceManager sharedManager] getMe];
+        offer.price = [_offerPriceTextField.text floatValue];
+        offer.quantity = [_offerQuantityTextField.text floatValue];
+        
+        [self showLoading];
+        [[OfferServiceManager sharedManager] createOffer:offer compleate:^(NSError *error) {
+            [self hideLoading];
+            NSString* title = @"";
+            NSString* message = @"Offer created";
+            if (error){
+                title = @"Error";
+                message = ERROR_MESSAGE(error);
+            }else{
+                [self closeOfferPanel:nil];
+                _offerViewHeight.constant = 0;
+                _advert.canOffer = NO;
+            }
+            [self showOkAlert:title text:message];
+        }];
+    }else{
+        _offerPriceLabel.text = [NSString stringWithFormat:@"£/%@", _advert.packaging.title];
+        _offerQuantityLabel.text = _advert.packaging.title;
+        _offerViewHeight.constant = 186;
+        [_scrollView setContentOffset:CGPointMake(0, _scrollView.contentOffset.y + 143) animated:NO];
+        [self.view setNeedsUpdateConstraints];
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
+        _createOrderAction = YES;
+    }
 }
 
 -(void)createAdvert{
     [self showLoading];
-    [[AdvertServiceManager sharedManager] createAdvert:_advert compleate:^(NSDictionary *advertDic, NSError *error) {
+    [[AdvertServiceManager sharedManager] createAdvert:_advert compleate:^(NSError *error) {
         [self hideLoading];
         NSString* title = @"";
         NSString* message = @"Advert created";

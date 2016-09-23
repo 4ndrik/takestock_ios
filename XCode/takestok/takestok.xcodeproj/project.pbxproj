@@ -16,6 +16,7 @@
 		AC049D161CB7C95D006A8F21 /* UIView+NibLoadView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D151CB7C95D006A8F21 /* UIView+NibLoadView.m */; };
 		AC049D1E1CBBBA0A006A8F21 /* SearchTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D1D1CBBBA0A006A8F21 /* SearchTitleView.m */; };
 		AC049D211CBBD2D7006A8F21 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D201CBBD2D7006A8F21 /* LoginViewController.m */; };
+		AC05871B1D953EB400AFB81B /* TSOffer+Mutable.m in Sources */ = {isa = PBXBuildFile; fileRef = AC05871A1D953EB400AFB81B /* TSOffer+Mutable.m */; };
 		AC08D8031CE9FEC200830A53 /* Question+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC08D7EC1CE9FEC200830A53 /* Question+CoreDataProperties.m */; };
 		AC08D8041CE9FEC200830A53 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = AC08D7EE1CE9FEC200830A53 /* Question.m */; };
 		AC08D80B1CE9FEC200830A53 /* Answer+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC08D7FC1CE9FEC200830A53 /* Answer+CoreDataProperties.m */; };
@@ -65,6 +66,7 @@
 		AC411E971CC92344008B1E38 /* Category+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E941CC92344008B1E38 /* Category+CoreDataProperties.m */; };
 		AC411E981CC92344008B1E38 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E961CC92344008B1E38 /* Category.m */; };
 		AC4655BC1D93D3AF00A5CC76 /* TSAnswer+Mutable.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4655BB1D93D3AF00A5CC76 /* TSAnswer+Mutable.m */; };
+		AC4655BF1D93E48500A5CC76 /* TSOfferStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4655BE1D93E48500A5CC76 /* TSOfferStatus.m */; };
 		AC4906871D92BF8B00E2768A /* OfferServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4906861D92BF8B00E2768A /* OfferServiceManager.m */; };
 		AC49068D1D92CADF00E2768A /* TSOffer.m in Sources */ = {isa = PBXBuildFile; fileRef = AC49068C1D92CADF00E2768A /* TSOffer.m */; };
 		AC5633E41D0978D800ACF1E9 /* NSLayoutConstraint+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5633E31D0978D800ACF1E9 /* NSLayoutConstraint+Description.m */; };
@@ -173,6 +175,8 @@
 		AC049D1D1CBBBA0A006A8F21 /* SearchTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTitleView.m; sourceTree = "<group>"; };
 		AC049D1F1CBBD2D7006A8F21 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AC049D201CBBD2D7006A8F21 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		AC0587191D953EB400AFB81B /* TSOffer+Mutable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TSOffer+Mutable.h"; sourceTree = "<group>"; };
+		AC05871A1D953EB400AFB81B /* TSOffer+Mutable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSOffer+Mutable.m"; sourceTree = "<group>"; };
 		AC08D7EB1CE9FEC200830A53 /* Question+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Question+CoreDataProperties.h"; sourceTree = "<group>"; };
 		AC08D7EC1CE9FEC200830A53 /* Question+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Question+CoreDataProperties.m"; sourceTree = "<group>"; };
 		AC08D7ED1CE9FEC200830A53 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
@@ -271,6 +275,8 @@
 		AC411E961CC92344008B1E38 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
 		AC4655BA1D93D3AF00A5CC76 /* TSAnswer+Mutable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TSAnswer+Mutable.h"; sourceTree = "<group>"; };
 		AC4655BB1D93D3AF00A5CC76 /* TSAnswer+Mutable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSAnswer+Mutable.m"; sourceTree = "<group>"; };
+		AC4655BD1D93E48500A5CC76 /* TSOfferStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSOfferStatus.h; sourceTree = "<group>"; };
+		AC4655BE1D93E48500A5CC76 /* TSOfferStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSOfferStatus.m; sourceTree = "<group>"; };
 		AC4906851D92BF8B00E2768A /* OfferServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferServiceManager.h; sourceTree = "<group>"; };
 		AC4906861D92BF8B00E2768A /* OfferServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferServiceManager.m; sourceTree = "<group>"; };
 		AC49068B1D92CADF00E2768A /* TSOffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSOffer.h; sourceTree = "<group>"; };
@@ -621,8 +627,12 @@
 		AC4906841D92BE7500E2768A /* Offer */ = {
 			isa = PBXGroup;
 			children = (
+				AC0587191D953EB400AFB81B /* TSOffer+Mutable.h */,
+				AC05871A1D953EB400AFB81B /* TSOffer+Mutable.m */,
 				AC49068B1D92CADF00E2768A /* TSOffer.h */,
 				AC49068C1D92CADF00E2768A /* TSOffer.m */,
+				AC4655BD1D93E48500A5CC76 /* TSOfferStatus.h */,
+				AC4655BE1D93E48500A5CC76 /* TSOfferStatus.m */,
 			);
 			name = Offer;
 			sourceTree = "<group>";
@@ -977,7 +987,7 @@
 				ACEFEE761D82B908001B9BA0 /* TSBaseEntity.m */,
 				ACEFEE781D82BBF1001B9BA0 /* TSBaseDictionaryEntity.h */,
 				ACEFEE791D82BBF1001B9BA0 /* TSBaseDictionaryEntity.m */,
-				ACEFEE9C1D82FBA9001B9BA0 /* AdvertDics */,
+				ACEFEE9C1D82FBA9001B9BA0 /* Adverts */,
 				ACF8DA6F1D91729F00BD5114 /* TSImageEntity+Mutable.h */,
 				ACF8DA701D91729F00BD5114 /* TSImageEntity+Mutable.m */,
 				AC5F6C691D87F9A1003918D3 /* TSImageEntity.h */,
@@ -1004,7 +1014,7 @@
 			path = Repositories;
 			sourceTree = "<group>";
 		};
-		ACEFEE9C1D82FBA9001B9BA0 /* AdvertDics */ = {
+		ACEFEE9C1D82FBA9001B9BA0 /* Adverts */ = {
 			isa = PBXGroup;
 			children = (
 				ACEFEE7B1D82BF3B001B9BA0 /* TSAdvertCategory.h */,
@@ -1028,7 +1038,7 @@
 				AC756E621D86E0D800C45BA3 /* TSAdvert.h */,
 				AC756E631D86E0D800C45BA3 /* TSAdvert.m */,
 			);
-			name = AdvertDics;
+			name = Adverts;
 			sourceTree = "<group>";
 		};
 		D9CDB975853D8ADD3B918602 /* Pods */ = {
@@ -1192,7 +1202,9 @@
 				ACE110FE1CFD9E2800E6FDB9 /* StoredImage.m in Sources */,
 				AC68C4841CB64966004B78DF /* CreateAdvertViewController.m in Sources */,
 				AC1911521CE22D6C00C5A4A5 /* SortData.m in Sources */,
+				AC4655BF1D93E48500A5CC76 /* TSOfferStatus.m in Sources */,
 				AC411E781CC8D186008B1E38 /* Certification+CoreDataProperties.m in Sources */,
+				AC05871B1D953EB400AFB81B /* TSOffer+Mutable.m in Sources */,
 				ACEFEE9B1D82FB27001B9BA0 /* TSAdvertCertification.m in Sources */,
 				AC9776A61D26BAD60060DF73 /* ShippingInfoActionView.m in Sources */,
 				AC411E611CC7DC8E008B1E38 /* PaddingLabel.m in Sources */,

@@ -23,7 +23,8 @@
 -(TSUserBusinessType*)getBusinessTypeWithId:(NSNumber*)ident;
 
 -(TSUserEntity*)getMe;
--(TSUserEntity*)getOrCreateAuthor:(NSDictionary*)authodDic;
+-(TSUserEntity*)getAuthorWithId:(NSNumber*)authorId;
+-(TSUserEntity*)getOrCreateAuthor:(NSDictionary*)authorDic;
 
 -(void)signInWithUserName:(NSString*)username password:(NSString*)password compleate:(errorBlock)compleate;
 -(void)signUpWithUserName:(NSString*)username email:(NSString*)email password:(NSString*)password compleate:(errorBlock)compleate;

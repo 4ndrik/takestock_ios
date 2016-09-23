@@ -13,7 +13,7 @@
 @property (nonatomic, assign, readwrite) int height;
 @property (nonatomic, assign, readwrite) int width;
 @property (nonatomic, assign, readwrite) BOOL isMain;
-@property (nonatomic, assign, readwrite) NSString *resId;
-@property (nonatomic, assign, readwrite) NSString *url;
+@property (nonatomic, retain, readwrite) NSString *resId;
+@property (nonatomic, retain, readwrite) NSString *url;
 
 @end

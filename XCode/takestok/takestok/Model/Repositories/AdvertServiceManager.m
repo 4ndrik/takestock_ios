@@ -363,11 +363,13 @@ static AdvertServiceManager *_manager = nil;
     }];
 }
 
--(void)createAdvert:(TSAdvert*)advert compleate:(advertResultBlock)compleate{
+-(void)createAdvert:(TSAdvert*)advert compleate:(errorBlock)compleate{
     NSDictionary* advertDic = [advert dictionaryRepresentation];
     [[ServerConnectionHelper sharedInstance] createAdvert:advertDic compleate:^(id result, NSError *error) {
+        if (!error)
+            [advert updateWithDic:result];
         dispatch_async(dispatch_get_main_queue(), ^{
-            compleate(result, error);
+            compleate(error);
         });
     }];
 }

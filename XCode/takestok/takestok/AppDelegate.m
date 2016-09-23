@@ -13,6 +13,7 @@
 #import <Stripe/Stripe.h>
 #import "AdvertServiceManager.h"
 #import "UserServiceManager.h"
+#import "OfferServiceManager.h"
 
 @interface AppDelegate ()
 
@@ -76,6 +77,7 @@
 //    [[ServerConnectionHelper sharedInstance] loadRequiredData];
     [[AdvertServiceManager sharedManager] fetchRequiredData];
     [[UserServiceManager sharedManager] fetchRequiredData];
+    [[OfferServiceManager sharedManager] fetchRequiredData];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 

@@ -648,7 +648,7 @@
         _advert.isInDrafts = true;
         
         [self showLoading];
-        [[AdvertServiceManager sharedManager] createAdvert:_advert compleate:^(NSDictionary *advertDic, NSError *error) {
+        [[AdvertServiceManager sharedManager] createAdvert:_advert compleate:^(NSError *error) {
             [self hideLoading];
             NSString* title = @"";
             NSString* message = @"Advert created";

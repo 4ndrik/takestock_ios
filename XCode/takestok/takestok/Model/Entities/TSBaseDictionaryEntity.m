@@ -20,7 +20,8 @@
 }
 
 +(NSNumber*)identFromDic:(NSDictionary*)jsonDic{
-    return [jsonDic allKeys].firstObject;
+    id ident = [jsonDic allKeys].firstObject;
+    return [NSNumber numberWithInt:[ident intValue]];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder

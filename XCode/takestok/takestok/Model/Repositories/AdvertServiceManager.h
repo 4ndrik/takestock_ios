@@ -50,7 +50,7 @@ typedef void (^advertResultBlock)(NSDictionary* advertDic, NSError* error);
 -(TSAdvertPackagingType*)getPackageTypeWithId:(NSNumber*)ident;
 
 -(void)loadAdverts:(SortData*)sortData search:(NSString*)search category:(TSBaseDictionaryEntity*)category page:(int)page compleate:(resultBlock)compleate;
--(void)createAdvert:(TSAdvert*)advert compleate:(advertResultBlock)compleate;
+-(void)createAdvert:(TSAdvert*)advert compleate:(errorBlock)compleate;
 -(void)editAdvert:(TSAdvert*)advert compleate:(advertResultBlock)compleate;
 
 -(void)loadMyAdvertsWithPage:(int)page compleate:(resultBlock)compleate;

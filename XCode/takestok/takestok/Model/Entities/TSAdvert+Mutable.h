@@ -33,6 +33,7 @@
 @property (readwrite, nonatomic, retain) NSString *tags;
 @property (readwrite, nonatomic, assign) BOOL isInDrafts;
 @property (readwrite, nonatomic, retain) TSAdvertState* state;
+@property (readwrite, nonatomic, assign) BOOL canOffer;
 
 
 @end

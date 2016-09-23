@@ -94,6 +94,10 @@
     _state = state;
 }
 
+-(void)setCanOffer:(BOOL)canOffer{
+    _canOffer = canOffer;
+}
+
 //@property (readwrite, nonatomic, retain) NSArray* photos;
 
 
