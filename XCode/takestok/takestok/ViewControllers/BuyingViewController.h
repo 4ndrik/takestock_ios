@@ -13,9 +13,14 @@
 @class PayDestAddressOfferView;
 
 @interface BuyingViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, OfferActionDelegate>{
-    NSArray* _offers;
+    NSMutableArray* _offers;
+    NSMutableDictionary* _adverts;
     OfferActionView* _offerAlertView;
     PayDestAddressOfferView* _payView;
+    
+    UIRefreshControl *_refreshControl;
+    int _page;
+    UIActivityIndicatorView* _loadingIndicator;
     
     __weak IBOutlet UITableView *_buyingTableView;
 }

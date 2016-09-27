@@ -21,6 +21,7 @@
 +(instancetype)sharedManager;
 -(void)fetchRequiredData;
 -(void)loadOffersForAdvert:(TSAdvert*)advert page:(int)page compleate:(resultBlock)compleate;
+-(void)loadMyOffersWithPage:(int)page compleate:(void (^)(NSArray* result, NSDictionary* adverts, NSDictionary* additionalData, NSError* error))compleate;
 -(void)createOffer:(TSOffer*)offer compleate:(errorBlock)compleate;
 -(void)acceptOffer:(TSOffer*)offer compleate:(errorBlock)compleate;
 -(void)rejectOffer:(TSOffer*)offer withComment:(NSString*)comment compleate:(errorBlock)compleate;

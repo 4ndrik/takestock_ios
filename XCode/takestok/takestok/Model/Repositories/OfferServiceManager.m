@@ -12,6 +12,7 @@
 #import "TSOffer.h"
 #import "AppSettings.h"
 #import "TSOfferStatus.h"
+#import "TSAdvert.h"
 
 @implementation OfferServiceManager
 
@@ -96,6 +97,50 @@ static OfferServiceManager *_manager = nil;
         dispatch_async(dispatch_get_main_queue(), ^{
             compleate(offers, additionalDic, error);
         });
+    }];
+}
+
+-(void)loadMyOffersWithPage:(int)page compleate:(void (^)(NSArray* result, NSDictionary* adverts, NSDictionary* additionalData, NSError* error))compleate{
+    [[ServerConnectionHelper sharedInstance] loadMyOffersWithPage:page compleate:^(id result, NSError *error) {
+        NSMutableArray* offers;
+        NSMutableDictionary* additionalDic;
+        if (!error){
+            additionalDic = [NSMutableDictionary dictionaryWithDictionary:result];
+            [additionalDic removeObjectForKey:@"results"];
+            NSArray* offersResult = [result objectForKeyNotNull:@"results"];
+            offers = [NSMutableArray arrayWithCapacity:offersResult.count];
+            
+            for (NSDictionary* offerDic in offersResult) {
+                TSOffer* offer = [TSOffer objectWithDictionary:offerDic];
+                if (offer){
+                    [offers addObject:offer];
+                }
+            }
+            
+            NSMutableArray* advertIds = [NSMutableArray array];
+            for (TSOffer* offer in offers){
+                [advertIds addObject:offer.advertId];
+            }
+            
+            [[ServerConnectionHelper sharedInstance] loadAdvertsWithIdents:advertIds compleate:^(NSArray* result, NSError *error) {
+                NSMutableDictionary* adverts;
+                if (!error){
+                    adverts = [NSMutableDictionary dictionary];
+                    for (NSDictionary* advertJs in result){
+                        NSNumber* ident = [TSAdvert identFromDic:advertJs];
+                        TSAdvert* advert = [TSAdvert objectWithDictionary:advertJs];
+                        [adverts setObject:advert forKey:ident];
+                    }
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    compleate(offers, adverts, additionalDic, error);
+                });
+            }];
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                compleate(nil, nil, nil, error);
+            });
+        }
     }];
 }
 

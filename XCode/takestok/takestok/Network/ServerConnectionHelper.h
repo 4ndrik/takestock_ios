@@ -51,6 +51,7 @@ typedef void (^tsResultBlock)(id result, NSError* error);
 -(void)loadOfferStatuses:(tsResultBlock)resultBlock;
 
 //Adevrts
+-(void)loadAdvertsWithIdents:(NSArray*)idents compleate:(tsResultBlock)compleate;
 -(void)loadAdvertsWithUser:(NSNumber*)userId page:(int)page compleate:(tsResultBlock)compleate;
 -(void)loadAdvertsWithSort:(NSString*)sort search:(NSString*)search category:(NSNumber*)category subCategory:(NSNumber*)subCategory page:(int)page compleate:(tsResultBlock)compleate;
 -(void)createAdvert:(NSDictionary*)advertDic compleate:(tsResultBlock)compleate;
@@ -69,6 +70,7 @@ typedef void (^tsResultBlock)(id result, NSError* error);
 
 //Offers
 -(void)loadOffersWithAdvert:(NSNumber*)advertId page:(int)page compleate:(tsResultBlock)compleate;
+-(void)loadMyOffersWithPage:(int)page compleate:(tsResultBlock)compleate;
 -(void)createOffer:(NSDictionary*)offer compleate:(tsResultBlock)compleate;
 -(void)updateOffer:(NSDictionary*)offer compleate:(tsResultBlock)compleate;
 

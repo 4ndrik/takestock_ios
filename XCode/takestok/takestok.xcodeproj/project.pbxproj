@@ -110,6 +110,8 @@
 		ACA42F7A1D1AC7CD00C586BB /* SubBusinessType.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA42F741D1AC7CD00C586BB /* SubBusinessType.m */; };
 		ACA42F7B1D1AC7CD00C586BB /* BusinessType+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA42F761D1AC7CD00C586BB /* BusinessType+CoreDataProperties.m */; };
 		ACA42F7C1D1AC7CD00C586BB /* BusinessType.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA42F781D1AC7CD00C586BB /* BusinessType.m */; };
+		ACBC48491D9A7F9A00E061EF /* BuyingOffersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACBC48481D9A7F9A00E061EF /* BuyingOffersViewController.m */; };
+		ACBC484B1D9A801400E061EF /* Buying.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBC484A1D9A801400E061EF /* Buying.storyboard */; };
 		ACC6F21F1D0EB72200F1B6F5 /* TakeStokRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F21E1D0EB72200F1B6F5 /* TakeStokRootViewController.m */; };
 		ACC6F2221D0EBFCE00F1B6F5 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F2211D0EBFCE00F1B6F5 /* MenuViewController.m */; };
 		ACC6F2251D0EC1B600F1B6F5 /* ActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F2241D0EC1B600F1B6F5 /* ActionItem.m */; };
@@ -360,6 +362,9 @@
 		ACA42F761D1AC7CD00C586BB /* BusinessType+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BusinessType+CoreDataProperties.m"; sourceTree = "<group>"; };
 		ACA42F771D1AC7CD00C586BB /* BusinessType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessType.h; sourceTree = "<group>"; };
 		ACA42F781D1AC7CD00C586BB /* BusinessType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessType.m; sourceTree = "<group>"; };
+		ACBC48471D9A7F9A00E061EF /* BuyingOffersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyingOffersViewController.h; sourceTree = "<group>"; };
+		ACBC48481D9A7F9A00E061EF /* BuyingOffersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyingOffersViewController.m; sourceTree = "<group>"; };
+		ACBC484A1D9A801400E061EF /* Buying.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Buying.storyboard; path = Storyboards/Buying.storyboard; sourceTree = "<group>"; };
 		ACC6F21D1D0EB72200F1B6F5 /* TakeStokRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakeStokRootViewController.h; sourceTree = "<group>"; };
 		ACC6F21E1D0EB72200F1B6F5 /* TakeStokRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeStokRootViewController.m; sourceTree = "<group>"; };
 		ACC6F2201D0EBFCE00F1B6F5 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
@@ -684,6 +689,7 @@
 				AC68C45F1CB51C1F004B78DF /* AppDelegate.m */,
 				AC68C4851CB65117004B78DF /* Constants.h */,
 				AC68C4641CB51C1F004B78DF /* Main.storyboard */,
+				ACBC484A1D9A801400E061EF /* Buying.storyboard */,
 				AC68C4691CB51C20004B78DF /* LaunchScreen.storyboard */,
 				AC68C46C1CB51C20004B78DF /* Info.plist */,
 				AC68C4861CB65227004B78DF /* takestok.pch */,
@@ -922,6 +928,8 @@
 			children = (
 				AC411E591CC7D257008B1E38 /* BuyingViewController.h */,
 				AC411E5A1CC7D257008B1E38 /* BuyingViewController.m */,
+				ACBC48471D9A7F9A00E061EF /* BuyingOffersViewController.h */,
+				ACBC48481D9A7F9A00E061EF /* BuyingOffersViewController.m */,
 			);
 			name = Buying;
 			sourceTree = "<group>";
@@ -1115,6 +1123,7 @@
 				AC7ADD481D2A5FC500E0FBC9 /* PayDestAddressOfferView.xib in Resources */,
 				ACDA2ECF1CEF28B8009F51A0 /* OfferActionView.xib in Resources */,
 				AC68C4681CB51C1F004B78DF /* Assets.xcassets in Resources */,
+				ACBC484B1D9A801400E061EF /* Buying.storyboard in Resources */,
 				AC1F54551CCE48630093848B /* OfferTitleView.xib in Resources */,
 				AC68C4661CB51C1F004B78DF /* Main.storyboard in Resources */,
 				ACC6F22A1D0EC4DD00F1B6F5 /* UserMenuView.xib in Resources */,
@@ -1270,6 +1279,7 @@
 				AC1F54531CCE484F0093848B /* OfferTitleView.m in Sources */,
 				AC411E8D1CC92230008B1E38 /* SizeType+CoreDataProperties.m in Sources */,
 				AC411E421CC5002E008B1E38 /* NSDictionary+HandleNil.m in Sources */,
+				ACBC48491D9A7F9A00E061EF /* BuyingOffersViewController.m in Sources */,
 				ACF317B91CDB558D00F49797 /* RatingView.m in Sources */,
 				AC049D111CB7C86A006A8F21 /* SearchFilterSortView.m in Sources */,
 				ACF8DA6B1D913AFD00BD5114 /* TSUserEntity+Mutable.m in Sources */,

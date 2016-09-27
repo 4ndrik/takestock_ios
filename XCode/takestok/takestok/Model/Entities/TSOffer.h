@@ -18,6 +18,8 @@
     TSUserEntity* _user;
     TSOfferStatus* _status;
     NSString* _comment;
+    NSDate* _dateCreated;
+    NSDate* _dateUpdated;
     
     NSNumber* _parentOfferId;
     NSArray* _childOffers;
@@ -29,6 +31,8 @@
 @property (readonly, nonatomic, retain) TSUserEntity* user;
 @property (readonly, nonatomic, retain) TSOfferStatus* status;
 @property (readonly, nonatomic, retain) NSString *comment;
+@property (readonly, nonatomic, retain) NSDate* dateCreated;
+@property (readonly, nonatomic, retain) NSDate* dateUpdated;
 
 @property (readonly, nonatomic, retain) NSNumber *parentOfferId;
 @property (readonly, nonatomic, retain) NSArray *childOffers;

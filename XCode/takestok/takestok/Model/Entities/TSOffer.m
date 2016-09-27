@@ -24,6 +24,9 @@
 #define OFFER_STATUS_PARAM              @"status"
 #define OFFER_COMMENT_PARAM             @"comment"
 
+#define OFFER_DATE_CREATED_PARAM        @"created_at"
+#define OFFER_DATE_UPDATED_PARAM        @"updated_at"
+
 @implementation TSOffer
 
 @synthesize advertId = _advertId;
@@ -32,6 +35,8 @@
 @synthesize user = _user;
 @synthesize parentOfferId = _parentOfferId;
 @synthesize childOffers = _childOffers;
+@synthesize dateCreated = _dateCreated;
+@synthesize dateUpdated = _dateUpdated;
 @synthesize status = _status;
 @synthesize comment = _comment;
 
@@ -57,6 +62,10 @@
     
     if ([dict objectForKeyNotNull:OFFER_COMMENT_PARAM])
         _comment = [dict objectForKeyNotNull:OFFER_COMMENT_PARAM];
+    
+    NSTimeZone* timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+    _dateCreated = [NSDate dateFromString:[dict objectForKeyNotNull:OFFER_DATE_CREATED_PARAM] format:DEFAULT_DATE_FORMAT timeZone:timeZone];
+    _dateUpdated = [NSDate dateFromString:[dict objectForKeyNotNull:OFFER_DATE_UPDATED_PARAM] format:DEFAULT_DATE_FORMAT timeZone:timeZone];
     //OFFER
     //CHILD
 }

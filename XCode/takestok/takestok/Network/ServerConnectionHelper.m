@@ -209,6 +209,18 @@ typedef enum
     [_loadAdvertCancelTask resume];
 }
 
+-(void)loadAdvertsWithIdents:(NSArray*)idents compleate:(tsResultBlock)compleate{
+    NSString* query = [NSString stringWithFormat:@"ids=%@", [idents componentsJoinedByString:@","]];
+    NSURLSessionDataTask *loadAdvertTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        if (!error){
+            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        }
+        compleate([result objectForKeyNotNull:@"results"], error);
+
+    }];
+    [loadAdvertTask resume];
+}
+
 -(void)loadAdvertsWithSort:(NSString*)sort search:(NSString*)search category:(NSNumber*)category subCategory:(NSNumber*)subCategory page:(int)page compleate:(tsResultBlock)compleate{
     //Cancel prev request
     [_loadAdvertCancelTask cancel];
@@ -306,6 +318,7 @@ typedef enum
 }
 
 #pragma mark - User
+
 -(void)signInWithUserName:(NSString*)username password:(NSString*)password compleate:(tsResultBlock)compleate{
     NSMutableDictionary* paramsDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:username, @"username", password, @"password",nil];
     NSError* error;
@@ -365,8 +378,20 @@ typedef enum
 }
 
 #pragma mark - Offers
+
 -(void)loadOffersWithAdvert:(NSNumber*)advertId page:(int)page compleate:(tsResultBlock)compleate{
     NSString* query = [NSString stringWithFormat:@"adverts=%@&page=%i&o=-updated_at", advertId, page];
+    NSURLSessionDataTask* loadOffersTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        if (!error){
+            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        }
+        compleate(result, error);
+    }];
+    [loadOffersTask resume];
+}
+
+-(void)loadMyOffersWithPage:(int)page compleate:(tsResultBlock)compleate{
+    NSString* query = [NSString stringWithFormat:@"for=self&view=child_offers&page=%i&o=-updated_at", page];
     NSURLSessionDataTask* loadOffersTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         if (!error){
             [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
