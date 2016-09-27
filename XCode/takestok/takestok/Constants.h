@@ -38,6 +38,16 @@
 #define ADVERTS_UPDATED_NOTIFICATION        @"AdvertUpdatedNotification"
 #define QUESTIONS_UPDATED_NOTIFICATION      @"QuestionsUpdatedNotification"
 
+//STORUBOARD IDS
+
+#define MAIN_STORYBOARD             @"Main"
+#define ADVERT_STORYBOARD           @"Advert"
+#define LISTS_STORYBOARD            @"Lists"
+#define USER_STORYBOARD             @"User"
+#define SELLING_STORYBOARD          @"Selling"
+#define BUYING_STORYBOARD           @"Buying"
+
+
 //SEGUE IDS
 #define CREATE_ADVERT_SEGUE         @"CreateEditAdvertSegue"
 #define EDIT_ADVERT_SEGUE           @"EditAdvertSegue"

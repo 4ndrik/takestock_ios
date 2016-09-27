@@ -13,7 +13,8 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:HOME_CONTROLLER];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:ADVERT_STORYBOARD bundle:nil];
+    self.contentViewController = [storyboard instantiateViewControllerWithIdentifier:HOME_CONTROLLER];
     self.menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:MENU_CONTROLLER];
 }
 

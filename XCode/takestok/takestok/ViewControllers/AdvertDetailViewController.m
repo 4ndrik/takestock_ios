@@ -95,7 +95,7 @@
     if ([segue.identifier isEqualToString:ADVERT_IMAGES_SEGUE]) {
         ImagesCollectionViewController* imageVC = (ImagesCollectionViewController*)segue.destinationViewController;
         [imageVC setImages:_advert.photos withCurrentIndex:((NSIndexPath*)sender).row];
-    }else if ([segue.identifier isEqualToString:@"QuestionsSegue"]){
+    }else if ([segue.identifier isEqualToString:ADVERT_QUESTIONS_SEGUE]){
             QAViewController* aqVC = (QAViewController*)segue.destinationViewController;
             [aqVC setAdvert:_advert];
 

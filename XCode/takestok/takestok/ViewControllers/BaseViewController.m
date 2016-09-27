@@ -144,7 +144,7 @@
     if ([[UserServiceManager sharedManager] getMe]){
         return YES;
     }else{
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN_STORYBOARD bundle:nil];
         LoginViewController *controller = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:LOGIN_CONTROLLER];
         [self presentViewController:controller animated:YES completion:nil];
         return NO;

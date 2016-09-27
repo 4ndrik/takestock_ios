@@ -55,7 +55,7 @@
     if (indexPath.row > 0){
         selectedCategory = [_items objectAtIndex:indexPath.row - 1];
         if ([selectedCategory isKindOfClass:[TSAdvertCategory class]]){
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:ADVERT_STORYBOARD bundle:nil];
             CategoryViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"CategoryVC"];
             [vc setCategory:(TSAdvertCategory*)selectedCategory];
             vc.delegate = self.delegate;

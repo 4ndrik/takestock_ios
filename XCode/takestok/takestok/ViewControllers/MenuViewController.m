@@ -150,7 +150,7 @@
     if ([[UserServiceManager sharedManager] getMe]){
         return YES;
     }else{
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN_STORYBOARD bundle:nil];
         LoginViewController *controller = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:LOGIN_CONTROLLER];
         [self presentViewController:controller animated:YES completion:nil];
         return NO;
@@ -158,34 +158,39 @@
 }
 
 -(void)showHome:(id)sender{
-    self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:HOME_CONTROLLER];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:ADVERT_STORYBOARD bundle:nil];
+    self.frostedViewController.contentViewController = [storyboard instantiateViewControllerWithIdentifier:HOME_CONTROLLER];
     [self.frostedViewController hideMenuViewController];
 }
 
 -(void)showUserProfile:(id)owner{
     if([self checkUserLogin]){
-        self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:USER_PROFILE_CONTROLLER];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:USER_STORYBOARD bundle:nil];
+        self.frostedViewController.contentViewController = [storyboard instantiateViewControllerWithIdentifier:USER_PROFILE_CONTROLLER];
         [self.frostedViewController hideMenuViewController];
     }
 }
 
 -(void)showSelling:(id)owner{
     if([self checkUserLogin]){
-        self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:SELLING_CONTROLLER];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:SELLING_STORYBOARD bundle:nil];
+        self.frostedViewController.contentViewController = [storyboard instantiateViewControllerWithIdentifier:SELLING_CONTROLLER];
         [self.frostedViewController hideMenuViewController];
     }
 }
 
 -(void)showBuying:(id)owner{
     if([self checkUserLogin]){
-        self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:BUYING_CONTROLLER];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:BUYING_STORYBOARD bundle:nil];
+        self.frostedViewController.contentViewController = [storyboard instantiateViewControllerWithIdentifier:BUYING_CONTROLLER];
         [self.frostedViewController hideMenuViewController];
     }
 }
 
 -(void)showWatchList:(id)owner{
     if([self checkUserLogin]){
-        self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:WATCH_LIST_CONTROLLER];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:LISTS_STORYBOARD bundle:nil];
+        self.frostedViewController.contentViewController = [storyboard instantiateViewControllerWithIdentifier:WATCH_LIST_CONTROLLER];
         [self.frostedViewController hideMenuViewController];
     }
 }
