@@ -116,6 +116,7 @@
 		ACBC484F1D9A850C00E061EF /* Advert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBC484E1D9A850C00E061EF /* Advert.storyboard */; };
 		ACBC48511D9A862400E061EF /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBC48501D9A862400E061EF /* User.storyboard */; };
 		ACBC48531D9A866900E061EF /* Lists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBC48521D9A866900E061EF /* Lists.storyboard */; };
+		ACBC48561D9ABE7800E061EF /* BuyingOfferTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACBC48551D9ABE7800E061EF /* BuyingOfferTableViewCell.m */; };
 		ACC6F21F1D0EB72200F1B6F5 /* TakeStokRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F21E1D0EB72200F1B6F5 /* TakeStokRootViewController.m */; };
 		ACC6F2221D0EBFCE00F1B6F5 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F2211D0EBFCE00F1B6F5 /* MenuViewController.m */; };
 		ACC6F2251D0EC1B600F1B6F5 /* ActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F2241D0EC1B600F1B6F5 /* ActionItem.m */; };
@@ -373,6 +374,8 @@
 		ACBC484E1D9A850C00E061EF /* Advert.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Advert.storyboard; path = Storyboards/Advert.storyboard; sourceTree = "<group>"; };
 		ACBC48501D9A862400E061EF /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = User.storyboard; path = Storyboards/User.storyboard; sourceTree = "<group>"; };
 		ACBC48521D9A866900E061EF /* Lists.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Lists.storyboard; path = Storyboards/Lists.storyboard; sourceTree = "<group>"; };
+		ACBC48541D9ABE7800E061EF /* BuyingOfferTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyingOfferTableViewCell.h; sourceTree = "<group>"; };
+		ACBC48551D9ABE7800E061EF /* BuyingOfferTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyingOfferTableViewCell.m; sourceTree = "<group>"; };
 		ACC6F21D1D0EB72200F1B6F5 /* TakeStokRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakeStokRootViewController.h; sourceTree = "<group>"; };
 		ACC6F21E1D0EB72200F1B6F5 /* TakeStokRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeStokRootViewController.m; sourceTree = "<group>"; };
 		ACC6F2201D0EBFCE00F1B6F5 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
@@ -849,6 +852,8 @@
 			children = (
 				AC411E5C1CC7D2C9008B1E38 /* BuyingTableViewCell.h */,
 				AC411E5D1CC7D2C9008B1E38 /* BuyingTableViewCell.m */,
+				ACBC48541D9ABE7800E061EF /* BuyingOfferTableViewCell.h */,
+				ACBC48551D9ABE7800E061EF /* BuyingOfferTableViewCell.m */,
 			);
 			name = Buying;
 			sourceTree = "<group>";
@@ -1327,6 +1332,7 @@
 				AC68C4891CB6534A004B78DF /* UIImage+ExtendedImage.m in Sources */,
 				ACC6F22E1D0EEE7000F1B6F5 /* AboutUsViewController.m in Sources */,
 				AC411E2C1CBFB832008B1E38 /* ImageLoader.m in Sources */,
+				ACBC48561D9ABE7800E061EF /* BuyingOfferTableViewCell.m in Sources */,
 				ACA2E8D21CE5BEDD00BAB401 /* Offer.m in Sources */,
 				AC68C4601CB51C1F004B78DF /* AppDelegate.m in Sources */,
 				ACA42F7C1D1AC7CD00C586BB /* BusinessType.m in Sources */,

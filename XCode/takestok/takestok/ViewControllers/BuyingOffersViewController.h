@@ -7,7 +7,20 @@
 //
 
 #import "BaseViewController.h"
+#import "OfferActionDelegate.h"
 
-@interface BuyingOffersViewController : BaseViewController
+@class TSAdvert;
+@class TSOffer;
+@class PayDestAddressOfferView;
+
+@interface BuyingOffersViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, OfferActionDelegate>{
+    __weak IBOutlet UITableView *_offersTableView;
+    TSAdvert* _advert;
+    NSArray* _offers;
+    
+    PayDestAddressOfferView* _payView;
+}
+
+-(void)setAdvert:(TSAdvert*)advert andOffer:(TSOffer*)offer;
 
 @end

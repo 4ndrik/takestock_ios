@@ -105,7 +105,7 @@
                              range:NSMakeRange(0, acceptString.length)];
         [acceptString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, acceptString.length)];
         [textString appendAttributedString:acceptString];
-    }else if ([offer.status.ident intValue] == stDecline){
+    }else if ([offer.status.ident intValue] == tsDecline){
         
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
@@ -128,7 +128,7 @@
             [textString appendAttributedString:commentString];
         }
         
-    }else if ([offer.status.ident intValue] == stPending){
+    }else if ([offer.status.ident intValue] == tsPending){
         if (!offer.parentOfferId){
             cell.replyPanelHeight.constant = 30.;
         }else{

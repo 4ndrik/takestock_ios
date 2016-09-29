@@ -9,11 +9,10 @@
 @protocol OfferActionDelegate <NSObject>
 
 @optional
--(void)mainAction:(UITableViewCell*)owner;
--(void)counterOfferAction:(UITableViewCell*)owner;
 
-@required
 -(void)acceptOfferAction:(UITableViewCell*)owner;
 -(void)rejectOfferAction:(UITableViewCell*)owner;
+-(void)counterOfferAction:(UITableViewCell*)owner;
+-(void)mainAction:(UITableViewCell*)owner;
 
 @end

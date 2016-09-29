@@ -427,6 +427,23 @@ typedef enum
 }
 
 
+- (void)payOffer:(NSNumber*)offerId withToken:(NSString *)token completion:(tsResultBlock)compleate {
+    
+    NSMutableDictionary* paramsDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:offerId, @"offer_id", token, @"token", nil];
+    NSError* error;
+    NSString* params = [self jsonStringFromDicOrArray:paramsDic error:&error];
+    
+    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:ADD_PAYMENT_URL query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        if (!error){
+            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        }
+        compleate(result, error);
+    }];
+    
+    [dataTask resume];
+}
+
+
 //===============================================
 
 -(void)saveData{
@@ -951,28 +968,28 @@ typedef enum
 //    
 //    [dataTask resume];
 //}
-
-- (void)payOffer:(Offer*)offer withToken:(STPToken *)token completion:(errorBlock)compleate {
-    
-    NSMutableDictionary* paramsDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:offer.ident], @"offer_id", token.tokenId, @"token", nil];
-    NSError* error;
-    NSString* params = [self jsonStringFromDicOrArray:paramsDic error:&error];
-    
-    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:ADD_PAYMENT_URL query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
-        {
-            NSLog(@"dasdas");
-//            dispatch_sync(dispatch_get_main_queue(), ^{
-//                [offer updateWithDic:result];
-//            });
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            compleate(error);
-        });
-    }];
-    
-    [dataTask resume];
-}
+//
+//- (void)payOffer:(Offer*)offer withToken:(STPToken *)token completion:(errorBlock)compleate {
+//    
+//    NSMutableDictionary* paramsDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:offer.ident], @"offer_id", token.tokenId, @"token", nil];
+//    NSError* error;
+//    NSString* params = [self jsonStringFromDicOrArray:paramsDic error:&error];
+//    
+//    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:ADD_PAYMENT_URL query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+//        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
+//        {
+//            NSLog(@"dasdas");
+////            dispatch_sync(dispatch_get_main_queue(), ^{
+////                [offer updateWithDic:result];
+////            });
+//        }
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            compleate(error);
+//        });
+//    }];
+//    
+//    [dataTask resume];
+//}
 
 #pragma mark - User
 //-(void)signInWithUserName:(NSString*)username password:(NSString*)password compleate:(errorBlock)compleate{

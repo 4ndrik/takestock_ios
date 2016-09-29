@@ -9,14 +9,9 @@
 #import "BaseViewController.h"
 #import "OfferActionDelegate.h"
 
-@class OfferActionView;
-@class PayDestAddressOfferView;
-
-@interface BuyingViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, OfferActionDelegate>{
+@interface BuyingViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource>{
     NSMutableArray* _offers;
     NSMutableDictionary* _adverts;
-    OfferActionView* _offerAlertView;
-    PayDestAddressOfferView* _payView;
     
     UIRefreshControl *_refreshControl;
     int _page;

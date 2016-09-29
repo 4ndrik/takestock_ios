@@ -10,9 +10,8 @@
 #import "OfferActionDelegate.h"
 
 @class OfferTableViewCell;
-
-
 @class BackgroundImageView;
+
 @interface OfferTableViewCell : UITableViewCell
 
 @property (weak)id<OfferActionDelegate>delegate;

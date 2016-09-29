@@ -13,6 +13,7 @@
 #import "AppSettings.h"
 #import "TSOfferStatus.h"
 #import "TSAdvert.h"
+#import <Stripe/Stripe.h>
 
 @implementation OfferServiceManager
 
@@ -181,4 +182,14 @@ static OfferServiceManager *_manager = nil;
         });
     }];
 }
+
+-(void)makePayment:(TSOffer*)offer token:(STPToken*)token compleate:(errorBlock)compleate{
+    [[ServerConnectionHelper sharedInstance] payOffer:offer.ident withToken:token.tokenId completion:^(id result, NSError *error) {
+        NSLog(@"dasdsa");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            compleate(error);
+        });
+    }];
+}
+
 @end

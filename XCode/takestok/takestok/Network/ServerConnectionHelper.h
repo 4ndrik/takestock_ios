@@ -73,6 +73,7 @@ typedef void (^tsResultBlock)(id result, NSError* error);
 -(void)loadMyOffersWithPage:(int)page compleate:(tsResultBlock)compleate;
 -(void)createOffer:(NSDictionary*)offer compleate:(tsResultBlock)compleate;
 -(void)updateOffer:(NSDictionary*)offer compleate:(tsResultBlock)compleate;
+-(void)payOffer:(NSNumber*)offerId withToken:(NSString *)token completion:(tsResultBlock)compleate;
 
 //=====================//
 
@@ -83,7 +84,7 @@ typedef void (^tsResultBlock)(id result, NSError* error);
 
 //-(void)createOffer:(Offer*)offer compleate:(errorBlock)compleate;
 //-(void)updateOffer:(Offer*)offer compleate:(errorBlock)compleate;
--(void)payOffer:(Offer*)offer withToken:(STPToken *)token completion:(errorBlock)compleate;
+
 
 //-(void)signInWithUserName:(NSString*)username password:(NSString*)password compleate:(errorBlock)compleate;
 //-(void)signUpWithUserName:(NSString*)username email:(NSString*)email password:(NSString*)password compleate:(errorBlock)compleate;

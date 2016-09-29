@@ -58,6 +58,7 @@
 #define ADVERT_QUESTIONS_SEGUE      @"QuestionsSegue"
 #define CATEGORIES_SEGUE            @"CategoriesSegue"
 #define USER_DETAILS_SEGUE          @"UserDetailsSegue"
+#define BUYER_OFFERS_SEQUE          @"BuyingOffersSegue"
 
 //CONTROLLER IDS
 #define LOGIN_CONTROLLER            @"LoginViewController"

@@ -68,6 +68,13 @@
     _dateUpdated = [NSDate dateFromString:[dict objectForKeyNotNull:OFFER_DATE_UPDATED_PARAM] format:DEFAULT_DATE_FORMAT timeZone:timeZone];
     //OFFER
     //CHILD
+    
+    NSMutableArray* childOffers = [NSMutableArray array];
+    for (NSDictionary* chdic in [dict objectForKeyNotNull:OFFER_CHILD_OFFERS_PARAM]){
+        TSOffer* offer = [TSOffer objectWithDictionary:chdic];
+        [childOffers addObject:offer];
+    }
+    _childOffers = childOffers;
 }
 
 +(NSNumber*)identFromDic:(NSDictionary*)dict{

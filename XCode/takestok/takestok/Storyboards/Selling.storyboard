@@ -34,7 +34,7 @@
                                         <rect key="frame" x="0.0" y="92" width="375" height="125"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bRO-YM-4XX" id="ZOq-Nn-0qx">
-                                            <frame key="frameInset" width="375" height="124"/>
+                                            <frame key="frameInset" width="375" height="124.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Author name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Wa-JD-jTf" customClass="PaddingLabel">
@@ -141,8 +141,8 @@
                                                     </userDefinedRuntimeAttributes>
                                                     <variation key="default">
                                                         <mask key="constraints">
-                                                            <exclude reference="x5b-wT-Wa9"/>
                                                             <exclude reference="I1i-gF-NRA"/>
+                                                            <exclude reference="x5b-wT-Wa9"/>
                                                         </mask>
                                                     </variation>
                                                 </label>
@@ -164,8 +164,8 @@
                                                     </userDefinedRuntimeAttributes>
                                                     <variation key="default">
                                                         <mask key="constraints">
-                                                            <exclude reference="c0b-yQ-DsP"/>
                                                             <exclude reference="SAL-zc-2OS"/>
+                                                            <exclude reference="c0b-yQ-DsP"/>
                                                         </mask>
                                                     </variation>
                                                 </label>
@@ -377,7 +377,7 @@
         <scene sceneID="hXE-XX-bcL">
             <objects>
                 <navigationController storyboardIdentifier="SellingController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="h4l-VC-bXI" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="lL6-w8-7c4">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lL6-w8-7c4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
