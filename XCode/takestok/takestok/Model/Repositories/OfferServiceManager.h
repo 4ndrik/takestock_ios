@@ -26,6 +26,7 @@
 -(void)createOffer:(TSOffer*)offer compleate:(errorBlock)compleate;
 -(void)acceptOffer:(TSOffer*)offer compleate:(errorBlock)compleate;
 -(void)rejectOffer:(TSOffer*)offer withComment:(NSString*)comment compleate:(errorBlock)compleate;
+-(void)createCounterOffer:(TSOffer*)offer withCount:(int)count price:(float)price withComment:(NSString*)comment byByer:(BOOL)isBuyer compleate:(errorBlock)compleate;
 -(void)makePayment:(TSOffer*)offer token:(STPToken*)token compleate:(errorBlock)compleate;
 
 @end

@@ -69,6 +69,7 @@ typedef void (^tsResultBlock)(id result, NSError* error);
 -(void)updateUser:(NSDictionary*)userData compleate:(tsResultBlock)compleate;
 
 //Offers
+-(void)loadOffer:(NSNumber*)offerId compleate:(tsResultBlock)compleate;
 -(void)loadOffersWithAdvert:(NSNumber*)advertId page:(int)page compleate:(tsResultBlock)compleate;
 -(void)loadMyOffersWithPage:(int)page compleate:(tsResultBlock)compleate;
 -(void)createOffer:(NSDictionary*)offer compleate:(tsResultBlock)compleate;

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="brandon_med.otf">
+            <string>BrandonGrotesque-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OfferTableViewCell" id="HXk-sx-NmY" customClass="OfferTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HXk-sx-NmY" id="dAB-Ps-ITJ">
+                <frame key="frameInset" width="320" height="179"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htn-pN-9ow">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" identifier="id1" id="4Tq-AV-1a2"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                        <color key="textColor" red="0.52941176469999995" green="0.50980392159999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Offer:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IMI-rM-WrD" customClass="PaddingLabel">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" identifier="id2" id="NJ7-jV-QAw"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="4R9-qY-H9R" customClass="PaddingLabel">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" identifier="id3" id="SJ1-XE-cPx"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="$200" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="NBs-Og-juw" customClass="PaddingLabel">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" identifier="id4" id="C0I-eB-kef"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Djc-Y9-rGo" customClass="PaddingLabel">
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jvB-Qj-AFy">
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zk0-hL-IrU">
+                                <color key="backgroundColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="BrandonGrotesque-Medium" family="Brandon Grotesque" pointSize="10"/>
+                                <state key="normal" title="ACCEPT">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="acceptAction:" destination="HXk-sx-NmY" eventType="touchUpInside" id="9fC-sJ-jfs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vIL-x4-oxt">
+                                <color key="backgroundColor" red="0.49803921569999998" green="0.066666666669999999" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="BrandonGrotesque-Medium" family="Brandon Grotesque" pointSize="10"/>
+                                <state key="normal" title="COUNTER">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="counterAction:" destination="HXk-sx-NmY" eventType="touchUpInside" id="MY7-vS-WcL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOj-jb-ySl">
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="BrandonGrotesque-Medium" family="Brandon Grotesque" pointSize="10"/>
+                                <state key="normal" title="REJECT">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="rejectAction:" destination="HXk-sx-NmY" eventType="touchUpInside" id="BbG-zm-InQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="eOj-jb-ySl" secondAttribute="bottom" priority="999" constant="5" identifier="id52" id="1NU-lw-KAv"/>
+                            <constraint firstItem="vIL-x4-oxt" firstAttribute="top" secondItem="jvB-Qj-AFy" secondAttribute="top" constant="5" identifier="id510" id="4Av-pd-lzf"/>
+                            <constraint firstItem="Zk0-hL-IrU" firstAttribute="top" secondItem="jvB-Qj-AFy" secondAttribute="top" constant="5" identifier="id57" id="8xm-Tm-xTF"/>
+                            <constraint firstItem="Zk0-hL-IrU" firstAttribute="leading" secondItem="jvB-Qj-AFy" secondAttribute="leading" identifier="id56" id="BF6-3U-mpW"/>
+                            <constraint firstAttribute="height" constant="35" identifier="id50" id="DrC-o0-F77"/>
+                            <constraint firstItem="vIL-x4-oxt" firstAttribute="leading" secondItem="Zk0-hL-IrU" secondAttribute="trailing" constant="10" identifier="id511" id="NIF-ln-gy8"/>
+                            <constraint firstItem="eOj-jb-ySl" firstAttribute="leading" secondItem="vIL-x4-oxt" secondAttribute="trailing" constant="10" identifier="id53" id="Pfz-T0-QhB"/>
+                            <constraint firstAttribute="bottom" secondItem="Zk0-hL-IrU" secondAttribute="bottom" priority="999" constant="5" identifier="id55" id="YLy-AP-Sjq"/>
+                            <constraint firstAttribute="trailing" secondItem="eOj-jb-ySl" secondAttribute="trailing" identifier="id51" id="Zfx-ak-VeW"/>
+                            <constraint firstItem="eOj-jb-ySl" firstAttribute="top" secondItem="jvB-Qj-AFy" secondAttribute="top" constant="5" identifier="id54" id="aS7-E0-Z6u"/>
+                            <constraint firstItem="vIL-x4-oxt" firstAttribute="width" secondItem="eOj-jb-ySl" secondAttribute="width" identifier="id512" id="jVu-dd-Eb7"/>
+                            <constraint firstAttribute="bottom" secondItem="vIL-x4-oxt" secondAttribute="bottom" priority="999" constant="5" identifier="id59" id="tgN-s9-ud5"/>
+                            <constraint firstItem="Zk0-hL-IrU" firstAttribute="width" secondItem="vIL-x4-oxt" secondAttribute="width" identifier="id58" id="v4w-ig-zKn"/>
+                        </constraints>
+                    </view>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lo0-Oi-IJ7">
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CmQ-X5-uUO">
+                                <color key="backgroundColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="BrandonGrotesque-Medium" family="Brandon Grotesque" pointSize="14"/>
+                                <state key="normal" title="ACCEPT">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="mainAction:" destination="HXk-sx-NmY" eventType="touchUpInside" id="zAL-XV-Jme"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" identifier="id60" id="CIo-pU-9sn"/>
+                            <constraint firstItem="CmQ-X5-uUO" firstAttribute="leading" secondItem="Lo0-Oi-IJ7" secondAttribute="leading" identifier="id61" id="KCb-wt-mJ4"/>
+                            <constraint firstAttribute="bottom" secondItem="CmQ-X5-uUO" secondAttribute="bottom" priority="999" constant="5" identifier="id62" id="O73-hd-5Pr"/>
+                            <constraint firstAttribute="trailing" secondItem="CmQ-X5-uUO" secondAttribute="trailing" identifier="id63" id="ODk-So-8eD"/>
+                            <constraint firstItem="CmQ-X5-uUO" firstAttribute="top" secondItem="Lo0-Oi-IJ7" secondAttribute="top" constant="5" identifier="id64" id="g5f-OO-mTy"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="Djc-Y9-rGo" secondAttribute="trailing" constant="2" id="171-HQ-3my"/>
+                    <constraint firstItem="Lo0-Oi-IJ7" firstAttribute="width" secondItem="jvB-Qj-AFy" secondAttribute="width" identifier="id79" id="4Ji-XD-qeK"/>
+                    <constraint firstItem="Lo0-Oi-IJ7" firstAttribute="centerX" secondItem="dAB-Ps-ITJ" secondAttribute="centerX" identifier="id711" id="5ex-m3-377"/>
+                    <constraint firstItem="Djc-Y9-rGo" firstAttribute="top" secondItem="dAB-Ps-ITJ" secondAttribute="topMargin" constant="50" identifier="mm" id="8nC-gd-O4w"/>
+                    <constraint firstItem="4R9-qY-H9R" firstAttribute="centerY" secondItem="IMI-rM-WrD" secondAttribute="centerY" identifier="id74" id="CvD-h0-lk7"/>
+                    <constraint firstItem="jvB-Qj-AFy" firstAttribute="leading" secondItem="dAB-Ps-ITJ" secondAttribute="leadingMargin" constant="2" identifier="id76" id="EjM-U6-87e"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Lo0-Oi-IJ7" secondAttribute="bottom" constant="5" identifier="id710" id="Foy-fz-aL0"/>
+                    <constraint firstItem="Djc-Y9-rGo" firstAttribute="leading" secondItem="dAB-Ps-ITJ" secondAttribute="leadingMargin" constant="2" id="GZe-2f-yC0"/>
+                    <constraint firstItem="NBs-Og-juw" firstAttribute="leading" secondItem="4R9-qY-H9R" secondAttribute="trailing" constant="10" identifier="id72" id="H1p-L2-n6X"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="htn-pN-9ow" secondAttribute="trailing" constant="2" identifier="id713" id="ITj-4G-FPm"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="jvB-Qj-AFy" secondAttribute="trailing" constant="2" identifier="id77" id="KbT-Gl-tLh"/>
+                    <constraint firstItem="IMI-rM-WrD" firstAttribute="leading" secondItem="dAB-Ps-ITJ" secondAttribute="leadingMargin" constant="2" identifier="id716" id="QnV-bu-Ajv"/>
+                    <constraint firstItem="Lo0-Oi-IJ7" firstAttribute="top" secondItem="jvB-Qj-AFy" secondAttribute="bottom" identifier="id712" id="SyV-sU-ERT"/>
+                    <constraint firstItem="htn-pN-9ow" firstAttribute="top" secondItem="dAB-Ps-ITJ" secondAttribute="topMargin" constant="2" identifier="id714" id="WJ5-oY-dTH"/>
+                    <constraint firstItem="NBs-Og-juw" firstAttribute="centerY" secondItem="IMI-rM-WrD" secondAttribute="centerY" identifier="id71" id="dHe-Vq-t4o"/>
+                    <constraint firstItem="htn-pN-9ow" firstAttribute="leading" secondItem="dAB-Ps-ITJ" secondAttribute="leadingMargin" constant="2" identifier="id715" id="i1E-pI-0qJ"/>
+                    <constraint firstItem="4R9-qY-H9R" firstAttribute="leading" secondItem="IMI-rM-WrD" secondAttribute="trailing" constant="10" identifier="id75" id="oPx-7M-0TP"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="NBs-Og-juw" secondAttribute="trailing" constant="2" identifier="id73" id="prY-3e-gKB"/>
+                    <constraint firstItem="jvB-Qj-AFy" firstAttribute="top" secondItem="Djc-Y9-rGo" secondAttribute="bottom" identifier="id78" id="r48-fh-faq"/>
+                    <constraint firstItem="IMI-rM-WrD" firstAttribute="top" secondItem="htn-pN-9ow" secondAttribute="bottom" constant="10" identifier="id717" id="tzn-xS-bx1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dateCreatedLabel" destination="htn-pN-9ow" id="SOR-PH-Ius"/>
+                <outlet property="mainActionButton" destination="CmQ-X5-uUO" id="W9q-aF-PdX"/>
+                <outlet property="mainActionHeight" destination="CIo-pU-9sn" id="X3x-qe-gkd"/>
+                <outlet property="offerActionHeight" destination="DrC-o0-F77" id="0RM-Nc-dgi"/>
+                <outlet property="offerCountLabel" destination="4R9-qY-H9R" id="fVo-NT-aui"/>
+                <outlet property="offerPriceLabel" destination="NBs-Og-juw" id="4Jl-5w-itl"/>
+                <outlet property="offerTitleLabel" destination="IMI-rM-WrD" id="EyV-OK-3TU"/>
+                <outlet property="statusLabel" destination="Djc-Y9-rGo" id="QUt-4g-m1Z"/>
+            </connections>
+            <point key="canvasLocation" x="-136.5" y="-138.5"/>
+        </tableViewCell>
+    </objects>
+</document>

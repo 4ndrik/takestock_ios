@@ -174,8 +174,8 @@
     _page = 1;
      [self refreshTitleLabelForCount:-1];
     [_adverts removeAllObjects];
-    [_searchCollectionView reloadData];
     [_refreshControl beginRefreshing];
+    [_searchCollectionView reloadData];
     [self loadData];
 }
 

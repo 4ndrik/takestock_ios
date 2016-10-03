@@ -15,12 +15,14 @@
 #import "UIView+NibLoadView.h"
 #import "BackgroundImageView.h"
 #import "TopBottomStripesLabel.h"
-#import "BuyingOfferTableViewCell.h"
 #import "PaddingLabel.h"
 #import "UserServiceManager.h"
 #import "PayDestAddressOfferView.h"
 #import <Stripe/Stripe.h>
 #import "OfferServiceManager.h"
+#import "OfferTableViewCell.h"
+#import "OfferActionView.h"
+#import "PaddingTextField.h"
 
 @interface BuyingOffersViewController ()
 
@@ -30,21 +32,23 @@
 
 -(void)setAdvert:(TSAdvert*)advert andOffer:(TSOffer*)_offer{
     _advert = advert;
-    NSMutableArray* array = [NSMutableArray array];
-    [array addObject:_offer];
+    _offers = [NSMutableArray array];
+    [_offers addObject:_offer];
     TSOffer* offer = _offer;
     while (offer.childOffers.count > 0) {
         offer = [offer.childOffers lastObject];
-        [array addObject:offer];
+        [_offers addObject:offer];
     }
-    _offers = [array sortedArrayUsingComparator:^NSComparisonResult(TSOffer*  _Nonnull obj1, TSOffer*  _Nonnull obj2) {
+    [_offers  sortUsingComparator:^NSComparisonResult(TSOffer*  _Nonnull obj1, TSOffer*  _Nonnull obj2) {
         return [obj2.dateUpdated compare:obj1.dateUpdated];
     }];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [_offersTableView registerNib:[UINib nibWithNibName:@"OfferTableViewCell" bundle:nil] forCellReuseIdentifier:@"OfferTableViewCell"];
     _offersTableView.rowHeight = UITableViewAutomaticDimension;
+    _offersTableView.estimatedRowHeight = 150;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,18 +64,42 @@
     return spaceString;
 }
 
--(NSMutableAttributedString*)fillOfferInformation:(TSOffer*)offer advert:(TSAdvert*)advert cell:(BuyingOfferTableViewCell*)cell{
+-(void)configureCell:(OfferTableViewCell*)cell withOffer:(TSOffer*)offer advert:(TSAdvert*)advert{
     NSMutableAttributedString* textString = [[NSMutableAttributedString alloc] init];
+    
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateStyle = kCFDateFormatterMediumStyle;
+    cell.dateCreatedLabel.text = [NSString stringWithFormat:@"Updated: %@", [dateFormatter stringFromDate:offer.dateUpdated]];
+    cell.offerTitleLabel.text = offer.isFromSeller ? @"Seller offer" : @"Your offer";
+    
+    cell.offerCountLabel.text = [NSString stringWithFormat:@"%i%@", offer.quantity, _advert.packaging ? _advert.packaging.title: @""];
+    cell.offerPriceLabel.text = [NSString stringWithFormat:@"£%.02f", offer.price];
+    
+    cell.statusLabel.text = @"";
+    cell.mainActionHeight.constant = 0;
+    cell.offerActionHeight.constant = 0;
+    
+    if (offer.comment.length > 0){
+        
+        NSMutableAttributedString* commentString = [[NSMutableAttributedString alloc] initWithString:offer.comment];
+        [commentString addAttribute:NSFontAttributeName
+                              value:HelveticaNeue14
+                              range:NSMakeRange(0, commentString.length)];
+        [commentString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, commentString.length)];
+        [textString appendAttributedString:commentString];
+    }
+    
     if ([offer.status.ident intValue] == tsAccept){
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
         
-        NSMutableAttributedString* acceptString = [[NSMutableAttributedString alloc] initWithString:@"WAITING FOR PAYMENT"];
-        [acceptString addAttribute:NSFontAttributeName
+        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"WAITING FOR PAYMENT"];
+        [statusString addAttribute:NSFontAttributeName
                              value:BrandonGrotesqueBold14
-                             range:NSMakeRange(0, acceptString.length)];
-        [acceptString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, acceptString.length)];
-        [textString appendAttributedString:acceptString];
+                             range:NSMakeRange(0, statusString.length)];
+        [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, statusString.length)];
+        [textString appendAttributedString:statusString];
         
         cell.mainActionHeight.constant = 35;
         [cell.mainActionButton setTitle:@"MAKE PAYMENT" forState:UIControlStateNormal];
@@ -81,56 +109,103 @@
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
         
-        NSMutableAttributedString* declineString = [[NSMutableAttributedString alloc] initWithString:@"REJECTED"];
-        [declineString addAttribute:NSFontAttributeName
+        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"REJECTED"];
+        [statusString addAttribute:NSFontAttributeName
                               value:BrandonGrotesqueBold14
-                              range:NSMakeRange(0, declineString.length)];
-        [declineString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, declineString.length)];
-        [textString appendAttributedString:declineString];
-        
-        if (offer.comment.length > 0){
+                              range:NSMakeRange(0, statusString.length)];
+        [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
+        [textString appendAttributedString:statusString];
+    } else if ([offer.status.ident intValue] == tsPending){
+        if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
-            
-            NSMutableAttributedString* commentString = [[NSMutableAttributedString alloc] initWithString:offer.comment];
-            [commentString addAttribute:NSFontAttributeName
-                                  value:HelveticaNeue14
-                                  range:NSMakeRange(0, commentString.length)];
-            [commentString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, commentString.length)];
-            [textString appendAttributedString:commentString];
-        }
-        
-    }else if ([offer.status.ident intValue] == tsPending){
-        NSMutableAttributedString* pendingString = [[NSMutableAttributedString alloc] initWithString:@"WAITING RESPONSE"];
-        [pendingString addAttribute:NSFontAttributeName
-                              value:BrandonGrotesqueBold14
-                              range:NSMakeRange(0, pendingString.length)];
-        [pendingString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, pendingString.length)];
-        [textString appendAttributedString:pendingString];
-    } else if ([offer.status.ident intValue] == tsCountered || [offer.status.ident intValue] == tsCounteredByByer){
 
-        
+        if (offer.isFromSeller){
+            cell.offerActionHeight.constant = 30.;
+        }else {
+            NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"WAITING RESPONSE"];
+            [statusString addAttribute:NSFontAttributeName
+                                  value:BrandonGrotesqueBold14
+                                  range:NSMakeRange(0, statusString.length)];
+            [statusString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, statusString.length)];
+            [textString appendAttributedString:statusString];
+        }
+    }else if ([offer.status.ident intValue] == tsCountered){
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
         
-        NSMutableAttributedString* declineString = [[NSMutableAttributedString alloc] initWithString:@"COUNTERED"];
-        [declineString addAttribute:NSFontAttributeName
-                              value:BrandonGrotesqueBold14
-                              range:NSMakeRange(0, declineString.length)];
-        [declineString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, declineString.length)];
-        [textString appendAttributedString:declineString];
-        
-        if (offer.comment.length > 0){
+        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"COUNTERED"];
+        [statusString addAttribute:NSFontAttributeName
+                             value:BrandonGrotesqueBold14
+                             range:NSMakeRange(0, statusString.length)];
+        [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
+        [textString appendAttributedString:statusString];
+    }else if ([offer.status.ident intValue] == tsCounteredByByer){
+        if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
-            
-            NSMutableAttributedString* commentString = [[NSMutableAttributedString alloc] initWithString:offer.comment];
-            [commentString addAttribute:NSFontAttributeName
-                                  value:HelveticaNeue14
-                                  range:NSMakeRange(0, commentString.length)];
-            [commentString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, commentString.length)];
-            [textString appendAttributedString:commentString];
-        }
+        
+        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"COUNTERED BY BYER"];
+        [statusString addAttribute:NSFontAttributeName
+                             value:BrandonGrotesqueBold14
+                             range:NSMakeRange(0, statusString.length)];
+        [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
+        [textString appendAttributedString:statusString];
     }
-    return textString;
+    
+//
+//    
+//    
+//    
+//    
+//    else if ([offer.status.ident intValue] == tsCounteredByByer){
+//        if (textString.length > 0)
+//            [textString appendAttributedString:[self spaceForFont]];
+//        
+//        if ([offer.statusForBuyer.ident intValue] == tsPending){
+//            NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"WAITING RESPONSE"];
+//            [statusString addAttribute:NSFontAttributeName
+//                                 value:BrandonGrotesqueBold14
+//                                 range:NSMakeRange(0, statusString.length)];
+//            [statusString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, statusString.length)];
+//            [textString appendAttributedString:statusString];
+//        }else{
+//            
+//        }
+//    }
+//    
+//    
+//    
+    
+    
+    
+//    else if ([offer.statusForBuyer.ident intValue] == tsPending || [offer.status.ident intValue] == tsCounteredByByer){
+//        
+//        if (textString.length > 0)
+//            [textString appendAttributedString:[self spaceForFont]];
+//        
+//        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"WAITING RESPONSE"];
+//        [statusString addAttribute:NSFontAttributeName
+//                              value:BrandonGrotesqueBold14
+//                              range:NSMakeRange(0, statusString.length)];
+//        [statusString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, statusString.length)];
+//        [textString appendAttributedString:statusString];
+//        
+//    } else if ([offer.statusForBuyer.ident intValue] == tsCountered && [offer.status.ident intValue] == tsPending){
+//        cell.offerActionHeight.constant = 30.;
+//    }else if ([offer.statusForBuyer.ident intValue] == tsCountered && [offer.status.ident intValue] == tsCountered){
+//        
+//        if (textString.length > 0)
+//            [textString appendAttributedString:[self spaceForFont]];
+//        
+//        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"COUNTERED"];
+//        [statusString addAttribute:NSFontAttributeName
+//                              value:BrandonGrotesqueBold14
+//                              range:NSMakeRange(0, statusString.length)];
+//        [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
+//        [textString appendAttributedString:statusString];
+//    }
+    
+
+    [cell.statusLabel setAttributedText:textString];
 }
 
 
@@ -141,26 +216,10 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TSOffer* offer = [_offers objectAtIndex:indexPath.row];
     
-    BuyingOfferTableViewCell* cell = (BuyingOfferTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"BuyingOfferTableViewCell"];
+    OfferTableViewCell* cell = (OfferTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"OfferTableViewCell"];
     cell.delegate = self;
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateStyle = kCFDateFormatterMediumStyle;
-    cell.dateCreatedLabel.text = [NSString stringWithFormat:@"Updated: %@", [dateFormatter stringFromDate:offer.dateUpdated]];
-    if ([offer.user.ident isEqualToNumber:[UserServiceManager sharedManager].getMe.ident]){
-        cell.offerTitleLabel.text = @"Your offer";
-    }else{
-        cell.offerTitleLabel.text = @"Buyer offer";
-    }
-    cell.offerCountLabel.text = [NSString stringWithFormat:@"%i%@", offer.quantity, _advert.packaging ? _advert.packaging.title: @""];
-    cell.offerPriceLabel.text = [NSString stringWithFormat:@"£%.02f", offer.price];
-    
-    cell.statusLabel.text = @"";
-    cell.mainActionHeight.constant = 0;
-    cell.offerActionHeight.constant = 0;
-    
-    NSMutableAttributedString* textString = [self fillOfferInformation:offer advert:_advert cell:cell];
-    [cell.statusLabel setAttributedText:textString];
+
+    [self configureCell:cell withOffer:offer advert:_advert];
     
     return cell;
 }
@@ -310,59 +369,85 @@
 //    return textString;
 //    
 //}
-//
-//-(void)updateOffer:(Offer*)offer compleate:(void(^)(NSError* error))compleate{
-//    //    [self showLoading];
-//    //    [[ServerConnectionHelper sharedInstance] updateOffer:offer compleate:^(NSError *error) {
-//    //        [self hideLoading];
-//    //        compleate(error);
-//    //    }];
-//}
-//
-//-(void)acceptOffer:(Offer*)offer{
-//    //    offer = offer.counterOffer;
-//    //    offer.status = [OfferStatus getEntityWithId:stAccept];
-//    //    [self updateOffer:offer compleate:^(NSError *error) {
-//    //        NSString* title = @"";
-//    //        NSString* text = @"Offer accepted";
-//    //        if (error){
-//    //            title = @"Error";
-//    //            text = ERROR_MESSAGE(error);
-//    //            offer.status = [OfferStatus getEntityWithId:stPending];
-//    //        }
-//    //
-//    //        [self showOkAlert:title text:text];
-//    //        [_buyingTableView reloadData];
-//    //    }];
-//}
-//
-//-(void)rejectOffer:(id)owner{
-//    //    NSInteger index = [_offers indexOfObjectPassingTest:^BOOL(Offer*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//    //        return obj.ident == _offerAlertView.tag;
-//    //    }];
-//    //    if (index != NSNotFound){
-//    //        Offer* offer = ((Offer*)[_offers objectAtIndex:index]).counterOffer;
-//    //        offer.status = [OfferStatus getEntityWithId:stDecline];
-//    //        offer.comment = _offerAlertView.commentTextView.text;
-//    //        [_offerAlertView removeFromSuperview];
-//    //        [self updateOffer:offer compleate:^(NSError *error) {
-//    //            NSString* title = @"";
-//    //            NSString* text = @"Offer rejected";
-//    //            if (error){
-//    //                title = @"Error";
-//    //                text = ERROR_MESSAGE(error);
-//    //                offer.status = [OfferStatus getEntityWithId:stPending];
-//    //            }
-//    //
-//    //            [self showOkAlert:title text:text];
-//    //            [_buyingTableView reloadData];
-//    //        }];
-//    //    }
-//}
+
+
+-(void)acceptOffer:(TSOffer*)offer{
+    [self showLoading];
+    [[OfferServiceManager sharedManager] acceptOffer:offer compleate:^(NSError *error) {
+        [self hideLoading];
+        NSString* title = @"";
+        NSString* text = @"Offer is accepted";
+        if (error){
+            title = @"Error";
+            text = ERROR_MESSAGE(error);
+        }
+        
+        [self showOkAlert:title text:text];
+        [_offersTableView reloadData];
+        
+    }];
+}
+
+-(void)rejectOffer:(id)owner{
+    NSInteger index = [_offers indexOfObjectPassingTest:^BOOL(TSOffer*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        return [obj.ident intValue] == _offerAlertView.tag;
+    }];
+    if (index != NSNotFound){
+        TSOffer* offer = [_offers objectAtIndex:index];
+        NSString* comment = _offerAlertView.commentTextView.text;
+        [_offerAlertView removeFromSuperview];
+        [self showLoading];
+        [[OfferServiceManager sharedManager] rejectOffer:offer withComment:comment compleate:^(NSError *error) {
+            [self hideLoading];
+            NSString* title = @"";
+            NSString* text = @"Offer is rejected";
+            if (error){
+                title = @"Error";
+                text = ERROR_MESSAGE(error);
+            }
+            
+            [self showOkAlert:title text:text];
+            [_offersTableView reloadData];
+            
+        }];
+    }
+}
+
+-(void)counterOffer:(id)owner{
+    float oPrice = [_offerAlertView.priceTextEdit.text floatValue];
+    int oQuantity = [_offerAlertView.qtyTextEdit.text intValue];
+    
+    NSInteger index = [_offers indexOfObjectPassingTest:^BOOL(TSOffer*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        return [obj.ident intValue] == _offerAlertView.tag;
+    }];
+    
+    if (index != NSNotFound && oPrice > 0 && oQuantity > 0){
+        TSOffer* offer = [_offers objectAtIndex:index];
+        
+        [_offerAlertView removeFromSuperview];
+        [self showLoading];
+        
+        
+        [[OfferServiceManager sharedManager] createCounterOffer:offer withCount:oQuantity price:oPrice withComment:_offerAlertView.commentTextView.text byByer:YES compleate:^(NSError *error) {
+            [self hideLoading];
+            NSString* title = @"";
+            NSString* text = @"Offer is countered.";
+            if (error){
+                title = @"Error";
+                text = ERROR_MESSAGE(error);
+            }else{
+                [_offers insertObject:offer.childOffers.lastObject atIndex:0];
+            }
+            
+            [self showOkAlert:title text:text];
+            [_offersTableView reloadData];
+        }];
+    }
+}
 
 -(void)hideAlertView:(id)owner{
-//    [_offerAlertView removeFromSuperview];
-//    _offerAlertView = nil;
+    [_offerAlertView removeFromSuperview];
+    _offerAlertView = nil;
     
     [_payView removeFromSuperview];
     _payView = nil;
@@ -449,41 +534,61 @@
 }
 
 -(void)acceptOfferAction:(UITableViewCell*)owner{
-    //    UIAlertController * alertController =   [UIAlertController
-    //                                             alertControllerWithTitle:@""
-    //                                             message:@"Accept offer?"
-    //                                             preferredStyle:UIAlertControllerStyleAlert];
-    //
-    //    [alertController addAction:[UIAlertAction actionWithTitle:@"Accept" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-    //        [self dismissViewControllerAnimated:NO completion:nil];
-    //        NSUInteger index = [_buyingTableView indexPathForCell:owner].row;
-    //        Offer* offer = [_offers objectAtIndex:index];
-    //        [self acceptOffer:offer];
-    //    }]];
-    //
-    //    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-    //        [self dismissViewControllerAnimated:YES completion:nil];
-    //    }]];
-    //
-    //    [self presentViewController:alertController animated:YES completion:nil];
     
+    UIAlertController * alertController =   [UIAlertController
+                                             alertControllerWithTitle:@""
+                                             message:@"Accept offer?"
+                                             preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Accept" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self dismissViewControllerAnimated:NO completion:nil];
+        NSInteger index = [_offersTableView indexPathForCell:owner].row;
+        TSOffer* offer = [_offers objectAtIndex:index];
+        [self acceptOffer:offer];
+    }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
--(void)rejectOfferAction:(UITableViewCell*)owner{
-    //    _offerAlertView =  [OfferActionView loadFromXib];
-    //    _offerAlertView.frame = self.navigationController.view.bounds;
-    //
-    //    _offerAlertView.titleLabel.text = @"Reject offer.";
-    //    _offerAlertView.priceQtyHeightConstraints.constant = 0;
-    //    NSUInteger index = [_buyingTableView indexPathForCell:owner].row;
-    //    Offer* offer = [_offers objectAtIndex:index];
-    //    _offerAlertView.tag = offer.ident;
-    //    [_offerAlertView.cancelButton addTarget:self action:@selector(hideAlertView:) forControlEvents:UIControlEventTouchUpInside];
-    //    [_offerAlertView.sendButton addTarget:self action:@selector(rejectOffer:) forControlEvents:UIControlEventTouchUpInside];
-    //
-    //    [self.navigationController.view addSubview:_offerAlertView];
-    //    
-    //    [_offerAlertView.commentTextView becomeFirstResponder];
+-(void)rejectOfferAction:(OfferTableViewCell*)owner{
+    _offerAlertView =  [OfferActionView loadFromXib];
+    _offerAlertView.frame = self.navigationController.view.bounds;
+    
+    _offerAlertView.titleLabel.text = @"Reject offer.";
+    _offerAlertView.priceQtyHeightConstraints.constant = 0;
+    NSInteger index = [_offersTableView indexPathForCell:owner].row;
+    TSOffer* offer = [_offers objectAtIndex:index];
+    _offerAlertView.tag = [offer.ident intValue];
+    [_offerAlertView.cancelButton addTarget:self action:@selector(hideAlertView:) forControlEvents:UIControlEventTouchUpInside];
+    [_offerAlertView.sendButton addTarget:self action:@selector(rejectOffer:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.navigationController.view addSubview:_offerAlertView];
+    
+    [_offerAlertView.commentTextView becomeFirstResponder];
 }
+
+-(void)counterOfferAction:(OfferTableViewCell*)owner{
+    _offerAlertView =  [OfferActionView loadFromXib];
+    _offerAlertView.frame = self.navigationController.view.bounds;
+    
+    _offerAlertView.titleLabel.text = @"Counter offer.";
+    NSUInteger index = [_offersTableView indexPathForCell:owner].row;
+    TSOffer* offer = [_offers objectAtIndex:index];
+    _offerAlertView.tag = [offer.ident intValue];
+    [_offerAlertView.cancelButton addTarget:self action:@selector(hideAlertView:) forControlEvents:UIControlEventTouchUpInside];
+    [_offerAlertView.sendButton addTarget:self action:@selector(counterOffer:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.navigationController.view addSubview:_offerAlertView];
+    
+    _offerAlertView.priceTypeLabel.text = @"£";
+    _offerAlertView.qtytypeLabel.text = _advert.packaging ? _advert.packaging.title: @"";
+    
+    [_offerAlertView.priceTextEdit becomeFirstResponder];
+}
+
 
 @end

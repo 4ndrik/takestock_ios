@@ -379,6 +379,17 @@ typedef enum
 
 #pragma mark - Offers
 
+-(void)loadOffer:(NSNumber*)offerId compleate:(tsResultBlock)compleate{
+    NSString* query = @"view=child_offers";
+    NSURLSessionDataTask* loadOffersTask = [_session dataTaskWithRequest:[self request:[NSString stringWithFormat:@"%@/%@", OFFERS_URL_PATH, offerId] query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        if (!error){
+            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        }
+        compleate(result, error);
+    }];
+    [loadOffersTask resume];
+}
+
 -(void)loadOffersWithAdvert:(NSNumber*)advertId page:(int)page compleate:(tsResultBlock)compleate{
     NSString* query = [NSString stringWithFormat:@"adverts=%@&page=%i&o=-updated_at", advertId, page];
     NSURLSessionDataTask* loadOffersTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
@@ -391,7 +402,7 @@ typedef enum
 }
 
 -(void)loadMyOffersWithPage:(int)page compleate:(tsResultBlock)compleate{
-    NSString* query = [NSString stringWithFormat:@"for=self&view=child_offers&page=%i&o=-updated_at", page];
+    NSString* query = [NSString stringWithFormat:@"for=self&view=child_offers&page=%i&o=-updated_at&in=from_buyer", page];
     NSURLSessionDataTask* loadOffersTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         if (!error){
             [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];

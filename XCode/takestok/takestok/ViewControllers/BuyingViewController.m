@@ -43,6 +43,13 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [_offers removeAllObjects];
+    [_adverts removeAllObjects];
+    [_buyingTableView reloadData];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     [self reloadData:nil];
 }
 
@@ -52,6 +59,12 @@
     [_adverts removeAllObjects];
     [_buyingTableView reloadData];
     [_refreshControl beginRefreshing];
+    
+    if (_buyingTableView.contentOffset.y == 0) {
+        [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^(void){
+            _buyingTableView.contentOffset = CGPointMake(0, -_refreshControl.frame.size.height);
+        } completion:nil];
+    }
     [self loadData];
 }
 
@@ -116,33 +129,21 @@
     cell.offerPriceLabel.text = [NSString stringWithFormat:@"£%.02f", offer.price];
     cell.offerCountLabel.text = [NSString stringWithFormat:@"%i%@", offer.quantity, advert.packaging ? advert.packaging.title: @""];
     
-    if ([offer.status.ident intValue] == tsAccept){
+    if ([offer.statusForBuyer.ident intValue] == tsAccept){
         cell.offerTextLabel.text = @"WAITING FOR PAYMENT";
         cell.offerTextLabel.textColor = [UIColor redColor];
-    }else if ([offer.status.ident intValue] == tsDecline){
-
+    }else if ([offer.statusForBuyer.ident intValue] == tsDecline){
         cell.offerTextLabel.text = @"REJECTED";
         cell.offerTextLabel.textColor = [UIColor blackColor];
-
-//        if (offer.comment.length > 0){
-//            [textString appendAttributedString:[self spaceForFont]];
-//
-//            NSMutableAttributedString* commentString = [[NSMutableAttributedString alloc] initWithString:offer.comment];
-//            [commentString addAttribute:NSFontAttributeName
-//                                  value:HelveticaNeue14
-//                                  range:NSMakeRange(0, commentString.length)];
-//            [commentString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, commentString.length)];
-//            [textString appendAttributedString:commentString];
-//        }
-        
-    }else if([offer.status.ident intValue] == tsPending){
-        if ([offer.user.ident isEqual:[[UserServiceManager sharedManager] getMe].ident]){
-            cell.offerTextLabel.text = @"PENDING";
-            cell.offerTextLabel.textColor = [UIColor blackColor];
-        }else{
+    }else if([offer.statusForBuyer.ident intValue] == tsPending || [offer.statusForBuyer.ident intValue] == tsCounteredByByer){
+            cell.offerTextLabel.text = @"WAITING RESPONSE";
+            cell.offerTextLabel.textColor = OliveMainColor;
+    }else if([offer.statusForBuyer.ident intValue] == tsCountered){
             cell.offerTextLabel.text = @"RESPONSE NEEDED";
             cell.offerTextLabel.textColor = [UIColor redColor];
-        }
+    }else {
+        cell.offerTextLabel.text = @"HANDLE";
+        cell.offerTextLabel.textColor = [UIColor redColor];
     }
     
     

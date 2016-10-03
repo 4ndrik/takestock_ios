@@ -12,11 +12,13 @@
 @class TSAdvert;
 @class TSOffer;
 @class PayDestAddressOfferView;
+@class OfferActionView;
 
 @interface BuyingOffersViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, OfferActionDelegate>{
     __weak IBOutlet UITableView *_offersTableView;
     TSAdvert* _advert;
-    NSArray* _offers;
+    NSMutableArray* _offers;
+    OfferActionView* _offerAlertView;
     
     PayDestAddressOfferView* _payView;
 }

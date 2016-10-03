@@ -26,7 +26,6 @@
 		AC19114F1CE1E74000C5A4A5 /* NSData+base64.m in Sources */ = {isa = PBXBuildFile; fileRef = AC19114E1CE1E74000C5A4A5 /* NSData+base64.m */; };
 		AC1911521CE22D6C00C5A4A5 /* SortData.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1911511CE22D6C00C5A4A5 /* SortData.m */; };
 		AC1F544D1CCE45350093848B /* OfferManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1F544C1CCE45350093848B /* OfferManagerViewController.m */; };
-		AC1F54501CCE455D0093848B /* OfferTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1F544F1CCE455D0093848B /* OfferTableViewCell.m */; };
 		AC1F54531CCE484F0093848B /* OfferTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1F54521CCE484F0093848B /* OfferTitleView.m */; };
 		AC1F54551CCE48630093848B /* OfferTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC1F54541CCE48630093848B /* OfferTitleView.xib */; };
 		AC1F54581CCE495E0093848B /* TopBottomStripesLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1F54571CCE495E0093848B /* TopBottomStripesLabel.m */; };
@@ -116,7 +115,7 @@
 		ACBC484F1D9A850C00E061EF /* Advert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBC484E1D9A850C00E061EF /* Advert.storyboard */; };
 		ACBC48511D9A862400E061EF /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBC48501D9A862400E061EF /* User.storyboard */; };
 		ACBC48531D9A866900E061EF /* Lists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBC48521D9A866900E061EF /* Lists.storyboard */; };
-		ACBC48561D9ABE7800E061EF /* BuyingOfferTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACBC48551D9ABE7800E061EF /* BuyingOfferTableViewCell.m */; };
+		ACBC48561D9ABE7800E061EF /* OfferTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACBC48551D9ABE7800E061EF /* OfferTableViewCell.m */; };
 		ACC6F21F1D0EB72200F1B6F5 /* TakeStokRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F21E1D0EB72200F1B6F5 /* TakeStokRootViewController.m */; };
 		ACC6F2221D0EBFCE00F1B6F5 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F2211D0EBFCE00F1B6F5 /* MenuViewController.m */; };
 		ACC6F2251D0EC1B600F1B6F5 /* ActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F2241D0EC1B600F1B6F5 /* ActionItem.m */; };
@@ -135,6 +134,7 @@
 		ACCE7FD31CDCD38200A76CB6 /* AskQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACCE7FD21CDCD38200A76CB6 /* AskQuestionView.xib */; };
 		ACCE7FD61CDCDB6B00A76CB6 /* QATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCE7FD51CDCDB6B00A76CB6 /* QATableViewCell.m */; };
 		ACCF26A21CF7395000BA55A9 /* UserDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCF26A11CF7395000BA55A9 /* UserDetailsViewController.m */; };
+		ACD646E41D9D2F47006B5B78 /* OfferTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACD646E31D9D2F47006B5B78 /* OfferTableViewCell.xib */; };
 		ACD65F541D23D204005D3967 /* WatchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD65F531D23D204005D3967 /* WatchTableViewCell.m */; };
 		ACDA2ECD1CEF28A3009F51A0 /* OfferActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDA2ECC1CEF28A3009F51A0 /* OfferActionView.m */; };
 		ACDA2ECF1CEF28B8009F51A0 /* OfferActionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACDA2ECE1CEF28B8009F51A0 /* OfferActionView.xib */; };
@@ -202,8 +202,6 @@
 		AC1911511CE22D6C00C5A4A5 /* SortData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortData.m; sourceTree = "<group>"; };
 		AC1F544B1CCE45350093848B /* OfferManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferManagerViewController.h; sourceTree = "<group>"; };
 		AC1F544C1CCE45350093848B /* OfferManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferManagerViewController.m; sourceTree = "<group>"; };
-		AC1F544E1CCE455D0093848B /* OfferTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferTableViewCell.h; sourceTree = "<group>"; };
-		AC1F544F1CCE455D0093848B /* OfferTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferTableViewCell.m; sourceTree = "<group>"; };
 		AC1F54511CCE484F0093848B /* OfferTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferTitleView.h; sourceTree = "<group>"; };
 		AC1F54521CCE484F0093848B /* OfferTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferTitleView.m; sourceTree = "<group>"; };
 		AC1F54541CCE48630093848B /* OfferTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfferTitleView.xib; sourceTree = "<group>"; };
@@ -374,8 +372,8 @@
 		ACBC484E1D9A850C00E061EF /* Advert.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Advert.storyboard; path = Storyboards/Advert.storyboard; sourceTree = "<group>"; };
 		ACBC48501D9A862400E061EF /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = User.storyboard; path = Storyboards/User.storyboard; sourceTree = "<group>"; };
 		ACBC48521D9A866900E061EF /* Lists.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Lists.storyboard; path = Storyboards/Lists.storyboard; sourceTree = "<group>"; };
-		ACBC48541D9ABE7800E061EF /* BuyingOfferTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyingOfferTableViewCell.h; sourceTree = "<group>"; };
-		ACBC48551D9ABE7800E061EF /* BuyingOfferTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyingOfferTableViewCell.m; sourceTree = "<group>"; };
+		ACBC48541D9ABE7800E061EF /* OfferTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferTableViewCell.h; sourceTree = "<group>"; };
+		ACBC48551D9ABE7800E061EF /* OfferTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferTableViewCell.m; sourceTree = "<group>"; };
 		ACC6F21D1D0EB72200F1B6F5 /* TakeStokRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakeStokRootViewController.h; sourceTree = "<group>"; };
 		ACC6F21E1D0EB72200F1B6F5 /* TakeStokRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeStokRootViewController.m; sourceTree = "<group>"; };
 		ACC6F2201D0EBFCE00F1B6F5 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
@@ -407,6 +405,7 @@
 		ACCE7FD51CDCDB6B00A76CB6 /* QATableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QATableViewCell.m; sourceTree = "<group>"; };
 		ACCF26A01CF7395000BA55A9 /* UserDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailsViewController.h; sourceTree = "<group>"; };
 		ACCF26A11CF7395000BA55A9 /* UserDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsViewController.m; sourceTree = "<group>"; };
+		ACD646E31D9D2F47006B5B78 /* OfferTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfferTableViewCell.xib; sourceTree = "<group>"; };
 		ACD65F521D23D204005D3967 /* WatchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchTableViewCell.h; sourceTree = "<group>"; };
 		ACD65F531D23D204005D3967 /* WatchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchTableViewCell.m; sourceTree = "<group>"; };
 		ACDA2ECB1CEF28A3009F51A0 /* OfferActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferActionView.h; sourceTree = "<group>"; };
@@ -762,6 +761,9 @@
 				AC049D181CB7C99B006A8F21 /* Photo */,
 				AC76862A1D06B15200DD7490 /* Search */,
 				AC58CDA61CF30C7300A2210A /* OfferActionDelegate.h */,
+				ACBC48541D9ABE7800E061EF /* OfferTableViewCell.h */,
+				ACBC48551D9ABE7800E061EF /* OfferTableViewCell.m */,
+				ACD646E31D9D2F47006B5B78 /* OfferTableViewCell.xib */,
 				AC7686291D06B10200DD7490 /* Buying */,
 				AC76862C1D06B1B100DD7490 /* Selling */,
 				AC76862B1D06B17200DD7490 /* QA */,
@@ -852,8 +854,6 @@
 			children = (
 				AC411E5C1CC7D2C9008B1E38 /* BuyingTableViewCell.h */,
 				AC411E5D1CC7D2C9008B1E38 /* BuyingTableViewCell.m */,
-				ACBC48541D9ABE7800E061EF /* BuyingOfferTableViewCell.h */,
-				ACBC48551D9ABE7800E061EF /* BuyingOfferTableViewCell.m */,
 			);
 			name = Buying;
 			sourceTree = "<group>";
@@ -893,8 +893,6 @@
 				AC1F54511CCE484F0093848B /* OfferTitleView.h */,
 				AC1F54521CCE484F0093848B /* OfferTitleView.m */,
 				AC1F54541CCE48630093848B /* OfferTitleView.xib */,
-				AC1F544E1CCE455D0093848B /* OfferTableViewCell.h */,
-				AC1F544F1CCE455D0093848B /* OfferTableViewCell.m */,
 			);
 			name = Selling;
 			sourceTree = "<group>";
@@ -1156,6 +1154,7 @@
 				ACC6F23B1D0FFBB400F1B6F5 /* LegalInfo.html in Resources */,
 				ACCE7FD31CDCD38200A76CB6 /* AskQuestionView.xib in Resources */,
 				AC411E381CC0F170008B1E38 /* SearchFilterSortView.xib in Resources */,
+				ACD646E41D9D2F47006B5B78 /* OfferTableViewCell.xib in Resources */,
 				ACC6F2331D0EFF5300F1B6F5 /* ContactUs.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1259,7 +1258,6 @@
 				ACA2E8D01CE5BEDD00BAB401 /* OfferStatus.m in Sources */,
 				AC049D0B1CB7C490006A8F21 /* BaseViewController.m in Sources */,
 				AC049D051CB7C449006A8F21 /* SearchViewController.m in Sources */,
-				AC1F54501CCE455D0093848B /* OfferTableViewCell.m in Sources */,
 				ACD65F541D23D204005D3967 /* WatchTableViewCell.m in Sources */,
 				AC7ADD4B1D2A5FDA00E0FBC9 /* PayDestAddressOfferView.m in Sources */,
 				ACFCB6BD1CDA5047005A4024 /* AppSettings.m in Sources */,
@@ -1332,7 +1330,7 @@
 				AC68C4891CB6534A004B78DF /* UIImage+ExtendedImage.m in Sources */,
 				ACC6F22E1D0EEE7000F1B6F5 /* AboutUsViewController.m in Sources */,
 				AC411E2C1CBFB832008B1E38 /* ImageLoader.m in Sources */,
-				ACBC48561D9ABE7800E061EF /* BuyingOfferTableViewCell.m in Sources */,
+				ACBC48561D9ABE7800E061EF /* OfferTableViewCell.m in Sources */,
 				ACA2E8D21CE5BEDD00BAB401 /* Offer.m in Sources */,
 				AC68C4601CB51C1F004B78DF /* AppDelegate.m in Sources */,
 				ACA42F7C1D1AC7CD00C586BB /* BusinessType.m in Sources */,

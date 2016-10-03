@@ -22,10 +22,13 @@
 #define OFFER_USER_DETAILED_PARAM       @"user_detailed"
 #define OFFER_USER_PARAM                @"user"
 #define OFFER_STATUS_PARAM              @"status"
+#define OFFER_BUYER_STATUS_PARAM        @"status_for_buyer"
 #define OFFER_COMMENT_PARAM             @"comment"
 
 #define OFFER_DATE_CREATED_PARAM        @"created_at"
 #define OFFER_DATE_UPDATED_PARAM        @"updated_at"
+
+#define OFFER_FROM_SELLER_PARAM         @"from_seller"
 
 @implementation TSOffer
 
@@ -39,6 +42,8 @@
 @synthesize dateUpdated = _dateUpdated;
 @synthesize status = _status;
 @synthesize comment = _comment;
+@synthesize statusForBuyer = _statusForBuyer;
+@synthesize isFromSeller = _isFromSeller;
 
 -(void)updateWithDic:(NSDictionary*)dict{
     _ident = [TSOffer identFromDic:dict];
@@ -60,6 +65,11 @@
     if (offerStatusId)
         _status = [[OfferServiceManager sharedManager] getOfferStatus:offerStatusId];
     
+    NSNumber* buyerStatusId = [dict objectForKeyNotNull:OFFER_BUYER_STATUS_PARAM];
+    if (buyerStatusId)
+        _statusForBuyer = [[OfferServiceManager sharedManager] getOfferStatus:buyerStatusId];
+    
+    
     if ([dict objectForKeyNotNull:OFFER_COMMENT_PARAM])
         _comment = [dict objectForKeyNotNull:OFFER_COMMENT_PARAM];
     
@@ -70,11 +80,15 @@
     //CHILD
     
     NSMutableArray* childOffers = [NSMutableArray array];
-    for (NSDictionary* chdic in [dict objectForKeyNotNull:OFFER_CHILD_OFFERS_PARAM]){
-        TSOffer* offer = [TSOffer objectWithDictionary:chdic];
-        [childOffers addObject:offer];
+    for (id chdic in [dict objectForKeyNotNull:OFFER_CHILD_OFFERS_PARAM]){
+        if ([chdic isKindOfClass:[NSDictionary class]]){
+            TSOffer* offer = [TSOffer objectWithDictionary:chdic];
+            [childOffers addObject:offer];
+        }
     }
     _childOffers = childOffers;
+    
+    _isFromSeller = [[dict objectForKeyNotNull:OFFER_FROM_SELLER_PARAM] boolValue];
 }
 
 +(NSNumber*)identFromDic:(NSDictionary*)dict{

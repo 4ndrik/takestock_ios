@@ -41,7 +41,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [Stripe setDefaultPublishableKey:@"pk_test_NCwfKANZ66zUvSwPTY3THQ0m"];
+    [Stripe setDefaultPublishableKey:@"pk_test_qevXdEtyHKRjlP1WOXLcsd0s"];
     // Override point for customization after application launch.
     
 //    NSArray *fontFamilies = [UIFont familyNames];

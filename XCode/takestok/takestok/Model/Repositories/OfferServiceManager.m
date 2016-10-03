@@ -160,11 +160,21 @@ static OfferServiceManager *_manager = nil;
     [dic setValue:offer.ident forKey:@"offer"];
     [dic setValue:[NSNumber numberWithInteger:tsAccept] forKey:@"status"];
     [[ServerConnectionHelper sharedInstance] updateOffer:dic compleate:^(id result, NSError *error) {
-        if (!error)
-            [offer updateWithDic:result];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            compleate(error);
-        });
+        if (!error){
+            [[ServerConnectionHelper sharedInstance] loadOffer:offer.ident compleate:^(id result, NSError *error) {
+                if (!error){
+                    [offer updateWithDic:result];
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    compleate(error);
+                });
+            }];
+        }
+        else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                compleate(error);
+            });
+        }
     }];
 }
 
@@ -175,11 +185,48 @@ static OfferServiceManager *_manager = nil;
     [dic setValue:comment forKey:@"comment"];
     
     [[ServerConnectionHelper sharedInstance] updateOffer:dic compleate:^(id result, NSError *error) {
-        if (!error)
-            [offer updateWithDic:result];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            compleate(error);
-        });
+        if (!error){
+            [[ServerConnectionHelper sharedInstance] loadOffer:offer.ident compleate:^(id result, NSError *error) {
+                if (!error){
+                    [offer updateWithDic:result];
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    compleate(error);
+                });
+            }];
+        }
+        else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                compleate(error);
+            });
+        }
+    }];
+}
+
+-(void)createCounterOffer:(TSOffer*)offer withCount:(int)count price:(float)price withComment:(NSString*)comment byByer:(BOOL)isBuyer compleate:(errorBlock)compleate{
+    NSMutableDictionary* dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:offer.ident forKey:@"offer"];
+    [dic setValue:[NSNumber numberWithInteger:isBuyer ? tsCounteredByByer : tsCountered] forKey:@"status"];
+    [dic setValue:comment forKey:@"comment"];
+    [dic setValue:[NSNumber numberWithFloat:price] forKey:@"price"];
+    [dic setValue:[NSNumber numberWithInt:count] forKey:@"quantity"];
+    
+    [[ServerConnectionHelper sharedInstance] updateOffer:dic compleate:^(id result, NSError *error) {
+        if (!error){
+            [[ServerConnectionHelper sharedInstance] loadOffer:offer.ident compleate:^(id result, NSError *error) {
+                if (!error){
+                    [offer updateWithDic:result];
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    compleate(error);
+                });
+            }];
+        }
+        else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                compleate(error);
+            });
+        }
     }];
 }
 

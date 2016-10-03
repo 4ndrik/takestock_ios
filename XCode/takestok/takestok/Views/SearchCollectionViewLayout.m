@@ -113,4 +113,13 @@
     return YES;
 }
 
+- (nullable UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath{
+    for (UICollectionViewLayoutAttributes* atribute in _layoutAtributes) {
+        if ([atribute.indexPath isEqual:indexPath]){
+            return atribute;
+        }
+    }
+    return nil;
+}
+
 @end

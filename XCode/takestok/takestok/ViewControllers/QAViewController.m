@@ -62,22 +62,24 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [_qaData removeAllObjects];
+    [_askTableView reloadData];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self reloadData:nil];
+}
 
 #pragma mark - Helpers
-
--(void)setAdvert:(TSAdvert*)advert{
-    _advert = advert;
-    if (self.isViewLoaded){
-        [self reloadData:nil];
-    }
-}
 
 - (IBAction)hideKeyboard:(id)sender {
     if ([_askQuestionView.questionTextView isFirstResponder]){
         [_askQuestionView.questionTextView resignFirstResponder];
     }
 }
-
 
 -(void)loadQA{
     [[QuestionAnswerServiceManager sharedManager] loadQuestionsAnswers:_advert page:_page compleate:^(NSArray *result, NSDictionary *additionalData, NSError *error) {
@@ -104,9 +106,14 @@
 -(void)reloadData:(id)owner{
     _qaData = [NSMutableArray array];
     _page = 1;
-    [_refreshControl beginRefreshing];
-    [self loadQA];
     [_askTableView reloadData];
+    [_refreshControl beginRefreshing];
+    if (_askTableView.contentOffset.y == 0) {
+        [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^(void){
+            _askTableView.contentOffset = CGPointMake(0, -_refreshControl.frame.size.height);
+        } completion:nil];
+    }
+    [self loadQA];
 }
 
 #pragma mark - Handle keyboard

@@ -39,6 +39,12 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [_adverts removeAllObjects];
+    [_sellingTableView reloadData];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     [self reloadData:nil];
 }
 
@@ -47,6 +53,11 @@
     [_adverts removeAllObjects];
     [_sellingTableView reloadData];
     [_refreshControl beginRefreshing];
+    if (_sellingTableView.contentOffset.y == 0) {
+        [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^(void){
+            _sellingTableView.contentOffset = CGPointMake(0, -_refreshControl.frame.size.height);
+        } completion:nil];
+    }
     [self loadData];
 }
 
