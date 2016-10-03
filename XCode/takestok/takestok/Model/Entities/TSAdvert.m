@@ -43,6 +43,7 @@
 #define ADVERT_NEW_QUESTIONS_PARAM         @"new_q_count"
 #define ADVERT_NEW_OFFERS_PARAM            @"new_offers_count"
 #define ADVERT_STATE_PARAM                 @"state"
+#define ADVERT_SUBSCRIBERS_PARAM           @"subscribers"
 
 @implementation TSAdvert
 
@@ -72,7 +73,7 @@
 @synthesize newQuestionsCount = _newQuestionsCount;
 @synthesize questionCount = _questionCount;
 @synthesize isInDrafts = _isInDrafts;
-@synthesize canOffer = _canOffer;
+@synthesize isInWatchList = _isInWatchList;
 @synthesize notifications = _notifications;
 @synthesize state = _state;
 
@@ -148,13 +149,20 @@
     _newQuestionsCount = [[dict objectForKeyNotNull:ADVERT_NEW_QUESTIONS_PARAM] intValue];
     _questionCount = [[dict objectForKeyNotNull:ADVERT_QUESTION_COUNT_PARAM] intValue];
     _isInDrafts = [[dict objectForKeyNotNull:ADVERT_IN_DRAFTS_PARAM] boolValue];
-    _canOffer = [[dict objectForKeyNotNull:ADVERT_CAN_OFFER_PARAM] boolValue];
+//    _canOffer = [[dict objectForKeyNotNull:ADVERT_CAN_OFFER_PARAM] boolValue];
     _notifications = [[dict objectForKeyNotNull:ADVERT_NOTIFICATIONS_PARAM] intValue];
     _offersCount = [[dict objectForKeyNotNull:ADVERT_OFFERS_COUNT_PARAM] intValue];
     
     NSNumber* stateIdent = [dict objectForKeyNotNull:ADVERT_STATE_PARAM];
     TSAdvertState* state = [[AdvertServiceManager sharedManager] getStateWithId:stateIdent];
     _state = state;
+    
+    for (NSNumber* userId in [dict objectForKeyNotNull:ADVERT_SUBSCRIBERS_PARAM]){
+        if ([userId isEqualToNumber:[[UserServiceManager sharedManager] getMe].ident]){
+            _isInWatchList = YES;
+            break;
+        }
+    }
     
 }
 

@@ -20,6 +20,7 @@
 #import "TSAdvertSubCategory.h"
 #import "TSAdvert.h"
 #import "UserServiceManager.h"
+#import "TSAdvert+Mutable.h"
 
 @implementation AdvertServiceManager
 
@@ -381,6 +382,22 @@ static AdvertServiceManager *_manager = nil;
             compleate(result, error);
         });
     }];
+}
+
+-(void)addToWatchList:(TSAdvert*)advert compleate:(errorBlock)compleate{
+    [[ServerConnectionHelper sharedInstance] addToWatchList:advert.ident compleate:^(id result, NSError *error) {
+        if(!error){
+            BOOL isWatchList = [[result objectForKeyNotNull:@"status"] isEqualToString:@"subscribed"];
+            advert.isInWatchList = isWatchList;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            compleate(error);
+        });
+    }];
+}
+
+-(void)removeFromWatchList:(TSAdvert*)advert compleate:(errorBlock)compleate{
+    
 }
 
 @end

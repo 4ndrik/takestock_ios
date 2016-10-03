@@ -276,6 +276,19 @@ typedef enum
     [dataTask resume];
 }
 
+-(void)addToWatchList:(NSNumber*)advertId compleate:(tsResultBlock)compleate{
+    NSMutableDictionary* paramsDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:advertId, @"item_id", nil];
+    NSError* error;
+    NSString* params = [self jsonStringFromDicOrArray:paramsDic error:&error];
+    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:ADD_TO_WATCH_LIST_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        if (!error){
+            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        }
+        compleate(result, error);
+    }];
+    [dataTask resume];
+}
+
 #pragma mark - QA
 
 -(void)loadQuestionAnswersWith:(NSNumber*)advertId page:(int)page compleate:(tsResultBlock)compleate{
@@ -803,24 +816,24 @@ typedef enum
 //    [dataTask resume];
 //}
 
--(void)addToWatchList:(Advert*)advert compleate:(void(^)(NSError* error))compleate{
-    NSMutableDictionary* paramsDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:advert.ident], @"advert_id", nil];
-    NSError* error;
-    NSString* params = [self jsonStringFromDicOrArray:paramsDic error:&error];
-    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:ADD_TO_WATCH_LIST_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
-        {
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                advert.inWatchList = [[result objectForKeyNotNull:@"status"] isEqualToString:@"subscribed"];
-                [self loadWatchList];
-            });
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            compleate(error);
-        });
-    }];
-    [dataTask resume];
-}
+//-(void)addToWatchList:(Advert*)advert compleate:(void(^)(NSError* error))compleate{
+//    NSMutableDictionary* paramsDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:advert.ident], @"advert_id", nil];
+//    NSError* error;
+//    NSString* params = [self jsonStringFromDicOrArray:paramsDic error:&error];
+//    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:ADD_TO_WATCH_LIST_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+//        if (![self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error])
+//        {
+//            dispatch_sync(dispatch_get_main_queue(), ^{
+//                advert.inWatchList = [[result objectForKeyNotNull:@"status"] isEqualToString:@"subscribed"];
+//                [self loadWatchList];
+//            });
+//        }
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            compleate(error);
+//        });
+//    }];
+//    [dataTask resume];
+//}
 
 #pragma mark - Offers
 -(void)loadBuyerOffers{

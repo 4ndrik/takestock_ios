@@ -56,6 +56,7 @@ typedef void (^tsResultBlock)(id result, NSError* error);
 -(void)loadAdvertsWithSort:(NSString*)sort search:(NSString*)search category:(NSNumber*)category subCategory:(NSNumber*)subCategory page:(int)page compleate:(tsResultBlock)compleate;
 -(void)createAdvert:(NSDictionary*)advertDic compleate:(tsResultBlock)compleate;
 -(void)editAdvertWithId:(NSNumber*)advertId withDic:(NSDictionary*)advertDic compleate:(tsResultBlock)compleate;
+-(void)addToWatchList:(NSNumber*)advertId compleate:(tsResultBlock)compleate;
 
 //QA
 -(void)loadQuestionAnswersWith:(NSNumber*)advertId page:(int)page compleate:(tsResultBlock)compleate;
@@ -81,7 +82,7 @@ typedef void (^tsResultBlock)(id result, NSError* error);
 -(void)loadRequiredData;
 
 -(void)loadAdvertsWithSortData:(SortData*)sortData searchString:(NSString*)searchString category:(Category*)category page:(int)page compleate:(resultBlock)compleate;
--(void)addToWatchList:(Advert*)advert compleate:(void(^)(NSError* error))compleate;
+//-(void)addToWatchList:(Advert*)advert compleate:(void(^)(NSError* error))compleate;
 
 //-(void)createOffer:(Offer*)offer compleate:(errorBlock)compleate;
 //-(void)updateOffer:(Offer*)offer compleate:(errorBlock)compleate;

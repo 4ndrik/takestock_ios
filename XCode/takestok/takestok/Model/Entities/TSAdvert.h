@@ -46,7 +46,7 @@
     int _newQuestionsCount;
     int _questionCount;
     BOOL _isInDrafts;
-    BOOL _canOffer;
+    BOOL _isInWatchList;
     int _notifications;
     TSAdvertState* _state;
 }
@@ -76,8 +76,8 @@
 @property (readonly, nonatomic, assign) int offersCount;
 @property (readonly, nonatomic, assign) int newQuestionsCount;
 @property (readonly, nonatomic, assign) int questionCount;
+@property (readonly, nonatomic, assign) BOOL isInWatchList;
 @property (readonly, nonatomic, assign) BOOL isInDrafts;
-@property (readonly, nonatomic, assign) BOOL canOffer;
 @property (readonly, nonatomic, assign) int notifications;
 @property (readonly, nonatomic, retain) TSAdvertState* state;
 

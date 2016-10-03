@@ -94,8 +94,8 @@
     _state = state;
 }
 
--(void)setCanOffer:(BOOL)canOffer{
-    _canOffer = canOffer;
+-(void)setIsInWatchList:(BOOL)isInWatchList{
+    _isInWatchList = isInWatchList;
 }
 
 //@property (readwrite, nonatomic, retain) NSArray* photos;

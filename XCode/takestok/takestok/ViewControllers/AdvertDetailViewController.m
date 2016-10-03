@@ -160,7 +160,7 @@
         _createAdvertViewHeight.constant = 0;
         _offerViewHeight.constant = 0;
     }else {
-        _offerViewHeight.constant = _advert.canOffer ? 43 : 0;
+        _offerViewHeight.constant = 43;
         _createAdvertViewHeight.constant = 0;
     }
     
@@ -190,7 +190,6 @@
             }else{
                 [self closeOfferPanel:nil];
                 _offerViewHeight.constant = 0;
-                _advert.canOffer = NO;
             }
             [self showOkAlert:title text:message];
         }];

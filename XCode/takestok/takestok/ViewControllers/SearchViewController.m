@@ -222,17 +222,18 @@
 }
 
 -(void)updateWatchList:(TSAdvert*)advert{
-//    [self showLoading];
-//    [[ServerConnectionHelper sharedInstance] addToWatchList:advert compleate:^(NSError *error){
-//        [self hideLoading];
-//        NSString* title = @"";
-//        NSString* message = advert.inWatchList ? @"Advert added to watch list" : @"Advert removed to watch list";
-//        if (error){
-//            title = @"Error";
-//            message = ERROR_MESSAGE(error);
-//        }
-//        [self showOkAlert:title text:message];
-//    }];
+    [self showLoading];
+    
+    [[AdvertServiceManager sharedManager] addToWatchList:advert compleate:^(NSError *error) {
+        [self hideLoading];
+        NSString* title = @"";
+        NSString* message = advert.isInWatchList ? @"Advert added to watch list" : @"Advert removed from watch list";
+        if (error){
+            title = @"Error";
+            message = ERROR_MESSAGE(error);
+        }
+        [self showOkAlert:title text:message];
+    }];
 }
 
 #pragma mark - CategoryProtocol
@@ -242,39 +243,39 @@
 }
 
 -(void)addRemoveWatchList:(SearchCollectionViewCell*)owner{
-//    if ([self checkUserLogin]){
-//        NSIndexPath* indexPath = [_searchCollectionView indexPathForCell:owner];
-//        Advert* advert = [_adverts objectAtIndex:indexPath.row];
-//        BOOL addToWatchList = !advert.inWatchList;
-//        NSString* message = addToWatchList ? @"Add to watch list?" : @"Remove from watch list?";
-//        UIAlertController* errorController = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
-//        
-//        UIAlertAction* yesAction = [UIAlertAction
-//                                    actionWithTitle:@"YES"
-//                                    style:UIAlertActionStyleDefault
-//                                    handler:^(UIAlertAction * action)
-//                                    {
-//                                        [self updateWatchList:advert];
-//                                        [owner.watchListButton setHighlighted:!advert.inWatchList];
-//                                        [errorController dismissViewControllerAnimated:YES completion:nil];
-//                                        
-//                                    }];
-//        
-//        UIAlertAction* noAction = [UIAlertAction
-//                                   actionWithTitle:@"NO"
-//                                   style:UIAlertActionStyleCancel
-//                                   handler:^(UIAlertAction * action)
-//                                   {
-//                                       [errorController dismissViewControllerAnimated:YES completion:nil];
-//                                       
-//                                   }];
-//        
-//        
-//        [errorController addAction:yesAction];
-//        [errorController addAction:noAction];
-//        
-//        [self presentViewController:errorController animated:YES completion:nil];
-//    }
+    if ([self checkUserLogin]){
+        NSIndexPath* indexPath = [_searchCollectionView indexPathForCell:owner];
+        TSAdvert* advert = [_adverts objectAtIndex:indexPath.row];
+        BOOL addToWatchList =  !advert.isInWatchList;
+        NSString* message = addToWatchList ? @"Add to watch list?" : @"Remove from watch list?";
+        UIAlertController* errorController = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* yesAction = [UIAlertAction
+                                    actionWithTitle:@"YES"
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * action)
+                                    {
+                                        [self updateWatchList:advert];
+                                        [owner.watchListButton setHighlighted:!advert.isInWatchList];
+                                        [errorController dismissViewControllerAnimated:YES completion:nil];
+                                        
+                                    }];
+        
+        UIAlertAction* noAction = [UIAlertAction
+                                   actionWithTitle:@"NO"
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction * action)
+                                   {
+                                       [errorController dismissViewControllerAnimated:YES completion:nil];
+                                       
+                                   }];
+        
+        
+        [errorController addAction:yesAction];
+        [errorController addAction:noAction];
+        
+        [self presentViewController:errorController animated:YES completion:nil];
+    }
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -314,7 +315,7 @@
     cell.dateLabel.text = adv.dateExpires ? [NSDate stringFromDate:adv.dateExpires] : @"N/A";
     
     cell.priceLabel.text = [NSString stringWithFormat:@"%.02f", adv.guidePrice];
-//    [cell.watchListButton setHighlighted:adv.is];
+    [cell.watchListButton setHighlighted:adv.isInWatchList];
 }
 
 -(int)heightForRowAtIndexPath:(NSIndexPath*)indexPath{

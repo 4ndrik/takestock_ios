@@ -118,13 +118,13 @@
                                                     <color key="textColor" red="0.64313725489999995" green="0.64705882349999999" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAg-dU-V57">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAg-dU-V57">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="6W9-T3-Cyu"/>
                                                         <constraint firstAttribute="height" constant="40" id="bah-oq-uOL"/>
                                                     </constraints>
-                                                    <state key="normal" backgroundImage="searchItemSeen"/>
-                                                    <state key="highlighted" backgroundImage="searchItemSeen"/>
+                                                    <state key="normal" image="searchItemSeen"/>
+                                                    <state key="highlighted" image="searchItemSeen"/>
                                                     <connections>
                                                         <action selector="removeFromWatchListAction:" destination="zWA-8b-s0v" eventType="touchUpInside" id="EKC-g4-TJb"/>
                                                     </connections>
@@ -238,9 +238,9 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="Z2y-jH-DEB"/>
-                                                    <exclude reference="vju-Zh-YNj"/>
                                                     <exclude reference="oqo-hX-cfx"/>
+                                                    <exclude reference="vju-Zh-YNj"/>
+                                                    <exclude reference="Z2y-jH-DEB"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
