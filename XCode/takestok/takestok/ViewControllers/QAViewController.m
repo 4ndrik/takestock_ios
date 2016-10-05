@@ -88,7 +88,7 @@
 -(void)loadQA{
     [[QuestionAnswerServiceManager sharedManager] loadQuestionsAnswers:_advert page:_page compleate:^(NSArray *result, NSDictionary *additionalData, NSError *error) {
         if (error){
-            [self showOkAlert:@"Error" text:ERROR_MESSAGE(error)];
+            [self showOkAlert:@"Error" text:ERROR_MESSAGE(error) compleate:nil];
         }
         else
         {
@@ -215,7 +215,7 @@
 -(void)askQuestion{
     if ([self checkUserLogin]){
         if (_askQuestionView.questionTextView.text.length == 0){
-            [self showOkAlert:@"" text:@"Message is empty"];
+            [self showOkAlert:@"" text:@"Message is empty" compleate:nil];
         }else{
             
             TSQuestion* question = [[TSQuestion alloc] init];
@@ -241,7 +241,7 @@
                     [_askTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
                     _askQuestionView.questionTextView.text = @"";
                 }
-                [self showOkAlert:title text:message];
+                [self showOkAlert:title text:message compleate:nil];
             }];
         }
     }
@@ -271,7 +271,7 @@
                 [self reloadData:nil];
                 [_askTableView reloadData];
             }
-            [self showOkAlert:title text:message];
+            [self showOkAlert:title text:message compleate:nil];
         }];
     }
 }

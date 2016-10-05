@@ -15,7 +15,6 @@
 #import "TSOffer.h"
 #import "TSOfferStatus.h"
 #import "ServerConnectionHelper.h"
-#import "OfferStatus.h"
 #import "OfferActionView.h"
 #import "PaddingTextField.h"
 #import "ShippingInfoActionView.h"
@@ -79,7 +78,7 @@
 -(void)loadData{
     [[OfferServiceManager sharedManager] loadOffersForAdvert:_advert page:_page compleate:^(NSArray *result, NSDictionary *additionalData, NSError *error) {
         if (error){
-            [self showOkAlert:@"Error" text:ERROR_MESSAGE(error)];
+            [self showOkAlert:@"Error" text:ERROR_MESSAGE(error) compleate:nil];
         }
         else
         {
@@ -287,7 +286,7 @@
             text = ERROR_MESSAGE(error);
         }
 
-        [self showOkAlert:title text:text];
+        [self showOkAlert:title text:text compleate:nil];
         [_offersTableView reloadData];
 
     }];
@@ -311,7 +310,7 @@
                 text = ERROR_MESSAGE(error);
             }
             
-            [self showOkAlert:title text:text];
+            [self showOkAlert:title text:text compleate:nil];
             [_offersTableView reloadData];
 
         }];
@@ -344,7 +343,7 @@
                 [_offers insertObject:offer.childOffers.lastObject atIndex:0];
             }
             
-            [self showOkAlert:title text:text];
+            [self showOkAlert:title text:text compleate:nil];
             [_offersTableView reloadData];
         }];
     }

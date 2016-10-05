@@ -30,7 +30,6 @@
 #import "AdvertServiceManager.h"
 #import "TSAdvert+Mutable.h"
 #import "OfferServiceManager.h"
-#import "OfferStatus.h"
 #import "TSAdvert+Mutable.h"
 
 @interface AdvertDetailViewController ()
@@ -186,7 +185,7 @@
                 [self closeOfferPanel:nil];
                 _offerViewHeight.constant = 0;
             }
-            [self showOkAlert:title text:message];
+            [self showOkAlert:title text:message compleate:nil];
         }];
     }else{
         _offerPriceLabel.text = [NSString stringWithFormat:@"£/%@", _advert.packaging.title];

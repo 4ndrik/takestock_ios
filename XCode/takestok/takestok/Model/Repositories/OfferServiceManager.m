@@ -292,7 +292,7 @@ static OfferServiceManager *_manager = nil;
 
 -(void)setShippingInfo:(TSShippingInfo*)shipping withOffer:(TSOffer*)offer compleate:(errorBlock)compleate{
     NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:[shipping dictionaryForShipping]];
-    [dic setValue:[_offerStatuses objectForKey:[NSNumber numberWithInt:tsAddressReceived]] forKey:@"status"];
+    [dic setValue:((TSOfferStatus*)[_offerStatuses objectForKey:[NSNumber numberWithInt:tsAddressReceived]]).ident forKey:@"status"];
     [[ServerConnectionHelper sharedInstance] updateOffer:dic compleate:^(id result, NSError *error) {
         if (!error){
             [[ServerConnectionHelper sharedInstance] loadOffer:offer.ident compleate:^(id result, NSError *error) {

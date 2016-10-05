@@ -141,8 +141,12 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     ActionItem* action = [_menuItems objectAtIndex:indexPath.row];
-    if (action.action)
-        [self performSelector:action.action withObject:nil];
+    if (action.action){
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            [self performSelector:action.action withObject:nil];
+        #pragma clang diagnostic pop
+    }
     
 }
 

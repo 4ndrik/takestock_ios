@@ -117,7 +117,7 @@
 -(void)loadData{
     [[AdvertServiceManager sharedManager] loadAdverts:_sortData search:_searchText category:_searchCategory page:_page compleate:^(NSArray *result, NSDictionary *additionalData, NSError *error) {
         if (error){
-            [self showOkAlert:@"Error" text:ERROR_MESSAGE(error)];
+            [self showOkAlert:@"Error" text:ERROR_MESSAGE(error) compleate:nil];
         }
         else
         {
@@ -232,7 +232,7 @@
             title = @"Error";
             message = ERROR_MESSAGE(error);
         }
-        [self showOkAlert:title text:message];
+        [self showOkAlert:title text:message compleate:nil];
     }];
 }
 

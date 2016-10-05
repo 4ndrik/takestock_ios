@@ -24,6 +24,6 @@
 
 -(BOOL)checkUserLogin;
 
--(void)showOkAlert:(NSString*)title text:(NSString*)text;
+-(void)showOkAlert:(NSString*)title text:(NSString*)text compleate:(void(^)())compleate;
 
 @end

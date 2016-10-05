@@ -51,6 +51,11 @@
     _offersTableView.estimatedRowHeight = 150;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [_offersTableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -234,7 +239,7 @@
             text = ERROR_MESSAGE(error);
         }
         
-        [self showOkAlert:title text:text];
+        [self showOkAlert:title text:text compleate:nil];
         [_offersTableView reloadData];
     }];
 }
@@ -257,7 +262,7 @@
                 text = ERROR_MESSAGE(error);
             }
             
-            [self showOkAlert:title text:text];
+            [self showOkAlert:title text:text compleate:nil];
             [_offersTableView reloadData];
             
         }];
@@ -290,7 +295,7 @@
                 [_offers insertObject:offer.childOffers.lastObject atIndex:0];
             }
             
-            [self showOkAlert:title text:text];
+            [self showOkAlert:title text:text compleate:nil];
             [_offersTableView reloadData];
         }];
     }
@@ -315,7 +320,7 @@
     }
     
     if (message.length > 0){
-        [self showOkAlert:@"" text:message];
+        [self showOkAlert:@"" text:message compleate:nil];
         return NO;
         
     }else{
@@ -331,7 +336,7 @@
          completion:^(STPToken *token, NSError *error) {
              if (error) {
                  [self hideLoading];
-                 [self showOkAlert:@"" text:[error localizedDescription]];
+                 [self showOkAlert:@"" text:[error localizedDescription] compleate:nil] ;
              } else {
                  NSUInteger index = [_offers indexOfObjectPassingTest:^BOOL(TSOffer*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                      return [obj.ident intValue] == (int)_payView.tag;
@@ -348,7 +353,7 @@
                      else{
                          [self hideAlertView:nil];
                      }
-                     [self showOkAlert:title text:message];
+                     [self showOkAlert:title text:message compleate:nil];
                      [_offersTableView reloadData];
                  }];
              }

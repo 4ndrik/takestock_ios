@@ -7,7 +7,6 @@
 //
 
 #import "BaseViewController.h"
-#import "Advert.h"
 #import "OfferTableViewCell.h"
 
 @class TSAdvert;

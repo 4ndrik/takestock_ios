@@ -159,7 +159,7 @@
     }
 }
 
--(void)showOkAlert:(NSString*)title text:(NSString*)text{
+-(void)showOkAlert:(NSString*)title text:(NSString*)text compleate:(void(^)())compleate{
     UIAlertController * alertController =   [UIAlertController
                                              alertControllerWithTitle:title
                                              message:text
@@ -167,6 +167,8 @@
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
         [self dismissViewControllerAnimated:YES completion:nil];
+        if (compleate)
+            compleate();
     }]];
     
     [self presentViewController:alertController animated:YES completion:nil];

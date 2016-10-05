@@ -106,7 +106,7 @@
     }
     
     if (message.length > 0){
-        [self showOkAlert:@"" text:message];
+        [self showOkAlert:@"" text:message compleate:nil];
         return NO;
     }else{
         return YES;
@@ -137,9 +137,13 @@
                 text = ERROR_MESSAGE(error);
             }
             
-            [self showOkAlert:title text:text];
+            [self showOkAlert:title text:text compleate:nil];
         }];
     }
+}
+
+-(void)closeOkAlert{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

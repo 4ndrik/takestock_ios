@@ -9,7 +9,8 @@
 #import "StoredImage.h"
 
 @implementation StoredImage
-@synthesize resId, url;
 
+@synthesize resId = _resId;
+@synthesize url = _url;
 
 @end

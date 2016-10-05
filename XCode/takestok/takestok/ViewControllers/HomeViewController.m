@@ -9,9 +9,7 @@
 #import "HomeViewController.h"
 #import "TextFieldBorderBottom.h"
 #import "SearchViewController.h"
-#import "Category.h"
 #import "LoginViewController.h"
-#import "User.h"
 
 @interface HomeViewController ()
 

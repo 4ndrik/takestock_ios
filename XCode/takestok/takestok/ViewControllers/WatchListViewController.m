@@ -74,7 +74,7 @@
     
     [[AdvertServiceManager sharedManager] loadWatchListWithPage:_page compleate:^(NSArray *result, NSDictionary *additionalData, NSError *error) {
         if (error){
-            [self showOkAlert:@"Error" text:ERROR_MESSAGE(error)];
+            [self showOkAlert:@"Error" text:ERROR_MESSAGE(error) compleate:nil];
         }
         else
         {
@@ -156,7 +156,7 @@
         }else{
             [self reloadData:nil];
         }
-        [self showOkAlert:title text:message];
+        [self showOkAlert:title text:message compleate:nil];
     }];
 }
 

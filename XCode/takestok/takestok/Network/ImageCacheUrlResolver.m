@@ -7,7 +7,6 @@
 //
 
 #import "ImageCacheUrlResolver.h"
-#import "Image.h"
 
 @implementation ImageCacheUrlResolver
 

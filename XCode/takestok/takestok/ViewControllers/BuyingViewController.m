@@ -71,7 +71,7 @@
 -(void)loadData{
     [[OfferServiceManager sharedManager] loadMyOffersWithPage:_page compleate:^(NSArray *result, NSDictionary* adverts, NSDictionary *additionalData, NSError *error) {
         if (error){
-            [self showOkAlert:@"Error" text:ERROR_MESSAGE(error)];
+            [self showOkAlert:@"Error" text:ERROR_MESSAGE(error) compleate:nil];
         }
         else
         {

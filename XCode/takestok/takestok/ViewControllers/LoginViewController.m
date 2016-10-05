@@ -109,9 +109,9 @@
     NSRegularExpression *userNameRegEx = [[NSRegularExpression alloc] initWithPattern:USER_NAME_REGEX options:NSRegularExpressionCaseInsensitive error:nil];
     
     if (signIn){
-//        if ([emailRegEx numberOfMatchesInString:_signInEmailTextField.text options:0 range:NSMakeRange(0, [_signInEmailTextField.text length])] == 0){
-//            [messagesArray addObject:@"Wrong email address"];
-//        }
+        if (_signInEmailTextField.text.length <= 0){
+            [messagesArray addObject:@"User name / Email is empty"];
+        }
         
         if (_signInPasswordTextField.text.length <= 0)
             [messagesArray addObject:@"Password is empty"];
@@ -141,7 +141,7 @@
     }
     if (messagesArray.count > 0){
         NSString* message = [messagesArray componentsJoinedByString:@"\n"];
-        [self showOkAlert:@"" text:message];
+        [self showOkAlert:@"" text:message compleate:nil];
     }
     return messagesArray.count == 0;
 }
@@ -162,7 +162,7 @@
             if (error){
                 NSString* title = @"Error";
                 NSString* message = ERROR_MESSAGE(error);
-                [self showOkAlert:title text:message];
+                [self showOkAlert:title text:message compleate:nil];
             }else{
                 [self dismissViewControllerAnimated:YES completion:nil];
             }
@@ -176,7 +176,7 @@
         [[UserServiceManager sharedManager] signUpWithUserName:_signUpUserNameTextField.text email:_signUpEmailTextField.text password:_signUpPasswordTextField.text compleate:^(NSError *error) {
             [self hideLoading];
             if (error){
-                [self showOkAlert:@"Error" text:ERROR_MESSAGE(error)];
+                [self showOkAlert:@"Error" text:ERROR_MESSAGE(error) compleate:nil];
             }else{
                 [self dismissViewControllerAnimated:YES completion:nil];
             }

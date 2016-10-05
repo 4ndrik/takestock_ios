@@ -26,8 +26,6 @@
 #import "StoredImage.h"
 #import "GUIDCreator.h"
 
-#import "NSManagedObject+NSManagedObject_RevertChanges.h"
-
 #import "AdvertServiceManager.h"
 #import "UserServiceManager.h"
 
@@ -578,7 +576,7 @@
     }
     
     if (message.length > 0){
-        [self showOkAlert:@"" text:message];
+        [self showOkAlert:@"" text:message compleate:nil];
         return NO;
     }else{
         return YES;

@@ -139,7 +139,7 @@ static UserServiceManager *_manager = nil;
     
     NSData* imageData = UIImagePNGRepresentation(image);
     if (imageData.length > 0){
-        [dic setValue:[NSString stringWithFormat:@"data:image/png;base64,%@",[imageData base64Encoding]] forKey:@"photo_b64"];
+        [dic setValue:[NSString stringWithFormat:@"data:image/png;base64,%@",[imageData base64EncodedDataWithOptions:0]] forKey:@"photo_b64"];
     }
     
     [[ServerConnectionHelper sharedInstance] updateUser:dic compleate:^(id result, NSError *error) {

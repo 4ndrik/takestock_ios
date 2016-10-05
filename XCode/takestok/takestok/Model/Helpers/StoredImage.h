@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "ImageProtocol.h"
 
-@interface StoredImage : NSObject<ImageProtocol>
+@interface StoredImage : NSObject<ImageProtocol>{
+    NSString *_resId;
+    NSString *_url;
+}
 
 @end

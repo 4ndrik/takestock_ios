@@ -215,7 +215,7 @@
         if ([fileManager fileExistsAtPath:filePath] && [[[fileManager attributesOfItemAtPath:filePath error:nil] objectForKey:@"NSFileSize"]intValue] > 0)
         {
             NSData *imageData = [NSData dataWithContentsOfFile:filePath];
-            NSString* imageString = [imageData base64Encoding];
+            NSString* imageString = [imageData base64EncodedStringWithOptions:0];
             [photos addObject:[NSString stringWithFormat:@"data:image/png;base64,%@",imageString]];
         }
     }

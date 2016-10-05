@@ -288,7 +288,7 @@
     }
     
     if (message.length > 0){
-        [self showOkAlert:@"" text:message];
+        [self showOkAlert:@"" text:message compleate:nil];
         return NO;
     }else{
         return YES;
@@ -346,7 +346,7 @@
             }else{
                 [_newImage saveToPath:[ImageCacheUrlResolver getPathForImage:[[UserServiceManager sharedManager] getMe].photo]];
             }
-            [self showOkAlert:title text:message];
+            [self showOkAlert:title text:message compleate:nil];
         }];
     }
 }
