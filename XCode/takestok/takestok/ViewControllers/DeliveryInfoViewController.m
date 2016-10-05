@@ -128,16 +128,18 @@
         
         [self showLoading];
         
-        [[OfferServiceManager sharedManager] setTransitInfo:shippingInfo withOffer:_offer compleate:^(NSError *error) {
+        [[OfferServiceManager sharedManager] setDeliveryInfo:shippingInfo withOffer:_offer compleate:^(NSError *error) {
             [self hideLoading];
             NSString* title = @"";
-            NSString* text = @"Shipping information is sent";
+            NSString* text = @"Delivery information is sent";
             if (error){
                 title = @"Error";
                 text = ERROR_MESSAGE(error);
             }
             
-            [self showOkAlert:title text:text compleate:nil];
+            [self showOkAlert:title text:text compleate:error ? nil : ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
         }];
     }
 }

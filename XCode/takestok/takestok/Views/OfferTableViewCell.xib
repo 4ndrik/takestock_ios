@@ -158,9 +158,6 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R14-93-sTB">
                                 <color key="backgroundColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="7e9-DZ-wfc"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" name="BrandonGrotesque-Medium" family="Brandon Grotesque" pointSize="10"/>
                                 <state key="normal" title="I ARRANGE TRANSPORT">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -176,9 +173,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2z0-gm-rji">
                                 <color key="backgroundColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="7bc-RC-ReZ"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" name="BrandonGrotesque-Medium" family="Brandon Grotesque" pointSize="10"/>
                                 <state key="normal" title="BUYER ARRANGES TRANSPORT">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -196,8 +190,9 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="R14-93-sTB" secondAttribute="bottom" priority="999" constant="5" identifier="id55" id="3VH-FV-wMr"/>
                             <constraint firstItem="R14-93-sTB" firstAttribute="leading" secondItem="m0n-Vt-lf8" secondAttribute="leading" identifier="id56" id="44S-uS-kpL"/>
-                            <constraint firstItem="2z0-gm-rji" firstAttribute="centerY" secondItem="m0n-Vt-lf8" secondAttribute="centerY" id="CLc-RS-i8G"/>
                             <constraint firstItem="R14-93-sTB" firstAttribute="top" secondItem="m0n-Vt-lf8" secondAttribute="top" constant="5" identifier="id57" id="MZf-uk-Y1Q"/>
+                            <constraint firstItem="2z0-gm-rji" firstAttribute="top" secondItem="m0n-Vt-lf8" secondAttribute="top" constant="5" id="SQV-To-RHH"/>
+                            <constraint firstAttribute="bottom" secondItem="2z0-gm-rji" secondAttribute="bottom" constant="5" id="Th0-XN-J0n"/>
                             <constraint firstItem="2z0-gm-rji" firstAttribute="leading" secondItem="R14-93-sTB" secondAttribute="trailing" constant="10" id="X5X-En-LtK"/>
                             <constraint firstItem="R14-93-sTB" firstAttribute="centerY" secondItem="m0n-Vt-lf8" secondAttribute="centerY" id="b4z-YO-gi3"/>
                             <constraint firstItem="R14-93-sTB" firstAttribute="width" secondItem="2z0-gm-rji" secondAttribute="width" id="eRK-qU-e5T"/>

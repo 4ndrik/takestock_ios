@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define DEFAULT_DATE_FORMAT @"yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'"
+#define NO_MILI_DATE_FORMAT @"yyyy-MM-dd'T'HH:mm:ss'Z'"
 
 @interface TSBaseEntity : NSObject{
     NSNumber* _ident;

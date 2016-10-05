@@ -147,6 +147,9 @@
     }else if([offer.statusForBuyer.ident intValue] == tsAddressReceived){
         cell.offerTextLabel.text = @"ADDRESS SENT";
         cell.offerTextLabel.textColor = OliveMainColor;
+    }else if([offer.statusForBuyer.ident intValue] == tsStockInTransit){
+        cell.offerTextLabel.text = @"STOCK IN TRANSIT";
+        cell.offerTextLabel.textColor = [UIColor redColor];
     }else {
         cell.offerTextLabel.text = offer.statusForBuyer.title;
         cell.offerTextLabel.textColor = [UIColor redColor];

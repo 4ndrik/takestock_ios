@@ -312,7 +312,7 @@ static OfferServiceManager *_manager = nil;
     }];
 }
 
--(void)setTransitInfo:(TSShippingInfo*)shipping withOffer:(TSOffer*)offer compleate:(errorBlock)compleate{
+-(void)setDeliveryInfo:(TSShippingInfo*)shipping withOffer:(TSOffer*)offer compleate:(errorBlock)compleate{
     NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:[shipping dictionaryForShipping]];
     [dic setValue:[_offerStatuses objectForKey:[NSNumber numberWithInt:tsStockInTransit]] forKey:@"status"];
     [[ServerConnectionHelper sharedInstance] updateOffer:dic compleate:^(id result, NSError *error) {

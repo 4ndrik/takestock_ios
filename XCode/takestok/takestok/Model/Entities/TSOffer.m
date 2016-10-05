@@ -87,7 +87,8 @@
     _childOffers = childOffers;
     _isFromSeller = [[dict objectForKeyNotNull:OFFER_FROM_SELLER_PARAM] boolValue];
     NSDictionary* shipping = [[dict objectForKeyNotNull:OFFER_SHIPPING_INFO_PARAM] firstObject];
-    _shippingInfo = [TSShippingInfo objectWithDictionary:shipping];
+    if (shipping)
+        _shippingInfo = [TSShippingInfo objectWithDictionary:shipping];
 }
 
 +(NSNumber*)identFromDic:(NSDictionary*)dict{

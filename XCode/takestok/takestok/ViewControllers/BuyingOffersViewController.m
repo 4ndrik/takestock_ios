@@ -11,6 +11,7 @@
 #import "TSAdvert.h"
 #import "TSOfferStatus.h"
 #import "TSOffer.h"
+#import "TSShippingInfo.h"
 #import "TSUserEntity.h"
 #import "UIView+NibLoadView.h"
 #import "BackgroundImageView.h"
@@ -178,6 +179,19 @@
                              range:NSMakeRange(0, statusString.length)];
         [statusString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, statusString.length)];
         [textString appendAttributedString:statusString];
+    }else if ([offer.status.ident intValue] == tsStockInTransit){
+        if (textString.length > 0)
+            [textString appendAttributedString:[self spaceForFont]];
+        
+        NSString* streetString = [NSString stringWithFormat:@"Arrival date: %@\nPick up date: %@\nTracking number: %@\nCourier name: %@", [dateFormatter stringFromDate:offer.shippingInfo.arrivalDate], [dateFormatter stringFromDate:offer.shippingInfo.pickUpDate], offer.shippingInfo.trackingNumber, offer.shippingInfo.courierName];
+        NSMutableAttributedString* shippingInfo = [[NSMutableAttributedString alloc] initWithString:streetString];
+        [shippingInfo addAttribute:NSFontAttributeName
+                             value:HelveticaNeue14
+                             range:NSMakeRange(0, shippingInfo.length)];
+        [shippingInfo addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, shippingInfo.length)];
+        
+        [textString appendAttributedString:shippingInfo];
+        
     }else {
         
         if (textString.length > 0)

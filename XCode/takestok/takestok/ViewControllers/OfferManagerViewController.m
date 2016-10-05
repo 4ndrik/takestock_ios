@@ -237,6 +237,16 @@
                              range:NSMakeRange(0, statusString.length)];
         [statusString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, statusString.length)];
         [textString appendAttributedString:statusString];
+    }else if ([offer.status.ident intValue] == tsStockInTransit){
+        if (textString.length > 0)
+            [textString appendAttributedString:[self spaceForFont]];
+        
+        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"STOCK IN TRANSIT"];
+        [statusString addAttribute:NSFontAttributeName
+                             value:BrandonGrotesqueBold14
+                             range:NSMakeRange(0, statusString.length)];
+        [statusString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, statusString.length)];
+        [textString appendAttributedString:statusString];
     }else {
         
         if (textString.length > 0)
@@ -352,7 +362,6 @@
 -(void)organizeDispatch:(UITableViewCell*)owner{
     NSUInteger index = [_offersTableView indexPathForCell:owner].row;
     TSOffer* offer = [_offers objectAtIndex:index];
-    
     [self performSegueWithIdentifier:OFFERS_DISPATCH_INFO_SEQUE sender:offer];
 }
 

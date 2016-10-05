@@ -43,7 +43,7 @@
     _ident = [TSShippingInfo identFromDic:dict];
     _offerId = [dict objectForKeyNotNull:SHIPPING_OFFER_ID_PARAM];
     
-    _arrivalDate = [NSDate dateFromString:[dict objectForKeyNotNull:SHIPPING_ARRIVAL_DATE_PARAM] format:DEFAULT_DATE_FORMAT timeZone:timeZone];
+    _arrivalDate = [NSDate dateFromString:[dict objectForKeyNotNull:SHIPPING_ARRIVAL_DATE_PARAM] format:NO_MILI_DATE_FORMAT timeZone:timeZone];
     _house = [dict objectForKeyNotNull:SHIPPING_HOUSE_PARAM];
     _street = [dict objectForKeyNotNull:SHIPPING_STREET_PARAM];
     _city = [dict objectForKeyNotNull:SHIPPING_CITY_PARAM];
@@ -52,7 +52,7 @@
     _courierName = [dict objectForKeyNotNull:SHIPPING_COURIER_NAME_PARAM];
     _trackingNumber = [dict objectForKeyNotNull:SHIPPING_TRACKING_PARAM];
     _isInTransit = [[dict objectForKeyNotNull:SHIPPING_STOCK_IN_TRANSIT_PARAM] boolValue];
-    _pickUpDate = [NSDate dateFromString:[dict objectForKeyNotNull:SHIPPING_PICK_UP_DATE_PARAM] format:DEFAULT_DATE_FORMAT timeZone:timeZone];
+    _pickUpDate = [NSDate dateFromString:[dict objectForKeyNotNull:SHIPPING_PICK_UP_DATE_PARAM] format:NO_MILI_DATE_FORMAT timeZone:timeZone];
 }
 
 +(NSNumber*)identFromDic:(NSDictionary*)dict{
@@ -72,8 +72,8 @@
 
 -(NSDictionary*)dictionaryForDispatch{
     NSMutableDictionary* dic = [NSMutableDictionary dictionary];
-    NSString* arrivalDate = [NSDate stringFromDate:_arrivalDate format:DEFAULT_DATE_FORMAT timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-    NSString* pickUpDate = [NSDate stringFromDate:_arrivalDate format:DEFAULT_DATE_FORMAT timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    NSString* arrivalDate = [NSDate stringFromDate:_arrivalDate format:NO_MILI_DATE_FORMAT timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    NSString* pickUpDate = [NSDate stringFromDate:_arrivalDate format:NO_MILI_DATE_FORMAT timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     
     [dic setValue:[NSNumber numberWithBool:_isInTransit] forKey:SHIPPING_STOCK_IN_TRANSIT_PARAM];
     [dic setValue:_offerId forKey:SHIPPING_OFFER_ID_PARAM];
