@@ -82,15 +82,19 @@
         [emptyFieldsArray addObject:@"City or Town"];
     if (_postCodeTextField.text.length <= 0)
         [emptyFieldsArray addObject:@"Postcode"];
-    
-    NSRegularExpression *phoneRegEx = [[NSRegularExpression alloc] initWithPattern:PHONE_REGEX options:NSRegularExpressionCaseInsensitive error:nil];
-    if ([phoneRegEx numberOfMatchesInString:_phoneNumberTextField.text options:0 range:NSMakeRange(0, [_phoneNumberTextField.text length])] == 0){
-        [emptyFieldsArray addObject:@"Wrong email address"];
-    }
+    if (_phoneNumberTextField.text.length <= 0)
+        [emptyFieldsArray addObject:@"Phone"];
     
     NSMutableString* message = [[NSMutableString alloc] init];
     if (emptyFieldsArray.count > 0){
         [message appendFormat:@"%@ %@ required", [emptyFieldsArray componentsJoinedByString:@"\n"], emptyFieldsArray.count > 0 ? @"are" : @"is"];
+    }
+    
+    if (_phoneNumberTextField.text.length > 0){
+        NSRegularExpression *phoneRegEx = [[NSRegularExpression alloc] initWithPattern:PHONE_REGEX options:NSRegularExpressionCaseInsensitive error:nil];
+        if ([phoneRegEx numberOfMatchesInString:_phoneNumberTextField.text options:0 range:NSMakeRange(0, [_phoneNumberTextField.text length])] == 0){
+            [message appendFormat:@"%@Wrong phone.", message.length > 0 ? @"\n": @""];
+        }
     }
     
     if (message.length > 0){
@@ -122,7 +126,9 @@
                 title = @"Error";
                 text = ERROR_MESSAGE(error);
             }
-            [self showOkAlert:title text:text compleate:nil];
+            [self showOkAlert:title text:text compleate:error ? nil : ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
         }];
     }
 }

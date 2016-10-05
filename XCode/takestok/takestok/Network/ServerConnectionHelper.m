@@ -178,30 +178,23 @@ typedef enum
 #pragma mark - Adverts
 
 -(void)loadAdvertsWithUser:(NSNumber*)userId page:(int)page compleate:(tsResultBlock)compleate{
-    //Cancel prev request
-    [_loadAdvertCancelTask cancel];
     
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:page], @"page", @"-updated_at", @"o", @"hold_on",@"in", userId,@"author_id",nil];
     
     NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
     
-    _loadAdvertCancelTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+    NSURLSessionDataTask* loadAdvertCancelTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         [_dictionaryLock waitUntilDone];
-        _loadAdvertCancelTask = nil;
-        if (!error){
-            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
-        }
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate(result, error);
     }];
-    [_loadAdvertCancelTask resume];
+    [loadAdvertCancelTask resume];
 }
 
 -(void)loadAdvertsWithIdents:(NSArray*)idents compleate:(tsResultBlock)compleate{
     NSString* query = [NSString stringWithFormat:@"ids=%@", [idents componentsJoinedByString:@","]];
     NSURLSessionDataTask *loadAdvertTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (!error){
-            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
-        }
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate([result objectForKeyNotNull:@"results"], error);
 
     }];
@@ -247,9 +240,7 @@ typedef enum
     
     NSURLSessionDataTask* loadAdvertCancelTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         [_dictionaryLock waitUntilDone];
-        if (!error){
-            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
-        }
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate(result, error);
     }];
     [loadAdvertCancelTask resume];
@@ -259,9 +250,7 @@ typedef enum
     NSError* error;
     NSString* params = [self jsonStringFromDicOrArray:advertDic error:&error];
     NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (!error){
-            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
-        }
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate(result, error);
     }];
     [dataTask resume];
@@ -271,9 +260,7 @@ typedef enum
     NSError* error;
     NSString* params = [self jsonStringFromDicOrArray:advertDic error:&error];
     NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:[NSString stringWithFormat:@"%@/%@", ADVERTS_URL_PATH, advertId] query:params methodType:HTTP_METHOD_PATCH contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (!error){
-            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
-        }
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate(result, error);
     }];
     [dataTask resume];
@@ -284,9 +271,7 @@ typedef enum
     NSError* error;
     NSString* params = [self jsonStringFromDicOrArray:paramsDic error:&error];
     NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:ADD_TO_WATCH_LIST_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (!error){
-            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
-        }
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate(result, error);
     }];
     [dataTask resume];
@@ -298,9 +283,7 @@ typedef enum
     [_qaLock lock];
     NSString* query = [NSString stringWithFormat:@"adverts=%@&page=%i&o=-created_at", advertId, page];
     NSURLSessionDataTask* loadQATask = [_session dataTaskWithRequest:[self request:QUESTIONS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (!error){
-            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
-        }
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate(result, error);
     }];
     
@@ -311,9 +294,7 @@ typedef enum
     NSString* params = [self jsonStringFromDicOrArray:question error:nil];
     
     NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:QUESTIONS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (!error){
-            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
-        }
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate(result, error);
     }];
     
@@ -324,9 +305,7 @@ typedef enum
     NSString* params = [self jsonStringFromDicOrArray:answer error:nil];
     
     NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:ANSWERS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (!error){
-            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
-        }
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate(result, error);
     }];
     
@@ -342,9 +321,7 @@ typedef enum
     
     NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:SIGN_IN_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         [_dictionaryLock waitUntilDone];
-        if (!error){
-            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
-        }
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate(result, error);
     }];
     [dataTask resume];
@@ -358,9 +335,7 @@ typedef enum
 
     NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:SIGN_UP_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         [_dictionaryLock waitUntilDone];
-        if (!error){
-            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
-        }
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate(result, error);
     }];
     [dataTask resume];
@@ -370,9 +345,7 @@ typedef enum
     NSString* query = [self makeParamtersString:[NSDictionary dictionaryWithObjectsAndKeys:userIds, @"ids", nil] withEncoding:NSUTF8StringEncoding];
     NSURLSessionDataTask* loadUserTask = [_session dataTaskWithRequest:[self request:USER_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         [_dictionaryLock waitUntilDone];
-        if (!error){
-            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
-        }
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate(result, error);
     }];
     
@@ -384,9 +357,7 @@ typedef enum
     NSString* params = [self jsonStringFromDicOrArray:userData error:&error];
     
     NSURLSessionDataTask* updateUserTask = [_session dataTaskWithRequest:[self request:ME_URL_PATH query:params methodType:HTTP_METHOD_PATCH contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (!error){
-            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
-        }
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate(result, error);
     }];
     
@@ -398,9 +369,7 @@ typedef enum
 -(void)loadOffer:(NSNumber*)offerId compleate:(tsResultBlock)compleate{
     NSString* query = @"view=child_offers";
     NSURLSessionDataTask* loadOffersTask = [_session dataTaskWithRequest:[self request:[NSString stringWithFormat:@"%@/%@", OFFERS_URL_PATH, offerId] query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (!error){
-            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
-        }
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate(result, error);
     }];
     [loadOffersTask resume];
@@ -409,9 +378,7 @@ typedef enum
 -(void)loadOffersWithAdvert:(NSNumber*)advertId page:(int)page compleate:(tsResultBlock)compleate{
     NSString* query = [NSString stringWithFormat:@"adverts=%@&page=%i&o=-updated_at", advertId, page];
     NSURLSessionDataTask* loadOffersTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (!error){
-            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
-        }
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate(result, error);
     }];
     [loadOffersTask resume];
@@ -420,9 +387,7 @@ typedef enum
 -(void)loadMyOffersWithPage:(int)page compleate:(tsResultBlock)compleate{
     NSString* query = [NSString stringWithFormat:@"for=self&view=child_offers&page=%i&o=-updated_at&in=from_buyer", page];
     NSURLSessionDataTask* loadOffersTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (!error){
-            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
-        }
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate(result, error);
     }];
     [loadOffersTask resume];
@@ -431,9 +396,7 @@ typedef enum
 -(void)createOffer:(NSDictionary*)offer compleate:(tsResultBlock)compleate{
     NSString* params = [self jsonStringFromDicOrArray:offer error:nil];
     NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (!error){
-            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
-        }
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate(result, error);
     }];
     
@@ -444,9 +407,7 @@ typedef enum
     
     NSString* params = [self jsonStringFromDicOrArray:offer error:nil];
     NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:OFFERS_UPDATE_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (!error){
-            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
-        }
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate(result, error);
     }];
     
@@ -461,9 +422,7 @@ typedef enum
     NSString* params = [self jsonStringFromDicOrArray:paramsDic error:&error];
     
     NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:ADD_PAYMENT_URL query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-        if (!error){
-            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
-        }
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate(result, error);
     }];
     
@@ -580,8 +539,19 @@ typedef enum
         NSString* errorDescription = [json description];
         NSLog(@"url - %@ error - %li data - %@", response.URL, (long)response.statusCode, errorDescription);
         
-        if ([json isKindOfClass:[NSDictionary class]] && [json objectForKeyNotNull:@"detail"]){
-            errorDescription = [json objectForKeyNotNull:@"detail"];
+        if ([json isKindOfClass:[NSDictionary class]]){
+            
+            if ([json objectForKeyNotNull:@"detail"])
+                errorDescription = [json objectForKeyNotNull:@"detail"];
+            else
+            {
+                NSMutableString* errorString = [[NSMutableString alloc] init];
+                for (NSString* key in [json allKeys]) {
+                    [errorString appendFormat:@"%@: %@\n", key, json[key]];
+                }
+                [errorString deleteCharactersInRange:NSMakeRange(errorString.length - 2, 1)];
+                errorDescription = errorString;
+            }
         }
         *error = [NSError errorWithDomain:@"1" code:response.statusCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSHTTPURLResponse localizedStringForStatusCode:response.statusCode], NSLocalizedDescriptionKey, errorDescription, NSLocalizedFailureReasonErrorKey, nil]];
         return YES;
