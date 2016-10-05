@@ -273,11 +273,20 @@
                     <navigationItem key="navigationItem" id="cRh-zf-mMa"/>
                     <connections>
                         <outlet property="_watchListTableView" destination="CeP-RE-SWF" id="axZ-zM-3s4"/>
+                        <segue destination="r6d-Uj-sbM" kind="show" identifier="AdvertDetailSegue" id="OVj-3x-9KF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x06-6N-Bmj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-167" y="-264"/>
+        </scene>
+        <!--AdvertDetailViewController-->
+        <scene sceneID="ajd-2u-A0G">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Advert" referencedIdentifier="AdvertDetailViewController" id="r6d-Uj-sbM" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e8E-I5-82x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="473" y="-201"/>
         </scene>
     </scenes>
     <resources>

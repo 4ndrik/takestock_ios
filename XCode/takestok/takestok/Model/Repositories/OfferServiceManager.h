@@ -12,6 +12,7 @@
 @class TSOfferStatus;
 @class TSOffer;
 @class STPToken;
+@class TSShippingInfo;
 
 @interface OfferServiceManager : NSObject{
     NSMutableDictionary* _offerStatuses;
@@ -28,5 +29,7 @@
 -(void)rejectOffer:(TSOffer*)offer withComment:(NSString*)comment compleate:(errorBlock)compleate;
 -(void)createCounterOffer:(TSOffer*)offer withCount:(int)count price:(float)price withComment:(NSString*)comment byByer:(BOOL)isBuyer compleate:(errorBlock)compleate;
 -(void)makePayment:(TSOffer*)offer token:(STPToken*)token compleate:(errorBlock)compleate;
+-(void)setShippingInfo:(TSShippingInfo*)shipping withOffer:(TSOffer*)offer compleate:(errorBlock)compleate;
+-(void)setTransitInfo:(TSShippingInfo*)shipping withOffer:(TSOffer*)offer compleate:(errorBlock)compleate;
 
 @end

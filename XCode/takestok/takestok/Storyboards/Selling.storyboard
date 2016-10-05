@@ -7,6 +7,11 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="brandon_bld.otf">
+            <string>BrandonGrotesque-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--OFFERS-->
         <scene sceneID="oOe-r2-a7U">
@@ -17,7 +22,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Fmr-Yn-f0u"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="GKR-yz-PG5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="125" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ap9-0o-8Z0">
@@ -38,19 +43,230 @@
                             <constraint firstItem="Fmr-Yn-f0u" firstAttribute="top" secondItem="Ap9-0o-8Z0" secondAttribute="bottom" id="wmw-T3-uYg"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
                         <outlet property="_offersTableView" destination="Ap9-0o-8Z0" id="BdA-c9-RbN"/>
+                        <segue destination="T4M-Fu-cPW" kind="show" identifier="DispatchInfoSegue" id="b7i-Pf-90p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P3j-DN-aeO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="498" y="-264"/>
         </scene>
+        <!--DELIVERY INFORMATION-->
+        <scene sceneID="zvy-Lo-ApA">
+            <objects>
+                <viewController title="DELIVERY INFORMATION" id="T4M-Fu-cPW" customClass="DeliveryInfoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2a8-iN-u5F"/>
+                        <viewControllerLayoutGuide type="bottom" id="mB0-If-CQ8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1VW-Y9-vfP">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QuM-lo-O4Q">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please setup delivery information" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPK-mL-72V">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="260" id="CFf-Kv-G2j"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arrival date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cvl-Wf-810">
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <color key="textColor" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jgC-03-3Ht" customClass="PaddingTextField">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="zIr-wF-zvt"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                                <color key="value" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="T4M-Fu-cPW" id="Tfx-BA-sro"/>
+                                        </connections>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick up date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tkt-ux-loU">
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <color key="textColor" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="our-Iz-vJt" customClass="PaddingTextField">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="9Ex-aw-YAU"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                                <color key="value" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="T4M-Fu-cPW" id="HtB-ao-bnu"/>
+                                        </connections>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tracking number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Og-yJ-jkR">
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <color key="textColor" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tracking number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xy9-pe-t0e" customClass="PaddingTextField">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="gb0-L6-Wr2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                                <color key="value" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="T4M-Fu-cPW" id="6Kr-kg-VBG"/>
+                                        </connections>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Courier name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTe-wR-ueQ">
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <color key="textColor" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Courier name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uSF-mF-ArX" customClass="PaddingTextField">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="lZD-JU-rtw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                                <color key="value" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="T4M-Fu-cPW" id="GWP-RE-aB5"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kzG-EG-9gr">
+                                        <color key="backgroundColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="291" id="OkB-Ip-wZ9"/>
+                                            <constraint firstAttribute="height" constant="40" id="r1i-IO-Sso"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="BrandonGrotesque-Bold" family="Brandon Grotesque" pointSize="14"/>
+                                        <state key="normal" title="CONFIRM STOCK DISPATCHED">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="submitAction:" destination="T4M-Fu-cPW" eventType="touchUpInside" id="G83-E2-Mcr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="kzG-EG-9gr" secondAttribute="bottom" constant="20" id="0mH-SC-ifp"/>
+                                    <constraint firstItem="kzG-EG-9gr" firstAttribute="top" secondItem="uSF-mF-ArX" secondAttribute="bottom" constant="20" id="1Wa-kq-eSd"/>
+                                    <constraint firstItem="jgC-03-3Ht" firstAttribute="leading" secondItem="QuM-lo-O4Q" secondAttribute="leading" constant="20" id="4sd-zk-Pdt"/>
+                                    <constraint firstItem="cvl-Wf-810" firstAttribute="top" secondItem="uPK-mL-72V" secondAttribute="bottom" constant="20" id="9E5-R9-dL9"/>
+                                    <constraint firstItem="uSF-mF-ArX" firstAttribute="top" secondItem="eTe-wR-ueQ" secondAttribute="bottom" constant="10" id="Bkd-vd-yZy"/>
+                                    <constraint firstItem="tkt-ux-loU" firstAttribute="top" secondItem="jgC-03-3Ht" secondAttribute="bottom" constant="20" id="NAP-Qw-s1f"/>
+                                    <constraint firstItem="eTe-wR-ueQ" firstAttribute="top" secondItem="Xy9-pe-t0e" secondAttribute="bottom" constant="20" id="NGw-22-A22"/>
+                                    <constraint firstItem="2Og-yJ-jkR" firstAttribute="top" secondItem="our-Iz-vJt" secondAttribute="bottom" constant="20" id="OlJ-nA-tlY"/>
+                                    <constraint firstItem="uSF-mF-ArX" firstAttribute="leading" secondItem="QuM-lo-O4Q" secondAttribute="leading" constant="20" id="PhK-Mz-g5U"/>
+                                    <constraint firstAttribute="trailing" secondItem="our-Iz-vJt" secondAttribute="trailing" constant="20" id="RJF-aH-rcS"/>
+                                    <constraint firstItem="2Og-yJ-jkR" firstAttribute="leading" secondItem="QuM-lo-O4Q" secondAttribute="leading" constant="20" id="Tz1-SM-ONF"/>
+                                    <constraint firstItem="Xy9-pe-t0e" firstAttribute="leading" secondItem="QuM-lo-O4Q" secondAttribute="leading" constant="20" id="YQx-uE-ed4"/>
+                                    <constraint firstAttribute="trailing" secondItem="cvl-Wf-810" secondAttribute="trailing" constant="20" id="YeT-sP-cRH"/>
+                                    <constraint firstItem="uPK-mL-72V" firstAttribute="top" secondItem="QuM-lo-O4Q" secondAttribute="top" constant="20" id="a2t-pC-3le"/>
+                                    <constraint firstItem="Xy9-pe-t0e" firstAttribute="top" secondItem="2Og-yJ-jkR" secondAttribute="bottom" constant="10" id="ach-Pw-fXH"/>
+                                    <constraint firstItem="uPK-mL-72V" firstAttribute="centerX" secondItem="QuM-lo-O4Q" secondAttribute="centerX" id="c8n-Ym-Mdv"/>
+                                    <constraint firstAttribute="trailing" secondItem="2Og-yJ-jkR" secondAttribute="trailing" constant="20" id="cGf-rl-pBf"/>
+                                    <constraint firstItem="our-Iz-vJt" firstAttribute="leading" secondItem="QuM-lo-O4Q" secondAttribute="leading" constant="20" id="cbc-OA-pRP"/>
+                                    <constraint firstItem="our-Iz-vJt" firstAttribute="top" secondItem="tkt-ux-loU" secondAttribute="bottom" constant="10" id="dwC-ac-RBh"/>
+                                    <constraint firstAttribute="trailing" secondItem="jgC-03-3Ht" secondAttribute="trailing" constant="20" id="eSz-Ff-AeD"/>
+                                    <constraint firstItem="eTe-wR-ueQ" firstAttribute="leading" secondItem="QuM-lo-O4Q" secondAttribute="leading" constant="20" id="euS-be-kWl"/>
+                                    <constraint firstAttribute="trailing" secondItem="uSF-mF-ArX" secondAttribute="trailing" constant="20" id="fQw-pQ-Ru1"/>
+                                    <constraint firstAttribute="trailing" secondItem="eTe-wR-ueQ" secondAttribute="trailing" constant="20" id="iUG-mI-tMT"/>
+                                    <constraint firstItem="kzG-EG-9gr" firstAttribute="centerX" secondItem="QuM-lo-O4Q" secondAttribute="centerX" id="lX0-TR-FOd"/>
+                                    <constraint firstItem="jgC-03-3Ht" firstAttribute="top" secondItem="cvl-Wf-810" secondAttribute="bottom" constant="10" id="lm5-4C-t7R"/>
+                                    <constraint firstAttribute="trailing" secondItem="Xy9-pe-t0e" secondAttribute="trailing" constant="20" id="s9n-GJ-vnp"/>
+                                    <constraint firstItem="tkt-ux-loU" firstAttribute="leading" secondItem="QuM-lo-O4Q" secondAttribute="leading" constant="20" id="sCy-Fe-48X"/>
+                                    <constraint firstAttribute="trailing" secondItem="tkt-ux-loU" secondAttribute="trailing" constant="20" id="uwY-UR-ir9"/>
+                                    <constraint firstItem="cvl-Wf-810" firstAttribute="leading" secondItem="QuM-lo-O4Q" secondAttribute="leading" constant="20" id="wdH-C6-QQX"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="8oq-mg-s42" appends="YES" id="pcN-wB-e3g"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mB0-If-CQ8" firstAttribute="top" secondItem="QuM-lo-O4Q" secondAttribute="bottom" id="2kM-Cu-Gq9"/>
+                            <constraint firstItem="cvl-Wf-810" firstAttribute="width" secondItem="1VW-Y9-vfP" secondAttribute="width" constant="-40" id="QCF-zY-Bch"/>
+                            <constraint firstItem="QuM-lo-O4Q" firstAttribute="leading" secondItem="1VW-Y9-vfP" secondAttribute="leading" id="eO3-Nd-Qx4"/>
+                            <constraint firstAttribute="trailing" secondItem="QuM-lo-O4Q" secondAttribute="trailing" id="j1R-el-Eyp"/>
+                            <constraint firstItem="QuM-lo-O4Q" firstAttribute="top" secondItem="2a8-iN-u5F" secondAttribute="bottom" id="ySN-8O-XRO"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <connections>
+                        <outlet property="_arrivealDateTextField" destination="jgC-03-3Ht" id="GTe-XP-n39"/>
+                        <outlet property="_courierNameTextField" destination="uSF-mF-ArX" id="EKA-ob-OQ6"/>
+                        <outlet property="_pickUpDateTextField" destination="our-Iz-vJt" id="K0p-xb-EG5"/>
+                        <outlet property="_scrollView" destination="QuM-lo-O4Q" id="0ay-OP-1ns"/>
+                        <outlet property="_trackingNumberTextField" destination="Xy9-pe-t0e" id="oQo-Zr-Tjh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7f6-g5-1tY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="8oq-mg-s42">
+                    <connections>
+                        <action selector="hideKeyboard:" destination="T4M-Fu-cPW" id="XFs-Vl-tdS"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1444" y="-264"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="hXE-XX-bcL">
             <objects>
                 <navigationController storyboardIdentifier="SellingController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="h4l-VC-bXI" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="lL6-w8-7c4">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lL6-w8-7c4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -71,7 +287,7 @@
                         <viewControllerLayoutGuide type="bottom" id="a4Y-7f-dPb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Wzn-Tv-vYh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cdu-uS-4nU">
@@ -79,10 +295,10 @@
                                 <color key="sectionIndexBackgroundColor" red="0.92549019610000005" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SellingTableViewCell" id="bCf-8t-fh7" customClass="SellingTableViewCell">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="120"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bCf-8t-fh7" id="Mvo-xV-jba">
-                                            <frame key="frameInset" width="375" height="120"/>
+                                            <frame key="frameInset" width="320" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nD4-Zg-kNx">
@@ -318,6 +534,7 @@
                             <constraint firstItem="a4Y-7f-dPb" firstAttribute="top" secondItem="cdu-uS-4nU" secondAttribute="bottom" id="sbE-DD-JtK"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="Gxh-ze-aRA"/>
                     <connections>
                         <outlet property="_sellingTableView" destination="cdu-uS-4nU" id="VK3-Ht-KbK"/>

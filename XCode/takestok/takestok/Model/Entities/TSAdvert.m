@@ -113,7 +113,11 @@
     _photos = [NSArray arrayWithArray:advPhotos];
     
     NSDictionary* authorDic = [dict objectForKeyNotNull:ADVERT_AUTHOR_DETAILS_PARAM];
-    _author = [[UserServiceManager sharedManager] getOrCreateAuthor:authorDic];
+    if (authorDic)
+        _author = [[UserServiceManager sharedManager] getOrCreateAuthor:authorDic];
+    else{
+        _author = [[UserServiceManager sharedManager] getAuthorWithId:[dict objectForKeyNotNull:ADVERT_AUTHOR_PARAM]];
+    }
     
     NSNumber* categoryIdent = [dict objectForKeyNotNull:ADVERT_CATEGORY_PARAM];
     TSAdvertCategory* category = [[AdvertServiceManager sharedManager] getCategoyWithId:categoryIdent];
@@ -144,7 +148,7 @@
     _condition = condition;
     
     _count = [[dict objectForKeyNotNull:ADVERT_ITEMS_COUNT_PARAM] intValue];
-    _tags = [dict objectForKeyNotNull:ADVERT_TAGS_PARAM];
+    _tags = [[dict objectForKeyNotNull:ADVERT_TAGS_PARAM] componentsJoinedByString:@", "];
     _newOffersCount = [[dict objectForKeyNotNull:ADVERT_NEW_OFFERS_PARAM] intValue];
     _newQuestionsCount = [[dict objectForKeyNotNull:ADVERT_NEW_QUESTIONS_PARAM] intValue];
     _questionCount = [[dict objectForKeyNotNull:ADVERT_QUESTION_COUNT_PARAM] intValue];
@@ -220,24 +224,41 @@
     return dic;
 }
 
-//-(NSDictionary*)fullDictionaryRepresentation{
-//    NSMutableDictionary* dic = [[NSMutableDictionary alloc] initWithDictionary:[self dictionaryRepresentation]];
-//    [dic setObjectNotNull:_dateCreated forKey:ADVERT_CREATED_PARAM];
-//    [dic setObjectNotNull:_dateUpdated forKey:ADVERT_EXPIRES_PARAM];
-//    [dic setObjectNotNull:[NSNumber numberWithInt:_offersCount] forKey:ADVERT_OFFERS_COUNT_PARAM];
-//    [dic setObjectNotNull:[NSNumber numberWithInt:_questionCount] forKey:ADVERT_QUESTION_COUNT_PARAM];
-
-//    [dic setObjectNotNull:[NSNumber numberWithBool:_canOffer] forKey:ADVERT_CAN_OFFER_PARAM];
-//    [dic setObjectNotNull:[NSNumber numberWithInt:_notifications] forKey:ADVERT_NOTIFICATIONS_PARAM];
-//    [dic setObjectNotNull:[NSNumber numberWithInt:_newQuestionsCount] forKey:ADVERT_NEW_QUESTIONS_PARAM];
-//    [dic setObjectNotNull:[NSNumber numberWithInt:_newOffersCount] forKey:ADVERT_NEW_OFFERS_PARAM];
-//    return dic;
-//}
-//
-//- (id)copyWithZone:(nullable NSZone *)zone{
-//    TSUserEntity* copy = [[TSUserEntity allocWithZone:zone] init];
-//    [copy updateWithDic:[self fullDictionaryRepresentation]];
-//    return copy;
-//}
+- (id)copyWithZone:(nullable NSZone *)zone{
+    TSAdvert* copy = [[TSAdvert allocWithZone:zone] init];
+    
+    NSMutableDictionary* dic = [[NSMutableDictionary alloc] init];
+    [dic setObjectNotNull:_ident forKey:ADVERT_ID_PARAM];
+    [dic setObjectNotNull:_name forKey:ADVERT_NAME_PARAM];
+    
+    if (_dateExpires){
+        NSString* dateExp = [NSDate stringFromDate:_dateExpires format:DEFAULT_DATE_FORMAT timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+        [dic setObjectNotNull:dateExp forKey:ADVERT_EXPIRES_PARAM];
+    }
+    [dic setObjectNotNull:[NSNumber numberWithFloat:_guidePrice] forKey:ADVERT_GUIDE_PRICE_PARAM];
+    [dic setObjectNotNull:_adDescription forKey:ADVERT_DESCRIPTION_PARAM];
+    [dic setObjectNotNull:_location forKey:ADVERT_LOCATION_PARAM];
+    [dic setObjectNotNull:_shipping.ident forKey:ADVERT_SHIPPING_PARAM];
+    [dic setObjectNotNull:[NSNumber numberWithBool:_isVatExtempt] forKey:ADVERT_IS_VAT_EXTEMP_PARAM];
+    [dic setObjectNotNull:_author.ident forKey:ADVERT_AUTHOR_PARAM];
+    [dic setObjectNotNull:_category.ident forKey:ADVERT_CATEGORY_PARAM];
+    [dic setObjectNotNull:_subCategory.ident forKey:ADVERT_SUBCATEGORY_PARAM];
+    
+    [dic setObjectNotNull:_packaging.ident forKey:ADVERT_PACKAGING_PARAM];
+    [dic setObjectNotNull:[NSNumber numberWithInt:_minOrderQuantity] forKey:ADVERT_MAIN_ORDER_QUANTITY_PARAM];
+    [dic setObjectNotNull:_size forKey:ADVERT_SIZE_PARAM];
+    [dic setObjectNotNull:_certificationOther forKey:ADVERT_CERTIFICATIONS_EXTRA_PARAM];
+    [dic setObjectNotNull:_certification.ident forKey:ADVERT_CERTIFICATION_PARAM];
+    [dic setObjectNotNull:_condition.ident forKey:ADVERT_CONDITION_PARAM];
+    [dic setObjectNotNull:[NSNumber numberWithInt:_count] forKey:ADVERT_ITEMS_COUNT_PARAM];
+    [dic setObjectNotNull:[NSNumber numberWithBool:_isInDrafts] forKey:ADVERT_IN_DRAFTS_PARAM];
+    [dic setObjectNotNull:[self.tags componentsSeparatedByString:@", "] forKey:ADVERT_TAGS_PARAM];
+    [dic setObjectNotNull:_subCategory.ident forKey:ADVERT_SUBCATEGORY_PARAM];
+    [dic setObjectNotNull:_subCategory.ident forKey:ADVERT_SUBCATEGORY_PARAM];
+    [dic setObjectNotNull:_state.ident forKey:ADVERT_STATE_PARAM];
+    
+    [copy updateWithDic:dic];
+    return copy;
+}
 
 @end

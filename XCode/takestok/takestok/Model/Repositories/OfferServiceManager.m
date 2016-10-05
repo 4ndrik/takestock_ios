@@ -13,6 +13,7 @@
 #import "AppSettings.h"
 #import "TSOfferStatus.h"
 #import "TSAdvert.h"
+#import "TSShippingInfo.h"
 #import <Stripe/Stripe.h>
 
 @implementation OfferServiceManager
@@ -232,10 +233,104 @@ static OfferServiceManager *_manager = nil;
 
 -(void)makePayment:(TSOffer*)offer token:(STPToken*)token compleate:(errorBlock)compleate{
     [[ServerConnectionHelper sharedInstance] payOffer:offer.ident withToken:token.tokenId completion:^(id result, NSError *error) {
-        NSLog(@"dasdsa");
-        dispatch_async(dispatch_get_main_queue(), ^{
-            compleate(error);
-        });
+        if (!error){
+            if ([[result objectForKeyNotNull:@"status"] isEqualToString:@"success"]){
+                [[ServerConnectionHelper sharedInstance] loadOffer:offer.ident compleate:^(id result, NSError *error) {
+                    if (!error){
+                        [offer updateWithDic:result];
+                    }
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        compleate(error);
+                    });
+                }];
+            }else if ([[result objectForKeyNotNull:@"status"] isEqualToString:@"error"]){
+                if ([result objectForKeyNotNull:@"data"]){
+                    error = [NSError errorWithDomain:@"2" code:2 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[result objectForKeyNotNull:@"data"], NSLocalizedFailureReasonErrorKey, nil]];
+                }else{
+                    error = [NSError errorWithDomain:@"2" code:2 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Something went wrong. Please try again.", NSLocalizedFailureReasonErrorKey, nil]];
+                }
+            }else{
+                error = [NSError errorWithDomain:@"2" code:2 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Something went wrong. Please try again.", NSLocalizedFailureReasonErrorKey, nil]];
+            }
+        }
+        if (error){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                compleate(error);
+            });
+        }
+    }];
+}
+
+-(void)setShippingInfo:(TSOffer*)offer street:(NSString*)street house:(NSString*)house city:(NSString*)city postcode:(NSString*)postcode phone:(NSString*)phone compleate:(errorBlock)compleate{
+    NSMutableDictionary* dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:[NSNumber numberWithInteger:tsAddressReceived] forKey:@"status"];
+    [dic setValue:offer.ident forKey:@"offer"];
+    [dic setValue:street forKey:@"street"];
+    [dic setValue:house forKey:@"house"];
+    [dic setValue:city forKey:@"city"];
+    [dic setValue:postcode forKey:@"postcode"];
+    [dic setValue:phone forKey:@"phone"];
+    
+    [[ServerConnectionHelper sharedInstance] updateOffer:dic compleate:^(id result, NSError *error) {
+        if (!error){
+            [[ServerConnectionHelper sharedInstance] loadOffer:offer.ident compleate:^(id result, NSError *error) {
+                if (!error){
+                    [offer updateWithDic:result];
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    compleate(error);
+                });
+            }];
+        }
+        else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                compleate(error);
+            });
+        }
+    }];
+}
+
+-(void)setShippingInfo:(TSShippingInfo*)shipping withOffer:(TSOffer*)offer compleate:(errorBlock)compleate{
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:[shipping dictionaryForShipping]];
+    [dic setValue:[_offerStatuses objectForKey:[NSNumber numberWithInt:tsAddressReceived]] forKey:@"status"];
+    [[ServerConnectionHelper sharedInstance] updateOffer:dic compleate:^(id result, NSError *error) {
+        if (!error){
+            [[ServerConnectionHelper sharedInstance] loadOffer:offer.ident compleate:^(id result, NSError *error) {
+                if (!error){
+                    [offer updateWithDic:result];
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    compleate(error);
+                });
+            }];
+        }
+        else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                compleate(error);
+            });
+        }
+    }];
+}
+
+-(void)setTransitInfo:(TSShippingInfo*)shipping withOffer:(TSOffer*)offer compleate:(errorBlock)compleate{
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:[shipping dictionaryForShipping]];
+    [dic setValue:[_offerStatuses objectForKey:[NSNumber numberWithInt:tsStockInTransit]] forKey:@"status"];
+    [[ServerConnectionHelper sharedInstance] updateOffer:dic compleate:^(id result, NSError *error) {
+        if (!error){
+            [[ServerConnectionHelper sharedInstance] loadOffer:offer.ident compleate:^(id result, NSError *error) {
+                if (!error){
+                    [offer updateWithDic:result];
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    compleate(error);
+                });
+            }];
+        }
+        else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                compleate(error);
+            });
+        }
     }];
 }
 

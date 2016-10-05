@@ -39,13 +39,13 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [_adverts removeAllObjects];
     [_sellingTableView reloadData];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self reloadData:nil];
+    if (_adverts.count == 0 || _shouldRefresh)
+        [self reloadData:nil];
 }
 
 -(void)reloadData:(id)owner{
@@ -147,6 +147,7 @@
     
     UIAlertAction *editAdvertAction = [UIAlertAction actionWithTitle:@"Edit advert"
                                                            style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                                _shouldRefresh = YES;
                                                                 [tableView deselectRowAtIndexPath:indexPath animated:NO];
                                                                 [self performSegueWithIdentifier:EDIT_ADVERT_SEGUE sender:advert];
                                                            }];

@@ -54,6 +54,7 @@ typedef void (^tsResultBlock)(id result, NSError* error);
 -(void)loadAdvertsWithIdents:(NSArray*)idents compleate:(tsResultBlock)compleate;
 -(void)loadAdvertsWithUser:(NSNumber*)userId page:(int)page compleate:(tsResultBlock)compleate;
 -(void)loadAdvertsWithSort:(NSString*)sort search:(NSString*)search category:(NSNumber*)category subCategory:(NSNumber*)subCategory page:(int)page compleate:(tsResultBlock)compleate;
+-(void)loadWatchListWithPage:(int)page compleate:(tsResultBlock)compleate;
 -(void)createAdvert:(NSDictionary*)advertDic compleate:(tsResultBlock)compleate;
 -(void)editAdvertWithId:(NSNumber*)advertId withDic:(NSDictionary*)advertDic compleate:(tsResultBlock)compleate;
 -(void)addToWatchList:(NSNumber*)advertId compleate:(tsResultBlock)compleate;

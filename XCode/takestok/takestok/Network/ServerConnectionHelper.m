@@ -194,7 +194,7 @@ typedef enum
     //Cancel prev request
     [_loadAdvertCancelTask cancel];
     
-    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:page], @"page", @"-updated_at", @"o", @"active,hold_on",@"in", userId,@"author_id",nil];
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:page], @"page", @"-updated_at", @"o", @"hold_on",@"in", userId,@"author_id",nil];
     
     NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
     
@@ -252,6 +252,22 @@ typedef enum
     [_loadAdvertCancelTask resume];
 }
 
+-(void)loadWatchListWithPage:(int)page compleate:(tsResultBlock)compleate{
+    
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:page], @"page", @"-created_at", @"o", @"watchlist",@"filter",nil];
+    
+    NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
+    
+    NSURLSessionDataTask* loadAdvertCancelTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        [_dictionaryLock waitUntilDone];
+        if (!error){
+            [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        }
+        compleate(result, error);
+    }];
+    [loadAdvertCancelTask resume];
+}
+
 -(void)createAdvert:(NSDictionary*)advertDic compleate:(tsResultBlock)compleate{
     NSError* error;
     NSString* params = [self jsonStringFromDicOrArray:advertDic error:&error];
@@ -267,7 +283,7 @@ typedef enum
 -(void)editAdvertWithId:(NSNumber*)advertId withDic:(NSDictionary*)advertDic compleate:(tsResultBlock)compleate{
     NSError* error;
     NSString* params = [self jsonStringFromDicOrArray:advertDic error:&error];
-    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:[NSString stringWithFormat:@"%@%@/", ADVERTS_URL_PATH, advertId] query:params methodType:HTTP_METHOD_PATCH contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:[NSString stringWithFormat:@"%@/%@", ADVERTS_URL_PATH, advertId] query:params methodType:HTTP_METHOD_PATCH contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         if (!error){
             [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         }

@@ -109,9 +109,9 @@
     NSRegularExpression *userNameRegEx = [[NSRegularExpression alloc] initWithPattern:USER_NAME_REGEX options:NSRegularExpressionCaseInsensitive error:nil];
     
     if (signIn){
-        if ([emailRegEx numberOfMatchesInString:_signInEmailTextField.text options:0 range:NSMakeRange(0, [_signInEmailTextField.text length])] == 0){
-            [messagesArray addObject:@"Wrong email address"];
-        }
+//        if ([emailRegEx numberOfMatchesInString:_signInEmailTextField.text options:0 range:NSMakeRange(0, [_signInEmailTextField.text length])] == 0){
+//            [messagesArray addObject:@"Wrong email address"];
+//        }
         
         if (_signInPasswordTextField.text.length <= 0)
             [messagesArray addObject:@"Password is empty"];

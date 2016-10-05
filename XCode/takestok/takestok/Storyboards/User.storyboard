@@ -19,7 +19,7 @@
         <scene sceneID="a6J-YS-Nab">
             <objects>
                 <navigationController storyboardIdentifier="UserProfileController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y8T-uk-pWu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nzm-nB-IDu">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nzm-nB-IDu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -40,7 +40,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Pha-T8-ekB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eKK-vD-UVr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="564-Ji-WtE">
@@ -441,12 +441,12 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="poB-1l-Nvs"/>
                                         <exclude reference="SO4-nb-n3U"/>
-                                        <exclude reference="sOi-EY-PiE"/>
-                                        <exclude reference="lQH-Kt-Ii2"/>
-                                        <exclude reference="zfC-Gr-BBx"/>
                                         <exclude reference="Ech-pn-Ois"/>
+                                        <exclude reference="poB-1l-Nvs"/>
+                                        <exclude reference="lQH-Kt-Ii2"/>
+                                        <exclude reference="sOi-EY-PiE"/>
+                                        <exclude reference="zfC-Gr-BBx"/>
                                     </mask>
                                 </variation>
                                 <connections>
@@ -502,7 +502,7 @@
                         <viewControllerLayoutGuide type="bottom" id="YzY-GB-S4N"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WO7-ml-gWO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fLN-qC-eZ3">

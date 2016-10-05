@@ -10,23 +10,9 @@
 
 @class TSUserEntity;
 @class TSOfferStatus;
+@class TSShippingInfo;
 
-@interface TSOffer : TSBaseEntity{
-    NSNumber* _advertId;
-    float _price;
-    int _quantity;
-    TSUserEntity* _user;
-    TSOfferStatus* _status;
-    TSOfferStatus* _statusForBuyer;
-    NSString* _comment;
-    NSDate* _dateCreated;
-    NSDate* _dateUpdated;
-    
-    NSNumber* _parentOfferId;
-    NSArray* _childOffers;
-    
-    BOOL _isFromSeller;
-}
+@interface TSOffer : TSBaseEntity
 
 @property (readonly, nonatomic, retain) NSNumber *advertId;
 @property (readonly, nonatomic, assign) float price;
@@ -42,5 +28,15 @@
 @property (readonly, nonatomic, retain) NSArray *childOffers;
 
 @property (readonly, nonatomic, assign) BOOL isFromSeller;
+
+@property (readonly, nonatomic, retain) NSString* street;
+@property (readonly, nonatomic, retain) NSString* house;
+@property (readonly, nonatomic, retain) NSString* city;
+@property (readonly, nonatomic, retain) NSString* postcode;
+@property (readonly, nonatomic, retain) NSString* phone;
+
+@property (readonly, nonatomic, retain)TSShippingInfo* shippingInfo;
+
+-(id)initWithPrice:(float)price quantity:(int)quantity user:(TSUserEntity*)user advertId:(NSNumber*)advertId;
 
 @end

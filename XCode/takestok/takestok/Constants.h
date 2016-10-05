@@ -18,6 +18,7 @@
 #define BrandonGrotesqueBold14  [UIFont fontWithName:@"BrandonGrotesque-Bold" size:14]
 #define BrandonGrotesqueBold13  [UIFont fontWithName:@"BrandonGrotesque-Bold" size:13]
 #define HelveticaNeue18         [UIFont fontWithName:@"HelveticaNeue" size:18]
+#define HelveticaNeue16         [UIFont fontWithName:@"HelveticaNeue" size:16]
 #define HelveticaNeue14         [UIFont fontWithName:@"HelveticaNeue" size:14]
 #define Helvetica14             [UIFont fontWithName:@"Helvetica" size:14]
 #define HelveticaLight18        [UIFont fontWithName:@"Helvetica-Light" size:18]
@@ -39,7 +40,6 @@
 #define QUESTIONS_UPDATED_NOTIFICATION      @"QuestionsUpdatedNotification"
 
 //STORUBOARD IDS
-
 #define MAIN_STORYBOARD             @"Main"
 #define ADVERT_STORYBOARD           @"Advert"
 #define LISTS_STORYBOARD            @"Lists"
@@ -59,6 +59,9 @@
 #define CATEGORIES_SEGUE            @"CategoriesSegue"
 #define USER_DETAILS_SEGUE          @"UserDetailsSegue"
 #define BUYER_OFFERS_SEQUE          @"BuyingOffersSegue"
+#define OFFERS_SHIPPING_SEQUE       @"ShippingSegue"
+#define OFFERS_DISPATCH_INFO_SEQUE  @"DispatchInfoSegue"
+
 
 //CONTROLLER IDS
 #define LOGIN_CONTROLLER            @"LoginViewController"

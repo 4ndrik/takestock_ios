@@ -29,7 +29,6 @@
 #import "UserServiceManager.h"
 #import "AdvertServiceManager.h"
 #import "TSAdvert+Mutable.h"
-#import "TSOffer+Mutable.h"
 #import "OfferServiceManager.h"
 #import "OfferStatus.h"
 #import "TSAdvert+Mutable.h"
@@ -173,11 +172,7 @@
 
 -(void)createOrder{
     if (_createOrderAction){
-        TSOffer* offer = [[TSOffer alloc] init];
-        offer.advertId = _advert.ident;
-        offer.user = [[UserServiceManager sharedManager] getMe];
-        offer.price = [_offerPriceTextField.text floatValue];
-        offer.quantity = [_offerQuantityTextField.text floatValue];
+        TSOffer* offer = [[TSOffer alloc] initWithPrice:[_offerPriceTextField.text floatValue] quantity:[_offerQuantityTextField.text floatValue] user:[[UserServiceManager sharedManager] getMe] advertId: _advert.ident];
         
         [self showLoading];
         [[OfferServiceManager sharedManager] createOffer:offer compleate:^(NSError *error) {

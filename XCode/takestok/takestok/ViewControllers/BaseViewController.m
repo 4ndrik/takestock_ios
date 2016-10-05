@@ -19,6 +19,8 @@
 #import "UserDetailsViewController.h"
 #import "TSBaseDictionaryEntity.h"
 #import "UserServiceManager.h"
+#import "ShippingOfferViewController.h"
+#import "DeliveryInfoViewController.h"
 
 @implementation BaseViewController
 
@@ -82,6 +84,12 @@
     } else if ([segue.identifier isEqualToString:USER_DETAILS_SEGUE]){
         UserDetailsViewController* udVC = (UserDetailsViewController*)segue.destinationViewController;
         [udVC setUser:sender];
+    } else if ([segue.identifier isEqualToString:OFFERS_SHIPPING_SEQUE]){
+        ShippingOfferViewController* udVC = (ShippingOfferViewController*)segue.destinationViewController;
+        [udVC setOffer:sender];
+    }else if ([segue.identifier isEqualToString:OFFERS_DISPATCH_INFO_SEQUE]){
+        DeliveryInfoViewController* udVC = (DeliveryInfoViewController*)segue.destinationViewController;
+        [udVC setOffer:sender];
     }
 }
 

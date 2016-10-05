@@ -120,14 +120,14 @@
         
         self.title = @"EDIT ADVERT";
         
-//        [_saveButton setTitle:@"SAVE CHANGES" forState:UIControlStateNormal];
+        [_saveButton setTitle:@"SAVE CHANGES" forState:UIControlStateNormal];
+        _previewButton.hidden = YES;
         
         [_imagesCollectionView reloadData];
         [self collectionView:_imagesCollectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedImage inSection:0]];
         
     }else{
         self.title = @"SELL SOMETHING";
-//         [_saveButton setTitle:@"PREVIEW & MAKE ALIVE" forState:UIControlStateNormal];
     }
     
     //Add certifications
@@ -588,6 +588,8 @@
 -(void)createAdvert{
     if (!_advert){
         _advert = [[TSAdvert alloc] init];
+    }else{
+        _advert = [_advert copy];
     }
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -645,7 +647,8 @@
 - (IBAction)saveAdvert:(id)sender{
     if ([self verifyFields]){
         [self createAdvert];
-        _advert.isInDrafts = true;
+        if (!_advert.ident)
+            _advert.isInDrafts = true;
         
         [self showLoading];
         [[AdvertServiceManager sharedManager] createAdvert:_advert compleate:^(NSError *error) {

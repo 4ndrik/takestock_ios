@@ -43,14 +43,14 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [_offers removeAllObjects];
-    [_adverts removeAllObjects];
     [_buyingTableView reloadData];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self reloadData:nil];
+    if (_offers.count == 0 || _adverts.count == 0){
+        [self reloadData:nil];
+    }
 }
 
 -(void)reloadData:(id)owner{
@@ -141,11 +141,16 @@
     }else if([offer.statusForBuyer.ident intValue] == tsCountered){
             cell.offerTextLabel.text = @"RESPONSE NEEDED";
             cell.offerTextLabel.textColor = [UIColor redColor];
+    }else if([offer.statusForBuyer.ident intValue] == tsPayment){
+        cell.offerTextLabel.text = @"PAYMENT MADE";
+        cell.offerTextLabel.textColor = [UIColor redColor];
+    }else if([offer.statusForBuyer.ident intValue] == tsAddressReceived){
+        cell.offerTextLabel.text = @"ADDRESS SENT";
+        cell.offerTextLabel.textColor = OliveMainColor;
     }else {
-        cell.offerTextLabel.text = @"HANDLE";
+        cell.offerTextLabel.text = offer.statusForBuyer.title;
         cell.offerTextLabel.textColor = [UIColor redColor];
     }
-    
     
     return cell;
 }

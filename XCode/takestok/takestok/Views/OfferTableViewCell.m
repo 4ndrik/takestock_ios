@@ -37,4 +37,11 @@
     [self.delegate mainAction:self];
 }
 
+- (IBAction)iArrangeTrasportAction:(id)sender {
+    [self.delegate organizeDispatch:self];
+}
+
+- (IBAction)buyerArrangesTransportAction:(id)sender {
+}
+
 @end

@@ -23,6 +23,7 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mainActionHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *offerActionHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *transportActionHeight;
 
 @property (weak, nonatomic) IBOutlet UIButton *mainActionButton;
 
@@ -31,4 +32,6 @@
 - (IBAction)rejectAction:(id)sender;
 - (IBAction)mainAction:(id)sender;
 
+- (IBAction)iArrangeTrasportAction:(id)sender;
+- (IBAction)buyerArrangesTransportAction:(id)sender;
 @end

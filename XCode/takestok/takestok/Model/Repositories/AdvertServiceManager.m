@@ -302,7 +302,7 @@ static AdvertServiceManager *_manager = nil;
 #pragma mark - Adverts
 
 -(void)loadMyAdvertsWithPage:(int)page compleate:(resultBlock)compleate{
-    [[ServerConnectionHelper sharedInstance]loadAdvertsWithUser:[[UserServiceManager sharedManager] getMe].ident page:page compleate:^(id result, NSError *error) {
+    [[ServerConnectionHelper sharedInstance] loadAdvertsWithUser:[[UserServiceManager sharedManager] getMe].ident page:page compleate:^(id result, NSError *error) {
         NSMutableDictionary* additionalDic;
         NSMutableArray* adverts;
         if (!error)
@@ -364,24 +364,51 @@ static AdvertServiceManager *_manager = nil;
     }];
 }
 
--(void)createAdvert:(TSAdvert*)advert compleate:(errorBlock)compleate{
-    NSDictionary* advertDic = [advert dictionaryRepresentation];
-    [[ServerConnectionHelper sharedInstance] createAdvert:advertDic compleate:^(id result, NSError *error) {
+-(void)loadWatchListWithPage:(int)page compleate:(resultBlock)compleate{
+    [[ServerConnectionHelper sharedInstance] loadWatchListWithPage:page compleate:^(id result, NSError *error) {
+        NSMutableDictionary* additionalDic;
+        NSMutableArray* adverts;
         if (!error)
-            [advert updateWithDic:result];
+        {
+            additionalDic = [NSMutableDictionary dictionaryWithDictionary:result];
+            [additionalDic removeObjectForKey:@"results"];
+            NSArray* array = [result objectForKeyNotNull:@"results"];
+            adverts = [NSMutableArray arrayWithCapacity:array.count];
+            
+            for (NSDictionary* advertDic in array) {
+                TSAdvert* advert = [TSAdvert objectWithDictionary:advertDic];
+                if (advert)
+                    [adverts addObject:advert];
+            }
+            
+        }else if ([[error localizedDescription] isEqualToString:@"cancelled"]){
+            return;
+        }
+        
         dispatch_async(dispatch_get_main_queue(), ^{
-            compleate(error);
+            compleate(adverts, additionalDic, error);
         });
     }];
+
 }
 
--(void)editAdvert:(TSAdvert*)advert compleate:(advertResultBlock)compleate{
+-(void)createAdvert:(TSAdvert*)advert compleate:(errorBlock)compleate{
     NSDictionary* advertDic = [advert dictionaryRepresentation];
-    [[ServerConnectionHelper sharedInstance]editAdvertWithId:advert.ident withDic:advertDic compleate:^(id result, NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            compleate(result, error);
-        });
-    }];
+    if (advert.ident){
+        [[ServerConnectionHelper sharedInstance]editAdvertWithId:advert.ident withDic:advertDic compleate:^(id result, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                compleate(error);
+            });
+        }];
+    }else{
+        [[ServerConnectionHelper sharedInstance] createAdvert:advertDic compleate:^(id result, NSError *error) {
+            if (!error)
+                [advert updateWithDic:result];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                compleate(error);
+            });
+        }];
+    }
 }
 
 -(void)addToWatchList:(TSAdvert*)advert compleate:(errorBlock)compleate{

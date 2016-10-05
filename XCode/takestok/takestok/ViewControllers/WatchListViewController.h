@@ -10,8 +10,12 @@
 #import "WatchTableViewCell.h"
 
 @interface WatchListViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, WatchListProtocol>{
-    NSArray* _watcArray;
+    NSMutableArray* _watcArray;
     IBOutlet UITableView* _watchListTableView;
+    
+    UIRefreshControl *_refreshControl;
+    int _page;
+    UIActivityIndicatorView* _loadingIndicator;
 }
 
 @end

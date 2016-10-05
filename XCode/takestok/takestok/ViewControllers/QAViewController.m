@@ -75,6 +75,10 @@
 
 #pragma mark - Helpers
 
+-(void)setAdvert:(TSAdvert*)advert{
+    _advert = advert;
+}
+
 - (IBAction)hideKeyboard:(id)sender {
     if ([_askQuestionView.questionTextView isFirstResponder]){
         [_askQuestionView.questionTextView resignFirstResponder];

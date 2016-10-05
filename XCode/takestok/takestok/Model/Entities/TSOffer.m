@@ -10,6 +10,7 @@
 #import "UserServiceManager.h"
 #import "OfferServiceManager.h"
 #import "TSUserEntity.h"
+#import "TSShippingInfo.h"
 
 #define OFFER_ID_PARAM                  @"id"
 #define OFFER_ADVERT_PARAM              @"advert"
@@ -29,21 +30,18 @@
 #define OFFER_DATE_UPDATED_PARAM        @"updated_at"
 
 #define OFFER_FROM_SELLER_PARAM         @"from_seller"
+#define OFFER_SHIPPING_INFO_PARAM       @"shipping"
 
 @implementation TSOffer
 
-@synthesize advertId = _advertId;
-@synthesize price = _price;
-@synthesize quantity = _quantity;
-@synthesize user = _user;
-@synthesize parentOfferId = _parentOfferId;
-@synthesize childOffers = _childOffers;
-@synthesize dateCreated = _dateCreated;
-@synthesize dateUpdated = _dateUpdated;
-@synthesize status = _status;
-@synthesize comment = _comment;
-@synthesize statusForBuyer = _statusForBuyer;
-@synthesize isFromSeller = _isFromSeller;
+-(id)initWithPrice:(float)price quantity:(int)quantity user:(TSUserEntity*)user advertId:(NSNumber*)advertId{
+    self = [super init];
+    _quantity = quantity;
+    _price = price;
+    _advertId = advertId;
+    _user = user;
+    return self;
+}
 
 -(void)updateWithDic:(NSDictionary*)dict{
     _ident = [TSOffer identFromDic:dict];
@@ -87,8 +85,9 @@
         }
     }
     _childOffers = childOffers;
-    
     _isFromSeller = [[dict objectForKeyNotNull:OFFER_FROM_SELLER_PARAM] boolValue];
+    NSDictionary* shipping = [[dict objectForKeyNotNull:OFFER_SHIPPING_INFO_PARAM] firstObject];
+    _shippingInfo = [TSShippingInfo objectWithDictionary:shipping];
 }
 
 +(NSNumber*)identFromDic:(NSDictionary*)dict{

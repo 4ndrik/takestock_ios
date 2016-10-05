@@ -12,6 +12,7 @@
     NSMutableArray* _adverts;
     UIRefreshControl *_refreshControl;
     int _page;
+    BOOL _shouldRefresh;
     UIActivityIndicatorView* _loadingIndicator;
     
     __weak IBOutlet UITableView *_sellingTableView;

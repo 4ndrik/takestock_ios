@@ -16,7 +16,6 @@
 		AC049D161CB7C95D006A8F21 /* UIView+NibLoadView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D151CB7C95D006A8F21 /* UIView+NibLoadView.m */; };
 		AC049D1E1CBBBA0A006A8F21 /* SearchTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D1D1CBBBA0A006A8F21 /* SearchTitleView.m */; };
 		AC049D211CBBD2D7006A8F21 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D201CBBD2D7006A8F21 /* LoginViewController.m */; };
-		AC05871B1D953EB400AFB81B /* TSOffer+Mutable.m in Sources */ = {isa = PBXBuildFile; fileRef = AC05871A1D953EB400AFB81B /* TSOffer+Mutable.m */; };
 		AC08D8031CE9FEC200830A53 /* Question+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC08D7EC1CE9FEC200830A53 /* Question+CoreDataProperties.m */; };
 		AC08D8041CE9FEC200830A53 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = AC08D7EE1CE9FEC200830A53 /* Question.m */; };
 		AC08D80B1CE9FEC200830A53 /* Answer+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC08D7FC1CE9FEC200830A53 /* Answer+CoreDataProperties.m */; };
@@ -29,6 +28,8 @@
 		AC1F54531CCE484F0093848B /* OfferTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1F54521CCE484F0093848B /* OfferTitleView.m */; };
 		AC1F54551CCE48630093848B /* OfferTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC1F54541CCE48630093848B /* OfferTitleView.xib */; };
 		AC1F54581CCE495E0093848B /* TopBottomStripesLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1F54571CCE495E0093848B /* TopBottomStripesLabel.m */; };
+		AC36985C1DA4E37A00987179 /* DeliveryInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC36985B1DA4E37A00987179 /* DeliveryInfoViewController.m */; };
+		AC36985F1DA4FD0C00987179 /* TSShippingInfo+Mutable.m in Sources */ = {isa = PBXBuildFile; fileRef = AC36985E1DA4FD0C00987179 /* TSShippingInfo+Mutable.m */; };
 		AC411E0D1CBF9693008B1E38 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AC411E0B1CBF9693008B1E38 /* Model.xcdatamodeld */; };
 		AC411E121CBF970A008B1E38 /* Advert+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E0F1CBF970A008B1E38 /* Advert+CoreDataProperties.m */; };
 		AC411E131CBF970A008B1E38 /* Advert.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E111CBF970A008B1E38 /* Advert.m */; };
@@ -99,6 +100,8 @@
 		AC79A2FD1D8AEDC8009B442E /* QuestionAnswerServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC79A2FB1D8AEDC8009B442E /* QuestionAnswerServiceManager.m */; };
 		AC7ADD481D2A5FC500E0FBC9 /* PayDestAddressOfferView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7ADD471D2A5FC500E0FBC9 /* PayDestAddressOfferView.xib */; };
 		AC7ADD4B1D2A5FDA00E0FBC9 /* PayDestAddressOfferView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7ADD4A1D2A5FDA00E0FBC9 /* PayDestAddressOfferView.m */; };
+		AC959B2B1DA3A69800A308BD /* ShippingOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC959B2A1DA3A69800A308BD /* ShippingOfferViewController.m */; };
+		AC959B2E1DA3D0F900A308BD /* TSShippingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = AC959B2D1DA3D0F900A308BD /* TSShippingInfo.m */; };
 		AC9776A61D26BAD60060DF73 /* ShippingInfoActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9776A51D26BAD60060DF73 /* ShippingInfoActionView.m */; };
 		AC9776A81D26BAEA0060DF73 /* ShippingInfoActionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC9776A71D26BAEA0060DF73 /* ShippingInfoActionView.xib */; };
 		ACA2E8CF1CE5BEDD00BAB401 /* OfferStatus+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA2E8C81CE5BEDD00BAB401 /* OfferStatus+CoreDataProperties.m */; };
@@ -182,8 +185,6 @@
 		AC049D1D1CBBBA0A006A8F21 /* SearchTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTitleView.m; sourceTree = "<group>"; };
 		AC049D1F1CBBD2D7006A8F21 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AC049D201CBBD2D7006A8F21 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		AC0587191D953EB400AFB81B /* TSOffer+Mutable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TSOffer+Mutable.h"; sourceTree = "<group>"; };
-		AC05871A1D953EB400AFB81B /* TSOffer+Mutable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSOffer+Mutable.m"; sourceTree = "<group>"; };
 		AC08D7EB1CE9FEC200830A53 /* Question+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Question+CoreDataProperties.h"; sourceTree = "<group>"; };
 		AC08D7EC1CE9FEC200830A53 /* Question+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Question+CoreDataProperties.m"; sourceTree = "<group>"; };
 		AC08D7ED1CE9FEC200830A53 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
@@ -207,6 +208,10 @@
 		AC1F54541CCE48630093848B /* OfferTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfferTitleView.xib; sourceTree = "<group>"; };
 		AC1F54561CCE495E0093848B /* TopBottomStripesLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopBottomStripesLabel.h; sourceTree = "<group>"; };
 		AC1F54571CCE495E0093848B /* TopBottomStripesLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopBottomStripesLabel.m; sourceTree = "<group>"; };
+		AC36985A1DA4E37A00987179 /* DeliveryInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeliveryInfoViewController.h; sourceTree = "<group>"; };
+		AC36985B1DA4E37A00987179 /* DeliveryInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeliveryInfoViewController.m; sourceTree = "<group>"; };
+		AC36985D1DA4FD0C00987179 /* TSShippingInfo+Mutable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TSShippingInfo+Mutable.h"; sourceTree = "<group>"; };
+		AC36985E1DA4FD0C00987179 /* TSShippingInfo+Mutable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSShippingInfo+Mutable.m"; sourceTree = "<group>"; };
 		AC411E0C1CBF9693008B1E38 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		AC411E0E1CBF970A008B1E38 /* Advert+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Advert+CoreDataProperties.h"; sourceTree = "<group>"; };
 		AC411E0F1CBF970A008B1E38 /* Advert+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Advert+CoreDataProperties.m"; sourceTree = "<group>"; };
@@ -346,6 +351,10 @@
 		AC7ADD471D2A5FC500E0FBC9 /* PayDestAddressOfferView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayDestAddressOfferView.xib; sourceTree = "<group>"; };
 		AC7ADD491D2A5FDA00E0FBC9 /* PayDestAddressOfferView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayDestAddressOfferView.h; sourceTree = "<group>"; };
 		AC7ADD4A1D2A5FDA00E0FBC9 /* PayDestAddressOfferView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayDestAddressOfferView.m; sourceTree = "<group>"; };
+		AC959B291DA3A69800A308BD /* ShippingOfferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShippingOfferViewController.h; sourceTree = "<group>"; };
+		AC959B2A1DA3A69800A308BD /* ShippingOfferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShippingOfferViewController.m; sourceTree = "<group>"; };
+		AC959B2C1DA3D0F900A308BD /* TSShippingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSShippingInfo.h; sourceTree = "<group>"; };
+		AC959B2D1DA3D0F900A308BD /* TSShippingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSShippingInfo.m; sourceTree = "<group>"; };
 		AC9776A41D26BAD60060DF73 /* ShippingInfoActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShippingInfoActionView.h; sourceTree = "<group>"; };
 		AC9776A51D26BAD60060DF73 /* ShippingInfoActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShippingInfoActionView.m; sourceTree = "<group>"; };
 		AC9776A71D26BAEA0060DF73 /* ShippingInfoActionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShippingInfoActionView.xib; sourceTree = "<group>"; };
@@ -642,12 +651,14 @@
 		AC4906841D92BE7500E2768A /* Offer */ = {
 			isa = PBXGroup;
 			children = (
-				AC0587191D953EB400AFB81B /* TSOffer+Mutable.h */,
-				AC05871A1D953EB400AFB81B /* TSOffer+Mutable.m */,
 				AC49068B1D92CADF00E2768A /* TSOffer.h */,
 				AC49068C1D92CADF00E2768A /* TSOffer.m */,
 				AC4655BD1D93E48500A5CC76 /* TSOfferStatus.h */,
 				AC4655BE1D93E48500A5CC76 /* TSOfferStatus.m */,
+				AC36985D1DA4FD0C00987179 /* TSShippingInfo+Mutable.h */,
+				AC36985E1DA4FD0C00987179 /* TSShippingInfo+Mutable.m */,
+				AC959B2C1DA3D0F900A308BD /* TSShippingInfo.h */,
+				AC959B2D1DA3D0F900A308BD /* TSShippingInfo.m */,
 			);
 			name = Offer;
 			sourceTree = "<group>";
@@ -934,6 +945,8 @@
 				AC411E501CC78D06008B1E38 /* SellingViewController.m */,
 				AC1F544B1CCE45350093848B /* OfferManagerViewController.h */,
 				AC1F544C1CCE45350093848B /* OfferManagerViewController.m */,
+				AC36985A1DA4E37A00987179 /* DeliveryInfoViewController.h */,
+				AC36985B1DA4E37A00987179 /* DeliveryInfoViewController.m */,
 			);
 			name = Selling;
 			sourceTree = "<group>";
@@ -945,6 +958,8 @@
 				AC411E5A1CC7D257008B1E38 /* BuyingViewController.m */,
 				ACBC48471D9A7F9A00E061EF /* BuyingOffersViewController.h */,
 				ACBC48481D9A7F9A00E061EF /* BuyingOffersViewController.m */,
+				AC959B291DA3A69800A308BD /* ShippingOfferViewController.h */,
+				AC959B2A1DA3A69800A308BD /* ShippingOfferViewController.m */,
 			);
 			name = Buying;
 			sourceTree = "<group>";
@@ -1233,7 +1248,6 @@
 				AC1911521CE22D6C00C5A4A5 /* SortData.m in Sources */,
 				AC4655BF1D93E48500A5CC76 /* TSOfferStatus.m in Sources */,
 				AC411E781CC8D186008B1E38 /* Certification+CoreDataProperties.m in Sources */,
-				AC05871B1D953EB400AFB81B /* TSOffer+Mutable.m in Sources */,
 				ACEFEE9B1D82FB27001B9BA0 /* TSAdvertCertification.m in Sources */,
 				AC9776A61D26BAD60060DF73 /* ShippingInfoActionView.m in Sources */,
 				AC411E611CC7DC8E008B1E38 /* PaddingLabel.m in Sources */,
@@ -1303,6 +1317,7 @@
 				AC049D111CB7C86A006A8F21 /* SearchFilterSortView.m in Sources */,
 				ACF8DA6B1D913AFD00BD5114 /* TSUserEntity+Mutable.m in Sources */,
 				ACC6F21F1D0EB72200F1B6F5 /* TakeStokRootViewController.m in Sources */,
+				AC36985F1DA4FD0C00987179 /* TSShippingInfo+Mutable.m in Sources */,
 				AC5F6C6E1D88016B003918D3 /* TSUserEntity.m in Sources */,
 				AC6200FF1CE31CC9006A80A2 /* Packaging.m in Sources */,
 				ACA42F7B1D1AC7CD00C586BB /* BusinessType+CoreDataProperties.m in Sources */,
@@ -1325,12 +1340,14 @@
 				AC411E451CC50884008B1E38 /* ImageScrollCollectionViewCell.m in Sources */,
 				AC6200FE1CE31CC9006A80A2 /* Packaging+CoreDataProperties.m in Sources */,
 				AC19114F1CE1E74000C5A4A5 /* NSData+base64.m in Sources */,
+				AC36985C1DA4E37A00987179 /* DeliveryInfoViewController.m in Sources */,
 				AC411E221CBF9CEF008B1E38 /* Image.m in Sources */,
 				ACDC246A1CBCF610003E9715 /* RadioButton.m in Sources */,
 				AC68C4891CB6534A004B78DF /* UIImage+ExtendedImage.m in Sources */,
 				ACC6F22E1D0EEE7000F1B6F5 /* AboutUsViewController.m in Sources */,
 				AC411E2C1CBFB832008B1E38 /* ImageLoader.m in Sources */,
 				ACBC48561D9ABE7800E061EF /* OfferTableViewCell.m in Sources */,
+				AC959B2E1DA3D0F900A308BD /* TSShippingInfo.m in Sources */,
 				ACA2E8D21CE5BEDD00BAB401 /* Offer.m in Sources */,
 				AC68C4601CB51C1F004B78DF /* AppDelegate.m in Sources */,
 				ACA42F7C1D1AC7CD00C586BB /* BusinessType.m in Sources */,
@@ -1343,6 +1360,7 @@
 				AC79A2FD1D8AEDC8009B442E /* QuestionAnswerServiceManager.m in Sources */,
 				AC411E331CBFBE94008B1E38 /* GUIDCreator.m in Sources */,
 				AC68C45D1CB51C1F004B78DF /* main.m in Sources */,
+				AC959B2B1DA3A69800A308BD /* ShippingOfferViewController.m in Sources */,
 				ACCE7FCB1CDB8F6400A76CB6 /* SubCategory.m in Sources */,
 				AC049D161CB7C95D006A8F21 /* UIView+NibLoadView.m in Sources */,
 				ACF8DA6E1D91535600BD5114 /* TSQuestion+Mutable.m in Sources */,
