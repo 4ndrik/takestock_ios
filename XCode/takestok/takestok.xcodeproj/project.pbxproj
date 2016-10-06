@@ -82,6 +82,11 @@
 		AC959B2E1DA3D0F900A308BD /* TSShippingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = AC959B2D1DA3D0F900A308BD /* TSShippingInfo.m */; };
 		AC9776A61D26BAD60060DF73 /* ShippingInfoActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9776A51D26BAD60060DF73 /* ShippingInfoActionView.m */; };
 		AC9776A81D26BAEA0060DF73 /* ShippingInfoActionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC9776A71D26BAEA0060DF73 /* ShippingInfoActionView.xib */; };
+		ACB141961DA66B6800D02D47 /* DraftsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB141951DA66B6800D02D47 /* DraftsViewController.m */; };
+		ACB141991DA66BB200D02D47 /* BaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB141981DA66BB200D02D47 /* BaseListViewController.m */; };
+		ACB1419C1DA66DCA00D02D47 /* ExpiredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB1419B1DA66DCA00D02D47 /* ExpiredViewController.m */; };
+		ACB1419E1DA6716C00D02D47 /* AdvertTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACB1419D1DA6716C00D02D47 /* AdvertTableViewCell.xib */; };
+		ACB141A11DA6871900D02D47 /* OverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB141A01DA6871900D02D47 /* OverviewViewController.m */; };
 		ACBC48491D9A7F9A00E061EF /* BuyingOffersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACBC48481D9A7F9A00E061EF /* BuyingOffersViewController.m */; };
 		ACBC484B1D9A801400E061EF /* Buying.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBC484A1D9A801400E061EF /* Buying.storyboard */; };
 		ACBC484D1D9A818E00E061EF /* Selling.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBC484C1D9A818E00E061EF /* Selling.storyboard */; };
@@ -105,7 +110,7 @@
 		ACCE7FD61CDCDB6B00A76CB6 /* QATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCE7FD51CDCDB6B00A76CB6 /* QATableViewCell.m */; };
 		ACCF26A21CF7395000BA55A9 /* UserDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCF26A11CF7395000BA55A9 /* UserDetailsViewController.m */; };
 		ACD646E41D9D2F47006B5B78 /* OfferTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACD646E31D9D2F47006B5B78 /* OfferTableViewCell.xib */; };
-		ACD65F541D23D204005D3967 /* WatchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD65F531D23D204005D3967 /* WatchTableViewCell.m */; };
+		ACD65F541D23D204005D3967 /* AdvertTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD65F531D23D204005D3967 /* AdvertTableViewCell.m */; };
 		ACDA2ECD1CEF28A3009F51A0 /* OfferActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDA2ECC1CEF28A3009F51A0 /* OfferActionView.m */; };
 		ACDA2ECF1CEF28B8009F51A0 /* OfferActionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACDA2ECE1CEF28B8009F51A0 /* OfferActionView.xib */; };
 		ACDC246A1CBCF610003E9715 /* RadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDC24691CBCF610003E9715 /* RadioButton.m */; };
@@ -278,6 +283,15 @@
 		AC9776A41D26BAD60060DF73 /* ShippingInfoActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShippingInfoActionView.h; sourceTree = "<group>"; };
 		AC9776A51D26BAD60060DF73 /* ShippingInfoActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShippingInfoActionView.m; sourceTree = "<group>"; };
 		AC9776A71D26BAEA0060DF73 /* ShippingInfoActionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShippingInfoActionView.xib; sourceTree = "<group>"; };
+		ACB141941DA66B6800D02D47 /* DraftsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraftsViewController.h; sourceTree = "<group>"; };
+		ACB141951DA66B6800D02D47 /* DraftsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraftsViewController.m; sourceTree = "<group>"; };
+		ACB141971DA66BB200D02D47 /* BaseListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseListViewController.h; sourceTree = "<group>"; };
+		ACB141981DA66BB200D02D47 /* BaseListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseListViewController.m; sourceTree = "<group>"; };
+		ACB1419A1DA66DCA00D02D47 /* ExpiredViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpiredViewController.h; sourceTree = "<group>"; };
+		ACB1419B1DA66DCA00D02D47 /* ExpiredViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpiredViewController.m; sourceTree = "<group>"; };
+		ACB1419D1DA6716C00D02D47 /* AdvertTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvertTableViewCell.xib; sourceTree = "<group>"; };
+		ACB1419F1DA6871900D02D47 /* OverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverviewViewController.h; sourceTree = "<group>"; };
+		ACB141A01DA6871900D02D47 /* OverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverviewViewController.m; sourceTree = "<group>"; };
 		ACBC48471D9A7F9A00E061EF /* BuyingOffersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyingOffersViewController.h; sourceTree = "<group>"; };
 		ACBC48481D9A7F9A00E061EF /* BuyingOffersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyingOffersViewController.m; sourceTree = "<group>"; };
 		ACBC484A1D9A801400E061EF /* Buying.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Buying.storyboard; path = Storyboards/Buying.storyboard; sourceTree = "<group>"; };
@@ -313,8 +327,8 @@
 		ACCF26A01CF7395000BA55A9 /* UserDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailsViewController.h; sourceTree = "<group>"; };
 		ACCF26A11CF7395000BA55A9 /* UserDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsViewController.m; sourceTree = "<group>"; };
 		ACD646E31D9D2F47006B5B78 /* OfferTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfferTableViewCell.xib; sourceTree = "<group>"; };
-		ACD65F521D23D204005D3967 /* WatchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchTableViewCell.h; sourceTree = "<group>"; };
-		ACD65F531D23D204005D3967 /* WatchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchTableViewCell.m; sourceTree = "<group>"; };
+		ACD65F521D23D204005D3967 /* AdvertTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvertTableViewCell.h; sourceTree = "<group>"; };
+		ACD65F531D23D204005D3967 /* AdvertTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvertTableViewCell.m; sourceTree = "<group>"; };
 		ACDA2ECB1CEF28A3009F51A0 /* OfferActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferActionView.h; sourceTree = "<group>"; };
 		ACDA2ECC1CEF28A3009F51A0 /* OfferActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferActionView.m; sourceTree = "<group>"; };
 		ACDA2ECE1CEF28B8009F51A0 /* OfferActionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfferActionView.xib; sourceTree = "<group>"; };
@@ -457,8 +471,6 @@
 				AC411E471CC50A00008B1E38 /* ImagesCollectionViewController.m */,
 				ACCE7FCC1CDCC3A400A76CB6 /* QAViewController.h */,
 				ACCE7FCD1CDCC3A400A76CB6 /* QAViewController.m */,
-				AC0A2C481D1D784E0040282D /* WatchListViewController.h */,
-				AC0A2C491D1D784E0040282D /* WatchListViewController.m */,
 			);
 			name = Adverts;
 			sourceTree = "<group>";
@@ -558,6 +570,7 @@
 				ACC6F2211D0EBFCE00F1B6F5 /* MenuViewController.m */,
 				AC049D061CB7C47F006A8F21 /* HomeViewController.h */,
 				AC049D071CB7C47F006A8F21 /* HomeViewController.m */,
+				ACB141931DA669A000D02D47 /* Overview */,
 				AC411E521CC78D61008B1E38 /* Adverts */,
 				AC854C271CEB3E46006AFF2D /* Selling */,
 				AC854C281CEB3E56006AFF2D /* Buying */,
@@ -764,6 +777,23 @@
 			name = Buying;
 			sourceTree = "<group>";
 		};
+		ACB141931DA669A000D02D47 /* Overview */ = {
+			isa = PBXGroup;
+			children = (
+				ACB1419F1DA6871900D02D47 /* OverviewViewController.h */,
+				ACB141A01DA6871900D02D47 /* OverviewViewController.m */,
+				ACB141971DA66BB200D02D47 /* BaseListViewController.h */,
+				ACB141981DA66BB200D02D47 /* BaseListViewController.m */,
+				AC0A2C481D1D784E0040282D /* WatchListViewController.h */,
+				AC0A2C491D1D784E0040282D /* WatchListViewController.m */,
+				ACB141941DA66B6800D02D47 /* DraftsViewController.h */,
+				ACB141951DA66B6800D02D47 /* DraftsViewController.m */,
+				ACB1419A1DA66DCA00D02D47 /* ExpiredViewController.h */,
+				ACB1419B1DA66DCA00D02D47 /* ExpiredViewController.m */,
+			);
+			name = Overview;
+			sourceTree = "<group>";
+		};
 		ACC6F22B1D0EEE4600F1B6F5 /* Content */ = {
 			isa = PBXGroup;
 			children = (
@@ -803,8 +833,9 @@
 		ACD65F511D23D1D6005D3967 /* WatchList */ = {
 			isa = PBXGroup;
 			children = (
-				ACD65F521D23D204005D3967 /* WatchTableViewCell.h */,
-				ACD65F531D23D204005D3967 /* WatchTableViewCell.m */,
+				ACD65F521D23D204005D3967 /* AdvertTableViewCell.h */,
+				ACD65F531D23D204005D3967 /* AdvertTableViewCell.m */,
+				ACB1419D1DA6716C00D02D47 /* AdvertTableViewCell.xib */,
 			);
 			name = WatchList;
 			sourceTree = "<group>";
@@ -962,6 +993,7 @@
 				AC1F54551CCE48630093848B /* OfferTitleView.xib in Resources */,
 				AC68C4661CB51C1F004B78DF /* Main.storyboard in Resources */,
 				ACC6F22A1D0EC4DD00F1B6F5 /* UserMenuView.xib in Resources */,
+				ACB1419E1DA6716C00D02D47 /* AdvertTableViewCell.xib in Resources */,
 				ACC6F2311D0EF00200F1B6F5 /* AboutUs.html in Resources */,
 				AC68C47D1CB63F1B004B78DF /* brandon_bld.otf in Resources */,
 				AC411E3A1CC0F309008B1E38 /* SearchTitleView.xib in Resources */,
@@ -1055,10 +1087,11 @@
 				ACFCB6BA1CDA200A005A4024 /* UserProfileViewController.m in Sources */,
 				AC411E5E1CC7D2C9008B1E38 /* BuyingTableViewCell.m in Sources */,
 				ACEFEE8F1D82EE0D001B9BA0 /* AdvertServiceManager.m in Sources */,
+				ACB141A11DA6871900D02D47 /* OverviewViewController.m in Sources */,
 				AC411E511CC78D06008B1E38 /* SellingViewController.m in Sources */,
 				AC049D0B1CB7C490006A8F21 /* BaseViewController.m in Sources */,
 				AC049D051CB7C449006A8F21 /* SearchViewController.m in Sources */,
-				ACD65F541D23D204005D3967 /* WatchTableViewCell.m in Sources */,
+				ACD65F541D23D204005D3967 /* AdvertTableViewCell.m in Sources */,
 				AC7ADD4B1D2A5FDA00E0FBC9 /* PayDestAddressOfferView.m in Sources */,
 				ACFCB6BD1CDA5047005A4024 /* AppSettings.m in Sources */,
 				AC049D081CB7C47F006A8F21 /* HomeViewController.m in Sources */,
@@ -1071,6 +1104,7 @@
 				AC411E301CBFBB30008B1E38 /* BackgroundImageView.m in Sources */,
 				AC5633E41D0978D800ACF1E9 /* NSLayoutConstraint+Description.m in Sources */,
 				AC411E261CBFA220008B1E38 /* ImageCacheUrlResolver.m in Sources */,
+				ACB141991DA66BB200D02D47 /* BaseListViewController.m in Sources */,
 				AC1481181CE5D16E00CA64D4 /* MainThreadRecursiveLock.m in Sources */,
 				AC7249781D8AEC8900AD940A /* TSUserSubBusinessType.m in Sources */,
 				ACDC24721CBEAC5F003E9715 /* AdvertDetailViewController.m in Sources */,
@@ -1106,6 +1140,7 @@
 				AC6201081CE390D2006A80A2 /* UIViewController+BackButtonHandler.m in Sources */,
 				AC2DDC941DA5751600C6486E /* StoredImage.m in Sources */,
 				AC68C4771CB53F3D004B78DF /* CALayer+BorderUIColor.m in Sources */,
+				ACB141961DA66B6800D02D47 /* DraftsViewController.m in Sources */,
 				AC411E4B1CC63825008B1E38 /* ServerConnectionHelper.m in Sources */,
 				AC411E451CC50884008B1E38 /* ImageScrollCollectionViewCell.m in Sources */,
 				AC19114F1CE1E74000C5A4A5 /* NSData+base64.m in Sources */,
@@ -1123,6 +1158,7 @@
 				AC5F6C781D881D93003918D3 /* UserServiceManager.m in Sources */,
 				AC1F54581CCE495E0093848B /* TopBottomStripesLabel.m in Sources */,
 				AC79A2FD1D8AEDC8009B442E /* QuestionAnswerServiceManager.m in Sources */,
+				ACB1419C1DA66DCA00D02D47 /* ExpiredViewController.m in Sources */,
 				AC411E331CBFBE94008B1E38 /* GUIDCreator.m in Sources */,
 				AC68C45D1CB51C1F004B78DF /* main.m in Sources */,
 				AC959B2B1DA3A69800A308BD /* ShippingOfferViewController.m in Sources */,

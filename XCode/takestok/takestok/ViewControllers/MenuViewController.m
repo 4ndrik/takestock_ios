@@ -47,6 +47,11 @@
     [_menuItems addObject:actionItem];
     
     actionItem = [[ActionItem alloc] init];
+    actionItem.title = @"Overview";
+    actionItem.action = @selector(showOverview:);
+    [_menuItems addObject:actionItem];
+    
+    actionItem = [[ActionItem alloc] init];
     actionItem.title = @"Selling";
     actionItem.action = @selector(showSelling:);
     [_menuItems addObject:actionItem];
@@ -54,11 +59,6 @@
     actionItem = [[ActionItem alloc] init];
     actionItem.title = @"Buying";
     actionItem.action = @selector(showBuying:);
-    [_menuItems addObject:actionItem];
-    
-    actionItem = [[ActionItem alloc] init];
-    actionItem.title = @"Watch list";
-    actionItem.action = @selector(showWatchList:);
     [_menuItems addObject:actionItem];
     
     actionItem = [[ActionItem alloc] init];
@@ -191,10 +191,10 @@
     }
 }
 
--(void)showWatchList:(id)owner{
+-(void)showOverview:(id)owner{
     if([self checkUserLogin]){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:LISTS_STORYBOARD bundle:nil];
-        self.frostedViewController.contentViewController = [storyboard instantiateViewControllerWithIdentifier:WATCH_LIST_CONTROLLER];
+        self.frostedViewController.contentViewController = [storyboard instantiateViewControllerWithIdentifier:OVERVIEW_CONTROLLER];
         [self.frostedViewController hideMenuViewController];
     }
 }

@@ -70,7 +70,7 @@
 #define USER_PROFILE_CONTROLLER     @"UserProfileController"
 #define SELLING_CONTROLLER          @"SellingController"
 #define BUYING_CONTROLLER           @"BuyingController"
-#define WATCH_LIST_CONTROLLER       @"WatchListController"
+#define OVERVIEW_CONTROLLER         @"OverViewController"
 #define ABOUT_US_CONTROLLER         @"AboutUsController"
 #define CONTACT_US_CONTROLLER       @"ContactUsController"
 #define LEGAL_INFO_CONTROLLER       @"LegalInformationController"

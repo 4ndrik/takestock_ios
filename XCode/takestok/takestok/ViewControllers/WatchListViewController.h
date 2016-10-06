@@ -6,16 +6,11 @@
 //  Copyright © 2016 Artem. All rights reserved.
 //
 
-#import "BaseViewController.h"
-#import "WatchTableViewCell.h"
+#import "BaseListViewController.h"
+#import "AdvertTableViewCell.h"
 
-@interface WatchListViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, WatchListProtocol>{
-    NSMutableArray* _watcArray;
-    IBOutlet UITableView* _watchListTableView;
-    
-    UIRefreshControl *_refreshControl;
-    int _page;
-    UIActivityIndicatorView* _loadingIndicator;
+@interface WatchListViewController : BaseListViewController{
+
 }
 
 @end

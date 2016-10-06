@@ -9,9 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "SearchCollectionViewCell.h"
 
+@protocol AdvertListProtocol <NSObject>
+
+-(void)mainAction:(id)owner;
+
+@end
+
 @class BackgroundImageView, PaddingLabel, TopBottomStripesLabel;
 
-@interface WatchTableViewCell : UITableViewCell
+@interface AdvertTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet BackgroundImageView *adImageView;
 @property (weak, nonatomic) IBOutlet PaddingLabel *priceLabel;
@@ -21,9 +27,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *offersCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *questionsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *daysLeftLabel;
+@property (weak, nonatomic) IBOutlet UIButton *mainActionButton;
 
-- (IBAction)removeFromWatchListAction:(id)sender;
+@property (weak, nonatomic) id<AdvertListProtocol> delegate;
 
-@property (weak, nonatomic) id<WatchListProtocol> delegate;
+- (IBAction)mainAction:(id)sender;
 
 @end

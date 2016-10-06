@@ -234,7 +234,33 @@ typedef enum
 
 -(void)loadWatchListWithPage:(int)page compleate:(tsResultBlock)compleate{
     
-    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:page], @"page", @"-created_at", @"o", @"watchlist",@"filter",nil];
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:page], @"page", @"-created_at", @"o", @"watchlist",@"filter", nil];
+    
+    NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
+    
+    NSURLSessionDataTask* loadAdvertCancelTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        [_dictionaryLock waitUntilDone];
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        compleate(result, error);
+    }];
+    [loadAdvertCancelTask resume];
+}
+
+-(void)loadDraftsWithPage:(int)page userId:(NSNumber*)userId compleate:(tsResultBlock)compleate{
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:page], @"page", @"-created_at", @"o", @"drafts",@"in", userId, @"author_id", nil];
+    
+    NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
+    
+    NSURLSessionDataTask* loadAdvertCancelTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        [_dictionaryLock waitUntilDone];
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        compleate(result, error);
+    }];
+    [loadAdvertCancelTask resume];
+}
+
+-(void)loadExpiredWithPage:(int)page userId:(NSNumber*)userId compleate:(tsResultBlock)compleate{
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:page], @"page", @"-created_at", @"o", @"expired",@"filter", userId,@"author_id", nil];
     
     NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
     

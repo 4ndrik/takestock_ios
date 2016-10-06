@@ -204,29 +204,6 @@
                              range:NSMakeRange(0, statusString.length)];
         [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
         [textString appendAttributedString:statusString];
-    }else if ([offer.status.ident intValue] == tsAddressReceived ){
-        cell.transportActionHeight.constant = 40;
-        if (textString.length > 0)
-            [textString appendAttributedString:[self spaceForFont]];
-        
-        NSMutableAttributedString* shippingString = [[NSMutableAttributedString alloc] initWithString:@"Shippping info"];
-        [shippingString addAttribute:NSFontAttributeName
-                             value:HelveticaNeue16
-                             range:NSMakeRange(0, shippingString.length)];
-        [shippingString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, shippingString.length)];
-        
-        [textString appendAttributedString:shippingString];
-        [textString appendAttributedString:[self spaceForFont]];
-        
-        NSString* streetString = [NSString stringWithFormat:@"Street: %@\nHouse: %@\nCity: %@\nPostcode:%@\nPhone:%@", offer.shippingInfo.street, offer.shippingInfo.house, offer.shippingInfo.city,offer.shippingInfo.postcode, offer.shippingInfo.phone];
-        NSMutableAttributedString* shippingInfo = [[NSMutableAttributedString alloc] initWithString:streetString];
-        [shippingInfo addAttribute:NSFontAttributeName
-                               value:HelveticaNeue14
-                               range:NSMakeRange(0, shippingInfo.length)];
-        [shippingInfo addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, shippingInfo.length)];
-
-        [textString appendAttributedString:shippingInfo];
-       
     }else if ([offer.status.ident intValue] == tsPayment){
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
@@ -237,7 +214,41 @@
                              range:NSMakeRange(0, statusString.length)];
         [statusString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, statusString.length)];
         [textString appendAttributedString:statusString];
-    }else if ([offer.status.ident intValue] == tsStockInTransit){
+    }else if ([offer.status.ident intValue] == tsAddressReceived ){
+        cell.transportActionHeight.constant = 40;
+        if (textString.length > 0)
+            [textString appendAttributedString:[self spaceForFont]];
+        
+        NSMutableAttributedString* shippingString = [[NSMutableAttributedString alloc] initWithString:@"Shippping info"];
+        [shippingString addAttribute:NSFontAttributeName
+                               value:HelveticaNeue16
+                               range:NSMakeRange(0, shippingString.length)];
+        [shippingString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, shippingString.length)];
+        
+        [textString appendAttributedString:shippingString];
+        [textString appendAttributedString:[self spaceForFont]];
+        
+        NSString* streetString = [NSString stringWithFormat:@"Street: %@\nHouse: %@\nCity: %@\nPostcode:%@\nPhone:%@", offer.shippingInfo.street, offer.shippingInfo.house, offer.shippingInfo.city,offer.shippingInfo.postcode, offer.shippingInfo.phone];
+        NSMutableAttributedString* shippingInfo = [[NSMutableAttributedString alloc] initWithString:streetString];
+        [shippingInfo addAttribute:NSFontAttributeName
+                             value:HelveticaNeue14
+                             range:NSMakeRange(0, shippingInfo.length)];
+        [shippingInfo addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, shippingInfo.length)];
+        
+        [textString appendAttributedString:shippingInfo];
+    }
+//    else if ([offer.status.ident intValue] == tsConfirmStock){
+//        if (textString.length > 0)
+//            [textString appendAttributedString:[self spaceForFont]];
+//        
+//        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"AWAIT CONFIRM STOCK DISPATCHED"];
+//        [statusString addAttribute:NSFontAttributeName
+//                             value:BrandonGrotesqueBold14
+//                             range:NSMakeRange(0, statusString.length)];
+//        [statusString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, statusString.length)];
+//        [textString appendAttributedString:statusString];
+//    }
+    else if ([offer.status.ident intValue] == tsStockInTransit){
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
         
@@ -246,6 +257,16 @@
                              value:BrandonGrotesqueBold14
                              range:NSMakeRange(0, statusString.length)];
         [statusString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, statusString.length)];
+        [textString appendAttributedString:statusString];
+    }else if ([offer.status.ident intValue] == tsGoodsReceived){
+        if (textString.length > 0)
+            [textString appendAttributedString:[self spaceForFont]];
+        
+        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"GOODS RECEIVED"];
+        [statusString addAttribute:NSFontAttributeName
+                             value:BrandonGrotesqueBold14
+                             range:NSMakeRange(0, statusString.length)];
+        [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
         [textString appendAttributedString:statusString];
     }else {
         

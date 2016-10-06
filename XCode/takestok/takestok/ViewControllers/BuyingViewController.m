@@ -147,9 +147,16 @@
     }else if([offer.statusForBuyer.ident intValue] == tsAddressReceived){
         cell.offerTextLabel.text = @"ADDRESS SENT";
         cell.offerTextLabel.textColor = OliveMainColor;
+    }else if ([offer.status.ident intValue] == tsConfirmStock){
+        cell.offerTextLabel.text = @"AWAIT CONFIRM STOCK DISPATCHED";
+        cell.offerTextLabel.textColor = OliveMainColor;
     }else if([offer.statusForBuyer.ident intValue] == tsStockInTransit){
         cell.offerTextLabel.text = @"STOCK IN TRANSIT";
         cell.offerTextLabel.textColor = [UIColor redColor];
+    }
+    else if([offer.statusForBuyer.ident intValue] == tsGoodsReceived){
+        cell.offerTextLabel.text = @"GOODS RECEIVED";
+        cell.offerTextLabel.textColor = [UIColor blackColor];
     }else {
         cell.offerTextLabel.text = offer.statusForBuyer.title;
         cell.offerTextLabel.textColor = [UIColor redColor];

@@ -31,5 +31,6 @@
 -(void)makePayment:(TSOffer*)offer token:(STPToken*)token compleate:(errorBlock)compleate;
 -(void)setShippingInfo:(TSShippingInfo*)shipping withOffer:(TSOffer*)offer compleate:(errorBlock)compleate;
 -(void)setDeliveryInfo:(TSShippingInfo*)shipping withOffer:(TSOffer*)offer compleate:(errorBlock)compleate;
+-(void)confirmOffer:(TSOffer*)offer compleate:(errorBlock)compleate;
 
 @end

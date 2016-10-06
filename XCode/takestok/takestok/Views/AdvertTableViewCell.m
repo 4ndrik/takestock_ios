@@ -6,12 +6,12 @@
 //  Copyright © 2016 Artem. All rights reserved.
 //
 
-#import "WatchTableViewCell.h"
+#import "AdvertTableViewCell.h"
 #import "BackgroundImageView.h"
 #import "PaddingLabel.h"
 #import "TopBottomStripesLabel.h"
 
-@implementation WatchTableViewCell
+@implementation AdvertTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -24,7 +24,7 @@
     // Configure the view for the selected state
 }
 
-- (IBAction)removeFromWatchListAction:(id)sender {
-    [_delegate addRemoveWatchList:self];
+- (IBAction)mainAction:(id)sender {
+    [_delegate mainAction:self];
 }
 @end

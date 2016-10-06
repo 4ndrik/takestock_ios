@@ -334,4 +334,27 @@ static OfferServiceManager *_manager = nil;
     }];
 }
 
+-(void)confirmOffer:(TSOffer*)offer compleate:(errorBlock)compleate{
+    NSMutableDictionary* dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:offer.ident forKey:@"offer"];
+    [dic setValue:[NSNumber numberWithInteger:tsGoodsReceived] forKey:@"status"];
+    [[ServerConnectionHelper sharedInstance] updateOffer:dic compleate:^(id result, NSError *error) {
+        if (!error){
+            [[ServerConnectionHelper sharedInstance] loadOffer:offer.ident compleate:^(id result, NSError *error) {
+                if (!error){
+                    [offer updateWithDic:result];
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    compleate(error);
+                });
+            }];
+        }
+        else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                compleate(error);
+            });
+        }
+    }];
+}
+
 @end

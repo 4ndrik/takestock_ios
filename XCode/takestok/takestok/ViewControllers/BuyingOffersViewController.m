@@ -179,6 +179,16 @@
                              range:NSMakeRange(0, statusString.length)];
         [statusString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, statusString.length)];
         [textString appendAttributedString:statusString];
+    }else if ([offer.status.ident intValue] == tsConfirmStock){
+        if (textString.length > 0)
+            [textString appendAttributedString:[self spaceForFont]];
+        
+        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"AWAIT CONFIRM STOCK DISPATCHED"];
+        [statusString addAttribute:NSFontAttributeName
+                             value:BrandonGrotesqueBold14
+                             range:NSMakeRange(0, statusString.length)];
+        [statusString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, statusString.length)];
+        [textString appendAttributedString:statusString];
     }else if ([offer.status.ident intValue] == tsStockInTransit){
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
@@ -192,6 +202,19 @@
         
         [textString appendAttributedString:shippingInfo];
         
+        cell.mainActionHeight.constant = 40;
+        [cell.mainActionButton setTitle:@"Confirm goods received" forState:UIControlStateNormal];
+        
+    }else if ([offer.status.ident intValue] == tsGoodsReceived){
+        if (textString.length > 0)
+            [textString appendAttributedString:[self spaceForFont]];
+        
+        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"GOODS RECEIVED"];
+        [statusString addAttribute:NSFontAttributeName
+                             value:BrandonGrotesqueBold14
+                             range:NSMakeRange(0, statusString.length)];
+        [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
+        [textString appendAttributedString:statusString];
     }else {
         
         if (textString.length > 0)
@@ -315,6 +338,22 @@
     }
 }
 
+-(void)confirmOffer:(TSOffer*)offer{
+    [self showLoading];
+    [[OfferServiceManager sharedManager] confirmOffer:offer compleate:^(NSError *error) {
+        [self hideLoading];
+        NSString* title = @"";
+        NSString* text = @"Offer is confirmed";
+        if (error){
+            title = @"Error";
+            text = ERROR_MESSAGE(error);
+        }
+        
+        [self showOkAlert:title text:text compleate:nil];
+        [_offersTableView reloadData];
+    }];
+}
+
 -(void)hideAlertView:(id)owner{
     [_offerAlertView removeFromSuperview];
     _offerAlertView = nil;
@@ -401,6 +440,15 @@
         [self showPaymentAlert:offer];
     }else if ([offer.status.ident intValue] == tsPayment ){
         [self performSegueWithIdentifier:OFFERS_SHIPPING_SEQUE sender:offer];
+    }else if ([offer.status.ident intValue] == tsStockInTransit ){
+        UIAlertController* confirmGoodsReceived = [UIAlertController alertControllerWithTitle:@"Confirm" message:@"Confirm goods received." preferredStyle:UIAlertControllerStyleAlert];
+        [confirmGoodsReceived addAction:[UIAlertAction actionWithTitle:@"YES" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self confirmOffer:offer];
+        }]];
+        [confirmGoodsReceived addAction:[UIAlertAction actionWithTitle:@"NO" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }]];
     }
 }
 

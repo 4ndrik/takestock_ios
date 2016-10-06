@@ -191,10 +191,9 @@
                             <constraint firstAttribute="bottom" secondItem="R14-93-sTB" secondAttribute="bottom" priority="999" constant="5" identifier="id55" id="3VH-FV-wMr"/>
                             <constraint firstItem="R14-93-sTB" firstAttribute="leading" secondItem="m0n-Vt-lf8" secondAttribute="leading" identifier="id56" id="44S-uS-kpL"/>
                             <constraint firstItem="R14-93-sTB" firstAttribute="top" secondItem="m0n-Vt-lf8" secondAttribute="top" constant="5" identifier="id57" id="MZf-uk-Y1Q"/>
-                            <constraint firstItem="2z0-gm-rji" firstAttribute="top" secondItem="m0n-Vt-lf8" secondAttribute="top" constant="5" id="SQV-To-RHH"/>
-                            <constraint firstAttribute="bottom" secondItem="2z0-gm-rji" secondAttribute="bottom" constant="5" id="Th0-XN-J0n"/>
+                            <constraint firstItem="2z0-gm-rji" firstAttribute="centerY" secondItem="m0n-Vt-lf8" secondAttribute="centerY" id="QXb-qZ-Z8p"/>
                             <constraint firstItem="2z0-gm-rji" firstAttribute="leading" secondItem="R14-93-sTB" secondAttribute="trailing" constant="10" id="X5X-En-LtK"/>
-                            <constraint firstItem="R14-93-sTB" firstAttribute="centerY" secondItem="m0n-Vt-lf8" secondAttribute="centerY" id="b4z-YO-gi3"/>
+                            <constraint firstItem="2z0-gm-rji" firstAttribute="height" secondItem="R14-93-sTB" secondAttribute="height" id="aiz-8r-Wyf"/>
                             <constraint firstItem="R14-93-sTB" firstAttribute="width" secondItem="2z0-gm-rji" secondAttribute="width" id="eRK-qU-e5T"/>
                             <constraint firstAttribute="trailing" secondItem="2z0-gm-rji" secondAttribute="trailing" id="hrL-uQ-AXf"/>
                             <constraint firstAttribute="height" constant="40" identifier="id50" id="v7P-g7-zrV"/>
