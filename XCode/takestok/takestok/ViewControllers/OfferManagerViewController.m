@@ -33,8 +33,8 @@
     _offers = [NSMutableArray array];
     
     [_offersTableView registerNib:[UINib nibWithNibName:@"OfferTableViewCell" bundle:nil] forCellReuseIdentifier:@"OfferTableViewCell"];
-    _offersTableView.estimatedRowHeight = 124.0;
     _offersTableView.rowHeight = UITableViewAutomaticDimension;
+    _offersTableView.estimatedRowHeight = 150;
     
     _refreshControl = [[UIRefreshControl alloc] init];
     _refreshControl.tintColor = OliveMainColor;
@@ -134,6 +134,9 @@
     cell.mainActionHeight.constant = 0;
     cell.offerActionHeight.constant = 0;
     cell.transportActionHeight.constant = 0;
+    cell.contactUsActionHeight.constant = 0;
+    cell.contactUserActionHeight.constant = 0;
+    [cell.contactUserButton setTitle:@"CONTACT BUYER" forState:UIControlStateNormal];
     
     NSMutableAttributedString* textString = [[NSMutableAttributedString alloc] init];
     
@@ -148,6 +151,7 @@
     }
     
     if ([offer.status.ident intValue] == tsAccept){
+        cell.contactUserActionHeight.constant = 40;
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
         
@@ -205,6 +209,7 @@
         [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
         [textString appendAttributedString:statusString];
     }else if ([offer.status.ident intValue] == tsPayment){
+        cell.contactUserActionHeight.constant = 40;
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
         
@@ -236,19 +241,34 @@
         [shippingInfo addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, shippingInfo.length)];
         
         [textString appendAttributedString:shippingInfo];
-    }
-//    else if ([offer.status.ident intValue] == tsConfirmStock){
-//        if (textString.length > 0)
-//            [textString appendAttributedString:[self spaceForFont]];
-//        
-//        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"AWAIT CONFIRM STOCK DISPATCHED"];
-//        [statusString addAttribute:NSFontAttributeName
-//                             value:BrandonGrotesqueBold14
-//                             range:NSMakeRange(0, statusString.length)];
-//        [statusString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, statusString.length)];
-//        [textString appendAttributedString:statusString];
-//    }
-    else if ([offer.status.ident intValue] == tsStockInTransit){
+    }else if ([offer.status.ident intValue] == tsConfirmStock){
+        cell.mainActionHeight.constant = 40;
+        [cell.mainActionButton setTitle:@"CONFIRM STOCK DISPATCHED" forState:UIControlStateNormal];
+        if (textString.length > 0)
+            [textString appendAttributedString:[self spaceForFont]];
+        
+        NSMutableAttributedString* shippingString = [[NSMutableAttributedString alloc] initWithString:@"Shippping info"];
+        [shippingString addAttribute:NSFontAttributeName
+                               value:HelveticaNeue16
+                               range:NSMakeRange(0, shippingString.length)];
+        [shippingString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, shippingString.length)];
+        
+        [textString appendAttributedString:shippingString];
+        [textString appendAttributedString:[self spaceForFont]];
+        
+        NSString* streetString = [NSString stringWithFormat:@"Street: %@\nHouse: %@\nCity: %@\nPostcode:%@\nPhone:%@", offer.shippingInfo.street, offer.shippingInfo.house, offer.shippingInfo.city,offer.shippingInfo.postcode, offer.shippingInfo.phone];
+        NSMutableAttributedString* shippingInfo = [[NSMutableAttributedString alloc] initWithString:streetString];
+        [shippingInfo addAttribute:NSFontAttributeName
+                             value:HelveticaNeue14
+                             range:NSMakeRange(0, shippingInfo.length)];
+        [shippingInfo addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, shippingInfo.length)];
+        
+        [textString appendAttributedString:shippingInfo];
+    }else if ([offer.status.ident intValue] == tsStockInTransit){
+        cell.contactUserActionHeight.constant = 40;
+        if ([offer.shippingInfo.arrivalDate compare:[NSDate date]] == NSOrderedAscending){
+            cell.contactUsActionHeight.constant = 40;
+        }
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
         
@@ -268,37 +288,29 @@
                              range:NSMakeRange(0, statusString.length)];
         [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
         [textString appendAttributedString:statusString];
-    }else {
-        
+    }else if ([offer.status.ident intValue] == tsInDispute){
+        cell.contactUserActionHeight.constant = 40;
+        cell.contactUsActionHeight.constant = 40;
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
         
-        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:offer.status.title];
+        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"IN DISPUTE"];
         [statusString addAttribute:NSFontAttributeName
                              value:BrandonGrotesqueBold14
                              range:NSMakeRange(0, statusString.length)];
-        [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
+        [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, statusString.length)];
         [textString appendAttributedString:statusString];
     }
-//    else if (offer.status.ident == stPayment){
-//        cell.operationPanelHeight.constant = 30.;
+//    else {
+//        if (textString.length > 0)
+//            [textString appendAttributedString:[self spaceForFont]];
 //        
-//        NSMutableAttributedString* deliveryString = [[NSMutableAttributedString alloc] initWithString:@"DELIVERY ADDRESS:\n"];
-//        [deliveryString addAttribute:NSFontAttributeName
-//                              value:BrandonGrotesqueBold13
-//                              range:NSMakeRange(0, deliveryString.length)];
-//        [deliveryString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, deliveryString.length)];
-//        [textString appendAttributedString:deliveryString];
-//        
-//        NSMutableAttributedString* deliveryAddressString = [[NSMutableAttributedString alloc] initWithString:@"Delivery address\nSome address"];
-//        [deliveryAddressString addAttribute:NSFontAttributeName
-//                               value:HelveticaNeue14
-//                               range:NSMakeRange(0, deliveryAddressString.length)];
-//        [deliveryAddressString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, deliveryString.length)];
-//        [textString appendAttributedString:deliveryAddressString];
-//        [textString appendAttributedString:[self spaceForFont]];
-//        
-//        [cell.mainButton setTitle:@"SET SHIPPING DETAILS" forState:UIControlStateNormal];
+//        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:offer.status.title];
+//        [statusString addAttribute:NSFontAttributeName
+//                             value:BrandonGrotesqueBold14
+//                             range:NSMakeRange(0, statusString.length)];
+//        [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
+//        [textString appendAttributedString:statusString];
 //    }
     
     cell.statusLabel.attributedText = textString;
@@ -343,7 +355,6 @@
             
             [self showOkAlert:title text:text compleate:nil];
             [_offersTableView reloadData];
-
         }];
     }
 }
@@ -380,18 +391,28 @@
     }
 }
 
--(void)organizeDispatch:(UITableViewCell*)owner{
-    NSUInteger index = [_offersTableView indexPathForCell:owner].row;
-    TSOffer* offer = [_offers objectAtIndex:index];
-    [self performSegueWithIdentifier:OFFERS_DISPATCH_INFO_SEQUE sender:offer];
-}
-
 -(void)hideAlertView:(id)owner{
     [_offerAlertView removeFromSuperview];
     _offerAlertView = nil;
     
     [_shippingInfoActionView removeFromSuperview];
     _shippingInfoActionView = nil;
+}
+
+-(void)contactUsAction:(UITableViewCell *)owner{
+    NSString *subject = [NSString stringWithFormat:@"Subject"];
+    NSString *mail = [NSString stringWithFormat:@"test@test.com"];
+    NSCharacterSet *set = [NSCharacterSet URLHostAllowedCharacterSet];
+    NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"mailto:?to=%@&subject=%@",
+                                                [mail stringByAddingPercentEncodingWithAllowedCharacters:set],
+                                                [subject stringByAddingPercentEncodingWithAllowedCharacters:set]]];
+    if ([[UIApplication sharedApplication] canOpenURL:url]){
+        [[UIApplication sharedApplication] openURL:url];
+    }
+}
+
+-(void)contactUserAction:(UITableViewCell *)owner{
+    
 }
 
 #pragma mark - UITableViewDelegates
@@ -495,16 +516,51 @@
     [_offerAlertView.priceTextEdit becomeFirstResponder];
 }
 
+-(void)sellerArrangedTransport:(UITableViewCell *)owner{
+    NSUInteger index = [_offersTableView indexPathForCell:owner].row;
+    TSOffer* offer = [_offers objectAtIndex:index];
+    [self showLoading];
+    
+    [[OfferServiceManager sharedManager] setTransportInfo:YES withOffer:offer compleate:^(NSError *error) {
+        [self hideLoading];
+        NSString* title = @"";
+        NSString* text = @"Transport information sent.";
+        if (error){
+            title = @"Error";
+            text = ERROR_MESSAGE(error);
+        }
+        
+        [self showOkAlert:title text:text compleate:nil];
+        [_offersTableView reloadData];
+    }];
+}
+
+-(void)buyerArrangedTransport:(UITableViewCell *)owner{
+    NSUInteger index = [_offersTableView indexPathForCell:owner].row;
+    TSOffer* offer = [_offers objectAtIndex:index];
+    [self showLoading];
+    
+    [[OfferServiceManager sharedManager] setTransportInfo:NO withOffer:offer compleate:^(NSError *error) {
+        [self hideLoading];
+        NSString* title = @"";
+        NSString* text = @"Transport information sent.";
+        if (error){
+            title = @"Error";
+            text = ERROR_MESSAGE(error);
+        }
+        
+        [self showOkAlert:title text:text compleate:nil];
+        [_offersTableView reloadData];
+    }];
+}
+
+
 -(void)mainAction:(OfferTableViewCell *)owner{
-//    _shippingInfoActionView = [ShippingInfoActionView loadFromXib];
-//    _shippingInfoActionView.frame = self.navigationController.view.bounds;
-//    
-//    [_shippingInfoActionView.cancelButton addTarget:self action:@selector(hideAlertView:) forControlEvents:UIControlEventTouchUpInside];
-//    [_shippingInfoActionView.setButton addTarget:self action:@selector(setShippingInfo:) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    [self.navigationController.view addSubview:_shippingInfoActionView];
-//    
-//    [_shippingInfoActionView.dateShippedTextField becomeFirstResponder];
+    NSUInteger index = [_offersTableView indexPathForCell:owner].row;
+    TSOffer* offer = [_offers objectAtIndex:index];
+    if ([offer.status.ident intValue] == tsConfirmStock ){
+        [self performSegueWithIdentifier:OFFERS_DISPATCH_INFO_SEQUE sender:offer];
+    }
 }
 
 @end

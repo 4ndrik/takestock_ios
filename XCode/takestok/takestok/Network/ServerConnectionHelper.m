@@ -272,6 +272,19 @@ typedef enum
     [loadAdvertCancelTask resume];
 }
 
+-(void)loadHoldOndWithPage:(int)page userId:(NSNumber*)userId compleate:(tsResultBlock)compleate{
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:page], @"page", @"-created_at", @"o", @"hold_on",@"in", userId, @"author_id", nil];
+    
+    NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
+    
+    NSURLSessionDataTask* loadAdvertCancelTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        [_dictionaryLock waitUntilDone];
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        compleate(result, error);
+    }];
+    [loadAdvertCancelTask resume];
+}
+
 -(void)createAdvert:(NSDictionary*)advertDic compleate:(tsResultBlock)compleate{
     NSError* error;
     NSString* params = [self jsonStringFromDicOrArray:advertDic error:&error];

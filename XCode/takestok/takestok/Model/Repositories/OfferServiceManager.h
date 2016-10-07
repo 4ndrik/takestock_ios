@@ -30,7 +30,9 @@
 -(void)createCounterOffer:(TSOffer*)offer withCount:(int)count price:(float)price withComment:(NSString*)comment byByer:(BOOL)isBuyer compleate:(errorBlock)compleate;
 -(void)makePayment:(TSOffer*)offer token:(STPToken*)token compleate:(errorBlock)compleate;
 -(void)setShippingInfo:(TSShippingInfo*)shipping withOffer:(TSOffer*)offer compleate:(errorBlock)compleate;
+-(void)setTransportInfo:(BOOL)meArrangedTransport withOffer:(TSOffer*)offer compleate:(errorBlock)compleate;
 -(void)setDeliveryInfo:(TSShippingInfo*)shipping withOffer:(TSOffer*)offer compleate:(errorBlock)compleate;
 -(void)confirmOffer:(TSOffer*)offer compleate:(errorBlock)compleate;
+-(void)diputeOffer:(TSOffer*)offer compleate:(errorBlock)compleate;
 
 @end

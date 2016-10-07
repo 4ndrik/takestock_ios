@@ -14,9 +14,11 @@
 -(void)rejectOfferAction:(UITableViewCell*)owner;
 -(void)counterOfferAction:(UITableViewCell*)owner;
 -(void)mainAction:(UITableViewCell*)owner;
+-(void)contactUsAction:(UITableViewCell*)owner;
+-(void)contactUserAction:(UITableViewCell*)owner;
 
 @optional
--(void)organizeDispatch:(UITableViewCell*)owner;
-//-(void)organize:(UITableViewCell*)owner;
+-(void)sellerArrangedTransport:(UITableViewCell*)owner;
+-(void)buyerArrangedTransport:(UITableViewCell*)owner;
 
 @end

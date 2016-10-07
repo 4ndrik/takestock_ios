@@ -86,6 +86,9 @@
     cell.mainActionHeight.constant = 0;
     cell.offerActionHeight.constant = 0;
     cell.transportActionHeight.constant = 0;
+    cell.contactUsActionHeight.constant = 0;
+    cell.contactUserActionHeight.constant = 0;
+    [cell.contactUserButton setTitle:@"CONTACT SELLER" forState:UIControlStateNormal];
     
     if (offer.comment.length > 0){
         
@@ -98,6 +101,9 @@
     }
     
     if ([offer.status.ident intValue] == tsAccept){
+        cell.mainActionHeight.constant = 40;
+        [cell.mainActionButton setTitle:@"MAKE PAYMENT" forState:UIControlStateNormal];
+        
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
         
@@ -107,9 +113,6 @@
                              range:NSMakeRange(0, statusString.length)];
         [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, statusString.length)];
         [textString appendAttributedString:statusString];
-        
-        cell.mainActionHeight.constant = 40;
-        [cell.mainActionButton setTitle:@"MAKE PAYMENT" forState:UIControlStateNormal];
     }
     else if ([offer.status.ident intValue] == tsDecline){
         
@@ -157,6 +160,10 @@
         [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
         [textString appendAttributedString:statusString];
     }else if ([offer.status.ident intValue] == tsPayment){
+        cell.contactUsActionHeight.constant = 40;
+        cell.mainActionHeight.constant = 40;
+        [cell.mainActionButton setTitle:@"SET SHIPPING ADDRESS" forState:UIControlStateNormal];
+        
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
         
@@ -166,9 +173,6 @@
                              range:NSMakeRange(0, statusString.length)];
         [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, statusString.length)];
         [textString appendAttributedString:statusString];
-        
-        cell.mainActionHeight.constant = 40;
-        [cell.mainActionButton setTitle:@"SET SHIPPING ADDRESS" forState:UIControlStateNormal];
     }else if ([offer.status.ident intValue] == tsAddressReceived){
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
@@ -190,6 +194,14 @@
         [statusString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, statusString.length)];
         [textString appendAttributedString:statusString];
     }else if ([offer.status.ident intValue] == tsStockInTransit){
+        if ([offer.shippingInfo.arrivalDate compare:[NSDate date]] == NSOrderedAscending){
+            cell.contactUsActionHeight.constant = 40;
+            cell.contactUserActionHeight.constant = 40;
+        }
+        
+        cell.mainActionHeight.constant = 40;
+        [cell.mainActionButton setTitle:@"Confirm goods received" forState:UIControlStateNormal];
+        
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
         
@@ -202,10 +214,11 @@
         
         [textString appendAttributedString:shippingInfo];
         
-        cell.mainActionHeight.constant = 40;
-        [cell.mainActionButton setTitle:@"Confirm goods received" forState:UIControlStateNormal];
-        
     }else if ([offer.status.ident intValue] == tsGoodsReceived){
+        cell.contactUsActionHeight.constant = 40;
+        cell.mainActionHeight.constant  = 40;
+        [cell.mainActionButton setTitle:@"RAICE DIPUITE" forState:UIControlStateNormal];
+        
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
         
@@ -214,6 +227,18 @@
                              value:BrandonGrotesqueBold14
                              range:NSMakeRange(0, statusString.length)];
         [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
+        [textString appendAttributedString:statusString];
+    }else if ([offer.status.ident intValue] == tsInDispute){
+        cell.contactUserActionHeight.constant = 40;
+        cell.contactUsActionHeight.constant = 40;
+        if (textString.length > 0)
+            [textString appendAttributedString:[self spaceForFont]];
+        
+        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"IN DISPUTE"];
+        [statusString addAttribute:NSFontAttributeName
+                             value:BrandonGrotesqueBold14
+                             range:NSMakeRange(0, statusString.length)];
+        [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, statusString.length)];
         [textString appendAttributedString:statusString];
     }else {
         
@@ -229,7 +254,6 @@
     }
     [cell.statusLabel setAttributedText:textString];
 }
-
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _offers.count;
@@ -301,7 +325,6 @@
             
             [self showOkAlert:title text:text compleate:nil];
             [_offersTableView reloadData];
-            
         }];
     }
 }
@@ -344,6 +367,22 @@
         [self hideLoading];
         NSString* title = @"";
         NSString* text = @"Offer is confirmed";
+        if (error){
+            title = @"Error";
+            text = ERROR_MESSAGE(error);
+        }
+        
+        [self showOkAlert:title text:text compleate:nil];
+        [_offersTableView reloadData];
+    }];
+}
+
+-(void)raiceDispute:(TSOffer*)offer{
+    [self showLoading];
+    [[OfferServiceManager sharedManager] diputeOffer:offer compleate:^(NSError *error) {
+        [self hideLoading];
+        NSString* title = @"";
+        NSString* text = @"Dispute is raiced.";
         if (error){
             title = @"Error";
             text = ERROR_MESSAGE(error);
@@ -442,13 +481,27 @@
         [self performSegueWithIdentifier:OFFERS_SHIPPING_SEQUE sender:offer];
     }else if ([offer.status.ident intValue] == tsStockInTransit ){
         UIAlertController* confirmGoodsReceived = [UIAlertController alertControllerWithTitle:@"Confirm" message:@"Confirm goods received." preferredStyle:UIAlertControllerStyleAlert];
-        [confirmGoodsReceived addAction:[UIAlertAction actionWithTitle:@"YES" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [confirmGoodsReceived addAction:[UIAlertAction actionWithTitle:@"YES" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             [self dismissViewControllerAnimated:YES completion:nil];
             [self confirmOffer:offer];
         }]];
         [confirmGoodsReceived addAction:[UIAlertAction actionWithTitle:@"NO" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
             [self dismissViewControllerAnimated:YES completion:nil];
         }]];
+        
+         [self presentViewController:confirmGoodsReceived animated:YES completion:nil];
+    }else if ([offer.status.ident intValue] == tsGoodsReceived ){
+        
+        UIAlertController* confirmGoodsReceived = [UIAlertController alertControllerWithTitle:@"Confirm" message:@"Raice a dipute?" preferredStyle:UIAlertControllerStyleAlert];
+        [confirmGoodsReceived addAction:[UIAlertAction actionWithTitle:@"YES" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self raiceDispute:offer];
+        }]];
+        [confirmGoodsReceived addAction:[UIAlertAction actionWithTitle:@"NO" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }]];
+        
+        [self presentViewController:confirmGoodsReceived animated:YES completion:nil];
     }
 }
 
@@ -509,5 +562,20 @@
     [_offerAlertView.priceTextEdit becomeFirstResponder];
 }
 
+-(void)contactUsAction:(UITableViewCell *)owner{
+    NSString *subject = [NSString stringWithFormat:@"Subject"];
+    NSString *mail = [NSString stringWithFormat:@"test@test.com"];
+    NSCharacterSet *set = [NSCharacterSet URLHostAllowedCharacterSet];
+    NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"mailto:?to=%@&subject=%@",
+                                                [mail stringByAddingPercentEncodingWithAllowedCharacters:set],
+                                                [subject stringByAddingPercentEncodingWithAllowedCharacters:set]]];
+    if ([[UIApplication sharedApplication] canOpenURL:url]){
+        [[UIApplication sharedApplication] openURL:url];
+    }
+}
+
+-(void)contactUserAction:(UITableViewCell *)owner{
+    
+}
 
 @end

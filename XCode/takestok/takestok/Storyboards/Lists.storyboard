@@ -81,9 +81,9 @@
                                     <constraint firstItem="aAc-uc-2TW" firstAttribute="width" secondItem="5sB-6f-wvu" secondAttribute="width" id="0az-27-ooz"/>
                                     <constraint firstItem="aAc-uc-2TW" firstAttribute="centerY" secondItem="9cz-pm-83y" secondAttribute="centerY" id="0uB-Nd-Eof"/>
                                     <constraint firstItem="OP3-qR-Fuz" firstAttribute="width" secondItem="5sB-6f-wvu" secondAttribute="width" id="4hS-L9-C3G"/>
-                                    <constraint firstAttribute="trailing" secondItem="aAc-uc-2TW" secondAttribute="trailing" id="BT8-BW-N1t"/>
                                     <constraint firstAttribute="bottom" secondItem="5sB-6f-wvu" secondAttribute="bottom" id="Kkj-uG-dzo"/>
                                     <constraint firstItem="aAc-uc-2TW" firstAttribute="leading" secondItem="OP3-qR-Fuz" secondAttribute="trailing" id="Kp4-JK-DXS"/>
+                                    <constraint firstAttribute="trailing" secondItem="aAc-uc-2TW" secondAttribute="trailing" id="aia-2B-E43"/>
                                     <constraint firstItem="5sB-6f-wvu" firstAttribute="top" secondItem="9cz-pm-83y" secondAttribute="top" id="cBZ-kV-O5x"/>
                                     <constraint firstItem="OP3-qR-Fuz" firstAttribute="leading" secondItem="5sB-6f-wvu" secondAttribute="trailing" id="fZp-Bh-Qst"/>
                                     <constraint firstItem="OP3-qR-Fuz" firstAttribute="height" secondItem="5sB-6f-wvu" secondAttribute="height" id="h5F-AM-Dls"/>
@@ -163,7 +163,7 @@
                 <viewControllerPlaceholder storyboardName="Advert" referencedIdentifier="AdvertDetailViewController" id="r6d-Uj-sbM" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e8E-I5-82x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-107" y="1003"/>
+            <point key="canvasLocation" x="-62" y="1014"/>
         </scene>
         <!--CreateAdvertViewController-->
         <scene sceneID="GfT-ki-GsG">
@@ -171,7 +171,7 @@
                 <viewControllerPlaceholder storyboardName="Advert" referencedIdentifier="CreateAdvertViewController" id="Vue-CV-97f" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="msy-bB-8q5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="410" y="1003"/>
+            <point key="canvasLocation" x="678" y="1014"/>
         </scene>
         <!--Drafts View Controller-->
         <scene sceneID="YjV-QO-iSd">
@@ -249,9 +249,47 @@
             </objects>
             <point key="canvasLocation" x="679" y="493"/>
         </scene>
+        <!--Hold On View Controller-->
+        <scene sceneID="XTH-ve-osD">
+            <objects>
+                <viewController id="i2B-v7-Rw6" customClass="HoldOnViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KGU-Vu-f8C"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lcq-j1-dM7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="boo-DV-YkQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zXb-BG-Itd">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="i2B-v7-Rw6" id="tCb-kC-NSe"/>
+                                    <outlet property="delegate" destination="i2B-v7-Rw6" id="GaG-oS-JEW"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zXb-BG-Itd" firstAttribute="leading" secondItem="boo-DV-YkQ" secondAttribute="leading" id="EO0-Q0-azr"/>
+                            <constraint firstItem="zXb-BG-Itd" firstAttribute="top" secondItem="KGU-Vu-f8C" secondAttribute="bottom" id="UNh-lM-rfE"/>
+                            <constraint firstItem="Lcq-j1-dM7" firstAttribute="top" secondItem="zXb-BG-Itd" secondAttribute="bottom" id="j4i-Eu-Fm2"/>
+                            <constraint firstAttribute="trailing" secondItem="zXb-BG-Itd" secondAttribute="trailing" id="zTj-IW-cDL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="_advertListTableView" destination="zXb-BG-Itd" id="2u1-AO-iV2"/>
+                        <segue destination="Vue-CV-97f" kind="show" identifier="EditAdvertSegue" id="bnB-Po-V6g"/>
+                        <segue destination="r6d-Uj-sbM" kind="show" identifier="AdvertDetailSegue" id="ZZz-J3-cFq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xy7-1J-LHQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1500" y="493"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pY2-0K-kLb"/>
-        <segue reference="dAI-sE-qeU"/>
+        <segue reference="bnB-Po-V6g"/>
+        <segue reference="ZZz-J3-cFq"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -226,26 +226,86 @@
                             <constraint firstItem="CmQ-X5-uUO" firstAttribute="top" secondItem="Lo0-Oi-IJ7" secondAttribute="top" constant="5" identifier="id64" id="g5f-OO-mTy"/>
                         </constraints>
                     </view>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mBL-qk-9BF">
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YL3-yZ-S7m">
+                                <color key="backgroundColor" red="0.49803921569999998" green="0.066666666669999999" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="BrandonGrotesque-Medium" family="Brandon Grotesque" pointSize="14"/>
+                                <state key="normal" title="CONTACT BUYER">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="contactUserAction:" destination="HXk-sx-NmY" eventType="touchUpInside" id="RRM-ov-QNw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="YL3-yZ-S7m" firstAttribute="top" secondItem="mBL-qk-9BF" secondAttribute="top" constant="5" identifier="id64" id="Cyx-Fx-bUt"/>
+                            <constraint firstAttribute="height" constant="40" identifier="id60" id="QaT-UL-Q42"/>
+                            <constraint firstAttribute="trailing" secondItem="YL3-yZ-S7m" secondAttribute="trailing" identifier="id63" id="WZ9-Zh-l5e"/>
+                            <constraint firstAttribute="bottom" secondItem="YL3-yZ-S7m" secondAttribute="bottom" priority="999" constant="5" identifier="id62" id="mfs-Ov-XL9"/>
+                            <constraint firstItem="YL3-yZ-S7m" firstAttribute="leading" secondItem="mBL-qk-9BF" secondAttribute="leading" identifier="id61" id="qec-gI-yxY"/>
+                        </constraints>
+                    </view>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4OA-fk-jym">
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHS-ne-gGA">
+                                <color key="backgroundColor" red="0.49803921569999998" green="0.066666666669999999" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="BrandonGrotesque-Medium" family="Brandon Grotesque" pointSize="14"/>
+                                <state key="normal" title="CONTACT US">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="contactUsAction:" destination="HXk-sx-NmY" eventType="touchUpInside" id="g7P-d7-z4z"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="UHS-ne-gGA" secondAttribute="bottom" priority="999" constant="5" identifier="id62" id="M7U-3F-Oig"/>
+                            <constraint firstItem="UHS-ne-gGA" firstAttribute="top" secondItem="4OA-fk-jym" secondAttribute="top" constant="5" identifier="id64" id="P3w-Gq-luv"/>
+                            <constraint firstAttribute="height" constant="40" identifier="id60" id="STc-38-GwO"/>
+                            <constraint firstAttribute="trailing" secondItem="UHS-ne-gGA" secondAttribute="trailing" identifier="id63" id="aeA-al-dWB"/>
+                            <constraint firstItem="UHS-ne-gGA" firstAttribute="leading" secondItem="4OA-fk-jym" secondAttribute="leading" identifier="id61" id="avE-9o-nfr"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="Djc-Y9-rGo" secondAttribute="trailing" constant="2" id="171-HQ-3my"/>
                     <constraint firstItem="Lo0-Oi-IJ7" firstAttribute="width" secondItem="jvB-Qj-AFy" secondAttribute="width" identifier="id79" id="4Ji-XD-qeK"/>
                     <constraint firstItem="Lo0-Oi-IJ7" firstAttribute="centerX" secondItem="dAB-Ps-ITJ" secondAttribute="centerX" identifier="id711" id="5ex-m3-377"/>
+                    <constraint firstItem="4OA-fk-jym" firstAttribute="centerX" secondItem="dAB-Ps-ITJ" secondAttribute="centerX" id="5kM-hg-BTN"/>
                     <constraint firstItem="Djc-Y9-rGo" firstAttribute="top" secondItem="dAB-Ps-ITJ" secondAttribute="topMargin" constant="50" identifier="mm" id="8nC-gd-O4w"/>
+                    <constraint firstItem="mBL-qk-9BF" firstAttribute="top" secondItem="Lo0-Oi-IJ7" secondAttribute="bottom" id="9ld-qh-RKz"/>
                     <constraint firstItem="4R9-qY-H9R" firstAttribute="centerY" secondItem="IMI-rM-WrD" secondAttribute="centerY" identifier="id74" id="CvD-h0-lk7"/>
                     <constraint firstItem="jvB-Qj-AFy" firstAttribute="leading" secondItem="dAB-Ps-ITJ" secondAttribute="leadingMargin" constant="2" identifier="id76" id="EjM-U6-87e"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Lo0-Oi-IJ7" secondAttribute="bottom" constant="5" identifier="id710" id="Foy-fz-aL0"/>
                     <constraint firstItem="Djc-Y9-rGo" firstAttribute="leading" secondItem="dAB-Ps-ITJ" secondAttribute="leadingMargin" constant="2" id="GZe-2f-yC0"/>
                     <constraint firstItem="NBs-Og-juw" firstAttribute="leading" secondItem="4R9-qY-H9R" secondAttribute="trailing" constant="10" identifier="id72" id="H1p-L2-n6X"/>
                     <constraint firstAttribute="trailingMargin" secondItem="htn-pN-9ow" secondAttribute="trailing" constant="2" identifier="id713" id="ITj-4G-FPm"/>
                     <constraint firstAttribute="trailingMargin" secondItem="jvB-Qj-AFy" secondAttribute="trailing" constant="2" identifier="id77" id="KbT-Gl-tLh"/>
+                    <constraint firstItem="mBL-qk-9BF" firstAttribute="width" secondItem="jvB-Qj-AFy" secondAttribute="width" id="M4F-RL-ws1"/>
                     <constraint firstItem="Lo0-Oi-IJ7" firstAttribute="top" secondItem="m0n-Vt-lf8" secondAttribute="bottom" id="M4S-ZP-chp"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="4OA-fk-jym" secondAttribute="bottom" constant="5" id="MY1-GM-ZbM"/>
                     <constraint firstItem="IMI-rM-WrD" firstAttribute="leading" secondItem="dAB-Ps-ITJ" secondAttribute="leadingMargin" constant="2" identifier="id716" id="QnV-bu-Ajv"/>
+                    <constraint firstItem="mBL-qk-9BF" firstAttribute="centerX" secondItem="dAB-Ps-ITJ" secondAttribute="centerX" id="UTQ-7T-3bC"/>
                     <constraint firstItem="m0n-Vt-lf8" firstAttribute="top" secondItem="jvB-Qj-AFy" secondAttribute="bottom" id="VZo-7y-0C5"/>
                     <constraint firstItem="htn-pN-9ow" firstAttribute="top" secondItem="dAB-Ps-ITJ" secondAttribute="topMargin" constant="2" identifier="id714" id="WJ5-oY-dTH"/>
                     <constraint firstItem="m0n-Vt-lf8" firstAttribute="width" secondItem="jvB-Qj-AFy" secondAttribute="width" id="Zfu-pd-NKc"/>
+                    <constraint firstItem="4OA-fk-jym" firstAttribute="width" secondItem="jvB-Qj-AFy" secondAttribute="width" id="cjw-4n-WYP"/>
                     <constraint firstItem="NBs-Og-juw" firstAttribute="centerY" secondItem="IMI-rM-WrD" secondAttribute="centerY" identifier="id71" id="dHe-Vq-t4o"/>
                     <constraint firstItem="htn-pN-9ow" firstAttribute="leading" secondItem="dAB-Ps-ITJ" secondAttribute="leadingMargin" constant="2" identifier="id715" id="i1E-pI-0qJ"/>
+                    <constraint firstItem="4OA-fk-jym" firstAttribute="top" secondItem="mBL-qk-9BF" secondAttribute="bottom" id="kuO-eB-YuX"/>
                     <constraint firstItem="4R9-qY-H9R" firstAttribute="leading" secondItem="IMI-rM-WrD" secondAttribute="trailing" constant="10" identifier="id75" id="oPx-7M-0TP"/>
                     <constraint firstAttribute="trailingMargin" secondItem="NBs-Og-juw" secondAttribute="trailing" constant="2" identifier="id73" id="prY-3e-gKB"/>
                     <constraint firstItem="jvB-Qj-AFy" firstAttribute="top" secondItem="Djc-Y9-rGo" secondAttribute="bottom" identifier="id78" id="r48-fh-faq"/>
@@ -254,6 +314,9 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="contactUsActionHeight" destination="STc-38-GwO" id="XoM-cq-gE2"/>
+                <outlet property="contactUserActionHeight" destination="QaT-UL-Q42" id="f8N-Vz-Bvf"/>
+                <outlet property="contactUserButton" destination="YL3-yZ-S7m" id="Tjm-0T-g7x"/>
                 <outlet property="dateCreatedLabel" destination="htn-pN-9ow" id="SOR-PH-Ius"/>
                 <outlet property="mainActionButton" destination="CmQ-X5-uUO" id="W9q-aF-PdX"/>
                 <outlet property="mainActionHeight" destination="CIo-pU-9sn" id="X3x-qe-gkd"/>

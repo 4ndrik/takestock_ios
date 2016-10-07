@@ -60,6 +60,7 @@ typedef void (^tsResultBlock)(id result, NSError* error);
 -(void)addToWatchList:(NSNumber*)advertId compleate:(tsResultBlock)compleate;
 -(void)loadDraftsWithPage:(int)page userId:(NSNumber*)userId compleate:(tsResultBlock)compleate;
 -(void)loadExpiredWithPage:(int)page userId:(NSNumber*)userId compleate:(tsResultBlock)compleate;
+-(void)loadHoldOndWithPage:(int)page userId:(NSNumber*)userId compleate:(tsResultBlock)compleate;
 
 //QA
 -(void)loadQuestionAnswersWith:(NSNumber*)advertId page:(int)page compleate:(tsResultBlock)compleate;

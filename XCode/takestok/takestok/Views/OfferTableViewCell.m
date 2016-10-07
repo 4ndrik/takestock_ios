@@ -37,11 +37,20 @@
     [self.delegate mainAction:self];
 }
 
+- (IBAction)contactUsAction:(id)sender {
+    [self.delegate contactUsAction:self];
+}
+
+- (IBAction)contactUserAction:(id)sender {
+    [self.delegate contactUserAction:self];
+}
+
 - (IBAction)iArrangeTrasportAction:(id)sender {
-    [self.delegate organizeDispatch:self];
+    [self.delegate sellerArrangedTransport:self];
 }
 
 - (IBAction)buyerArrangesTransportAction:(id)sender {
+    [self.delegate buyerArrangedTransport:self];
 }
 
 @end
