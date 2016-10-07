@@ -508,6 +508,8 @@
                                             <constraint firstItem="nD4-Zg-kNx" firstAttribute="top" secondItem="bCf-8t-fh7" secondAttribute="top" constant="2" id="qF8-AG-uXi"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="_offersLabel" destination="GvB-UZ-yo3" id="Dmv-GJ-oog"/>
+                                            <outlet property="_questionsLabel" destination="OPj-mr-s9E" id="PgE-VJ-t5j"/>
                                             <outlet property="_selectedView" destination="nD4-Zg-kNx" id="eAY-gV-hnT"/>
                                             <outlet property="adImageView" destination="zGi-el-P1c" id="SIH-Uf-ltQ"/>
                                             <outlet property="countLabel" destination="WXZ-kJ-pLQ" id="ULZ-1k-Zxf"/>

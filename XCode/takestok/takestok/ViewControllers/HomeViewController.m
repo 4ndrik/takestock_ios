@@ -10,6 +10,7 @@
 #import "TextFieldBorderBottom.h"
 #import "SearchViewController.h"
 #import "LoginViewController.h"
+#import "RKNotificationHub.h"
 
 @interface HomeViewController ()
 
@@ -21,6 +22,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIButton* menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    menuButton.frame = CGRectMake(20, 30, 36, 36);
+    [menuButton setImage:[UIImage imageNamed:@"menuButtonIco"] forState:UIControlStateNormal];
+    [menuButton addTarget:self action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:menuButton];
+    
+    _notificationsBadge = [[RKNotificationHub alloc]initWithView:menuButton]; // sets the count to 0
+    [_notificationsBadge moveCircleByX:5 Y:0];
+    [_notificationsBadge scaleCircleSizeBy:0.7];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification
@@ -34,6 +46,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self refreshBadge];
 }
 
 -(void)dealloc{

@@ -21,7 +21,7 @@
         <scene sceneID="aqo-p9-W3c">
             <objects>
                 <navigationController storyboardIdentifier="HomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bT3-z7-dOK" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zvW-Te-N2h">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zvW-Te-N2h">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -49,16 +49,6 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cif-ky-g0K">
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3VS-sy-Ewh">
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="36" id="Ks1-mQ-00b"/>
-                                                    <constraint firstAttribute="height" constant="36" id="pVb-5m-IEd"/>
-                                                </constraints>
-                                                <state key="normal" image="menuButtonIco"/>
-                                                <connections>
-                                                    <action selector="showMenu" destination="E3R-e4-2Hj" eventType="touchUpInside" id="h3w-qy-6jY"/>
-                                                </connections>
-                                            </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon166x176" translatesAutoresizingMaskIntoConstraints="NO" id="qeR-iO-Db3">
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="176" id="9wP-WC-96O"/>
@@ -133,15 +123,10 @@
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="600" id="4G5-Zp-saU"/>
-                                            <constraint firstAttribute="bottom" secondItem="IWr-HC-nMn" secondAttribute="bottom" constant="67" id="4zS-Jo-oF9"/>
                                             <constraint firstItem="VTx-YO-2pA" firstAttribute="leading" secondItem="Cif-ky-g0K" secondAttribute="leading" constant="2" id="7mV-na-E0V"/>
                                             <constraint firstItem="qeR-iO-Db3" firstAttribute="centerX" secondItem="Cif-ky-g0K" secondAttribute="centerX" id="CSa-Zh-ZDE"/>
                                             <constraint firstAttribute="trailing" secondItem="VTx-YO-2pA" secondAttribute="trailing" constant="2" id="HaT-eb-NkO"/>
-                                            <constraint firstAttribute="bottom" secondItem="IWr-HC-nMn" secondAttribute="bottom" constant="50" id="Mbm-Tp-T7P"/>
-                                            <constraint firstItem="3VS-sy-Ewh" firstAttribute="top" secondItem="Cif-ky-g0K" secondAttribute="top" constant="30" id="MrJ-1W-orr"/>
                                             <constraint firstItem="VTx-YO-2pA" firstAttribute="top" secondItem="ngl-hH-URg" secondAttribute="bottom" constant="10" id="Op0-WB-KaO"/>
-                                            <constraint firstAttribute="width" constant="600" id="PHA-Nt-43a"/>
                                             <constraint firstItem="qeR-iO-Db3" firstAttribute="centerY" secondItem="Cif-ky-g0K" secondAttribute="centerY" constant="-128" id="RFR-me-dwm"/>
                                             <constraint firstAttribute="trailing" secondItem="ngl-hH-URg" secondAttribute="trailing" constant="22" id="Wc7-LS-U3k"/>
                                             <constraint firstItem="IWr-HC-nMn" firstAttribute="leading" secondItem="Cif-ky-g0K" secondAttribute="leading" constant="22" id="cFY-h5-7Pa"/>
@@ -149,17 +134,7 @@
                                             <constraint firstItem="ngl-hH-URg" firstAttribute="top" secondItem="qeR-iO-Db3" secondAttribute="bottom" constant="40" id="gR2-ab-csg"/>
                                             <constraint firstItem="IWr-HC-nMn" firstAttribute="top" secondItem="VTx-YO-2pA" secondAttribute="bottom" constant="10" id="oCf-dT-KHS"/>
                                             <constraint firstItem="ngl-hH-URg" firstAttribute="leading" secondItem="Cif-ky-g0K" secondAttribute="leading" constant="22" id="vWf-7F-mVa"/>
-                                            <constraint firstAttribute="trailing" secondItem="3VS-sy-Ewh" secondAttribute="trailing" constant="10" id="yEV-1e-hux"/>
                                         </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="4G5-Zp-saU"/>
-                                                <exclude reference="PHA-Nt-43a"/>
-                                                <exclude reference="yEV-1e-hux"/>
-                                                <exclude reference="4zS-Jo-oF9"/>
-                                                <exclude reference="Mbm-Tp-T7P"/>
-                                            </mask>
-                                        </variation>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -169,7 +144,6 @@
                                     <constraint firstItem="Cif-ky-g0K" firstAttribute="leading" secondItem="cRY-Up-xzA" secondAttribute="leading" id="IOc-0C-pUI"/>
                                     <constraint firstAttribute="bottom" secondItem="Cif-ky-g0K" secondAttribute="bottom" id="PUI-hQ-ZgD"/>
                                     <constraint firstItem="Cif-ky-g0K" firstAttribute="centerX" secondItem="cRY-Up-xzA" secondAttribute="centerX" id="PWB-KC-SWK"/>
-                                    <constraint firstItem="3VS-sy-Ewh" firstAttribute="leading" secondItem="cRY-Up-xzA" secondAttribute="leading" constant="20" id="WUW-ec-dRk"/>
                                     <constraint firstAttribute="height" constant="600" id="ZLq-dW-Tw8"/>
                                 </constraints>
                                 <variation key="default">
@@ -231,7 +205,7 @@
                         <viewControllerLayoutGuide type="bottom" id="zWB-Si-igY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="rHn-4R-1Nj">
-                        <rect key="frame" x="0.0" y="64" width="320" height="2936"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PzT-rt-JVi">
@@ -912,7 +886,7 @@
                                             <constraint firstItem="PHL-lX-1bg" firstAttribute="width" secondItem="unl-uj-gM6" secondAttribute="width" id="sse-3X-fZh"/>
                                             <constraint firstItem="dD1-3J-zjp" firstAttribute="top" secondItem="ILJ-0u-IeK" secondAttribute="bottom" constant="20" id="trT-vd-FiO"/>
                                             <constraint firstItem="LVg-HW-gCh" firstAttribute="top" secondItem="K2b-5F-aqP" secondAttribute="bottom" constant="20" id="uhW-DX-MwE"/>
-                                            <constraint firstAttribute="height" constant="2000" id="v1E-XZ-kHz"/>
+                                            <constraint firstAttribute="height" id="v1E-XZ-kHz"/>
                                             <constraint firstItem="taY-Jv-7b5" firstAttribute="top" secondItem="eiK-L3-GWe" secondAttribute="bottom" constant="20" id="w9z-3g-heE"/>
                                             <constraint firstItem="fhQ-RR-EAB" firstAttribute="centerX" secondItem="unl-uj-gM6" secondAttribute="centerX" id="xP5-JZ-hcy"/>
                                             <constraint firstItem="K2b-5F-aqP" firstAttribute="width" secondItem="unl-uj-gM6" secondAttribute="width" id="xqc-zK-1Xu"/>
@@ -925,15 +899,15 @@
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="bab-Ia-HYb"/>
-                                                <exclude reference="dte-XE-xIg"/>
-                                                <exclude reference="pRk-uO-5o0"/>
+                                                <exclude reference="dVa-zM-fBI"/>
                                                 <exclude reference="lLq-5h-SUA"/>
-                                                <exclude reference="HoQ-jD-4at"/>
-                                                <exclude reference="lg9-Im-DhT"/>
+                                                <exclude reference="dte-XE-xIg"/>
                                                 <exclude reference="PJv-ka-k8m"/>
                                                 <exclude reference="WSL-DK-vPU"/>
+                                                <exclude reference="HoQ-jD-4at"/>
+                                                <exclude reference="lg9-Im-DhT"/>
                                                 <exclude reference="EvD-xP-luq"/>
-                                                <exclude reference="dVa-zM-fBI"/>
+                                                <exclude reference="pRk-uO-5o0"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -975,8 +949,6 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="3000"/>
                     <connections>
                         <outlet property="_addImageLabel" destination="19H-mt-E0d" id="oU7-7h-U2Q"/>
                         <outlet property="_additionalViewHeight" destination="v1E-XZ-kHz" id="2nS-rf-Rtc"/>
@@ -1078,7 +1050,7 @@
         <scene sceneID="eev-4M-DoU">
             <objects>
                 <navigationController id="2p5-7J-ySK" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RQg-LZ-J5H">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="RQg-LZ-J5H">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1314,7 +1286,7 @@
                         <viewControllerLayoutGuide type="bottom" id="fe3-b1-PYZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="pCy-oc-Ywa">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="3000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2h2-Tl-NtR">
@@ -1958,8 +1930,8 @@
         <scene sceneID="SbH-VP-oXc">
             <objects>
                 <collectionViewController id="d7i-10-50V" customClass="ImagesCollectionViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" id="ehp-yI-UNS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="3000"/>
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" pagingEnabled="YES" dataMode="prototypes" id="ehp-yI-UNS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="y4j-zD-1WR">
                             <size key="itemSize" width="320" height="480"/>
@@ -1969,7 +1941,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageScrollCollectionViewCell" id="cA9-3A-Ztw" customClass="ImageScrollCollectionViewCell">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="40" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -2044,7 +2016,7 @@
                         <viewControllerLayoutGuide type="bottom" id="GxI-Uh-sDI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Phk-Su-C9q">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="3000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="118" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dBZ-Js-Jfc">
@@ -2052,10 +2024,10 @@
                                 <color key="separatorColor" red="0.74901960779999999" green="0.73725490199999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QATableViewCell" id="iqX-oe-D4O" customClass="QATableViewCell">
-                                        <rect key="frame" x="0.0" y="92" width="320" height="118"/>
+                                        <rect key="frame" x="0.0" y="92" width="375" height="118"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="iqX-oe-D4O" id="i9t-pT-z6b">
-                                            <frame key="frameInset" width="320" height="117"/>
+                                            <frame key="frameInset" width="375" height="117"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4S-cT-nUA">
@@ -2198,7 +2170,6 @@
         <image name="addImageIconBig" width="76" height="58"/>
         <image name="award" width="53" height="53"/>
         <image name="icon166x176" width="166" height="176"/>
-        <image name="menuButtonIco" width="50" height="50"/>
         <image name="searchItemHasn'tSeen" width="41" height="41"/>
         <image name="searchItemSeen" width="41" height="41"/>
     </resources>

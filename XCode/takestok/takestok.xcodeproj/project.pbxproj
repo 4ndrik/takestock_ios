@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D26ADBB40B48E5BDCED8CD7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B30C429CEDB1121B59D81A /* libPods.a */; };
+		310A07B5BD230A044423EBB8 /* libPods-takestok.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF5A930920EAF384C010691 /* libPods-takestok.a */; };
 		AC049D051CB7C449006A8F21 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D041CB7C449006A8F21 /* SearchViewController.m */; };
 		AC049D081CB7C47F006A8F21 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D071CB7C47F006A8F21 /* HomeViewController.m */; };
 		AC049D0B1CB7C490006A8F21 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D0A1CB7C490006A8F21 /* BaseViewController.m */; };
@@ -137,7 +137,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7A6E191520AD7C45479A9BF9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		8FF5A930920EAF384C010691 /* libPods-takestok.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-takestok.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABEAD3E005548B4300B13FFA /* Pods-takestok.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-takestok.debug.xcconfig"; path = "Pods/Target Support Files/Pods-takestok/Pods-takestok.debug.xcconfig"; sourceTree = "<group>"; };
 		AC049D031CB7C449006A8F21 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		AC049D041CB7C449006A8F21 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		AC049D061CB7C47F006A8F21 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -375,8 +376,7 @@
 		ACFCB6B91CDA200A005A4024 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		ACFCB6BB1CDA5047005A4024 /* AppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettings.h; sourceTree = "<group>"; };
 		ACFCB6BC1CDA5047005A4024 /* AppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettings.m; sourceTree = "<group>"; };
-		B3B30C429CEDB1121B59D81A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		C479BB7CDFC2E7C16CDB8F52 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		C9B23DB5B7E42B0142DD585D /* Pods-takestok.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-takestok.release.xcconfig"; path = "Pods/Target Support Files/Pods-takestok/Pods-takestok.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -384,21 +384,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D26ADBB40B48E5BDCED8CD7 /* libPods.a in Frameworks */,
+				310A07B5BD230A044423EBB8 /* libPods-takestok.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		333A5DD976F7B54E00D4F2A3 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B3B30C429CEDB1121B59D81A /* libPods.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		AC049D171CB7C987006A8F21 /* TextControls */ = {
 			isa = PBXGroup;
 			children = (
@@ -513,8 +505,8 @@
 			children = (
 				AC68C45A1CB51C1F004B78DF /* takestok */,
 				AC68C4591CB51C1F004B78DF /* Products */,
-				D9CDB975853D8ADD3B918602 /* Pods */,
-				333A5DD976F7B54E00D4F2A3 /* Frameworks */,
+				F8287EDDFD6082EA4600E835 /* Pods */,
+				D2158DBA8A7A5AFA64B0224E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -916,11 +908,19 @@
 			name = Adverts;
 			sourceTree = "<group>";
 		};
-		D9CDB975853D8ADD3B918602 /* Pods */ = {
+		D2158DBA8A7A5AFA64B0224E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C479BB7CDFC2E7C16CDB8F52 /* Pods.debug.xcconfig */,
-				7A6E191520AD7C45479A9BF9 /* Pods.release.xcconfig */,
+				8FF5A930920EAF384C010691 /* libPods-takestok.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F8287EDDFD6082EA4600E835 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ABEAD3E005548B4300B13FFA /* Pods-takestok.debug.xcconfig */,
+				C9B23DB5B7E42B0142DD585D /* Pods-takestok.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -932,12 +932,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AC68C46F1CB51C20004B78DF /* Build configuration list for PBXNativeTarget "takestok" */;
 			buildPhases = (
-				9145BE4E2A2AFDDD0B86A2FC /* Check Pods Manifest.lock */,
+				07CE9860F55DCEC25B3D227D /* [CP] Check Pods Manifest.lock */,
 				AC68C4541CB51C1F004B78DF /* Sources */,
 				AC68C4551CB51C1F004B78DF /* Frameworks */,
 				AC68C4561CB51C1F004B78DF /* Resources */,
-				3EC1AF17701919EED285A7BB /* Embed Pods Frameworks */,
-				35824E610D3F91074AAC2B83 /* Copy Pods Resources */,
+				E3AD52C9160F528218B8892E /* [CP] Embed Pods Frameworks */,
+				F250F7AF7105FD8662A50A4D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1015,49 +1015,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		35824E610D3F91074AAC2B83 /* Copy Pods Resources */ = {
+		07CE9860F55DCEC25B3D227D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3EC1AF17701919EED285A7BB /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9145BE4E2A2AFDDD0B86A2FC /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E3AD52C9160F528218B8892E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-takestok/Pods-takestok-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F250F7AF7105FD8662A50A4D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-takestok/Pods-takestok-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1283,7 +1283,7 @@
 		};
 		AC68C4701CB51C20004B78DF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C479BB7CDFC2E7C16CDB8F52 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = ABEAD3E005548B4300B13FFA /* Pods-takestok.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1302,7 +1302,7 @@
 		};
 		AC68C4711CB51C20004B78DF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7A6E191520AD7C45479A9BF9 /* Pods.release.xcconfig */;
+			baseConfigurationReference = C9B23DB5B7E42B0142DD585D /* Pods-takestok.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

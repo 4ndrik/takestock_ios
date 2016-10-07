@@ -113,6 +113,8 @@
     
     cell.expiresDayCountLabel.text = advert.dateExpires > 0 ? [NSString stringWithFormat:@"%i", [advert.dateExpires daysFromDate:[NSDate date]]] : @"N/A";
     
+    [cell setCountNewOffers:advert.newOffersCount andNotCount:advert.newQuestionsCount];
+    
     if (_page > 0 && indexPath.row > _adverts.count -2){
         _loadingIndicator.center = CGPointMake(_sellingTableView.center.x, _sellingTableView.contentSize.height + 22);
         _sellingTableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);

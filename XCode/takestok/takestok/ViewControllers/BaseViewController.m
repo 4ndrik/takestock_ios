@@ -21,6 +21,8 @@
 #import "UserServiceManager.h"
 #import "ShippingOfferViewController.h"
 #import "DeliveryInfoViewController.h"
+#import "RKNotificationHub.h"
+#import "TSUserEntity.h"
 
 @implementation BaseViewController
 
@@ -44,16 +46,20 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if ([self.navigationController.viewControllers firstObject] == self){
+    [self.navigationController setNavigationBarHidden:[self isKindOfClass:[HomeViewController class]] animated:YES];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
+    if (!self.navigationController.navigationBarHidden && [self.navigationController.viewControllers firstObject] == self){
         UIButton* menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
         [menuButton setImage:[UIImage imageNamed:@"menuWhiteButtonIco"] forState:UIControlStateNormal];
         [menuButton addTarget:self action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
         
         UIBarButtonItem* menuBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
         self.navigationItem.leftBarButtonItem = menuBarButtonItem;
+        
+        _notificationsBadge = [[RKNotificationHub alloc]initWithBarButtonItem:menuBarButtonItem]; // sets the count to 0
+        [_notificationsBadge moveCircleByX:10 Y:0];
+        [self refreshBadge];
     }
-    [self.navigationController setNavigationBarHidden:[self isKindOfClass:[HomeViewController class]] animated:YES];
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -172,6 +178,10 @@
     }]];
     
     [self presentViewController:alertController animated:YES completion:nil];
+}
+
+-(void)refreshBadge{
+//    [_notificationsBadge setCount:[UserServiceManager sharedManager].getMe.no]
 }
 
 @end

@@ -10,9 +10,14 @@
 
 @class BackgroundImageView;
 @class PaddingLabel;
+@class RKNotificationHub;
 
 @interface SellingTableViewCell : UITableViewCell{
     __weak IBOutlet UIView *_selectedView;
+    RKNotificationHub* _offersBadge;
+    RKNotificationHub* _messageBadge;
+    __weak IBOutlet UILabel *_offersLabel;
+    __weak IBOutlet UILabel *_questionsLabel;
 }
 
 @property (weak, nonatomic) IBOutlet BackgroundImageView *adImageView;
@@ -23,5 +28,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *expiresDayCountLabel;
 @property (weak, nonatomic) IBOutlet PaddingLabel *priceLabel;
 @property (weak, nonatomic) IBOutlet PaddingLabel *countLabel;
+
+-(void)setCountNewOffers:(int)offerCount andNotCount:(int)notificationCount;
 
 @end

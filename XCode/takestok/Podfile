@@ -1,4 +1,8 @@
 platform :ios, '8.1'
-pod 'AFNetworking', '~> 3.0'
-pod 'Stripe'
-pod 'REFrostedViewController'
+
+target "takestok" do
+	pod 'AFNetworking', '~> 3.0'
+	pod 'Stripe'
+	pod 'REFrostedViewController'
+	pod 'RKNotificationHub'
+end

@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class RKNotificationHub;
 @interface BaseViewController : UIViewController{
     UIView* _loadingView;
     UILabel* _noItemsLabel;
+    
+    RKNotificationHub* _notificationsBadge;
 }
 
 - (IBAction)hideKeyboard:(id)sender;
@@ -25,5 +28,7 @@
 -(BOOL)checkUserLogin;
 
 -(void)showOkAlert:(NSString*)title text:(NSString*)text compleate:(void(^)())compleate;
+
+-(void)refreshBadge;
 
 @end
