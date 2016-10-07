@@ -9,7 +9,7 @@
 
 #define TAKESTOK_API_URL                @"http://uat.takestock.com/api/v1/"
 #define TAKESTOK_IMAGE_URL              @"http://uat.takestock.com"
-
+#define CONTACT_US_EMAIL                @"admin@wetakestock.com"
 
 #define PUT_ON_HOLD_STATE 2
 

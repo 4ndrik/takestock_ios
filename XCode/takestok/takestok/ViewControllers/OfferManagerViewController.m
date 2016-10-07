@@ -400,8 +400,8 @@
 }
 
 -(void)contactUsAction:(UITableViewCell *)owner{
-    NSString *subject = [NSString stringWithFormat:@"Subject"];
-    NSString *mail = [NSString stringWithFormat:@"test@test.com"];
+    NSString *subject = [NSString stringWithFormat:@""];
+    NSString *mail = [NSString stringWithFormat:CONTACT_US_EMAIL];
     NSCharacterSet *set = [NSCharacterSet URLHostAllowedCharacterSet];
     NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"mailto:?to=%@&subject=%@",
                                                 [mail stringByAddingPercentEncodingWithAllowedCharacters:set],
