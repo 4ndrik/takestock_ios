@@ -249,35 +249,45 @@ static AdvertServiceManager *_manager = nil;
 
 #pragma mark Dictionaries getters
 -(NSArray*)getStates{
-    return [_states allValues];
+    return [[_states allValues] sortedArrayUsingComparator:^NSComparisonResult(TSBaseEntity*  _Nonnull obj1, TSBaseEntity*  _Nonnull obj2) {
+        return [obj1.ident compare:obj2.ident];
+    }];
 }
 -(TSAdvertState*)getStateWithId:(NSNumber*)ident{
     return [_states objectForKey:ident];
 }
 
 -(NSArray*)getSizeType{
-    return [_sizeTypes allValues];
+    return [[_sizeTypes allValues] sortedArrayUsingComparator:^NSComparisonResult(TSBaseEntity*  _Nonnull obj1, TSBaseEntity*  _Nonnull obj2) {
+        return [obj1.ident compare:obj2.ident];
+    }];
 }
 -(TSAdvertSizeType*)getSizeTypeWithId:(NSNumber*)ident{
     return [_sizeTypes objectForKey:ident];
 }
 
 -(NSArray*)getCertifications{
-    return [_certifications allValues];
+    return [[_certifications allValues] sortedArrayUsingComparator:^NSComparisonResult(TSBaseEntity*  _Nonnull obj1, TSBaseEntity*  _Nonnull obj2) {
+        return [obj1.ident compare:obj2.ident];
+    }];
 }
 -(TSAdvertCertification*)getCertificationWithId:(NSNumber*)ident{
     return [_certifications objectForKey:ident];
 }
 
 -(NSArray*)getShippings{
-    return [_shipping allValues];
+    return [[_shipping allValues] sortedArrayUsingComparator:^NSComparisonResult(TSBaseEntity*  _Nonnull obj1, TSBaseEntity*  _Nonnull obj2) {
+        return [obj1.ident compare:obj2.ident];
+    }];
 }
 -(TSAdvertShipping*)getShippingWithId:(NSNumber*)ident{
     return [_shipping objectForKey:ident];
 }
 
 -(NSArray*)getConditions{
-    return [_conditions allValues];
+    return [[_conditions allValues] sortedArrayUsingComparator:^NSComparisonResult(TSBaseEntity*  _Nonnull obj1, TSBaseEntity*  _Nonnull obj2) {
+        return [obj1.ident compare:obj2.ident];
+    }];
 }
 -(TSAdvertCondition*)getConditionWithId:(NSNumber*)ident{
     return [_conditions objectForKey:ident];
@@ -285,7 +295,9 @@ static AdvertServiceManager *_manager = nil;
 
 
 -(NSArray*)getCategories{
-    return [_categories allValues];
+    return [[_categories allValues] sortedArrayUsingComparator:^NSComparisonResult(TSBaseEntity*  _Nonnull obj1, TSBaseEntity*  _Nonnull obj2) {
+        return [obj1.ident compare:obj2.ident];
+    }];
 }
 
 -(TSAdvertCategory*)getCategoyWithId:(NSNumber*)ident{
@@ -293,7 +305,9 @@ static AdvertServiceManager *_manager = nil;
 }
 
 -(NSArray*)getPackageTypes{
-    return [_packageTypes allValues];
+    return[ [_packageTypes allValues] sortedArrayUsingComparator:^NSComparisonResult(TSBaseEntity*  _Nonnull obj1, TSBaseEntity*  _Nonnull obj2) {
+        return [obj1.ident compare:obj2.ident];
+    }];
 }
 -(TSAdvertPackagingType*)getPackageTypeWithId:(NSNumber*)ident{
     return [_packageTypes objectForKey:ident];
@@ -448,7 +462,9 @@ static AdvertServiceManager *_manager = nil;
 -(void)createAdvert:(TSAdvert*)advert compleate:(errorBlock)compleate{
     NSDictionary* advertDic = [advert dictionaryRepresentation];
     if (advert.ident){
-        [[ServerConnectionHelper sharedInstance]editAdvertWithId:advert.ident withDic:advertDic compleate:^(id result, NSError *error) {
+        [[ServerConnectionHelper sharedInstance] editAdvertWithId:advert.ident withDic:advertDic compleate:^(id result, NSError *error) {
+            if (!error)
+                [advert updateWithDic:result];
             dispatch_async(dispatch_get_main_queue(), ^{
                 compleate(error);
             });

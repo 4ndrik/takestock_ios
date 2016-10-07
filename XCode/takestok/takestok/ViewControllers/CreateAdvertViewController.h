@@ -35,6 +35,7 @@
     __weak IBOutlet UICollectionView *_imagesCollectionView;
     __weak IBOutlet NSLayoutConstraint *_collectionViewHeight;
     __weak IBOutlet NSLayoutConstraint *_additionalViewHeight;
+    __weak IBOutlet NSLayoutConstraint *_stateViewHeight;
   
     __weak IBOutlet UIButton *_saveButton;
     __weak IBOutlet UIButton *_previewButton;
@@ -57,6 +58,7 @@
     __weak IBOutlet UIView *_certificationsContainerView;
     __weak IBOutlet TextFieldBorderBottom *_otherTextField;
     __weak IBOutlet TextFieldBorderBottom *_keywordTextField;
+    __weak IBOutlet UIView *_stateViewHolder;
     
     IBOutletCollection(UILabel) NSArray *_packagingLabelCollection;
 }

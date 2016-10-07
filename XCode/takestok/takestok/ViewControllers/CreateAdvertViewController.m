@@ -119,12 +119,63 @@
         self.title = @"EDIT ADVERT";
         
         [_saveButton setTitle:@"SAVE CHANGES" forState:UIControlStateNormal];
-        _previewButton.hidden = YES;
+        if (_advert.isInDrafts){
+            _stateViewHeight.constant = 0;
+            _previewButton.hidden = NO;
+            _saveButton.backgroundColor = GrayColor;
+        }else{
+            _previewButton.hidden = YES;
+            _saveButton.backgroundColor = OliveMainColor;
+            _stateViewHeight.constant = 0;
+            
+            float size = self.view.bounds.size.width - 40;
+            NSArray* states = [[AdvertServiceManager sharedManager] getStates];
+            float y = -4;
+            NSMutableArray* group = [NSMutableArray array];
+            for (int i = 0; i < states.count; i++){
+                TSAdvertState* state = [states objectAtIndex:i];
+                float x = 0;
+                
+                if (i % 3){
+                    x = size / 3 * i;
+                }else
+                {
+                    y += 20 + 24;
+                }
+                
+                RadioButton* radioButton = [[RadioButton alloc] initWithFrame:CGRectMake(x, y, size / 3, 24)];
+                radioButton.tag = [state.ident intValue];
+                [group addObject:radioButton];
+                radioButton.autoresizingMask = UIViewAutoresizingNone;
+                [radioButton setTitle:[state.title lowercaseString] forState:UIControlStateNormal];
+                [radioButton setImage:[UIImage imageNamed:@"unchecked"] forState:UIControlStateNormal];
+                [radioButton setImage:[UIImage imageNamed:@"checked"] forState:UIControlStateSelected];
+                radioButton.groupButtons = group;
+                radioButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+                radioButton.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+                radioButton.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+                [radioButton.titleLabel setFont:HelveticaLight18];
+                [radioButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [radioButton addTarget:self action:@selector(setState:) forControlEvents:UIControlEventTouchUpInside];
+                [_stateViewHolder addSubview:radioButton];
+            }
+            
+            RadioButton* rb = (RadioButton*)group.firstObject;
+            if (_advert.state.ident > 0){
+                [rb setSelectedWithTag:[_advert.state.ident intValue]];
+                _stateViewHolder.tag = [_advert.state.ident intValue];
+            }else{
+                [rb deselectAllButtons];
+            }
+            
+            _stateViewHeight.constant = y + 34;
+        }
         
         [_imagesCollectionView reloadData];
         [self collectionView:_imagesCollectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedImage inSection:0]];
         
     }else{
+        _stateViewHeight.constant = 0;
         self.title = @"SELL SOMETHING";
     }
     
@@ -198,6 +249,10 @@
 
 -(void)setCertification:(RadioButton*)owner{
     _certificationsContainerView.tag = owner.tag;
+}
+
+-(void)setState:(RadioButton*)owner{
+    _stateViewHolder.tag = owner.tag;
 }
 
 #pragma mark - Handle keyboard
@@ -627,6 +682,8 @@
     }
     
     _advert.certification = [[AdvertServiceManager sharedManager] getCertificationWithId:[NSNumber numberWithInt:_certificationsContainerView.tag]];
+    if (_stateViewHolder.tag > 0)
+        _advert.state = [[AdvertServiceManager sharedManager] getStateWithId:[NSNumber numberWithInt:_stateViewHolder.tag]];
     _advert.condition = [[AdvertServiceManager sharedManager] getConditionWithId:[NSNumber numberWithInt:_conditionTextField.tag]];
     _advert.shipping = [[AdvertServiceManager sharedManager] getShippingWithId:[NSNumber numberWithInt:_shippingTextField.tag]];
     
@@ -645,14 +702,17 @@
 - (IBAction)saveAdvert:(id)sender{
     if ([self verifyFields]){
         [self createAdvert];
-        if (!_advert.ident)
+        __block NSString* message = @"Advert edited";
+        if (!_advert.ident){
             _advert.isInDrafts = true;
+            message = @"Advert created";
+        }
         
         [self showLoading];
         [[AdvertServiceManager sharedManager] createAdvert:_advert compleate:^(NSError *error) {
             [self hideLoading];
             NSString* title = @"";
-            NSString* message = @"Advert created";
+            
             if (error){
                 title = @"Error";
                 message = ERROR_MESSAGE(error);

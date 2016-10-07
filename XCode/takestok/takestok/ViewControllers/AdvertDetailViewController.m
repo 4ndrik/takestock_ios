@@ -200,6 +200,7 @@
 }
 
 -(void)createAdvert{
+    _advert.isInDrafts = NO;
     [self showLoading];
     [[AdvertServiceManager sharedManager] createAdvert:_advert compleate:^(NSError *error) {
         [self hideLoading];
