@@ -519,8 +519,15 @@ static AdvertServiceManager *_manager = nil;
     }];
 }
 
--(void)removeFromWatchList:(TSAdvert*)advert compleate:(errorBlock)compleate{
-    
+-(void)sendViwAdvert:(TSAdvert*)advert{
+    [[ServerConnectionHelper sharedInstance] sendViwAdvert:advert.ident];
+}
+
+-(void)sendReadNotificationsWithAdvert:(TSAdvert*)advert{
+    [[ServerConnectionHelper sharedInstance] sendReadNotificationsWithAdvert:advert.ident compleate:^(id result, NSError *error) {
+        if (!error)
+            [advert updateWithDic:result];
+    }];
 }
 
 @end

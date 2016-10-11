@@ -20,5 +20,4 @@
 -(void)loadQuestionsAnswers:(TSAdvert*)advert page:(int)page compleate:(resultBlock)compleate;
 -(void)askQuestion:(TSQuestion*)question compleate:(errorBlock)compleate;
 -(void)makeAnswer:(TSAnswer*)answer compleate:(errorBlock)compleate;
-
 @end

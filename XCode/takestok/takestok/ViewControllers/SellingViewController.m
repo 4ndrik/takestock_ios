@@ -133,11 +133,13 @@
     
     UIAlertAction *manageOffersAction = [UIAlertAction actionWithTitle:@"Manage offers"
                                                              style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                                 [[AdvertServiceManager sharedManager] sendReadNotificationsWithAdvert:advert];
                                                                  [tableView deselectRowAtIndexPath:indexPath animated:NO];
                                                                  [self performSegueWithIdentifier:ADVERT_OFFERS_SEGUE sender:advert];
                                                              }];
     UIAlertAction *viewMessagesAction = [UIAlertAction actionWithTitle:@"View messages"
                                                           style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                              [[AdvertServiceManager sharedManager] sendReadNotificationsWithAdvert:advert];
                                                               [tableView deselectRowAtIndexPath:indexPath animated:NO];
                                                               [self performSegueWithIdentifier:ADVERT_QUESTIONS_SEGUE sender:advert];
                                                           }];

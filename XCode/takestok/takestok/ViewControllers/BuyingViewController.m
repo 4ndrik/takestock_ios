@@ -15,6 +15,7 @@
 #import "OfferServiceManager.h"
 #import "UserServiceManager.h"
 #import "BuyingOffersViewController.h"
+#import "AdvertServiceManager.h"
 
 @implementation BuyingViewController
 
@@ -168,6 +169,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     TSOffer* offer = [_offers objectAtIndex:indexPath.row];
     TSAdvert* advert = [_adverts objectForKey:offer.advertId];
+    [[AdvertServiceManager sharedManager] sendReadNotificationsWithAdvert:advert];
     [self performSegueWithIdentifier:BUYER_OFFERS_SEQUE sender:[NSDictionary dictionaryWithObjectsAndKeys:offer, @"offer", advert, @"advert", nil]];
 }
 

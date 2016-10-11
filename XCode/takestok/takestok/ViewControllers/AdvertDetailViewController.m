@@ -61,6 +61,15 @@
                                                object:self.view.window];
     if (_advert)
         [self refreshAdData];
+    
+    if ([_advert.author.ident isEqualToNumber:[UserServiceManager sharedManager].getMe.ident]){
+        [[AdvertServiceManager sharedManager] sendViwAdvert:_advert];
+    }
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[AdvertServiceManager sharedManager] sendViwAdvert:_advert];
 }
 
 - (void)didReceiveMemoryWarning {
