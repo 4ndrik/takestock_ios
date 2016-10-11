@@ -154,10 +154,12 @@
     }else if([offer.statusForBuyer.ident intValue] == tsStockInTransit){
         cell.offerTextLabel.text = @"STOCK IN TRANSIT";
         cell.offerTextLabel.textColor = [UIColor redColor];
-    }
-    else if([offer.statusForBuyer.ident intValue] == tsGoodsReceived){
+    }else if([offer.statusForBuyer.ident intValue] == tsGoodsReceived){
         cell.offerTextLabel.text = @"GOODS RECEIVED";
         cell.offerTextLabel.textColor = [UIColor blackColor];
+    }else if ([offer.status.ident intValue] == tsInDispute){
+        cell.offerTextLabel.text = @"IN DISPUTE";
+        cell.offerTextLabel.textColor = [UIColor redColor];
     }else {
         cell.offerTextLabel.text = offer.statusForBuyer.title;
         cell.offerTextLabel.textColor = [UIColor redColor];
