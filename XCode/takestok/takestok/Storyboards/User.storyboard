@@ -310,12 +310,12 @@
                                             <action selector="vatRegisteredChanged:" destination="sRc-lV-FEV" eventType="valueChanged" id="mks-sz-1DL"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PAYMENT DETAILS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63f-Zc-L9z">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PAYMENT DETAILS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63f-Zc-L9z">
                                         <fontDescription key="fontDescription" name="BrandonGrotesque-Regular" family="Brandon Grotesque" pointSize="12"/>
                                         <color key="textColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fye-Fe-12W" customClass="PaddingLabel">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fye-Fe-12W" customClass="PaddingLabel">
                                         <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="18"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -328,7 +328,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLv-U0-3Cu">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLv-U0-3Cu">
                                         <fontDescription key="fontDescription" name="BrandonGrotesque-Regular" family="Brandon Grotesque" pointSize="14"/>
                                         <state key="normal" title="Add card">
                                             <color key="titleColor" red="0.74901960779999999" green="0.73725490199999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -362,7 +362,7 @@
                                     <constraint firstItem="63f-Zc-L9z" firstAttribute="centerX" secondItem="564-Ji-WtE" secondAttribute="centerX" id="1cK-EN-DFF"/>
                                     <constraint firstItem="08e-q3-DoN" firstAttribute="top" secondItem="dWH-5I-Oc5" secondAttribute="bottom" constant="20" id="29f-m3-fdH"/>
                                     <constraint firstItem="27R-Ef-2rB" firstAttribute="top" secondItem="oqL-qe-qV5" secondAttribute="bottom" constant="10" id="42l-fj-yND"/>
-                                    <constraint firstItem="sy7-Yj-BuT" firstAttribute="top" secondItem="FLv-U0-3Cu" secondAttribute="bottom" constant="20" id="4Vd-Kb-IsJ"/>
+                                    <constraint firstItem="sy7-Yj-BuT" firstAttribute="top" secondItem="FLv-U0-3Cu" secondAttribute="bottom" constant="-60" id="4Vd-Kb-IsJ"/>
                                     <constraint firstAttribute="trailing" secondItem="2pG-2a-rch" secondAttribute="trailing" constant="20" id="4Xm-cq-dao"/>
                                     <constraint firstItem="fye-Fe-12W" firstAttribute="width" secondItem="63f-Zc-L9z" secondAttribute="width" id="5YM-Uq-d4O"/>
                                     <constraint firstItem="HiE-Md-FMr" firstAttribute="top" secondItem="eb2-HY-Vcd" secondAttribute="bottom" constant="20" id="8o3-Sb-Tux"/>
