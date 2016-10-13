@@ -19,7 +19,7 @@
         <scene sceneID="a6J-YS-Nab">
             <objects>
                 <navigationController storyboardIdentifier="UserProfileController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y8T-uk-pWu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nzm-nB-IDu">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nzm-nB-IDu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -544,6 +544,31 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IxY-Kd-iXm">
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MORE FROM THIS SELLER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1hl-Xa-DFV">
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="scx-Q5-px3">
+                                                <connections>
+                                                    <segue destination="b2K-gy-aOn" kind="embed" identifier="MoreAdvertsSegue" id="Dhg-4e-wCr"/>
+                                                </connections>
+                                            </containerView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="scx-Q5-px3" firstAttribute="centerX" secondItem="IxY-Kd-iXm" secondAttribute="centerX" id="D5E-Ea-gxm"/>
+                                            <constraint firstAttribute="bottom" secondItem="scx-Q5-px3" secondAttribute="bottom" constant="10" id="RIK-zC-HGS"/>
+                                            <constraint firstAttribute="height" constant="200" id="S7T-PQ-nTL"/>
+                                            <constraint firstItem="scx-Q5-px3" firstAttribute="width" secondItem="IxY-Kd-iXm" secondAttribute="width" id="YMv-qm-wQ6"/>
+                                            <constraint firstItem="1hl-Xa-DFV" firstAttribute="top" secondItem="IxY-Kd-iXm" secondAttribute="top" id="ZCk-jK-1Fl"/>
+                                            <constraint firstItem="1hl-Xa-DFV" firstAttribute="centerX" secondItem="IxY-Kd-iXm" secondAttribute="centerX" id="ckS-ma-ZfR"/>
+                                            <constraint firstItem="1hl-Xa-DFV" firstAttribute="width" secondItem="IxY-Kd-iXm" secondAttribute="width" constant="-20" id="n78-Ub-jNS"/>
+                                            <constraint firstItem="scx-Q5-px3" firstAttribute="top" secondItem="IxY-Kd-iXm" secondAttribute="top" constant="30" id="s0t-t8-INZ"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="96P-gD-0er" firstAttribute="leading" secondItem="fLN-qC-eZ3" secondAttribute="leading" constant="20" id="4Qo-VX-lrO"/>
@@ -551,12 +576,14 @@
                                     <constraint firstAttribute="trailing" secondItem="x4v-yn-IDH" secondAttribute="trailing" constant="20" id="5mb-Ae-aHP"/>
                                     <constraint firstItem="qFB-uV-snr" firstAttribute="top" secondItem="x4v-yn-IDH" secondAttribute="top" id="7Bg-6w-4FM"/>
                                     <constraint firstAttribute="trailing" secondItem="geW-wU-ngm" secondAttribute="trailing" constant="20" id="FwJ-uS-Ff0"/>
+                                    <constraint firstItem="IxY-Kd-iXm" firstAttribute="centerX" secondItem="fLN-qC-eZ3" secondAttribute="centerX" id="Lqk-b5-pkj"/>
                                     <constraint firstAttribute="trailing" secondItem="WG7-ZX-6op" secondAttribute="trailing" constant="100" id="N78-5N-eCw"/>
                                     <constraint firstAttribute="trailing" secondItem="KAo-Pj-J6g" secondAttribute="trailing" constant="20" id="RGe-MM-BGg"/>
                                     <constraint firstItem="KAo-Pj-J6g" firstAttribute="centerY" secondItem="WG7-ZX-6op" secondAttribute="centerY" id="SHd-4w-FOK"/>
-                                    <constraint firstAttribute="bottom" secondItem="96P-gD-0er" secondAttribute="bottom" constant="20" id="UY4-a0-VFc"/>
+                                    <constraint firstAttribute="bottom" secondItem="IxY-Kd-iXm" secondAttribute="bottom" constant="20" id="Xad-va-d9O"/>
                                     <constraint firstItem="qFB-uV-snr" firstAttribute="top" secondItem="x4v-yn-IDH" secondAttribute="bottom" constant="8" id="aB2-Po-DCJ"/>
                                     <constraint firstItem="qFB-uV-snr" firstAttribute="leading" secondItem="fLN-qC-eZ3" secondAttribute="leading" constant="20" id="aIZ-ss-yg9"/>
+                                    <constraint firstItem="IxY-Kd-iXm" firstAttribute="top" secondItem="96P-gD-0er" secondAttribute="bottom" constant="20" id="aKU-Am-Hr6"/>
                                     <constraint firstItem="DV6-nB-LBC" firstAttribute="leading" secondItem="fLN-qC-eZ3" secondAttribute="leading" constant="20" id="diB-TF-Z6v"/>
                                     <constraint firstItem="DV6-nB-LBC" firstAttribute="top" secondItem="fLN-qC-eZ3" secondAttribute="top" constant="20" id="h5q-E4-0s8"/>
                                     <constraint firstAttribute="trailing" secondItem="96P-gD-0er" secondAttribute="trailing" constant="20" id="hZw-zZ-58t"/>
@@ -586,6 +613,7 @@
                             <constraint firstItem="DV6-nB-LBC" firstAttribute="width" secondItem="WO7-ml-gWO" secondAttribute="width" constant="-40" id="0vu-j0-qCX"/>
                             <constraint firstItem="fLN-qC-eZ3" firstAttribute="leading" secondItem="WO7-ml-gWO" secondAttribute="leading" id="Lg6-8h-im9"/>
                             <constraint firstAttribute="trailing" secondItem="fLN-qC-eZ3" secondAttribute="trailing" id="OJL-P2-EFG"/>
+                            <constraint firstItem="IxY-Kd-iXm" firstAttribute="width" secondItem="WO7-ml-gWO" secondAttribute="width" id="guN-fx-KDm"/>
                             <constraint firstItem="YzY-GB-S4N" firstAttribute="top" secondItem="fLN-qC-eZ3" secondAttribute="bottom" id="oXf-sj-zvd"/>
                             <constraint firstItem="fLN-qC-eZ3" firstAttribute="top" secondItem="nHl-gR-uko" secondAttribute="bottom" id="pQb-hb-Uvw"/>
                         </constraints>
@@ -594,6 +622,7 @@
                         <outlet property="_otherUserDetails" destination="96P-gD-0er" id="S7X-I5-4JR"/>
                         <outlet property="_ratingLabel" destination="KAo-Pj-J6g" id="g5p-Pd-MQn"/>
                         <outlet property="_ratingView" destination="WG7-ZX-6op" id="kcn-pd-W90"/>
+                        <outlet property="_similarAdvertsHeight" destination="S7T-PQ-nTL" id="1ev-3h-sFy"/>
                         <outlet property="_userPicture" destination="DV6-nB-LBC" id="Dad-BF-mgw"/>
                         <outlet property="_userameLabel" destination="qFB-uV-snr" id="DH7-ez-L3T"/>
                     </connections>
@@ -601,6 +630,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZGe-t6-JY5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="729" y="512"/>
+        </scene>
+        <!--AdvertsCollectionViewController-->
+        <scene sceneID="fdn-jw-nBW">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Advert" referencedIdentifier="AdvertsCollectionViewController" id="b2K-gy-aOn" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f7q-VU-lSq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1631" y="805"/>
         </scene>
     </scenes>
     <resources>

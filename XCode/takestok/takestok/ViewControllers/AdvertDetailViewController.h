@@ -7,6 +7,8 @@
 //
 
 #import "BaseViewController.h"
+#import "AdvertsCollectionViewController.h"
+
 @class TitleTextContainerView;
 @class TSAdvert;
 @class TopBottomStripesLabel;
@@ -15,7 +17,7 @@
 @class PaddingTextField;
 @class Offer;
 
-@interface AdvertDetailViewController : BaseViewController<UICollectionViewDelegate, UICollectionViewDataSource>{
+@interface AdvertDetailViewController : BaseViewController<UICollectionViewDelegate, UICollectionViewDataSource, SimilarAdvertsProtocol>{
     TSAdvert* _advert;
     
     BOOL _popToRootViewController;
@@ -50,6 +52,9 @@
     __weak IBOutlet RatingView *_ratingView;
     
     __weak IBOutlet UIImageView *_awardImageView;
+    
+    __weak AdvertsCollectionViewController *_advertsViewController;
+    __weak IBOutlet NSLayoutConstraint *_similarPanelHeight;
 }
 
 - (void)setAdvert:(TSAdvert*)advert;

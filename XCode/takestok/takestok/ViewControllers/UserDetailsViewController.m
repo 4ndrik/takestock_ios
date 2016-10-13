@@ -12,6 +12,7 @@
 #import "TSUserEntity.h"
 #import "TSUserBusinessType.h"
 #import "TSUserSubBusinessType.h"
+#import "TSAdvert.h"
 
 @interface UserDetailsViewController ()
 
@@ -26,6 +27,10 @@
     }
 }
 
+-(void)setAdvert:(TSAdvert*)advert{
+    _parentAdvert = advert;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    _otherUserDetails.preferredMaxLayoutWidth = 100;
@@ -38,12 +43,35 @@
     [super didReceiveMemoryWarning];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:SIMILAR_ADVERTS_SEQUE]) {
+        _advertsViewController = (AdvertsCollectionViewController*)segue.destinationViewController;
+        _advertsViewController.delegate = self;
+        if (self.isViewLoaded && _parentAdvert){
+            [self fillData];
+        }
+    }
+}
+
 -(NSMutableAttributedString*)nextLine{
     NSMutableAttributedString* spaceString = [[NSMutableAttributedString alloc] initWithString:@"\n \n"];
     [spaceString addAttribute:NSFontAttributeName
                         value:[UIFont systemFontOfSize:6]
                         range:NSMakeRange(0, spaceString.length)];
     return spaceString;
+}
+
+-(void)dataLoaded:(BOOL)isEmpty{
+    if (isEmpty){
+        _similarAdvertsHeight.constant = 0;
+        [self.view setNeedsUpdateConstraints];
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
+    }
+}
+
+-(BOOL)isForUser{
+    return YES;
 }
 
 -(void)fillData{
@@ -116,6 +144,16 @@
     }
     
     [_otherUserDetails setAttributedText:additionalString];
+    
+    if (!_parentAdvert.ident){
+        _similarAdvertsHeight.constant = 0;
+    }else{
+        [_advertsViewController setAdvert:_parentAdvert];
+    }
+    
+    [self.view setNeedsUpdateConstraints];
+    [self.view setNeedsLayout];
+    [self.view layoutIfNeeded];
 }
 
 @end

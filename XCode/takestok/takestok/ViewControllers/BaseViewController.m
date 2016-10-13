@@ -28,6 +28,17 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardApeared:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDisapeared:)
+                                                 name:UIKeyboardDidHideNotification
+                                               object:nil];
+    
     _loadingView = [[UIView alloc] init];
     _loadingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _loadingView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
@@ -99,6 +110,14 @@
     }
 }
 
+-(void)keyboardApeared:(id)owner{
+    _keyboardShown = YES;
+}
+
+-(void)keyboardDisapeared:(id)owner{
+    _keyboardShown = NO;
+}
+
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
     if ([identifier isEqualToString:CREATE_ADVERT_SEGUE]){
@@ -110,6 +129,10 @@
 - (IBAction)hideKeyboard:(id)sender {
     [self.view endEditing:YES];
     [self.navigationController.view endEditing:YES];
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+    return _keyboardShown;
 }
 
 -(void)showLoading{

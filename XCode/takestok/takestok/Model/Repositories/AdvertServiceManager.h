@@ -59,5 +59,7 @@ typedef void (^advertResultBlock)(NSDictionary* advertDic, NSError* error);
 -(void)addToWatchList:(TSAdvert*)advert compleate:(errorBlock)compleate;
 -(void)sendViwAdvert:(TSAdvert*)advert;
 -(void)sendReadNotificationsWithAdvert:(TSAdvert*)advert;
+-(void)loadSimilarAdverts:(TSAdvert*)advert withPage:(int)page compleate:(resultBlock)compleate;
+-(void)loadUserAdverts:(TSAdvert*)advert withPage:(int)page compleate:(resultBlock)compleate;
 
 @end

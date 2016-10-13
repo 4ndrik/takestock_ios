@@ -317,18 +317,48 @@ typedef enum
 }
 
 -(void)sendViwAdvert:(NSNumber*)advertId{
-    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:[NSString stringWithFormat:@"%@/%@", ADVERTS_URL_PATH, advertId] query:@"update=counter" methodType:HTTP_METHOD_GET contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"counter", @"update", nil];
+    NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
+    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:[NSString stringWithFormat:@"%@/%@", ADVERTS_URL_PATH, advertId] query:query methodType:HTTP_METHOD_GET contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
     }];
     [dataTask resume];
 }
 
 -(void)sendReadNotificationsWithAdvert:(NSNumber*)advertId compleate:(tsResultBlock)compleate{
-    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:[NSString stringWithFormat:@"%@/%@", ADVERTS_URL_PATH, advertId] query:@"update=notifications" methodType:HTTP_METHOD_GET contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"notifications", @"update", nil];
+    NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
+    NSURLSessionDataTask * dataTask = [_session dataTaskWithRequest:[self request:[NSString stringWithFormat:@"%@/%@", ADVERTS_URL_PATH, advertId] query:query methodType:HTTP_METHOD_GET contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate(result, error);
     }];
     [dataTask resume];
+}
+
+-(void)loadAdvertsWithPage:(int)page similar:(NSNumber*)advertId compleate:(tsResultBlock)compleate{
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:page], @"page", advertId, @"related_by_advert", nil];
+    
+    NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
+    
+    NSURLSessionDataTask* loadAdvertCancelTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        [_dictionaryLock waitUntilDone];
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        compleate(result, error);
+    }];
+    [loadAdvertCancelTask resume];
+}
+
+-(void)loadUserAdvertsWithPage:(int)page similar:(NSNumber*)advertId compleate:(tsResultBlock)compleate{
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:page], @"page", advertId, @"la_by_advert", nil];
+    
+    NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
+    
+    NSURLSessionDataTask* loadAdvertCancelTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        [_dictionaryLock waitUntilDone];
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        compleate(result, error);
+    }];
+    [loadAdvertCancelTask resume];
 }
 
 #pragma mark - QA

@@ -63,6 +63,8 @@ typedef void (^tsResultBlock)(id result, NSError* error);
 -(void)loadHoldOndWithPage:(int)page userId:(NSNumber*)userId compleate:(tsResultBlock)compleate;
 -(void)sendViwAdvert:(NSNumber*)advertId;
 -(void)sendReadNotificationsWithAdvert:(NSNumber*)advertId compleate:(tsResultBlock)compleate;
+-(void)loadAdvertsWithPage:(int)page similar:(NSNumber*)advertId compleate:(tsResultBlock)compleate;
+-(void)loadUserAdvertsWithPage:(int)page similar:(NSNumber*)advertId compleate:(tsResultBlock)compleate;
 
 //QA
 -(void)loadQuestionAnswersWith:(NSNumber*)advertId page:(int)page compleate:(tsResultBlock)compleate;

@@ -31,6 +31,7 @@
 #import "TSAdvert+Mutable.h"
 #import "OfferServiceManager.h"
 #import "TSAdvert+Mutable.h"
+#import "AdvertsCollectionViewController.h"
 
 @interface AdvertDetailViewController ()
 
@@ -99,7 +100,13 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([segue.identifier isEqualToString:ADVERT_IMAGES_SEGUE]) {
+    if ([segue.identifier isEqualToString:SIMILAR_ADVERTS_SEQUE]) {
+        _advertsViewController = (AdvertsCollectionViewController*)segue.destinationViewController;
+        _advertsViewController.delegate = self;
+        if (self.isViewLoaded && _advert){
+            [self refreshAdData];
+        }
+    }else if ([segue.identifier isEqualToString:ADVERT_IMAGES_SEGUE]) {
         ImagesCollectionViewController* imageVC = (ImagesCollectionViewController*)segue.destinationViewController;
         [imageVC setImages:_advert.photos withCurrentIndex:((NSIndexPath*)sender).row];
     }else if ([segue.identifier isEqualToString:ADVERT_QUESTIONS_SEGUE]){
@@ -108,8 +115,22 @@
 
     }else if ([segue.identifier isEqualToString:USER_DETAILS_SEGUE]){
         UserDetailsViewController* udVC = (UserDetailsViewController*)segue.destinationViewController;
+        [udVC setAdvert:_advert];
         [udVC setUser:_advert.author];
     }
+}
+
+-(void)dataLoaded:(BOOL)isEmpty{
+    if (isEmpty){
+        _similarPanelHeight.constant = 0;
+        [self.view setNeedsUpdateConstraints];
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
+    }
+}
+
+-(BOOL)isForUser{
+    return NO;
 }
 
 #pragma mark - Handle keyboard
@@ -172,6 +193,12 @@
     }
     
     _questionButton.hidden = !_advert.ident;
+    
+    if (!_advert.ident){
+        _similarPanelHeight.constant = 0;
+    }else{
+        [_advertsViewController setAdvert:_advert];
+    }
     
     [self.view setNeedsUpdateConstraints];
     [self.view setNeedsLayout];

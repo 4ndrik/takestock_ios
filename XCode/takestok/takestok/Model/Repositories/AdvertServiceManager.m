@@ -530,4 +530,58 @@ static AdvertServiceManager *_manager = nil;
     }];
 }
 
+-(void)loadSimilarAdverts:(TSAdvert*)advert withPage:(int)page compleate:(resultBlock)compleate{
+    [[ServerConnectionHelper sharedInstance] loadAdvertsWithPage:page similar:advert.ident compleate:^(id result, NSError *error) {
+        NSMutableDictionary* additionalDic;
+        NSMutableArray* adverts;
+        if (!error)
+        {
+            additionalDic = [NSMutableDictionary dictionaryWithDictionary:result];
+            [additionalDic removeObjectForKey:@"results"];
+            NSArray* array = [result objectForKeyNotNull:@"results"];
+            adverts = [NSMutableArray arrayWithCapacity:array.count];
+            
+            for (NSDictionary* advertDic in array) {
+                TSAdvert* advert = [TSAdvert objectWithDictionary:advertDic];
+                if (advert)
+                    [adverts addObject:advert];
+            }
+            
+        }else if ([[error localizedDescription] isEqualToString:@"cancelled"]){
+            return;
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            compleate(adverts, additionalDic, error);
+        });
+    }];
+}
+
+-(void)loadUserAdverts:(TSAdvert*)advert withPage:(int)page compleate:(resultBlock)compleate{
+    [[ServerConnectionHelper sharedInstance] loadUserAdvertsWithPage:page similar:advert.ident compleate:^(id result, NSError *error) {
+        NSMutableDictionary* additionalDic;
+        NSMutableArray* adverts;
+        if (!error)
+        {
+            additionalDic = [NSMutableDictionary dictionaryWithDictionary:result];
+            [additionalDic removeObjectForKey:@"results"];
+            NSArray* array = [result objectForKeyNotNull:@"results"];
+            adverts = [NSMutableArray arrayWithCapacity:array.count];
+            
+            for (NSDictionary* advertDic in array) {
+                TSAdvert* advert = [TSAdvert objectWithDictionary:advertDic];
+                if (advert)
+                    [adverts addObject:advert];
+            }
+            
+        }else if ([[error localizedDescription] isEqualToString:@"cancelled"]){
+            return;
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            compleate(adverts, additionalDic, error);
+        });
+    }];
+}
+
 @end

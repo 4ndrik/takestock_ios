@@ -61,7 +61,7 @@
 #define BUYER_OFFERS_SEQUE          @"BuyingOffersSegue"
 #define OFFERS_SHIPPING_SEQUE       @"ShippingSegue"
 #define OFFERS_DISPATCH_INFO_SEQUE  @"DispatchInfoSegue"
-
+#define SIMILAR_ADVERTS_SEQUE       @"MoreAdvertsSegue"
 
 //CONTROLLER IDS
 #define LOGIN_CONTROLLER            @"LoginViewController"

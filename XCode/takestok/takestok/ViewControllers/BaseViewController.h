@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @class RKNotificationHub;
-@interface BaseViewController : UIViewController{
+@interface BaseViewController : UIViewController<UIGestureRecognizerDelegate>{
     UIView* _loadingView;
     UILabel* _noItemsLabel;
     
     RKNotificationHub* _notificationsBadge;
+    BOOL _keyboardShown;
 }
 
 - (IBAction)hideKeyboard:(id)sender;
