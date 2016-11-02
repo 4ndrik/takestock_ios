@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -10,7 +13,7 @@
         <scene sceneID="j5i-Pa-ZcC">
             <objects>
                 <navigationController storyboardIdentifier="OverViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UYI-On-0H0" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1pd-Fr-mxs">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1pd-Fr-mxs">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -21,6 +24,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4mY-C2-AWP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1764" y="-302"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="F7x-eq-WST">
+            <objects>
+                <navigationController storyboardIdentifier="NotificationsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2j4-iJ-VDL" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="lM1-Ir-dcK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="mrT-21-bzU" kind="relationship" relationship="rootViewController" id="TB9-nS-OpQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qJp-tv-WTn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1764" y="-975"/>
+        </scene>
+        <!--Notifications-->
+        <scene sceneID="k9f-nD-Omk">
+            <objects>
+                <viewController title="Notifications" id="mrT-21-bzU" customClass="NotificationsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yGl-qN-92x"/>
+                        <viewControllerLayoutGuide type="bottom" id="MOb-oc-wq3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dMI-ug-Zzw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MCq-tO-1G8">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="mrT-21-bzU" id="XcD-p0-eeQ"/>
+                                    <outlet property="delegate" destination="mrT-21-bzU" id="XCx-wq-4Pf"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MCq-tO-1G8" firstAttribute="top" secondItem="yGl-qN-92x" secondAttribute="bottom" id="6cs-5W-hgU"/>
+                            <constraint firstAttribute="trailing" secondItem="MCq-tO-1G8" secondAttribute="trailing" id="O0c-CL-juQ"/>
+                            <constraint firstItem="MOb-oc-wq3" firstAttribute="top" secondItem="MCq-tO-1G8" secondAttribute="bottom" id="OP9-CP-tA1"/>
+                            <constraint firstItem="MCq-tO-1G8" firstAttribute="leading" secondItem="dMI-ug-Zzw" secondAttribute="leading" id="ps6-Fi-YpR"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="NOTIFICATIONS" id="icr-fB-HLX"/>
+                    <connections>
+                        <outlet property="_tableView" destination="MCq-tO-1G8" id="7Eq-DE-4oy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oeN-Ic-FFx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-903" y="-974"/>
         </scene>
         <!--OVERVIEW-->
         <scene sceneID="1sS-tN-BeT">
@@ -35,8 +92,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B43-t6-RT2">
+                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="maU-7u-FrP">
+                                        <rect key="frame" x="10" y="7.5" width="355" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="28" id="FRT-Kb-CL8"/>
                                         </constraints>
@@ -60,18 +119,22 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9cz-pm-83y">
+                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5sB-6f-wvu">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                         <connections>
                                             <segue destination="aQa-yE-l63" kind="embed" id="GuB-W4-R81"/>
                                         </connections>
                                     </containerView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OP3-qR-Fuz">
+                                        <rect key="frame" x="375" y="-32" width="375" height="623"/>
                                         <connections>
                                             <segue destination="mXm-At-D43" kind="embed" id="wmO-vj-xw9"/>
                                         </connections>
                                     </containerView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aAc-uc-2TW">
+                                        <rect key="frame" x="750" y="-32" width="375" height="623"/>
                                         <connections>
                                             <segue destination="dL3-si-dlh" kind="embed" id="1IK-Sz-app"/>
                                         </connections>
@@ -132,6 +195,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="130" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CeP-RE-SWF">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                 <color key="backgroundColor" red="0.92549019610000005" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="aQa-yE-l63" id="WTY-cT-3nr"/>
@@ -186,6 +250,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="130" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PCz-cL-Tuf">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                 <color key="backgroundColor" red="0.92549019610000005" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="mXm-At-D43" id="PYT-Uh-o9Q"/>
@@ -224,6 +289,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="130" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wL1-EA-P2h">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                 <color key="backgroundColor" red="0.92549019610000005" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="dL3-si-dlh" id="fA9-bN-ttn"/>
@@ -262,6 +328,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zXb-BG-Itd">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="i2B-v7-Rw6" id="tCb-kC-NSe"/>
@@ -289,7 +356,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="bnB-Po-V6g"/>
-        <segue reference="ZZz-J3-cFq"/>
+        <segue reference="sZv-V8-w7O"/>
+        <segue reference="dAI-sE-qeU"/>
     </inferredMetricsTieBreakers>
 </document>

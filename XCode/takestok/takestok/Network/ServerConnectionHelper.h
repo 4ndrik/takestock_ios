@@ -76,6 +76,8 @@ typedef void (^tsResultBlock)(id result, NSError* error);
 -(void)signUpWithUserName:(NSString*)username email:(NSString*)email password:(NSString*)password compleate:(tsResultBlock)compleate;
 -(void)loadUsersWithIds:(NSArray*)userIds compleate:(tsResultBlock)compleate;
 -(void)updateUser:(NSDictionary*)userData compleate:(tsResultBlock)compleate;
+-(void)sendAPNSToken:(NSDictionary*)data compleate:(tsResultBlock)compleate;
+-(void)removeAPNSToken:(NSString*)token;
 
 //Offers
 -(void)loadOffer:(NSNumber*)offerId compleate:(tsResultBlock)compleate;

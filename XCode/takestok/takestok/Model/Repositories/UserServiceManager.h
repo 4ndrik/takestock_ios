@@ -31,4 +31,7 @@
 
 -(void)updateUser:(TSUserEntity*)user withImage:(UIImage*)image compleate:(errorBlock)compleate;
 
+-(void)sendAPNSToken;
+-(void)removeAPNSToken;
+
 @end

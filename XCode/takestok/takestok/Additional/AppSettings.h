@@ -21,22 +21,4 @@
 +(int)getSearchSort;
 +(void)setSearchSort:(int)ident;
 
-+(void)resetMyAdvertRevision;
-+(void)updateMyAdvertRevision;
-+(NSDate*)getMyAdvertRevision;
-
-+(void)resetWatchListRevision;
-+(void)updateWatchListRevision;
-+(NSDate*)getWatchListRevision;
-
-+(void)resetBuyerRevision;
-+(void)updateBuyerOfferRevision;
-+(NSDate*)getBuyerOfferRevision;
-
-+(void)resetSellerRevision;
-+(void)updateSellerOfferRevision;
-+(NSDate*)getSellerOfferRevision;
-
-
-
 @end

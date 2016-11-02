@@ -16,4 +16,8 @@
     
 }
 
+-(void)showHome:(id)sender;
+-(void)showSelling:(id)owner;
+-(void)showBuying:(id)owner;
+
 @end

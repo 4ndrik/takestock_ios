@@ -35,9 +35,7 @@
 #define ERROR_MESSAGE(er) er.localizedFailureReason.length > 0 ? er.localizedFailureReason : er.localizedDescription
 
 //NOTIFICATIONS
-#define OFFERS_UPDATED_NOTIFICATION         @"OfferUpdatedNotification"
-#define ADVERTS_UPDATED_NOTIFICATION        @"AdvertUpdatedNotification"
-#define QUESTIONS_UPDATED_NOTIFICATION      @"QuestionsUpdatedNotification"
+#define NOTIFICATION_UPDATED_NOTIFICATION   @"NotificationUpdatedNotification"
 
 //STORUBOARD IDS
 #define MAIN_STORYBOARD             @"Main"
@@ -74,6 +72,7 @@
 #define ABOUT_US_CONTROLLER         @"AboutUsController"
 #define CONTACT_US_CONTROLLER       @"ContactUsController"
 #define LEGAL_INFO_CONTROLLER       @"LegalInformationController"
+#define NOTIFICATION_CONTROLLER     @"NotificationsViewController"
 
 typedef void (^resultBlock)(NSArray* result, NSDictionary* additionalData, NSError* error);
 typedef void (^errorBlock)(NSError* error);

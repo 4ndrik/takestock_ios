@@ -11,6 +11,9 @@
 #import "ServerConnectionHelper.h"
 #import "TSUserBusinessType.h"
 #import "TSUserEntity.h"
+#import "NotificationServiceManager.h"
+
+@import Firebase;
 
 @implementation UserServiceManager
 
@@ -115,6 +118,7 @@ static UserServiceManager *_manager = nil;
             [NSKeyedArchiver archiveRootObject:me toFile:userStorgeFile(userId)];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
+            [self sendAPNSToken];
             compleate(error);
         });
     }];
@@ -156,12 +160,34 @@ static UserServiceManager *_manager = nil;
                 [me updateWithDic:userDic];
             }
             [AppSettings setUserId:userId];
+            [[NotificationServiceManager sharedManager] reloadNotifications];
             [NSKeyedArchiver archiveRootObject:me toFile:userStorgeFile(userId)];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             compleate(error);
         });
     }];
+}
+
+-(void)sendAPNSToken{
+    NSString* token = [[FIRInstanceID instanceID] token];
+    NSMutableDictionary* dic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:YES], @"active", @"ios", @"type", [[UIDevice currentDevice].identifierForVendor UUIDString], @"device_id", [UIDevice currentDevice].model, @"name", token, @"registration_id", nil];
+    
+    if (token.length > 0 && [UserServiceManager sharedManager].getMe){
+        [dic setValue:token forKey:@"registration_id"];
+        
+        [[ServerConnectionHelper sharedInstance] sendAPNSToken:dic compleate:^(id result, NSError *error) {
+            NSLog(@"dasd");
+        }];
+        
+    }
+}
+
+-(void)removeAPNSToken{
+    NSString* token = [[FIRInstanceID instanceID] token];
+    if (token.length > 0){
+        [[ServerConnectionHelper sharedInstance] removeAPNSToken:token];
+    }
 }
 
 #pragma mark - Fetch BusinessTypes

@@ -14,8 +14,14 @@
 #import "AdvertServiceManager.h"
 #import "UserServiceManager.h"
 #import "OfferServiceManager.h"
+#import <UserNotifications/UserNotifications.h>
+#import "AppSettings.h"
+#import "NotificationServiceManager.h"
 
-@interface AppDelegate ()
+@import Firebase;
+@import FirebaseMessaging;
+
+@interface AppDelegate ()<FIRMessagingDelegate, UNUserNotificationCenterDelegate>
 
 @end
 
@@ -33,29 +39,53 @@
     [[UINavigationBar appearance] setBarTintColor:OliveMainColor];
     [[UINavigationBar appearance] setTranslucent:NO];
     
-     [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:OliveMainColor]];
-    
-//    [[UISegmentedControl appearance] setTitleTextAttributes:titleBarAttributes forState:UIControlStateNormal];
-//    
-//    [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:OliveMainColor]];
+    [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:OliveMainColor]];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Stripe setDefaultPublishableKey:@"pk_test_qevXdEtyHKRjlP1WOXLcsd0s"];
-    // Override point for customization after application launch.
+    [FIRApp configure];
     
-//    NSArray *fontFamilies = [UIFont familyNames];
-//    
-//    for (int i = 0; i < [fontFamilies count]; i++)
-//    {
-//        NSString *fontFamily = [fontFamilies objectAtIndex:i];
-//        NSArray *fontNames = [UIFont fontNamesForFamilyName:[fontFamilies objectAtIndex:i]];
-//        NSLog (@"%@: %@", fontFamily, fontNames);
-//    }
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
+        UIUserNotificationType allNotificationTypes =
+        (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+        UIUserNotificationSettings *settings =
+        [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    } else {
+        UNAuthorizationOptions authOptions = UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge;
+        [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:authOptions completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            if (!granted)
+                NSLog(@"Push notifications disabled by user.");
+        }];
+        [[UNUserNotificationCenter currentNotificationCenter] setDelegate:self];
+        [[FIRMessaging messaging] setRemoteMessageDelegate:self];
+    }
     
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
     [self customizeNavigationBar];
     
     return YES;
+}
+
+- (void)connectToFcm {
+    [[FIRMessaging messaging] connectWithCompletion:^(NSError * _Nullable error) {
+        if (error != nil) {
+            NSLog(@"Unable to connect to FCM. %@", error);
+        } else {
+            NSLog(@"Connected to FCM.");
+        }
+    }];
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    [[FIRInstanceID instanceID] setAPNSToken:deviceToken type:FIRInstanceIDAPNSTokenTypeSandbox];
+    [[UserServiceManager sharedManager] sendAPNSToken];
+}
+
+- (void)tokenRefreshNotification:(NSNotification *)notification {
+    [self connectToFcm];
+    [[UserServiceManager sharedManager] sendAPNSToken];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -64,25 +94,32 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-//    [[DB sharedInstance].storedManagedObjectContext save:nil];
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [[FIRMessaging messaging] disconnect];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+}
+
+-(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
+    
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    [[NotificationServiceManager sharedManager] receivedNotification:userInfo];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    [[NotificationServiceManager sharedManager] receivedNotification:userInfo];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-//    [[ServerConnectionHelper sharedInstance] loadRequiredData];
+    
     [[AdvertServiceManager sharedManager] fetchRequiredData];
     [[UserServiceManager sharedManager] fetchRequiredData];
     [[OfferServiceManager sharedManager] fetchRequiredData];
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [[UserServiceManager sharedManager] sendAPNSToken];
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
+
 
 @end

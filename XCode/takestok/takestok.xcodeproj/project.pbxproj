@@ -50,6 +50,11 @@
 		AC4655BF1D93E48500A5CC76 /* TSOfferStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4655BE1D93E48500A5CC76 /* TSOfferStatus.m */; };
 		AC4906871D92BF8B00E2768A /* OfferServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4906861D92BF8B00E2768A /* OfferServiceManager.m */; };
 		AC49068D1D92CADF00E2768A /* TSOffer.m in Sources */ = {isa = PBXBuildFile; fileRef = AC49068C1D92CADF00E2768A /* TSOffer.m */; };
+		AC4DDB331DC8ADE50033205C /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4DDB321DC8ADE50033205C /* NotificationsViewController.m */; };
+		AC4DDB371DC8AF1C0033205C /* NotificationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4DDB351DC8AF1C0033205C /* NotificationTableViewCell.m */; };
+		AC4DDB381DC8AF1C0033205C /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC4DDB361DC8AF1C0033205C /* NotificationTableViewCell.xib */; };
+		AC4EEE9A1DC390750014C654 /* TSNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4EEE991DC390750014C654 /* TSNotification.m */; };
+		AC54A96D1DB6506A007430FF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC54A96C1DB6506A007430FF /* GoogleService-Info.plist */; };
 		AC5633E41D0978D800ACF1E9 /* NSLayoutConstraint+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5633E31D0978D800ACF1E9 /* NSLayoutConstraint+Description.m */; };
 		AC5F6C6B1D87F9A1003918D3 /* TSImageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5F6C6A1D87F9A1003918D3 /* TSImageEntity.m */; };
 		AC5F6C6E1D88016B003918D3 /* TSUserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5F6C6D1D88016B003918D3 /* TSUserEntity.m */; };
@@ -70,6 +75,8 @@
 		AC68C4891CB6534A004B78DF /* UIImage+ExtendedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4881CB6534A004B78DF /* UIImage+ExtendedImage.m */; };
 		AC68C48C1CB67090004B78DF /* ImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */; };
 		AC68C4921CB68865004B78DF /* PaddingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4911CB68865004B78DF /* PaddingTextField.m */; };
+		AC69F8A31DC3635000C2EE28 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC69F8A11DC3635000C2EE28 /* UserNotifications.framework */; };
+		AC69F8A41DC3635000C2EE28 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC69F8A21DC3635000C2EE28 /* UserNotificationsUI.framework */; };
 		AC7249781D8AEC8900AD940A /* TSUserSubBusinessType.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5F6C741D880529003918D3 /* TSUserSubBusinessType.m */; };
 		AC756E5E1D86A50700C45BA3 /* TSAdvertShipping.m in Sources */ = {isa = PBXBuildFile; fileRef = AC756E5D1D86A50700C45BA3 /* TSAdvertShipping.m */; };
 		AC756E611D86A8CB00C45BA3 /* TSAdvertPackagingType.m in Sources */ = {isa = PBXBuildFile; fileRef = AC756E601D86A8CB00C45BA3 /* TSAdvertPackagingType.m */; };
@@ -136,6 +143,7 @@
 		ACF8DA741D91747E00BD5114 /* TSAdvert+Mutable.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF8DA731D91747E00BD5114 /* TSAdvert+Mutable.m */; };
 		ACFCB6BA1CDA200A005A4024 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6B91CDA200A005A4024 /* UserProfileViewController.m */; };
 		ACFCB6BD1CDA5047005A4024 /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFCB6BC1CDA5047005A4024 /* AppSettings.m */; };
+		ACFF12A61DC7817E00679F2D /* NotificationServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFF12A51DC7817E00679F2D /* NotificationServiceManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -226,6 +234,15 @@
 		AC4906861D92BF8B00E2768A /* OfferServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferServiceManager.m; sourceTree = "<group>"; };
 		AC49068B1D92CADF00E2768A /* TSOffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSOffer.h; sourceTree = "<group>"; };
 		AC49068C1D92CADF00E2768A /* TSOffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSOffer.m; sourceTree = "<group>"; };
+		AC4DDB311DC8ADE50033205C /* NotificationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsViewController.h; sourceTree = "<group>"; };
+		AC4DDB321DC8ADE50033205C /* NotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsViewController.m; sourceTree = "<group>"; };
+		AC4DDB341DC8AF1C0033205C /* NotificationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationTableViewCell.h; sourceTree = "<group>"; };
+		AC4DDB351DC8AF1C0033205C /* NotificationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationTableViewCell.m; sourceTree = "<group>"; };
+		AC4DDB361DC8AF1C0033205C /* NotificationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationTableViewCell.xib; sourceTree = "<group>"; };
+		AC4EEE981DC390750014C654 /* TSNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSNotification.h; sourceTree = "<group>"; };
+		AC4EEE991DC390750014C654 /* TSNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSNotification.m; sourceTree = "<group>"; };
+		AC54A96C1DB6506A007430FF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AC54A96E1DB65258007430FF /* takestok.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = takestok.entitlements; sourceTree = "<group>"; };
 		AC5633E21D0978D800ACF1E9 /* NSLayoutConstraint+Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+Description.h"; sourceTree = "<group>"; };
 		AC5633E31D0978D800ACF1E9 /* NSLayoutConstraint+Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+Description.m"; sourceTree = "<group>"; };
 		AC58CDA61CF30C7300A2210A /* OfferActionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OfferActionDelegate.h; sourceTree = "<group>"; };
@@ -267,6 +284,8 @@
 		AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCollectionViewCell.m; sourceTree = "<group>"; };
 		AC68C4901CB68865004B78DF /* PaddingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaddingTextField.h; sourceTree = "<group>"; };
 		AC68C4911CB68865004B78DF /* PaddingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddingTextField.m; sourceTree = "<group>"; };
+		AC69F8A11DC3635000C2EE28 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		AC69F8A21DC3635000C2EE28 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		AC756E5C1D86A50700C45BA3 /* TSAdvertShipping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAdvertShipping.h; sourceTree = "<group>"; };
 		AC756E5D1D86A50700C45BA3 /* TSAdvertShipping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAdvertShipping.m; sourceTree = "<group>"; };
 		AC756E5F1D86A8CB00C45BA3 /* TSAdvertPackagingType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAdvertPackagingType.h; sourceTree = "<group>"; };
@@ -382,6 +401,8 @@
 		ACFCB6B91CDA200A005A4024 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		ACFCB6BB1CDA5047005A4024 /* AppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettings.h; sourceTree = "<group>"; };
 		ACFCB6BC1CDA5047005A4024 /* AppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettings.m; sourceTree = "<group>"; };
+		ACFF12A41DC7817E00679F2D /* NotificationServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationServiceManager.h; sourceTree = "<group>"; };
+		ACFF12A51DC7817E00679F2D /* NotificationServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationServiceManager.m; sourceTree = "<group>"; };
 		C9B23DB5B7E42B0142DD585D /* Pods-takestok.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-takestok.release.xcconfig"; path = "Pods/Target Support Files/Pods-takestok/Pods-takestok.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -390,6 +411,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC69F8A31DC3635000C2EE28 /* UserNotifications.framework in Frameworks */,
+				AC69F8A41DC3635000C2EE28 /* UserNotificationsUI.framework in Frameworks */,
 				310A07B5BD230A044423EBB8 /* libPods-takestok.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -493,6 +516,15 @@
 			name = Offer;
 			sourceTree = "<group>";
 		};
+		AC4DDB301DC8ADC20033205C /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				AC4DDB311DC8ADE50033205C /* NotificationsViewController.h */,
+				AC4DDB321DC8ADE50033205C /* NotificationsViewController.m */,
+			);
+			name = Notifications;
+			sourceTree = "<group>";
+		};
 		AC5F6C6F1D88022B003918D3 /* Users */ = {
 			isa = PBXGroup;
 			children = (
@@ -511,6 +543,7 @@
 		AC68C44F1CB51C1F004B78DF = {
 			isa = PBXGroup;
 			children = (
+				AC54A96C1DB6506A007430FF /* GoogleService-Info.plist */,
 				AC68C45A1CB51C1F004B78DF /* takestok */,
 				AC68C4591CB51C1F004B78DF /* Products */,
 				F8287EDDFD6082EA4600E835 /* Pods */,
@@ -529,6 +562,7 @@
 		AC68C45A1CB51C1F004B78DF /* takestok */ = {
 			isa = PBXGroup;
 			children = (
+				AC54A96E1DB65258007430FF /* takestok.entitlements */,
 				ACEFEE721D82B81C001B9BA0 /* Model */,
 				AC411E231CBFA207008B1E38 /* Network */,
 				AC68C4741CB51CB2004B78DF /* Additional */,
@@ -573,6 +607,7 @@
 				ACC6F2211D0EBFCE00F1B6F5 /* MenuViewController.m */,
 				AC049D061CB7C47F006A8F21 /* HomeViewController.h */,
 				AC049D071CB7C47F006A8F21 /* HomeViewController.m */,
+				AC4DDB301DC8ADC20033205C /* Notifications */,
 				ACB141931DA669A000D02D47 /* Overview */,
 				AC411E521CC78D61008B1E38 /* Adverts */,
 				AC854C271CEB3E46006AFF2D /* Selling */,
@@ -607,6 +642,9 @@
 				ACD646E31D9D2F47006B5B78 /* OfferTableViewCell.xib */,
 				ACDB5AA71DAD1FD4004DA2A5 /* AdvertSmallCollectionViewCell.h */,
 				ACDB5AA81DAD1FD4004DA2A5 /* AdvertSmallCollectionViewCell.m */,
+				AC4DDB341DC8AF1C0033205C /* NotificationTableViewCell.h */,
+				AC4DDB351DC8AF1C0033205C /* NotificationTableViewCell.m */,
+				AC4DDB361DC8AF1C0033205C /* NotificationTableViewCell.xib */,
 				AC7686291D06B10200DD7490 /* Buying */,
 				AC76862C1D06B1B100DD7490 /* Selling */,
 				AC76862B1D06B17200DD7490 /* QA */,
@@ -862,6 +900,8 @@
 			children = (
 				ACEFEE751D82B908001B9BA0 /* TSBaseEntity.h */,
 				ACEFEE761D82B908001B9BA0 /* TSBaseEntity.m */,
+				AC4EEE981DC390750014C654 /* TSNotification.h */,
+				AC4EEE991DC390750014C654 /* TSNotification.m */,
 				ACEFEE781D82BBF1001B9BA0 /* TSBaseDictionaryEntity.h */,
 				ACEFEE791D82BBF1001B9BA0 /* TSBaseDictionaryEntity.m */,
 				ACEFEE9C1D82FBA9001B9BA0 /* Adverts */,
@@ -887,6 +927,8 @@
 				AC79A2FB1D8AEDC8009B442E /* QuestionAnswerServiceManager.m */,
 				AC4906851D92BF8B00E2768A /* OfferServiceManager.h */,
 				AC4906861D92BF8B00E2768A /* OfferServiceManager.m */,
+				ACFF12A41DC7817E00679F2D /* NotificationServiceManager.h */,
+				ACFF12A51DC7817E00679F2D /* NotificationServiceManager.m */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -921,6 +963,8 @@
 		D2158DBA8A7A5AFA64B0224E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AC69F8A11DC3635000C2EE28 /* UserNotifications.framework */,
+				AC69F8A21DC3635000C2EE28 /* UserNotificationsUI.framework */,
 				8FF5A930920EAF384C010691 /* libPods-takestok.a */,
 			);
 			name = Frameworks;
@@ -969,7 +1013,12 @@
 				TargetAttributes = {
 					AC68C4571CB51C1F004B78DF = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 3GLUJL87Q3;
+						DevelopmentTeam = 4CE5A45M4X;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -996,6 +1045,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC4DDB381DC8AF1C0033205C /* NotificationTableViewCell.xib in Resources */,
 				AC68C46B1CB51C20004B78DF /* LaunchScreen.storyboard in Resources */,
 				ACBC48511D9A862400E061EF /* User.storyboard in Resources */,
 				AC7ADD481D2A5FC500E0FBC9 /* PayDestAddressOfferView.xib in Resources */,
@@ -1013,6 +1063,7 @@
 				AC68C47D1CB63F1B004B78DF /* brandon_bld.otf in Resources */,
 				AC411E3A1CC0F309008B1E38 /* SearchTitleView.xib in Resources */,
 				AC9776A81D26BAEA0060DF73 /* ShippingInfoActionView.xib in Resources */,
+				AC54A96D1DB6506A007430FF /* GoogleService-Info.plist in Resources */,
 				AC68C47E1CB63F1B004B78DF /* brandon_reg.otf in Resources */,
 				ACC6F23B1D0FFBB400F1B6F5 /* LegalInfo.html in Resources */,
 				ACCE7FD31CDCD38200A76CB6 /* AskQuestionView.xib in Resources */,
@@ -1082,6 +1133,7 @@
 				ACF8DA741D91747E00BD5114 /* TSAdvert+Mutable.m in Sources */,
 				AC68C4921CB68865004B78DF /* PaddingTextField.m in Sources */,
 				AC411E551CC7A72C008B1E38 /* SellingTableViewCell.m in Sources */,
+				AC4EEE9A1DC390750014C654 /* TSNotification.m in Sources */,
 				ACEFEE801D82C687001B9BA0 /* TSAdvertSubCategory.m in Sources */,
 				ACC6F2391D0F003300F1B6F5 /* LegalInformationViewController.m in Sources */,
 				ACCE7FD11CDCD37000A76CB6 /* AskQuestionView.m in Sources */,
@@ -1111,6 +1163,7 @@
 				ACD65F541D23D204005D3967 /* AdvertTableViewCell.m in Sources */,
 				AC7ADD4B1D2A5FDA00E0FBC9 /* PayDestAddressOfferView.m in Sources */,
 				ACFCB6BD1CDA5047005A4024 /* AppSettings.m in Sources */,
+				ACFF12A61DC7817E00679F2D /* NotificationServiceManager.m in Sources */,
 				AC049D081CB7C47F006A8F21 /* HomeViewController.m in Sources */,
 				AC756E5E1D86A50700C45BA3 /* TSAdvertShipping.m in Sources */,
 				AC68C4811CB64241004B78DF /* TextFieldBorderBottom.m in Sources */,
@@ -1128,6 +1181,7 @@
 				AC49068D1D92CADF00E2768A /* TSOffer.m in Sources */,
 				AC411E5B1CC7D257008B1E38 /* BuyingViewController.m in Sources */,
 				AC5F6C6B1D87F9A1003918D3 /* TSImageEntity.m in Sources */,
+				AC4DDB331DC8ADE50033205C /* NotificationsViewController.m in Sources */,
 				AC6201021CE34F5F006A80A2 /* DoneTextField.m in Sources */,
 				ACEFEE7D1D82BF3B001B9BA0 /* TSAdvertCategory.m in Sources */,
 				AC0A2C4A1D1D784E0040282D /* WatchListViewController.m in Sources */,
@@ -1148,6 +1202,7 @@
 				AC36985F1DA4FD0C00987179 /* TSShippingInfo+Mutable.m in Sources */,
 				AC5F6C6E1D88016B003918D3 /* TSUserEntity.m in Sources */,
 				AC79A2F91D8AEDBB009B442E /* TSAnswer.m in Sources */,
+				AC4DDB371DC8AF1C0033205C /* NotificationTableViewCell.m in Sources */,
 				ACDA2ECD1CEF28A3009F51A0 /* OfferActionView.m in Sources */,
 				AC411E481CC50A00008B1E38 /* ImagesCollectionViewController.m in Sources */,
 				ACDB5AAA1DAD1FD4004DA2A5 /* AdvertSmallCollectionViewCell.m in Sources */,
@@ -1298,16 +1353,17 @@
 			baseConfigurationReference = ABEAD3E005548B4300B13FFA /* Pods-takestok.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = takestok/takestok.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 3GLUJL87Q3;
+				DEVELOPMENT_TEAM = 4CE5A45M4X;
 				GCC_PREFIX_HEADER = takestok/takestok.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
 				INFOPLIST_FILE = takestok/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.takestock;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wetakestock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1318,16 +1374,17 @@
 			baseConfigurationReference = C9B23DB5B7E42B0142DD585D /* Pods-takestok.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = takestok/takestok.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 3GLUJL87Q3;
+				DEVELOPMENT_TEAM = 4CE5A45M4X;
 				GCC_PREFIX_HEADER = takestok/takestok.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
 				INFOPLIST_FILE = takestok/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.takestock;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wetakestock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

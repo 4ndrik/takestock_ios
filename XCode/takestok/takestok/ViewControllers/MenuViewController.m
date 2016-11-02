@@ -16,6 +16,7 @@
 #import "LoginViewController.h"
 #import "AppSettings.h"
 #import "UserServiceManager.h"
+#import "NotificationServiceManager.h"
 
 @implementation MenuViewController
 
@@ -49,6 +50,11 @@
     actionItem = [[ActionItem alloc] init];
     actionItem.title = @"Overview";
     actionItem.action = @selector(showOverview:);
+    [_menuItems addObject:actionItem];
+    
+    actionItem = [[ActionItem alloc] init];
+    actionItem.title = @"Notifications";
+    actionItem.action = @selector(showNotifications:);
     [_menuItems addObject:actionItem];
     
     actionItem = [[ActionItem alloc] init];
@@ -214,6 +220,14 @@
     [self.frostedViewController hideMenuViewController];
 }
 
+-(void)showNotifications:(id)owner{
+    if([self checkUserLogin]){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:LISTS_STORYBOARD bundle:nil];
+        self.frostedViewController.contentViewController = [storyboard instantiateViewControllerWithIdentifier:NOTIFICATION_CONTROLLER];
+        [self.frostedViewController hideMenuViewController];
+    }
+}
+
 -(void)logOut:(id)owner{
     UIAlertController* logoutController = [UIAlertController alertControllerWithTitle:@"" message:@"Are you sure you want to logout?" preferredStyle:UIAlertControllerStyleAlert];
     
@@ -232,13 +246,10 @@
                                   handler:^(UIAlertAction * action)
                                   {
                                       [AppSettings setUserId:0];
-                                      [AppSettings setToken:@""];
-                                      [AppSettings resetSellerRevision];
-                                      [AppSettings resetBuyerRevision];
-                                      [AppSettings resetMyAdvertRevision];
-                                      [AppSettings resetWatchListRevision];
+                                      [[UserServiceManager sharedManager] removeAPNSToken];
                                       [self refreshUserData];
                                       [self showHome:nil];
+                                      [[NotificationServiceManager sharedManager] reloadNotifications];
                                       [logoutController dismissViewControllerAnimated:YES completion:nil];
                                       
                                   }];

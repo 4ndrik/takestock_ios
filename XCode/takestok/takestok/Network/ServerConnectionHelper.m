@@ -29,6 +29,7 @@ typedef enum
 #define ME_URL_PATH                 @"me"
 #define BUSINESSTYPES_URL_PATH      @"a/businesstype"
 #define ADVERTS_URL_PATH            @"adverts"
+#define DEVICES_URL_PATH            @"devices"
 #define ADD_TO_WATCH_LIST_URL_PATH  @"to_watchlist"
 #define ADD_PAYMENT_URL             @"pay"
 #define CONDITIONS_URL_PATH         @"conditions"
@@ -446,6 +447,25 @@ typedef enum
     }];
     
     [updateUserTask resume];
+}
+
+-(void)sendAPNSToken:(NSDictionary*)data compleate:(tsResultBlock)compleate{
+    NSError* error;
+    NSString* params = [self jsonStringFromDicOrArray:data error:&error];
+    
+    NSURLSessionDataTask* sendTokenTask = [_session dataTaskWithRequest:[self request:DEVICES_URL_PATH query:params methodType:HTTP_METHOD_POST contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        compleate(result, error);
+    }];
+    
+    [sendTokenTask resume];
+}
+
+-(void)removeAPNSToken:(NSString*)token{
+    NSURLSessionDataTask* sendTokenTask = [_session dataTaskWithRequest:[self request:[NSString stringWithFormat:@"%@/%@", DEVICES_URL_PATH, token] query:nil methodType:HTTP_METHOD_DELETE contentType:JSON_CONTENT_TYPE] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+    }];
+    [sendTokenTask resume];
 }
 
 #pragma mark - Offers
