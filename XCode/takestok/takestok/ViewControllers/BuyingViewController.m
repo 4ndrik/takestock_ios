@@ -160,9 +160,12 @@
     }else if ([offer.status.ident intValue] == tsInDispute){
         cell.offerTextLabel.text = @"IN DISPUTE";
         cell.offerTextLabel.textColor = [UIColor redColor];
+    }else if ([offer.status.ident intValue] == tsPayByBacs){
+        cell.offerTextLabel.text = @"PAYING BY BACS";
+        cell.offerTextLabel.textColor = [UIColor blackColor];
     }else {
-        cell.offerTextLabel.text = offer.statusForBuyer.title;
-        cell.offerTextLabel.textColor = [UIColor redColor];
+        cell.offerTextLabel.text = [offer.statusForBuyer.title uppercaseString];
+        cell.offerTextLabel.textColor = [UIColor blackColor];
     }
     
     return cell;

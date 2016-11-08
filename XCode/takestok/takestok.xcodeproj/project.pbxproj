@@ -102,6 +102,7 @@
 		ACBC48511D9A862400E061EF /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBC48501D9A862400E061EF /* User.storyboard */; };
 		ACBC48531D9A866900E061EF /* Lists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBC48521D9A866900E061EF /* Lists.storyboard */; };
 		ACBC48561D9ABE7800E061EF /* OfferTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACBC48551D9ABE7800E061EF /* OfferTableViewCell.m */; };
+		ACBD418D1DD1D04E00BB7522 /* PayBacsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACBD418C1DD1D04E00BB7522 /* PayBacsViewController.m */; };
 		ACC6F21F1D0EB72200F1B6F5 /* TakeStokRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F21E1D0EB72200F1B6F5 /* TakeStokRootViewController.m */; };
 		ACC6F2221D0EBFCE00F1B6F5 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F2211D0EBFCE00F1B6F5 /* MenuViewController.m */; };
 		ACC6F2281D0EC4C100F1B6F5 /* UserMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F2271D0EC4C100F1B6F5 /* UserMenuView.m */; };
@@ -326,6 +327,8 @@
 		ACBC48521D9A866900E061EF /* Lists.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Lists.storyboard; path = Storyboards/Lists.storyboard; sourceTree = "<group>"; };
 		ACBC48541D9ABE7800E061EF /* OfferTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferTableViewCell.h; sourceTree = "<group>"; };
 		ACBC48551D9ABE7800E061EF /* OfferTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferTableViewCell.m; sourceTree = "<group>"; };
+		ACBD418B1DD1D04E00BB7522 /* PayBacsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayBacsViewController.h; sourceTree = "<group>"; };
+		ACBD418C1DD1D04E00BB7522 /* PayBacsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayBacsViewController.m; sourceTree = "<group>"; };
 		ACC6F21D1D0EB72200F1B6F5 /* TakeStokRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakeStokRootViewController.h; sourceTree = "<group>"; };
 		ACC6F21E1D0EB72200F1B6F5 /* TakeStokRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeStokRootViewController.m; sourceTree = "<group>"; };
 		ACC6F2201D0EBFCE00F1B6F5 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
@@ -816,6 +819,8 @@
 				ACBC48481D9A7F9A00E061EF /* BuyingOffersViewController.m */,
 				AC959B291DA3A69800A308BD /* ShippingOfferViewController.h */,
 				AC959B2A1DA3A69800A308BD /* ShippingOfferViewController.m */,
+				ACBD418B1DD1D04E00BB7522 /* PayBacsViewController.h */,
+				ACBD418C1DD1D04E00BB7522 /* PayBacsViewController.m */,
 			);
 			name = Buying;
 			sourceTree = "<group>";
@@ -1226,6 +1231,7 @@
 				AC959B2E1DA3D0F900A308BD /* TSShippingInfo.m in Sources */,
 				AC68C4601CB51C1F004B78DF /* AppDelegate.m in Sources */,
 				AC756E611D86A8CB00C45BA3 /* TSAdvertPackagingType.m in Sources */,
+				ACBD418D1DD1D04E00BB7522 /* PayBacsViewController.m in Sources */,
 				AC68C48C1CB67090004B78DF /* ImageCollectionViewCell.m in Sources */,
 				ACE111041CFF11DE00E6FDB9 /* CategoryViewController.m in Sources */,
 				AC5F6C781D881D93003918D3 /* UserServiceManager.m in Sources */,

@@ -53,4 +53,12 @@
     [self.delegate buyerArrangedTransport:self];
 }
 
+- (IBAction)payByCardAction:(id)sender {
+    [self.delegate payByCardAction:sender];
+}
+
+- (IBAction)payByBacsAction:(id)sender {
+    [self.delegate payByBacsAction:sender];
+}
+
 @end

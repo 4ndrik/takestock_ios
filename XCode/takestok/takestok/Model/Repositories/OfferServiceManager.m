@@ -261,6 +261,30 @@ static OfferServiceManager *_manager = nil;
     }];
 }
 
+-(void)payByBacsOffer:(TSOffer*)offer compleate:(errorBlock)compleate{
+    NSMutableDictionary* dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:offer.ident forKey:@"offer"];
+    [dic setValue:[NSNumber numberWithInteger:tsPayByBacs] forKey:@"status"];
+    [[ServerConnectionHelper sharedInstance] updateOffer:dic compleate:^(id result, NSError *error) {
+        if (!error){
+            [[ServerConnectionHelper sharedInstance] loadOffer:offer.ident compleate:^(id result, NSError *error) {
+                if (!error){
+                    [offer updateWithDic:result];
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    compleate(error);
+                });
+            }];
+        }
+        else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                compleate(error);
+            });
+        }
+    }];
+
+}
+
 -(void)setShippingInfo:(TSOffer*)offer street:(NSString*)street house:(NSString*)house city:(NSString*)city postcode:(NSString*)postcode phone:(NSString*)phone compleate:(errorBlock)compleate{
     NSMutableDictionary* dic = [[NSMutableDictionary alloc] init];
     [dic setValue:[NSNumber numberWithInteger:tsAddressReceived] forKey:@"status"];
@@ -292,6 +316,7 @@ static OfferServiceManager *_manager = nil;
 
 -(void)setShippingInfo:(TSShippingInfo*)shipping withOffer:(TSOffer*)offer compleate:(errorBlock)compleate{
     NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:[shipping dictionaryForShipping]];
+    [dic setValue:offer.ident forKey:@"offer"];
     [dic setValue:[NSNumber numberWithInteger:tsAddressReceived] forKey:@"status"];
     [[ServerConnectionHelper sharedInstance] updateOffer:dic compleate:^(id result, NSError *error) {
         if (!error){

@@ -24,6 +24,7 @@
 #import "OfferTableViewCell.h"
 #import "OfferActionView.h"
 #import "PaddingTextField.h"
+#import "PayBacsViewController.h"
 
 @interface BuyingOffersViewController ()
 
@@ -62,6 +63,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:PAY_BY_BACS_SEGUE]) {
+        PayBacsViewController* vc = (PayBacsViewController*)segue.destinationViewController;
+        [vc setOffer:sender withAdvert:_advert];
+    }else{
+        [super prepareForSegue:segue sender:sender];
+    }
+}
+
 -(NSMutableAttributedString*)spaceForFont{
     NSMutableAttributedString* spaceString = [[NSMutableAttributedString alloc] initWithString:@"\n \n"];
     [spaceString addAttribute:NSFontAttributeName
@@ -88,6 +98,7 @@
     cell.transportActionHeight.constant = 0;
     cell.contactUsActionHeight.constant = 0;
     cell.contactUserActionHeight.constant = 0;
+    cell.payActionHeight.constant = 0;
     [cell.contactUserButton setTitle:@"CONTACT SELLER" forState:UIControlStateNormal];
     
     if (offer.comment.length > 0){
@@ -101,8 +112,7 @@
     }
     
     if ([offer.status.ident intValue] == tsAccept){
-        cell.mainActionHeight.constant = 40;
-        [cell.mainActionButton setTitle:@"MAKE PAYMENT" forState:UIControlStateNormal];
+        cell.payActionHeight.constant = 40;
         
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
@@ -240,12 +250,22 @@
                              range:NSMakeRange(0, statusString.length)];
         [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, statusString.length)];
         [textString appendAttributedString:statusString];
-    }else {
-        
+    }else if ([offer.status.ident intValue] == tsPayByBacs){
+        cell.contactUsActionHeight.constant = 40;
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
         
-        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:offer.status.title];
+        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"PAYING BY BACS"];
+        [statusString addAttribute:NSFontAttributeName
+                             value:BrandonGrotesqueBold14
+                             range:NSMakeRange(0, statusString.length)];
+        [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
+        [textString appendAttributedString:statusString];
+    }else {
+        if (textString.length > 0)
+            [textString appendAttributedString:[self spaceForFont]];
+        
+        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:[offer.status.title uppercaseString]];
         [statusString addAttribute:NSFontAttributeName
                              value:BrandonGrotesqueBold14
                              range:NSMakeRange(0, statusString.length)];
@@ -403,12 +423,8 @@
 
 -(BOOL)validatePayment{
     NSMutableString* message = [[NSMutableString alloc] init];
-//    if (_payView.destinationAddress.text.length == 0)
-//        [message appendString:@"Fill destination address.\n"];
-    
     if (![_payView.cardControl isValid]){
         [message appendString:@"Card data invalid."];
-        
     }
     
     if (message.length > 0){
@@ -467,17 +483,13 @@
     [_payView.cardControl becomeFirstResponder];
 }
 
-
 #pragma mark - OfferActionDelegate
 
 -(void)mainAction:(UITableViewCell*)owner{
     NSUInteger index = [_offersTableView indexPathForCell:owner].row;
     TSOffer* offer = [_offers objectAtIndex:index];
     
-    //Waiting for payment
-    if ([offer.status.ident intValue] == tsAccept ){
-        [self showPaymentAlert:offer];
-    }else if ([offer.status.ident intValue] == tsPayment ){
+    if ([offer.status.ident intValue] == tsPayment ){
         [self performSegueWithIdentifier:OFFERS_SHIPPING_SEQUE sender:offer];
     }else if ([offer.status.ident intValue] == tsStockInTransit ){
         UIAlertController* confirmGoodsReceived = [UIAlertController alertControllerWithTitle:@"Confirm" message:@"Confirm goods received." preferredStyle:UIAlertControllerStyleAlert];
@@ -576,6 +588,19 @@
 
 -(void)contactUserAction:(UITableViewCell *)owner{
     
+}
+
+-(void)payByCardAction:(UITableViewCell*)owner{
+    NSUInteger index = [_offersTableView indexPathForCell:owner].row;
+    TSOffer* offer = [_offers objectAtIndex:index];
+    [self showPaymentAlert:offer];
+}
+
+-(void)payByBacsAction:(UITableViewCell*)owner{
+    NSUInteger index = [_offersTableView indexPathForCell:owner].row;
+    TSOffer* offer = [_offers objectAtIndex:index];
+    
+    [self performSegueWithIdentifier:PAY_BY_BACS_SEGUE sender:offer];
 }
 
 @end

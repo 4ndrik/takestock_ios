@@ -20,5 +20,7 @@
 @optional
 -(void)sellerArrangedTransport:(UITableViewCell*)owner;
 -(void)buyerArrangedTransport:(UITableViewCell*)owner;
+-(void)payByCardAction:(UITableViewCell*)owner;
+-(void)payByBacsAction:(UITableViewCell*)owner;
 
 @end

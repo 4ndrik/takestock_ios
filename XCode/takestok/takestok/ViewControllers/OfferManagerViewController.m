@@ -136,6 +136,7 @@
     cell.transportActionHeight.constant = 0;
     cell.contactUsActionHeight.constant = 0;
     cell.contactUserActionHeight.constant = 0;
+    cell.payActionHeight.constant = 0;
     [cell.contactUserButton setTitle:@"CONTACT BUYER" forState:UIControlStateNormal];
     
     NSMutableAttributedString* textString = [[NSMutableAttributedString alloc] init];
@@ -300,18 +301,29 @@
                              range:NSMakeRange(0, statusString.length)];
         [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, statusString.length)];
         [textString appendAttributedString:statusString];
+    }else if ([offer.status.ident intValue] == tsPayByBacs){
+        cell.contactUsActionHeight.constant = 40;
+        if (textString.length > 0)
+            [textString appendAttributedString:[self spaceForFont]];
+        
+        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"CUSTOMER PAYING BY BACS"];
+        [statusString addAttribute:NSFontAttributeName
+                             value:BrandonGrotesqueBold14
+                             range:NSMakeRange(0, statusString.length)];
+        [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
+        [textString appendAttributedString:statusString];
     }
-//    else {
-//        if (textString.length > 0)
-//            [textString appendAttributedString:[self spaceForFont]];
-//        
-//        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:offer.status.title];
-//        [statusString addAttribute:NSFontAttributeName
-//                             value:BrandonGrotesqueBold14
-//                             range:NSMakeRange(0, statusString.length)];
-//        [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
-//        [textString appendAttributedString:statusString];
-//    }
+    else {
+        if (textString.length > 0)
+            [textString appendAttributedString:[self spaceForFont]];
+        
+        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:[offer.status.title uppercaseString]];
+        [statusString addAttribute:NSFontAttributeName
+                             value:BrandonGrotesqueBold14
+                             range:NSMakeRange(0, statusString.length)];
+        [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
+        [textString appendAttributedString:statusString];
+    }
     
     cell.statusLabel.attributedText = textString;
 }
@@ -428,7 +440,7 @@
     
     [self configureCell:cell withOffer:offer advert:_advert];
     
-    if (_page > 0 && indexPath.row > _offers.count -2){
+    if (_page > 0 && indexPath.row > _offers.count - 2){
         _loadingIndicator.center = CGPointMake(_offersTableView.center.x, _offersTableView.contentSize.height + 22);
         _offersTableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
         [_loadingIndicator startAnimating];

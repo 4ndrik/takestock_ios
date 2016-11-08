@@ -19,7 +19,8 @@ typedef enum {
     tsConfirmStock = 8,
     tsStockInTransit = 9,
     tsGoodsReceived = 10,
-    tsInDispute = 11
+    tsInDispute = 11,
+    tsPayByBacs = 12
 } TSOfferStatusType;
 
 @interface TSOfferStatus : TSBaseDictionaryEntity

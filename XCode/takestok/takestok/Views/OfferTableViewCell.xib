@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,14 +17,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OfferTableViewCell" rowHeight="400" id="HXk-sx-NmY" customClass="OfferTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="459" height="400"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OfferTableViewCell" rowHeight="440" id="HXk-sx-NmY" customClass="OfferTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="459" height="440"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HXk-sx-NmY" id="dAB-Ps-ITJ">
-                <frame key="frameInset" width="459" height="399"/>
+                <rect key="frame" x="0.0" y="0.0" width="459" height="439"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htn-pN-9ow">
+                        <rect key="frame" x="10" y="10" width="439" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" identifier="id1" id="4Tq-AV-1a2"/>
                         </constraints>
@@ -30,6 +34,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Offer:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IMI-rM-WrD" customClass="PaddingLabel">
+                        <rect key="frame" x="10" y="34" width="341" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" identifier="id2" id="NJ7-jV-QAw"/>
                         </constraints>
@@ -46,6 +51,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="4R9-qY-H9R" customClass="PaddingLabel">
+                        <rect key="frame" x="361" y="31" width="42" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" identifier="id3" id="SJ1-XE-cPx"/>
                         </constraints>
@@ -62,6 +68,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="$200" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="NBs-Og-juw" customClass="PaddingLabel">
+                        <rect key="frame" x="413" y="31" width="36" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" identifier="id4" id="C0I-eB-kef"/>
                         </constraints>
@@ -78,6 +85,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Djc-Y9-rGo" customClass="PaddingLabel">
+                        <rect key="frame" x="10" y="58" width="439" height="129"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -91,8 +99,10 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jvB-Qj-AFy">
+                        <rect key="frame" x="10" y="187" width="439" height="40"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zk0-hL-IrU">
+                                <rect key="frame" x="0.0" y="5" width="139.5" height="30"/>
                                 <color key="backgroundColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="BrandonGrotesque-Medium" family="Brandon Grotesque" pointSize="10"/>
                                 <state key="normal" title="ACCEPT">
@@ -108,6 +118,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vIL-x4-oxt">
+                                <rect key="frame" x="149.5" y="5" width="140" height="30"/>
                                 <color key="backgroundColor" red="0.49803921569999998" green="0.066666666669999999" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="BrandonGrotesque-Medium" family="Brandon Grotesque" pointSize="10"/>
                                 <state key="normal" title="COUNTER">
@@ -123,6 +134,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOj-jb-ySl">
+                                <rect key="frame" x="299.5" y="5" width="139.5" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="BrandonGrotesque-Medium" family="Brandon Grotesque" pointSize="10"/>
                                 <state key="normal" title="REJECT">
@@ -155,8 +167,10 @@
                         </constraints>
                     </view>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m0n-Vt-lf8">
+                        <rect key="frame" x="10" y="227" width="439" height="40"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R14-93-sTB">
+                                <rect key="frame" x="0.0" y="5" width="214.5" height="30"/>
                                 <color key="backgroundColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="BrandonGrotesque-Medium" family="Brandon Grotesque" pointSize="10"/>
                                 <state key="normal" title="I ARRANGE TRANSPORT">
@@ -172,6 +186,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2z0-gm-rji">
+                                <rect key="frame" x="224.5" y="5" width="214.5" height="30"/>
                                 <color key="backgroundColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="BrandonGrotesque-Medium" family="Brandon Grotesque" pointSize="10"/>
                                 <state key="normal" title="BUYER ARRANGES TRANSPORT">
@@ -199,9 +214,59 @@
                             <constraint firstAttribute="height" constant="40" identifier="id50" id="v7P-g7-zrV"/>
                         </constraints>
                     </view>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1cP-jA-RSX">
+                        <rect key="frame" x="10" y="267" width="439" height="40"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FmE-Ym-Sad">
+                                <rect key="frame" x="0.0" y="5" width="214.5" height="30"/>
+                                <color key="backgroundColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="BrandonGrotesque-Medium" family="Brandon Grotesque" pointSize="14"/>
+                                <state key="normal" title="PAY BY BACS">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="payByBacsAction:" destination="HXk-sx-NmY" eventType="touchUpInside" id="1EB-QK-gMR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qxk-7D-d6y">
+                                <rect key="frame" x="224.5" y="5" width="214.5" height="30"/>
+                                <color key="backgroundColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="BrandonGrotesque-Medium" family="Brandon Grotesque" pointSize="14"/>
+                                <state key="normal" title="PAY BY CARD">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="payByCardAction:" destination="HXk-sx-NmY" eventType="touchUpInside" id="TSt-fh-w6Q"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Qxk-7D-d6y" secondAttribute="trailing" id="3nJ-I2-N1o"/>
+                            <constraint firstItem="Qxk-7D-d6y" firstAttribute="height" secondItem="FmE-Ym-Sad" secondAttribute="height" id="4ub-W9-h0K"/>
+                            <constraint firstItem="FmE-Ym-Sad" firstAttribute="top" secondItem="1cP-jA-RSX" secondAttribute="top" constant="5" identifier="id57" id="L8a-ZW-wdy"/>
+                            <constraint firstAttribute="bottom" secondItem="FmE-Ym-Sad" secondAttribute="bottom" priority="999" constant="5" identifier="id55" id="ZhS-Fj-QKx"/>
+                            <constraint firstItem="FmE-Ym-Sad" firstAttribute="width" secondItem="Qxk-7D-d6y" secondAttribute="width" id="c2X-yQ-KrO"/>
+                            <constraint firstItem="Qxk-7D-d6y" firstAttribute="centerY" secondItem="1cP-jA-RSX" secondAttribute="centerY" id="f6W-Q4-zQf"/>
+                            <constraint firstItem="FmE-Ym-Sad" firstAttribute="leading" secondItem="1cP-jA-RSX" secondAttribute="leading" identifier="id56" id="fpl-bX-FmY"/>
+                            <constraint firstAttribute="height" constant="40" identifier="id50" id="hBT-ZH-50x"/>
+                            <constraint firstItem="Qxk-7D-d6y" firstAttribute="leading" secondItem="FmE-Ym-Sad" secondAttribute="trailing" constant="10" id="pSS-ph-u3b"/>
+                        </constraints>
+                    </view>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lo0-Oi-IJ7">
+                        <rect key="frame" x="10" y="307" width="439" height="40"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CmQ-X5-uUO">
+                                <rect key="frame" x="0.0" y="5" width="439" height="30"/>
                                 <color key="backgroundColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="BrandonGrotesque-Medium" family="Brandon Grotesque" pointSize="14"/>
                                 <state key="normal" title="ACCEPT">
@@ -227,8 +292,10 @@
                         </constraints>
                     </view>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mBL-qk-9BF">
+                        <rect key="frame" x="10" y="347" width="439" height="40"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YL3-yZ-S7m">
+                                <rect key="frame" x="0.0" y="5" width="439" height="30"/>
                                 <color key="backgroundColor" red="0.49803921569999998" green="0.066666666669999999" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="BrandonGrotesque-Medium" family="Brandon Grotesque" pointSize="14"/>
                                 <state key="normal" title="CONTACT BUYER">
@@ -254,8 +321,10 @@
                         </constraints>
                     </view>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4OA-fk-jym">
+                        <rect key="frame" x="10" y="387" width="439" height="40"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHS-ne-gGA">
+                                <rect key="frame" x="0.0" y="5" width="439" height="30"/>
                                 <color key="backgroundColor" red="0.49803921569999998" green="0.066666666669999999" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="BrandonGrotesque-Medium" family="Brandon Grotesque" pointSize="14"/>
                                 <state key="normal" title="CONTACT US">
@@ -288,14 +357,15 @@
                     <constraint firstItem="4OA-fk-jym" firstAttribute="centerX" secondItem="dAB-Ps-ITJ" secondAttribute="centerX" id="5kM-hg-BTN"/>
                     <constraint firstItem="Djc-Y9-rGo" firstAttribute="top" secondItem="dAB-Ps-ITJ" secondAttribute="topMargin" constant="50" identifier="mm" id="8nC-gd-O4w"/>
                     <constraint firstItem="mBL-qk-9BF" firstAttribute="top" secondItem="Lo0-Oi-IJ7" secondAttribute="bottom" id="9ld-qh-RKz"/>
+                    <constraint firstItem="Lo0-Oi-IJ7" firstAttribute="top" secondItem="1cP-jA-RSX" secondAttribute="bottom" id="BBr-Vc-0r8"/>
                     <constraint firstItem="4R9-qY-H9R" firstAttribute="centerY" secondItem="IMI-rM-WrD" secondAttribute="centerY" identifier="id74" id="CvD-h0-lk7"/>
                     <constraint firstItem="jvB-Qj-AFy" firstAttribute="leading" secondItem="dAB-Ps-ITJ" secondAttribute="leadingMargin" constant="2" identifier="id76" id="EjM-U6-87e"/>
+                    <constraint firstItem="1cP-jA-RSX" firstAttribute="centerX" secondItem="dAB-Ps-ITJ" secondAttribute="centerX" id="GSC-v1-B8T"/>
                     <constraint firstItem="Djc-Y9-rGo" firstAttribute="leading" secondItem="dAB-Ps-ITJ" secondAttribute="leadingMargin" constant="2" id="GZe-2f-yC0"/>
                     <constraint firstItem="NBs-Og-juw" firstAttribute="leading" secondItem="4R9-qY-H9R" secondAttribute="trailing" constant="10" identifier="id72" id="H1p-L2-n6X"/>
                     <constraint firstAttribute="trailingMargin" secondItem="htn-pN-9ow" secondAttribute="trailing" constant="2" identifier="id713" id="ITj-4G-FPm"/>
                     <constraint firstAttribute="trailingMargin" secondItem="jvB-Qj-AFy" secondAttribute="trailing" constant="2" identifier="id77" id="KbT-Gl-tLh"/>
                     <constraint firstItem="mBL-qk-9BF" firstAttribute="width" secondItem="jvB-Qj-AFy" secondAttribute="width" id="M4F-RL-ws1"/>
-                    <constraint firstItem="Lo0-Oi-IJ7" firstAttribute="top" secondItem="m0n-Vt-lf8" secondAttribute="bottom" id="M4S-ZP-chp"/>
                     <constraint firstAttribute="bottomMargin" secondItem="4OA-fk-jym" secondAttribute="bottom" constant="5" id="MY1-GM-ZbM"/>
                     <constraint firstItem="IMI-rM-WrD" firstAttribute="leading" secondItem="dAB-Ps-ITJ" secondAttribute="leadingMargin" constant="2" identifier="id716" id="QnV-bu-Ajv"/>
                     <constraint firstItem="mBL-qk-9BF" firstAttribute="centerX" secondItem="dAB-Ps-ITJ" secondAttribute="centerX" id="UTQ-7T-3bC"/>
@@ -304,7 +374,9 @@
                     <constraint firstItem="m0n-Vt-lf8" firstAttribute="width" secondItem="jvB-Qj-AFy" secondAttribute="width" id="Zfu-pd-NKc"/>
                     <constraint firstItem="4OA-fk-jym" firstAttribute="width" secondItem="jvB-Qj-AFy" secondAttribute="width" id="cjw-4n-WYP"/>
                     <constraint firstItem="NBs-Og-juw" firstAttribute="centerY" secondItem="IMI-rM-WrD" secondAttribute="centerY" identifier="id71" id="dHe-Vq-t4o"/>
+                    <constraint firstItem="1cP-jA-RSX" firstAttribute="width" secondItem="m0n-Vt-lf8" secondAttribute="width" id="dja-YC-a6g"/>
                     <constraint firstItem="htn-pN-9ow" firstAttribute="leading" secondItem="dAB-Ps-ITJ" secondAttribute="leadingMargin" constant="2" identifier="id715" id="i1E-pI-0qJ"/>
+                    <constraint firstItem="1cP-jA-RSX" firstAttribute="top" secondItem="m0n-Vt-lf8" secondAttribute="bottom" id="k57-vg-Fhe"/>
                     <constraint firstItem="4OA-fk-jym" firstAttribute="top" secondItem="mBL-qk-9BF" secondAttribute="bottom" id="kuO-eB-YuX"/>
                     <constraint firstItem="4R9-qY-H9R" firstAttribute="leading" secondItem="IMI-rM-WrD" secondAttribute="trailing" constant="10" identifier="id75" id="oPx-7M-0TP"/>
                     <constraint firstAttribute="trailingMargin" secondItem="NBs-Og-juw" secondAttribute="trailing" constant="2" identifier="id73" id="prY-3e-gKB"/>
@@ -324,6 +396,7 @@
                 <outlet property="offerCountLabel" destination="4R9-qY-H9R" id="fVo-NT-aui"/>
                 <outlet property="offerPriceLabel" destination="NBs-Og-juw" id="4Jl-5w-itl"/>
                 <outlet property="offerTitleLabel" destination="IMI-rM-WrD" id="EyV-OK-3TU"/>
+                <outlet property="payActionHeight" destination="hBT-ZH-50x" id="xeR-ss-GSg"/>
                 <outlet property="statusLabel" destination="Djc-Y9-rGo" id="QUt-4g-m1Z"/>
                 <outlet property="transportActionHeight" destination="v7P-g7-zrV" id="TP1-S8-PBa"/>
             </connections>

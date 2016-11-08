@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *transportActionHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contactUserActionHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contactUsActionHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *payActionHeight;
 
 @property (weak, nonatomic) IBOutlet UIButton *mainActionButton;
 @property (weak, nonatomic) IBOutlet UIButton *contactUserButton;
@@ -38,5 +39,7 @@
 - (IBAction)contactUserAction:(id)sender;
 - (IBAction)iArrangeTrasportAction:(id)sender;
 - (IBAction)buyerArrangesTransportAction:(id)sender;
+- (IBAction)payByCardAction:(id)sender;
+- (IBAction)payByBacsAction:(id)sender;
 
 @end
