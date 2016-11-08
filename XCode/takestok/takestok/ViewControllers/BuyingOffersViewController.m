@@ -244,6 +244,16 @@
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
         
+        NSMutableAttributedString* commentString = [[NSMutableAttributedString alloc] initWithString:@"Dispute raised on the sale of 'product name'. Our team will contact you shortly about this. "];
+        [commentString addAttribute:NSFontAttributeName
+                              value:HelveticaNeue14
+                              range:NSMakeRange(0, commentString.length)];
+        [commentString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, commentString.length)];
+        [textString appendAttributedString:commentString];
+        
+        if (textString.length > 0)
+            [textString appendAttributedString:[self spaceForFont]];
+        
         NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"IN DISPUTE"];
         [statusString addAttribute:NSFontAttributeName
                              value:BrandonGrotesqueBold14
