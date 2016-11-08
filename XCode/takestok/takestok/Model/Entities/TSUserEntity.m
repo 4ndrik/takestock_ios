@@ -28,6 +28,7 @@
 #define AUTHOR_BUSINESS_NAME_PARAM      @"bussines_name"
 #define AUTHOR_BUSINESS_TYPE_PARAM      @"bussines_type"
 #define AUTHOR_BUSINESS_SUB_TYPE_PARAM  @"business_sub_type"
+#define AUTHOR_VERIFIED_BY_STAFF_PARAM  @"verified_by_staff_member"
 
 //"last_login": null,
 //"is_superuser": true,
@@ -81,6 +82,7 @@
     _email = [dict objectForKeyNotNull:AUTHOR_EMAIL_PARAM];
     _isSuscribed = [[dict objectForKeyNotNull:AUTHOR_SUBSCRIBED_PARAM] boolValue];
     _isVerified = [[dict objectForKeyNotNull:AUTHOR_VERIFIED_PARAM] boolValue];
+    _isVerifiedByStaff = [[dict objectForKeyNotNull:AUTHOR_VERIFIED_BY_STAFF_PARAM] boolValue];
     _isVatExtempt = [[dict objectForKeyNotNull:AUTHOR_IS_VAT_PARAM] boolValue];
     _rating = [[dict objectForKeyNotNull:AUTHOR_RATING_PARAM] floatValue];
     
@@ -120,6 +122,7 @@
     _email = [aDecoder decodeObjectForKey:AUTHOR_EMAIL_PARAM];
     _isSuscribed = [[aDecoder decodeObjectForKey:AUTHOR_SUBSCRIBED_PARAM] boolValue];
     _isVerified = [[aDecoder decodeObjectForKey:AUTHOR_VERIFIED_PARAM] boolValue];
+    _isVerifiedByStaff = [[aDecoder decodeObjectForKey:AUTHOR_VERIFIED_BY_STAFF_PARAM] boolValue];
     _isVatExtempt = [[aDecoder decodeObjectForKey:AUTHOR_IS_VAT_PARAM] boolValue];
     _rating = [[aDecoder decodeObjectForKey:AUTHOR_RATING_PARAM] floatValue];
     
@@ -144,6 +147,7 @@
     [aCoder encodeObject:_email forKey:AUTHOR_EMAIL_PARAM];
     [aCoder encodeBool:_isSuscribed forKey:AUTHOR_SUBSCRIBED_PARAM];
     [aCoder encodeBool:_isVerified forKey:AUTHOR_VERIFIED_PARAM];
+    [aCoder encodeBool:_isVerifiedByStaff forKey:AUTHOR_VERIFIED_BY_STAFF_PARAM];
     [aCoder encodeBool:_isVatExtempt forKey:AUTHOR_IS_VAT_PARAM];
     [aCoder encodeFloat:_rating forKey:AUTHOR_RATING_PARAM];
     [aCoder encodeObject:_postCode forKey:AUTHOR_POSTCODE_PARAM];

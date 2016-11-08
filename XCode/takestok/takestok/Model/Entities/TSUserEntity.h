@@ -20,6 +20,7 @@
     NSString*_email;
     BOOL _isSuscribed;
     BOOL _isVerified;
+    BOOL _isVerifiedByStaff;
     BOOL _isVatExtempt;
     float _rating;
     TSImageEntity* _photo;
@@ -38,6 +39,7 @@
 @property (readonly, nonatomic, retain) NSString *email;
 @property (readonly, nonatomic, assign) BOOL isSuscribed;
 @property (readonly, nonatomic, assign) BOOL isVerified;
+@property (readonly, nonatomic, assign) BOOL isVerifiedByStaff;
 @property (readonly, nonatomic, assign) BOOL isVatExtempt;
 @property (readonly, nonatomic, assign) float rating;
 @property (readonly, nonatomic, retain) TSImageEntity *photo;

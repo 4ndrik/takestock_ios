@@ -179,7 +179,7 @@ static UserServiceManager *_manager = nil;
         [[ServerConnectionHelper sharedInstance] sendAPNSToken:dic compleate:^(id result, NSError *error) {
             
         }];
-        
+    
     }
 }
 

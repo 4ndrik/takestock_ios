@@ -178,14 +178,20 @@
 }
 
 -(BOOL)checkUserLogin{
-    if ([[UserServiceManager sharedManager] getMe]){
-        return YES;
-    }else{
+    TSUserEntity* user = [[UserServiceManager sharedManager] getMe];
+    if (!user){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN_STORYBOARD bundle:nil];
         LoginViewController *controller = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:LOGIN_CONTROLLER];
         [self presentViewController:controller animated:YES completion:nil];
         return NO;
+    }else if (!user.isVerified){
+        [self showOkAlert:@"" text:[NSString stringWithFormat:@"Registration almost complete, please check %@ for a confirmation link.", user.email] compleate:nil];
+        return NO;
+    }else if (!user.isVerifiedByStaff){
+        [self showOkAlert:@"Your account is being activated so you can\'t buy or sell anything just yet. Our team will activate your account within 24 hours." text:@"" compleate:nil];
+        return NO;
     }
+    return YES;
 }
 
 -(void)showOkAlert:(NSString*)title text:(NSString*)text compleate:(void(^)())compleate{
@@ -201,7 +207,6 @@
         [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
     }
 
-    
     [self presentViewController:alertController animated:YES completion:nil];
 }
 

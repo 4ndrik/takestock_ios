@@ -21,7 +21,7 @@
 @implementation LoginViewController
 
 #define SignInHeight 250
-#define SignUpHeight 507
+#define SignUpHeight 350
 
 
 - (void)viewDidLoad {

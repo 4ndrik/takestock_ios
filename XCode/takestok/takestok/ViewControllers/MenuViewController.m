@@ -157,14 +157,36 @@
 }
 
 -(BOOL)checkUserLogin{
-    if ([[UserServiceManager sharedManager] getMe]){
-        return YES;
-    }else{
+    TSUserEntity* user = [[UserServiceManager sharedManager] getMe];
+    if (!user){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN_STORYBOARD bundle:nil];
         LoginViewController *controller = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:LOGIN_CONTROLLER];
         [self presentViewController:controller animated:YES completion:nil];
         return NO;
+    }else if (!user.isVerified){
+        [self showOkAlert:@"" text:[NSString stringWithFormat:@"Registration almost complete, please check %@ for a confirmation link.", user.email] compleate:nil];
+        return NO;
+    }else if (!user.isVerifiedByStaff){
+        [self showOkAlert:@"Your account is being activated so you can\'t buy or sell anything just yet. Our team will activate your account within 24 hours." text:@"" compleate:nil];
+        return NO;
     }
+    return YES;
+}
+
+-(void)showOkAlert:(NSString*)title text:(NSString*)text compleate:(void(^)())compleate{
+    UIAlertController * alertController =   [UIAlertController
+                                             alertControllerWithTitle:title
+                                             message:text
+                                             preferredStyle:UIAlertControllerStyleAlert];
+    if (compleate){
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [self dismissViewControllerAnimated:YES completion:compleate];
+        }]];
+    }else{
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
+    }
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 -(void)showHome:(id)sender{
@@ -174,7 +196,12 @@
 }
 
 -(void)showUserProfile:(id)owner{
-    if([self checkUserLogin]){
+    TSUserEntity* user = [[UserServiceManager sharedManager] getMe];
+    if (!user){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN_STORYBOARD bundle:nil];
+        LoginViewController *controller = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:LOGIN_CONTROLLER];
+        [self presentViewController:controller animated:YES completion:nil];
+    }else{
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:USER_STORYBOARD bundle:nil];
         self.frostedViewController.contentViewController = [storyboard instantiateViewControllerWithIdentifier:USER_PROFILE_CONTROLLER];
         [self.frostedViewController hideMenuViewController];
@@ -221,7 +248,12 @@
 }
 
 -(void)showNotifications:(id)owner{
-    if([self checkUserLogin]){
+    TSUserEntity* user = [[UserServiceManager sharedManager] getMe];
+    if (!user){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN_STORYBOARD bundle:nil];
+        LoginViewController *controller = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:LOGIN_CONTROLLER];
+        [self presentViewController:controller animated:YES completion:nil];
+    }else{
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:LISTS_STORYBOARD bundle:nil];
         self.frostedViewController.contentViewController = [storyboard instantiateViewControllerWithIdentifier:NOTIFICATION_CONTROLLER];
         [self.frostedViewController hideMenuViewController];
