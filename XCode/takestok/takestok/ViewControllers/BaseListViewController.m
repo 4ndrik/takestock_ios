@@ -105,7 +105,7 @@
     
     cell.delegate = self;
     
-    if (_page > 0 && indexPath.row > _advertsArray.count -2){
+    if (!_loading && _page > 0 && indexPath.row > _advertsArray.count -2){
         _loadingIndicator.center = CGPointMake(_advertListTableView.center.x, _advertListTableView.contentSize.height + 22);
         _advertListTableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
         [_loadingIndicator startAnimating];

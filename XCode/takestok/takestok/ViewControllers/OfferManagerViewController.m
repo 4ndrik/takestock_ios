@@ -33,8 +33,6 @@
     _offers = [NSMutableArray array];
     
     [_offersTableView registerNib:[UINib nibWithNibName:@"OfferTableViewCell" bundle:nil] forCellReuseIdentifier:@"OfferTableViewCell"];
-    _offersTableView.rowHeight = UITableViewAutomaticDimension;
-    _offersTableView.estimatedRowHeight = 150;
     
     _refreshControl = [[UIRefreshControl alloc] init];
     _refreshControl.tintColor = OliveMainColor;
@@ -76,6 +74,7 @@
 }
 
 -(void)loadData{
+    _loading = YES;
     [[OfferServiceManager sharedManager] loadOffersForAdvert:_advert page:_page compleate:^(NSArray *result, NSDictionary *additionalData, NSError *error) {
         if (error){
             [self showOkAlert:@"Error" text:ERROR_MESSAGE(error) compleate:nil];
@@ -104,13 +103,13 @@
             }]];
             [_offersTableView reloadData];
         }
+        _loading = NO;
         [_loadingIndicator stopAnimating];
         if (_refreshControl.isRefreshing)
             [_refreshControl endRefreshing];
         _offersTableView.contentInset = UIEdgeInsetsZero;
     }];
 }
-
 
 -(NSMutableAttributedString*)spaceForFont{
     NSMutableAttributedString* spaceString = [[NSMutableAttributedString alloc] initWithString:@"\n \n"];
@@ -121,7 +120,6 @@
 }
 
 -(void)configureCell:(OfferTableViewCell*)cell withOffer:(TSOffer*)offer advert:(TSAdvert*)advert{
-    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateStyle = kCFDateFormatterMediumStyle;
     cell.dateCreatedLabel.text = [NSString stringWithFormat:@"Updated: %@", [dateFormatter stringFromDate:offer.dateUpdated]];
@@ -428,6 +426,15 @@
 }
 
 #pragma mark - UITableViewDelegates
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 150.0f;
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _offers.count;
 }
@@ -440,7 +447,7 @@
     
     [self configureCell:cell withOffer:offer advert:_advert];
     
-    if (_page > 0 && indexPath.row > _offers.count - 2){
+    if (!_loading &&  _page > 0 && indexPath.row > _offers.count - 2){
         _loadingIndicator.center = CGPointMake(_offersTableView.center.x, _offersTableView.contentSize.height + 22);
         _offersTableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
         [_loadingIndicator startAnimating];

@@ -86,6 +86,7 @@
 }
 
 -(void)loadQA{
+    _loading = YES;
     [[QuestionAnswerServiceManager sharedManager] loadQuestionsAnswers:_advert page:_page compleate:^(NSArray *result, NSDictionary *additionalData, NSError *error) {
         if (error){
             [self showOkAlert:@"Error" text:ERROR_MESSAGE(error) compleate:nil];
@@ -100,6 +101,7 @@
             [_qaData addObjectsFromArray:result];
             [_askTableView reloadData];
         }
+        _loading = NO;
         [_loadingIndicator stopAnimating];
         if (_refreshControl.isRefreshing)
             [_refreshControl endRefreshing];
@@ -188,7 +190,7 @@
         cell.replyHeightConstraint.constant = 0;
     }
     
-    if (_page > 0 && indexPath.row > _qaData.count -2){
+    if (!_loading &&  _page > 0 && indexPath.row > _qaData.count -2){
         _loadingIndicator.center = CGPointMake(tableView.center.x, tableView.contentSize.height + 22);
         tableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
         [_loadingIndicator startAnimating];

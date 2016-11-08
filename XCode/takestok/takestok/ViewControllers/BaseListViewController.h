@@ -13,6 +13,7 @@
     NSMutableArray* _advertsArray;
     IBOutlet UITableView* _advertListTableView;
     BOOL _needUpdate;
+    BOOL _loading;
     
     UIRefreshControl *_refreshControl;
     int _page;

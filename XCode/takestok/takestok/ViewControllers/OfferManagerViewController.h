@@ -20,6 +20,7 @@
     UIActivityIndicatorView* _loadingIndicator;
     OfferActionView* _offerAlertView;
     ShippingInfoActionView* _shippingInfoActionView;
+    BOOL _loading;
     
     __weak IBOutlet UITableView *_offersTableView;
 }

@@ -210,7 +210,7 @@
         }
         
         cell.mainActionHeight.constant = 40;
-        [cell.mainActionButton setTitle:@"Confirm goods received" forState:UIControlStateNormal];
+        [cell.mainActionButton setTitle:@"CONFIRM GOODS RECEIVED" forState:UIControlStateNormal];
         
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];

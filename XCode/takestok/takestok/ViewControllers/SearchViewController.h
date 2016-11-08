@@ -24,6 +24,7 @@
     __weak IBOutlet UIButton *_categoryButton;
     __weak IBOutlet UICollectionView *_searchCollectionView;
     
+    BOOL _loading;
     NSMutableArray* _adverts;
     NSString* _searchText;
     TSBaseDictionaryEntity* _searchCategory;

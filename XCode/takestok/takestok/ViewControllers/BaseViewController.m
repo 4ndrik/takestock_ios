@@ -193,12 +193,14 @@
                                              alertControllerWithTitle:title
                                              message:text
                                              preferredStyle:UIAlertControllerStyleAlert];
-    
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-        if (compleate)
-            compleate();
-    }]];
+    if (compleate){
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [self dismissViewControllerAnimated:YES completion:compleate];
+        }]];
+    }else{
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
+    }
+
     
     [self presentViewController:alertController animated:YES completion:nil];
 }

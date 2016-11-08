@@ -177,7 +177,7 @@ static UserServiceManager *_manager = nil;
         [dic setValue:token forKey:@"registration_id"];
         
         [[ServerConnectionHelper sharedInstance] sendAPNSToken:dic compleate:^(id result, NSError *error) {
-            NSLog(@"dasd");
+            
         }];
         
     }

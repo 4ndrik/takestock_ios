@@ -13,6 +13,7 @@
     UIRefreshControl *_refreshControl;
     int _page;
     BOOL _shouldRefresh;
+    BOOL _loading;
     UIActivityIndicatorView* _loadingIndicator;
     
     __weak IBOutlet UITableView *_sellingTableView;

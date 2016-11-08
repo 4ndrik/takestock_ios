@@ -115,6 +115,7 @@
 }
 
 -(void)loadData{
+    _loading = YES;
     [[AdvertServiceManager sharedManager] loadAdverts:_sortData search:_searchText category:_searchCategory page:_page compleate:^(NSArray *result, NSDictionary *additionalData, NSError *error) {
         if (error){
             [self showOkAlert:@"Error" text:ERROR_MESSAGE(error) compleate:nil];
@@ -130,6 +131,7 @@
             [_adverts addObjectsFromArray:result];
             [_searchCollectionView reloadData];
         }
+        _loading = NO;
         [_loadingIndicator stopAnimating];
         if (_refreshControl.isRefreshing)
             [_refreshControl endRefreshing];
@@ -294,7 +296,7 @@
     cell.delegate = self;
     cell.layer.shouldRasterize = YES;
     cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
-    if (_page > 0 && indexPath.row > _adverts.count -2){
+    if (!_loading &&  _page > 0 && indexPath.row > _adverts.count -2){
         _loadingIndicator.center = CGPointMake(_searchCollectionView.center.x, _searchCollectionView.contentSize.height + 22);
         _searchCollectionView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
         [_loadingIndicator startAnimating];

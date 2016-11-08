@@ -32,7 +32,7 @@
 }
 
 -(void)loadData{
-    
+    _loading = YES;
     [[AdvertServiceManager sharedManager] loadHoldOndWithPage:_page compleate:^(NSArray *result, NSDictionary *additionalData, NSError *error) {
         if (error){
             [self showOkAlert:@"Error" text:ERROR_MESSAGE(error) compleate:nil];
@@ -53,6 +53,7 @@
                 [self hideNoItems];
             }
         }
+        _loading = NO;
         [_loadingIndicator stopAnimating];
         if (_refreshControl.isRefreshing)
             [_refreshControl endRefreshing];

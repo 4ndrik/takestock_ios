@@ -22,6 +22,7 @@
     int _page;
     float _keyboardFrame;
     UIRefreshControl* _refreshControl;
+    BOOL _loading;
 }
 
 -(void)setAdvert:(TSAdvert*)advert;

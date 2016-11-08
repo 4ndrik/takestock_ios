@@ -62,6 +62,7 @@
 }
 
 -(void)loadData{
+    _loading = YES;
     [[AdvertServiceManager sharedManager] loadMyAdvertsWithPage:_page compleate:^(NSArray *result, NSDictionary *additionalData, NSError *error) {
         if (error){
             [self showOkAlert:@"Error" text:ERROR_MESSAGE(error) compleate:nil];
@@ -82,6 +83,7 @@
                 [self hideNoItems];
             }
         }
+        _loading = NO;
         [_loadingIndicator stopAnimating];
         if (_refreshControl.isRefreshing)
             [_refreshControl endRefreshing];
@@ -115,7 +117,7 @@
     
     [cell setCountNewOffers:advert.newOffersCount andNotCount:advert.newQuestionsCount];
     
-    if (_page > 0 && indexPath.row > _adverts.count -2){
+    if (!_loading &&  _page > 0 && indexPath.row > _adverts.count -2){
         _loadingIndicator.center = CGPointMake(_sellingTableView.center.x, _sellingTableView.contentSize.height + 22);
         _sellingTableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
         [_loadingIndicator startAnimating];
