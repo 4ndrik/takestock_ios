@@ -66,4 +66,11 @@ static NotificationServiceManager *_manager = nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_UPDATED_NOTIFICATION object:nil];
 }
 
+-(void)removeNotification:(TSNotification*)notification{
+    [_notifications removeObject:notification];
+    [NSKeyedArchiver archiveRootObject:_notifications toFile:notificationStorgeFile];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_UPDATED_NOTIFICATION object:nil];
+
+}
+
 @end

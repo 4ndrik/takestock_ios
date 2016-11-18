@@ -19,5 +19,6 @@
 
 -(void)receivedNotification:(NSDictionary*)notificationDic;
 -(void)reloadNotifications;
+-(void)removeNotification:(TSNotification*)notification;
 
 @end
