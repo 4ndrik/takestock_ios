@@ -293,6 +293,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     SearchCollectionViewCell* cell = (SearchCollectionViewCell*)[collectionView
                                                                  dequeueReusableCellWithReuseIdentifier:@"SearchCollectionViewCell" forIndexPath:indexPath];
+    
     cell.delegate = self;
     cell.layer.shouldRasterize = YES;
     cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
@@ -310,6 +311,7 @@
     TSImageEntity* image = [adv.photos firstObject];
     
     [cell.imageView loadImage:image];
+    cell.soldOutImageView.hidden = ![adv.state.ident isEqualToNumber:SOLD_OUT_IDENT];
     
     cell.titleLabel.text = adv.name;
     cell.locationLabel.text = adv.location;

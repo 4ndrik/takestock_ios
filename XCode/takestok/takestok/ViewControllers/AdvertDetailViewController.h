@@ -19,6 +19,7 @@
 
 @interface AdvertDetailViewController : BaseViewController<UICollectionViewDelegate, UICollectionViewDataSource, SimilarAdvertsProtocol>{
     TSAdvert* _advert;
+    __weak IBOutlet UIImageView *_soldOutImageView;
     
     BOOL _popToRootViewController;
     

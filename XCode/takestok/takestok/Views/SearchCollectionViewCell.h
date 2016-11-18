@@ -20,6 +20,7 @@
 @interface SearchCollectionViewCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet BackgroundImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *soldOutImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;

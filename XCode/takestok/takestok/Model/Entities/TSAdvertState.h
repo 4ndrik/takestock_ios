@@ -8,6 +8,8 @@
 
 #import "TSBaseDictionaryEntity.h"
 
+#define SOLD_OUT_IDENT @3
+
 @interface TSAdvertState : TSBaseDictionaryEntity
 
 @end

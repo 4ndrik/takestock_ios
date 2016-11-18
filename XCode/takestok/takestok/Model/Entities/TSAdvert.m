@@ -161,10 +161,12 @@
     TSAdvertState* state = [[AdvertServiceManager sharedManager] getStateWithId:stateIdent];
     _state = state;
     
-    for (NSNumber* userId in [dict objectForKeyNotNull:ADVERT_SUBSCRIBERS_PARAM]){
-        if ([userId isEqualToNumber:[[UserServiceManager sharedManager] getMe].ident]){
-            _isInWatchList = YES;
-            break;
+    if ([[UserServiceManager sharedManager] getMe]){
+        for (NSNumber* userId in [dict objectForKeyNotNull:ADVERT_SUBSCRIBERS_PARAM]){
+            if ([userId isEqualToNumber:[[UserServiceManager sharedManager] getMe].ident]){
+                _isInWatchList = YES;
+                break;
+            }
         }
     }
     

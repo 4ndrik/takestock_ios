@@ -20,6 +20,7 @@
 @interface AdvertTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet BackgroundImageView *adImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *soldOutImageView;
 @property (weak, nonatomic) IBOutlet PaddingLabel *priceLabel;
 @property (weak, nonatomic) IBOutlet TopBottomStripesLabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *expiresLabel;

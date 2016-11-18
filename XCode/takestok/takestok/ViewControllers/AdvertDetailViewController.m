@@ -63,7 +63,7 @@
     if (_advert)
         [self refreshAdData];
     
-    if ([_advert.author.ident isEqualToNumber:[UserServiceManager sharedManager].getMe.ident]){
+    if ([[UserServiceManager sharedManager] getMe] && [_advert.author.ident isEqualToNumber:[UserServiceManager sharedManager].getMe.ident]){
         [[AdvertServiceManager sharedManager] sendViwAdvert:_advert];
     }
 }
@@ -153,6 +153,7 @@
 #pragma mark - Helpers
 -(void)refreshAdData{
     _titleLabel.text = _advert.name;
+    _soldOutImageView.hidden = ![_advert.state.ident isEqualToNumber:SOLD_OUT_IDENT];
     
     _priceTextContainerView.text = [NSString stringWithFormat:@"£%.02f", _advert.guidePrice];
     _minimumOrderTextContainerView.text = _advert.minOrderQuantity > 0 ? [NSString stringWithFormat:@"%i %@", _advert.minOrderQuantity, _advert.packaging ? _advert.packaging.title: @""]  : @"";
@@ -184,7 +185,7 @@
         _offerViewHeight.constant = 0;
         _createAdvertViewHeight.constant = 86;
     }
-    else if ([_advert.author.ident isEqualToNumber:[[UserServiceManager sharedManager] getMe].ident ]){
+    else if (([[UserServiceManager sharedManager] getMe] && [_advert.author.ident isEqualToNumber:[[UserServiceManager sharedManager] getMe].ident]) || [_advert.state.ident isEqualToNumber:SOLD_OUT_IDENT]){
         _createAdvertViewHeight.constant = 0;
         _offerViewHeight.constant = 0;
     }else {

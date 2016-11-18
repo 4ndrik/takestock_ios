@@ -73,7 +73,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please setup delivery information" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPK-mL-72V">
-                                        <rect key="frame" x="57.5" y="20" width="260" height="42"/>
+                                        <rect key="frame" x="58" y="20" width="260" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="260" id="CFf-Kv-G2j"/>
                                         </constraints>
@@ -281,7 +281,7 @@
         <scene sceneID="hXE-XX-bcL">
             <objects>
                 <navigationController storyboardIdentifier="SellingController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="h4l-VC-bXI" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lL6-w8-7c4">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="lL6-w8-7c4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -333,6 +333,9 @@
                                                             <exclude reference="ClL-Xx-SdZ"/>
                                                         </mask>
                                                     </variation>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soldOutImage" translatesAutoresizingMaskIntoConstraints="NO" id="qqQ-W3-2FH">
+                                                    <rect key="frame" x="14" y="20" width="60" height="80"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 2 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXZ-kJ-pLQ" customClass="PaddingLabel">
                                                     <rect key="frame" x="29" y="14" width="30.5" height="32"/>
@@ -494,19 +497,23 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="bk5-nY-Y3z" secondAttribute="bottom" constant="4" id="1EK-PG-UJf"/>
                                                 <constraint firstItem="rfs-BD-5mS" firstAttribute="width" secondItem="sTO-3Y-sDb" secondAttribute="width" id="3Az-Sn-SjT"/>
+                                                <constraint firstItem="qqQ-W3-2FH" firstAttribute="height" secondItem="zGi-el-P1c" secondAttribute="height" constant="-20" id="3pV-ed-EJl"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="rZl-VJ-bIE" secondAttribute="bottom" constant="4" id="5EP-Ny-gPw"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="a6M-yi-uNL" secondAttribute="trailing" id="5Uc-xB-bWF"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="z7Q-nO-hv4" secondAttribute="trailing" id="8sR-vf-IjC"/>
                                                 <constraint firstItem="rfs-BD-5mS" firstAttribute="leading" secondItem="sTO-3Y-sDb" secondAttribute="leading" id="BqB-FO-d7p"/>
                                                 <constraint firstItem="rZl-VJ-bIE" firstAttribute="top" secondItem="GvB-UZ-yo3" secondAttribute="bottom" constant="4" id="CTi-lb-QEO"/>
+                                                <constraint firstItem="qqQ-W3-2FH" firstAttribute="centerX" secondItem="zGi-el-P1c" secondAttribute="centerX" id="F0V-8K-zGD"/>
                                                 <constraint firstItem="bk5-nY-Y3z" firstAttribute="width" secondItem="OPj-mr-s9E" secondAttribute="width" id="FzZ-R9-po0"/>
                                                 <constraint firstItem="sTO-3Y-sDb" firstAttribute="top" secondItem="z7Q-nO-hv4" secondAttribute="bottom" constant="10" id="HDX-FT-jde"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="sTO-3Y-sDb" secondAttribute="trailing" constant="2" id="Ibx-RD-zbm"/>
                                                 <constraint firstItem="a6M-yi-uNL" firstAttribute="leading" secondItem="zGi-el-P1c" secondAttribute="trailing" constant="8" id="JZv-hx-vHq"/>
                                                 <constraint firstItem="GvB-UZ-yo3" firstAttribute="leading" secondItem="zGi-el-P1c" secondAttribute="trailing" constant="10" id="Ls9-Et-ZEe"/>
+                                                <constraint firstItem="qqQ-W3-2FH" firstAttribute="width" secondItem="zGi-el-P1c" secondAttribute="width" constant="-20" id="NMG-Kt-urj"/>
                                                 <constraint firstItem="GvB-UZ-yo3" firstAttribute="top" secondItem="z7Q-nO-hv4" secondAttribute="bottom" constant="10" id="NQ0-2f-0bT"/>
                                                 <constraint firstItem="rZl-VJ-bIE" firstAttribute="width" secondItem="GvB-UZ-yo3" secondAttribute="width" id="OL9-d5-Lq3"/>
                                                 <constraint firstItem="OPj-mr-s9E" firstAttribute="top" secondItem="z7Q-nO-hv4" secondAttribute="bottom" constant="10" id="PQ7-Rn-bVe"/>
+                                                <constraint firstItem="qqQ-W3-2FH" firstAttribute="centerY" secondItem="zGi-el-P1c" secondAttribute="centerY" id="PRy-7i-TNJ"/>
                                                 <constraint firstItem="OPj-mr-s9E" firstAttribute="leading" secondItem="GvB-UZ-yo3" secondAttribute="trailing" constant="10" id="QWe-dm-dR6"/>
                                                 <constraint firstItem="oHX-oG-e6z" firstAttribute="centerX" secondItem="zGi-el-P1c" secondAttribute="centerX" id="Sgd-kd-QrF"/>
                                                 <constraint firstItem="bk5-nY-Y3z" firstAttribute="top" secondItem="OPj-mr-s9E" secondAttribute="bottom" constant="4" id="Tpa-Gq-Tiy"/>
@@ -546,6 +553,7 @@
                                             <outlet property="offersCountLabel" destination="rZl-VJ-bIE" id="7RD-Ns-VJH"/>
                                             <outlet property="priceLabel" destination="oHX-oG-e6z" id="Lis-w4-cuH"/>
                                             <outlet property="questionCountLabel" destination="bk5-nY-Y3z" id="RrD-c5-e9v"/>
+                                            <outlet property="soldOutImageView" destination="qqQ-W3-2FH" id="noV-f0-61E"/>
                                             <outlet property="titleLabel" destination="a6M-yi-uNL" id="YE4-mQ-XJD"/>
                                         </connections>
                                     </tableViewCell>
@@ -605,4 +613,7 @@
             <point key="canvasLocation" x="-333" y="299"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="soldOutImage" width="104" height="104"/>
+    </resources>
 </document>

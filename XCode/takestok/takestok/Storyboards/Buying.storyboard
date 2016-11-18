@@ -72,6 +72,9 @@
                                                         </mask>
                                                     </variation>
                                                 </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soldOutImage" translatesAutoresizingMaskIntoConstraints="NO" id="YaW-TQ-qFo">
+                                                    <rect key="frame" x="14" y="20" width="60" height="80"/>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 2 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOL-vU-rl6" customClass="PaddingLabel">
                                                     <rect key="frame" x="29" y="76" width="30.5" height="32"/>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.35092531030000002" colorSpace="custom" customColorSpace="sRGB"/>
@@ -217,7 +220,9 @@
                                                 <constraint firstItem="xs5-Le-XQU" firstAttribute="top" secondItem="wfN-Am-Zv1" secondAttribute="bottom" id="2yI-Sg-LuK"/>
                                                 <constraint firstItem="Ap8-w7-b9b" firstAttribute="leading" secondItem="fk6-81-NEO" secondAttribute="trailing" constant="10" identifier="b60" id="7Ae-DH-o6d"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="wfN-Am-Zv1" secondAttribute="trailing" id="8FF-1n-yN0"/>
+                                                <constraint firstItem="YaW-TQ-qFo" firstAttribute="centerY" secondItem="9t6-Le-Rtp" secondAttribute="centerY" id="8pb-gt-b2o"/>
                                                 <constraint firstItem="JOL-vU-rl6" firstAttribute="centerX" secondItem="9t6-Le-Rtp" secondAttribute="centerX" identifier="b35" id="BQq-Bp-jtt"/>
+                                                <constraint firstItem="YaW-TQ-qFo" firstAttribute="centerX" secondItem="9t6-Le-Rtp" secondAttribute="centerX" id="DN6-7H-tnJ"/>
                                                 <constraint firstItem="TK3-6Z-YWi" firstAttribute="centerY" secondItem="fk6-81-NEO" secondAttribute="centerY" identifier="b63" id="ICP-RH-z6C"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="HdR-4J-sE7" secondAttribute="trailing" constant="-8" id="JNw-bJ-cwN"/>
                                                 <constraint firstItem="iBd-ym-uOC" firstAttribute="top" secondItem="PaA-rp-ZQW" secondAttribute="topMargin" constant="2" identifier="b39" id="KBi-l4-Azv"/>
@@ -232,6 +237,7 @@
                                                 <constraint firstItem="xs5-Le-XQU" firstAttribute="leading" secondItem="9t6-Le-Rtp" secondAttribute="trailing" constant="8" identifier="b44" id="TZ1-q3-L7A"/>
                                                 <constraint firstItem="wfN-Am-Zv1" firstAttribute="leading" secondItem="9t6-Le-Rtp" secondAttribute="trailing" constant="8" id="Toq-Qx-FKB"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="asX-h4-33j" secondAttribute="trailing" identifier="b49" id="ahp-m5-fhj"/>
+                                                <constraint firstItem="YaW-TQ-qFo" firstAttribute="width" secondItem="9t6-Le-Rtp" secondAttribute="width" constant="-20" id="eMJ-xc-L8v"/>
                                                 <constraint firstItem="fk6-81-NEO" firstAttribute="top" secondItem="xs5-Le-XQU" secondAttribute="bottom" constant="5" identifier="b46" id="fKq-6A-5TM"/>
                                                 <constraint firstItem="9t6-Le-Rtp" firstAttribute="top" secondItem="PaA-rp-ZQW" secondAttribute="topMargin" constant="2" id="h8o-d8-InY"/>
                                                 <constraint firstItem="HdR-4J-sE7" firstAttribute="top" secondItem="PaA-rp-ZQW" secondAttribute="top" constant="2" identifier="b31" id="owu-aS-M1H"/>
@@ -240,6 +246,7 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="asX-h4-33j" secondAttribute="bottom" id="xOc-cw-uqk"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="iBd-ym-uOC" secondAttribute="trailing" constant="2" identifier="b41" id="xen-kU-cWA"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="TK3-6Z-YWi" secondAttribute="trailing" identifier="b64" id="zm4-Gl-zsS"/>
+                                                <constraint firstItem="YaW-TQ-qFo" firstAttribute="height" secondItem="9t6-Le-Rtp" secondAttribute="height" constant="-20" id="zsQ-xZ-pJA"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.92549019610000005" green="0.92941176469999998" blue="0.92941176469999998" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -252,6 +259,7 @@
                                             <outlet property="offerPriceLabel" destination="Ap8-w7-b9b" id="B1B-Ur-rqM"/>
                                             <outlet property="offerTextLabel" destination="asX-h4-33j" id="4kl-zg-cqx"/>
                                             <outlet property="priceLabel" destination="JOL-vU-rl6" id="Lc2-gm-RFo"/>
+                                            <outlet property="soldOutImageView" destination="YaW-TQ-qFo" id="EBV-Lr-HFC"/>
                                             <outlet property="titleLabel" destination="iBd-ym-uOC" id="XUu-HC-WV6"/>
                                         </connections>
                                     </tableViewCell>
@@ -706,5 +714,6 @@ Account -  73498883</string>
     </scenes>
     <resources>
         <image name="infoButton" width="112" height="112"/>
+        <image name="soldOutImage" width="104" height="104"/>
     </resources>
 </document>

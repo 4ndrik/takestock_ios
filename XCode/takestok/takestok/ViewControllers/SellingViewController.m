@@ -101,6 +101,7 @@
     SellingTableViewCell* cell = (SellingTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"SellingTableViewCell"];
     TSAdvert* advert = [_adverts objectAtIndex:indexPath.row];
     [cell.adImageView loadImage:advert.photos.firstObject];
+    cell.soldOutImageView.hidden = ![advert.state.ident isEqualToNumber:SOLD_OUT_IDENT];
     cell.titleLabel.text = advert.name;
     
     cell.priceLabel.text = [NSString stringWithFormat:@"£%.02f", advert.guidePrice];

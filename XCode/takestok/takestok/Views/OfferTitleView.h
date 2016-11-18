@@ -14,6 +14,7 @@
 @interface OfferTitleView : UIView
 
 @property (weak, nonatomic) IBOutlet BackgroundImageView *advertImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *soldOutImage;
 @property (weak, nonatomic) IBOutlet TopBottomStripesLabel *advertTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *advertAvailableLabel;
 @property (weak, nonatomic) IBOutlet UILabel *advertDataCreated;

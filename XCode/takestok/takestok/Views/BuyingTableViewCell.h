@@ -17,6 +17,7 @@
 }
 
 @property (weak, nonatomic) IBOutlet BackgroundImageView *adImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *soldOutImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *createdLabel;
 

@@ -308,6 +308,7 @@
     OfferTitleView* offerTitleView =  [OfferTitleView loadFromXib];
     [offerTitleView.advertImageView loadImage:[_advert.photos firstObject]];
     offerTitleView.advertTitleLabel.text = _advert.name;
+    offerTitleView.soldOutImage.hidden = ![_advert.state.ident isEqualToNumber:SOLD_OUT_IDENT];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateStyle = kCFDateFormatterMediumStyle;

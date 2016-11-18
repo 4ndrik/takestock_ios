@@ -119,6 +119,7 @@
     }
     TSAdvert* advert = [_adverts objectForKey:offer.advertId];
     [cell.adImageView loadImage:advert.photos.firstObject];
+    cell.soldOutImageView.hidden = ![advert.state.ident isEqualToNumber:SOLD_OUT_IDENT];
     cell.titleLabel.text = advert.name;
     cell.priceLabel.text = [NSString stringWithFormat:@"£%.02f", advert.guidePrice];
     cell.locationLabel.text = advert.location;
