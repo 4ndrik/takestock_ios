@@ -201,7 +201,8 @@
                                              preferredStyle:UIAlertControllerStyleAlert];
     if (compleate){
         [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            [self dismissViewControllerAnimated:YES completion:compleate];
+            compleate();
+            [self dismissViewControllerAnimated:YES completion:nil];
         }]];
     }else{
         [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];

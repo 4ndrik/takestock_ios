@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -322,11 +323,133 @@
                         <outlet property="_offersTableView" destination="Nxd-uz-OaG" id="u5u-ue-eg9"/>
                         <segue destination="dfh-7N-RUv" kind="show" identifier="ShippingSegue" id="2Ie-hy-0DY"/>
                         <segue destination="R9l-bg-4US" kind="show" identifier="PayByBacsSegue" id="kdU-nY-x4B"/>
+                        <segue destination="BxY-aG-s43" kind="show" identifier="PayByCardSegue" id="9Uq-Il-jWx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QGI-kL-Euo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="220" y="-896"/>
+        </scene>
+        <!--PAY BY CARD-->
+        <scene sceneID="nNo-7s-qSU">
+            <objects>
+                <viewController title="PAY BY CARD" id="BxY-aG-s43" customClass="PayCardViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WJe-rM-iqP"/>
+                        <viewControllerLayoutGuide type="bottom" id="Yfg-hN-S3W"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dcg-wl-tNn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon166x176" translatesAutoresizingMaskIntoConstraints="NO" id="26o-0T-MNn">
+                                <rect key="frame" x="141" y="80" width="94" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="26o-0T-MNn" secondAttribute="height" multiplier="83:88" id="R4x-fw-emm"/>
+                                    <constraint firstAttribute="height" constant="100" id="rvG-jS-e90"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nPR-jw-ncg">
+                                <rect key="frame" x="-0.5" y="192" width="375" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="EDJ-KN-gfj"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test@test.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7i6-fB-t3f">
+                                <rect key="frame" x="-0.5" y="205" width="375" height="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAr-Nh-EX3" customClass="STPPaymentCardTextField">
+                                <rect key="frame" x="20" y="236" width="335" height="44"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="giV-Pu-hzw"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7pb-Hg-SCs">
+                                <rect key="frame" x="20" y="292" width="335" height="33"/>
+                                <color key="backgroundColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="3Xu-R4-C0W"/>
+                                    <constraint firstAttribute="height" constant="25" id="pEQ-ir-Pzw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="BrandonGrotesque-Bold" family="Brandon Grotesque" pointSize="14"/>
+                                <state key="normal" title="PAY">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="pEQ-ir-Pzw"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="payByCardAction:" destination="BxY-aG-s43" eventType="touchUpInside" id="HSQ-pR-SBQ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zdo-bQ-wh4">
+                                <rect key="frame" x="0.0" y="337" width="375" height="0.0"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" red="1" green="0.28908962669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stripeImage" translatesAutoresizingMaskIntoConstraints="NO" id="cF2-NI-sqn">
+                                <rect key="frame" x="47" y="372" width="281" height="84"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="84" id="75M-zS-pes"/>
+                                    <constraint firstAttribute="width" constant="281" id="n58-C7-UVx"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="26o-0T-MNn" firstAttribute="top" secondItem="WJe-rM-iqP" secondAttribute="bottom" constant="16" id="2uM-Z4-0jI"/>
+                            <constraint firstItem="nPR-jw-ncg" firstAttribute="width" secondItem="dcg-wl-tNn" secondAttribute="width" id="3Sx-ai-zKk"/>
+                            <constraint firstItem="Zdo-bQ-wh4" firstAttribute="width" secondItem="dcg-wl-tNn" secondAttribute="width" id="BcB-mK-SLY"/>
+                            <constraint firstItem="hAr-Nh-EX3" firstAttribute="width" secondItem="dcg-wl-tNn" secondAttribute="width" constant="-40" id="Bdh-Qr-jBV"/>
+                            <constraint firstItem="7i6-fB-t3f" firstAttribute="top" secondItem="nPR-jw-ncg" secondAttribute="bottom" constant="12" id="FWz-oi-DS0"/>
+                            <constraint firstItem="hAr-Nh-EX3" firstAttribute="top" secondItem="7i6-fB-t3f" secondAttribute="bottom" constant="12" id="GpT-OI-QBs"/>
+                            <constraint firstItem="7pb-Hg-SCs" firstAttribute="top" secondItem="hAr-Nh-EX3" secondAttribute="bottom" constant="12" id="H5U-uC-WeU"/>
+                            <constraint firstItem="7i6-fB-t3f" firstAttribute="centerX" secondItem="dcg-wl-tNn" secondAttribute="centerX" id="LTf-lj-9bR"/>
+                            <constraint firstItem="cF2-NI-sqn" firstAttribute="top" secondItem="Zdo-bQ-wh4" secondAttribute="bottom" constant="35" id="MYC-5N-vs2"/>
+                            <constraint firstItem="nPR-jw-ncg" firstAttribute="top" secondItem="26o-0T-MNn" secondAttribute="bottom" constant="12" id="Ufm-oQ-eLE"/>
+                            <constraint firstItem="7pb-Hg-SCs" firstAttribute="centerX" secondItem="dcg-wl-tNn" secondAttribute="centerX" id="Vn9-uR-y9R"/>
+                            <constraint firstItem="7i6-fB-t3f" firstAttribute="width" secondItem="dcg-wl-tNn" secondAttribute="width" id="c1r-69-0gX"/>
+                            <constraint firstItem="7pb-Hg-SCs" firstAttribute="width" secondItem="hAr-Nh-EX3" secondAttribute="width" id="fP0-CN-4b7"/>
+                            <constraint firstItem="nPR-jw-ncg" firstAttribute="centerX" secondItem="dcg-wl-tNn" secondAttribute="centerX" id="lTq-7T-SNi"/>
+                            <constraint firstItem="cF2-NI-sqn" firstAttribute="centerX" secondItem="dcg-wl-tNn" secondAttribute="centerX" id="m5P-h5-b5Z"/>
+                            <constraint firstItem="26o-0T-MNn" firstAttribute="centerX" secondItem="dcg-wl-tNn" secondAttribute="centerX" id="n4H-vg-DCD"/>
+                            <constraint firstItem="Zdo-bQ-wh4" firstAttribute="top" secondItem="7pb-Hg-SCs" secondAttribute="bottom" constant="12" id="p3C-Vw-axS"/>
+                            <constraint firstItem="Zdo-bQ-wh4" firstAttribute="centerX" secondItem="dcg-wl-tNn" secondAttribute="centerX" id="szu-li-md1"/>
+                            <constraint firstItem="hAr-Nh-EX3" firstAttribute="centerX" secondItem="dcg-wl-tNn" secondAttribute="centerX" id="u6w-Ul-BO7"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="aa4-dy-66P" appends="YES" id="MEb-gr-feo"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="_cardControl" destination="hAr-Nh-EX3" id="INw-ar-C4s"/>
+                        <outlet property="_payButton" destination="7pb-Hg-SCs" id="U7J-j1-tCn"/>
+                        <outlet property="_stripeLabel" destination="Zdo-bQ-wh4" id="XZR-QZ-4p2"/>
+                        <outlet property="_userEmailLabel" destination="7i6-fB-t3f" id="W6c-no-QmT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uk8-rM-vif" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="aa4-dy-66P">
+                    <connections>
+                        <action selector="hideKeyboard:" destination="BxY-aG-s43" id="bYY-TU-KYI"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1112.8" y="-1707.7961019490256"/>
         </scene>
         <!--PAY BY BACS-->
         <scene sceneID="OhN-VF-0hR">
@@ -341,23 +464,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QZC-FE-BOR">
-                                <rect key="frame" x="20" y="74" width="335" height="313"/>
+                                <rect key="frame" x="20" y="74" width="335" height="314"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="infoButton" translatesAutoresizingMaskIntoConstraints="NO" id="CUC-M1-S6t">
-                                        <rect key="frame" x="0.0" y="17.5" width="20" height="20"/>
+                                        <rect key="frame" x="0.0" y="18" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="3si-SI-FWM"/>
                                             <constraint firstAttribute="width" constant="20" id="gVE-0L-OCU"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qT1-A0-zlf">
-                                        <rect key="frame" x="30" y="20" width="305" height="16.5"/>
+                                        <rect key="frame" x="30" y="20" width="305" height="17"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUS-rx-REZ">
-                                        <rect key="frame" x="0.0" y="56.5" width="335" height="57.5"/>
+                                        <rect key="frame" x="0.0" y="57" width="335" height="58"/>
                                         <string key="text">wetakestock ltd, c/o Barclays bank.
 Sort Code; 205914
 Account -  73498883</string>
@@ -366,20 +489,20 @@ Account -  73498883</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="infoButton" translatesAutoresizingMaskIntoConstraints="NO" id="Ry1-tu-e36">
-                                        <rect key="frame" x="0.0" y="148" width="20" height="20"/>
+                                        <rect key="frame" x="0.0" y="149" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="AMA-9V-Qgd"/>
                                             <constraint firstAttribute="width" constant="20" id="NfY-jY-HPd"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can also pay by BACS although we recommend users pay by card where possible for faster transaction times." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iae-1r-Q0D">
-                                        <rect key="frame" x="30" y="134" width="305" height="49"/>
+                                        <rect key="frame" x="30" y="135" width="305" height="49"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mrl-j5-D7E">
-                                        <rect key="frame" x="0.0" y="203" width="335" height="40"/>
+                                        <rect key="frame" x="0.0" y="204" width="335" height="40"/>
                                         <color key="backgroundColor" red="0.64313725490196072" green="0.6470588235294118" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Ny3-DV-JrC"/>
@@ -394,11 +517,11 @@ Account -  73498883</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="payByCardAction:" destination="R9l-bg-4US" eventType="touchUpInside" id="g3y-4H-Oq0"/>
+                                            <segue destination="BxY-aG-s43" kind="show" identifier="PayByCardSegue" id="fvt-e5-cA1"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y1w-eJ-QQc">
-                                        <rect key="frame" x="0.0" y="253" width="335" height="40"/>
+                                        <rect key="frame" x="0.0" y="254" width="335" height="40"/>
                                         <color key="backgroundColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="g3l-EL-eRA"/>
@@ -450,12 +573,16 @@ Account -  73498883</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="_infoButton" destination="Ry1-tu-e36" id="aD4-cQ-Zxq"/>
                         <outlet property="_informationLabel" destination="qT1-A0-zlf" id="gIw-ag-1mu"/>
+                        <outlet property="_lastLabel" destination="Iae-1r-Q0D" id="ddJ-iz-HXF"/>
+                        <outlet property="_payByBacsButton" destination="y1w-eJ-QQc" id="yTh-OR-Lda"/>
+                        <outlet property="_payByCardButton" destination="mrl-j5-D7E" id="mAT-xt-WPt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="871-fd-CNx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1093.5999999999999" y="-1272.4137931034484"/>
+            <point key="canvasLocation" x="1113" y="-896"/>
         </scene>
         <!--SHIPPING INFO-->
         <scene sceneID="5jY-65-dsC">
@@ -701,7 +828,7 @@ Account -  73498883</string>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1094" y="-563"/>
+            <point key="canvasLocation" x="1113" y="-165"/>
         </scene>
         <!--AdvertDetailViewController-->
         <scene sceneID="AGZ-FY-UaJ">
@@ -713,7 +840,12 @@ Account -  73498883</string>
         </scene>
     </scenes>
     <resources>
+        <image name="icon166x176" width="166" height="176"/>
         <image name="infoButton" width="112" height="112"/>
         <image name="soldOutImage" width="104" height="104"/>
+        <image name="stripeImage" width="290" height="114"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="fvt-e5-cA1"/>
+    </inferredMetricsTieBreakers>
 </document>

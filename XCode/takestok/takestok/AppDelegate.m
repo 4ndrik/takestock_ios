@@ -43,7 +43,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [Stripe setDefaultPublishableKey:@"pk_test_qevXdEtyHKRjlP1WOXLcsd0s"];
+    [Stripe setDefaultPublishableKey:@"pk_test_vqadhDOynhijTjKgj7sEnybl"];
     [FIRApp configure];
     
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {

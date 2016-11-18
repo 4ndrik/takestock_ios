@@ -61,6 +61,7 @@
 #define OFFERS_DISPATCH_INFO_SEQUE  @"DispatchInfoSegue"
 #define SIMILAR_ADVERTS_SEQUE       @"MoreAdvertsSegue"
 #define PAY_BY_BACS_SEGUE           @"PayByBacsSegue"
+#define PAY_BY_CARD_SEGUE           @"PayByCardSegue"
 
 //CONTROLLER IDS
 #define LOGIN_CONTROLLER            @"LoginViewController"

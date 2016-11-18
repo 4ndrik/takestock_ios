@@ -8,12 +8,13 @@
 
 #import "BaseViewController.h"
 #import "OfferTableViewCell.h"
+#import <MessageUI/MessageUI.h>
 
 @class TSAdvert;
 @class OfferActionView;
 @class ShippingInfoActionView;
 
-@interface OfferManagerViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, OfferActionDelegate>{
+@interface OfferManagerViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, OfferActionDelegate, MFMailComposeViewControllerDelegate>{
     NSMutableArray* _offers;
     UIRefreshControl *_refreshControl;
     int _page;

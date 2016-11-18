@@ -27,9 +27,12 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contactUserActionHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contactUsActionHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *payActionHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomTextHeight;
+
 
 @property (weak, nonatomic) IBOutlet UIButton *mainActionButton;
 @property (weak, nonatomic) IBOutlet UIButton *contactUserButton;
+@property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
 
 - (IBAction)acceptAction:(id)sender;
 - (IBAction)counterAction:(id)sender;

@@ -11,6 +11,7 @@
 #define USER_ID                     @"UserIdKey"
 #define USER_TOKEN                  @"UserTokenKey"
 #define SEARCH_SORT                 @"SearchSortKey"
+#define STRIPE_FEE                  @"StripeFeeKey"
 
 @implementation AppSettings
 
@@ -44,6 +45,15 @@
 
 +(void)setSearchSort:(int)ident{
     [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:ident] forKey:SEARCH_SORT];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++(int)getStripeFee{
+    return [[[NSUserDefaults standardUserDefaults] valueForKey:STRIPE_FEE] intValue];
+}
+
++(void)setStripeFee:(int)ident{
+    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:ident] forKey:STRIPE_FEE];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

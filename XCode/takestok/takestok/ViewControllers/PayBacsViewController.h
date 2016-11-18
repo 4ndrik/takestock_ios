@@ -15,14 +15,15 @@
 @interface PayBacsViewController : BaseViewController{
     
     __weak IBOutlet UILabel *_informationLabel;
+    __weak IBOutlet UILabel *_lastLabel;
+    __weak IBOutlet UIImageView *_infoButton;
+    __weak IBOutlet UIButton *_payByCardButton;
+    __weak IBOutlet UIButton *_payByBacsButton;
     TSAdvert* _advert;
     TSOffer* _offer;
-    PayDestAddressOfferView* _payView;
 }
 
-- (void)setOffer:(TSOffer*)offer withAdvert:(TSAdvert*)advert;
-
-- (IBAction)payByCardAction:(id)sender;
+- (void)setOffer:(TSOffer*)offer withAdvert:(TSAdvert*)advert alreadyPayed:(BOOL)isPayed;
 - (IBAction)payByBacsAction:(id)sender;
 
 @end

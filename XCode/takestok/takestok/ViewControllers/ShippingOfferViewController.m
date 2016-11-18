@@ -13,7 +13,7 @@
 #import "TSShippingInfo+Mutable.h"
 #import "TSOffer.h"
 
-#define PHONE_REGEX @"^\\+\\d+$"
+#define PHONE_REGEX @"^\\+{0,1}\\d+$"
 
 @interface ShippingOfferViewController ()
 

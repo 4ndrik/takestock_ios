@@ -244,8 +244,8 @@ static OfferServiceManager *_manager = nil;
                     });
                 }];
             }else if ([[result objectForKeyNotNull:@"status"] isEqualToString:@"error"]){
-                if ([result objectForKeyNotNull:@"data"]){
-                    error = [NSError errorWithDomain:@"2" code:2 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[result objectForKeyNotNull:@"data"], NSLocalizedFailureReasonErrorKey, nil]];
+                if ([result objectForKeyNotNull:@"data"] && [[result objectForKeyNotNull:@"data"] objectForKeyNotNull:@"message"]){
+                    error = [NSError errorWithDomain:@"2" code:2 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[[result objectForKeyNotNull:@"data"] objectForKeyNotNull:@"message"], NSLocalizedFailureReasonErrorKey, nil]];
                 }else{
                     error = [NSError errorWithDomain:@"2" code:2 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Something went wrong. Please try again.", NSLocalizedFailureReasonErrorKey, nil]];
                 }

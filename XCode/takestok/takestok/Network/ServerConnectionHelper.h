@@ -40,6 +40,7 @@ typedef void (^tsResultBlock)(id result, NSError* error);
 +(ServerConnectionHelper*)sharedInstance;
 -(BOOL)isInternetConnection;
 
+-(void)loadStripe:(tsResultBlock)resultBlock;
 -(void)loadStates:(tsResultBlock)resultBlock;
 -(void)loadSizeTypes:(tsResultBlock)resultBlock;
 -(void)loadCertifications:(tsResultBlock)resultBlock;

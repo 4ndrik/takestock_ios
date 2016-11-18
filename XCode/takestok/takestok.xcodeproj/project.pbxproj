@@ -27,8 +27,10 @@
 		AC2DDC911DA574FB00C6486E /* ActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2DDC901DA574FB00C6486E /* ActionItem.m */; };
 		AC2DDC941DA5751600C6486E /* StoredImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2DDC931DA5751600C6486E /* StoredImage.m */; };
 		AC2DDC971DA5754100C6486E /* SortData.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2DDC951DA5754100C6486E /* SortData.m */; };
+		AC33AFB61DDEE94F00A982C1 /* PayCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC33AFB51DDEE94F00A982C1 /* PayCardViewController.m */; };
 		AC36985C1DA4E37A00987179 /* DeliveryInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC36985B1DA4E37A00987179 /* DeliveryInfoViewController.m */; };
 		AC36985F1DA4FD0C00987179 /* TSShippingInfo+Mutable.m in Sources */ = {isa = PBXBuildFile; fileRef = AC36985E1DA4FD0C00987179 /* TSShippingInfo+Mutable.m */; };
+		AC4066261DDF18410047F91A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4066251DDF18410047F91A /* MessageUI.framework */; };
 		AC411E261CBFA220008B1E38 /* ImageCacheUrlResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E251CBFA220008B1E38 /* ImageCacheUrlResolver.m */; };
 		AC411E291CBFA6D0008B1E38 /* NSDate+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E281CBFA6D0008B1E38 /* NSDate+Extended.m */; };
 		AC411E2C1CBFB832008B1E38 /* ImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E2B1CBFB832008B1E38 /* ImageLoader.m */; };
@@ -84,8 +86,6 @@
 		AC79A2F91D8AEDBB009B442E /* TSAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = AC79A2F51D8AEDBB009B442E /* TSAnswer.m */; };
 		AC79A2FA1D8AEDBB009B442E /* TSQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = AC79A2F71D8AEDBB009B442E /* TSQuestion.m */; };
 		AC79A2FD1D8AEDC8009B442E /* QuestionAnswerServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC79A2FB1D8AEDC8009B442E /* QuestionAnswerServiceManager.m */; };
-		AC7ADD481D2A5FC500E0FBC9 /* PayDestAddressOfferView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7ADD471D2A5FC500E0FBC9 /* PayDestAddressOfferView.xib */; };
-		AC7ADD4B1D2A5FDA00E0FBC9 /* PayDestAddressOfferView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7ADD4A1D2A5FDA00E0FBC9 /* PayDestAddressOfferView.m */; };
 		AC959B2B1DA3A69800A308BD /* ShippingOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC959B2A1DA3A69800A308BD /* ShippingOfferViewController.m */; };
 		AC959B2E1DA3D0F900A308BD /* TSShippingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = AC959B2D1DA3D0F900A308BD /* TSShippingInfo.m */; };
 		AC9776A61D26BAD60060DF73 /* ShippingInfoActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9776A51D26BAD60060DF73 /* ShippingInfoActionView.m */; };
@@ -187,10 +187,13 @@
 		AC2DDC931DA5751600C6486E /* StoredImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoredImage.m; sourceTree = "<group>"; };
 		AC2DDC951DA5754100C6486E /* SortData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortData.m; sourceTree = "<group>"; };
 		AC2DDC961DA5754100C6486E /* SortData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortData.h; sourceTree = "<group>"; };
+		AC33AFB41DDEE94F00A982C1 /* PayCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayCardViewController.h; sourceTree = "<group>"; };
+		AC33AFB51DDEE94F00A982C1 /* PayCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayCardViewController.m; sourceTree = "<group>"; };
 		AC36985A1DA4E37A00987179 /* DeliveryInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeliveryInfoViewController.h; sourceTree = "<group>"; };
 		AC36985B1DA4E37A00987179 /* DeliveryInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeliveryInfoViewController.m; sourceTree = "<group>"; };
 		AC36985D1DA4FD0C00987179 /* TSShippingInfo+Mutable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TSShippingInfo+Mutable.h"; sourceTree = "<group>"; };
 		AC36985E1DA4FD0C00987179 /* TSShippingInfo+Mutable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSShippingInfo+Mutable.m"; sourceTree = "<group>"; };
+		AC4066251DDF18410047F91A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		AC411E241CBFA220008B1E38 /* ImageCacheUrlResolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCacheUrlResolver.h; sourceTree = "<group>"; };
 		AC411E251CBFA220008B1E38 /* ImageCacheUrlResolver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCacheUrlResolver.m; sourceTree = "<group>"; };
 		AC411E271CBFA6D0008B1E38 /* NSDate+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extended.h"; sourceTree = "<group>"; };
@@ -299,9 +302,6 @@
 		AC79A2F81D8AEDBB009B442E /* TSAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAnswer.h; sourceTree = "<group>"; };
 		AC79A2FB1D8AEDC8009B442E /* QuestionAnswerServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionAnswerServiceManager.m; sourceTree = "<group>"; };
 		AC79A2FC1D8AEDC8009B442E /* QuestionAnswerServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionAnswerServiceManager.h; sourceTree = "<group>"; };
-		AC7ADD471D2A5FC500E0FBC9 /* PayDestAddressOfferView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayDestAddressOfferView.xib; sourceTree = "<group>"; };
-		AC7ADD491D2A5FDA00E0FBC9 /* PayDestAddressOfferView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayDestAddressOfferView.h; sourceTree = "<group>"; };
-		AC7ADD4A1D2A5FDA00E0FBC9 /* PayDestAddressOfferView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayDestAddressOfferView.m; sourceTree = "<group>"; };
 		AC959B291DA3A69800A308BD /* ShippingOfferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShippingOfferViewController.h; sourceTree = "<group>"; };
 		AC959B2A1DA3A69800A308BD /* ShippingOfferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShippingOfferViewController.m; sourceTree = "<group>"; };
 		AC959B2C1DA3D0F900A308BD /* TSShippingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSShippingInfo.h; sourceTree = "<group>"; };
@@ -414,6 +414,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC4066261DDF18410047F91A /* MessageUI.framework in Frameworks */,
 				AC69F8A31DC3635000C2EE28 /* UserNotifications.framework in Frameworks */,
 				AC69F8A41DC3635000C2EE28 /* UserNotificationsUI.framework in Frameworks */,
 				310A07B5BD230A044423EBB8 /* libPods-takestok.a in Frameworks */,
@@ -790,9 +791,6 @@
 				AC9776A41D26BAD60060DF73 /* ShippingInfoActionView.h */,
 				AC9776A51D26BAD60060DF73 /* ShippingInfoActionView.m */,
 				AC9776A71D26BAEA0060DF73 /* ShippingInfoActionView.xib */,
-				AC7ADD491D2A5FDA00E0FBC9 /* PayDestAddressOfferView.h */,
-				AC7ADD4A1D2A5FDA00E0FBC9 /* PayDestAddressOfferView.m */,
-				AC7ADD471D2A5FC500E0FBC9 /* PayDestAddressOfferView.xib */,
 			);
 			name = PopUps;
 			sourceTree = "<group>";
@@ -821,6 +819,8 @@
 				AC959B2A1DA3A69800A308BD /* ShippingOfferViewController.m */,
 				ACBD418B1DD1D04E00BB7522 /* PayBacsViewController.h */,
 				ACBD418C1DD1D04E00BB7522 /* PayBacsViewController.m */,
+				AC33AFB41DDEE94F00A982C1 /* PayCardViewController.h */,
+				AC33AFB51DDEE94F00A982C1 /* PayCardViewController.m */,
 			);
 			name = Buying;
 			sourceTree = "<group>";
@@ -968,6 +968,7 @@
 		D2158DBA8A7A5AFA64B0224E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AC4066251DDF18410047F91A /* MessageUI.framework */,
 				AC69F8A11DC3635000C2EE28 /* UserNotifications.framework */,
 				AC69F8A21DC3635000C2EE28 /* UserNotificationsUI.framework */,
 				8FF5A930920EAF384C010691 /* libPods-takestok.a */,
@@ -1053,7 +1054,6 @@
 				AC4DDB381DC8AF1C0033205C /* NotificationTableViewCell.xib in Resources */,
 				AC68C46B1CB51C20004B78DF /* LaunchScreen.storyboard in Resources */,
 				ACBC48511D9A862400E061EF /* User.storyboard in Resources */,
-				AC7ADD481D2A5FC500E0FBC9 /* PayDestAddressOfferView.xib in Resources */,
 				ACDA2ECF1CEF28B8009F51A0 /* OfferActionView.xib in Resources */,
 				AC68C4681CB51C1F004B78DF /* Assets.xcassets in Resources */,
 				ACBC484B1D9A801400E061EF /* Buying.storyboard in Resources */,
@@ -1166,7 +1166,6 @@
 				AC049D0B1CB7C490006A8F21 /* BaseViewController.m in Sources */,
 				AC049D051CB7C449006A8F21 /* SearchViewController.m in Sources */,
 				ACD65F541D23D204005D3967 /* AdvertTableViewCell.m in Sources */,
-				AC7ADD4B1D2A5FDA00E0FBC9 /* PayDestAddressOfferView.m in Sources */,
 				ACFCB6BD1CDA5047005A4024 /* AppSettings.m in Sources */,
 				ACFF12A61DC7817E00679F2D /* NotificationServiceManager.m in Sources */,
 				AC049D081CB7C47F006A8F21 /* HomeViewController.m in Sources */,
@@ -1242,6 +1241,7 @@
 				AC68C45D1CB51C1F004B78DF /* main.m in Sources */,
 				AC959B2B1DA3A69800A308BD /* ShippingOfferViewController.m in Sources */,
 				AC049D161CB7C95D006A8F21 /* UIView+NibLoadView.m in Sources */,
+				AC33AFB61DDEE94F00A982C1 /* PayCardViewController.m in Sources */,
 				ACF8DA6E1D91535600BD5114 /* TSQuestion+Mutable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1367,7 +1367,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
 				INFOPLIST_FILE = takestok/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wetakestock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1388,7 +1388,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
 				INFOPLIST_FILE = takestok/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wetakestock;
 				PRODUCT_NAME = "$(TARGET_NAME)";

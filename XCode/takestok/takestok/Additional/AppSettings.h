@@ -21,4 +21,7 @@
 +(int)getSearchSort;
 +(void)setSearchSort:(int)ident;
 
++(int)getStripeFee;
++(void)setStripeFee:(int)ident;
+
 @end

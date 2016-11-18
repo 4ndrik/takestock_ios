@@ -8,19 +8,18 @@
 
 #import "BaseViewController.h"
 #import "OfferActionDelegate.h"
+#import <MessageUI/MessageUI.h>
 
 @class TSAdvert;
 @class TSOffer;
 @class PayDestAddressOfferView;
 @class OfferActionView;
 
-@interface BuyingOffersViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, OfferActionDelegate>{
+@interface BuyingOffersViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, OfferActionDelegate, MFMailComposeViewControllerDelegate>{
     __weak IBOutlet UITableView *_offersTableView;
     TSAdvert* _advert;
     NSMutableArray* _offers;
     OfferActionView* _offerAlertView;
-    
-    PayDestAddressOfferView* _payView;
 }
 
 -(void)setAdvert:(TSAdvert*)advert andOffer:(TSOffer*)offer;

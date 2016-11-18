@@ -13,14 +13,16 @@
 
 -(void)awakeFromNib{
     [super awakeFromNib];
-    _offersBadge = [[RKNotificationHub alloc]initWithView:_offersLabel];
-    _messageBadge = [[RKNotificationHub alloc]initWithView:_questionsLabel];
+    _offersBadge = [[RKNotificationHub alloc]init];
+    _messageBadge = [[RKNotificationHub alloc]init];
 }
 
 -(void)layoutSubviews{
     [super layoutSubviews];
+    [_offersBadge.hubView.subviews makeObjectsPerformSelector: @selector(removeFromSuperview)];
     [_offersBadge setView:_offersLabel andCount:_offersBadge.count];
     [_offersBadge scaleCircleSizeBy:0.6];
+    [_messageBadge.hubView.subviews makeObjectsPerformSelector: @selector(removeFromSuperview)];
     [_messageBadge setView:_questionsLabel andCount:_messageBadge.count];
     [_messageBadge scaleCircleSizeBy:0.6];
 }

@@ -135,6 +135,7 @@
     cell.contactUsActionHeight.constant = 0;
     cell.contactUserActionHeight.constant = 0;
     cell.payActionHeight.constant = 0;
+    cell.bottomTextHeight.constant = 0;
     [cell.contactUserButton setTitle:@"CONTACT BUYER" forState:UIControlStateNormal];
     
     NSMutableAttributedString* textString = [[NSMutableAttributedString alloc] init];
@@ -149,8 +150,27 @@
         [textString appendAttributedString:commentString];
     }
     
+    if (offer.shippingInfo.phone){
+        NSMutableAttributedString* shippingString = [[NSMutableAttributedString alloc] initWithString:@"Shippping info"];
+        [shippingString addAttribute:NSFontAttributeName
+                               value:HelveticaNeue16
+                               range:NSMakeRange(0, shippingString.length)];
+        [shippingString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, shippingString.length)];
+        
+        [textString appendAttributedString:shippingString];
+        [textString appendAttributedString:[self spaceForFont]];
+        
+        NSString* streetString = [NSString stringWithFormat:@"Street: %@\nHouse: %@\nCity: %@\nPostcode:%@\nPhone:%@", offer.shippingInfo.street, offer.shippingInfo.house, offer.shippingInfo.city,offer.shippingInfo.postcode, offer.shippingInfo.phone];
+        NSMutableAttributedString* shippingInfo = [[NSMutableAttributedString alloc] initWithString:streetString];
+        [shippingInfo addAttribute:NSFontAttributeName
+                             value:HelveticaNeue14
+                             range:NSMakeRange(0, shippingInfo.length)];
+        [shippingInfo addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, shippingInfo.length)];
+        
+        [textString appendAttributedString:shippingInfo];
+    }
+    
     if ([offer.status.ident intValue] == tsAccept){
-        cell.contactUserActionHeight.constant = 40;
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
         
@@ -176,7 +196,7 @@
             [textString appendAttributedString:[self spaceForFont]];
         
         if (offer.isFromSeller){
-            NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"WAITING FOR RESPONCE"];
+            NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"WAITING FOR RESPONSE"];
             [statusString addAttribute:NSFontAttributeName
                                  value:BrandonGrotesqueBold14
                                  range:NSMakeRange(0, statusString.length)];
@@ -208,7 +228,6 @@
         [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
         [textString appendAttributedString:statusString];
     }else if ([offer.status.ident intValue] == tsPayment){
-        cell.contactUserActionHeight.constant = 40;
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
         
@@ -220,54 +239,16 @@
         [textString appendAttributedString:statusString];
     }else if ([offer.status.ident intValue] == tsAddressReceived ){
         cell.transportActionHeight.constant = 40;
+        cell.contactUserActionHeight.constant = 40;
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
-        
-        NSMutableAttributedString* shippingString = [[NSMutableAttributedString alloc] initWithString:@"Shippping info"];
-        [shippingString addAttribute:NSFontAttributeName
-                               value:HelveticaNeue16
-                               range:NSMakeRange(0, shippingString.length)];
-        [shippingString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, shippingString.length)];
-        
-        [textString appendAttributedString:shippingString];
-        [textString appendAttributedString:[self spaceForFont]];
-        
-        NSString* streetString = [NSString stringWithFormat:@"Street: %@\nHouse: %@\nCity: %@\nPostcode:%@\nPhone:%@", offer.shippingInfo.street, offer.shippingInfo.house, offer.shippingInfo.city,offer.shippingInfo.postcode, offer.shippingInfo.phone];
-        NSMutableAttributedString* shippingInfo = [[NSMutableAttributedString alloc] initWithString:streetString];
-        [shippingInfo addAttribute:NSFontAttributeName
-                             value:HelveticaNeue14
-                             range:NSMakeRange(0, shippingInfo.length)];
-        [shippingInfo addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, shippingInfo.length)];
-        
-        [textString appendAttributedString:shippingInfo];
     }else if ([offer.status.ident intValue] == tsConfirmStock){
         cell.mainActionHeight.constant = 40;
+        cell.contactUserActionHeight.constant = 40;
         [cell.mainActionButton setTitle:@"CONFIRM STOCK DISPATCHED" forState:UIControlStateNormal];
-        if (textString.length > 0)
-            [textString appendAttributedString:[self spaceForFont]];
-        
-        NSMutableAttributedString* shippingString = [[NSMutableAttributedString alloc] initWithString:@"Shippping info"];
-        [shippingString addAttribute:NSFontAttributeName
-                               value:HelveticaNeue16
-                               range:NSMakeRange(0, shippingString.length)];
-        [shippingString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, shippingString.length)];
-        
-        [textString appendAttributedString:shippingString];
-        [textString appendAttributedString:[self spaceForFont]];
-        
-        NSString* streetString = [NSString stringWithFormat:@"Street: %@\nHouse: %@\nCity: %@\nPostcode:%@\nPhone:%@", offer.shippingInfo.street, offer.shippingInfo.house, offer.shippingInfo.city,offer.shippingInfo.postcode, offer.shippingInfo.phone];
-        NSMutableAttributedString* shippingInfo = [[NSMutableAttributedString alloc] initWithString:streetString];
-        [shippingInfo addAttribute:NSFontAttributeName
-                             value:HelveticaNeue14
-                             range:NSMakeRange(0, shippingInfo.length)];
-        [shippingInfo addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, shippingInfo.length)];
-        
-        [textString appendAttributedString:shippingInfo];
     }else if ([offer.status.ident intValue] == tsStockInTransit){
         cell.contactUserActionHeight.constant = 40;
-        if ([offer.shippingInfo.arrivalDate compare:[NSDate date]] == NSOrderedAscending){
-            cell.contactUsActionHeight.constant = 40;
-        }
+        cell.contactUsActionHeight.constant = 40;
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
         
@@ -278,6 +259,7 @@
         [statusString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, statusString.length)];
         [textString appendAttributedString:statusString];
     }else if ([offer.status.ident intValue] == tsGoodsReceived){
+        cell.contactUserActionHeight.constant = 40;
         if (textString.length > 0)
             [textString appendAttributedString:[self spaceForFont]];
         
@@ -432,7 +414,25 @@
 }
 
 -(void)contactUserAction:(UITableViewCell *)owner{
-    
+    NSUInteger index = [_offersTableView indexPathForCell:owner].row;
+    if (index != NSNotFound){
+        TSOffer* offer = [_offers objectAtIndex:index];
+        if([MFMailComposeViewController canSendMail]) {
+            MFMailComposeViewController *mailCont = [[MFMailComposeViewController alloc] init];
+            mailCont.mailComposeDelegate = self;
+            
+            [mailCont setSubject:@"Takestock Trade Message"];
+            [mailCont setToRecipients:[NSArray arrayWithObject:offer.user.email]];
+            [mailCont setCcRecipients:[NSArray arrayWithObject:CONTACT_US_EMAIL]];
+            [mailCont setMessageBody:[NSString stringWithFormat:@"AdvertName: %@ (%@/selling/%@/)", _advert.name, TAKESTOK_IMAGE_URL, _advert.ident] isHTML:NO];
+            
+            [self presentViewController:mailCont animated:YES completion:nil];
+        }
+    }
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDelegates

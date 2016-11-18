@@ -90,6 +90,7 @@ static AdvertServiceManager *_manager = nil;
 
 #pragma mark - Fetch Dictionaries
 -(void)fetchRequiredData{
+    [self fetchStripeData];
     [self fetchState];
     [self fetchSizeTypes];
     [self fetchCertification];
@@ -97,6 +98,17 @@ static AdvertServiceManager *_manager = nil;
     [self fetchConditions];
     [self fetchCategories];
     [self fetchPackageTypes];
+}
+
+-(void)fetchStripeData{
+    if ([[ServerConnectionHelper sharedInstance] isInternetConnection]){
+        [[ServerConnectionHelper sharedInstance] loadStripe:^(NSDictionary* result, NSError *error) {
+            NSNumber* stripeRate = [result objectForKeyNotNull:@"stripe_rate"];
+            if (stripeRate){
+                [AppSettings setStripeFee:[stripeRate intValue]];
+            }
+        }];
+    }
 }
 
 -(void)fetchState{

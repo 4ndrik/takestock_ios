@@ -35,6 +35,7 @@ typedef enum
 #define CONDITIONS_URL_PATH         @"conditions"
 #define SHIPPING_URL_PATH           @"shipping"
 #define CATEGORIES_URL_PATH         @"category"
+#define STRIPE_URL_PATH             @"stripe_rate"
 #define STATES_URL_PATH             @"state"
 #define CERTIFICATIONS_URL_PATH     @"certifications"
 #define PACKAGING_URL_PATH          @"packaging"
@@ -85,6 +86,16 @@ typedef enum
 }
 
 #pragma mark - Dictionaries
+
+-(void)loadStripe:(tsResultBlock)resultBlock{
+    [_dictionaryLock lock];
+    NSURLSessionDataTask* loadCategoryTask = [_session dataTaskWithRequest:[self request:STRIPE_URL_PATH query:nil methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+        [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
+        resultBlock(result, error);
+        [_dictionaryLock unlock];
+    }];
+    [loadCategoryTask resume];
+}
 
 -(void)loadStates:(tsResultBlock)resultBlock{
     [_dictionaryLock lock];
