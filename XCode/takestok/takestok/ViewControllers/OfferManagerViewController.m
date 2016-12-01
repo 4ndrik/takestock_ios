@@ -379,7 +379,7 @@
         [[OfferServiceManager sharedManager] createCounterOffer:offer withCount:oQuantity price:oPrice withComment:_offerAlertView.commentTextView.text byByer:NO compleate:^(NSError *error) {
             [self hideLoading];
             NSString* title = @"";
-            NSString* text = @"Offer is countered.";
+            NSString* text = @"Thanks. Counter offer sent. fingers crossed!";
             if (error){
                 title = @"Error";
                 text = ERROR_MESSAGE(error);

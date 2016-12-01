@@ -22,6 +22,9 @@
 #import "TSQuestion+Mutable.h"
 #import "TSAnswer+Mutable.h"
 
+static NSString *const kEmptyFieldErrorMessage = @"Sorry, but you haven't put any text in the response. Please try again";
+static NSString *const kWarningText = @"Warning";
+
 @interface QAViewController ()
 
 @end
@@ -257,24 +260,33 @@
         TSAnswer* answer = [[TSAnswer alloc] init];
         answer.questionId = question.ident;
         answer.userIdent = [[UserServiceManager sharedManager] getMe].ident;
-        answer.message = sender.replyTextEdit.text;
-        
-        [self showLoading];
-        
-        [[QuestionAnswerServiceManager sharedManager] makeAnswer:answer compleate:^(NSError *error) {
-            [self hideLoading];
-            NSString* title = @"";
-            NSString* message = @"Answer is sent successfully.";
-            if (error){
-                title = @"Error";
-                message = ERROR_MESSAGE(error);
-            }else{
-                question.answer = answer;
-                [self reloadData:nil];
-                [_askTableView reloadData];
-            }
-            [self showOkAlert:title text:message compleate:nil];
-        }];
+			
+			
+			NSString *message = [sender.replyTextEdit.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+			
+			if (message.length > 0) {
+				answer.message = message;
+				
+				[self showLoading];
+				
+				[[QuestionAnswerServiceManager sharedManager] makeAnswer:answer compleate:^(NSError *error) {
+					[self hideLoading];
+					NSString* title = @"";
+					NSString* message = @"Answer is sent successfully.";
+					if (error){
+						title = @"Error";
+						message = ERROR_MESSAGE(error);
+					}else{
+						question.answer = answer;
+						[self reloadData:nil];
+						[_askTableView reloadData];
+					}
+					[self showOkAlert:title text:message compleate:nil];
+				}];
+			}
+			else {
+				[self showOkAlert:kWarningText text:kEmptyFieldErrorMessage compleate:nil];
+			}
     }
 }
 
