@@ -426,7 +426,7 @@
     [[OfferServiceManager sharedManager] confirmOffer:offer compleate:^(NSError *error) {
         [self hideLoading];
         NSString* title = @"";
-        NSString* text = @"Offer is confirmed";
+        NSString* text = @"Sale complete. Please advise us of any issue with the purchase within 24 hours. Thanks for using Takestock.";
         if (error){
             title = @"Error";
             text = ERROR_MESSAGE(error);

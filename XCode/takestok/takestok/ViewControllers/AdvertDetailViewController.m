@@ -214,7 +214,7 @@
         [[OfferServiceManager sharedManager] createOffer:offer compleate:^(NSError *error) {
             [self hideLoading];
             NSString* title = @"";
-            NSString* message = @"Offer created";
+            NSString* message = @"Thanks for your offer. The seller has been notified.";
             if (error){
                 title = @"Error";
                 message = ERROR_MESSAGE(error);

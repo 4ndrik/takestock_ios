@@ -121,7 +121,7 @@
         [[OfferServiceManager sharedManager] setShippingInfo:shippingInfo withOffer:_offer compleate:^(NSError *error) {
             [self hideLoading];
             NSString* title = @"";
-            NSString* text = @"Shipping information is sent";
+            NSString* text = @"Thanks. Delivery address received and sent to seller.";
             if (error){
                 title = @"Error";
                 text = ERROR_MESSAGE(error);

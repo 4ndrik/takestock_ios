@@ -236,7 +236,7 @@ static NSString *const kWarningText = @"Warning";
                [self hideLoading];
 
                 NSString* title = @"";
-                NSString* message = @"Question is sent successfully.";
+                NSString* message = @"Thanks. Your question has been sent to the seller.";
                 if (error){
                     title = @"Error";
                     message = ERROR_MESSAGE(error);
