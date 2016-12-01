@@ -484,6 +484,7 @@
     }else if (textField == _expairyTextField) {
         UIDatePicker* datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, _keyboardFrame - textField.inputAccessoryView.frame.size.height)];
         datePicker.datePickerMode = UIDatePickerModeDate;
+			datePicker.minimumDate = [NSDate date];
         textField.inputView = datePicker;
         [datePicker addTarget:self action:@selector(setExpirationDate:) forControlEvents:UIControlEventValueChanged];
     }
@@ -615,9 +616,9 @@
     
     if (_certificationsContainerView.tag <= 0)
         [emptyFieldsArray addObject:@"Certification"];
-    if (_keywordTextField.text.length <= 0)
-        [emptyFieldsArray addObject:@"Keywords"];
-    
+//    if (_keywordTextField.text.length <= 0)
+//        [emptyFieldsArray addObject:@"Keywords"];
+	
     NSMutableString* message = [[NSMutableString alloc] init];
     if (emptyFieldsArray.count > 0){
         [message appendFormat:@"%@ %@ required", [emptyFieldsArray componentsJoinedByString:@"\n"], emptyFieldsArray.count > 0 ? @"are" : @"is"];
