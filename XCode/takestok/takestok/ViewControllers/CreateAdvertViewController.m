@@ -487,6 +487,10 @@
 			datePicker.minimumDate = [NSDate date];
         textField.inputView = datePicker;
         [datePicker addTarget:self action:@selector(setExpirationDate:) forControlEvents:UIControlEventValueChanged];
+			
+			NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+			[formatter setDateStyle:NSDateFormatterLongStyle];
+			_expairyTextField.text = [formatter stringFromDate:[NSDate date]];
     }
     
     return YES;
