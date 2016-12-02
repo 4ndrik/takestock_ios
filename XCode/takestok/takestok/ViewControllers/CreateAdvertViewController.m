@@ -94,7 +94,7 @@
         
         _countUnitTextField.text = [NSString stringWithFormat:@"%i", _advert.count];
         _minimumOrderTextField.text = [NSString stringWithFormat:@"%i", _advert.minOrderQuantity];
-        _priceTextField.text = [NSString stringWithFormat:@"%f", _advert.guidePrice];
+        _priceTextField.text = [NSString stringWithFormat:@"%.02f", _advert.guidePrice];
         
         _descriptionTextView.text = _advert.adDescription;
         _locationTextField.text = _advert.location;
