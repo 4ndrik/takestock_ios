@@ -81,6 +81,11 @@
     }];
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    _needUpdate = YES;
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+}
+
 -(void)mainAction:(id)owner{
     NSIndexPath* indexPath = [_advertListTableView indexPathForCell:owner];
     TSAdvert* advert = [_advertsArray objectAtIndex:indexPath.row];

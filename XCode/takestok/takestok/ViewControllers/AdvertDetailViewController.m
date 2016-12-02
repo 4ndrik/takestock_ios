@@ -152,6 +152,7 @@
 
 #pragma mark - Helpers
 -(void)refreshAdData{
+    [_watchButton setHighlighted:_advert.isInWatchList];
     _titleLabel.text = _advert.name;
     _soldOutImageView.hidden = ![_advert.state.ident isEqualToNumber:SOLD_OUT_IDENT];
     
@@ -182,13 +183,16 @@
     _awardImageView.hidden = _advert.author.isVerified;
     
     if (!_advert.ident){
+        _watchButton.hidden = YES;
         _offerViewHeight.constant = 0;
         _createAdvertViewHeight.constant = 86;
     }
     else if (([[UserServiceManager sharedManager] getMe] && [_advert.author.ident isEqualToNumber:[[UserServiceManager sharedManager] getMe].ident]) || [_advert.state.ident isEqualToNumber:SOLD_OUT_IDENT]){
         _createAdvertViewHeight.constant = 0;
         _offerViewHeight.constant = 0;
+        _watchButton.hidden = NO;
     }else {
+        _watchButton.hidden = NO;
         _offerViewHeight.constant = 43;
         _createAdvertViewHeight.constant = 0;
     }
@@ -288,6 +292,22 @@
 
 - (IBAction)advertCreate:(id)sender {
     [self createAdvert];
+}
+
+- (IBAction)watchAction:(id)sender {
+    [self showLoading];
+    
+    [[AdvertServiceManager sharedManager] addToWatchList:_advert compleate:^(NSError *error) {
+        [self hideLoading];
+        NSString* title = @"";
+        NSString* message = _advert.isInWatchList ? @"Advert added to watch list" : @"Advert removed from watch list";
+        if (error){
+            title = @"Error";
+            message = ERROR_MESSAGE(error);
+        }
+        [self showOkAlert:title text:message compleate:nil];
+        [self refreshAdData];
+    }];
 }
 
 #pragma mark - UICollectionViewDataSource

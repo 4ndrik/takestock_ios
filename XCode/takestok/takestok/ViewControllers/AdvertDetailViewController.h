@@ -20,6 +20,8 @@
 @interface AdvertDetailViewController : BaseViewController<UICollectionViewDelegate, UICollectionViewDataSource, SimilarAdvertsProtocol>{
     TSAdvert* _advert;
     __weak IBOutlet UIImageView *_soldOutImageView;
+    __weak IBOutlet UIButton *_watchButton;
+    
     
     BOOL _popToRootViewController;
     
@@ -63,5 +65,6 @@
 - (IBAction)closeOfferPanel:(id)sender;
 - (IBAction)advertPutOnHold:(id)sender;
 - (IBAction)advertCreate:(id)sender;
+- (IBAction)watchAction:(id)sender;
 
 @end
