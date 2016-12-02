@@ -56,8 +56,6 @@ static NSString *const kWarningText = @"Warning";
     _refreshControl.tintColor = OliveMainColor;
     [_refreshControl addTarget:self action:@selector(reloadData:) forControlEvents:UIControlEventValueChanged];
     [_askTableView addSubview:_refreshControl];
-    
-    [self reloadData:nil];
 }
 
 -(void)dealloc{
