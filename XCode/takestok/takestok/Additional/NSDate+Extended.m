@@ -32,7 +32,7 @@
     NSInteger endDay=[calendar ordinalityOfUnit:NSCalendarUnitDay
                                          inUnit:NSCalendarUnitEra
                                         forDate:pDate];
-    return labs(endDay - startDay);
+    return endDay - startDay;
 }
 
 +(NSDate*)dateFromString:(NSString*)date format:(NSString*)format timeZone:(NSTimeZone*)timeZone{
