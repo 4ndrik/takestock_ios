@@ -17,7 +17,7 @@
 +(instancetype)sharedManager;
 -(NSArray*)getNotifications;
 
--(void)receivedNotification:(NSDictionary*)notificationDic;
+-(TSNotification*)receivedNotification:(NSDictionary*)notificationDic;
 -(void)reloadNotifications;
 -(void)removeNotification:(TSNotification*)notification;
 

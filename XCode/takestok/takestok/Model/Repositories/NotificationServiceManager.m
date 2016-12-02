@@ -48,10 +48,12 @@ static NotificationServiceManager *_manager = nil;
     return _notifications;
 }
 
--(void)receivedNotification:(NSDictionary*)notificationDic{
-    [_notifications addObject:[TSNotification objectWithDictionary:notificationDic]];
+-(TSNotification*)receivedNotification:(NSDictionary*)notificationDic{
+    TSNotification* not = [TSNotification objectWithDictionary:notificationDic];
+    [_notifications addObject:not];
     [NSKeyedArchiver archiveRootObject:_notifications toFile:notificationStorgeFile];
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_UPDATED_NOTIFICATION object:nil];
+    return not;
 }
 
 -(void)reloadNotifications{

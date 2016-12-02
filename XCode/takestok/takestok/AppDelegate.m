@@ -17,6 +17,7 @@
 #import <UserNotifications/UserNotifications.h>
 #import "AppSettings.h"
 #import "NotificationServiceManager.h"
+#import "TSNotification.h"
 
 @import Firebase;
 @import FirebaseMessaging;
@@ -104,12 +105,22 @@
     
 }
 
+-(void)receivedNotification:(TSNotification*)notification{
+    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive){
+        UIAlertController* alertController = [UIAlertController alertControllerWithTitle:notification.title message:notification.text preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
+        [self.window.rootViewController presentViewController:alertController animated:YES completion:nil];
+    }
+}
+
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
-    [[NotificationServiceManager sharedManager] receivedNotification:userInfo];
+    TSNotification* not = [[NotificationServiceManager sharedManager] receivedNotification:userInfo];
+    [self receivedNotification:not];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    [[NotificationServiceManager sharedManager] receivedNotification:userInfo];
+    TSNotification* not = [[NotificationServiceManager sharedManager] receivedNotification:userInfo];
+    [self receivedNotification:not];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
