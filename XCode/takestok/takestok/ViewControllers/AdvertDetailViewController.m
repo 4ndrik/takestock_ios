@@ -49,6 +49,10 @@
     }
 }
 
+- (void)fromEdit:(BOOL)isFromEdit{
+    _isFromEdit = isFromEdit;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -186,12 +190,16 @@
         _watchButton.hidden = YES;
         _offerViewHeight.constant = 0;
         _createAdvertViewHeight.constant = 86;
+    }else if(([[UserServiceManager sharedManager] getMe] && [_advert.author.ident isEqualToNumber:[[UserServiceManager sharedManager] getMe].ident])){
+        _offerViewHeight.constant = 0;
+        _watchButton.hidden = NO;
+        _createAdvertViewHeight.constant = _isFromEdit ? 86 : 0;
     }
-    else if (([[UserServiceManager sharedManager] getMe] && [_advert.author.ident isEqualToNumber:[[UserServiceManager sharedManager] getMe].ident]) || [_advert.state.ident isEqualToNumber:SOLD_OUT_IDENT]){
+    else if ([_advert.state.ident isEqualToNumber:SOLD_OUT_IDENT]){
         _createAdvertViewHeight.constant = 0;
         _offerViewHeight.constant = 0;
         _watchButton.hidden = NO;
-    }else {
+    }else{
         _watchButton.hidden = NO;
         _offerViewHeight.constant = 43;
         _createAdvertViewHeight.constant = 0;

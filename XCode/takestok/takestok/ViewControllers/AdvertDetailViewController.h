@@ -24,7 +24,7 @@
     
     
     BOOL _popToRootViewController;
-    
+    BOOL _isFromEdit;
     BOOL _createOrderAction;
     
     __weak IBOutlet UIScrollView *_scrollView;
@@ -61,6 +61,7 @@
 }
 
 - (void)setAdvert:(TSAdvert*)advert;
+- (void)fromEdit:(BOOL)isFromEdit;
 - (IBAction)createOrderAction:(id)sender;
 - (IBAction)closeOfferPanel:(id)sender;
 - (IBAction)advertPutOnHold:(id)sender;

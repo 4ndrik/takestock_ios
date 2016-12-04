@@ -28,6 +28,7 @@
 
 #import "AdvertServiceManager.h"
 #import "UserServiceManager.h"
+#import "AdvertDetailViewController.h"
 
 @implementation CreateAdvertViewController
 
@@ -253,6 +254,14 @@
 
 -(void)setState:(RadioButton*)owner{
     _stateViewHolder.tag = owner.tag;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:ADVERT_DETAIL_SEGUE]) {
+        AdvertDetailViewController* vc = (AdvertDetailViewController*)segue.destinationViewController;
+        [vc setAdvert:sender];
+        [vc fromEdit:YES];
+    }
 }
 
 #pragma mark - Handle keyboard
