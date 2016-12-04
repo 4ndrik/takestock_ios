@@ -270,7 +270,7 @@ static NSString *const kWarningText = @"Warning";
 				[[QuestionAnswerServiceManager sharedManager] makeAnswer:answer compleate:^(NSError *error) {
 					[self hideLoading];
 					NSString* title = @"";
-					NSString* message = @"Answer is sent successfully.";
+					NSString* message = @"Answer has been sent.";
 					if (error){
 						title = @"Error";
 						message = ERROR_MESSAGE(error);

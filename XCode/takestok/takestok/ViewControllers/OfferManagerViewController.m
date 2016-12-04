@@ -138,6 +138,9 @@
     cell.bottomTextHeight.constant = 0;
     [cell.contactUserButton setTitle:@"CONTACT BUYER" forState:UIControlStateNormal];
     
+    cell.stateLabel.text = [offer.status.title uppercaseString];
+    cell.stateLabel.textColor = [UIColor redColor];
+    
     NSMutableAttributedString* textString = [[NSMutableAttributedString alloc] init];
     
     if (offer.comment.length > 0){
@@ -151,16 +154,15 @@
     }
     
     if (offer.shippingInfo.phone){
-        NSMutableAttributedString* shippingString = [[NSMutableAttributedString alloc] initWithString:@"Shippping info"];
+        NSMutableAttributedString* shippingString = [[NSMutableAttributedString alloc] initWithString:@"Shippping info:\n"];
         [shippingString addAttribute:NSFontAttributeName
                                value:HelveticaNeue16
                                range:NSMakeRange(0, shippingString.length)];
         [shippingString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, shippingString.length)];
         
         [textString appendAttributedString:shippingString];
-        [textString appendAttributedString:[self spaceForFont]];
         
-        NSString* streetString = [NSString stringWithFormat:@"Street: %@\nHouse: %@\nCity: %@\nPostcode:%@\nPhone:%@", offer.shippingInfo.street, offer.shippingInfo.house, offer.shippingInfo.city,offer.shippingInfo.postcode, offer.shippingInfo.phone];
+        NSString* streetString = [NSString stringWithFormat:@"House: %@\nStreet: %@\nCity: %@\nPostcode: %@\nPhone: %@", offer.shippingInfo.house, offer.shippingInfo.street, offer.shippingInfo.city,offer.shippingInfo.postcode, offer.shippingInfo.phone];
         NSMutableAttributedString* shippingInfo = [[NSMutableAttributedString alloc] initWithString:streetString];
         [shippingInfo addAttribute:NSFontAttributeName
                              value:HelveticaNeue14
@@ -170,78 +172,15 @@
         [textString appendAttributedString:shippingInfo];
     }
     
-    if ([offer.status.ident intValue] == tsAccept){
-        if (textString.length > 0)
-            [textString appendAttributedString:[self spaceForFont]];
+    if ([offer.status.ident intValue] == tsPending){
+        cell.stateLabel.textColor = OliveMainColor;
         
-        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"WAITING FOR PAYMENT"];
-        [statusString addAttribute:NSFontAttributeName
-                             value:BrandonGrotesqueBold14
-                             range:NSMakeRange(0, statusString.length)];
-        [statusString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, statusString.length)];
-        [textString appendAttributedString:statusString];
-    }else if ([offer.status.ident intValue] == tsDecline){
-        if (textString.length > 0)
-            [textString appendAttributedString:[self spaceForFont]];
-        
-        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"REJECTED"];
-        [statusString addAttribute:NSFontAttributeName
-                              value:BrandonGrotesqueBold14
-                              range:NSMakeRange(0, statusString.length)];
-        [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
-        [textString appendAttributedString:statusString];
-        
-    }else if ([offer.status.ident intValue] == tsPending){
-        if (textString.length > 0)
-            [textString appendAttributedString:[self spaceForFont]];
-        
-        if (offer.isFromSeller){
-            NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"WAITING FOR RESPONSE"];
-            [statusString addAttribute:NSFontAttributeName
-                                 value:BrandonGrotesqueBold14
-                                 range:NSMakeRange(0, statusString.length)];
-            [statusString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, statusString.length)];
-            [textString appendAttributedString:statusString];
-        }else{
+        if (!offer.isFromSeller){
             cell.offerActionHeight.constant = 40.;
         }
-    }else if ([offer.status.ident intValue] == tsCountered ){
-        
-        if (textString.length > 0)
-            [textString appendAttributedString:[self spaceForFont]];
-        
-        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"COUNTERED"];
-        [statusString addAttribute:NSFontAttributeName
-                              value:BrandonGrotesqueBold14
-                              range:NSMakeRange(0, statusString.length)];
-        [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
-        [textString appendAttributedString:statusString];
-    } else if ([offer.status.ident intValue] == tsCounteredByByer ){
-        
-        if (textString.length > 0)
-            [textString appendAttributedString:[self spaceForFont]];
-        
-        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"COUNTERED BY BUYER"];
-        [statusString addAttribute:NSFontAttributeName
-                             value:BrandonGrotesqueBold14
-                             range:NSMakeRange(0, statusString.length)];
-        [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
-        [textString appendAttributedString:statusString];
-    }else if ([offer.status.ident intValue] == tsPayment){
-        if (textString.length > 0)
-            [textString appendAttributedString:[self spaceForFont]];
-        
-        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"WAITING FOR SHIPPING ADDRESS"];
-        [statusString addAttribute:NSFontAttributeName
-                             value:BrandonGrotesqueBold14
-                             range:NSMakeRange(0, statusString.length)];
-        [statusString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, statusString.length)];
-        [textString appendAttributedString:statusString];
     }else if ([offer.status.ident intValue] == tsAddressReceived ){
         cell.transportActionHeight.constant = 40;
         cell.contactUserActionHeight.constant = 40;
-        if (textString.length > 0)
-            [textString appendAttributedString:[self spaceForFont]];
     }else if ([offer.status.ident intValue] == tsConfirmStock){
         cell.mainActionHeight.constant = 40;
         cell.contactUserActionHeight.constant = 40;
@@ -249,26 +188,8 @@
     }else if ([offer.status.ident intValue] == tsStockInTransit){
         cell.contactUserActionHeight.constant = 40;
         cell.contactUsActionHeight.constant = 40;
-        if (textString.length > 0)
-            [textString appendAttributedString:[self spaceForFont]];
-        
-        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"STOCK IN TRANSIT"];
-        [statusString addAttribute:NSFontAttributeName
-                             value:BrandonGrotesqueBold14
-                             range:NSMakeRange(0, statusString.length)];
-        [statusString addAttribute:NSForegroundColorAttributeName value:OliveMainColor range:NSMakeRange(0, statusString.length)];
-        [textString appendAttributedString:statusString];
     }else if ([offer.status.ident intValue] == tsGoodsReceived){
         cell.contactUserActionHeight.constant = 40;
-        if (textString.length > 0)
-            [textString appendAttributedString:[self spaceForFont]];
-        
-        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"GOODS RECEIVED"];
-        [statusString addAttribute:NSFontAttributeName
-                             value:BrandonGrotesqueBold14
-                             range:NSMakeRange(0, statusString.length)];
-        [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
-        [textString appendAttributedString:statusString];
     }else if ([offer.status.ident intValue] == tsInDispute){
         cell.contactUserActionHeight.constant = 40;
         cell.contactUsActionHeight.constant = 40;
@@ -281,38 +202,8 @@
                               range:NSMakeRange(0, commentString.length)];
         [commentString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, commentString.length)];
         [textString appendAttributedString:commentString];
-        
-        if (textString.length > 0)
-            [textString appendAttributedString:[self spaceForFont]];
-        
-        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"IN DISPUTE"];
-        [statusString addAttribute:NSFontAttributeName
-                             value:BrandonGrotesqueBold14
-                             range:NSMakeRange(0, statusString.length)];
-        [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, statusString.length)];
-        [textString appendAttributedString:statusString];
     }else if ([offer.status.ident intValue] == tsPayByBacs){
-        cell.contactUsActionHeight.constant = 40;
-        if (textString.length > 0)
-            [textString appendAttributedString:[self spaceForFont]];
-        
-        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:@"CUSTOMER PAYING BY BACS"];
-        [statusString addAttribute:NSFontAttributeName
-                             value:BrandonGrotesqueBold14
-                             range:NSMakeRange(0, statusString.length)];
-        [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
-        [textString appendAttributedString:statusString];
-    }
-    else {
-        if (textString.length > 0)
-            [textString appendAttributedString:[self spaceForFont]];
-        
-        NSMutableAttributedString* statusString = [[NSMutableAttributedString alloc] initWithString:[offer.status.title uppercaseString]];
-        [statusString addAttribute:NSFontAttributeName
-                             value:BrandonGrotesqueBold14
-                             range:NSMakeRange(0, statusString.length)];
-        [statusString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, statusString.length)];
-        [textString appendAttributedString:statusString];
+        cell.contactUserActionHeight.constant = 40;
     }
     
     cell.statusLabel.attributedText = textString;
@@ -325,7 +216,7 @@
     [[OfferServiceManager sharedManager] acceptOffer:offer compleate:^(NSError *error) {
         [self hideLoading];
         NSString* title = @"";
-        NSString* text = @"Offer is accepted";
+        NSString* text = @"Offer accepted";
         if (error){
             title = @"Error";
             text = ERROR_MESSAGE(error);
@@ -349,7 +240,7 @@
         [[OfferServiceManager sharedManager] rejectOffer:offer withComment:comment compleate:^(NSError *error) {
             [self hideLoading];
             NSString* title = @"";
-            NSString* text = @"Offer is rejected";
+            NSString* text = @"Offer rejected";
             if (error){
                 title = @"Error";
                 text = ERROR_MESSAGE(error);

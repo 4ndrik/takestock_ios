@@ -15,6 +15,8 @@
 
 @property (weak)id<OfferActionDelegate>delegate;
 
+@property (weak, nonatomic) IBOutlet UILabel *stateLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *dateCreatedLabel;
 @property (weak, nonatomic) IBOutlet PaddingLabel *offerTitleLabel;
 @property (weak, nonatomic) IBOutlet PaddingLabel *offerCountLabel;

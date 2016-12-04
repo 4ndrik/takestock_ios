@@ -131,43 +131,8 @@
     cell.offerPriceLabel.text = [NSString stringWithFormat:@"£%.02f", offer.price];
     cell.offerCountLabel.text = [NSString stringWithFormat:@"%i%@", offer.quantity, advert.packaging ? advert.packaging.title: @""];
     
-    if ([offer.statusForBuyer.ident intValue] == tsAccept){
-        cell.offerTextLabel.text = @"WAITING FOR PAYMENT";
-        cell.offerTextLabel.textColor = [UIColor redColor];
-    }else if ([offer.statusForBuyer.ident intValue] == tsDecline){
-        cell.offerTextLabel.text = @"REJECTED";
-        cell.offerTextLabel.textColor = [UIColor blackColor];
-    }else if([offer.statusForBuyer.ident intValue] == tsPending || [offer.statusForBuyer.ident intValue] == tsCounteredByByer){
-            cell.offerTextLabel.text = @"WAITING RESPONSE";
-            cell.offerTextLabel.textColor = OliveMainColor;
-    }else if([offer.statusForBuyer.ident intValue] == tsCountered){
-            cell.offerTextLabel.text = @"RESPONSE NEEDED";
-            cell.offerTextLabel.textColor = [UIColor redColor];
-    }else if([offer.statusForBuyer.ident intValue] == tsPayment){
-        cell.offerTextLabel.text = @"PAYMENT MADE";
-        cell.offerTextLabel.textColor = [UIColor redColor];
-    }else if([offer.statusForBuyer.ident intValue] == tsAddressReceived){
-        cell.offerTextLabel.text = @"ADDRESS SENT";
-        cell.offerTextLabel.textColor = OliveMainColor;
-    }else if ([offer.status.ident intValue] == tsConfirmStock){
-        cell.offerTextLabel.text = @"AWAIT CONFIRM STOCK DISPATCHED";
-        cell.offerTextLabel.textColor = OliveMainColor;
-    }else if([offer.statusForBuyer.ident intValue] == tsStockInTransit){
-        cell.offerTextLabel.text = @"STOCK IN TRANSIT";
-        cell.offerTextLabel.textColor = [UIColor redColor];
-    }else if([offer.statusForBuyer.ident intValue] == tsGoodsReceived){
-        cell.offerTextLabel.text = @"GOODS RECEIVED";
-        cell.offerTextLabel.textColor = [UIColor blackColor];
-    }else if ([offer.status.ident intValue] == tsInDispute){
-        cell.offerTextLabel.text = @"IN DISPUTE";
-        cell.offerTextLabel.textColor = [UIColor redColor];
-    }else if ([offer.status.ident intValue] == tsPayByBacs){
-        cell.offerTextLabel.text = @"PAYING BY BACS";
-        cell.offerTextLabel.textColor = [UIColor blackColor];
-    }else {
-        cell.offerTextLabel.text = [offer.statusForBuyer.title uppercaseString];
-        cell.offerTextLabel.textColor = [UIColor blackColor];
-    }
+    cell.offerTextLabel.text = [offer.status.title uppercaseString];
+    cell.offerTextLabel.textColor = [UIColor redColor];
     
     return cell;
 }
