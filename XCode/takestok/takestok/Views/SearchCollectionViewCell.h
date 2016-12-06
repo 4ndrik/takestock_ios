@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceTypeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *watchListButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHeightConstraint;
 
 @property (weak, nonatomic) id<WatchListProtocol> delegate;
 

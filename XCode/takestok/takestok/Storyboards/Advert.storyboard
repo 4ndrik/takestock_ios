@@ -1191,6 +1191,9 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bSV-gM-LR0" customClass="BackgroundImageView">
                                                     <rect key="frame" x="0.0" y="0.0" width="145" height="128"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="128" id="Mgj-2h-cB8"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soldOutImage" translatesAutoresizingMaskIntoConstraints="NO" id="g47-Cf-CjJ">
                                                     <rect key="frame" x="9.5" y="10" width="125" height="108"/>
@@ -1276,7 +1279,6 @@
                                             <constraint firstItem="1Me-4o-mMx" firstAttribute="leading" secondItem="r9a-3m-5SG" secondAttribute="leading" constant="4" id="Q3H-vI-rxA"/>
                                             <constraint firstItem="4bE-WM-XzT" firstAttribute="leading" secondItem="r9a-3m-5SG" secondAttribute="leading" constant="4" id="TYv-oe-bzB"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="2eA-m5-0Ze" secondAttribute="trailing" constant="-4" id="Xfq-a3-M3o"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="bSV-gM-LR0" secondAttribute="bottom" constant="164" id="Xj3-Vi-vMh"/>
                                             <constraint firstItem="bzd-8a-oRW" firstAttribute="top" secondItem="1Me-4o-mMx" secondAttribute="bottom" constant="4" id="YdP-hd-svk"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="bSV-gM-LR0" secondAttribute="bottom" constant="164" id="aPq-g0-7je"/>
                                             <constraint firstItem="rAn-qd-rc4" firstAttribute="top" secondItem="4bE-WM-XzT" secondAttribute="bottom" constant="30" id="c3L-kZ-4qv"/>
@@ -1310,6 +1312,7 @@
                                         </variation>
                                         <connections>
                                             <outlet property="dateLabel" destination="4bE-WM-XzT" id="ld2-8X-y19"/>
+                                            <outlet property="imageHeightConstraint" destination="Mgj-2h-cB8" id="U7Z-Ji-iF8"/>
                                             <outlet property="imageView" destination="bSV-gM-LR0" id="wnD-z0-wEH"/>
                                             <outlet property="locationLabel" destination="bzd-8a-oRW" id="weE-Hp-2BX"/>
                                             <outlet property="priceLabel" destination="v4f-aY-MwW" id="jub-7J-zQf"/>

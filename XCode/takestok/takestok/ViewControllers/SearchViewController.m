@@ -22,6 +22,7 @@
 #import "TSImageEntity.h"
 #import "TSAdvertSubCategory.h"
 #import "TSAdvertCategory.h"
+#import "UserServiceManager.h"
 
 #define CellTitleFont [UIFont fontWithName:@"HelveticaNeue-Bold" size:16]
 #define CellOtherFont [UIFont fontWithName:@"HelveticaNeue" size:16]
@@ -309,6 +310,11 @@
 -(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(SearchCollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
     TSAdvert* adv = [_adverts objectAtIndex:indexPath.row];
     TSImageEntity* image = [adv.photos firstObject];
+    if (image){
+        cell.imageHeightConstraint.constant = image.height * (_searchCollectionView.frame.size.width - 30) / 2 / image.width;
+    }else{
+        cell.imageHeightConstraint.constant = 176;
+    }
     
     [cell.imageView loadImage:image];
     cell.soldOutImageView.hidden = ![adv.state.ident isEqualToNumber:SOLD_OUT_IDENT];
@@ -325,6 +331,10 @@
 -(int)heightForRowAtIndexPath:(NSIndexPath*)indexPath{
     TSAdvert* adv = [_adverts objectAtIndex:indexPath.row];
     float height = 172;
+    TSUserEntity* user = [[UserServiceManager sharedManager] getMe];
+    if (!user.isVerified){
+        height = 80;
+    }
     TSImageEntity* image = [adv.photos firstObject];
     if (image){
         height += image.height * (_searchCollectionView.frame.size.width - 30) / 2 / image.width;
@@ -335,7 +345,9 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    [self performSegueWithIdentifier:ADVERT_DETAIL_SEGUE sender:[_adverts objectAtIndex:indexPath.row]];
+    if ([self checkUserLogin]){
+        [self performSegueWithIdentifier:ADVERT_DETAIL_SEGUE sender:[_adverts objectAtIndex:indexPath.row]];
+    }
 }
 
 #pragma mark - UIGestureRecognizerDelegate
