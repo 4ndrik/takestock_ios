@@ -573,7 +573,7 @@
         <scene sceneID="cbZ-Oo-DA2">
             <objects>
                 <navigationController storyboardIdentifier="ContactUsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zbb-5K-VS6" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WnY-64-LnG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WnY-64-LnG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -589,7 +589,7 @@
         <scene sceneID="aQ8-0g-kg7">
             <objects>
                 <navigationController storyboardIdentifier="LegalInformationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="z0x-xJ-lIy" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1dD-1I-10y">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1dD-1I-10y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -681,7 +681,7 @@
         <scene sceneID="Wnu-pt-N8a">
             <objects>
                 <navigationController storyboardIdentifier="AboutUsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1Yp-pN-l04" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1Hq-xy-1gh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1Hq-xy-1gh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

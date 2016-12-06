@@ -18,6 +18,7 @@
 #import "AppSettings.h"
 #import "NotificationServiceManager.h"
 #import "TSNotification.h"
+#import "TakeStokRootViewController.h"
 
 @import Firebase;
 @import FirebaseMessaging;
@@ -45,8 +46,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Stripe setDefaultPublishableKey:@"pk_test_vqadhDOynhijTjKgj7sEnybl"];
-    [FIRApp configure];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:) name:kFIRInstanceIDTokenRefreshNotification object:nil];
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
         UIUserNotificationType allNotificationTypes =
         (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
@@ -65,6 +65,8 @@
     
     [[UIApplication sharedApplication] registerForRemoteNotifications];
     [self customizeNavigationBar];
+    
+        [FIRApp configure];
     
     return YES;
 }
@@ -89,6 +91,10 @@
     [[UserServiceManager sharedManager] sendAPNSToken];
 }
 
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+    NSLog(@"dadas");
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -108,23 +114,29 @@
 -(void)receivedNotification:(TSNotification*)notification{
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive){
         UIAlertController* alertController = [UIAlertController alertControllerWithTitle:notification.title message:notification.text preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"View" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+             [(TakeStokRootViewController*)self.window.rootViewController showNotificationDetails:notification];
+        }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil]];
         [self.window.rootViewController presentViewController:alertController animated:YES completion:nil];
+    }else{
+        [(TakeStokRootViewController*)self.window.rootViewController showNotificationDetails:notification];
     }
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
     TSNotification* not = [[NotificationServiceManager sharedManager] receivedNotification:userInfo];
-    [self receivedNotification:not];
+    if (not)
+        [self receivedNotification:not];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     TSNotification* not = [[NotificationServiceManager sharedManager] receivedNotification:userInfo];
-    [self receivedNotification:not];
+    if (not)
+        [self receivedNotification:not];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    
     [[AdvertServiceManager sharedManager] fetchRequiredData];
     [[UserServiceManager sharedManager] fetchRequiredData];
     [[OfferServiceManager sharedManager] fetchRequiredData];

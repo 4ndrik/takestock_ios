@@ -63,7 +63,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD A PROFILE PHOTO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFz-fx-oUG">
-                                                <rect key="frame" x="20" y="217" width="295" height="26"/>
+                                                <rect key="frame" x="20" y="217" width="295" height="21"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                                 </accessibility>
@@ -98,19 +98,19 @@
                                         </connections>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USER NAME AND PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EKS-mg-tic">
-                                        <rect key="frame" x="20" y="375" width="335" height="18"/>
+                                        <rect key="frame" x="20" y="375" width="335" height="14"/>
                                         <fontDescription key="fontDescription" name="BrandonGrotesque-Regular" family="Brandon Grotesque" pointSize="12"/>
                                         <color key="textColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFr-6u-G9d">
-                                        <rect key="frame" x="20" y="413" width="335" height="21"/>
+                                        <rect key="frame" x="20" y="409" width="335" height="21"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <color key="textColor" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="user name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hMD-zL-cFz" customClass="PaddingTextField">
-                                        <rect key="frame" x="20" y="444" width="335" height="40"/>
+                                        <rect key="frame" x="20" y="440" width="335" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Iav-Ni-uq0"/>
                                         </constraints>
@@ -132,13 +132,13 @@
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E-mail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vCv-Zr-tHJ">
-                                        <rect key="frame" x="20" y="504" width="335" height="21"/>
+                                        <rect key="frame" x="20" y="500" width="335" height="21"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <color key="textColor" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fLd-nk-GR6" customClass="PaddingTextField">
-                                        <rect key="frame" x="20" y="535" width="335" height="40"/>
+                                        <rect key="frame" x="20" y="531" width="335" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="MuF-gm-4Va"/>
                                         </constraints>
@@ -160,7 +160,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5lB-HS-ahj">
-                                        <rect key="frame" x="20" y="585" width="335" height="33"/>
+                                        <rect key="frame" x="20" y="581" width="335" height="29"/>
                                         <fontDescription key="fontDescription" name="BrandonGrotesque-Regular" family="Brandon Grotesque" pointSize="14"/>
                                         <state key="normal" title="Change Password">
                                             <color key="titleColor" red="0.74901960779999999" green="0.73725490199999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -170,7 +170,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eb2-HY-Vcd" customClass="RadioButton">
-                                        <rect key="frame" x="20" y="628" width="335" height="21"/>
+                                        <rect key="frame" x="20" y="620" width="335" height="21"/>
                                         <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="18"/>
                                         <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="Receive news by email" image="unchecked">
@@ -179,19 +179,19 @@
                                         <state key="selected" image="checked"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOUR BUSINESS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HiE-Md-FMr">
-                                        <rect key="frame" x="20" y="669" width="335" height="18"/>
+                                        <rect key="frame" x="20" y="661" width="335" height="14"/>
                                         <fontDescription key="fontDescription" name="BrandonGrotesque-Regular" family="Brandon Grotesque" pointSize="12"/>
                                         <color key="textColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Business name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="swo-D7-xN5">
-                                        <rect key="frame" x="20" y="707" width="335" height="21"/>
+                                        <rect key="frame" x="20" y="695" width="335" height="21"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <color key="textColor" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Business name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dWH-5I-Oc5" customClass="PaddingTextField">
-                                        <rect key="frame" x="20" y="738" width="335" height="40"/>
+                                        <rect key="frame" x="20" y="726" width="335" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="ARE-RB-KaY"/>
                                         </constraints>
@@ -213,13 +213,13 @@
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Postcode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="08e-q3-DoN">
-                                        <rect key="frame" x="20" y="798" width="335" height="21"/>
+                                        <rect key="frame" x="20" y="786" width="335" height="21"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <color key="textColor" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Postcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6cF-vG-Iiu" customClass="PaddingTextField">
-                                        <rect key="frame" x="20" y="829" width="335" height="40"/>
+                                        <rect key="frame" x="20" y="817" width="335" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="j69-rT-GMY"/>
                                         </constraints>
@@ -241,13 +241,13 @@
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type of business" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqL-qe-qV5">
-                                        <rect key="frame" x="20" y="889" width="335" height="21"/>
+                                        <rect key="frame" x="20" y="877" width="335" height="21"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <color key="textColor" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="27R-Ef-2rB" customClass="PaddingTextField">
-                                        <rect key="frame" x="20" y="920" width="335" height="40"/>
+                                        <rect key="frame" x="20" y="908" width="335" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="iLw-Ze-6jx"/>
                                         </constraints>
@@ -269,13 +269,13 @@
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtype" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGJ-1X-ZZq">
-                                        <rect key="frame" x="20" y="980" width="335" height="21"/>
+                                        <rect key="frame" x="20" y="968" width="335" height="21"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <color key="textColor" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h8x-k7-8Tw" customClass="PaddingTextField">
-                                        <rect key="frame" x="20" y="1011" width="335" height="40"/>
+                                        <rect key="frame" x="20" y="999" width="335" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="kOz-cX-gTx"/>
                                         </constraints>
@@ -297,13 +297,13 @@
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VAT number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jkl-Es-MGP">
-                                        <rect key="frame" x="20" y="1071" width="335" height="21"/>
+                                        <rect key="frame" x="20" y="1059" width="335" height="21"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <color key="textColor" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="VAT number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GV7-sJ-6Sg" customClass="PaddingTextField">
-                                        <rect key="frame" x="20" y="1102" width="335" height="40"/>
+                                        <rect key="frame" x="20" y="1090" width="335" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="teF-V6-bfz"/>
                                         </constraints>
@@ -325,7 +325,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCd-Gj-KSO" customClass="RadioButton">
-                                        <rect key="frame" x="20" y="1152" width="335" height="21"/>
+                                        <rect key="frame" x="20" y="1140" width="335" height="21"/>
                                         <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="18"/>
                                         <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="I am not VAT registered" image="unchecked">
@@ -337,13 +337,13 @@
                                         </connections>
                                     </button>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PAYMENT DETAILS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63f-Zc-L9z">
-                                        <rect key="frame" x="20" y="1193" width="335" height="18"/>
+                                        <rect key="frame" x="20" y="1181" width="335" height="14"/>
                                         <fontDescription key="fontDescription" name="BrandonGrotesque-Regular" family="Brandon Grotesque" pointSize="12"/>
                                         <color key="textColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fye-Fe-12W" customClass="PaddingLabel">
-                                        <rect key="frame" x="20" y="1216" width="335" height="0.0"/>
+                                        <rect key="frame" x="20" y="1200" width="335" height="0.0"/>
                                         <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="18"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -357,7 +357,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLv-U0-3Cu">
-                                        <rect key="frame" x="20" y="1221" width="335" height="33"/>
+                                        <rect key="frame" x="20" y="1205" width="335" height="29"/>
                                         <fontDescription key="fontDescription" name="BrandonGrotesque-Regular" family="Brandon Grotesque" pointSize="14"/>
                                         <state key="normal" title="Add card">
                                             <color key="titleColor" red="0.74901960779999999" green="0.73725490199999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -367,7 +367,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sy7-Yj-BuT">
-                                        <rect key="frame" x="42" y="1194" width="291" height="40"/>
+                                        <rect key="frame" x="42" y="1174" width="291" height="40"/>
                                         <color key="backgroundColor" red="0.78823529410000004" green="0.76862745099999996" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="udf-oW-G8c"/>

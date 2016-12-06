@@ -50,9 +50,16 @@ static NotificationServiceManager *_manager = nil;
 
 -(TSNotification*)receivedNotification:(NSDictionary*)notificationDic{
     TSNotification* not = [TSNotification objectWithDictionary:notificationDic];
-    [_notifications addObject:not];
-    [NSKeyedArchiver archiveRootObject:_notifications toFile:notificationStorgeFile];
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_UPDATED_NOTIFICATION object:nil];
+    NSInteger index = [_notifications indexOfObjectPassingTest:^BOOL(TSNotification*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        return [obj.notId isEqualToString:not.notId];
+    }];
+    if (index == NSNotFound){
+        [_notifications addObject:not];
+        [NSKeyedArchiver archiveRootObject:_notifications toFile:notificationStorgeFile];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_UPDATED_NOTIFICATION object:nil];
+    }else{
+        not = nil;
+    }
     return not;
 }
 

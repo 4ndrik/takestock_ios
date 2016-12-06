@@ -32,7 +32,7 @@
 {
     self = [super init];
     
-    _notId = [dict objectForKeyNotNull:NOTIFICATION_TITLE_PARAM];
+    _notId = [dict objectForKeyNotNull:NOTIFICATION_ID_PARAM];
     _title = [dict objectForKeyNotNull:NOTIFICATION_TITLE_PARAM];
     _text = [dict objectForKeyNotNull:NOTIFICATION_TEXT_PARAM];
     _dateCreated = [NSDate date];
@@ -40,8 +40,9 @@
     _offerId = [dict objectForKeyNotNull:NOTIFICATION_OFFER_ID_PARAM];
     
     NSString* typeString =[dict objectForKeyNotNull:NOTIFICATION_TYPE_PARAM];
-    if ([typeString isEqualToString:GENERAL_STRING_TYPE])
-        _type = kGeneral;
+    _type = kGeneral;
+    if ([typeString isEqualToString:SELLING_STRING_TYPE])
+        _type = kSelling;
     else if ([typeString isEqualToString:BUYING_STRING_TYPE])
         _type = kBuying;
     else if ([typeString isEqualToString:QUESTION_STRING] || [typeString isEqualToString:ANSWER_STRING])
@@ -52,7 +53,7 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder{
     self = [super init];
-    _notId = [aDecoder decodeObjectForKey:NOTIFICATION_TITLE_PARAM];
+    _notId = [aDecoder decodeObjectForKey:NOTIFICATION_ID_PARAM];
     _title = [aDecoder decodeObjectForKey:NOTIFICATION_TITLE_PARAM];
     _text = [aDecoder decodeObjectForKey:NOTIFICATION_TEXT_PARAM];
     _dateCreated = [aDecoder decodeObjectForKey:NOTIFICATION_DATE_CREATED_PARAM];
@@ -64,6 +65,7 @@
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder{
+    [aCoder encodeObject:_notId forKey:NOTIFICATION_ID_PARAM];
     [aCoder encodeObject:_title forKey:NOTIFICATION_TITLE_PARAM];
     [aCoder encodeObject:_text forKey:NOTIFICATION_TEXT_PARAM];
     [aCoder encodeObject:_dateCreated forKey:NOTIFICATION_DATE_CREATED_PARAM];

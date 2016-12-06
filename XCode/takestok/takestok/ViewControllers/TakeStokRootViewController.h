@@ -7,7 +7,10 @@
 //
 
 #import <REFrostedViewController/REFrostedViewController.h>
+#import "TSNotification.h"
 
 @interface TakeStokRootViewController : REFrostedViewController
+
+-(void)showNotificationDetails:(TSNotification*)notification;
 
 @end

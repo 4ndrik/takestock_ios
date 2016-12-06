@@ -19,4 +19,32 @@
     self.menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:MENU_CONTROLLER];
 }
 
+-(void)showNotificationDetails:(TSNotification*)notification{
+    switch (notification.type) {
+        case kGeneral:{
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:ADVERT_STORYBOARD bundle:nil];
+            self.contentViewController = [storyboard instantiateViewControllerWithIdentifier:HOME_CONTROLLER];
+            break;
+        }
+        case kBuying:{
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:BUYING_STORYBOARD bundle:nil];
+            self.contentViewController = [storyboard instantiateViewControllerWithIdentifier:BUYING_CONTROLLER];
+            break;
+        }
+        case kSelling:{
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:SELLING_STORYBOARD bundle:nil];
+            self.contentViewController = [storyboard instantiateViewControllerWithIdentifier:SELLING_CONTROLLER];
+            break;
+        }
+        case kQuestion:{
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:SELLING_STORYBOARD bundle:nil];
+            self.contentViewController = [storyboard instantiateViewControllerWithIdentifier:SELLING_CONTROLLER];
+            break;
+        }
+        default:
+            break;
+    }
+
+}
+
 @end

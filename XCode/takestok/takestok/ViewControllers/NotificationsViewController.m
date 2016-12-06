@@ -12,6 +12,7 @@
 #import "NotificationTableViewCell.h"
 #import "REFrostedViewController.h"
 #import "MenuViewController.h"
+#import "TakeStokRootViewController.h"
 
 @interface NotificationsViewController ()
 
@@ -83,30 +84,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     TSNotification* notification = _notifications[indexPath.row];
-    switch (notification.type) {
-        case kGeneral:{
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:ADVERT_STORYBOARD bundle:nil];
-            self.frostedViewController.contentViewController = [storyboard instantiateViewControllerWithIdentifier:HOME_CONTROLLER];
-            break;
-        }
-        case kBuying:{
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:BUYING_STORYBOARD bundle:nil];
-            self.frostedViewController.contentViewController = [storyboard instantiateViewControllerWithIdentifier:BUYING_CONTROLLER];
-            break;
-        }
-        case kSelling:{
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:SELLING_STORYBOARD bundle:nil];
-            self.frostedViewController.contentViewController = [storyboard instantiateViewControllerWithIdentifier:SELLING_CONTROLLER];
-            break;
-        }
-        case kQuestion:{
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:SELLING_STORYBOARD bundle:nil];
-            self.frostedViewController.contentViewController = [storyboard instantiateViewControllerWithIdentifier:SELLING_CONTROLLER];
-            break;
-        }
-        default:
-            break;
-    }
+    [(TakeStokRootViewController*)self.frostedViewController showNotificationDetails:notification];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
