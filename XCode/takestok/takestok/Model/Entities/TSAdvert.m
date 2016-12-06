@@ -202,7 +202,11 @@
     [dic setObjectNotNull:_condition.ident forKey:ADVERT_CONDITION_PARAM];
     [dic setObjectNotNull:[NSNumber numberWithInt:_count] forKey:ADVERT_ITEMS_COUNT_PARAM];
     [dic setObjectNotNull:[NSNumber numberWithBool:_isInDrafts] forKey:ADVERT_IN_DRAFTS_PARAM];
-    [dic setObjectNotNull:[self.tags componentsSeparatedByString:@", "] forKey:ADVERT_TAGS_PARAM];
+    if (self.tags.length > 0){
+        [dic setObjectNotNull:[self.tags componentsSeparatedByString:@", "] forKey:ADVERT_TAGS_PARAM];
+    }else{
+        [dic setObjectNotNull:[NSArray array] forKey:ADVERT_TAGS_PARAM];
+    }
     [dic setObjectNotNull:_subCategory.ident forKey:ADVERT_SUBCATEGORY_PARAM];
     [dic setObjectNotNull:_subCategory.ident forKey:ADVERT_SUBCATEGORY_PARAM];
     [dic setObjectNotNull:_state.ident forKey:ADVERT_STATE_PARAM];
