@@ -121,9 +121,10 @@
         }
         else if (_signUpUserNameTextField.text.length > 30){
             [messagesArray addObject:@"Username: Required 30 characters or fewer."];
-        }else if ([userNameRegEx numberOfMatchesInString:_signUpUserNameTextField.text options:0 range:NSMakeRange(0, [_signUpUserNameTextField.text length])] == 0){
-            [messagesArray addObject:@"Username: Required 30 characters or fewer. Letters, digits"];
         }
+//        else if ([userNameRegEx numberOfMatchesInString:_signUpUserNameTextField.text options:0 range:NSMakeRange(0, [_signUpUserNameTextField.text length])] == 0){
+//            [messagesArray addObject:@"Username: Required 30 characters or fewer. Letters, digits"];
+//        }
         
         if ([emailRegEx numberOfMatchesInString:_signUpEmailTextField.text options:0 range:NSMakeRange(0, [_signUpEmailTextField.text length])] == 0){
             [messagesArray addObject:@"Wrong email address"];
