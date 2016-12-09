@@ -39,6 +39,9 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [_adverts sortUsingComparator:^NSComparisonResult(TSAdvert*  _Nonnull obj1, TSAdvert*  _Nonnull obj2) {
+        return [obj2.dateUpdated compare:obj1.dateUpdated];
+    }];
     [_sellingTableView reloadData];
 }
 
