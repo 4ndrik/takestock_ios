@@ -2427,7 +2427,7 @@
         <image name="soldOutImage" width="104" height="104"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="blq-ps-KPx"/>
         <segue reference="edc-51-rcS"/>
+        <segue reference="ZbI-YW-Au0"/>
     </inferredMetricsTieBreakers>
 </document>
