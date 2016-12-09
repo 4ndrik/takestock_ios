@@ -13,8 +13,6 @@
 #import "TSShippingInfo+Mutable.h"
 #import "TSOffer.h"
 
-#define PHONE_REGEX @"^\\+{0,1}\\d+$"
-
 @interface ShippingOfferViewController ()
 
 @end
@@ -82,19 +80,10 @@
         [emptyFieldsArray addObject:@"City or Town"];
     if (_postCodeTextField.text.length <= 0)
         [emptyFieldsArray addObject:@"Postcode"];
-    if (_phoneNumberTextField.text.length <= 0)
-        [emptyFieldsArray addObject:@"Phone"];
     
     NSMutableString* message = [[NSMutableString alloc] init];
     if (emptyFieldsArray.count > 0){
         [message appendFormat:@"%@ %@ required", [emptyFieldsArray componentsJoinedByString:@"\n"], emptyFieldsArray.count > 0 ? @"are" : @"is"];
-    }
-    
-    if (_phoneNumberTextField.text.length > 0){
-        NSRegularExpression *phoneRegEx = [[NSRegularExpression alloc] initWithPattern:PHONE_REGEX options:NSRegularExpressionCaseInsensitive error:nil];
-        if ([phoneRegEx numberOfMatchesInString:_phoneNumberTextField.text options:0 range:NSMakeRange(0, [_phoneNumberTextField.text length])] == 0){
-            [message appendFormat:@"%@Wrong phone.", message.length > 0 ? @"\n": @""];
-        }
     }
     
     if (message.length > 0){
