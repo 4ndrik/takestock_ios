@@ -71,27 +71,28 @@
 }
 
 -(BOOL)verifyFields{
-    NSMutableArray* emptyFieldsArray = [NSMutableArray array];
-    if (_houseNoTextField.text.length <= 0)
-        [emptyFieldsArray addObject:@"House number"];
-    if (_streetTextField.text.length <= 0)
-        [emptyFieldsArray addObject:@"Street"];
-    if (_cityTextField.text.length <= 0)
-        [emptyFieldsArray addObject:@"City or Town"];
-    if (_postCodeTextField.text.length <= 0)
-        [emptyFieldsArray addObject:@"Postcode"];
-    
-    NSMutableString* message = [[NSMutableString alloc] init];
-    if (emptyFieldsArray.count > 0){
-        [message appendFormat:@"%@ %@ required", [emptyFieldsArray componentsJoinedByString:@"\n"], emptyFieldsArray.count > 0 ? @"are" : @"is"];
-    }
-    
-    if (message.length > 0){
-        [self showOkAlert:@"" text:message compleate:nil];
-        return NO;
-    }else{
-        return YES;
-    }
+    return YES;
+//    NSMutableArray* emptyFieldsArray = [NSMutableArray array];
+//    if (_houseNoTextField.text.length <= 0)
+//        [emptyFieldsArray addObject:@"House number"];
+//    if (_streetTextField.text.length <= 0)
+//        [emptyFieldsArray addObject:@"Street"];
+//    if (_cityTextField.text.length <= 0)
+//        [emptyFieldsArray addObject:@"City or Town"];
+//    if (_postCodeTextField.text.length <= 0)
+//        [emptyFieldsArray addObject:@"Postcode"];
+//    
+//    NSMutableString* message = [[NSMutableString alloc] init];
+//    if (emptyFieldsArray.count > 0){
+//        [message appendFormat:@"%@ %@ required", [emptyFieldsArray componentsJoinedByString:@"\n"], emptyFieldsArray.count > 0 ? @"are" : @"is"];
+//    }
+//    
+//    if (message.length > 0){
+//        [self showOkAlert:@"" text:message compleate:nil];
+//        return NO;
+//    }else{
+//        return YES;
+//    }
 }
 
 - (IBAction)sendShippingInformation:(id)sender {

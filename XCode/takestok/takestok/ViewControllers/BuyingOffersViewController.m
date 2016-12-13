@@ -133,8 +133,36 @@
     }else if ([offer.status.ident intValue] == tsAddressReceived){
         cell.contactUserActionHeight.constant = 40;
         
-        NSString* streetString = [NSString stringWithFormat:@"House: %@\nStreet: %@\nCity: %@\nPostcode: %@\nPhone: %@", offer.shippingInfo.house, offer.shippingInfo.street, offer.shippingInfo.city,offer.shippingInfo.postcode, offer.shippingInfo.phone];
-        NSMutableAttributedString* shippingInfo = [[NSMutableAttributedString alloc] initWithString:streetString];
+        if (textString.length > 0)
+            [textString appendAttributedString:[self spaceForFont]];
+        NSMutableAttributedString* shippingString = [[NSMutableAttributedString alloc] initWithString:@"Shippping info:"];
+        [shippingString addAttribute:NSFontAttributeName
+                               value:HelveticaNeue16
+                               range:NSMakeRange(0, shippingString.length)];
+        [shippingString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, shippingString.length)];
+        
+        [textString appendAttributedString:shippingString];
+        
+        NSMutableString* shippingInfoString = [[NSMutableString alloc] init];
+        
+        if (offer.shippingInfo.house.length > 0){
+            [shippingInfoString appendFormat:@"\nHouse: %@", offer.shippingInfo.house];
+        }
+        if (offer.shippingInfo.street.length > 0){
+            [shippingInfoString appendFormat:@"\nStreet: %@", offer.shippingInfo.street];
+        }
+        if (offer.shippingInfo.city.length > 0){
+            [shippingInfoString appendFormat:@"\nCity: %@", offer.shippingInfo.city];
+        }
+        if (offer.shippingInfo.postcode.length > 0){
+            [shippingInfoString appendFormat:@"\nPostcode: %@", offer.shippingInfo.postcode];
+        }
+        if (offer.shippingInfo.phone.length > 0){
+            [shippingInfoString appendFormat:@"\nPhone: %@", offer.shippingInfo.phone];
+        }
+
+        
+        NSMutableAttributedString* shippingInfo = [[NSMutableAttributedString alloc] initWithString:shippingInfoString];
         [shippingInfo addAttribute:NSFontAttributeName
                              value:HelveticaNeue14
                              range:NSMakeRange(0, shippingInfo.length)];
