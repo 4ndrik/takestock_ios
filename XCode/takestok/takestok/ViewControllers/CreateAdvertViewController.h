@@ -36,6 +36,7 @@
     __weak IBOutlet NSLayoutConstraint *_collectionViewHeight;
     __weak IBOutlet NSLayoutConstraint *_additionalViewHeight;
     __weak IBOutlet NSLayoutConstraint *_stateViewHeight;
+    __weak IBOutlet NSLayoutConstraint *_expiratonPanelHeight;
   
     __weak IBOutlet UIButton *_saveButton;
     __weak IBOutlet UIButton *_previewButton;

@@ -106,6 +106,8 @@
         _conditionTextField.tag = [_advert.condition.ident intValue];
         _conditionTextField.text = _advert.condition.title;
         
+        _expiratonPanelHeight.constant = _advert.category.isFood ? 100 : 0;
+        
         if (_advert.dateExpires){
             _expairyTextField.text = [NSDate stringFromDate:_advert.dateExpires];
         }
@@ -427,6 +429,10 @@
     NSUInteger index = [_textControlsArray indexOfObject:_currentInputControl];
     index++;
     UIView* textControl = [_textControlsArray objectAtIndex:index];
+    if (textControl == _expairyTextField && _expiratonPanelHeight.constant <= 0){
+        index++;
+        textControl = [_textControlsArray objectAtIndex:index];
+    }
     [textControl becomeFirstResponder];
 }
 
@@ -435,6 +441,10 @@
     NSUInteger index = [_textControlsArray indexOfObject:_currentInputControl];
     index--;
     UIView* textControl = [_textControlsArray objectAtIndex:index];
+    if (textControl == _expairyTextField && _expiratonPanelHeight.constant <= 0){
+        index--;
+        textControl = [_textControlsArray objectAtIndex:index];
+    }
     [textControl becomeFirstResponder];
 }
 
@@ -578,6 +588,10 @@
                     unitLabel.text = ((TSBaseDictionaryEntity*)item).title;
                 }
             }else if (_currentInputControl == _categoryTextField){
+                _expiratonPanelHeight.constant = ((TSAdvertCategory*)item).isFood ? 100 : 0;
+                if (!((TSAdvertCategory*)item).isFood){
+                    _expairyTextField.text = @"";
+                }
                 _subCategoryTextField.tag = 0;
                 _subCategoryTextField.text = @"";
             }
@@ -615,6 +629,8 @@
         [emptyFieldsArray addObject:@"Location"];
     if (_conditionTextField.text.length <= 0)
         [emptyFieldsArray addObject:@"Condition"];
+    if (_expiratonPanelHeight.constant > 0 && _expairyTextField.text.length <= 0)
+        [emptyFieldsArray addObject:@"Expairy date"];
     
     if (_sizeTextField.text.length > 0 || _sizeTypeTextField.text.length > 0) {
         NSRegularExpression *regEx = [[NSRegularExpression alloc] initWithPattern:SIZE_REGEX options:NSRegularExpressionCaseInsensitive error:nil];
