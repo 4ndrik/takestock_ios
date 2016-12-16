@@ -284,7 +284,7 @@
     
     NSMutableString* message = [[NSMutableString alloc] init];
     if (errors.count > 0){
-        [message appendFormat:@"%@ %@ required", [errors componentsJoinedByString:@"\n"], errors.count > 0 ? @"are" : @"is"];
+        [message appendFormat:@"%@ %@ required", [errors componentsJoinedByString:@"\n"], errors.count > 1 ? @"are" : @"is"];
     }
     
     if (message.length > 0){

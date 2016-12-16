@@ -84,7 +84,7 @@
 //    
 //    NSMutableString* message = [[NSMutableString alloc] init];
 //    if (emptyFieldsArray.count > 0){
-//        [message appendFormat:@"%@ %@ required", [emptyFieldsArray componentsJoinedByString:@"\n"], emptyFieldsArray.count > 0 ? @"are" : @"is"];
+//        [message appendFormat:@"%@ %@ required", [emptyFieldsArray componentsJoinedByString:@"\n"], emptyFieldsArray.count > 1 ? @"are" : @"is"];
 //    }
 //    
 //    if (message.length > 0){

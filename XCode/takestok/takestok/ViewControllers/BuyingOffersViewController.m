@@ -248,7 +248,7 @@
     [[OfferServiceManager sharedManager] acceptOffer:offer compleate:^(NSError *error) {
         [self hideLoading];
         NSString* title = @"";
-        NSString* text = @"Offer accepted";
+        NSString* text = @"Offer accepted.";
         if (error){
             title = @"Error";
             text = ERROR_MESSAGE(error);
@@ -271,7 +271,7 @@
         [[OfferServiceManager sharedManager] rejectOffer:offer withComment:comment compleate:^(NSError *error) {
             [self hideLoading];
             NSString* title = @"";
-            NSString* text = @"Offer rejected";
+            NSString* text = @"Offer rejected.";
             if (error){
                 title = @"Error";
                 text = ERROR_MESSAGE(error);
@@ -336,7 +336,7 @@
     [[OfferServiceManager sharedManager] diputeOffer:offer compleate:^(NSError *error) {
         [self hideLoading];
         NSString* title = @"";
-        NSString* text = @"Dispute raiced.";
+        NSString* text = @"Dispute raised.";
         if (error){
             title = @"Error";
             text = ERROR_MESSAGE(error);
@@ -373,7 +373,7 @@
          [self presentViewController:confirmGoodsReceived animated:YES completion:nil];
     }else if ([offer.status.ident intValue] == tsGoodsReceived ){
         
-        UIAlertController* confirmGoodsReceived = [UIAlertController alertControllerWithTitle:@"Confirm" message:@"Raice a dispute?" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController* confirmGoodsReceived = [UIAlertController alertControllerWithTitle:@"Confirm" message:@"Raise a dispute?" preferredStyle:UIAlertControllerStyleAlert];
         [confirmGoodsReceived addAction:[UIAlertAction actionWithTitle:@"YES" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             [self dismissViewControllerAnimated:YES completion:nil];
             [self raiceDispute:offer];

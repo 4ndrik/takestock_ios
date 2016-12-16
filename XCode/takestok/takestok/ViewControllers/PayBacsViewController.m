@@ -62,7 +62,7 @@
     [[OfferServiceManager sharedManager] payByBacsOffer:_offer compleate:^(NSError *error) {
         [self hideLoading];
         NSString* title = @"";
-        NSString* message = @"Payment made successfully.";
+        NSString* message = @"Thanks. Please let us know if you have any problems paying by bacs.";
         if (error){
             title = @"Error";
             message = ERROR_MESSAGE(error);
