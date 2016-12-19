@@ -8,6 +8,10 @@
 //
 
 #import "TakeStokRootViewController.h"
+#import "OfferManagerViewController.h"
+#import "QAViewController.h"
+#import "BuyingOffersViewController.h"
+#import "AdvertDetailViewController.h"
 
 @implementation TakeStokRootViewController
 
@@ -28,17 +32,34 @@
         }
         case kBuying:{
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:BUYING_STORYBOARD bundle:nil];
-            self.contentViewController = [storyboard instantiateViewControllerWithIdentifier:BUYING_CONTROLLER];
+            
+            BuyingOffersViewController* vc = [storyboard instantiateViewControllerWithIdentifier:BUYING_OFFER_CONTROLLER];
+            [vc loadAdvertId:notification.advertId offerId:notification.offerId];
+            
+            UINavigationController* navC = [[UINavigationController alloc] initWithRootViewController:vc];
+            [self presentViewController:navC animated:YES completion:nil];
+
             break;
         }
         case kSelling:{
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:SELLING_STORYBOARD bundle:nil];
-            self.contentViewController = [storyboard instantiateViewControllerWithIdentifier:SELLING_CONTROLLER];
+
+            OfferManagerViewController* vc = [storyboard instantiateViewControllerWithIdentifier:OFFER_MANAGER_CONTROLLER];
+            vc.advertId = notification.advertId;
+            
+            UINavigationController* navC = [[UINavigationController alloc] initWithRootViewController:vc];
+            [self presentViewController:navC animated:YES completion:nil];
+            
             break;
         }
         case kQuestion:{
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:SELLING_STORYBOARD bundle:nil];
-            self.contentViewController = [storyboard instantiateViewControllerWithIdentifier:SELLING_CONTROLLER];
+            AdvertDetailViewController* vc = [storyboard instantiateViewControllerWithIdentifier:ADVERT_DETAIL_CONTROLLER];
+            [vc loadAdvert:notification.advertId];
+            
+            UINavigationController* navC = [[UINavigationController alloc] initWithRootViewController:vc];
+            [self presentViewController:navC animated:YES completion:nil];
+            
             break;
         }
         default:

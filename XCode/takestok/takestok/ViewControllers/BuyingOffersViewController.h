@@ -20,8 +20,10 @@
     TSAdvert* _advert;
     NSMutableArray* _offers;
     OfferActionView* _offerAlertView;
+    UIRefreshControl *_refreshControl;
 }
 
 -(void)setAdvert:(TSAdvert*)advert andOffer:(TSOffer*)offer;
+-(void)loadAdvertId:(NSNumber*)advertId offerId:(NSNumber*)offerId;
 
 @end

@@ -19,7 +19,7 @@
 @class TSAdvert;
 @class SortData;
 
-typedef void (^advertResultBlock)(NSDictionary* advertDic, NSError* error);
+typedef void (^advertResultBlock)(TSAdvert* advert, NSError* error);
 
 @interface AdvertServiceManager : NSObject{
     NSMutableDictionary* _states;
@@ -49,6 +49,7 @@ typedef void (^advertResultBlock)(NSDictionary* advertDic, NSError* error);
 -(NSArray*)getPackageTypes;
 -(TSAdvertPackagingType*)getPackageTypeWithId:(NSNumber*)ident;
 
+-(void)loadAdvertWithId:(NSNumber*)advertId compleate:(advertResultBlock)compleate;
 -(void)loadAdverts:(SortData*)sortData search:(NSString*)search category:(TSBaseDictionaryEntity*)category page:(int)page compleate:(resultBlock)compleate;
 -(void)loadWatchListWithPage:(int)page compleate:(resultBlock)compleate;
 -(void)loadDraftsWithPage:(int)page compleate:(resultBlock)compleate;

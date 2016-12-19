@@ -58,18 +58,35 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:[self isKindOfClass:[HomeViewController class]] animated:YES];
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+    UIButton* menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 13, 20)];
+    [menuButton setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+    [menuButton addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem* menuBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
+    self.navigationItem.leftBarButtonItem = menuBarButtonItem;
+    
     if (!self.navigationController.navigationBarHidden && [self.navigationController.viewControllers firstObject] == self){
-        UIButton* menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
-        [menuButton setImage:[UIImage imageNamed:@"menuWhiteButtonIco"] forState:UIControlStateNormal];
-        [menuButton addTarget:self action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
-        
-        UIBarButtonItem* menuBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
-        self.navigationItem.leftBarButtonItem = menuBarButtonItem;
-        
-        _notificationsBadge = [[RKNotificationHub alloc]initWithBarButtonItem:menuBarButtonItem]; // sets the count to 0
-        [_notificationsBadge moveCircleByX:10 Y:0];
-        [self refreshBadge];
+        if (self.frostedViewController.contentViewController == self.navigationController){
+            UIButton* menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
+            [menuButton setImage:[UIImage imageNamed:@"menuWhiteButtonIco"] forState:UIControlStateNormal];
+            [menuButton addTarget:self action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
+            
+            UIBarButtonItem* menuBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
+            self.navigationItem.leftBarButtonItem = menuBarButtonItem;
+            
+            _notificationsBadge = [[RKNotificationHub alloc]initWithBarButtonItem:menuBarButtonItem]; // sets the count to 0
+            [_notificationsBadge moveCircleByX:10 Y:0];
+            [self refreshBadge];
+        }
+    }
+}
+
+-(void)close:(id)owner{
+    if([self.navigationController.viewControllers firstObject] == self){
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

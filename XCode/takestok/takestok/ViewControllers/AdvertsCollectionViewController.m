@@ -24,6 +24,9 @@ static NSString * const reuseIdentifier = @"AdvertSmallCollectionViewCell";
 
 -(void)setAdvert:(TSAdvert*)advert{
     _parentAdvert = advert;
+    if (self.isViewLoaded){
+        [self reloadData:nil];
+    }
 }
 
 - (void)viewDidLoad {

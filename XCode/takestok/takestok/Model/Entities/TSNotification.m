@@ -71,7 +71,7 @@
     [aCoder encodeObject:_dateCreated forKey:NOTIFICATION_DATE_CREATED_PARAM];
     [aCoder encodeObject:_advertId forKey:NOTIFICATION_ADVERT_ID_PARAM];
     [aCoder encodeObject:_offerId forKey:NOTIFICATION_OFFER_ID_PARAM];
-    [aCoder encodeInt:_type forKey:NOTIFICATION_TYPE_PARAM];
+    [aCoder encodeObject:[NSNumber numberWithInt:_type] forKey:NOTIFICATION_TYPE_PARAM];
 }
 
 @end

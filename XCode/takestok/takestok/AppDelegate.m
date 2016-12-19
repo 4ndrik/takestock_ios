@@ -45,7 +45,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [Stripe setDefaultPublishableKey:@"pk_test_vqadhDOynhijTjKgj7sEnybl"];
+    [Stripe setDefaultPublishableKey:@"pk_live_W4yPMXpQFqYn5e12RnRAlDCM"];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:) name:kFIRInstanceIDTokenRefreshNotification object:nil];
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
         UIUserNotificationType allNotificationTypes =

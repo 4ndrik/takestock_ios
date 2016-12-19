@@ -327,6 +327,21 @@ static AdvertServiceManager *_manager = nil;
 
 #pragma mark - Adverts
 
+-(void)loadAdvertWithId:(NSNumber*)advertId compleate:(advertResultBlock)compleate{
+    [[ServerConnectionHelper sharedInstance] loadAdvertsWithIdents:[NSArray arrayWithObjects:advertId, nil] compleate:^(NSArray* result, NSError *error) {
+        TSAdvert* advert;
+        if (!error){
+            for (NSDictionary* advertJs in result){
+                advert = [TSAdvert objectWithDictionary:advertJs];
+                break;
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            compleate(advert, error);
+        });
+    }];
+}
+
 -(void)loadMyAdvertsWithPage:(int)page compleate:(resultBlock)compleate{
     [[ServerConnectionHelper sharedInstance] loadAdvertsWithUser:[[UserServiceManager sharedManager] getMe].ident page:page compleate:^(id result, NSError *error) {
         NSMutableDictionary* additionalDic;

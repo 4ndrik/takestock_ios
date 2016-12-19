@@ -12,6 +12,11 @@
 
 @implementation TitleTextContainerView
 
+-(void)setText:(NSString *)text{
+    _text = text;
+    [self setNeedsDisplay];
+}
+
 - (CGSize)intrinsicContentSize
 {
     CGSize size = [super intrinsicContentSize];

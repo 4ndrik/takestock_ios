@@ -47,6 +47,33 @@
     if (self.isViewLoaded){
         [self refreshAdData];
     }
+    
+    if (![_advert.author.ident isEqualToNumber:[UserServiceManager sharedManager].getMe.ident]){
+        [[AdvertServiceManager sharedManager] sendViwAdvert:_advert];
+    }
+}
+
+- (void)loadAdvert:(NSNumber*)advertId{
+    id m = self.view;
+    _loadingAdvertView.hidden = NO;
+    [[AdvertServiceManager sharedManager] loadAdvertWithId:advertId compleate:^(TSAdvert *advert, NSError *error) {
+        _loadingAdvertView.hidden = YES;
+        if (!error){
+            [self setAdvert:advert];
+        }else{
+            [self showOkAlert:@"Error" text:ERROR_MESSAGE(error) compleate:^{
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }];
+        }
+    }];
+
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (_advert){
+        [self refreshAdData];
+    }
 }
 
 - (void)fromEdit:(BOOL)isFromEdit{
@@ -66,15 +93,6 @@
                                                object:self.view.window];
     if (_advert)
         [self refreshAdData];
-    
-    if ([[UserServiceManager sharedManager] getMe] && [_advert.author.ident isEqualToNumber:[UserServiceManager sharedManager].getMe.ident]){
-        [[AdvertServiceManager sharedManager] sendViwAdvert:_advert];
-    }
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [[AdvertServiceManager sharedManager] sendViwAdvert:_advert];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -156,6 +174,7 @@
 
 #pragma mark - Helpers
 -(void)refreshAdData{
+    [_photosCollectionView reloadData];
     [_watchButton setHighlighted:_advert.isInWatchList];
     _titleLabel.text = _advert.name;
     _soldOutImageView.hidden = ![_advert.state.ident isEqualToNumber:SOLD_OUT_IDENT];
@@ -183,6 +202,7 @@
     
     _userName.text = _advert.author.userName;
     [_ratingView setRate:_advert.author.rating];
+    [_ratingView setNeedsDisplay];
     
     _awardImageView.hidden = _advert.author.isVerified;
     
@@ -213,6 +233,7 @@
         [_advertsViewController setAdvert:_advert];
     }
     
+    [self.view setNeedsDisplay];
     [self.view setNeedsUpdateConstraints];
     [self.view setNeedsLayout];
     [self.view layoutIfNeeded];

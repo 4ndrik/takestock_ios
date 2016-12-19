@@ -500,7 +500,7 @@ typedef enum
 }
 
 -(void)loadMyOffersWithPage:(int)page compleate:(tsResultBlock)compleate{
-    NSString* query = [NSString stringWithFormat:@"for=self&view=child_offers&page=%i&o=-updated_at&in=from_buyer", page];
+    NSString* query = [NSString stringWithFormat:@"for=self&view=child_offers&page=%i&o=-updated_at&in=from_buyer,original", page];
     NSURLSessionDataTask* loadOffersTask = [_session dataTaskWithRequest:[self request:OFFERS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate(result, error);

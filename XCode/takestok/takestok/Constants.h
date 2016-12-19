@@ -7,6 +7,8 @@
 //
 
 
+//#define TAKESTOK_API_URL                @"http://takestock.com/api/v1/"
+//#define TAKESTOK_IMAGE_URL              @"http://takestock.com"
 #define TAKESTOK_API_URL                @"http://uat.takestock.com/api/v1/"
 #define TAKESTOK_IMAGE_URL              @"http://uat.takestock.com"
 #define CONTACT_US_EMAIL                @"admin@wetakestock.com"
@@ -75,6 +77,10 @@
 #define CONTACT_US_CONTROLLER       @"ContactUsController"
 #define LEGAL_INFO_CONTROLLER       @"LegalInformationController"
 #define NOTIFICATION_CONTROLLER     @"NotificationsViewController"
+#define OFFER_MANAGER_CONTROLLER    @"OfferManagerViewController"
+#define QA_CONTROLLER               @"QAViewController"
+#define BUYING_OFFER_CONTROLLER     @"BuyingOffersViewController"
+#define ADVERT_DETAIL_CONTROLLER    @"AdvertDetailViewController"
 
 typedef void (^resultBlock)(NSArray* result, NSDictionary* additionalData, NSError* error);
 typedef void (^errorBlock)(NSError* error);

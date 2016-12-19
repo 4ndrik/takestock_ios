@@ -25,6 +25,7 @@
 #import "PaddingTextField.h"
 #import "PayBacsViewController.h"
 #import "PayCardViewController.h"
+#import "AdvertServiceManager.h"
 
 @interface BuyingOffersViewController ()
 
@@ -46,15 +47,53 @@
     }];
 }
 
+-(void)loadAdvertId:(NSNumber*)advertId offerId:(NSNumber*)offerId{
+    [[OfferServiceManager sharedManager] loadOffer:offerId compleate:^(TSOffer *offer, NSError *error) {
+        if (!error){
+            [[AdvertServiceManager sharedManager] loadAdvertWithId:offer.advertId compleate:^(TSAdvert *advert, NSError *error) {
+                if (!error){
+                    _advert = advert;
+                    [self setAdvert:_advert andOffer:offer];
+                    if (_refreshControl.isRefreshing)
+                        [_refreshControl endRefreshing];
+                    _offersTableView.contentInset = UIEdgeInsetsZero;
+                    [_offersTableView reloadData];
+
+                }else{
+                    [self showOkAlert:@"Error" text:ERROR_MESSAGE(error) compleate:nil];
+                }
+            }];
+        }else{
+            [self showOkAlert:@"Error" text:ERROR_MESSAGE(error) compleate:nil];
+        }
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [_offersTableView registerNib:[UINib nibWithNibName:@"OfferTableViewCell" bundle:nil] forCellReuseIdentifier:@"OfferTableViewCell"];
     _offersTableView.rowHeight = UITableViewAutomaticDimension;
     _offersTableView.estimatedRowHeight = 150;
+    
+    _refreshControl = [[UIRefreshControl alloc] init];
+    _refreshControl.tintColor = OliveMainColor;
+    [_offersTableView addSubview:_refreshControl];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if (!_advert){
+        [_refreshControl beginRefreshing];
+        if (_offersTableView.contentOffset.y == 0) {
+            [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^(void){
+                _offersTableView.contentOffset = CGPointMake(0, -_refreshControl.frame.size.height);
+            } completion:nil];
+        }
+    }
     [_offersTableView reloadData];
 }
 
@@ -224,7 +263,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return [OfferTitleView defaultSize];
+    return _advert ? [OfferTitleView defaultSize] : 0;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{

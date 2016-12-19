@@ -24,9 +24,11 @@
 #import "PaddingLabel.h"
 #import "UserServiceManager.h"
 #import "TSShippingInfo.h"
+#import "AdvertServiceManager.h"
 
 @implementation OfferManagerViewController
 @synthesize advert = _advert;
+@synthesize advertId = _advertId;
 
 -(void)viewDidLoad{
     [super viewDidLoad];
@@ -74,8 +76,17 @@
 }
 
 -(void)loadData{
+    
+    if (!_advert){
+        [[AdvertServiceManager sharedManager] loadAdvertWithId:_advertId compleate:^(TSAdvert *advert, NSError *error) {
+            _advert = advert;
+            [[AdvertServiceManager sharedManager] sendReadNotificationsWithAdvert:_advert];
+            [_offersTableView reloadData];
+        }];
+    }
+    
     _loading = YES;
-    [[OfferServiceManager sharedManager] loadOffersForAdvert:_advert page:_page compleate:^(NSArray *result, NSDictionary *additionalData, NSError *error) {
+    [[OfferServiceManager sharedManager] loadOffersForAdvertId:_advert ? _advert.ident : _advertId page:_page compleate:^(NSArray *result, NSDictionary *additionalData, NSError *error) {
         if (error){
             [self showOkAlert:@"Error" text:ERROR_MESSAGE(error) compleate:nil];
         }
@@ -378,7 +389,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return [OfferTitleView defaultSize];
+    return _advert ? [OfferTitleView defaultSize] : 0;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{

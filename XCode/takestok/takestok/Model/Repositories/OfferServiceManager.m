@@ -79,8 +79,8 @@ static OfferServiceManager *_manager = nil;
     }
 }
 
--(void)loadOffersForAdvert:(TSAdvert*)advert page:(int)page compleate:(resultBlock)compleate{
-    [[ServerConnectionHelper sharedInstance] loadOffersWithAdvert:advert.ident page:page compleate:^(id result, NSError *error) {
+-(void)loadOffersForAdvertId:(NSNumber*)advertId page:(int)page compleate:(resultBlock)compleate{
+    [[ServerConnectionHelper sharedInstance] loadOffersWithAdvert:advertId page:page compleate:^(id result, NSError *error) {
         NSMutableArray* offers;
         NSMutableDictionary* additionalDic;
         if (!error){
@@ -143,6 +143,18 @@ static OfferServiceManager *_manager = nil;
                 compleate(nil, nil, nil, error);
             });
         }
+    }];
+}
+
+-(void)loadOffer:(NSNumber*)offerId compleate:(void (^)(TSOffer* offer, NSError* error))compleate{
+    [[ServerConnectionHelper sharedInstance] loadOffer:offerId compleate:^(id result, NSError *error) {
+        TSOffer* offer;
+        if (!error){
+            offer = [TSOffer objectWithDictionary:result];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            compleate(offer, error);
+        });
     }];
 }
 

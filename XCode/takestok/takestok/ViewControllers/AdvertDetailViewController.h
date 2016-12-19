@@ -18,6 +18,10 @@
 @class Offer;
 
 @interface AdvertDetailViewController : BaseViewController<UICollectionViewDelegate, UICollectionViewDataSource, SimilarAdvertsProtocol>{
+    
+    __weak IBOutlet UICollectionView *_photosCollectionView;
+    
+    __weak IBOutlet UIView *_loadingAdvertView;
     TSAdvert* _advert;
     __weak IBOutlet UIImageView *_soldOutImageView;
     __weak IBOutlet UIButton *_watchButton;
@@ -60,6 +64,7 @@
     __weak IBOutlet NSLayoutConstraint *_similarPanelHeight;
 }
 
+- (void)loadAdvert:(NSNumber*)advertId;
 - (void)setAdvert:(TSAdvert*)advert;
 - (void)fromEdit:(BOOL)isFromEdit;
 - (IBAction)createOrderAction:(id)sender;
