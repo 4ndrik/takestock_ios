@@ -218,7 +218,7 @@ static NSString *const kWarningText = @"Warning";
 -(void)askQuestion{
     if ([self checkUserLogin]){
         if (_askQuestionView.questionTextView.text.length == 0){
-            [self showOkAlert:@"" text:@"Message is empty" compleate:nil];
+            [self showOkAlert:@"" text:@"Sorry, the message text field is empty" compleate:nil];
         }else{
             
             TSQuestion* question = [[TSQuestion alloc] init];
@@ -270,7 +270,7 @@ static NSString *const kWarningText = @"Warning";
 				[[QuestionAnswerServiceManager sharedManager] makeAnswer:answer compleate:^(NSError *error) {
 					[self hideLoading];
 					NSString* title = @"";
-					NSString* message = @"Answer has been sent.";
+					NSString* message = @"Thanks. Your answer has been sent";
 					if (error){
 						title = @"Error";
 						message = ERROR_MESSAGE(error);

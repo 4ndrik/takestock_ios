@@ -190,7 +190,7 @@
         cell.contactUserActionHeight.constant = 40;
         cell.contactUsActionHeight.constant = 40;
         cell.mainActionHeight.constant  = 40;
-        [cell.mainActionButton setTitle:@"RAICE DIPUITE" forState:UIControlStateNormal];
+        [cell.mainActionButton setTitle:@"RAISE DIPUITE" forState:UIControlStateNormal];
     }else if ([offer.status.ident intValue] == tsInDispute){
         cell.contactUserActionHeight.constant = 40;
         cell.contactUsActionHeight.constant = 40;
