@@ -229,8 +229,8 @@
     
     if (!_advert.ident){
         _similarPanelHeight.constant = 0;
-    }else{
-        [_advertsViewController setAdvert:_advert];
+    }else if (!_advertsViewController.advert){
+        _advertsViewController.advert = _advert;
     }
     
     [self.view setNeedsDisplay];

@@ -28,5 +28,6 @@
 
 @property (nonatomic, retain)TSAdvert* advert;
 @property (nonatomic, retain)NSNumber* advertId;
+@property (nonatomic, retain)NSNumber* offerId;
 
 @end

@@ -348,29 +348,31 @@ typedef enum
 }
 
 -(void)loadAdvertsWithPage:(int)page similar:(NSNumber*)advertId compleate:(tsResultBlock)compleate{
+    [_loadSimAdvertCancelTask cancel];
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:page], @"page", advertId, @"related_by_advert", nil];
     
     NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
     
-    NSURLSessionDataTask* loadAdvertCancelTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+    _loadSimAdvertCancelTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         [_dictionaryLock waitUntilDone];
         [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate(result, error);
     }];
-    [loadAdvertCancelTask resume];
+    [_loadSimAdvertCancelTask resume];
 }
 
 -(void)loadUserAdvertsWithPage:(int)page similar:(NSNumber*)advertId compleate:(tsResultBlock)compleate{
+    [_loadSimAdvertCancelTask cancel];
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:page], @"page", advertId, @"la_by_advert", nil];
     
     NSString* query = [self makeParamtersString:params withEncoding:NSUTF8StringEncoding];
     
-    NSURLSessionDataTask* loadAdvertCancelTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
+    _loadSimAdvertCancelTask = [_session dataTaskWithRequest:[self request:ADVERTS_URL_PATH query:query methodType:HTTP_METHOD_GET contentType:nil] completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
         [_dictionaryLock waitUntilDone];
         [self isErrorInCodeResponse:(NSHTTPURLResponse*)response withData:result error:&error];
         compleate(result, error);
     }];
-    [loadAdvertCancelTask resume];
+    [_loadSimAdvertCancelTask resume];
 }
 
 #pragma mark - QA

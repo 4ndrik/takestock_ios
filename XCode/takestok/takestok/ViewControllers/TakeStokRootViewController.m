@@ -45,7 +45,11 @@
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:SELLING_STORYBOARD bundle:nil];
 
             OfferManagerViewController* vc = [storyboard instantiateViewControllerWithIdentifier:OFFER_MANAGER_CONTROLLER];
-            vc.advertId = notification.advertId;
+            if (notification.advertId){
+                vc.advertId = notification.advertId;
+            }else{
+                vc.offerId = notification.offerId;
+            }
             
             UINavigationController* navC = [[UINavigationController alloc] initWithRootViewController:vc];
             [self presentViewController:navC animated:YES completion:nil];

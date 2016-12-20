@@ -25,8 +25,7 @@
     UIActivityIndicatorView* _loadingIndicator;
 }
 
--(void)setAdvert:(TSAdvert*)advert;
-
+@property (retain)TSAdvert* advert;
 @property (assign)id<SimilarAdvertsProtocol> delegate;
 
 @end

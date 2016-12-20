@@ -56,6 +56,7 @@
                     [self setAdvert:_advert andOffer:offer];
                     if (_refreshControl.isRefreshing)
                         [_refreshControl endRefreshing];
+                    [_refreshControl addTarget:_refreshControl action:@selector(endRefreshing) forControlEvents:UIControlEventValueChanged];
                     _offersTableView.contentInset = UIEdgeInsetsZero;
                     [_offersTableView reloadData];
 
@@ -76,6 +77,7 @@
     _offersTableView.estimatedRowHeight = 150;
     
     _refreshControl = [[UIRefreshControl alloc] init];
+//
     _refreshControl.tintColor = OliveMainColor;
     [_offersTableView addSubview:_refreshControl];
 }
@@ -87,6 +89,7 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     if (!_advert){
+        [_refreshControl removeTarget:_refreshControl action:@selector(endRefreshing) forControlEvents:UIControlEventValueChanged];
         [_refreshControl beginRefreshing];
         if (_offersTableView.contentOffset.y == 0) {
             [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^(void){

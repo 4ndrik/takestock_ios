@@ -54,11 +54,11 @@
 }
 
 - (IBAction)payByCardAction:(id)sender {
-    [self.delegate payByCardAction:sender];
+    [self.delegate payByCardAction:self];
 }
 
 - (IBAction)payByBacsAction:(id)sender {
-    [self.delegate payByBacsAction:sender];
+    [self.delegate payByBacsAction:self];
 }
 
 @end

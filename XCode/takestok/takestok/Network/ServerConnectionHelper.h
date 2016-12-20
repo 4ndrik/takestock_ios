@@ -29,6 +29,7 @@ typedef void (^tsResultBlock)(id result, NSError* error);
 @interface ServerConnectionHelper : NSObject{
     AFURLSessionManager *_session;
     NSURLSessionDataTask* _loadAdvertCancelTask;
+    NSURLSessionDataTask* _loadSimAdvertCancelTask;
     MainThreadRecursiveLock* _dictionaryLock;
     MainThreadRecursiveLock* _advertLock;
     MainThreadRecursiveLock* _usersLock;

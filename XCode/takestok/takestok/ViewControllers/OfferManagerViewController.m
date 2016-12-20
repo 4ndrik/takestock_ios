@@ -29,6 +29,7 @@
 @implementation OfferManagerViewController
 @synthesize advert = _advert;
 @synthesize advertId = _advertId;
+@synthesize offerId = _offerId;
 
 -(void)viewDidLoad{
     [super viewDidLoad];
@@ -77,49 +78,63 @@
 
 -(void)loadData{
     
+    _loading = YES;
+    
     if (!_advert){
-        [[AdvertServiceManager sharedManager] loadAdvertWithId:_advertId compleate:^(TSAdvert *advert, NSError *error) {
-            _advert = advert;
-            [[AdvertServiceManager sharedManager] sendReadNotificationsWithAdvert:_advert];
-            [_offersTableView reloadData];
+        
+        if (_advertId){
+            [[AdvertServiceManager sharedManager] loadAdvertWithId:_advertId compleate:^(TSAdvert *advert, NSError *error) {
+                _advert = advert;
+                [[AdvertServiceManager sharedManager] sendReadNotificationsWithAdvert:_advert];
+                [_offersTableView reloadData];
+            }];
+        }else if (_offerId){
+            [[OfferServiceManager sharedManager] loadOffer:_offerId compleate:^(TSOffer *offer, NSError *error) {
+                if (!error){
+                    _advertId = offer.advertId;
+                    [self loadData];
+                }else{
+                    [self showOkAlert:@"Error" text:ERROR_MESSAGE(error) compleate:nil];
+                }
+            }];
+        }
+    }
+    if (_advert || _advertId){
+        [[OfferServiceManager sharedManager] loadOffersForAdvertId:_advert ? _advert.ident : _advertId page:_page compleate:^(NSArray *result, NSDictionary *additionalData, NSError *error) {
+            if (error){
+                [self showOkAlert:@"Error" text:ERROR_MESSAGE(error) compleate:nil];
+            }
+            else
+            {
+                if ([additionalData objectForKeyNotNull:@"next"]){
+                    _page ++;
+                }else{
+                    _page = 0;
+                };
+                NSMutableArray* array = [NSMutableArray array];
+                for (TSOffer* offer in result){
+                    [array addObject:offer];
+                    TSOffer* o = offer;
+                    while (o.childOffers.count > 0) {
+                        o = [offer.childOffers lastObject];
+                        [array addObject:o];
+                    }
+                }
+                [_offers addObjectsFromArray:[array sortedArrayUsingComparator:^NSComparisonResult(TSOffer*  _Nonnull obj1, TSOffer*  _Nonnull obj2) {
+                    NSComparisonResult result = [obj2.dateUpdated compare:obj1.dateUpdated];
+                    if (result == NSOrderedSame)
+                        return [obj2.dateCreated compare:obj1.dateCreated];
+                    return result;
+                }]];
+                [_offersTableView reloadData];
+            }
+            _loading = NO;
+            [_loadingIndicator stopAnimating];
+            if (_refreshControl.isRefreshing)
+                [_refreshControl endRefreshing];
+            _offersTableView.contentInset = UIEdgeInsetsZero;
         }];
     }
-    
-    _loading = YES;
-    [[OfferServiceManager sharedManager] loadOffersForAdvertId:_advert ? _advert.ident : _advertId page:_page compleate:^(NSArray *result, NSDictionary *additionalData, NSError *error) {
-        if (error){
-            [self showOkAlert:@"Error" text:ERROR_MESSAGE(error) compleate:nil];
-        }
-        else
-        {
-            if ([additionalData objectForKeyNotNull:@"next"]){
-                _page ++;
-            }else{
-                _page = 0;
-            };
-            NSMutableArray* array = [NSMutableArray array];
-            for (TSOffer* offer in result){
-                [array addObject:offer];
-                TSOffer* o = offer;
-                while (o.childOffers.count > 0) {
-                    o = [offer.childOffers lastObject];
-                    [array addObject:o];
-                }
-            }
-            [_offers addObjectsFromArray:[array sortedArrayUsingComparator:^NSComparisonResult(TSOffer*  _Nonnull obj1, TSOffer*  _Nonnull obj2) {
-                NSComparisonResult result = [obj2.dateUpdated compare:obj1.dateUpdated];
-                if (result == NSOrderedSame)
-                    return [obj2.dateCreated compare:obj1.dateCreated];
-                return result;
-            }]];
-            [_offersTableView reloadData];
-        }
-        _loading = NO;
-        [_loadingIndicator stopAnimating];
-        if (_refreshControl.isRefreshing)
-            [_refreshControl endRefreshing];
-        _offersTableView.contentInset = UIEdgeInsetsZero;
-    }];
 }
 
 -(NSMutableAttributedString*)spaceForFont{
