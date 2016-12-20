@@ -217,7 +217,7 @@ typedef enum
     //Cancel prev request
     [_loadAdvertCancelTask cancel];
     
-    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:page], @"page", sort, @"o", @"active,hold_on",@"in",nil];
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:page], @"page", sort, @"o", @"posted,hold_on",@"in",nil];
     
     if (search.length > 0){
         [params setValue:search forKey:@"q"];

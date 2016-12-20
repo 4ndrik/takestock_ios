@@ -59,7 +59,7 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:[self isKindOfClass:[HomeViewController class]] animated:YES];
     
-    UIButton* menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 13, 20)];
+    UIButton* menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     [menuButton setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
     [menuButton addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
     

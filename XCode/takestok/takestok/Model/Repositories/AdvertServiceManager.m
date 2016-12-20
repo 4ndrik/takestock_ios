@@ -377,6 +377,8 @@ static AdvertServiceManager *_manager = nil;
         if ([category isKindOfClass:[TSAdvertSubCategory class]]){
             subCategoryId = ((TSAdvertSubCategory*)category).ident;
             categoryId = ((TSAdvertSubCategory*)category).parentIdent;
+        }else{
+            categoryId = category.ident;
         }
     }
     [[ServerConnectionHelper sharedInstance] loadAdvertsWithSort:sortData.value search:search category:categoryId subCategory:subCategoryId page:page compleate:^(id result, NSError *error) {
