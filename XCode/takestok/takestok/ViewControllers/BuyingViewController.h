@@ -13,6 +13,7 @@
     NSMutableArray* _offers;
     NSMutableDictionary* _adverts;
     
+    BOOL _loading;
     UIRefreshControl *_refreshControl;
     int _page;
     UIActivityIndicatorView* _loadingIndicator;

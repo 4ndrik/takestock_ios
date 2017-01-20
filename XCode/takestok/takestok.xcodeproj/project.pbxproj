@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		310A07B5BD230A044423EBB8 /* libPods-takestok.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF5A930920EAF384C010691 /* libPods-takestok.a */; };
+		310A07B5BD230A044423EBB8 /* libPods-takestok.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF5A930920EAF384C010691 /* libPods-takestok.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AC049D051CB7C449006A8F21 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D041CB7C449006A8F21 /* SearchViewController.m */; };
 		AC049D081CB7C47F006A8F21 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D071CB7C47F006A8F21 /* HomeViewController.m */; };
 		AC049D0B1CB7C490006A8F21 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC049D0A1CB7C490006A8F21 /* BaseViewController.m */; };
@@ -30,7 +30,7 @@
 		AC33AFB61DDEE94F00A982C1 /* PayCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC33AFB51DDEE94F00A982C1 /* PayCardViewController.m */; };
 		AC36985C1DA4E37A00987179 /* DeliveryInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC36985B1DA4E37A00987179 /* DeliveryInfoViewController.m */; };
 		AC36985F1DA4FD0C00987179 /* TSShippingInfo+Mutable.m in Sources */ = {isa = PBXBuildFile; fileRef = AC36985E1DA4FD0C00987179 /* TSShippingInfo+Mutable.m */; };
-		AC4066261DDF18410047F91A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4066251DDF18410047F91A /* MessageUI.framework */; };
+		AC4066261DDF18410047F91A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4066251DDF18410047F91A /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AC411E261CBFA220008B1E38 /* ImageCacheUrlResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E251CBFA220008B1E38 /* ImageCacheUrlResolver.m */; };
 		AC411E291CBFA6D0008B1E38 /* NSDate+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E281CBFA6D0008B1E38 /* NSDate+Extended.m */; };
 		AC411E2C1CBFB832008B1E38 /* ImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = AC411E2B1CBFB832008B1E38 /* ImageLoader.m */; };
@@ -77,8 +77,8 @@
 		AC68C4891CB6534A004B78DF /* UIImage+ExtendedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4881CB6534A004B78DF /* UIImage+ExtendedImage.m */; };
 		AC68C48C1CB67090004B78DF /* ImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C48B1CB67090004B78DF /* ImageCollectionViewCell.m */; };
 		AC68C4921CB68865004B78DF /* PaddingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AC68C4911CB68865004B78DF /* PaddingTextField.m */; };
-		AC69F8A31DC3635000C2EE28 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC69F8A11DC3635000C2EE28 /* UserNotifications.framework */; };
-		AC69F8A41DC3635000C2EE28 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC69F8A21DC3635000C2EE28 /* UserNotificationsUI.framework */; };
+		AC69F8A31DC3635000C2EE28 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC69F8A11DC3635000C2EE28 /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		AC69F8A41DC3635000C2EE28 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC69F8A21DC3635000C2EE28 /* UserNotificationsUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AC7249781D8AEC8900AD940A /* TSUserSubBusinessType.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5F6C741D880529003918D3 /* TSUserSubBusinessType.m */; };
 		AC756E5E1D86A50700C45BA3 /* TSAdvertShipping.m in Sources */ = {isa = PBXBuildFile; fileRef = AC756E5D1D86A50700C45BA3 /* TSAdvertShipping.m */; };
 		AC756E611D86A8CB00C45BA3 /* TSAdvertPackagingType.m in Sources */ = {isa = PBXBuildFile; fileRef = AC756E601D86A8CB00C45BA3 /* TSAdvertPackagingType.m */; };

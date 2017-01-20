@@ -137,6 +137,13 @@
     cell.offerTextLabel.text = [offer.status.title uppercaseString];
     cell.offerTextLabel.textColor = [UIColor redColor];
     
+    if (!_loading &&  _page > 0 && indexPath.row > _offers.count -2){
+        _loadingIndicator.center = CGPointMake(tableView.center.x, tableView.contentSize.height + 22);
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
+        [_loadingIndicator startAnimating];
+        [self loadData];
+    }
+    
     return cell;
 }
 

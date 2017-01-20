@@ -96,6 +96,17 @@ static UserServiceManager *_manager = nil;
     [self fetchUserData];
 }
 
+-(void)fetchStripeData{
+    if ([[ServerConnectionHelper sharedInstance] isInternetConnection]){
+        [[ServerConnectionHelper sharedInstance] loadStripe:^(NSDictionary* result, NSError *error) {
+            NSNumber* stripeRate = [result objectForKeyNotNull:@"stripe_rate"];
+            if (stripeRate){
+                [AppSettings setStripeFee:[stripeRate intValue]];
+            }
+        }];
+    }
+}
+
 -(void)signInWithUserName:(NSString*)username password:(NSString*)password compleate:(errorBlock)compleate{
     [[ServerConnectionHelper sharedInstance] signInWithUserName:username password:password compleate:^(id result, NSError *error) {
         if (!error){
@@ -118,6 +129,7 @@ static UserServiceManager *_manager = nil;
             [NSKeyedArchiver archiveRootObject:me toFile:userStorgeFile(userId)];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
+            [self fetchStripeData];
             [self sendAPNSToken];
             compleate(error);
         });

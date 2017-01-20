@@ -148,6 +148,14 @@
 }
 
 - (IBAction)forgotPasswordAction:(id)sender {
+    
+    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Recover password" message:@"You will be taken to takestock.com to recover your password." preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+     [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+         NSString* urlString = [NSString stringWithFormat:@"%@/recover/", TAKESTOK_IMAGE_URL];
+         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+     }]];
+   [self presentViewController:alertController animated:YES completion:nil];
 
 }
 
