@@ -324,6 +324,9 @@
     
     cell.dateLabel.text = adv.dateExpires ? [NSDate stringFromDate:adv.dateExpires] : @"N/A";
     
+    if (adv.packaging){
+        cell.priceTypeLabel.text = [NSString stringWithFormat:@"per %@", adv.packaging.title];
+    }
     cell.priceLabel.text = [NSString stringWithFormat:@"%.02f", adv.guidePrice];
     [cell.watchListButton setHighlighted:adv.isInWatchList];
 }
